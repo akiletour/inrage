@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { space } from './styles/functions'
@@ -49,7 +49,11 @@ export default ({
 }) => (
   <Item>
     <img src={icon} alt={title} />
-    <Title>{title}</Title>
+    <Title>
+      {title.map((item, index) => (
+        <Fragment key={index}>{item}</Fragment>
+      ))}
+    </Title>
     <Content>{content}</Content>
     {buttonLink && (
       <div style={{ marginTop: 'auto', paddingTop: space(2) }}>

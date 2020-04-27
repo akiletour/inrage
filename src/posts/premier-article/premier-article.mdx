@@ -1,0 +1,45 @@
+---
+title: Chercher et remplacer dans votre base de données en ligne de commande
+slug: rechercher-remplacer-base-de-donnees-ligne-commande
+category:
+  - WordPress
+  - Bash
+date: 2020-01-02T22:51:33
+---
+
+Depuis que j’ai mis la main sur l’outil wp-cli de WordPress, et particulièrement search-replace permettant de manipuler la base de données de WordPress depuis le terminal. Je cherchais un outil pour mes autres CMS.
+
+Quand on rappatri la base de données de production en local pour avoir une version à jour. Il est pas évident de trouver dans la base de données tous les liens de production pour les changer en version local.
+
+Je viens de mettre la main sur un outil très pratique, j’ai nommé : `Search Replace DataBase (SRDB)`. C’est un script pratique, rapide et fiable.
+
+Il prend en charge tous les tableaux sérialisés, et peut importe l’interclassement ou le charset de ce dernier, il restera compatible.
+
+Quel était ma surprise quand j'ai appris que le formidable outil `search-replace` de wp-cli (WordPress) était basé sur `SRDB` !
+
+J’utilise cet outil que en ligne de commande, car c’est beaucoup plus pratique et rapide. Nous allons voir ci-dessous comment mettre en place rapidement la migration de notresiteenproduction.com vers notresite.local
+
+## Installation de SRDB
+Le script SRDB est disponible sur [Github](https://www.inrage.fr) mais on peut le téléchargement rapidement avec wget par exemple.
+
+```bash
+wget https://raw.githubusercontent.com/interconnectit/Search-Replace-DB/master/srdb.class.php
+wget https://raw.githubusercontent.com/interconnectit/Search-Replace-DB/master/srdb.cli.php
+```
+
+### Exécution de SRDB
+A l'heure où je vous parle, SRDB n'est pas encore compatible avec PHP 7.1+, on va devoir le lancer avec PHP 7.0 ou moins pour pouvoir l'utiliser correctement sans erreur dans le code.
+
+<Alert>Pensez vraiment à sauvegarder votre base de données sur laquelle vous allez executer ce script pour éviter tout problème.</Alert>
+
+```bash
+/usr/local/opt/php@7.0/bin/php srdb.cli.php -h localhost -u root -proot -n mabase -s notresiteenproduction.com -r notresite.local
+```
+
+- -h : Le hostname de la base de données
+- -u : l’utilisateur de la base de données
+- -p : Le mode passe passe de la base de données. Ce dernier doit être collé à l’argument.
+- -s : La partie que l’on cherche (celle qui va être remplacée)
+- -r : On remplace la précédente valeur par celle ci.
+
+Une fois cette commande terminée, un résumé du nombre d’occurrences modifiées dans la base de données s’affichera.

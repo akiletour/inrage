@@ -70,8 +70,9 @@ const HeaderFooter = styled.div`
 const StyledHeader = styled.div`
   display: flex;
   background: url(${BackgroundImage});
+  background-position: center center;
   background-size: cover;
-  height: 900px;
+  height: ${props => (props.isHome === true ? '900px' : '450px')};
   max-height: 100vh;
   padding-top: ${space(5)};
   flex-direction: column;
@@ -114,13 +115,13 @@ const Bounce = styled.div`
   }
 `
 
-const Header = ({ siteTitle, pageContext }) => {
+const Header = ({ siteTitle, pageContext, isHome }) => {
   const scrollTo = selector => {
     const element = document.querySelector(selector)
 
     if (element) {
       const wrapper = document.documentElement
-      const count = element.offsetTop - wrapper.scrollTop - 150
+      const count = element.offsetTop - wrapper.scrollTop - 84
 
       wrapper.scrollBy({
         behavior: 'smooth',
@@ -134,7 +135,7 @@ const Header = ({ siteTitle, pageContext }) => {
     return false
   }
   return (
-    <StyledHeader>
+    <StyledHeader isHome={isHome}>
       <Wrapper style={{ flex: 1 }}>
         <div
           style={{
@@ -145,31 +146,35 @@ const Header = ({ siteTitle, pageContext }) => {
             alignItems: 'space-between',
           }}
         >
-          <Nav pageContext={pageContext} />
-          <Welcome>
-            <h1>
-              <span className="site-brand">inRage</span>
-              <span className="site-author">Pascal GAULT</span>
-              <span className="site-punchline">
-                Développeur Freelance spécialisé dans la création de sites web
-              </span>
-            </h1>
+          <div style={{ height: 85, content: '' }}>
+            <Nav pageContext={pageContext} />
+          </div>
+          {isHome && (
+            <Welcome>
+              <h1>
+                <span className="site-brand">inRage</span>
+                <span className="site-author">Pascal GAULT</span>
+                <span className="site-punchline">
+                  Développeur Freelance spécialisé dans la création de sites web
+                </span>
+              </h1>
 
-            <Bounce onClick={() => scrollTo('#main-content')}>
-              <svg
-                width="45"
-                height="26"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 45 26"
-              >
-                <path
-                  d="M44.226 3.678c0 .384-.148.724-.443 1.02l-20.65 20.65c-.296.295-.636.443-1.02.443s-.724-.148-1.02-.443L.444 4.698C.148 4.401 0 4.061 0 3.677s.148-.724.443-1.02L2.66.444C2.954.148 3.294 0 3.679 0c.383 0 .723.148 1.018.443L22.113 17.86 39.529.443C39.824.148 40.164 0 40.548 0c.384 0 .724.148 1.02.443l2.215 2.216c.295.295.443.635.443 1.02z"
-                  fill="#FFF"
-                  fillRule="nonzero"
-                />
-              </svg>
-            </Bounce>
-          </Welcome>
+              <Bounce onClick={() => scrollTo('#main-content')}>
+                <svg
+                  width="45"
+                  height="26"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 45 26"
+                >
+                  <path
+                    d="M44.226 3.678c0 .384-.148.724-.443 1.02l-20.65 20.65c-.296.295-.636.443-1.02.443s-.724-.148-1.02-.443L.444 4.698C.148 4.401 0 4.061 0 3.677s.148-.724.443-1.02L2.66.444C2.954.148 3.294 0 3.679 0c.383 0 .723.148 1.018.443L22.113 17.86 39.529.443C39.824.148 40.164 0 40.548 0c.384 0 .724.148 1.02.443l2.215 2.216c.295.295.443.635.443 1.02z"
+                    fill="#FFF"
+                    fillRule="nonzero"
+                  />
+                </svg>
+              </Bounce>
+            </Welcome>
+          )}
         </div>
       </Wrapper>
 

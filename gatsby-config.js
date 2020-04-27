@@ -38,6 +38,38 @@ module.exports = {
         },
       },
     },
+    // Posts
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/posts`,
+        name: 'post',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        root: __dirname,
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1500,
+              linkImagesToOriginal: false,
+              withWebp: true,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-vscode',
+            options: {
+              theme: `Cobalt2`,
+              extensions: [`theme-cobalt2`],
+            },
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 import { ColorDark, ColorPrimary } from './GlobalStyles'
@@ -82,7 +82,11 @@ export default ({
     {readmoreLink && (
       <Cta to={readmoreLink} style={{ backgroundColor: bgColor }}>
         <ReadMoreIcon />
-        {readmoreText}
+        {Array.isArray(readmoreText)
+          ? readmoreText.map((item, index) => (
+              <Fragment key={index}>{item}</Fragment>
+            ))
+          : readmoreText}
       </Cta>
     )}
   </div>

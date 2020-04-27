@@ -94,51 +94,30 @@ const List = styled.div`
   }
 `
 
-export default () => {
-  console.log('list article')
+export default ({ articles }) => {
+  if (!articles) return <p>Shooooot! No Post found!</p>
 
   return (
     <List>
-      <Article>
-        <Thumbnail>
-          <Link to="/">
-            <img src={Article1} alt="" />
-          </Link>
-          <Time>
-            <div className="day">08</div>
-            <div className="month">JAN</div>
-          </Time>
-        </Thumbnail>
-        <h3>Changer les URLs dans votre base de données</h3>
-        <Excerpt>
-          Depuis que j’ai mis la main sur l’outil wp-cli de WordPress, et
-          particulièrement search-replace permettant de manipuler la base de
-          données de WordPress depuis le terminal. Je cherchais un outil pour
-          mes autres CMS. Quand on rappatri la base de données de production en
-          local pour avoir une version à jour. Il est pas évident…
-        </Excerpt>
-        <LinkInline to="/">Voir l'article</LinkInline>
-      </Article>
-      <Article>
-        <Thumbnail>
-          <Link to="/">
-            <img src={Article1} alt="" />
-          </Link>
-          <Time>
-            <div className="day">08</div>
-            <div className="month">JAN</div>
-          </Time>
-        </Thumbnail>
-        <h3>Changer les URLs dans votre base de données</h3>
-        <Excerpt>
-          Depuis que j’ai mis la main sur l’outil wp-cli de WordPress, et
-          particulièrement search-replace permettant de manipuler la base de
-          données de WordPress depuis le terminal. Je cherchais un outil pour
-          mes autres CMS. Quand on rappatri la base de données de production en
-          local pour avoir une version à jour. Il est pas évident…
-        </Excerpt>
-        <LinkInline to="/">Voir l'article</LinkInline>
-      </Article>
+      {articles &&
+        articles.edges.map(({ node: post }) => (
+          <Article key={post.id}>
+            <Thumbnail>
+              <Link to={`/blog${post.fields.slug}`}>
+                <img src={Article1} alt="" />
+              </Link>
+              <Time>
+                <div className="day">08</div>
+                <div className="month">JAN</div>
+              </Time>
+            </Thumbnail>
+            <h3>{post.frontmatter.title}</h3>
+            <Excerpt>{post.excerpt}</Excerpt>
+            <LinkInline to={`/blog${post.fields.slug}`}>
+              Voir l'article
+            </LinkInline>
+          </Article>
+        ))}
     </List>
   )
 }

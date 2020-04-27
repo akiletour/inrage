@@ -5,16 +5,22 @@
   "version": "1.0.0",
   "author": "Pascal GAULT <pascal@inrage.fr>",
   "dependencies": {
+    "@mdx-js/react": "^1.5.9",
     "@svgr/webpack": "^5.3.1",
     "gatsby": "^2.20.25",
     "gatsby-image": "^2.3.4",
     "gatsby-plugin-manifest": "^2.3.5",
+    "gatsby-plugin-mdx": "^1.1.11",
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-sharp": "^2.5.6",
     "gatsby-plugin-smoothscroll": "^1.1.0",
     "gatsby-plugin-svgr": "^2.0.2",
+    "gatsby-remark-copy-linked-files": "^2.2.4",
+    "gatsby-remark-images": "^3.2.6",
+    "gatsby-remark-vscode": "^2.0.3",
     "gatsby-source-filesystem": "^2.2.4",
+    "gatsby-transformer-remark": "^2.7.5",
     "gatsby-transformer-sharp": "^2.4.6",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
@@ -25,10 +31,14 @@
     "slick-carousel": "^1.8.1",
     "smoothscroll-polyfill": "^0.4.4",
     "styled-components": "^5.1.0",
+    "theme-cobalt2": "^2.1.6",
     "typeface-lato": "^0.0.75",
-    "typeface-open-sans": "^0.0.75"
+    "typeface-open-sans": "^0.0.75",
+    "typeface-poppins": "^0.0.72"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
@@ -43,6 +53,7 @@
     "expand-url": "^0.1.3",
     "gh-pages": "^2.2.0",
     "glob": "^7.1.6",
+    "husky": "^4.2.5",
     "prettier": "^2.0.4"
   },
   "homepage": "https://www.inrage.fr",
@@ -50,6 +61,11 @@
     "gatsby",
     "inrage"
   ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "wesbos"

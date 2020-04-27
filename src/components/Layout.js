@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { MDXProvider } from '@mdx-js/react'
 import { useStaticQuery, graphql } from 'gatsby'
+import mdxComponents from './mdxComponents'
 import GlobalStyles from './styles/GlobalStyles'
 import Header from './header'
 import 'normalize.css'
+import Footer from "./Footer";
 
 const Layout = ({
   location,
@@ -24,16 +27,22 @@ const Layout = ({
     }
   `)
 
+  if (pageContext.layout === 'thumbnail') return children
+
   return (
     <>
       <GlobalStyles />
       <Header
         siteTitle={data.site.siteMetadata.title}
         pageContext={pageContext}
+        isHome={path === '/'}
       />
       <div>
-        <main id="main-content">{children}</main>
+        <MDXProvider components={mdxComponents}>
+          <main id="main-content">{children}</main>
+        </MDXProvider>
       </div>
+      <Footer/>
     </>
   )
 }
