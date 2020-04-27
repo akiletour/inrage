@@ -17,4 +17,4 @@ const StyledButton = styled(Link)`
   }
 `
 
-export default props => <StyledButton>{props.children}</StyledButton>
+export default props => <StyledButton {...props}>{props.children}</StyledButton>

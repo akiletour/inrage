@@ -141,19 +141,19 @@ export default () => (
           />
           <ul>
             <li>
-              <Link tp="/">À propos de moi</Link>
+              <Link to="/">À propos de moi</Link>
             </li>
             <li>
-              <Link tp="/">Prestations</Link>
+              <Link to="/">Prestations</Link>
             </li>
             <li>
-              <Link tp="/">Portfolio</Link>
+              <Link to="/">Portfolio</Link>
             </li>
             <li>
-              <Link tp="/">Blog</Link>
+              <Link to="/">Blog</Link>
             </li>
             <li>
-              <Link tp="/">Contactez-moi</Link>
+              <Link to="/">Contactez-moi</Link>
             </li>
           </ul>
           <div className="copyright">
