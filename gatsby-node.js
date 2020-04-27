@@ -88,7 +88,7 @@ exports.createPages = async ({ graphql, actions }) => {
       actions,
       collection: 'post',
       pathPrefix: '/blog/',
-      component: path.resolve('./src/pages/page-2.js'),
+      component: path.resolve('./src/pages/blog.js'),
     }),
   ])
 }

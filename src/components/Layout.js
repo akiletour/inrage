@@ -6,7 +6,7 @@ import mdxComponents from './mdxComponents'
 import GlobalStyles from './styles/GlobalStyles'
 import Header from './header'
 import 'normalize.css'
-import Footer from "./Footer";
+import Footer from './Footer'
 
 const Layout = ({
   location,
@@ -40,7 +40,7 @@ const Layout = ({
           <main id="main-content">{children}</main>
         </MDXProvider>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

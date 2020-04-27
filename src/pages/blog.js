@@ -1,25 +1,22 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-
-import Layout from '../components/Layout'
 import SEO from '../components/seo'
+import BlogList from '../components/BlogList'
+import { Wrapper } from '../components/styles/Wrapper'
 
-const SecondPage = ({ data, pageContext, path }) => {
+export default ({ data, pageContext, path }) => {
   if (!data) return <p>Shooooot! No Post found!</p>
 
   return (
     <>
       <SEO title="Page two" />
-      <h1>Hi from the second page</h1>
-      {data.allMdx &&
-        data.allMdx.edges.map(({ node: item }) => <div key={item.id}>Jey</div>)}
-      <p>Welcome to page 2</p>
-      <Link to="/">Go back to the homepage</Link>
+      <Wrapper>
+        <h1>Articles du blog</h1>
+        {data.allMdx && <BlogList articles={data.allMdx} />}
+      </Wrapper>
     </>
   )
 }
-
-export default SecondPage
 
 export const pageQuery = graphql`
   query blogPosts($skip: Int! = 0) {

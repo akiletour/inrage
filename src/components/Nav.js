@@ -158,7 +158,7 @@ export default function Nav({ pageContext }) {
             <Link to="/page-3">Portfolio</Link>
           </NavLi>
           <NavLi>
-            <Link to="/page-3">Blog</Link>
+            <Link to="/blog/">Blog</Link>
           </NavLi>
           <NavLiButton>
             <Link to="/page-3">Contactez-moi</Link>
