@@ -33,7 +33,7 @@ const Layout = ({
       <Header
         siteTitle={data.site.siteMetadata.title}
         pageContext={pageContext}
-        isHome={path === '/'}
+        isHome={location.pathname === '/'}
       />
       <div>
         <MDXProvider components={mdxComponents}>
