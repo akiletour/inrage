@@ -29,7 +29,6 @@ const ListKeypoints = styled.div`
 `
 
 const IndexPage = ({ data }) => {
-  console.log(data)
   return (
     <Wrapper>
       <SEO title="Home" />
