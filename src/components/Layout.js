@@ -27,8 +27,6 @@ const Layout = ({
     }
   `)
 
-  if (pageContext.layout === 'thumbnail') return children
-
   return (
     <>
       <GlobalStyles />
