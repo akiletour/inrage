@@ -6479,6 +6479,13 @@ gatsby-plugin-smoothscroll@^1.1.0:
   dependencies:
     smoothscroll-polyfill "^0.4.4"
 
+gatsby-plugin-styled-components@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-3.3.0.tgz#f2ed6a559c993542a37fe9b7a64d0c04e58bc9c2"
+  integrity sha512-NpOeC7QPZGLr3CBBi2LWKiPrpgM2KhvlZ5rb9sNKRb6T2meLf6lSCpQbYqAyOh/h3t8o7AefSY8Op8fxqPQ3TQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
 gatsby-plugin-svgr@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-svgr/-/gatsby-plugin-svgr-2.0.2.tgz#22e08fb67ec63b68aca6ac3e89962af20214e2a5"
