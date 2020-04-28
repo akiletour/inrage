@@ -40,7 +40,7 @@ const Layout = ({
       />
       <div>
         <MDXProvider components={mdxComponents}>
-          {location.pathname !== '/' && (
+          {location.pathname !== '/' && pageContext.breadcrumb && (
             <Wrapper>
               <Breadcrumb
                 crumbSeparator="=>"

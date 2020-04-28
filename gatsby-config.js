@@ -12,6 +12,12 @@ module.exports = {
       options: {
         useAutoGen: true,
         autoGenHomeLabel: `Accueil`,
+        exclude: [
+          `/dev-404-page`,
+          `/404`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback`,
+        ],
         crumbLabelUpdates: [
           {
             pathname: '/blog',
