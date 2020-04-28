@@ -8,6 +8,19 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     // `gatsby-plugin-remove-trailing-slashes`,
     {
+      resolve: `gatsby-plugin-breadcrumb`,
+      options: {
+        useAutoGen: true,
+        autoGenHomeLabel: `Accueil`,
+        crumbLabelUpdates: [
+          {
+            pathname: '/blog',
+            crumbLabel: 'Blog',
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       // these are plugin-specific options - see docs for each plugin if you want to know what the options are
       options: {

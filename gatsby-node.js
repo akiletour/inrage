@@ -41,6 +41,7 @@ async function makePostsFromMdx({ graphql, actions }) {
         prev,
         next,
         pathPrefix: '/blog',
+        crumbLabel: post.node.frontmatter.title,
       },
     })
   })

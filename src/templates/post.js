@@ -4,6 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import styled from 'styled-components'
 import { Wrapper } from '../components/styles/Wrapper'
 import { space } from '../components/styles/functions'
+import {Breadcrumb} from "gatsby-plugin-breadcrumb";
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -83,7 +84,7 @@ const BlogArticle = styled.div`
   }
 `
 
-export default ({ data: { mdx: post }, scope, pageContext }) => {
+export default ({ data: { mdx: post }, scope, pageContext, location }) => {
   if (!post) {
     return <p>No Post Found? This should be a 404</p>
   }

@@ -6,6 +6,8 @@ exports.onClientEntry = () => {
   smoothscroll.polyfill()
 }
 
-exports.wrapPageElement = ({ element, props }) => (
-  <Layout {...props}>{element}</Layout>
-)
+exports.wrapPageElement = ({ element, props }) => {
+  return (
+    <Layout {...props}>{element}</Layout>
+  )
+}
