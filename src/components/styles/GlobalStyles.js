@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import 'typeface-open-sans'
 import 'typeface-lato'
 import 'typeface-poppins'
+import { space } from './functions'
 
 export const ColorPrimary = '#e47e21'
 export const ColorDark = '#252525'
@@ -25,6 +26,22 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: var(--primary);
     text-decoration: none;
+  }
+  
+  .breadcrumb {    
+    opacity: .4;
+    &__list {
+      display: grid;
+      list-style: none;
+      grid-auto-flow: column;
+      justify-content: start;
+      margin: 0;
+      padding: 0;
+    }
+    
+    &__separator {
+      margin: 0 ${space(1)};
+    }
   }
 
   body {

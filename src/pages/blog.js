@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import { Breadcrumb } from 'gatsby-plugin-breadcrumb'
 import SEO from '../components/seo'
 import BlogList from '../components/BlogList'
 import { Wrapper } from '../components/styles/Wrapper'
 
-export default ({ data, pageContext, path }) => {
+export default ({ data, pageContext, path, location }) => {
   if (!data) return <p>Shooooot! No Post found!</p>
 
   return (
