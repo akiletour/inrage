@@ -12,7 +12,7 @@ const Highlight = styled.div`
   line-height: 1.3em;
   font-size: 24px;
   font-family: Lato, sans-serif;
-  margin: ${space(7)} ${space(5)} ${space(3)};
+  margin: ${space(7)} ${space(5)} ${space(5)};
   text-align: center;
 
   @media (max-width: 800px) {
