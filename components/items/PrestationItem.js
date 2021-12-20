@@ -21,7 +21,7 @@ export default function PrestationItem({
         {Array.isArray(title) ? title.map((ttl) => <Fragment key={ttl}>{ttl}</Fragment>) : title}
       </h3>
 
-      <p className="text-base md:text-sm lg:text-base leading-5 mt-1 mb-2">{children}</p>
+      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-1 mb-2">{children}</p>
 
       {link !== '' && (
         <div className="mt-auto">
