@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import SectionTitle from '../components/SectionTitle';
 import PrestationItem from '../components/items/PrestationItem';
+import ImagePrestationBuildWebsite from '../public/images/prestations/creation-site-internet.png';
+import ImagePrestationTma from '../public/images/prestations/infogerance-tma-maintenance.png';
+import ImagePrestationHosting from '../public/images/prestations/hebergement-optimise-rapide.png';
 
 export default function Home() {
   return (
@@ -24,7 +27,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-3 lg:gap-6">
           <PrestationItem
-            image="/images/prestations/creation-site-internet.png"
+            image={ImagePrestationBuildWebsite}
             title={['Conception / Refonte', <br />, 'de sites Internet']}
             link="/"
             linkText="Découvrir mes prestations"
@@ -37,7 +40,7 @@ export default function Home() {
           </PrestationItem>
 
           <PrestationItem
-            image="/images/prestations/infogerance-tma-maintenance.png"
+            image={ImagePrestationTma}
             title={['Maintenance &', <br />, 'Infogérance']}
             link="/"
             linkText="Mes offres de maintenance"
@@ -50,7 +53,7 @@ export default function Home() {
           </PrestationItem>
 
           <PrestationItem
-            image="/images/prestations/hebergement-optimise-rapide.png"
+            image={ImagePrestationHosting}
             title={['Hébergement optimisé &', <br />, 'ultra rapide']}
             link="/"
             linkText="Me contacter"

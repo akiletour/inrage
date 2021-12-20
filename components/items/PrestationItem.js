@@ -36,7 +36,7 @@ export default function PrestationItem({
 
 PrestationItem.propTypes = {
   children: PropTypes.node.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.object]).isRequired,
   link: PropTypes.string,
   linkText: PropTypes.string,
   title: PropTypes.oneOfType([
