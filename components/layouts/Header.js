@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import NavPrimary from './NavPrimary';
+import Diagonal from './Diagonal';
 
 export default function Header() {
   return (
@@ -15,28 +16,7 @@ export default function Header() {
         </span>
       </h1>
       <Image priority className="-z-10" src="/images/iledere-pont.jpeg" layout="fill" alt="Pont de l'ile de ré" />
-      <svg className="block w-full h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 351">
-        <defs>
-          <path id="a" d="M1350 224 1920 0v351H0z" />
-          <path id="c" d="M475 0v240L0 186.666z" />
-        </defs>
-        <g fill="none" fillRule="evenodd">
-          <mask id="b" fill="#fff">
-            <use xlinkHref="#a" />
-          </mask>
-          <g fill="#252525" mask="url(#b)">
-            <path d="M0 0h1920v351H0z" />
-          </g>
-          <g transform="translate(1445 3)">
-            <mask id="d" fill="#fff">
-              <use xlinkHref="#c" />
-            </mask>
-            <g fill="#E57E21" mask="url(#d)">
-              <path d="M0 0h475v241H0z" />
-            </g>
-          </g>
-        </g>
-      </svg>
+      <Diagonal preserveRatio bgCorner="fill-orange" bgClass="fill-gray-dark" className="h-auto w-full" />
     </div>
   );
 }
