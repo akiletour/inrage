@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-dark;
+  @apply bg-gray-dark text-gray;
 }
 
 .container {
   @apply max-w-7xl mx-auto px-2 md:px-4;
+}
+
+.button {
+  @apply bg-orange text-gray-darker py-1 px-3 inline-flex font-medium;
 }
