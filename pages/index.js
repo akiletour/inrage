@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import SectionTitle from '../components/SectionTitle';
 import PrestationItem from '../components/items/PrestationItem';
 
