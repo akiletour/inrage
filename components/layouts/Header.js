@@ -14,7 +14,7 @@ export default function Header() {
           la création de sites web
         </span>
       </h1>
-      <Image className="-z-10" src="/images/iledere-pont.jpeg" layout="fill" alt="Pont de l'ile de ré" />
+      <Image priority className="-z-10" src="/images/iledere-pont.jpeg" layout="fill" alt="Pont de l'ile de ré" />
       <svg className="block w-full h-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 351">
         <defs>
           <path id="a" d="M1350 224 1920 0v351H0z" />
