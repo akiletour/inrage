@@ -87,8 +87,14 @@ export default function Home() {
               <br />
               et/ou de sa maintenance
             </h2>
-            <p>Simple et en toute transparence, n’hésitez pas à me demander une estimation gratuite pour la création de votre site web ou de la maintenance applicative.</p>
-            <p>Vous recevrez dans la journée votre devis et nous pourrons prendre contact pour définir ensemble les tâches.</p>
+            <p>
+              Simple et en toute transparence, n’hésitez pas à me demander une estimation
+              gratuite pour la création de votre site web ou de la maintenance applicative.
+            </p>
+            <p>
+              Vous recevrez dans la journée votre devis et nous pourrons prendre contact pour
+              définir ensemble les tâches.
+            </p>
 
             <div className="flex flex-wrap flex-start">
               <Link href="/">
