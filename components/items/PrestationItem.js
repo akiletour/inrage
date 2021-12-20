@@ -39,12 +39,10 @@ PrestationItem.propTypes = {
   image: PropTypes.string.isRequired,
   link: PropTypes.string,
   linkText: PropTypes.string,
-  title: PropTypes.oneOf(
+  title: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(
-      PropTypes.string,
-    ),
-  ).isRequired,
+    PropTypes.array,
+  ]).isRequired,
 };
 
 PrestationItem.defaultProps = {
