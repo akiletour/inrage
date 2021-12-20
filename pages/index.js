@@ -23,7 +23,7 @@ export default function Home() {
           Nous travaillons ensemble pour créer des choses inspirantes et engagées.
         </div>
 
-        <div className="grid grid-cols-3 gap-x-6">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-3 lg:gap-6">
           <PrestationItem
             image="/images/prestations/creation-site-internet.png"
             title={['Conception / Refonte', <br />, 'de sites Internet']}
