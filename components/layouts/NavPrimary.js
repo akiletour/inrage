@@ -15,7 +15,7 @@ export default function NavPrimary() {
     <div className="h-11">
       <div>
         <div className="container flex items-center justify-between py-2">
-          <Image src="/logo.svg" width="150" height="56" />
+          <Image src="/logo.svg" width="150" height="56" alt="Pascal GAULT, développeur Freelance sur La Rochelle" />
 
           <div className="hidden lg:flex items-center space-x-3">
             <LinkItem href="/" title="À propos de moi" />
