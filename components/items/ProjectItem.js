@@ -7,7 +7,7 @@ export default function ProjectItem({ image, title, category }) {
     <Link href="/">
       <a className="group text-center">
         <div className="group-hover:scale-110 transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
-          <Image src={image} width={325} height={505} />
+          <Image src={image} width={325} height={505} alt={title} />
         </div>
         <div className="text-white text-base leading-5 sm:text-2xl">{title}</div>
         <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">{category}</div>
