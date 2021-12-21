@@ -159,7 +159,14 @@ export default function Home() {
         />
       </div>
 
-      <ContactForm />
+      <div className="container">
+        <SectionTitle
+          content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
+          title="Contact"
+        />
+
+        <ContactForm />
+      </div>
     </div>
   );
 }

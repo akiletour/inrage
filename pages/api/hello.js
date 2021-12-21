@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   const {
-    email, firstname, lastname, content,
+    email, name, content,
   } = req.body;
 
   const comment = {
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     useragent: req.headers['user-agent'] || '',
     content,
     email,
-    name: `${firstname} ${lastname}`,
+    name,
   };
 
   try {
