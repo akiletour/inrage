@@ -1,19 +1,29 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import Button from './Button';
 
 export default function ContactForm() {
   const {
     register, handleSubmit, formState: { errors },
   } = useForm();
-  const onSubmit = (data) => fetch('/api/hello', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  }).then((r) => r.json()).then((res) => {
-    console.log(res);
-  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const onSubmit = (data, e) => {
+    setLoading(true);
+    setSuccess(false);
+    fetch('/api/hello', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    }).then((r) => r.json()).then(() => {
+      setLoading(false);
+      setSuccess(true);
+      e.target.reset();
+    });
+  };
 
   const inputClassname = 'border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent';
 
@@ -60,8 +70,22 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="mt-3 flex justify-center md:justify-end">
-        <button className="button py-3 px-4 w-full md:w-auto" type="submit">Envoyer mon message</button>
+      <div className="mt-3 flex flex-col md:flex-row items-center justify-center md:justify-end">
+        {success && (
+          <div className="md:mr-4 flex-1 text-center mb-2 md:mb-0 md:text-right text-[#27ae60]">
+            <span className="font-bold underline">Merci !</span>
+            {' '}
+            Je vous répondrai très prochainement dès
+            que j’aurai pris connaissance de votre message.
+          </div>
+        )}
+        <Button
+          submit
+          isLoading={loading}
+          className="button py-3 px-4 w-full md:w-auto"
+        >
+          Envoyer mon message
+        </Button>
       </div>
 
     </form>
