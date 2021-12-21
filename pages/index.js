@@ -11,6 +11,8 @@ import ImageDiscoverTma from '../public/images/prestations/presentation-integrat
 import ProjectItem from '../components/items/ProjectItem';
 import MoreIcon from '../components/icons/MoreIcon';
 import ContactForm from '../components/ContactForm';
+import ExpertiseItem from '../components/items/ExpertiseItem';
+import ExpertiseWordPress from '../public/images/expertises/wordpress.png';
 
 export default function Home() {
   return (
@@ -160,6 +162,41 @@ export default function Home() {
       </div>
 
       <div className="container">
+        <SectionTitle
+          title="Expertises"
+          content="Je propose un large éventail de services axés sur les résultats pour les marques, en veillant à ce que leur présence en ligne reflète réellement leurs objectifs et leurs inspirations."
+        />
+
+        <div className="my-4 grid grid-cols-2 gap-x-2 gap-y-6">
+          <ExpertiseItem
+            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
+            title="WordPress"
+            link="/"
+            image={ExpertiseWordPress}
+          />
+          <ExpertiseItem
+            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
+            title="WordPress"
+            link="/"
+            image={ExpertiseWordPress}
+          />
+          <ExpertiseItem
+            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
+            title="WordPress"
+            link="/"
+            image={ExpertiseWordPress}
+          />
+          <ExpertiseItem
+            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
+            title="WordPress"
+            link="/"
+            image={ExpertiseWordPress}
+          />
+        </div>
+
+      </div>
+
+      <div className="container my-10">
         <SectionTitle
           content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
           title="Contact"
