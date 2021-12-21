@@ -10,6 +10,7 @@ import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
 import ProjectItem from '../components/items/ProjectItem';
 import MoreIcon from '../components/icons/MoreIcon';
+import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   return (
@@ -157,6 +158,8 @@ export default function Home() {
           }}
         />
       </div>
+
+      <ContactForm />
     </div>
   );
 }
