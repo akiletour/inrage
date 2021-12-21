@@ -120,7 +120,7 @@ export default function Home() {
           title="Projets"
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
           <ProjectItem
             image="/images/portfolio/biosalines-3d.jpeg"
             title="Laboratoires Biosalines"
