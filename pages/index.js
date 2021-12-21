@@ -80,12 +80,12 @@ export default function Home() {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
-        <Image layout="fill" objectFit="cover" className="-z-10" src={ImageDiscoverTma} alt="Prestation de maintenance TMA" />
+        <Image layout="fill" objectFit="cover" className="-z-10 opacity-30 md:opacity-100" src={ImageDiscoverTma} alt="Prestation de maintenance TMA" />
         <div className="container relative -my-10">
-          <div className="w-1/2">
-            <h2 className="text-3xl text-white font-medium mb-3">
+          <div className="md:w-1/2">
+            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
               Besoin d’une estimation de votre site
-              <br />
+              <br className="hidden sm:block" />
               et/ou de sa maintenance
             </h2>
             <p>
