@@ -13,6 +13,9 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#ffffff',
+      red: {
+        DEFAULT: '#c0392b',
+      },
       gray: {
         darker: '#141414',
         dark: '#252525',
@@ -22,6 +25,11 @@ module.exports = {
       orange: {
         DEFAULT: '#e57e21',
         dark: '#8f4d11',
+      },
+    },
+    extend: {
+      boxShadow: {
+        center: 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(230 126 34 / 60%)',
       },
     },
   },

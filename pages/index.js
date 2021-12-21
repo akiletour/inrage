@@ -10,6 +10,7 @@ import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
 import ProjectItem from '../components/items/ProjectItem';
 import MoreIcon from '../components/icons/MoreIcon';
+import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   return (
@@ -156,6 +157,15 @@ export default function Home() {
             href: '/',
           }}
         />
+      </div>
+
+      <div className="container">
+        <SectionTitle
+          content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
+          title="Contact"
+        />
+
+        <ContactForm />
       </div>
     </div>
   );

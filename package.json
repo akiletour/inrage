@@ -8,10 +8,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "akismet-api": "^5.2.1",
     "next": "12.0.7",
+    "node-mailjet": "^3.3.4",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.22.2",
     "sharp": "^0.29.3"
   },
   "devDependencies": {
