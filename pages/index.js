@@ -8,6 +8,7 @@ import ImagePrestationTma from '../public/images/prestations/infogerance-tma-mai
 import ImagePrestationHosting from '../public/images/prestations/hebergement-optimise-rapide.png';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
+import ProjectItem from '../components/items/ProjectItem';
 
 export default function Home() {
   return (
@@ -111,6 +112,36 @@ export default function Home() {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
+      </div>
+
+      <div className="container">
+        <SectionTitle
+          content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
+          title="Projets"
+        />
+
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          <ProjectItem
+            image="/images/portfolio/biosalines-3d.jpeg"
+            title="Laboratoires Biosalines"
+            category="WordPress"
+          />
+          <ProjectItem
+            image="/images/portfolio/biosalines-3d.jpeg"
+            title="Laboratoires Biosalines"
+            category="WordPress"
+          />
+          <ProjectItem
+            image="/images/portfolio/biosalines-3d.jpeg"
+            title="Laboratoires Biosalines"
+            category="WordPress"
+          />
+          <ProjectItem
+            image="/images/portfolio/biosalines-3d.jpeg"
+            title="Laboratoires Biosalines"
+            category="WordPress"
+          />
+        </div>
       </div>
     </div>
   );
