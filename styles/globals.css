@@ -11,7 +11,7 @@ body {
 }
 
 .button {
-  @apply h-5 bg-orange text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
+  @apply h-5 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
 }
 
 .button-outline {
