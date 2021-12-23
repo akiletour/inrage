@@ -13,6 +13,9 @@ import MoreIcon from '../components/icons/MoreIcon';
 import ContactForm from '../components/ContactForm';
 import ExpertiseItem from '../components/items/ExpertiseItem';
 import ExpertiseWordPress from '../public/images/expertises/wordpress.png';
+import ExpertiseSymfony from '../public/images/expertises/symfony.png';
+import ExpertisePrestashop from '../public/images/expertises/prestashop.png';
+import ExpertiseJoomla from '../public/images/expertises/joomla.png';
 
 export default function Home() {
   return (
@@ -169,28 +172,28 @@ export default function Home() {
 
         <div className="my-4 grid md:grid-cols-2 gap-x-2 gap-y-6">
           <ExpertiseItem
-            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
             title="WordPress"
+            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
             link="/"
             image={ExpertiseWordPress}
           />
           <ExpertiseItem
-            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
-            title="WordPress"
+            title="Symfony"
+            excerpt="Symfony est un framework PHP qui nous permet d’accélèrer le développement de sites ou d’applications grace à sa méthodologie et architecture évolutive."
             link="/"
-            image={ExpertiseWordPress}
+            image={ExpertiseSymfony}
           />
           <ExpertiseItem
-            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
-            title="WordPress"
+            title="Prestashop"
+            excerpt="Prestashop est un CMS très puissant pour les sites de commerce électronique (e-commerce) avec plus de 5 000 modules et thèmes."
             link="/"
-            image={ExpertiseWordPress}
+            image={ExpertisePrestashop}
           />
           <ExpertiseItem
-            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
-            title="WordPress"
+            title="Joomla"
+            excerpt="Joomla est un CMS puissant en terme de pérénité, modularité et de puissance dans la gestion de contenu et de l’ajout de vos développement spécifique."
             link="/"
-            image={ExpertiseWordPress}
+            image={ExpertiseJoomla}
           />
         </div>
 
