@@ -11,7 +11,7 @@ export default function ExpertiseItem({
         <Image width={120} height={120} src={image} alt={title} />
       </div>
       <div>
-        <h3 className="text-white text-2xl">{title}</h3>
+        <h3 className="text-white font-medium text-2xl">{title}</h3>
         <p className="mb-1">{excerpt}</p>
         <ButtonLink href={link}>En savoir plus</ButtonLink>
       </div>
