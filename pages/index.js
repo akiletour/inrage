@@ -16,6 +16,7 @@ import ExpertiseWordPress from '../public/images/expertises/wordpress.png';
 import ExpertiseSymfony from '../public/images/expertises/symfony.png';
 import ExpertisePrestashop from '../public/images/expertises/prestashop.png';
 import ExpertiseJoomla from '../public/images/expertises/joomla.png';
+import Keypoints from '../components/Keypoints';
 
 export default function Home() {
   return (
@@ -196,6 +197,9 @@ export default function Home() {
             image={ExpertiseJoomla}
           />
         </div>
+      </div>
+
+      <Keypoints />
 
       </div>
 
