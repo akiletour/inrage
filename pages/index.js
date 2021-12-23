@@ -167,7 +167,7 @@ export default function Home() {
           content="Je propose un large éventail de services axés sur les résultats pour les marques, en veillant à ce que leur présence en ligne reflète réellement leurs objectifs et leurs inspirations."
         />
 
-        <div className="my-4 grid grid-cols-2 gap-x-2 gap-y-6">
+        <div className="my-4 grid md:grid-cols-2 gap-x-2 gap-y-6">
           <ExpertiseItem
             excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
             title="WordPress"

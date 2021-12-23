@@ -6,13 +6,13 @@ export default function ExpertiseItem({
   image, title, excerpt, link,
 }) {
   return (
-    <div className="flex items-center">
-      <div className="w-15 flex-none mr-2">
-        <Image width={120} height={120} src={image} alt={title} />
+    <div className="grid gap-x-3 grid-cols-[80px_auto] md:grid-cols-[120px_auto] items-center">
+      <div className="relative mr-2 w-10 h-10 md:w-15 md:h-15 row-span-2">
+        <Image layout="fill" src={image} alt={title} />
       </div>
-      <div>
-        <h3 className="text-white font-medium text-2xl">{title}</h3>
-        <p className="mb-1">{excerpt}</p>
+      <h3 className="text-white font-medium text-xl md:text-2xl">{title}</h3>
+      <div className="col-span-2 col-auto">
+        <p className="mb-1 text-sm sm:text-md md:text-base">{excerpt}</p>
         <ButtonLink href={link}>En savoir plus</ButtonLink>
       </div>
     </div>
