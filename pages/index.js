@@ -159,7 +159,7 @@ export default function Home() {
           bgCorner="fill-orange"
           cta={{
             icon: <MoreIcon />,
-            title: ['Voir tous', <br />, 'les articles'],
+            title: ['Voir tous', <br />, 'les projets'],
             href: '/',
           }}
         />
