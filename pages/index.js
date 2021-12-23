@@ -17,6 +17,8 @@ import ExpertiseSymfony from '../public/images/expertises/symfony.png';
 import ExpertisePrestashop from '../public/images/expertises/prestashop.png';
 import ExpertiseJoomla from '../public/images/expertises/joomla.png';
 import Keypoints from '../components/Keypoints';
+import ArticleItem from '../components/items/ArticleItem';
+import LeafHeartIcon from '../components/icons/LeafHeartIcon';
 
 export default function Home() {
   return (
@@ -201,9 +203,32 @@ export default function Home() {
 
       <Keypoints />
 
+      <div className="bg-gray-darker">
+        <div className="container py-4">
+          <SectionTitle
+            content={"Passionné par les nouvelles technologies, j'adore partager mes compétences et mes découvertes avec des personnes qui ont cette même passion pour le web !"}
+            title="Articles"
+          />
+
+          <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+            <ArticleItem />
+            <ArticleItem />
+          </div>
+        </div>
+
+        <Diagonal
+          className="-z-10"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+          cta={{
+            icon: <LeafHeartIcon />,
+            title: ['Voir tous', <br />, 'les articles'],
+            href: '/',
+          }}
+        />
       </div>
 
-      <div className="container my-10">
+      <div className="container">
         <SectionTitle
           content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
           title="Contact"
