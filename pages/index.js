@@ -211,8 +211,17 @@ export default function Home() {
           />
 
           <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
-            <ArticleItem />
-            <ArticleItem />
+            <ArticleItem
+              image="/images/articles/bloc-gutenberg-wordpress-sage.jpeg"
+              title="Blocs Gutenberg avec Sage 9 sur WordPress"
+              excerpt="Découvrons comment organiser son thème WordPress sur le moteur Sage 9 pour créer et gérer ses différents blocs Gutenberg avec ACF directement depuis notre thème."
+            />
+
+            <ArticleItem
+              image="/images/articles/server-mysql-replication.jpeg"
+              title="Créer un serveur MySQL de réplication (slave) des données existantes"
+              excerpt="MySQL Master-Slave Replication est une procédure permettant de répliquer en temps réel les données d’un serveur MySQL vers un autre. Nous allons voir ensemble comment mettre cette combinaison en place. Nous ne sommes pas à l’abri d’un incident sur nos serveurs de production et cela même avec un backup journalier de nos bases de données."
+            />
           </div>
         </div>
 
