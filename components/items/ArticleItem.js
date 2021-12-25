@@ -8,7 +8,7 @@ export default function ArticleItem({ image, title, excerpt }) {
     <Link href="/">
       <a className="relative flex flex-col">
         <div className="absolute top-1 w-6 text-center left-1 z-10 bg-white">
-          <div className="py-1 bg-orange font-medium text-white text-2xl">26</div>
+          <div className="py-1 bg-orange font-medium text-gray-darker text-2xl">26</div>
           <div>OCT</div>
         </div>
         <Image src={image} width={595} height={265} alt={title} />
