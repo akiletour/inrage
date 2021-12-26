@@ -6,7 +6,7 @@ import Footer from '../components/layouts/Footer';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Header />
+      <Header pageTitle={pageProps.pageTitle || ''} />
       <Component {...pageProps} />
       <Footer />
     </>
