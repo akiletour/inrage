@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
-function LinkItem({ title, href }) {
+function LinkItem({ title, href, isActive }) {
   return (
     <Link href={href}>
-      <a className="uppercase text-lg text-white">{title}</a>
+      <a className={`uppercase text-lg ${isActive ? 'text-orange' : 'text-white'}`}>{title}</a>
     </Link>
   );
 }
 
 export default function NavPrimary() {
+  const router = useRouter();
+
+  const { pathname } = router;
+
   return (
     <div className="h-11 relative z-50">
       <div>
@@ -20,7 +25,7 @@ export default function NavPrimary() {
           </Link>
 
           <div className="hidden lg:flex items-center space-x-3">
-            <LinkItem href="/a-propos-de-moi" title="À propos de moi" />
+            <LinkItem isActive={pathname === '/a-propos-de-moi'} href="/a-propos-de-moi" title="À propos de moi" />
             <LinkItem href="/" title="Prestations" />
             <LinkItem href="/" title="Portfolio" />
             <LinkItem href="/" title="Blog" />
@@ -36,5 +41,10 @@ export default function NavPrimary() {
 
 LinkItem.propTypes = {
   href: PropTypes.string.isRequired,
+  isActive: PropTypes.bool,
   title: PropTypes.string.isRequired,
+};
+
+LinkItem.defaultProps = {
+  isActive: false,
 };
