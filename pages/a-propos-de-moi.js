@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Diagonal from '../components/layouts/Diagonal';
 import SectionTitle from '../components/SectionTitle';
+import ExperienceItem from '../components/items/ExperienceItem';
+import ExpMoonscoop from '../public/images/experiences/moonscoop.png';
+import ExpMegami from '../public/images/experiences/megami-productions.png';
+import ExpCOS from '../public/images/experiences/comonscreen.png';
+import ExpKamelab from '../public/images/experiences/kamelab.png';
 
 export default function AboutMe() {
   return (
@@ -39,6 +44,40 @@ export default function AboutMe() {
             content="La liste de mes expériences professionnelles que j'ai acquise au fil de mes années de Développeur en tant que salarié et indépendant."
             title="Expériences"
           />
+
+          <div className="flex flex-col space-y-6 pt-6 pb-10">
+            <ExperienceItem
+              logo={ExpMoonscoop}
+              title="Développeur Joomla"
+              company="Moonscoop Digital Media, La Rochelle, France"
+              year="2008 - 4 ans"
+              excerpt="Membre d'une équipe de 3 développeurs frontend et backend. Développement de site client basé principalement sur le CMS Joomla et PHP."
+            />
+
+            <ExperienceItem
+              logo={ExpMegami}
+              title="Développeur Joomla, WordPress et administrateur système"
+              company="Megami Production, La Rochelle, France"
+              year="2012 - 7 ans"
+              excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
+            />
+
+            <ExperienceItem
+              logo={ExpCOS}
+              title="Développeur Symfony, WordPress et Prestashop"
+              company="Com' On Screen, Paris, France"
+              year="2012 - 7 ans"
+              excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
+            />
+
+            <ExperienceItem
+              logo={ExpKamelab}
+              title="Développeur Symfony, WordPress, Prestashop et DevOps"
+              company="Kamélab, La Rochelle, France"
+              year="Depuis 2018"
+              excerpt="Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et notre graphiste Romain Ouvrard."
+            />
+          </div>
         </div>
       </div>
     </>

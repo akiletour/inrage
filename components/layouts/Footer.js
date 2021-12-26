@@ -29,7 +29,7 @@ export default function Footer() {
               <Image className="opacity-30" src={LogoWhite} alt="inRage - Pascal GAULT" />
             </div>
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
-              <Link href="/"><a>A propos de moi</a></Link>
+              <Link href="/a-propos-de-moi"><a>A propos de moi</a></Link>
               <Link href="/"><a>Prestations</a></Link>
               <Link href="/"><a>Portfolio</a></Link>
               <Link href="/"><a>Blog</a></Link>
