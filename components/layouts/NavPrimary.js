@@ -12,10 +12,12 @@ function LinkItem({ title, href }) {
 
 export default function NavPrimary() {
   return (
-    <div className="h-11">
+    <div className="h-11 relative z-50">
       <div>
         <div className="container flex items-center justify-between py-2">
-          <Image src="/logo.svg" width="150" height="56" alt="Pascal GAULT, développeur Freelance sur La Rochelle" />
+          <Link href="/">
+            <a><Image src="/logo.svg" width="150" height="56" alt="Pascal GAULT, développeur Freelance sur La Rochelle" /></a>
+          </Link>
 
           <div className="hidden lg:flex items-center space-x-3">
             <LinkItem href="/" title="À propos de moi" />
