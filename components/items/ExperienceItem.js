@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import PropTypes from 'prop-types';
 
 export default function ExperienceItem({
   logo, title, company, year, excerpt,
@@ -15,3 +16,11 @@ export default function ExperienceItem({
     </div>
   );
 }
+
+ExperienceItem.propTypes = {
+  company: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
+  logo: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+};
