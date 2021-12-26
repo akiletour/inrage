@@ -20,7 +20,7 @@ export default function NavPrimary() {
           </Link>
 
           <div className="hidden lg:flex items-center space-x-3">
-            <LinkItem href="/" title="À propos de moi" />
+            <LinkItem href="/a-propos-de-moi" title="À propos de moi" />
             <LinkItem href="/" title="Prestations" />
             <LinkItem href="/" title="Portfolio" />
             <LinkItem href="/" title="Blog" />
