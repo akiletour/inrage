@@ -39,7 +39,7 @@ export default function Footer() {
               <Socials />
             </div>
             <div>
-              © 2008-2021 - inRage SAS. Tous droits réservés.
+              © 2008-2021 - inRage SARL. Tous droits réservés.
             </div>
             <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
               <Link href="/"><a>Mentions légales</a></Link>
