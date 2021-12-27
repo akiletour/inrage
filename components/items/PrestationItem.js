@@ -17,7 +17,7 @@ export default function PrestationItem({
         />
       </div>
 
-      <h3 className="text-lg text-white mt-1 leading-6">
+      <h3 className="text-xl text-white font-medium mt-1 leading-7">
         {Array.isArray(title) ? title.map((ttl) => <Fragment key={ttl}>{ttl}</Fragment>) : title}
       </h3>
 

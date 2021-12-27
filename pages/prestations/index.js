@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import Head from 'next/head';
 import Diagonal from '../../components/layouts/Diagonal';
-import MoreIcon from '../../components/icons/MoreIcon';
 import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
+import PrestationsList from '../../components/PrestationsList';
+import SectionTitle from '../../components/SectionTitle';
+import ImagePrestationTma from '../../public/images/prestations/infogerance-tma-maintenance.png';
+import PrestationItem from '../../components/items/PrestationItem';
+import PrestationDesign from '../../public/images/prestations/charte_graphique.png';
+import PrestationWebDev from '../../public/images/prestations/developpement_site_web.png';
+import PrestationFormation from '../../public/images/prestations/formation_offerte.png';
+import PrestationSupport from '../../public/images/prestations/support_technique_772424.png';
 
 export default function Prestations() {
   return (
@@ -297,6 +304,65 @@ export default function Prestations() {
           />
         </div>
       </div>
+
+      <div className="container">
+        <div
+          className="mt-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white"
+        >
+          Je suis entouré d&apos;une équipe fondée de créatifs, designers et développeurs.
+          Nous travaillons ensemble pour créer des choses inspirantes et engagées.
+        </div>
+
+        <div className="text-center max-w-4xl mx-auto text-lg mt-4 mb-7">
+          Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au fil des années des
+          compétences diverses et complémentaires qui me permettent aujourd’hui de concevoir
+          intégralement l’outil répondant le plus précisément à vos attentes.
+        </div>
+
+        <PrestationsList />
+
+        <div className="mt-10">
+          <SectionTitle
+            title="Pourquoi moi ?"
+            content="Consulter en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            <PrestationItem
+              image={PrestationDesign}
+              title={['Identité visuelle &', <br />, 'Charte graphique']}
+            >
+              Conscient et engagé, nous sommes à l’affut des nouvelles technologies web, nous
+              assurons des veilles graphiques et techniques nous permettant de vous proposer des
+              fonctionnalités au gout du jours.
+            </PrestationItem>
+            <PrestationItem
+              image={PrestationWebDev}
+              title={['Développment de', <br />, 'votre projet']}
+            >
+              Expert dans son domaine et sur les CMS comme Joomla, Prestashop et WordPress. inRage
+              respectera précisément votre cahier des charges pour développer les fonctionnalités de
+              vos sites.
+            </PrestationItem>
+            <PrestationItem
+              image={PrestationFormation}
+              title={['Formation offerte', <br />, 'lors de la création']}
+            >
+              À la fin de la création de votre projet, nous offrons une formation complète à
+              l’utilisation de vos nouveaux outils web. Vous offrant une administration optimale de
+              votre site.
+            </PrestationItem>
+            <PrestationItem
+              image={PrestationSupport}
+              title={['Support technique', <br />, '7j/7']}
+            >
+              Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir sur votre site
+              Internet.
+              Nous sommes disponibles 7j/7 si un problème technique survient sur votre site web.
+            </PrestationItem>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
@@ -304,7 +370,7 @@ export default function Prestations() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: 'Prestations sous WordPress, Prestashop et Symfony',
+      pageTitle: 'PrestationsList sous WordPress, Prestashop et Symfony',
     },
   };
 }
