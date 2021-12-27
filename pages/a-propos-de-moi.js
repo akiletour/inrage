@@ -15,7 +15,10 @@ export default function AboutMe() {
     <>
       <Head>
         <title>Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle</title>
-        <meta name="description" content="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l&#039;intégration web" />
+        <meta
+          name="description"
+          content="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l&#039;intégration web"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mt-4 -mb-20">
@@ -25,10 +28,27 @@ export default function AboutMe() {
           <span className="font-light">FREELANCE BASÉ À LA ROCHELLE</span>
         </h2>
 
-        <p className="mt-2 text-xl text-gray-light">Développeur Web depuis 15 ans dans les agences web à La Rochelle. Expert dans le développement et spécialisé sur Symfony, WordPress et Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web Freelance à La Rochelle.</p>
-        <p className="mt-1">Une de mes plus importantes et gratifiantes décisions pour ma carrière que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les différents aspects de la conception, de la stratégie, de la gestion et de la planification jusqu’à la production complète de ce projet.</p>
-        <p className="mt-1">Je suis aussi devenu plus intéressé par l’aspect commercial des projets, de plus en plus conscient de l’importance d’intégrer les décisions commerciales responsables de l’atteinte des objectifs d’affaires.</p>
-        <p className="mt-1 mb-3">Un projet, des questions ? N&apos;hésitez pas à me contacter pour en discuter !</p>
+        <p className="mt-2 text-xl text-gray-light">
+          Développeur Web depuis 15 ans dans les agences
+          web à La Rochelle. Expert dans le développement et spécialisé sur Symfony, WordPress et
+          Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web Freelance à La
+          Rochelle.
+        </p>
+        <p className="mt-1">
+          Une de mes plus importantes et gratifiantes décisions pour ma carrière
+          que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les différents aspects de
+          la conception, de la stratégie, de la gestion et de la planification jusqu’à la production
+          complète de ce projet.
+        </p>
+        <p className="mt-1">
+          Je suis aussi devenu plus intéressé par l’aspect commercial des projets,
+          de plus en plus conscient de l’importance d’intégrer les décisions commerciales
+          responsables de l’atteinte des objectifs d’affaires.
+        </p>
+        <p className="mt-1 mb-3">
+          Un projet, des questions ? N&apos;hésitez pas à me contacter pour
+          en discuter !
+        </p>
 
         <Link href="/contact">
           <a className="button">Contactez-moi</a>
@@ -103,19 +123,45 @@ export default function AboutMe() {
           <div>
             <h3 className="text-white font-medium text-3xl mb-1">Pascal GAULT</h3>
 
-            <p>Dès mon plus jeune âge, je commence à découvrir le monde du développement en créant mes premiers sites liés à mes associations de jeux vidéos. C’est à partir de cette époque que j’ai continué dans cette voie pour me professionnaliser dans la création numérique et en faire mon métier sur La Rochelle.</p>
+            <p>
+              Dès mon plus jeune âge, je commence à découvrir le monde du développement en créant
+              mes premiers sites liés à mes associations de jeux vidéos. C’est à partir de cette
+              époque que j’ai continué dans cette voie pour me professionnaliser dans la création
+              numérique et en faire mon métier sur La Rochelle.
+            </p>
 
-            <p className="mt-2">L’art et la technologie ont toujours été deux inspirations de ma vie courante. Je viens d’un milieu artistique, qui a fusionné avec la technologie pour finir par évoluer dans le développement web.</p>
+            <p className="mt-2">
+              L’art et la technologie ont toujours été deux inspirations de ma vie
+              courante. Je viens d’un milieu artistique, qui a fusionné avec la technologie pour
+              finir par évoluer dans le développement web.
+            </p>
 
-            <p className="mt-2">Je suis guidé par la passion, le souci du détail individuel, structuré et organisé. Je suis impatient de voir où ma carrière va m’emmener dans les mois ou les années à venir.</p>
+            <p className="mt-2">
+              Je suis guidé par la passion, le souci du détail individuel,
+              structuré et organisé. Je suis impatient de voir où ma carrière va m’emmener dans les
+              mois ou les années à venir.
+            </p>
 
-            <p className="mt-2">Je continue à travailler et apprendre tous les jours, trouver de nouvelles technologies pour faire évoluer cette passion; et pouvoir appliquer cela tous les jours dans mon travail.</p>
+            <p className="mt-2">
+              Je continue à travailler et apprendre tous les jours, trouver de
+              nouvelles technologies pour faire évoluer cette passion; et pouvoir appliquer cela
+              tous les jours dans mon travail.
+            </p>
 
             <h3 className="text-white font-medium text-3xl mt-4 mb-1">Ce site</h3>
 
-            <p>Ce site est mon croquis numérique, mon journal et mon air de jeu dans l’expérimentation de nouvelles technologies. Je suis constamment en train d’y implémenter de nouvelles fonctionnalités, et parfois même faire des erreurs. Tout pour un seul objectif, continuer d’apprendre.</p>
+            <p>
+              Ce site est mon croquis numérique, mon journal et mon air de jeu dans
+              l’expérimentation de nouvelles technologies. Je suis constamment en train d’y
+              implémenter de nouvelles fonctionnalités, et parfois même faire des erreurs. Tout pour
+              un seul objectif, continuer d’apprendre.
+            </p>
 
-            <p className="mt-2">J’espère que les gens qui visiteront mon portfolio aimeront autant que j’ai apprécié de le développer. En espérant qu’ils trouveront de l’inspiration et pourquoi pas, nous permettre de travailler ensemble.</p>
+            <p className="mt-2">
+              J’espère que les gens qui visiteront mon portfolio aimeront autant
+              que j’ai apprécié de le développer. En espérant qu’ils trouveront de l’inspiration et
+              pourquoi pas, nous permettre de travailler ensemble.
+            </p>
 
             <h3 className="text-white font-medium text-3xl mt-4 mb-1">Mes réseaux sociaux</h3>
 
