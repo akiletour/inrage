@@ -5,7 +5,7 @@ export default function ExperienceItem({
   logo, title, company, year, excerpt,
 }) {
   return (
-    <div className="grid grid-cols-[250px_1fr] items-start justify-start">
+    <div className="grid md:grid-cols-[250px_1fr] items-start justify-start">
       <div className="flex justify-center row-span-4">
         <Image src={logo} alt={company} />
       </div>
