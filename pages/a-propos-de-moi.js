@@ -7,6 +7,8 @@ import ExpMoonscoop from '../public/images/experiences/moonscoop.png';
 import ExpMegami from '../public/images/experiences/megami-productions.png';
 import ExpCOS from '../public/images/experiences/comonscreen.png';
 import ExpKamelab from '../public/images/experiences/kamelab.png';
+import MoreIcon from '../components/icons/MoreIcon';
+import Socials from '../components/layouts/Socials';
 
 export default function AboutMe() {
   return (
@@ -39,7 +41,7 @@ export default function AboutMe() {
       />
 
       <div className="bg-gray-darker">
-        <div className="container">
+        <div className="container -mb-10">
           <SectionTitle
             content="La liste de mes expériences professionnelles que j'ai acquise au fil de mes années de Développeur en tant que salarié et indépendant."
             title="Expériences"
@@ -79,6 +81,48 @@ export default function AboutMe() {
             />
           </div>
         </div>
+
+        <Diagonal
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+          cta={{
+            icon: <MoreIcon />,
+            title: ['Voir tous', <br />, 'les projets'],
+            href: '/',
+          }}
+        />
+      </div>
+
+      <div className="container">
+        <SectionTitle
+          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serais ravis de vous répondre."
+          title="En savoir plus"
+        />
+
+        <div>
+          <div>
+            <h3 className="text-white font-medium text-3xl mb-1">Pascal GAULT</h3>
+
+            <p>Dès mon plus jeune âge, je commence à découvrir le monde du développement en créant mes premiers sites liés à mes associations de jeux vidéos. C’est à partir de cette époque que j’ai continué dans cette voie pour me professionnaliser dans la création numérique et en faire mon métier sur La Rochelle.</p>
+
+            <p className="mt-2">L’art et la technologie ont toujours été deux inspirations de ma vie courante. Je viens d’un milieu artistique, qui a fusionné avec la technologie pour finir par évoluer dans le développement web.</p>
+
+            <p className="mt-2">Je suis guidé par la passion, le souci du détail individuel, structuré et organisé. Je suis impatient de voir où ma carrière va m’emmener dans les mois ou les années à venir.</p>
+
+            <p className="mt-2">Je continue à travailler et apprendre tous les jours, trouver de nouvelles technologies pour faire évoluer cette passion; et pouvoir appliquer cela tous les jours dans mon travail.</p>
+
+            <h3 className="text-white font-medium text-3xl mt-4 mb-1">Ce site</h3>
+
+            <p>Ce site est mon croquis numérique, mon journal et mon air de jeu dans l’expérimentation de nouvelles technologies. Je suis constamment en train d’y implémenter de nouvelles fonctionnalités, et parfois même faire des erreurs. Tout pour un seul objectif, continuer d’apprendre.</p>
+
+            <p className="mt-2">J’espère que les gens qui visiteront mon portfolio aimeront autant que j’ai apprécié de le développer. En espérant qu’ils trouveront de l’inspiration et pourquoi pas, nous permettre de travailler ensemble.</p>
+
+            <h3 className="text-white font-medium text-3xl mt-4 mb-1">Mes réseaux sociaux</h3>
+
+            <Socials />
+          </div>
+        </div>
+
       </div>
     </>
   );
