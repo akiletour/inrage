@@ -23,14 +23,14 @@ export default function Footer() {
       </svg>
 
       <div className="bg-gray-darker pt-3 pb-6">
-        <div className="container flex justify-between">
+        <div className="container flex flex-col sm:flex-row justify-between">
           <div>
             <div>
               <Image className="opacity-30" src={LogoWhite} alt="inRage - Pascal GAULT" />
             </div>
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
               <Link href="/a-propos-de-moi"><a>A propos de moi</a></Link>
-              <Link href="/"><a>Prestations</a></Link>
+              <Link href="/prestations"><a>Prestations</a></Link>
               <Link href="/"><a>Portfolio</a></Link>
               <Link href="/"><a>Blog</a></Link>
               <Link href="/"><a>Contactez-moi</a></Link>
@@ -46,10 +46,10 @@ export default function Footer() {
               <Link href="/"><a>Plan du site</a></Link>
             </div>
           </div>
-          <div className="flex items-end flex-col pt-2">
+          <div className="text-center sm:text-right flex sm:items-end flex-col pt-2">
             <Link href="/contact"><a className="button">Demandez un devis</a></Link>
             <div className="my-2 text-3xl font-bold text-orange">06 51 89 89 17</div>
-            <div className="text-right text-sm">
+            <div className="text-center md:text-right text-sm">
               SIRET : 813 430 592 00010
               <br />
               R.C.S : La Rochelle 813 430 592
