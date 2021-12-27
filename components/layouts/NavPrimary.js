@@ -26,7 +26,7 @@ export default function NavPrimary() {
 
           <div className="hidden lg:flex items-center space-x-3">
             <LinkItem isActive={pathname === '/a-propos-de-moi'} href="/a-propos-de-moi" title="À propos de moi" />
-            <LinkItem href="/" title="Prestations" />
+            <LinkItem isActive={pathname === '/prestations'} href="/prestations" title="Prestations" />
             <LinkItem href="/" title="Portfolio" />
             <LinkItem href="/" title="Blog" />
             <Link href="/">
