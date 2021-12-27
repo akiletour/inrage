@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import Head from 'next/head';
+import Diagonal from '../../components/layouts/Diagonal';
+import MoreIcon from '../../components/icons/MoreIcon';
+import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
 
 export default function Prestations() {
   return (
@@ -61,6 +64,237 @@ export default function Prestations() {
               propose des offres de maintenance TMA pour le protéger tout au long de l’année.
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <div className="px-3">
+          <svg
+            className="block w-full h-auto -mb-[5.75%]"
+            height="279"
+            viewBox="0 0 1473 279"
+            width="1473"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fillRule="evenodd" fill="none">
+              <path
+                d="M334.926 194.637L932.094 87.268 1060.546 0l128.081 194.637z"
+                fillRule="nonzero"
+                fill="#50B66D"
+                opacity=".5"
+              />
+              <path
+                d="M1212.891 194.637l95.067-39.75 164.357 39.75z"
+                fillRule="nonzero"
+                fill="#35495E"
+                opacity=".5"
+              />
+              <path
+                d="M1092.242 194.637l65.72-132.275 111.37 132.275z"
+                fillRule="nonzero"
+                fill="#ECF0F1"
+                opacity=".5"
+              />
+              <path
+                d="M421.827 194.447l78.789-145.995 57.478 55.816 214.471 90.179z"
+                fillRule="nonzero"
+                fill="#925BA1"
+                opacity=".5"
+              />
+              <text
+                fill="#C92480"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="184.0942" y="265.2684">GESTION DE PROJET</tspan>
+              </text>
+              <text
+                fill="#F19D32"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="0" y="98.3187">DEBUT DU PROJET</tspan>
+              </text>
+              <text
+                fill="#3F96CF"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="329.4956" y="56.991">VEILLE</tspan>
+              </text>
+              <text
+                fill="#925BA1"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="565.0662" y="24.7987">GRAPHISME</tspan>
+              </text>
+              <text
+                fill="#E74C3C"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="649.1442" y="270.2156">INTEGRATION</tspan>
+              </text>
+              <text
+                fill="#50B66D"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="976.7459" y="278.5486">DEVELOPPEMENT</tspan>
+              </text>
+              <text
+                fill="#ECF0F1"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="1185.0481" y="21.7688">MISE EN PRODUCTION</tspan>
+              </text>
+              <text
+                fill="#35495E"
+                fontFamily="Helvetica"
+                fontSize="22"
+                transform="translate(-1 -1)"
+              >
+                <tspan x="1299.0454" y="278.5486">MAINTENANCE</tspan>
+              </text>
+              <path d="M73.13 107.757c-6.491 22.066 3.004 44.26 21.23 49.621" stroke="#F19D32" />
+              <path
+                d="M68.355 109.24l6.567-5.769 1.713 8.572z"
+                fillRule="nonzero"
+                fill="#F19D32"
+              />
+              <path
+                d="M308.065 237.902c17.752-14.626 17.635-27.698 15.391-43.264"
+                stroke="#C92480"
+              />
+              <path
+                d="M312.85 239.352l-8.673 1.093 3.391-8.058z"
+                fillRule="nonzero"
+                fill="#C92480"
+              />
+              <path
+                d="M367.378 67.802c-1.08 22.975-26.171 52.561-39.95 62.009"
+                stroke="#3F96CF"
+              />
+              <path
+                d="M371.406 70.765l-4.321-7.599-4.421 7.541z"
+                fillRule="nonzero"
+                fill="#3F96CF"
+              />
+              <path
+                d="M585.683 36.512c-16.127 16.4-20.792 54.911-18.366 71.441"
+                stroke="#925BA1"
+              />
+              <path
+                d="M580.772 35.569l8.512-1.992-2.531 8.367z"
+                fillRule="nonzero"
+                fill="#925BA1"
+              />
+              <path
+                d="M711.519 237.902c-17.752-14.626-17.635-27.698-15.391-43.264"
+                stroke="#E74C3C"
+              />
+              <path
+                d="M706.734 239.352l8.673 1.093-3.391-8.058z"
+                fillRule="nonzero"
+                fill="#E74C3C"
+              />
+              <path
+                d="M1072.391 252.748c17.752-14.626 19.427-42.544 17.183-58.111"
+                stroke="#50B66D"
+              />
+              <path
+                d="M1077.177 254.199l-8.673 1.092 3.39-8.057z"
+                fillRule="nonzero"
+                fill="#50B66D"
+              />
+              <path
+                d="M1287.293 33.676c-1.08 22.975-64.164 80.272-77.943 89.721"
+                stroke="#ECF0F1"
+              />
+              <path
+                d="M1291.32 36.639L1287 29.04l-4.421 7.541z"
+                fillRule="nonzero"
+                fill="#ECF0F1"
+              />
+              <path
+                d="M1361.688 253.262c-17.752-14.626-36.464-43.059-34.22-58.625"
+                stroke="#35495E"
+              />
+              <path
+                d="M1356.903 254.713l8.673 1.092-3.391-8.057z"
+                fillRule="nonzero"
+                fill="#35495E"
+              />
+              <path
+                d="M211.987 194.637l80.562-80.972 174.915 80.972z"
+                fillRule="nonzero"
+                fill="#3F96CF"
+                opacity=".5"
+              />
+              <path
+                d="M4.558 194.637l173.787-69.409 80.335 67.409z"
+                fillRule="nonzero"
+                fill="#F19D32"
+                opacity=".5"
+              />
+              <path
+                d="M624.81 194.44l102.28-83.18 30.51-45.23 96.494 84.517 95.26 43.9z"
+                fillRule="nonzero"
+                fill="#E74C3C"
+                opacity=".7"
+              />
+              <path
+                d="M1471.692 194.637l-65.756-11.105-98.105 4.947-126.841-8.451-118.527 6.661-131.685-10.421-185.684 11.685-177.565-7.878-202.435 7.035-128.421-3.894-134.21 6.21-40.948-1.263-59.013 6.474h1469.813z"
+                fillRule="nonzero"
+                fill="#CA2381"
+                opacity=".5"
+              />
+            </g>
+          </svg>
+        </div>
+        <div className="bg-gray-darker pt-16">
+          <div className="container -mb-10">
+            <p className="text-gray-light text-xl">
+              La réussite d’un projet web réside en grande partie dans son organisation et la
+              méthodologie de travail employée. Pour ma part, l’ensemble de mes projets sont
+              construits autour de la méthode agile.
+            </p>
+
+            <p className="mt-2">
+              Elle permet de segmenter un projet en différentes étapes clés afin de vous présenter
+              de manière évolutive les avancements de la création
+              de votre site. Cette méthode offre à mes clients une transparence accrue sur l’avancée
+              de leurs projets mais également la possibilité de tester et de faire évoluer les
+              fonctionnalités développées.
+            </p>
+
+            <p className="mt-2">
+              En somme, cette méthodologie permet d’intégrer mon client dans le processus de
+              création
+              en le sollicitant à chaque étape de la construction de son outil web. Il s’assure
+              ainsi
+              au jour le jour de la qualité du produit attendu.
+            </p>
+          </div>
+
+          <Diagonal
+            bgClass="fill-gray-dark"
+            bgCorner="fill-gray-darker"
+            cta={{
+              icon: <LeafHeartIcon />,
+              title: ['Demandez votre', <br />, 'devis'],
+              href: '/',
+            }}
+          />
         </div>
       </div>
     </>
