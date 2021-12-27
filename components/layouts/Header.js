@@ -9,9 +9,9 @@ export default function Header({ pageTitle }) {
     <div className="relative h-auto w-full">
       <NavPrimary />
       {pageTitle ? (
-        <div className="container z-10 relative mt-8 -mb-8">
-          <h1 className="font-bold tracking-wider text-4xl text-white">{pageTitle}</h1>
-          <div className="mt-2 uppercase text-xs grid grid-flow-col gap-1 justify-start text-white opacity-80">
+        <div className="container z-10 relative mt-3 md:mt-8 md:-mb-8">
+          <h1 className="font-bold tracking-wider text-2xl sm:text-4xl text-white">{pageTitle}</h1>
+          <div className="hidden sm:grid mt-2 uppercase text-xs grid-flow-col gap-1 justify-start text-white opacity-80">
             <Link href="/"><a className="underline">Accueil</a></Link>
             <span>/</span>
             <span className="font-medium">{pageTitle}</span>
