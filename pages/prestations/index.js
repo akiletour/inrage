@@ -4,7 +4,6 @@ import Diagonal from '../../components/layouts/Diagonal';
 import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
 import PrestationsList from '../../components/PrestationsList';
 import SectionTitle from '../../components/SectionTitle';
-import ImagePrestationTma from '../../public/images/prestations/infogerance-tma-maintenance.png';
 import PrestationItem from '../../components/items/PrestationItem';
 import PrestationDesign from '../../public/images/prestations/charte_graphique.png';
 import PrestationWebDev from '../../public/images/prestations/developpement_site_web.png';
