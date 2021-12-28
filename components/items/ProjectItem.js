@@ -28,3 +28,7 @@ ProjectItem.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
+
+ProjectItem.defaultProps = {
+  category: '',
+};
