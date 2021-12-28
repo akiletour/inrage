@@ -24,7 +24,7 @@ export default function Portfolio({ projects: { edges } }) {
             image={node.featuredImage.node.sourceUrl}
             title={node.title}
             slug={node.slug}
-            category={node.supports?.edges[0]?.node?.name}
+            support={node.supports?.edges[0]?.node}
           />
         ))}
       </div>

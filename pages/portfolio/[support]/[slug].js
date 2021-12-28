@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { getAllProjectsWithSlug, getSingleProject } from '../../lib/api';
+import { getAllProjectsWithSlug, getSingleProject } from '../../../lib/api';
 
 export default function PortfolioDetail({ post }) {
   const router = useRouter();
@@ -33,8 +33,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allPosts = await getAllProjectsWithSlug();
 
+  console.log(allPosts.edges);
+
   return {
-    paths: allPosts.edges.map(({ node }) => `/portfolio/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }) => `/portfolio/${node.supports.edges[0].node.slug}/${node.slug}`) || [],
     fallback: true,
   };
 }
