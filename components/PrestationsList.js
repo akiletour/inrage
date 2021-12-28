@@ -9,7 +9,7 @@ export default function PrestationsList() {
       <PrestationItem
         image={ImagePrestationBuildWebsite}
         title={['Conception / Refonte', <br />, 'de sites Internet']}
-        link="/"
+        link="/prestations"
         linkText="Découvrir mes prestations"
       >
         Sites vitrines, associatifs, e-commerce ou dédiés.
