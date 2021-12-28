@@ -33,8 +33,6 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allPosts = await getAllProjectsWithSlug();
 
-  console.log(allPosts.edges);
-
   return {
     paths: allPosts.edges.map(({ node }) => `/portfolio/${node.supports.edges[0].node.slug}/${node.slug}`) || [],
     fallback: true,
