@@ -369,7 +369,7 @@ export default function Prestations() {
 export async function getStaticProps() {
   return {
     props: {
-      pageTitle: 'PrestationsList sous WordPress, Prestashop et Symfony',
+      pageTitle: 'Prestations sous WordPress, Prestashop et Symfony',
     },
   };
 }
