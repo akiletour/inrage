@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -16,8 +17,9 @@ import Keypoints from '../components/Keypoints';
 import ArticleItem from '../components/items/ArticleItem';
 import LeafHeartIcon from '../components/icons/LeafHeartIcon';
 import PrestationsList from '../components/PrestationsList';
+import { getHomepageProjects } from '../lib/api';
 
-export default function Home() {
+export default function Home({ lastProjects: { edges } }) {
   return (
     <div>
       <Head>
@@ -90,26 +92,15 @@ export default function Home() {
           />
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            <ProjectItem
-              image="/images/portfolio/biosalines-3d.jpeg"
-              title="Laboratoires Biosalines"
-              category="WordPress"
-            />
-            <ProjectItem
-              image="/images/portfolio/biosalines-3d.jpeg"
-              title="Laboratoires Biosalines"
-              category="WordPress"
-            />
-            <ProjectItem
-              image="/images/portfolio/biosalines-3d.jpeg"
-              title="Laboratoires Biosalines"
-              category="WordPress"
-            />
-            <ProjectItem
-              image="/images/portfolio/biosalines-3d.jpeg"
-              title="Laboratoires Biosalines"
-              category="WordPress"
-            />
+            {edges.length > 0 && edges.map(({ node }) => (
+              <ProjectItem
+                key={node.id}
+                image={node.featuredImage.node.sourceUrl}
+                title={node.title}
+                slug={node.slug}
+                category="WordPress"
+              />
+            ))}
           </div>
         </div>
 
@@ -209,4 +200,24 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+Home.propTypes = {
+  lastProjects: PropTypes.shape({
+    edges: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+};
+
+export async function getStaticProps() {
+  const lastProjects = await getHomepageProjects();
+
+  return {
+    props: {
+      lastProjects,
+    },
+  };
 }
