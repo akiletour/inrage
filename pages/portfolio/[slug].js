@@ -10,7 +10,15 @@ export default function PortfolioDetail({ post }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  return <div>{post.title}</div>;
+  return (
+    <div>
+      {router.isFallback ? <p>Chargement en cours...</p> : (
+        <div>
+          {post.title}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export async function getStaticProps({ params }) {
