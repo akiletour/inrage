@@ -96,7 +96,7 @@ export default function PrestationBuildWebsite() {
 
       <div className="container -mb-10">
         <SectionTitle
-          title="Services"
+          title={['Mes solutions', <br />, 'pour vos sites']}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
         />
 
@@ -131,12 +131,15 @@ export default function PrestationBuildWebsite() {
               votre site au gré de vos besoins.
             </p>
             <Link href="/">
-              <a className="button">Développer avec WordPress</a>
+              <a className="button">
+                Développer son site avec
+                <span className="font-bold ml-[4px] underline">WordPress</span>
+              </a>
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center mt-8 flex-col md:flex-row-reverse">
+        <div className="flex items-center mt-8 flex-col md:flex-row-reverse relative z-10">
           <div className="md:w-2/5">
             <Image
               src="/images/website-prestashop.png"
@@ -167,7 +170,10 @@ export default function PrestationBuildWebsite() {
             </p>
 
             <Link href="/">
-              <a className="button">Développer avec WordPress</a>
+              <a className="button">
+                Développer son site avec
+                <span className="font-bold ml-[4px] underline">Prestashop</span>
+              </a>
             </Link>
           </div>
         </div>
@@ -210,8 +216,7 @@ export default function PrestationBuildWebsite() {
               </p>
               <p className="mt-2">
                 Sketch est conçu pour créer des UI : C’est à dire, tout ce que vous avez créer sur
-                cet outil est réalisable en HTML/CSS. De plus, une fonctionnalité de générateur de
-                codes est même disponible.
+                cet outil est réalisable en HTML/CSS.
               </p>
               <p className="mt-2">
                 Enfin, une autre fonctionnalité permet d’exporter les assets d’un projet. En
@@ -221,7 +226,7 @@ export default function PrestationBuildWebsite() {
             </div>
           </div>
 
-          <div className="flex items-center flex-col md:flex-row-reverse mt-10 md:text-right">
+          <div className="flex items-center flex-col md:flex-row-reverse mt-20 md:text-right">
             <div className="md:w-2/5">
               <Image
                 src="/images/devops.png"
@@ -258,7 +263,7 @@ export default function PrestationBuildWebsite() {
             </div>
           </div>
 
-          <div className="flex items-center flex-col md:flex-row mt-10">
+          <div className="flex items-center flex-col md:flex-row mt-20">
             <div className="md:w-2/5">
               <Image
                 src="/images/lighthouse-100percent-inrage.png"
