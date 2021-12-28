@@ -12,14 +12,18 @@ export default function ProjectItem({
           <Image src={image} width={257} height={400} alt={title} />
         </div>
         <div className="text-white text-base leading-5 sm:text-2xl">{title}</div>
-        <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">{category}</div>
+        {category && (
+          <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">
+            {category}
+          </div>
+        )}
       </a>
     </Link>
   );
 }
 
 ProjectItem.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   slug: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
