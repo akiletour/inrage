@@ -31,7 +31,7 @@ export default function Footer() {
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
               <Link href="/a-propos-de-moi"><a>A propos de moi</a></Link>
               <Link href="/prestations"><a>Prestations</a></Link>
-              <Link href="/"><a>Portfolio</a></Link>
+              <Link href="/portfolio"><a>Portfolio</a></Link>
               <Link href="/"><a>Blog</a></Link>
               <Link href="/"><a>Contactez-moi</a></Link>
             </div>
