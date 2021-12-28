@@ -257,6 +257,28 @@ export default function PrestationBuildWebsite() {
               </p>
             </div>
           </div>
+
+          <div className="flex items-center flex-col md:flex-row mt-10">
+            <div className="md:w-2/5">
+              <Image
+                src="/images/lighthouse-100percent-inrage.png"
+                width={385}
+                height={191}
+                alt="Création et intégration avec Sketch"
+              />
+            </div>
+            <div className="md:w-3/5 md:pl-4">
+              <h3 className="text-white text-4xl font-bold mb-3">
+                Google Lighthouse and GTmetrix
+              </h3>
+
+              <p className="mt-2">Dès lors que l&apos;intégration de votre maquette commence, que ce soit sur WordPress, Symfony, Prestashop ou encore React JS. Je contrôle à chaque déploiement les performances de votre site. </p>
+
+              <p className="mt-2">Cela permet de garder un oeil sur les dernières recommandations du web, que ce soit en terme de performance, accessibilité, meilleurs pratiques ou encore le SEO naturel.</p>
+
+            </div>
+          </div>
+
         </div>
 
         <Diagonal
