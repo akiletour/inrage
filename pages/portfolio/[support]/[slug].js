@@ -2,6 +2,7 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Head from 'next/head';
 import { getAllProjectsWithSlug, getSingleProject } from '../../../lib/api';
 import SectionTitle from '../../../components/SectionTitle';
 import ProjectItem from '../../../components/items/ProjectItem';
@@ -17,6 +18,14 @@ export default function PortfolioDetail({ post, similarProjects }) {
     <div className="container">
       {router.isFallback ? <p>Chargement en cours...</p> : (
         <div>
+          <Head>
+            <title>{`${post.title} - Portfolio`}</title>
+            <meta
+              name="description"
+              content={post.detail.excerpt}
+            />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <div className="flex items-center mb-10 flex-col md:flex-row">
             <div className="md:w-2/5 text-center md:text-right">
               <div className="text-4xl text-white font-bold">{post.title}</div>
