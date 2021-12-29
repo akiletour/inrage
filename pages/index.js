@@ -85,7 +85,7 @@ export default function Home({ lastProjects: { edges } }) {
       </div>
 
       <div className="bg-gray-darker">
-        <div className="container -mb-8">
+        <div className="container -mb-8 z-10 relative">
           <SectionTitle
             content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
             title="Projets"
