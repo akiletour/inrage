@@ -35,9 +35,12 @@ export default function PortfolioDetail({ post, similarProjects }) {
                 <div className="text-white font-medium text-sm flex space-x-2 justify-center flex-wrap md:justify-end">
                   {post.technologies.edges.map((techno) => (
                     <div key={techno.node.name} className="flex items-center flex-col w-[80px] text-center">
-                      <div className="w-6 h-6 relative">
-                        <Image src={techno.node.acfDetail.image.sourceUrl} layout="fill" />
-                      </div>
+                      {techno.node.acfDetail?.image?.sourceUrl && (
+                        <div className="w-6 h-6 relative">
+                          <Image src={techno.node.acfDetail.image.sourceUrl} layout="fill" />
+                        </div>
+                      )}
+
                       <div className="mt-1">{techno.node.name}</div>
                     </div>
                   ))}
