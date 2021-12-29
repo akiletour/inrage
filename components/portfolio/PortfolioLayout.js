@@ -22,6 +22,7 @@ export default function PortfolioLayout({ pageTitle, supports, projects }) {
       <div className="grid grid-cols-3">
         {projects.length > 0 && projects.map(({ node }) => (
           <ProjectItem
+            xl
             key={node.id}
             image={node.featuredImage.node.sourceUrl}
             title={node.title}
