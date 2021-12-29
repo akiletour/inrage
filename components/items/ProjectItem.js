@@ -30,3 +30,7 @@ ProjectItem.propTypes = {
   title: PropTypes.string.isRequired,
   xl: PropTypes.bool,
 };
+
+ProjectItem.defaultProps = {
+  xl: false,
+};
