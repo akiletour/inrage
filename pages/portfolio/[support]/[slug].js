@@ -37,7 +37,11 @@ export default function PortfolioDetail({ post, similarProjects }) {
                     <div key={techno.node.name} className="flex items-center flex-col w-[80px] text-center">
                       {techno.node.acfDetail?.image?.sourceUrl && (
                         <div className="w-6 h-6 relative">
-                          <Image src={techno.node.acfDetail.image.sourceUrl} layout="fill" />
+                          <Image
+                            src={techno.node.acfDetail.image.sourceUrl}
+                            layout="fill"
+                            alt={techno.node.name}
+                          />
                         </div>
                       )}
 
@@ -48,7 +52,9 @@ export default function PortfolioDetail({ post, similarProjects }) {
               </div>
 
               <div>
-                <div className="text-white text-xl font-light uppercase tracking-widest">Missions</div>
+                <div className="text-white text-xl font-light uppercase tracking-widest">
+                  Missions
+                </div>
                 <div>
                   {post.detail.missions.split('<br />').map((mission) => (
                     <div key={mission}>{mission}</div>
@@ -57,7 +63,12 @@ export default function PortfolioDetail({ post, similarProjects }) {
               </div>
             </div>
             <div className="md:w-3/5 mt-4 md:mt-0 md:pl-4">
-              <Image src={post.featuredImage.node.sourceUrl} width={640} height={1136} />
+              <Image
+                src={post.featuredImage.node.sourceUrl}
+                width={640}
+                height={1136}
+                alt={post.title}
+              />
             </div>
           </div>
 
