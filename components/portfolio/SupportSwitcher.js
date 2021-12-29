@@ -27,7 +27,7 @@ export default function SupportSwitcher({ supports }) {
         <Link key={support.id} href={`/portfolio/${support.slug}`}>
           <a className={asPath === `/portfolio/${support.slug}` ? 'text-orange' : 'text-white'}>
             <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
-              <Image layout="fill" src={support.acfSupport.image.sourceUrl} />
+              <Image layout="fill" src={support.acfSupport.image.sourceUrl} alt={support.name} />
             </div>
             <span className="mt-1 block text-sm md:text-lg">{support.name}</span>
           </a>
