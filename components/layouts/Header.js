@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { Fragment } from 'react';
 import NavPrimary from './NavPrimary';
 import Diagonal from './Diagonal';
 
@@ -13,12 +14,12 @@ export default function Header({ pageTitle, breadcrumb }) {
           <h1 className="font-bold tracking-wider text-2xl sm:text-4xl text-white">{pageTitle}</h1>
           <div className="hidden sm:grid mt-2 uppercase text-xs grid-flow-col gap-1 justify-start text-white opacity-80">
             <Link href="/"><a className="underline">Accueil</a></Link>
-            {breadcrumb?.parent && (
-              <>
+            {breadcrumb.length > 0 && breadcrumb.map((bc) => (
+              <Fragment key={bc.link}>
                 <span>/</span>
-                <Link href={breadcrumb.parent.link}><a className="underline">{breadcrumb.parent.title}</a></Link>
-              </>
-            )}
+                <Link href={bc.link}><a className="underline">{bc.title}</a></Link>
+              </Fragment>
+            ))}
             <span>/</span>
             <span className="font-medium">{pageTitle}</span>
           </div>
@@ -43,15 +44,13 @@ export default function Header({ pageTitle, breadcrumb }) {
 
 Header.propTypes = {
   pageTitle: PropTypes.string,
-  breadcrumb: PropTypes.shape({
-    parent: PropTypes.shape({
-      title: PropTypes.string,
-      link: PropTypes.string,
-    }),
-  }),
+  breadcrumb: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  })),
 };
 
 Header.defaultProps = {
   pageTitle: '',
-  breadcrumb: {},
+  breadcrumb: [],
 };

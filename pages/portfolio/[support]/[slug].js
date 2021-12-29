@@ -23,9 +23,18 @@ export default function PortfolioDetail({ post }) {
 
 export async function getStaticProps({ params }) {
   const data = await getSingleProject(params.slug);
+  console.log(`/portfolio/${data.supports.edges[0].node.slug}`);
   return {
     props: {
       post: data,
+      pageTitle: data.title,
+      breadcrumb: [{
+        link: '/portfolio',
+        title: 'Portfolio',
+      }, {
+        link: `/portfolio/${data.supports.edges[0].node.slug}`,
+        title: data.supports.edges[0].node.name,
+      }],
     },
   };
 }

@@ -50,12 +50,10 @@ export async function getStaticProps({ params }) {
       supports: data.supports.edges,
       projects: data.support.projets.edges,
       pageTitle: data.support.name,
-      breadcrumb: {
-        parent: {
-          link: '/portfolio',
-          title: 'Portfolio',
-        },
-      },
+      breadcrumb: [{
+        link: '/portfolio',
+        title: 'Portfolio',
+      }],
     },
   };
 }

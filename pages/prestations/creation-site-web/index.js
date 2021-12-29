@@ -308,12 +308,10 @@ export async function getStaticProps() {
   return {
     props: {
       pageTitle: 'Création de site internet',
-      breadcrumb: {
-        parent: {
-          link: '/prestations',
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
-        },
-      },
+      breadcrumb: [{
+        link: '/prestations',
+        title: 'Prestations sous WordPress, Prestashop et Symfony',
+      }],
     },
   };
 }
