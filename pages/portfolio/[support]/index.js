@@ -5,8 +5,11 @@ import {
   getAllSupportsWithSlug,
   getSingleSupport,
 } from '../../../lib/api';
+import PortfolioLayout from '../../../components/portfolio/PortfolioLayout';
 
-export default function PortfolioSupport({ support }) {
+export default function PortfolioSupport({
+  pageTitle, support, projects, supports,
+}) {
   const router = useRouter();
 
   if (!router.isFallback && !support?.slug) {
@@ -16,19 +19,23 @@ export default function PortfolioSupport({ support }) {
   return (
     <div>
       {router.isFallback ? <p>Chargement en cours...</p> : (
-        <div>
-          {support.name}
-        </div>
+        <PortfolioLayout
+          projects={projects}
+          supports={supports}
+          pageTitle={pageTitle}
+        />
       )}
     </div>
   );
 }
 
 PortfolioSupport.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
   support: PropTypes.shape({
     slug: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
   }),
+  projects: PropTypes.arrayOf(PropTypes.object).isRequired,
+  supports: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 PortfolioSupport.defaultProps = {
@@ -39,8 +46,10 @@ export async function getStaticProps({ params }) {
   const data = await getSingleSupport(params.support);
   return {
     props: {
-      support: data,
-      pageTitle: data.name,
+      support: data.support,
+      supports: data.supports.edges,
+      projects: data.support.projets.edges,
+      pageTitle: data.support.name,
       breadcrumb: {
         parent: {
           link: '/portfolio',
