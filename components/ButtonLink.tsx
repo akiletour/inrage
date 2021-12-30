@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 interface Props {
   href: string;
-  children: JSX.Element
+  children: JSX.Element | string
 }
 
 export default function ButtonLink({ href, children }: Props) {
