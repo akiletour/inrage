@@ -1,11 +1,13 @@
-const API_URL = process.env.WORDPRESS_API_URL;
+const API_URL: string = process.env.WORDPRESS_API_URL as string;
 
-export default async function fetchAPI(query, { variables } = {}) {
-  const headers = { 'Content-Type': 'application/json' };
-
-  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-    headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
+type VariableProps = {
+  variables?: {
+    id: string
   }
+}
+
+export default async function fetchAPI(query: string, { variables }: VariableProps = {}) {
+  const headers = { 'Content-Type': 'application/json' };
 
   const res = await fetch(API_URL, {
     method: 'POST',
@@ -76,7 +78,7 @@ export async function getAllProjectsWithSlug() {
   return data?.projets;
 }
 
-export async function getSingleProject(slug) {
+export async function getSingleProject(slug: string) {
   const data = await fetchAPI(`
   query ProjectBySlug($id: ID!) {
     projet(id: $id, idType: SLUG) {
@@ -207,7 +209,7 @@ export async function getAllSupportsWithSlug() {
   return data?.supports;
 }
 
-export async function getSingleSupport(slug) {
+export async function getSingleSupport(slug: string) {
   const data = await fetchAPI(`
   query SupportBySlug($id: ID!) {
     support(id: $id, idType: SLUG) {
