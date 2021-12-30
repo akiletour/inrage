@@ -8,6 +8,7 @@ module.exports = {
     'next/core-web-vitals',
     'airbnb',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -15,10 +16,16 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
+  globals: {
+    JSX: true,
+    StaticImageData: true,
+  },
   plugins: [
     'react',
+    '@typescript-eslint',
   ],
   rules: {
+    'import/extensions': 'off',
     'react/jsx-filename-extension': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
@@ -28,11 +35,14 @@ module.exports = {
         some: ['nesting', 'id'],
       },
     }],
-    'react/function-component-definition': [
-      2,
-      {
-        namedComponents: 'function-declaration',
-      },
-    ],
   },
+  overrides: [
+    {
+      files: ['**/*.tsx'],
+      rules: {
+        'react/prop-types': 0,
+        'react/require-default-props': 'off',
+      },
+    },
+  ],
 };
