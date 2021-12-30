@@ -1,4 +1,10 @@
-module.exports = {
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ * */
+
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -9,3 +15,5 @@ module.exports = {
     defaultLocale: 'fr',
   },
 };
+
+module.exports = nextConfig;
