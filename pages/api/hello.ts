@@ -1,6 +1,7 @@
 import { AkismetClient } from 'akismet-api';
 import Mailjet from 'node-mailjet';
 import { NextApiRequest, NextApiResponse } from 'next';
+import requestIp from 'request-ip';
 
 type Data = {
   msg: string
@@ -10,8 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const blog = 'https://www.inrage.fr';
   const client = new AkismetClient({ key: process.env.AKISMET_API_KEY as string, blog });
 
-  const forwarded = req.headers['x-forwarded-for'];
-  const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress;
+  const ip = requestIp.getClientIp(req) || '127.0.0.1';
 
   try {
     const isValid = await client.verifyKey();
@@ -49,7 +49,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res;
   }
 
-  const mailjet = Mailjet.connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
+  const mailjet = Mailjet.connect(
+    process.env.MJ_APIKEY_PUBLIC as string,
+    process.env.MJ_APIKEY_PRIVATE as string,
+  );
 
   const request = mailjet
     .post('send', { version: 'v3.1' })

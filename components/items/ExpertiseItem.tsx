@@ -2,10 +2,10 @@ import Image from 'next/image';
 import ButtonLink from '../ButtonLink';
 
 type Props = {
-  image: string
-  title: string
-  excerpt: string
-  link: string
+  image: string | StaticImageData;
+  title: string;
+  excerpt: string;
+  link: string;
 }
 
 export default function ExpertiseItem({

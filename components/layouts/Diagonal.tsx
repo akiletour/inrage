@@ -11,7 +11,7 @@ type Props = {
   cta?: {
     icon: JSX.Element;
     href: string
-    title: string | Array<string>;
+    title: string | Array<string | JSX.Element>;
   }
 }
 
@@ -47,7 +47,7 @@ export default function Diagonal({
           <div>{cta.icon}</div>
           <div className="mt-1 text-sm text-center leading-4">
             {Array.isArray(cta.title)
-              ? cta.title.map((ttl) => <Fragment key={ttl}>{ttl}</Fragment>)
+              ? cta.title.map((ttl) => <Fragment key={ttl.toString()}>{ttl}</Fragment>)
               : <>ttl</>}
           </div>
         </a>

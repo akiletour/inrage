@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 type Props = {
-  logo: string;
+  logo: string | StaticImageData;
   title: string
   company: string
   year: string
