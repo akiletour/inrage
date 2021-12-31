@@ -58,7 +58,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           bgCorner="fill-orange"
         />
         <Image layout="fill" objectFit="cover" className="-z-10 opacity-30 md:opacity-100" src={ImageDiscoverTma} alt="Prestation de maintenance TMA" />
-        <div className="container relative -my-10">
+        <div className="container relative z-10 -my-10">
           <div className="md:w-1/2">
             <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
               Besoin d’une estimation de votre site
