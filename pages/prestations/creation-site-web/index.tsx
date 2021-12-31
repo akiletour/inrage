@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
+import { PageHeaderStaticProps } from '@type/header';
 import Diagonal from '../../../components/layouts/Diagonal';
 import SectionTitle from '../../../components/SectionTitle';
 import ContactForm from '../../../components/ContactForm';
@@ -130,7 +131,7 @@ export default function PrestationBuildWebsite() {
               nombreux plugins et fonctionnalités sont existants, ils permettent de faire évoluer
               votre site au gré de vos besoins.
             </p>
-            <Link href="/">
+            <Link href="/prestations/creation-site-web/site-wordpress">
               <a className="button">
                 Développer son site avec
                 <span className="font-bold ml-[4px] underline">WordPress</span>
@@ -304,7 +305,7 @@ export default function PrestationBuildWebsite() {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<PageHeaderStaticProps> {
   return {
     props: {
       pageTitle: 'Création de site internet',
