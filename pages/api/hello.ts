@@ -1,5 +1,4 @@
 import { AkismetClient } from 'akismet-api';
-import Mailjet from 'node-mailjet';
 import { NextApiRequest, NextApiResponse } from 'next';
 import requestIp from 'request-ip';
 
@@ -48,32 +47,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(500);
     return res;
   }
+  const mailjetToken = Buffer.from(`${process.env.MJ_APIKEY_PUBLIC as string}:${process.env.MJ_APIKEY_PRIVATE as string}`).toString('base64');
 
-  const mailjet = Mailjet.connect(
-    process.env.MJ_APIKEY_PUBLIC as string,
-    process.env.MJ_APIKEY_PRIVATE as string,
-  );
-
-  const request = mailjet
-    .post('send', { version: 'v3.1' })
-    .request({
-      Messages: [{
-        From: {
-          Email: 'pascal@inrage.fr',
-          Name: 'Pascal GAULT',
-        },
-        To: [{
-          Email: 'pascal@inrage.fr',
-          Name: 'Pascal GAULT',
-        }],
-        Subject: '[inRage] Formulaire de contact',
-        HTMLPart: content,
+  const postBody = {
+    Messages: [{
+      From: {
+        Email: 'pascal@inrage.fr',
+        Name: 'Pascal GAULT',
+      },
+      To: [{
+        Email: 'pascal@inrage.fr',
+        Name: 'Pascal GAULT',
       }],
-    });
-  request
-    .then(() => {
-      res.status(200).json({ msg: 'Ok' });
-    })
+      Subject: '[inRage] Formulaire de contact',
+      HTMLPart: content,
+    }],
+  };
+
+  await fetch('https://api.mailjet.com/v3.1/send', {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${mailjetToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(postBody),
+  }).then(() => {
+    res.status(200).json({ msg: 'Ok' });
+  })
     .catch(() => {
       res.status(500);
       return res;

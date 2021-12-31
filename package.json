@@ -10,7 +10,6 @@
   "dependencies": {
     "akismet-api": "^5.2.1",
     "next": "12.0.7",
-    "node-mailjet": "^3.3.4",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -19,7 +18,6 @@
     "sharp": "^0.29.3"
   },
   "devDependencies": {
-    "@types/node-mailjet": "^3.3.7",
     "@types/react": "^17.0.38",
     "@types/request-ip": "^0.0.37",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
