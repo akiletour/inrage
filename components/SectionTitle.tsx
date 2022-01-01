@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 type Props = {
   className?: string,
   content: string,
@@ -9,11 +7,11 @@ type Props = {
 export default function SectionTitle({ className = '', title, content }: Props) {
   return (
     <div className={`flex md:items-center flex-col md:flex-row ${className}`}>
-      <h2 className="text-white flex-none text-3xl font-bold max-w-[390px]">
+      <h2 className={`${Array.isArray(title) && 'flex flex-col'} text-white flex-none text-3xl font-bold max-w-[390px]`}>
         {Array.isArray(title) ? title.map((ttl) => (
-          <Fragment key={ttl.toString()}>
+          <span key={ttl.toString()}>
             {ttl}
-          </Fragment>
+          </span>
         )) : title}
       </h2>
       <p className="mt-2 md:mt-0 text-gray-light flex-1 flex items-center">
