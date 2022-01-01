@@ -51,3 +51,13 @@ body {
     transform: translate3d(85px, 0, 0);
   }
 }
+
+.styled-list li {
+  @apply flex mt-1;
+}
+
+.styled-list li::before {
+  @apply w-1 h-1 flex-none bg-gray-light mt-1 mr-2 block;
+
+  content: "";
+}
