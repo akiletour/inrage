@@ -2,6 +2,8 @@ import { GetStaticProps } from 'next';
 import { PageHeaderStaticProps } from '@type/header';
 import Image from 'next/image';
 import Head from 'next/head';
+import Diagonal from 'components/layouts/Diagonal';
+import Quote from 'components/Quote';
 import WebsiteWP from '../../../public/images/website-wp.png';
 
 export default function PrestationWordPress() {
@@ -48,6 +50,28 @@ export default function PrestationWordPress() {
             </li>
           </ul>
         </div>
+      </div>
+
+      <div className="bg-gray-darker mt-4">
+        <Diagonal
+          flipX
+          flipY
+          className="h-24"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-gray-darker"
+        />
+        <div className="container text-center">
+          <div className="md:px-18 text-lg">
+            <Quote
+              message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients"
+            />
+          </div>
+        </div>
+        <Diagonal
+          className="h-24"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-gray-darker"
+        />
       </div>
 
     </>
