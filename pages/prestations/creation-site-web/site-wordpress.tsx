@@ -56,11 +56,11 @@ export default function PrestationWordPress() {
         <Diagonal
           flipX
           flipY
-          className="h-24"
+          className="h-8 md:h-16 lg:h-24"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center">
+        <div className="container text-center py-8 lg:py-0">
           <div className="md:px-18 text-lg">
             <Quote
               message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients"
@@ -68,7 +68,7 @@ export default function PrestationWordPress() {
           </div>
         </div>
         <Diagonal
-          className="h-24"
+          className="h-8 md:h-16 lg:h-24"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
