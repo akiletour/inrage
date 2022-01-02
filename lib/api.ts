@@ -1,5 +1,27 @@
 const API_URL: string = process.env.WORDPRESS_API_URL as string;
 
+/**
+ * Represents a project item based on a list of projects
+ */
+const ProjectListItemLayout = `node { 
+  id
+  title
+  slug 
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+  supports {
+    edges {
+      node {
+        name
+        slug
+      }
+    }
+  }
+}`;
+
 type VariableProps = {
   variables?: {
     id: string
@@ -30,24 +52,7 @@ export async function getHomepageProjects() {
     {
       projets(first: 4) {
         edges {
-          node {
-            id
-            title
-            slug
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            supports {
-              edges {
-                node {
-                  name
-                  slug
-                }
-              }
-            }
-          }
+          ${ProjectListItemLayout}
         }
       }
     }
@@ -119,24 +124,7 @@ export async function getSingleProject(slug: string) {
     }
     projets(first: 1000) {
       edges {
-        node {
-          id
-          title
-          slug
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          supports {
-            edges {
-              node {
-                name
-                slug
-              }
-            }
-          }
-        }
+        ${ProjectListItemLayout}
       }
     }
   }
@@ -154,24 +142,7 @@ export async function getPortfolioProjects() {
     {
       projets(first: 1000) {
         edges {
-          node {
-            id
-            title
-            slug
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            supports {
-              edges {
-                node {
-                  name
-                  slug
-                }
-              }
-            }
-          }
+          ${ProjectListItemLayout}
         }
       }
       supports {
@@ -218,24 +189,7 @@ export async function getSingleSupport(slug: string) {
       name
       projets {
         edges {
-          node {
-            id
-            title
-            slug
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-            supports {
-              edges {
-                node {
-                  name
-                  slug
-                }
-              }
-            }
-          }
+          ${ProjectListItemLayout}
         }
       }
     }
@@ -262,25 +216,6 @@ export async function getSingleSupport(slug: string) {
 
   return data;
 }
-
-const ProjectListItemLayout = `node {
-  id
-  title
-  slug
-  featuredImage {
-    node {
-      sourceUrl
-    }
-  }
-  supports {
-    edges {
-      node {
-        name
-        slug
-      }
-    }
-  }
-}`;
 
 export async function LastProjectBySupport(slug: string) {
   const data = await fetchAPI(`
