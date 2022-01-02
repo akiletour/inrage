@@ -17,7 +17,7 @@ export default function TextImage({
   image, title, children, imageProps = {}, position = 'left',
 }: Props) {
   return (
-    <div className={`${position === 'left' ? 'md:flex-row' : 'md:flex-row-reverse text-right'} flex flex-col items-center mt-6`}>
+    <div className={`${position === 'left' ? 'md:flex-row' : 'md:flex-row-reverse md:text-right'} flex flex-col md:items-center mt-6`}>
       <div className="md:w-2/5">
         <Image
           src={image}
