@@ -80,15 +80,15 @@ export default function PrestationWordPress() {
         />
       </div>
 
-      <div className="container">
+      <div className="container mt-4 md:mt-0">
         <SectionTitle
           title={['Backoffice sur-mesure', 'orienté utilisateur']}
           content="Sur Wordpress, pour faciliter la prise en main de mes clients et leur permettre d’ajouter du contenu en toute autonomie, il est possible de personnaliser intégralement l’espace d’administration d’un site."
         />
 
-        <div className="grid grid-cols-2 mt-6 gap-4">
-          <div className="flex items-center">
-            <div className="flex-none mr-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
+          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
+            <div className="flex-none lg:mr-2 h-18 flex items-center">
               <Image src={PageBuilderImage} alt="Construction de page avec Gutenberg" />
             </div>
             <div>
@@ -103,8 +103,8 @@ export default function PrestationWordPress() {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <div className="flex-none mr-2">
+          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
+            <div className="flex-none mr-2 flex h-18 items-center">
               <Image src={AcfImage} alt="Construction de page avec Advanced Custom Fields" />
             </div>
             <div>
@@ -129,7 +129,7 @@ export default function PrestationWordPress() {
             et mis en page en frontoffice.
           </p>
 
-          <p>
+          <p className="mt-4">
             Les pages comportant des ACF nécessitent dans un premier temps
             d’adapter le thème afin d’afficher les contenus tout en respectant la
             charte graphique imposées.
