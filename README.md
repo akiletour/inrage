@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# inRage: A React / NextJS portfolio of a French Webdeveloper
 
-## Getting Started
+[![Last commit](https://img.shields.io/github/last-commit/inrage/inrage)](https://github.com/inrage/inrage/commits/main)
+![Stars](https://img.shields.io/github/stars/inrage/inrage?label=%E2%AD%90%20Stars)
+![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)
 
-First, run the development server:
+
+Initially developed under WordPress, I decided to refactor the whole project under React with the support of Next JS.
+
+To retrieve projects (portfolio) and blog posts, I use the WordPress API with [GraphQL](https://fr.wordpress.org/plugins/wp-graphql/).
+
+Since the project part has ACF custom fields. I use a second [GraphQL extension](https://www.wpgraphql.com/acf/) to manage them
+
+## Installation
+
+Make sure to use newest version of Node JS (v16).
 
 ```bash
-npm run dev
-# or
+yarn
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can now access to the project with : http://localhost:3000
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Configuration 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+In order to run correctly this project, you must define some environment variables.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `AKISMET_API_KEY`: Your Akismet API Key to check spam
+- `MJ_APIKEY_PUBLIC`: Your API Mailjet username 
+- `MJ_APIKEY_PRIVATE`: Your API Mailjet password
+- `WORDPRESS_API_URL`: The base URL of your WordPress instance
