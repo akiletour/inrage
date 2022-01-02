@@ -9,9 +9,22 @@ import PageBuilderImage from '@image/page-builder.png';
 import AcfImage from '@image/acf.png';
 import TextImage from 'components/TextImage';
 import WebsiteWP from '@image/website-wp.png';
+import ImageBackgroundTma from '@image/bg-tma.jpeg';
+import WordpressSage from '@image/developpement-theme-sage.jpeg';
 import WebsitePrestashop from '@image/website-prestashop.png';
+import ProtectionShield from '@image/protection-shield.png';
+import Link from 'next/link';
+import { LastProjectBySupport } from '@lib/api';
+import { ProjectItemType } from '@type/portfolio';
+import ProjectItem from 'components/items/ProjectItem';
+import MoreIcon from 'components/icons/MoreIcon';
+import ContactForm from 'components/ContactForm';
 
-export default function PrestationWordPress() {
+type Props = {
+  featuredProjects: ProjectItemType[]
+}
+
+export default function PrestationWordPress({ featuredProjects }: Props) {
   return (
     <>
       <Head>
@@ -266,20 +279,179 @@ export default function PrestationWordPress() {
             fiables et plus pérennes dans le temps.
           </p>
         </TextImage>
+
+        <TextImage
+          image={WordpressSage}
+          title={['Développement et création', 'de thème WordPress Sage 9 et 10']}
+        >
+          <p>
+            Depuis 2017, j&apos;ai commencé le développement de mes thèmes
+            avec le support de Sage 8 (par roots).
+
+          </p>
+          <p className="mt-2">
+            En 2019, j&apos;ai migré vers Sage 9 avec la prise en charge du
+            moteur de template blade, l&apos;intégration stricte de Webpack et
+            Eslint.
+
+          </p>
+          <p className="mt-2">
+            J&apos;ai eu l&apos;occasion de développer des thèmes pour WooCommerce et Sage comme le
+            {' '}
+            <Link href="/portfolio/wordpress/biosalines/"><a className="text-orange">projet Biosalines.</a></Link>
+          </p>
+
+          <p className="mt-2">Au fil des années, j&apos;ai pu mettre pas mal de solution en place :</p>
+
+          <ul className="styled-list">
+            <li>
+              Création d&apos;un système complexe de block Gutenberg avec Sage et
+              ACF avec chargement automatique, CSS dédié et preview image,
+
+            </li>
+            <li>
+              Des utilitaires pour retirer Gutenberg sur certaine page en
+              fonction des controlleurs et des pages en cours,
+
+            </li>
+            <li>
+              Chargement automatique des champs ACF grace à Sage et
+              <a
+                className="text-orange ml-1"
+                href="https://github.com/wordplate/extended-acf"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Wordplate ACF
+              </a>
+
+            </li>
+            <li>
+              Une stack qui auto-install une stack WordPress avec Sage et ses
+              extensions tiers,
+
+            </li>
+            <li>Un système de gestion de CSS par page pour Sage.</li>
+          </ul>
+        </TextImage>
+      </div>
+
+      <div className="relative">
+        <Diagonal
+          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          flipX
+          flipY
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+        />
+        <Image layout="fill" objectFit="cover" className="-z-10 opacity-30 md:opacity-100" src={ImageBackgroundTma} alt="Prestation de maintenance TMA" />
+        <div className="container flex items-center relative z-10 my-4 lg:-my-10">
+          <div className="md:w-2/3 text-gray-light text-sm">
+            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+              Garanti et suivi
+              <br className="hidden sm:block" />
+              <span className="font-light">pendant 3 mois inclus</span>
+            </h2>
+            <p>
+              Lorsque votre site est en ligne, il peut être sujet à de nombreux problèmes
+              tels des extensions obsolètes qui peuvent créer des failles et
+              laisser le champ libre à des utilisateurs malveillants, ou encore
+              une panne du serveur sur lequel il est hébergé.
+            </p>
+
+            <p className="mt-2">
+              Pour remédier rapidement et efficacement à ce type de problème, j’ai
+              développé une multitude d’outils pour inspecter et analyser votre
+              site en temps réel et me prévenir si l’intégrité de votre site est
+              altérée.
+            </p>
+
+            <p className="mt-2">
+              Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir rapidement
+              pour le corriger et procéder si nécessaire à la mise à jour des
+              modules obsolètes.
+            </p>
+            <p className="mt-2">Ainsi, votre site internet est protégé en permanence.</p>
+            <div className="flex flex-wrap flex-start mt-4">
+              <Link href="/prestations/maintenance-site-internet/maintenance-wordpress">
+                <a className="button">Forfaits de maintenance WordPress</a>
+              </Link>
+            </div>
+          </div>
+          <div className="hidden md:w-1/3 md:flex justify-center">
+            <Image src={ProtectionShield} />
+          </div>
+        </div>
+        <Diagonal
+          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          bgClass="fill-gray-darker"
+          bgCorner="fill-orange"
+        />
+      </div>
+
+      <div className="bg-gray-darker">
+        <div className="container -mb-8 relative z-10">
+          <SectionTitle
+            title="Réalisations WordPress"
+            content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occassion de collaborer dessus en tant que développeur freelance."
+          />
+
+          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+            {featuredProjects.length > 0 && featuredProjects.map(({ node }) => (
+              <ProjectItem
+                key={node.id}
+                image={node.featuredImage.node.sourceUrl}
+                title={node.title}
+                slug={node.slug}
+                support={node.supports?.edges[0]?.node}
+              />
+            ))}
+          </div>
+        </div>
+        <Diagonal
+          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+          cta={{
+            href: '/portfolio/wordpress',
+            title: ['voir les projets', <br />, 'WordPress'],
+            icon: <MoreIcon />,
+          }}
+        />
+      </div>
+      <div className="container">
+        <SectionTitle
+          content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
+          title="Contact"
+        />
+
+        <ContactForm />
       </div>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async (): Promise<PageHeaderStaticProps> => ({
+type SProps = {
   props: {
-    pageTitle: 'Création de site WordPress',
-    breadcrumb: [{
-      link: '/prestations',
-      title: 'Prestations sous WordPress, Prestashop et Symfony',
-    }, {
-      link: '/prestations/creation-site-web',
-      title: 'Création de site internet',
-    }],
-  },
-});
+    featuredProjects: ProjectItemType[]
+  }
+}
+
+type StaticProps = PageHeaderStaticProps & SProps;
+
+export const getStaticProps: GetStaticProps = async (): Promise<StaticProps> => {
+  const relatedProjects = await LastProjectBySupport('wordpress');
+  return {
+    props: {
+      pageTitle: 'Création de site WordPress',
+      breadcrumb: [{
+        link: '/prestations',
+        title: 'Prestations sous WordPress, Prestashop et Symfony',
+      }, {
+        link: '/prestations/creation-site-web',
+        title: 'Création de site internet',
+      }],
+      featuredProjects: relatedProjects.projets.edges,
+    },
+  };
+};

@@ -262,3 +262,43 @@ export async function getSingleSupport(slug: string) {
 
   return data;
 }
+
+const ProjectListItemLayout = `node {
+  id
+  title
+  slug
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+  supports {
+    edges {
+      node {
+        name
+        slug
+      }
+    }
+  }
+}`;
+
+export async function LastProjectBySupport(slug: string) {
+  const data = await fetchAPI(`
+  query LastProjectBySupport($id: ID!) {
+    support(id: $id, idType: SLUG) {
+      id
+      projets(first: 4) {
+        edges {
+          ${ProjectListItemLayout}
+        }
+      }
+    }
+  }
+  `, {
+    variables: {
+      id: slug,
+    },
+  });
+
+  return data.support;
+}

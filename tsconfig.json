@@ -21,7 +21,8 @@
     "baseUrl": ".",
     "paths": {
       "@type/*": ["types/*"],
-      "@image/*": ["public/images/*"]
+      "@image/*": ["public/images/*"],
+      "@lib/*": ["lib/*"]
     }
   },
   "include": [
