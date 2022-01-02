@@ -7,6 +7,7 @@ import Quote from 'components/Quote';
 import SectionTitle from 'components/SectionTitle';
 import PageBuilderImage from '@image/page-builder.png';
 import AcfImage from '@image/acf.png';
+import TextImage from 'components/TextImage';
 import WebsiteWP from '../../../public/images/website-wp.png';
 
 export default function PrestationWordPress() {
@@ -195,6 +196,22 @@ export default function PrestationWordPress() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
+      </div>
+      <div className="container">
+        <TextImage
+          title={['Développment', "d'extensions sur-mesure"]}
+          image={WebsiteWP}
+        >
+          Salut
+        </TextImage>
+
+        <TextImage
+          position="right"
+          title={['Développment', "d'extensions sur-mesure"]}
+          image={WebsiteWP}
+        >
+          Salut
+        </TextImage>
       </div>
     </>
   );
