@@ -8,7 +8,8 @@ import SectionTitle from 'components/SectionTitle';
 import PageBuilderImage from '@image/page-builder.png';
 import AcfImage from '@image/acf.png';
 import TextImage from 'components/TextImage';
-import WebsiteWP from '../../../public/images/website-wp.png';
+import WebsiteWP from '@image/website-wp.png';
+import WebsitePrestashop from '@image/website-prestashop.png';
 
 export default function PrestationWordPress() {
   return (
@@ -22,13 +23,13 @@ export default function PrestationWordPress() {
       </Head>
 
       <div className="container flex items-center">
-        <div className="w-2/5">
+        <div className="md:w-2/5 hidden md:block">
           <Image
             src={WebsiteWP}
             alt="Développeur WordPress Freelance sur La Rochelle"
           />
         </div>
-        <div className="w-3/5 text-lg pl-5 leading-6 pt-2">
+        <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
           <h2 className="text-white text-3xl font-bold">
             Développeur WordPress Freelance sur
             <br />
@@ -199,18 +200,71 @@ export default function PrestationWordPress() {
       </div>
       <div className="container">
         <TextImage
-          title={['Développment', "d'extensions sur-mesure"]}
-          image={WebsiteWP}
-        >
-          Salut
-        </TextImage>
-
-        <TextImage
           position="right"
           title={['Développment', "d'extensions sur-mesure"]}
           image={WebsiteWP}
         >
-          Salut
+          <p>
+            Si la communauté Wordpress est colossale, le catalogue de ses
+            extensions existantes l’est tout autant. Pourtant, selon vos besoins
+            ou les enjeux de votre activité, il peut être nécessaire de
+            développer entièrement une fonctionnalité ou une extension. Pour
+            chaque besoin, il existe une solution technique, ainsi je suis en
+            mesure de développer pour vous la fonctionnalité qui vous convient.
+            <br />
+            Les extensions (plugins) développées par mes soins
+            respectent les bonnes pratiques véhiculées par Wordpress et sont à
+            même d’évoluer au gré des mises à jour du coeur de Wordpress. Si
+            vous disposez de plusieurs sites sous Wordpress, il est aisé de
+            migrer les extensions d’un site à l’autre.
+          </p>
+
+          <p className="mt-2">
+            Selon les besoins de votre activité, je vous conseille les
+            extensions idéales pour vous simplifier le quotidien.
+          </p>
+        </TextImage>
+
+        <TextImage
+          title={['Développment et intégration', 'de thème WordPress sur-mesure']}
+          image={WebsitePrestashop}
+        >
+          <p>
+            Pour chaque projet, nous élaborons ensemble le design de votre
+            site puis je développe le thème inhérent à vos choix graphiques et
+            fonctionnels. Cette étape est cruciale car elle définit ce que les
+            visiteurs pourront visualiser sur votre site. Tous les thèmes que je
+            développe répondent systématiquement à différents besoins :
+          </p>
+
+          <ul className="styled-list">
+            <li>
+              Le responsive design, pour permettre à votre site d’être
+              consulté quelque soit le support (mobile, desktop…)
+            </li>
+            <li>
+              L’usage des dernières technologies, telles que SASS pour
+              structurer les feuilles de style CSS, Webpack pour structurer les
+              modules javaScript ou encore ACF pour structurer les contenus d’un
+              site.
+            </li>
+            <li>
+              La compilation des feuilles de style CSS et modules JS afin de
+              limiter le poids d’un site et en accélérer l’affichage.
+            </li>
+            <li>
+              Ainsi que la gestion du format des images pour un affichage
+              plus rapide des pages.
+            </li>
+          </ul>
+
+          <p className="mt-2">
+            Je respecte scrupuleusement les bonnes pratiques dictées par
+            Wordpress et sa communauté. C’est pourquoi je préfère développer
+            intégralement un thème plutôt que d’en utiliser un existant. Ce qui
+            rend les sites que je développe, plus rapides à l’affichage, plus
+            fiables et plus pérennes dans le temps.
+          </p>
         </TextImage>
       </div>
     </>
