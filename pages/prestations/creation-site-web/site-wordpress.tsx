@@ -349,6 +349,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           <div className="md:w-2/3 text-gray-light text-sm">
             <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
               Garanti et suivi
+              {' '}
               <br className="hidden sm:block" />
               <span className="font-light">pendant 3 mois inclus</span>
             </h2>
