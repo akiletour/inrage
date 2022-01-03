@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Head from 'next/head';
 import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
 import Diagonal from '../components/layouts/Diagonal';
 import SectionTitle from '../components/SectionTitle';
 import ExperienceItem from '../components/items/ExperienceItem';
@@ -14,14 +14,10 @@ import Socials from '../components/layouts/Socials';
 export default function AboutMe() {
   return (
     <>
-      <Head>
-        <title>Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle</title>
-        <meta
-          name="description"
-          content="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l&#039;intégration web"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title="Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle"
+        description="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web"
+      />
       <div className="container mt-4 -mb-20">
         <h2 className="text-white text-3xl">
           <span className="font-bold">PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR</span>

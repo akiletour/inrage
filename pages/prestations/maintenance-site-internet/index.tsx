@@ -3,16 +3,15 @@ import TextImage from 'components/TextImage';
 import TmaImage from '@image/tma.png';
 import Diagonal from 'components/layouts/Diagonal';
 import TmaItem from 'components/items/TmaItem';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 export default function WebsiteTMA() {
   return (
     <>
-      <Head>
-        <title>Maintenance site web | Freelance maintenance site internet - inRage</title>
-        <meta name="description" content="Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title="Maintenance site web | Freelance maintenance site internet - inRage"
+        description="Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site."
+      />
       <div className="container">
         <TextImage
           position="right"

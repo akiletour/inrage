@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import Diagonal from '../../components/layouts/Diagonal';
 import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
 import PrestationsList from '../../components/PrestationsList';
@@ -13,14 +13,10 @@ import PrestationSupport from '../../public/images/prestations/support_technique
 export default function Prestations() {
   return (
     <>
-      <Head>
-        <title>Prestations sous WordPress, Prestashop et Symfony - inRage</title>
-        <meta
-          name="description"
-          content="Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d&#039;expertise dans le développement web."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title="Prestations sous WordPress, Prestashop et Symfony - inRage"
+        description="Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web."
+      />
 
       <div className="flex relative container mt-6 lg:-mt-12">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">

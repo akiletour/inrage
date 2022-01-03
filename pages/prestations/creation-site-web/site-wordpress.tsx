@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import { PageHeaderStaticProps } from '@type/header';
 import Image from 'next/image';
-import Head from 'next/head';
 import Diagonal from 'components/layouts/Diagonal';
 import Quote from 'components/Quote';
 import SectionTitle from 'components/SectionTitle';
@@ -19,6 +18,7 @@ import { ProjectItemType } from '@type/portfolio';
 import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
+import { NextSeo } from 'next-seo';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -27,14 +27,10 @@ type Props = {
 export default function PrestationWordPress({ featuredProjects }: Props) {
   return (
     <>
-      <Head>
-        <title>Création de site WordPress | Freelance Wordpress - inRage</title>
-        <meta
-          name="description"
-          content="Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress."
-        />
-      </Head>
-
+      <NextSeo
+        title="Création de site WordPress | Freelance Wordpress - inRage"
+        description="Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress."
+      />
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
           <Image
