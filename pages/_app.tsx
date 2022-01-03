@@ -1,13 +1,16 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import Header from '../components/layouts/Header';
 import Footer from '../components/layouts/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   return (
     <>
       <DefaultSeo
+        canonical={`${process.env.NEXT_PUBLIC_FRONT_URL}${router.asPath}`}
         additionalLinkTags={[{
           rel: 'icon',
           href: '/favicon.png',
