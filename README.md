@@ -31,4 +31,4 @@ In order to run correctly this project, you must define some environment variabl
 - `AKISMET_API_KEY`: Your Akismet API Key to check spam
 - `MJ_APIKEY_PUBLIC`: Your API Mailjet username 
 - `MJ_APIKEY_PRIVATE`: Your API Mailjet password
-- `WORDPRESS_API_URL`: The base URL of your WordPress instance
+- `WORDPRESS_API_URL`: https://YOUR-WEBSITE/graphql 
