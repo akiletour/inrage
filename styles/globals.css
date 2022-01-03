@@ -53,19 +53,12 @@ body {
 }
 
 .styled-list li {
-  @apply flex mt-1 leading-5;
-}
-
-.styled-list--reverse li {
-  @apply flex-row-reverse text-right;
+  @apply relative pl-2 mt-1 leading-5;
 }
 
 .styled-list li::before {
-  @apply w-1 h-1 flex-none bg-gray-light mt-1 mr-2 block;
+  @apply w-1 h-1 flex-none bg-gray-light mr-2 block absolute left-0 top-1;
 
   content: "";
 }
 
-.styled-list--reverse li::before {
-  @apply mr-0 ml-2;
-}
