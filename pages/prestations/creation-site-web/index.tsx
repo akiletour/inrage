@@ -101,7 +101,7 @@ export default function PrestationBuildWebsite() {
         />
       </div>
 
-      <div className="container -mb-10">
+      <div className="container -mb-10 relative z-10">
         <SectionTitle
           title={['Mes solutions', 'pour vos sites']}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
@@ -152,7 +152,7 @@ export default function PrestationBuildWebsite() {
             communauté solide.
           </p>
 
-          <Link href="/">
+          <Link href="/prestations/creation-site-web/site-prestashop">
             <a className="button">
               Développer son site avec
               <span className="font-bold ml-[4px] underline">Prestashop</span>
