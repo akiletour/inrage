@@ -18,7 +18,6 @@ export default function PrestationBuildWebsite() {
       <Head>
         <title>Création de site internet | Freelance création de site web - inRage</title>
         <meta name="description" content="Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex relative container mt-6 lg:-mt-12">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">

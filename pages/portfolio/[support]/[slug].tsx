@@ -62,7 +62,6 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
               name="description"
               content={post.detail.excerpt}
             />
-            <link rel="icon" href="/favicon.ico" />
           </Head>
           <div className="flex items-center mb-10 flex-col md:flex-row">
             <div className="md:w-2/5 text-center md:text-right">

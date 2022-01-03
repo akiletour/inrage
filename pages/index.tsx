@@ -32,7 +32,6 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
       <Head>
         <title>Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop</title>
         <meta name="description" content="Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop." />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
         <SectionTitle

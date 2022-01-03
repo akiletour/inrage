@@ -19,7 +19,6 @@ export default function Prestations() {
           name="description"
           content="Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d&#039;expertise dans le développement web."
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="flex relative container mt-6 lg:-mt-12">

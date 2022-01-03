@@ -20,7 +20,6 @@ export default function AboutMe() {
           name="description"
           content="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l&#039;intégration web"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mt-4 -mb-20">
         <h2 className="text-white text-3xl">

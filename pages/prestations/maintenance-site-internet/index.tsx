@@ -11,7 +11,6 @@ export default function WebsiteTMA() {
       <Head>
         <title>Maintenance site web | Freelance maintenance site internet - inRage</title>
         <meta name="description" content="Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site." />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
         <TextImage
