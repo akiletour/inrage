@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo
-        canonical={`${process.env.NEXT_PUBLIC_FRONT_URL}${router.asPath}`}
+        canonical={`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_FRONT_URL}${router.asPath}`}
         additionalLinkTags={[{
           rel: 'icon',
           href: '/favicon.png',
