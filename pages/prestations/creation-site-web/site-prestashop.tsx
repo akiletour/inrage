@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import { PageHeaderStaticProps } from '@type/header';
 import Image from 'next/image';
-import Head from 'next/head';
 import Diagonal from 'components/layouts/Diagonal';
 import SectionTitle from 'components/SectionTitle';
 import TextImage from 'components/TextImage';
@@ -15,6 +14,7 @@ import { ProjectItemType } from '@type/portfolio';
 import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
+import { NextSeo } from 'next-seo';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -23,14 +23,10 @@ type Props = {
 export default function PrestationPrestashop({ featuredProjects }: Props) {
   return (
     <>
-      <Head>
-        <title>Création de site e-commerce Prestashop | Freelance Prestashop - inRage</title>
-        <meta
-          name="description"
-          content="Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes."
-        />
-      </Head>
-
+      <NextSeo
+        title="Création de site e-commerce Prestashop | Freelance Prestashop - inRage"
+        description="Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes."
+      />
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
           <Image

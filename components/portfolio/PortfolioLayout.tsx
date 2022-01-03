@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import SectionTitle from '../SectionTitle';
 import SupportSwitcher from './SupportSwitcher';
 import ProjectItem from '../items/ProjectItem';
@@ -15,10 +15,10 @@ interface Props {
 export default function PortfolioLayout({ pageTitle, supports, projects }: Props) {
   return (
     <div className="container">
-      <Head>
-        <title>Portfolio des projets de création de site Internet</title>
-        <meta name="description" content="Retrouvez la liste des projets de création de site web, de boutique e-commerce ou encore d'application web" />
-      </Head>
+      <NextSeo
+        title="Portfolio des projets de création de site Internet"
+        description="Retrouvez la liste des projets de création de site web, de boutique e-commerce ou encore d'application web"
+      />
       <SectionTitle
         content={"Pour toute demande ou devis, n'hésitez pas à nous contacter en remplissant le formulaire ci-dessous, nous serons ravis de vous répondre."}
         title={pageTitle}

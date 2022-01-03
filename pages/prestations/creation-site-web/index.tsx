@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
 import { PageHeaderStaticProps } from '@type/header';
 import TextImage from 'components/TextImage';
 import BuildWordPress from '@image/website-wp.png';
@@ -8,6 +7,7 @@ import BuildPrestashop from '@image/website-prestashop.png';
 import SketchLogo from '@image/sketch_logo.png';
 import DevOps from '@image/devops.png';
 import Lighthouse from '@image/lighthouse-100percent-inrage.png';
+import { NextSeo } from 'next-seo';
 import Diagonal from '../../../components/layouts/Diagonal';
 import SectionTitle from '../../../components/SectionTitle';
 import ContactForm from '../../../components/ContactForm';
@@ -15,10 +15,10 @@ import ContactForm from '../../../components/ContactForm';
 export default function PrestationBuildWebsite() {
   return (
     <div>
-      <Head>
-        <title>Création de site internet | Freelance création de site web - inRage</title>
-        <meta name="description" content="Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !" />
-      </Head>
+      <NextSeo
+        title="Création de site internet | Freelance création de site web - inRage"
+        description="Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !"
+      />
       <div className="flex relative container mt-6 lg:-mt-12">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
           <div className="w-[697px] h-[736px] relative">

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -29,10 +30,10 @@ interface ProductList {
 export default function Home({ lastProjects: { edges } }: ProductList) {
   return (
     <div>
-      <Head>
-        <title>Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop</title>
-        <meta name="description" content="Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop." />
-      </Head>
+      <NextSeo
+        title="Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop"
+        description="Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop."
+      />
       <div className="container">
         <SectionTitle
           className="mt-3 md:mt-0"
