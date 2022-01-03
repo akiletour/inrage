@@ -22,7 +22,7 @@ export default function PrestationsList() {
       <PrestationItem
         image={ImagePrestationTma}
         title={['Maintenance &', <br />, 'Infogérance']}
-        link="/"
+        link="/prestations/maintenance-site-internet"
         linkText="Mes offres de maintenance"
       >
         La maintenance d’un site internet s’avère complexe lorsqu’on ne dispose pas

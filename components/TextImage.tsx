@@ -6,6 +6,7 @@ type Props = {
   title: string | string[];
   children: ReactNode;
   position?: 'right' | 'left';
+  duoTone?: boolean;
   imageProps?: {
     width?: number;
     height?: number;
@@ -14,7 +15,7 @@ type Props = {
 }
 
 export default function TextImage({
-  image, title, children, imageProps = {}, position = 'left',
+  image, title, children, imageProps = {}, position = 'left', duoTone = false,
 }: Props) {
   return (
     <div className={`${position === 'left' ? 'md:flex-row' : 'md:flex-row-reverse md:text-right'} flex flex-col md:items-center mt-6`}>
@@ -28,7 +29,7 @@ export default function TextImage({
       <div className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}>
         <h3 className="text-white text-4xl font-bold mb-3">
           {Array.isArray(title)
-            ? title.map((ttl) => <span className="block" key={ttl}>{ttl}</span>)
+            ? title.map((ttl, index) => <span className={`block ${index > 0 && duoTone && 'font-light text-3xl'}`} key={ttl}>{ttl}</span>)
             : title}
         </h3>
 
