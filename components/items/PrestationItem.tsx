@@ -6,7 +6,7 @@ type Props = {
   title: string | Array<string | JSX.Element>,
   children: JSX.Element | string
   image: string | StaticImageData
-  link: string
+  link?: string
   linkText?: string
 }
 

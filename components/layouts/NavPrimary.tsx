@@ -1,3 +1,4 @@
+import { RouteLink } from '@lib/route';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -30,11 +31,11 @@ export default function NavPrimary() {
           </Link>
 
           <div className="hidden lg:flex items-center space-x-3">
-            <LinkItem isActive={pathname === '/a-propos-de-moi'} href="/a-propos-de-moi" title="À propos de moi" />
-            <LinkItem isActive={pathname === '/prestations'} href="/prestations" title="Prestations" />
-            <LinkItem isActive={pathname === '/portfolio'} href="/portfolio" title="Portfolio" />
-            <LinkItem href="/" title="Blog" />
-            <Link href="/">
+            <LinkItem isActive={pathname === RouteLink.aboutMe} href={RouteLink.aboutMe} title="À propos de moi" />
+            <LinkItem isActive={pathname === RouteLink.prestations} href={RouteLink.prestations} title="Prestations" />
+            <LinkItem isActive={pathname === RouteLink.portfolio} href={RouteLink.portfolio} title="Portfolio" />
+            <LinkItem href={RouteLink.blog} title="Blog" />
+            <Link href={RouteLink.contact}>
               <a className="py-1 px-2 bg-orange uppercase text-gray-darker font-medium">Contactez-moi</a>
             </Link>
           </div>

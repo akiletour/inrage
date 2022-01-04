@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
+import { RouteLink } from '@lib/route';
 import Diagonal from '../components/layouts/Diagonal';
 import SectionTitle from '../components/SectionTitle';
 import ExperienceItem from '../components/items/ExperienceItem';
@@ -47,7 +48,7 @@ export default function AboutMe() {
           en discuter !
         </p>
 
-        <Link href="/contact">
+        <Link href={RouteLink.contact}>
           <a className="button">Contactez-moi</a>
         </Link>
       </div>
@@ -105,7 +106,7 @@ export default function AboutMe() {
           cta={{
             icon: <MoreIcon />,
             title: ['Voir tous', <br />, 'les projets'],
-            href: '/',
+            href: RouteLink.portfolio,
           }}
         />
       </div>

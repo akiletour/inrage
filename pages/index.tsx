@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
+import { RouteLink } from '@lib/route';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -74,10 +75,10 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
             </p>
 
             <div className="flex flex-wrap flex-start">
-              <Link href="/">
+              <Link href={RouteLink.contact}>
                 <a className="button mt-3 mr-2">Demandez votre devis maintenant</a>
               </Link>
-              <Link href="/">
+              <Link href={RouteLink.prestationTma}>
                 <a className="button-outline mt-3">Mes offres de maintenance</a>
               </Link>
             </div>
@@ -117,7 +118,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           cta={{
             icon: <MoreIcon />,
             title: ['Voir tous', <br />, 'les projets'],
-            href: '/',
+            href: RouteLink.portfolio,
           }}
         />
       </div>
@@ -132,7 +133,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           <ExpertiseItem
             title="WordPress"
             excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
-            link="/"
+            link={RouteLink.prestationWordPress}
             image={ExpertiseWordPress}
           />
           <ExpertiseItem
@@ -144,7 +145,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           <ExpertiseItem
             title="Prestashop"
             excerpt="Prestashop est un CMS très puissant pour les sites de commerce électronique (e-commerce) avec plus de 5 000 modules et thèmes."
-            link="/"
+            link={RouteLink.prestationPrestashop}
             image={ExpertisePrestashop}
           />
           <ExpertiseItem
@@ -191,7 +192,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           cta={{
             icon: <LeafHeartIcon />,
             title: ['Voir tous', <br />, 'les articles'],
-            href: '/',
+            href: RouteLink.blog,
           }}
         />
       </div>

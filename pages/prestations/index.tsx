@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import { RouteLink } from '@lib/route';
 import Diagonal from '../../components/layouts/Diagonal';
 import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
 import PrestationsList from '../../components/PrestationsList';
@@ -294,7 +295,7 @@ export default function Prestations() {
             cta={{
               icon: <LeafHeartIcon />,
               title: ['Demandez votre', <br />, 'devis'],
-              href: '/',
+              href: RouteLink.contact,
             }}
           />
         </div>

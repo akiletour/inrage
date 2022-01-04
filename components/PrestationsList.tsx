@@ -1,3 +1,4 @@
+import { RouteLink } from '@lib/route';
 import PrestationItem from './items/PrestationItem';
 import ImagePrestationBuildWebsite from '../public/images/prestations/creation-site-internet.png';
 import ImagePrestationTma from '../public/images/prestations/infogerance-tma-maintenance.png';
@@ -9,7 +10,7 @@ export default function PrestationsList() {
       <PrestationItem
         image={ImagePrestationBuildWebsite}
         title={['Conception / Refonte', <br />, 'de sites Internet']}
-        link="/prestations/creation-site-web"
+        link={RouteLink.prestationWeb}
         linkText="Découvrir mes prestations"
       >
         Sites vitrines, associatifs, e-commerce ou dédiés.
@@ -22,7 +23,7 @@ export default function PrestationsList() {
       <PrestationItem
         image={ImagePrestationTma}
         title={['Maintenance &', <br />, 'Infogérance']}
-        link="/prestations/maintenance-site-internet"
+        link={RouteLink.prestationTma}
         linkText="Mes offres de maintenance"
       >
         La maintenance d’un site internet s’avère complexe lorsqu’on ne dispose pas
@@ -35,7 +36,7 @@ export default function PrestationsList() {
       <PrestationItem
         image={ImagePrestationHosting}
         title={['Hébergement optimisé &', <br />, 'ultra rapide']}
-        link="/"
+        link={RouteLink.contact}
         linkText="Me contacter"
       >
         Lorsque vous souhaitez mettre en ligne un site, il est nécessaire de choisir

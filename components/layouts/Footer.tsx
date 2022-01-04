@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { RouteLink } from '@lib/route';
 import LogoWhite from '../../public/logo-white.svg';
 import Socials from './Socials';
 
@@ -29,15 +30,11 @@ export default function Footer() {
               <Image className="opacity-30" src={LogoWhite} alt="inRage - Pascal GAULT" />
             </div>
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
-              <Link href="/a-propos-de-moi"><a>A propos de moi</a></Link>
-              <Link href="/prestations"><a>Prestations</a></Link>
-              <Link href="/portfolio
-              "
-              >
-                <a>Portfolio</a>
-              </Link>
-              <Link href="/"><a>Blog</a></Link>
-              <Link href="/"><a>Contactez-moi</a></Link>
+              <Link href={RouteLink.aboutMe}><a>A propos de moi</a></Link>
+              <Link href={RouteLink.prestations}><a>Prestations</a></Link>
+              <Link href={RouteLink.portfolio}><a>Portfolio</a></Link>
+              <Link href={RouteLink.blog}><a>Blog</a></Link>
+              <Link href={RouteLink.contact}><a>Contactez-moi</a></Link>
             </div>
             <div className="my-2">
               <Socials />
@@ -46,12 +43,12 @@ export default function Footer() {
               © 2008-2021 - inRage SARL. Tous droits réservés.
             </div>
             <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
-              <Link href="/"><a>Mentions légales</a></Link>
-              <Link href="/"><a>Plan du site</a></Link>
+              <Link href={RouteLink.legals}><a>Mentions légales</a></Link>
+              <Link href={RouteLink.sitemap}><a>Plan du site</a></Link>
             </div>
           </div>
           <div className="text-center sm:text-right flex sm:items-end flex-col pt-2">
-            <Link href="/contact"><a className="button">Demandez un devis</a></Link>
+            <Link href={RouteLink.contact}><a className="button">Demandez un devis</a></Link>
             <div className="my-2 text-3xl font-bold text-orange">06 51 89 89 17</div>
             <div className="text-center md:text-right text-sm">
               SIRET : 813 430 592 00010
