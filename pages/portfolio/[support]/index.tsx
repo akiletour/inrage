@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import Layout from '@component/layouts/Layout';
 import {
   getAllSupportsWithSlug,
   getSingleSupport,
@@ -28,7 +29,7 @@ export default function PortfolioSupport({
   }
 
   return (
-    <div>
+    <Layout>
       {router.isFallback ? <p>Chargement en cours...</p> : (
         <PortfolioLayout
           projects={projects}
@@ -36,7 +37,7 @@ export default function PortfolioSupport({
           pageTitle={pageTitle}
         />
       )}
-    </div>
+    </Layout>
   );
 }
 export const getStaticProps = async ({ params }: { params: { support: string } }) => {

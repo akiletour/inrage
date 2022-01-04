@@ -1,12 +1,12 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
-import { useRouter } from 'next/router';
+import { AnimatePresence } from 'framer-motion';
 import Header from '../components/layouts/Header';
 import Footer from '../components/layouts/Footer';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+function MyApp({ Component, pageProps, router }: AppProps) {
+  const url = `https://www.inrage.fr${router.route}`;
   return (
     <>
       <DefaultSeo
@@ -28,7 +28,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       />
       <Header pageTitle={pageProps.pageTitle || ''} breadcrumb={pageProps.breadcrumb} />
-      <Component {...pageProps} />
+      <AnimatePresence
+        exitBeforeEnter
+        initial={false}
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
+        <Component {...pageProps} key={url} />
+      </AnimatePresence>
       <Footer />
     </>
   );

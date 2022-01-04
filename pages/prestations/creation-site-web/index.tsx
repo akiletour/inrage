@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { PageHeaderStaticProps } from '@type/header';
+import Link from '@component/NoScrollLink';
 import TextImage from 'components/TextImage';
 import BuildWordPress from '@image/website-wp.png';
 import BuildPrestashop from '@image/website-prestashop.png';
@@ -9,13 +9,14 @@ import DevOps from '@image/devops.png';
 import Lighthouse from '@image/lighthouse-100percent-inrage.png';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
-import Diagonal from '../../../components/layouts/Diagonal';
-import SectionTitle from '../../../components/SectionTitle';
-import ContactForm from '../../../components/ContactForm';
+import Layout from '@component/layouts/Layout';
+import Diagonal from '@component/layouts/Diagonal';
+import SectionTitle from '@component/SectionTitle';
+import ContactForm from '@component/ContactForm';
 
 export default function PrestationBuildWebsite() {
   return (
-    <div>
+    <Layout>
       <NextSeo
         title="Création de site internet | Freelance création de site web - inRage"
         description="Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !"
@@ -249,7 +250,7 @@ export default function PrestationBuildWebsite() {
 
         <ContactForm />
       </div>
-    </div>
+    </Layout>
   );
 }
 

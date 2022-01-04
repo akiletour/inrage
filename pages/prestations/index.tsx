@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
+import Layout from '@component/layouts/Layout';
 import Diagonal from '../../components/layouts/Diagonal';
 import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
 import PrestationsList from '../../components/PrestationsList';
@@ -13,7 +14,7 @@ import PrestationSupport from '../../public/images/prestations/support_technique
 
 export default function Prestations() {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Prestations sous WordPress, Prestashop et Symfony - inRage"
         description="Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web."
@@ -359,7 +360,7 @@ export default function Prestations() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

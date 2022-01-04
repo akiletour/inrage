@@ -6,10 +6,11 @@ import TmaItem from 'components/items/TmaItem';
 import { NextSeo } from 'next-seo';
 import SectionTitle from 'components/SectionTitle';
 import Image from 'next/image';
+import Layout from '@component/layouts/Layout';
 
 export default function WebsiteTMA() {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Maintenance site web | Freelance maintenance site internet - inRage"
         description="Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site."
@@ -103,7 +104,7 @@ export default function WebsiteTMA() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

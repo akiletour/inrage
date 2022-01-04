@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import Link from '@component/NoScrollLink';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
+import Layout from '@component/layouts/Layout';
 import Diagonal from '../components/layouts/Diagonal';
 import SectionTitle from '../components/SectionTitle';
 import ExperienceItem from '../components/items/ExperienceItem';
@@ -14,7 +15,7 @@ import Socials from '../components/layouts/Socials';
 
 export default function AboutMe() {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle"
         description="15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web"
@@ -168,7 +169,7 @@ export default function AboutMe() {
         </div>
 
       </div>
-    </>
+    </Layout>
   );
 }
 

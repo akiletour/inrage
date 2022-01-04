@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
+import Layout from 'components/layouts/Layout';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -29,7 +30,7 @@ interface ProductList {
 
 export default function Home({ lastProjects: { edges } }: ProductList) {
   return (
-    <div>
+    <Layout>
       <NextSeo
         title="Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop"
         description="Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop."
@@ -205,7 +206,7 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
 
         <ContactForm />
       </div>
-    </div>
+    </Layout>
   );
 }
 

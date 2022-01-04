@@ -1,6 +1,6 @@
 import { RouteLink } from '@lib/route';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import ExpertPrestashop from '@image/platinum-300x300.png';

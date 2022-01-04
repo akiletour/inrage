@@ -22,7 +22,8 @@
     "paths": {
       "@type/*": ["types/*"],
       "@image/*": ["public/images/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@component/*": ["components/*"]
     }
   },
   "include": [

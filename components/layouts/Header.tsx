@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import { Fragment } from 'react';
 import NavPrimary from './NavPrimary';
 import Diagonal from './Diagonal';

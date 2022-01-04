@@ -1,3 +1,4 @@
+import Layout from '@component/layouts/Layout';
 import { getPortfolioProjects } from '../../lib/api';
 import PortfolioLayout from '../../components/portfolio/PortfolioLayout';
 import { ProjectItemType } from '../../types/portfolio';
@@ -24,11 +25,13 @@ export default function Portfolio({
   supports: { edges: supports },
 }: PortfolioType) {
   return (
-    <PortfolioLayout
-      projects={edges}
-      supports={supports}
-      pageTitle={pageTitle}
-    />
+    <Layout>
+      <PortfolioLayout
+        projects={edges}
+        supports={supports}
+        pageTitle={pageTitle}
+      />
+    </Layout>
   );
 }
 

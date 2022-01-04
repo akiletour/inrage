@@ -12,14 +12,15 @@ import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import WordpressSage from '@image/developpement-theme-sage.jpeg';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import ProtectionShield from '@image/protection-shield.png';
-import Link from 'next/link';
 import { LastProjectBySupport } from '@lib/api';
+import Link from '@component/NoScrollLink';
 import { ProjectItemType } from '@type/portfolio';
 import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
+import Layout from '@component/layouts/Layout';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -27,7 +28,7 @@ type Props = {
 
 export default function PrestationWordPress({ featuredProjects }: Props) {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Création de site WordPress | Freelance Wordpress - inRage"
         description="Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress."
@@ -425,7 +426,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
 
         <ContactForm />
       </div>
-    </>
+    </Layout>
   );
 }
 
