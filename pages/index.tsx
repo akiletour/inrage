@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';

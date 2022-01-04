@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 
 type Props = {
   slug: string;

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import Image from 'next/image';
 import { RouteLink } from '@lib/route';
 import LogoWhite from '../../public/logo-white.svg';

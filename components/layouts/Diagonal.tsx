@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 import { Fragment } from 'react';
 
 type Props = {

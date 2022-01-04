@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
-import Link from 'next/link';
+import Link from '@component/NoScrollLink';
 
 type Props = {
   title: string | Array<string | JSX.Element>,
