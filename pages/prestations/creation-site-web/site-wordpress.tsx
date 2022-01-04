@@ -19,6 +19,7 @@ import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
 import { NextSeo } from 'next-seo';
+import { RouteLink } from '@lib/route';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -370,7 +371,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </p>
             <p className="mt-2">Ainsi, votre site internet est protégé en permanence.</p>
             <div className="flex flex-wrap flex-start mt-4">
-              <Link href="/prestations/maintenance-site-internet/maintenance-wordpress">
+              <Link href={RouteLink.prestashopTmaWordPress}>
                 <a className="button">Forfaits de maintenance WordPress</a>
               </Link>
             </div>
@@ -410,7 +411,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
-            href: '/portfolio/wordpress',
+            href: `${RouteLink.portfolio}/wordpress`,
             title: ['voir les projets', <br />, 'WordPress'],
             icon: <MoreIcon />,
           }}

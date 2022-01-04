@@ -15,6 +15,7 @@ import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
 import { NextSeo } from 'next-seo';
+import { RouteLink } from '@lib/route';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -286,7 +287,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
-            href: '/portfolio/prestashop',
+            href: `${RouteLink.portfolio}/prestashop`,
             title: ['voir les projets', <br />, 'Prestashop'],
             icon: <MoreIcon />,
           }}

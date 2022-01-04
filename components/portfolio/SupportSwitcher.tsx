@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { RouteLink } from '@lib/route';
 import { SupportType } from '../../types/portfolio';
 
 interface Props {
@@ -14,8 +15,8 @@ export default function SupportSwitcher({ supports }: Props) {
 
   return (
     <div className="grid grid-cols-4 gap-4 text-center my-6">
-      <Link href="/portfolio">
-        <a className={asPath === '/portfolio' ? 'text-orange' : 'text-white'}>
+      <Link href={RouteLink.portfolio}>
+        <a className={asPath === RouteLink.portfolio ? 'text-orange' : 'text-white'}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 md:w-10 h-6 md:h-10 mx-auto"
@@ -30,8 +31,8 @@ export default function SupportSwitcher({ supports }: Props) {
         </a>
       </Link>
       {supports.length > 0 && supports.map(({ node: support }) => (
-        <Link key={support.id} href={`/portfolio/${support.slug}`}>
-          <a className={asPath === `/portfolio/${support.slug}` ? 'text-orange' : 'text-white'}>
+        <Link key={support.id} href={`${RouteLink.portfolio}/${support.slug}`}>
+          <a className={asPath === `${RouteLink.portfolio}/${support.slug}` ? 'text-orange' : 'text-white'}>
             {support?.acfSupport && (
               <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
                 <Image layout="fill" src={support.acfSupport.image.sourceUrl} alt={support.name} />
