@@ -4,6 +4,8 @@ import TmaImage from '@image/tma.png';
 import Diagonal from 'components/layouts/Diagonal';
 import TmaItem from 'components/items/TmaItem';
 import { NextSeo } from 'next-seo';
+import SectionTitle from 'components/SectionTitle';
+import Image from 'next/image';
 
 export default function WebsiteTMA() {
   return (
@@ -54,6 +56,52 @@ export default function WebsiteTMA() {
           </div>
         </div>
         <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
+      </div>
+
+      <div className="container">
+        <SectionTitle
+          title="Interface TMA"
+          content="Développé spécialement pour l'occasion. Mise en place d'une console d'administration permettant de gérer vos demandes, de voir vos factures et de suivre l'évolution de votre projet."
+        />
+      </div>
+
+      <div className="flex relative container mt-6">
+        <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
+          <div className="w-[945px] h-[666px] relative">
+            <Image
+              className="max-h-[666px]"
+              src="/images/tma-example.png"
+              width={945}
+              priority
+              height={666}
+              alt="Une console d'infogérance et de maintenance TMA dédiée"
+            />
+          </div>
+        </div>
+        <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
+          <div>
+
+            <h3 className="font-bold text-white text-4xl">Une console d&apos;infogérance dédiée</h3>
+            <p className="mt-2">
+              Nous vous mettons à disposition une interface entièrement
+              pensée pour vos besoins et intégralement personnalisable à votre
+              solution, que vous soyez sur Prestashop, WordPress ou une
+              solution propriétaire.
+            </p>
+            <h3 className="mt-4 font-bold text-white text-4xl">Notification immédiate</h3>
+            <p className="mt-2">
+              Dès que votre message est publié sur notre
+              interface de console, nous recevons une notification. Un
+              technicien prend effet de votre message et le règle directement.
+            </p>
+            <h3 className="mt-4 font-bold text-white text-4xl">Aucune fil d&apos;attente</h3>
+            <p className="mt-2">
+              Chez inRage, il n&apos;y a pas de notion de file
+              d&apos;attente, votre message sera toujours traité en priorité et un
+              technicien prendra en charge votre ticket directement.
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
