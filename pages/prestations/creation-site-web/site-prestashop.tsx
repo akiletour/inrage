@@ -8,14 +8,15 @@ import WebsiteWP from '@image/website-wp.png';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import ProtectionShield from '@image/protection-shield.png';
-import Link from 'next/link';
 import { LastProjectBySupport } from '@lib/api';
+import Link from '@component/NoScrollLink';
 import { ProjectItemType } from '@type/portfolio';
 import ProjectItem from 'components/items/ProjectItem';
 import MoreIcon from 'components/icons/MoreIcon';
 import ContactForm from 'components/ContactForm';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
+import Layout from '@component/layouts/Layout';
 
 type Props = {
   featuredProjects: ProjectItemType[]
@@ -23,7 +24,7 @@ type Props = {
 
 export default function PrestationPrestashop({ featuredProjects }: Props) {
   return (
-    <>
+    <Layout>
       <NextSeo
         title="Création de site e-commerce Prestashop | Freelance Prestashop - inRage"
         description="Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes."
@@ -301,7 +302,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
 
         <ContactForm />
       </div>
-    </>
+    </Layout>
   );
 }
 
