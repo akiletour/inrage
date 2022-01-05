@@ -42,6 +42,13 @@ export default function Footer() {
             <div>
               © 2008-2021 - inRage SARL. Tous droits réservés.
             </div>
+            <a href="https://github.com/akiletour/inrage" className="text-white flex mt-2 items-center ">
+              Code open-source inrage.fr disponible sur
+              {' '}
+              <span className="block ml-1">
+                <Image width={72} height={16} src="/images/github-inline.svg" alt="Code open-source disponible sur Github" />
+              </span>
+            </a>
             <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
               <Link href={RouteLink.legals}><a>Mentions légales</a></Link>
               <Link href={RouteLink.sitemap}><a>Plan du site</a></Link>
