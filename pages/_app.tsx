@@ -6,7 +6,7 @@ import Header from '../components/layouts/Header';
 import Footer from '../components/layouts/Footer';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const url = `https://www.inrage.fr${router.route}`;
+  const url = `https://www.inrage.fr${router.asPath}`;
   return (
     <>
       <DefaultSeo
