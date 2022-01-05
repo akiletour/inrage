@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 import ExpertPrestashop from '@image/platinum-300x300.png';
 import ExpertWordPress from '@image/wordpress-expert.png';
+import FeaturedProjectMenu from '@component/items/FeaturedProjectMenu';
+import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg';
 
 type Props = {
   title: string;
@@ -107,8 +109,43 @@ export default function NavPrimary() {
                 </div>
               </div>
             </LinkItem>
-            <LinkItem isActive={pathname === RouteLink.portfolio} href={RouteLink.portfolio} title="Portfolio" />
-            <LinkItem href={RouteLink.blog} title="Blog" />
+            <LinkItem isActive={pathname === RouteLink.portfolio} href={RouteLink.portfolio} title="Portfolio">
+              <div className="flex">
+                <div className="pt-1">
+                  <Link href={RouteLink.portfolio}>
+                    <a className={n1TitleClassnames}>Les différentes thématiques</a>
+                  </Link>
+                  <ul className="list-disc pl-2 marker:text-orange-dark">
+                    <li>
+                      <Link href={`${RouteLink.portfolio}/wordpress`}>
+                        <a className={n2TitleClassnames}>Projets WordPress</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={`${RouteLink.portfolio}/prestashop`}>
+                        <a className={n2TitleClassnames}>Projets Prestashop</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={`${RouteLink.portfolio}/application-web/`}>
+                        <a className={n2TitleClassnames}>Projets Symfony & ReactJS</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div className="ml-auto">
+                  <FeaturedProjectMenu
+                    image={FeaturedProjectImage}
+                    title="Parapharmacie moins chere"
+                    link={`${RouteLink.portfolio}/prestashop/parapharmacie-moins-chere`}
+                  />
+                </div>
+              </div>
+            </LinkItem>
+            <LinkItem
+              href={RouteLink.blog}
+              title="Blog"
+            />
             <Link href={RouteLink.contact}>
               <a className="py-1 px-2 bg-orange uppercase text-gray-darker font-medium">Contactez-moi</a>
             </Link>
