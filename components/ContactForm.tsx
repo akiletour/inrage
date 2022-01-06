@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Button from './Button';
 
 type Props = {
-  lg: boolean;
+  lg?: boolean;
 }
 
 type FormData = {
