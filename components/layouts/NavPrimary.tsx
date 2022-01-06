@@ -34,7 +34,7 @@ function LinkItem({
   }
   return (
     <Link href={href}>
-      <a className={`uppercase text-lg ${isActive ? 'text-orange' : 'text-white'}`}>{title}</a>
+      <a className={`uppercase text-lg ${isActive ? 'text-orange' : 'text-white hover:text-orange'}`}>{title}</a>
     </Link>
   );
 }
