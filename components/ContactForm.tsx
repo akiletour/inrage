@@ -2,6 +2,10 @@ import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import Button from './Button';
 
+type Props = {
+  lg: boolean;
+}
+
 type FormData = {
   name: string;
   email: string;
@@ -9,7 +13,7 @@ type FormData = {
   phone: string;
 }
 
-export default function ContactForm() {
+export default function ContactForm({ lg = false }: Props) {
   const {
     register, handleSubmit, formState: { errors }, reset,
   } = useForm<FormData>();
@@ -35,8 +39,8 @@ export default function ContactForm() {
   const inputClassname = 'border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent';
 
   return (
-    <form className="my-4" onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-3 md:grid-cols-2">
+    <form className={lg === false ? 'my-4' : ''} onSubmit={handleSubmit(onSubmit)}>
+      <div className={`grid gap-3 ${lg === false && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
             className={`${inputClassname} ${errors.name ? 'border-red' : 'border-gray'}`}
@@ -47,7 +51,7 @@ export default function ContactForm() {
           {errors.name && <span className="absolute text-red top-4 right-2 text-xs">Champ requis</span>}
         </div>
 
-        <div className="md:row-span-3 order-10 md:order-2 relative">
+        <div className={`md:row-span-3 order-10 ${lg === false && 'md:order-2'} relative`}>
           <textarea
             className={`${inputClassname} min-h-[200px] h-full ${errors.content ? 'border-red' : 'border-gray'}`}
             placeholder="Laissez-moi un petit message"
