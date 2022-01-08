@@ -7,6 +7,7 @@ import Image from 'next/image';
 import BgTma from '@image/bg-tma.jpeg';
 import SectionTitle from '@component/SectionTitle';
 import ContactForm from '@component/ContactForm';
+import TableHeader from '@component/tma/TableHeader';
 
 export default function TmaWordPress() {
   return (
@@ -28,6 +29,16 @@ export default function TmaWordPress() {
 
       <div className="relative">
         <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
+        <div className="container">
+          <TableHeader
+            support="WordPress"
+            types={[
+              { name: 'Sérénité', price: '39€ ht/mois' },
+              { name: 'Sérénité', price: '39€ ht/mois' },
+              { name: 'Sérénité', price: '39€ ht/mois' },
+            ]}
+          />
+        </div>
         <Image className="-z-10" src={BgTma} layout="fill" alt="Offres de maintenance TMA inRage" />
         <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
       </div>
