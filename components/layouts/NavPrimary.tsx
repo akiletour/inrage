@@ -91,12 +91,12 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   </Link>
                   <ul className="list-disc pl-2 marker:text-orange-dark">
                     <li>
-                      <Link href={RouteLink.prestashopTmaWordPress}>
+                      <Link href={RouteLink.prestationTmaWordPress}>
                         <a className={n2TitleClassnames}>WordPress</a>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestashopTmaPrestashop}>
+                      <Link href={RouteLink.prestationTmaPrestashop}>
                         <a className={n2TitleClassnames}>Prestashop</a>
                       </Link>
                     </li>
