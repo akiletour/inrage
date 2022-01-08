@@ -5,6 +5,7 @@ import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
 import Image from 'next/image';
 import BgTma from '@image/bg-tma.jpeg';
+import useSticky from '../../hooks/useSticky';
 
 type Props = {
   pageTitle: pageTitleType;
@@ -12,9 +13,11 @@ type Props = {
 }
 
 export default function HeaderTma({ pageTitle, excerpt }: Props) {
+  const [ref, sticky] = useSticky<HTMLDivElement>();
+
   return (
-    <div className="relative h-auto w-full">
-      <NavPrimary />
+    <div className="relative h-auto w-full" ref={ref}>
+      <NavPrimary isSticky={sticky} />
 
       <div className="container text-center -mb-10">
         <h1 className="text-5xl font-thin text-white mt-6">
