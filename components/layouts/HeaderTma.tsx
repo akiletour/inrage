@@ -3,6 +3,8 @@ import Diagonal from '@component/layouts/Diagonal';
 import { pageExcerptType, pageTitleType } from '@type/header';
 import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
+import Image from 'next/image';
+import BgTma from '@image/bg-tma.jpeg';
 
 type Props = {
   pageTitle: pageTitleType;
@@ -11,7 +13,7 @@ type Props = {
 
 export default function HeaderTma({ pageTitle, excerpt }: Props) {
   return (
-    <div className="relative h-auto w-full bg-gray-darker">
+    <div className="relative h-auto w-full">
       <NavPrimary />
 
       <div className="container text-center -mb-10">
@@ -28,6 +30,7 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
         </Link>
       </div>
 
+      <Image priority className="-z-10" src={BgTma} layout="fill" alt="Offres de maintenance TMA inRage" />
       <Diagonal preserveRatio bgCorner="fill-orange" bgClass="fill-gray-dark" className="h-auto w-full" />
     </div>
   );
