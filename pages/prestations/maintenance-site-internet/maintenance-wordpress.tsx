@@ -40,7 +40,7 @@ export default function TmaWordPress({ entries = [] }: Props) {
       <div className="relative">
         <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
         <div className="container relative z-10">
-          <div className="sticky top-0 py-2 bg-[#020202]">
+          <div className="sticky top-11 py-2 bg-[#020202]">
             <TableHeader
               support="WordPress"
               types={[
