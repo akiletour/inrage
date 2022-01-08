@@ -2,7 +2,7 @@ import NavPrimary from '@component/layouts/NavPrimary';
 import Diagonal from '@component/layouts/Diagonal';
 import { pageExcerptType, pageTitleType } from '@type/header';
 import Link from '@component/NoScrollLink';
-import RouteLink from '@lib/route';
+import { RouteLink } from '@lib/route';
 
 type Props = {
   pageTitle: pageTitleType;

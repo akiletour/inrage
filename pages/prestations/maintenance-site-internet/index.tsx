@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo';
 import SectionTitle from 'components/SectionTitle';
 import Image from 'next/image';
 import Layout from '@component/layouts/Layout';
-import RouteLink from '@lib/route';
+import { RouteLink } from '@lib/route';
 
 export default function WebsiteTMA() {
   return (
