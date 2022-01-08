@@ -9,6 +9,7 @@ import SectionTitle from '@component/SectionTitle';
 import ContactForm from '@component/ContactForm';
 import TableHeader from '@component/tma/TableHeader';
 import TableLine from '@component/tma/TableLine';
+import { NextSeo } from 'next-seo';
 
 type EntriesType = Array<{
   name: string;
@@ -22,6 +23,10 @@ type Props = {
 export default function TmaWordPress({ entries = [] }: Props) {
   return (
     <Layout>
+      <NextSeo
+        title="Maintenance site WordPress | Freelance - inRage"
+        description="Développeur freelance, découvrez mon offre de maintenance WordPress sur mesure. Avec plus de 150 clients en infogérance WordPress, je suis expert dans la maintenance TMA WordPress."
+      />
       <div className="container">
         <TextImage position="right" image={LogoGrey}>
           <div className="text-left">
