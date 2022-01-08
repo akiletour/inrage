@@ -5,6 +5,8 @@ import LogoGrey from '@image/logo-grey-inline-white.png';
 import Diagonal from '@component/layouts/Diagonal';
 import Image from 'next/image';
 import BgTma from '@image/bg-tma.jpeg';
+import SectionTitle from '@component/SectionTitle';
+import ContactForm from '@component/ContactForm';
 
 export default function TmaWordPress() {
   return (
@@ -28,6 +30,15 @@ export default function TmaWordPress() {
         <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
         <Image className="-z-10" src={BgTma} layout="fill" alt="Offres de maintenance TMA inRage" />
         <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
+      </div>
+
+      <div className="container">
+        <SectionTitle
+          content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
+          title="Contact"
+        />
+
+        <ContactForm />
       </div>
     </Layout>
   );
