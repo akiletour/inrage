@@ -27,7 +27,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           cardType: 'summary_large_image',
         }}
       />
-      <Header pageTitle={pageProps.pageTitle || ''} breadcrumb={pageProps.breadcrumb} />
+      <Header
+        pageTitle={pageProps.pageTitle || ''}
+        breadcrumb={pageProps.breadcrumb}
+        headerType={pageProps.headerType || 'default'}
+        pageExcerpt={pageProps.excerpt || ''}
+      />
       <AnimatePresence
         exitBeforeEnter
         initial={false}

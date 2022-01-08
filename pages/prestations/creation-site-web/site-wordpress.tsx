@@ -372,7 +372,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </p>
             <p className="mt-2">Ainsi, votre site internet est protégé en permanence.</p>
             <div className="flex flex-wrap flex-start mt-4">
-              <Link href={RouteLink.prestashopTmaWordPress}>
+              <Link href={RouteLink.prestationTmaWordPress}>
                 <a className="button">Forfaits de maintenance WordPress</a>
               </Link>
             </div>

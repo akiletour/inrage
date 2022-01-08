@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     spacing: Object.assign(
       {},
-      ...Object.entries(Array.from(Array(25).keys())).map(([k, v]) => ({ [`${k}`]: `${v * 8}px` })),
+      ...Object.entries(Array.from(Array(26).keys())).map(([k, v]) => ({ [`${k}`]: `${v * 8}px` })),
     ),
     container: false,
     colors: {

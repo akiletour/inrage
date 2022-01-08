@@ -7,6 +7,7 @@ import { NextSeo } from 'next-seo';
 import SectionTitle from 'components/SectionTitle';
 import Image from 'next/image';
 import Layout from '@component/layouts/Layout';
+import { RouteLink } from '@lib/route';
 
 export default function WebsiteTMA() {
   return (
@@ -41,7 +42,7 @@ export default function WebsiteTMA() {
               position="right"
               excerpt="Forfait infogérance de votre site WordPress clé en main, sans surcout. Une infogérance complète pour maintenir à jours votre site et prévenir de toutes failles de sécurité liées aux extensions."
               cta={{
-                link: 'prestations/maintenance-site-internet/maintenance-wordpress',
+                link: RouteLink.prestationTmaWordPress,
                 text: 'Découvrez les offres WordPress',
               }}
             />
@@ -50,7 +51,7 @@ export default function WebsiteTMA() {
               subject="Prestashop"
               excerpt="Une supervision complète de votre solution e-commerce Prestashop pour vous aider à maintenir votre processus d’achat, de contact et votre catalogue dans les meilleures conditions."
               cta={{
-                link: 'prestations/maintenance-site-internet/maintenance-prestashop',
+                link: RouteLink.prestationTmaPrestashop,
                 text: 'Découvrez les offres Prestashop',
               }}
             />

@@ -1,20 +1,32 @@
 import Image from 'next/image';
 import Link from '@component/NoScrollLink';
 import { Fragment } from 'react';
+import dynamic from 'next/dynamic';
+import { HeaderType, pageExcerptType, pageTitleType } from '@type/header';
 import NavPrimary from './NavPrimary';
 import Diagonal from './Diagonal';
 import useSticky from '../../hooks/useSticky';
 
+const DynamicHeaderTma = dynamic(() => import('./HeaderTma'));
+
 interface Props {
-  pageTitle?: string;
+  pageTitle?: pageTitleType;
   breadcrumb?: Array<{
     title: string;
     link: string;
   }>;
+  headerType: HeaderType;
+  pageExcerpt: pageExcerptType;
 }
 
-export default function Header({ pageTitle = '', breadcrumb = [] }: Props) {
+export default function Header({
+  pageTitle = '', pageExcerpt = '', breadcrumb = [], headerType = 'default',
+}: Props) {
   const [ref, sticky] = useSticky<HTMLDivElement>();
+  if (headerType === 'tma') {
+    return <DynamicHeaderTma pageTitle={pageTitle} excerpt={pageExcerpt} />;
+  }
+
   return (
     <div className="relative h-auto w-full" ref={ref}>
       <NavPrimary isSticky={sticky} />
