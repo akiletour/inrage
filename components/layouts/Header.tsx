@@ -6,6 +6,7 @@ import { HeaderType, pageExcerptType, pageTitleType } from '@type/header';
 import NavPrimary from './NavPrimary';
 import Diagonal from './Diagonal';
 import useSticky from '../../hooks/useSticky';
+
 const DynamicHeaderTma = dynamic(() => import('./HeaderTma'));
 
 interface Props {
@@ -21,9 +22,7 @@ interface Props {
 export default function Header({
   pageTitle = '', pageExcerpt = '', breadcrumb = [], headerType = 'default',
 }: Props) {
-  
-
-const [ref, sticky] = useSticky<HTMLDivElement>();
+  const [ref, sticky] = useSticky<HTMLDivElement>();
   if (headerType === 'tma') {
     return <DynamicHeaderTma pageTitle={pageTitle} excerpt={pageExcerpt} />;
   }
