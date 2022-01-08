@@ -13,6 +13,14 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 
 ![inRage](./public/images/screenshot.png)
 
+## Stack
+- `TypeScript`
+- `NextJS`: v12.x
+- `WordPress`: v5.8+
+- `Framer Motion`: for animations between page transitions
+- `Akismet`: to check spam in the contact form
+- `GraphQL`: communication with the WordPress API
+
 ## Installation
 
 Make sure to use newest version of Node JS (v16).
