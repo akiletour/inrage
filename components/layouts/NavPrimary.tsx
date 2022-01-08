@@ -8,7 +8,7 @@ import ExpertWordPress from '@image/wordpress-expert.png';
 import FeaturedProjectMenu from '@component/items/FeaturedProjectMenu';
 import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg';
 
-type Props = {
+type LinkProps = {
   title: string;
   isActive?: boolean;
   href: string;
@@ -17,7 +17,7 @@ type Props = {
 
 function LinkItem({
   title, href, isActive = false, children,
-}: Props) {
+}: LinkProps) {
   if (children) {
     return (
       <div className="group">
@@ -39,7 +39,11 @@ function LinkItem({
   );
 }
 
-export default function NavPrimary() {
+type Props = {
+  isSticky?: boolean;
+}
+
+export default function NavPrimary({ isSticky = false }: Props) {
   const router = useRouter();
 
   const { pathname } = router;
@@ -49,7 +53,7 @@ export default function NavPrimary() {
 
   return (
     <div className="h-11 relative z-50">
-      <div>
+      <div className={isSticky ? 'fixed top-0 left-0 right-0 bg-gray-darker transition-all' : ''}>
         <div className="container flex items-center justify-between py-2">
           <Link href="/">
             <a><Image src="/logo.svg" width="150" height="56" alt="Pascal GAULT, développeur Freelance sur La Rochelle" /></a>

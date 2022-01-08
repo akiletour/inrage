@@ -3,6 +3,7 @@ import Link from '@component/NoScrollLink';
 import { Fragment } from 'react';
 import NavPrimary from './NavPrimary';
 import Diagonal from './Diagonal';
+import useSticky from '../../hooks/useSticky';
 
 interface Props {
   pageTitle?: string;
@@ -13,9 +14,10 @@ interface Props {
 }
 
 export default function Header({ pageTitle = '', breadcrumb = [] }: Props) {
+  const [ref, sticky] = useSticky<HTMLDivElement>();
   return (
-    <div className="relative h-auto w-full">
-      <NavPrimary />
+    <div className="relative h-auto w-full" ref={ref}>
+      <NavPrimary isSticky={sticky} />
       {pageTitle ? (
         <div className="container z-10 relative mt-3 md:mt-8 md:-mb-8">
           <h1 className="font-bold tracking-wider text-2xl sm:text-4xl text-white">{pageTitle}</h1>
