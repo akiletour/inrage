@@ -26,7 +26,7 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
     <div className="relative h-auto w-full" ref={ref}>
       <NavPrimary isSticky={sticky} />
 
-      <div className="container text-center -mb-10 relative z-10">
+      <div className="container text-center md:-mb-10 relative z-10">
         <h1 className="text-5xl font-thin text-white mt-6">
           {Array.isArray(pageTitle) ? pageTitle.map((ttl) => <span className="block" key={ttl}>{ttl}</span>) : pageTitle}
         </h1>
