@@ -40,14 +40,16 @@ export default function TmaWordPress({ entries = [] }: Props) {
       <div className="relative">
         <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
         <div className="container relative z-10">
-          <TableHeader
-            support="WordPress"
-            types={[
-              { name: 'Sérénité', price: '39€ ht/mois' },
-              { name: 'Sérénité', price: '39€ ht/mois' },
-              { name: 'Sérénité', price: '39€ ht/mois' },
-            ]}
-          />
+          <div className="sticky top-0 py-2 bg-[#020202]">
+            <TableHeader
+              support="WordPress"
+              types={[
+                { name: 'Sérénité', price: '39€ ht/mois' },
+                { name: 'Sérénité', price: '39€ ht/mois' },
+                { name: 'Sérénité', price: '39€ ht/mois' },
+              ]}
+            />
+          </div>
 
           <div className="flex flex-col space-y-4 mt-4">
             {entries.map(({
