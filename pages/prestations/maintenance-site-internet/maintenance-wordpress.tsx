@@ -81,7 +81,7 @@ export default function TmaWordPress({ entries = [] }: Props) {
         <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
       </div>
 
-      <div className="container">
+      <div className="container" id="contact">
         <SectionTitle
           content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
           title="Contact"

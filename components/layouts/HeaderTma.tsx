@@ -1,8 +1,6 @@
 import NavPrimary from '@component/layouts/NavPrimary';
 import Diagonal from '@component/layouts/Diagonal';
 import { pageExcerptType, pageTitleType } from '@type/header';
-import Link from '@component/NoScrollLink';
-import { RouteLink } from '@lib/route';
 import Image from 'next/image';
 import BgTma from '@image/bg-tma.jpeg';
 import useSticky from '../../hooks/useSticky';
@@ -14,6 +12,15 @@ type Props = {
 
 export default function HeaderTma({ pageTitle, excerpt }: Props) {
   const [ref, sticky] = useSticky<HTMLDivElement>();
+
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (!element) {
+      return;
+    }
+
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   return (
     <div className="relative h-auto w-full" ref={ref}>
@@ -28,9 +35,9 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
           {Array.isArray(excerpt) ? excerpt.map((exc) => <span className="block mt-4" key={exc}>{exc}</span>) : excerpt}
         </div>
 
-        <Link href={RouteLink.contact}>
-          <a className="button">Demandez un devis</a>
-        </Link>
+        <button className="button" type="button" onClick={() => scrollToContact()}>
+          Demandez un devis
+        </button>
       </div>
 
       <Image priority className="-z-10" src={BgTma} layout="fill" alt="Offres de maintenance TMA inRage" />
