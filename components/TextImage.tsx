@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 type Props = {
   image: string | StaticImageData;
-  title: string | string[];
+  title?: string | string[];
   children: ReactNode;
   position?: 'right' | 'left';
   duoTone?: boolean;
@@ -27,12 +27,13 @@ export default function TextImage({
         />
       </div>
       <div className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}>
+        {title && (
         <h3 className="text-white text-4xl font-bold mb-3">
           {Array.isArray(title)
             ? title.map((ttl, index) => <span className={`block ${index > 0 && duoTone && 'font-light text-3xl'}`} key={ttl}>{ttl}</span>)
             : title}
         </h3>
-
+        )}
         {children}
       </div>
     </div>
