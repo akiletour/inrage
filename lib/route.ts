@@ -7,6 +7,7 @@ export const RouteLink = {
   get prestationPrestashop() { return `${this.prestationWeb}/site-prestashop`; },
   get prestationTmaWordPress() { return `${this.prestationTma}/maintenance-wordpress`; },
   get prestationTmaPrestashop() { return `${this.prestationTma}/maintenance-prestashop`; },
+  get prestationTmaOnDemand() { return `${this.prestationTma}/maintenance-ponctuelle`; },
   portfolio: '/portfolio',
   contact: '/contact',
   blog: '/blog',
