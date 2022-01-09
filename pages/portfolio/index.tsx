@@ -1,7 +1,7 @@
 import Layout from '@component/layouts/Layout';
-import { getPortfolioProjects } from '../../lib/api';
+import { getPortfolioProjects } from '@lib/portfolio';
+import { ProjectItemType } from '@type/portfolio';
 import PortfolioLayout from '../../components/portfolio/PortfolioLayout';
-import { ProjectItemType } from '../../types/portfolio';
 
 interface PortfolioType {
   pageTitle: string

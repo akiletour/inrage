@@ -32,7 +32,7 @@ export default function Header({
       <NavPrimary isSticky={sticky} />
       {pageTitle ? (
         <div className="container z-10 relative mt-3 md:mt-8 md:-mb-8">
-          <h1 className="font-bold tracking-wider text-2xl sm:text-4xl text-white">{pageTitle}</h1>
+          <h1 className="font-bold max-w-4xl tracking-wider text-2xl sm:text-4xl text-white">{pageTitle}</h1>
           <div className="hidden sm:grid mt-2 uppercase text-xs grid-flow-col gap-1 justify-start text-white opacity-80">
             <Link href="/"><a className="underline">Accueil</a></Link>
             {breadcrumb.length > 0 && breadcrumb.map((bc) => (

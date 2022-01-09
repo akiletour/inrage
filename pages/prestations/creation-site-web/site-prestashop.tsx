@@ -8,7 +8,7 @@ import WebsiteWP from '@image/website-wp.png';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import ProtectionShield from '@image/protection-shield.png';
-import { LastProjectBySupport } from '@lib/api';
+import { LastProjectBySupport } from '@lib/portfolio';
 import Link from '@component/NoScrollLink';
 import { ProjectItemType } from '@type/portfolio';
 import ProjectItem from 'components/items/ProjectItem';
