@@ -1,7 +1,7 @@
 import Layout from '@component/layouts/Layout';
 import { NextSeo } from 'next-seo';
 import ArticleItem from '@component/items/ArticleItem';
-import { BlogPosts } from '@lib/api';
+import { BlogPosts } from '@lib/blog';
 import { BlogPostType } from '@type/blog';
 
 type Props = {
