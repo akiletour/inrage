@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Link from '@component/NoScrollLink';
 import { BlogItem } from '@type/blog';
 import moment from 'moment';
+import sanitize from 'sanitize-html';
 import { RouteLink } from '@lib/route';
 import ButtonLink from '../ButtonLink';
 import 'moment/locale/fr';
-import sanitize from 'sanitize-html';
 
 moment.locale('fr');
 
