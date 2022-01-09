@@ -1,4 +1,4 @@
-import fetchAPI from '@lib/api';
+import fetchAPI, { SlugListGraphql } from '@lib/api';
 
 export const ArticleListItemLayout = `node {
   title
@@ -16,11 +16,7 @@ export async function getAllArticlesWithSlug() {
   const data = await fetchAPI(`
   query getAllArticlesWithSlug {
     posts(first: 1000) {
-      edges {
-        node {
-          slug
-        }
-      }
+      ${SlugListGraphql}
     }
   }`);
   return data?.posts;

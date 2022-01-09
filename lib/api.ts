@@ -7,6 +7,8 @@ type VariableProps = {
   }
 }
 
+export const SlugListGraphql = 'edges { node { slug } }';
+
 export default async function fetchAPI(query: string, { variables }: VariableProps = {}) {
   const headers = { 'Content-Type': 'application/json' };
 

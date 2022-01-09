@@ -1,4 +1,4 @@
-import fetchAPI from '@lib/api';
+import fetchAPI, { SlugListGraphql } from '@lib/api';
 
 /**
  * Represents a project item based on a list of projects
@@ -30,11 +30,7 @@ export async function getAllProjectsWithSlug() {
           node {
             slug
             supports {
-              edges {
-                node {
-                  slug
-                }
-              }
+              ${SlugListGraphql}
             }
           }
         }
@@ -130,11 +126,7 @@ export async function getAllSupportsWithSlug() {
   const data = await fetchAPI(`
     {
       supports {
-        edges {
-          node {
-            slug
-          }
-        }
+        ${SlugListGraphql}
       }
     }
   `);
