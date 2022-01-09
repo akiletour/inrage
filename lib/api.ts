@@ -22,9 +22,22 @@ const ProjectListItemLayout = `node {
   }
 }`;
 
+const ArticleListItemLayout = `node {
+  title
+  slug
+  date
+  excerpt
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}`;
+
 type VariableProps = {
   variables?: {
-    id: string
+    id?: string;
+    max?: number;
   }
 }
 
@@ -47,7 +60,7 @@ export default async function fetchAPI(query: string, { variables }: VariablePro
   return json.data;
 }
 
-export async function getHomepageProjects() {
+export async function getHomepageDatas() {
   const data = await fetchAPI(`
     {
       projets(first: 4) {
@@ -55,10 +68,15 @@ export async function getHomepageProjects() {
           ${ProjectListItemLayout}
         }
       }
+      posts(first: 2) {
+        edges {
+          ${ArticleListItemLayout}
+        }
+      }
     }
   `);
 
-  return data?.projets;
+  return data;
 }
 
 export async function getAllProjectsWithSlug() {

@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
 import Layout from 'components/layouts/Layout';
+import { BlogPostType } from '@type/blog';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -19,16 +20,21 @@ import Keypoints from '../components/Keypoints';
 import ArticleItem from '../components/items/ArticleItem';
 import LeafHeartIcon from '../components/icons/LeafHeartIcon';
 import PrestationsList from '../components/PrestationsList';
-import { getHomepageProjects } from '../lib/api';
+import { getHomepageDatas } from '../lib/api';
 import { ProjectItemType } from '../types/portfolio';
 
 interface ProductList {
   lastProjects: {
     edges: ProjectItemType[];
+  },
+  articles: {
+    edges: BlogPostType[];
   }
 }
 
-export default function Home({ lastProjects: { edges } }: ProductList) {
+export default function Home(
+  { lastProjects: { edges }, articles: { edges: edgesPosts } }: ProductList,
+) {
   return (
     <Layout>
       <NextSeo
@@ -168,21 +174,22 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
           />
 
           <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
-            <div>
-              <ArticleItem
-                image="/images/articles/bloc-gutenberg-wordpress-sage.jpeg"
-                title="Blocs Gutenberg avec Sage 9 sur WordPress"
-                excerpt="Découvrons comment organiser son thème WordPress sur le moteur Sage 9 pour créer et gérer ses différents blocs Gutenberg avec ACF directement depuis notre thème."
-              />
-            </div>
-
-            <div>
-              <ArticleItem
-                image="/images/articles/server-mysql-replication.jpeg"
-                title="Créer un serveur MySQL de réplication (slave) des données existantes"
-                excerpt="MySQL Master-Slave Replication est une procédure permettant de répliquer en temps réel les données d’un serveur MySQL vers un autre. Nous allons voir ensemble comment mettre cette combinaison en place. Nous ne sommes pas à l’abri d’un incident sur nos serveurs de production et cela même avec un backup journalier de nos bases de données."
-              />
-            </div>
+            {edgesPosts.map(({
+              node: {
+                slug, title, featuredImage, excerpt, date,
+              },
+            }) => (
+              <div>
+                <ArticleItem
+                  key={slug}
+                  slug={slug}
+                  featuredImage={featuredImage}
+                  title={title}
+                  date={date}
+                  excerpt={excerpt}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -211,11 +218,12 @@ export default function Home({ lastProjects: { edges } }: ProductList) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const lastProjects = await getHomepageProjects();
+  const lastProjects = await getHomepageDatas();
 
   return {
     props: {
-      lastProjects,
+      lastProjects: lastProjects.projets,
+      articles: lastProjects.posts,
     },
   };
 };
