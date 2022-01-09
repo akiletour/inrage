@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import Layout from '@component/layouts/Layout';
-import { getAllProjectsWithSlug, getSingleProject } from '../../../lib/api';
+import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
+import { ProjectItemType } from '@type/portfolio';
 import SectionTitle from '../../../components/SectionTitle';
 import ProjectItem from '../../../components/items/ProjectItem';
-import { ProjectItemType } from '../../../types/portfolio';
 
 type Props = {
   post: {

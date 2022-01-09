@@ -1,12 +1,9 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import Layout from '@component/layouts/Layout';
-import {
-  getAllSupportsWithSlug,
-  getSingleSupport,
-} from '../../../lib/api';
+import { getAllSupportsWithSlug, getSingleSupport } from '@lib/portfolio';
+import { ProjectItemType, SupportType } from '@type/portfolio';
 import PortfolioLayout from '../../../components/portfolio/PortfolioLayout';
-import { ProjectItemType, SupportType } from '../../../types/portfolio';
 
 type Props = {
   pageTitle: string

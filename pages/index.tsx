@@ -5,6 +5,8 @@ import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
 import Layout from 'components/layouts/Layout';
 import { BlogPostType } from '@type/blog';
+import { ProjectListItemLayout } from '@lib/portfolio';
+import { ArticleListItemLayout } from '@lib/blog';
 import SectionTitle from '../components/SectionTitle';
 import Diagonal from '../components/layouts/Diagonal';
 import ImageDiscoverTma from '../public/images/prestations/presentation-integration-web.jpeg';
@@ -20,7 +22,7 @@ import Keypoints from '../components/Keypoints';
 import ArticleItem from '../components/items/ArticleItem';
 import LeafHeartIcon from '../components/icons/LeafHeartIcon';
 import PrestationsList from '../components/PrestationsList';
-import { getHomepageDatas } from '../lib/api';
+import fetchAPI from '../lib/api';
 import { ProjectItemType } from '../types/portfolio';
 
 interface ProductList {
@@ -218,7 +220,20 @@ export default function Home(
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const lastProjects = await getHomepageDatas();
+  const lastProjects = await fetchAPI(`
+    {
+      projets(first: 4) {
+        edges {
+          ${ProjectListItemLayout}
+        }
+      }
+      posts(first: 2) {
+        edges {
+          ${ArticleListItemLayout}
+        }
+      }
+    }
+  `);
 
   return {
     props: {
