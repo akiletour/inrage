@@ -255,3 +255,21 @@ export async function LastProjectBySupport(slug: string) {
 
   return data.support;
 }
+
+export async function BlogPosts(max: number = 1000) {
+  const data = await fetchAPI(`
+    query MyQuery($max: Int = 1000) {
+      posts(first: $max) {
+        edges {
+          ${ArticleListItemLayout}
+        }
+      }
+    }
+  `, {
+    variables: {
+      max,
+    },
+  });
+
+  return data?.posts;
+}
