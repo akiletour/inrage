@@ -20,7 +20,7 @@ export default function BlogDetail({ post }: BlogType) {
   }
   return (
     <Layout>
-      Hey
+      <div className="container">Contenu de l&apos;article</div>
     </Layout>
   );
 }
