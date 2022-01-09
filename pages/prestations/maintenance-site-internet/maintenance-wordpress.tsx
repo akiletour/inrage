@@ -50,9 +50,9 @@ export default function TmaWordPress({ entries = [] }: Props) {
             <TableHeader
               support="WordPress"
               types={[
-                { name: 'Sérénité', price: '39€ ht/mois' },
-                { name: 'Sérénité', price: '39€ ht/mois' },
-                { name: 'Sérénité', price: '39€ ht/mois' },
+                { name: 'Tranquilité', price: '39€ ht/mois' },
+                { name: 'Standard', price: '55€ ht/mois' },
+                { name: 'Sérénité', price: '75€ ht/mois' },
               ]}
             />
           </div>
