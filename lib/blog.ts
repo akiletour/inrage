@@ -30,6 +30,7 @@ export async function getSingleArticle(slug: string) {
        slug
        date
        excerpt
+       content(format: RENDERED)
        featuredImage {
          node {
            sourceUrl
