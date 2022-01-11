@@ -181,9 +181,8 @@ export default function Home(
                 slug, title, featuredImage, excerpt, date,
               },
             }) => (
-              <div>
+              <div key={slug}>
                 <ArticleItem
-                  key={slug}
                   slug={slug}
                   featuredImage={featuredImage}
                   title={title}
