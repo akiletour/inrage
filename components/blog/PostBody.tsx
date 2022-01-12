@@ -1,6 +1,3 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import sanitize from 'sanitize-html';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import styles from './PostBody.module.css';
@@ -15,11 +12,11 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-php';
 
 type Props = {
-  content: any;
+  content: string;
 }
 
 export default function PostBody({ content }: Props) {
-  const [post, setPost] = useState();
+  const [post, setPost] = useState('');
   useEffect(() => {
     function highlightCodeInHTML(html: string): string {
       const container = document.createElement('div');
@@ -29,12 +26,8 @@ export default function PostBody({ content }: Props) {
 
       return container.innerHTML;
     }
-    setPost(highlightCodeInHTML(content));
-  }, []);
-
-  if (!post) {
-    return 'loading';
-  }
+    setPost(`${highlightCodeInHTML(content)}`);
+  }, [content]);
 
   return (
     <div
