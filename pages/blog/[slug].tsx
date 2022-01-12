@@ -26,7 +26,7 @@ export default function BlogDetail({ post }: BlogType) {
   return (
     <Layout>
       <div className="container">
-        <PostBody content={post?.content || ''} />
+        <PostBody content={post.content} />
       </div>
       {post?.id && <PostComments id={post?.id} />}
     </Layout>

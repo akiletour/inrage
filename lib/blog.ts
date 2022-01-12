@@ -68,6 +68,7 @@ export async function BlogPosts(max: number = 1000) {
 
 const BlogCommentLayout = `
   id
+  commentId
   content
   dateGmt
   author {

@@ -1,19 +1,7 @@
 import useSWR from 'swr';
 import Diagonal from '@component/layouts/Diagonal';
-import styles from '@component/blog/PostBody.module.css';
-import Prism from 'prismjs';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/themes/prism-tomorrow.css';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-php';
-import { useEffect } from 'react';
+import SectionTitle from '@component/SectionTitle';
 import CommentItem, { CommentItemType } from '@component/items/CommentItem';
-import { Merge } from 'type-fest';
 
 const fetcher = (url: string) => fetch(url, {
   headers: {
@@ -28,10 +16,6 @@ type Props = {
 export default function PostComments({ id }: Props) {
   const { data, error } = useSWR<Array<{node: CommentItemType}>>(`/api/comments?id=${id}`, fetcher);
 
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
-
   if (error) return <div>failed to load</div>;
 
   if (!data && !error) return <div>loading...</div>;
@@ -40,10 +24,13 @@ export default function PostComments({ id }: Props) {
     <div className="bg-gray-darker">
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" flipX flipY />
       <div className="container relative z-10 -my-10">
+        <SectionTitle
+          title="Commentaires"
+          content={"N'hésitez pas à me laisser un petit commentaire pour que l'on discute ensemble de cet article. Les commentaires doivent rester un lieu d’échange courtois et agréable."}
+        />
         {data && data.map(({ node }) => (
-          <div className="mt-4">
+          <div className="mt-4" key={node.commentId}>
             <CommentItem
-              key={node.id}
               {...node}
             />
           </div>
