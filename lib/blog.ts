@@ -66,20 +66,29 @@ export async function BlogPosts(max: number = 1000) {
   return data?.posts;
 }
 
+const BlogCommentLayout = `
+  id
+  content
+  dateGmt
+  author {
+    node {
+      name
+    }
+  }
+`;
+
 export async function fetchBlogComments(slug: string) {
   const data = await fetchAPI(`
     query fetchBlogComments($id: ID!) {
-      comments(where: { contentId: $id, contentType: POST }) {
+      comments(where: { contentId: $id, contentType: POST, parent: 0, orderby: COMMENT_DATE, order: ASC }) {
         edges {
           node {
-            id
-            content
-            author {
-              node {
-                name
+            ${BlogCommentLayout}
+            replies(where: {orderby: COMMENT_DATE_GMT, order: ASC}) {
+              nodes {
+                ${BlogCommentLayout}
               }
             }
-            dateGmt
           }
         }
       }
