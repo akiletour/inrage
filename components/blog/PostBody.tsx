@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
+import styles from './PostBody.module.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
 import 'prismjs/components/prism-bash';
@@ -9,18 +11,29 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-php';
 
-import { useEffect } from 'react';
-import styles from './PostBody.module.css';
+type Props = {
+  content: string;
+}
 
-export default function PostBody({ content }: {content: string}) {
+export default function PostBody({ content }: Props) {
+  const [post, setPost] = useState('');
   useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+    function highlightCodeInHTML(html: string): string {
+      const container = document.createElement('div');
+      container.innerHTML = html; // unsafe but whatever
+
+      Prism.highlightAllUnder(container);
+
+      return container.innerHTML;
+    }
+    setPost(`${highlightCodeInHTML(content)}`);
+  }, [content]);
+
   return (
     <div
       className={styles.content}
       dangerouslySetInnerHTML={{
-        __html: content,
+        __html: post,
       }}
     />
   );

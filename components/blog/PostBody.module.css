@@ -70,4 +70,11 @@
     @apply w-full;
 }
 
+.content p > code {
+    padding: 3px 5px;
+    font-size: .8em;
+    background: #141414;
+    color: #fff;
+    font-family: Monaco,Consolas,Andale Mono,DejaVu Sans Mono,monospace;
+}
 

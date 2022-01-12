@@ -26,6 +26,7 @@ export async function getSingleArticle(slug: string) {
   const data = await fetchAPI(`
    query getSingleArticle($id: ID!) {
      post(id: $id, idType: SLUG) {
+       id
        title
        slug
        date
@@ -63,4 +64,41 @@ export async function BlogPosts(max: number = 1000) {
   });
 
   return data?.posts;
+}
+
+const BlogCommentLayout = `
+  id
+  commentId
+  content
+  dateGmt
+  author {
+    node {
+      name
+    }
+  }
+`;
+
+export async function fetchBlogComments(slug: string) {
+  const data = await fetchAPI(`
+    query fetchBlogComments($id: ID!) {
+      comments(where: { contentId: $id, contentType: POST, parent: 0, orderby: COMMENT_DATE, order: ASC }) {
+        edges {
+          node {
+            ${BlogCommentLayout}
+            replies(where: {orderby: COMMENT_DATE_GMT, order: ASC}) {
+              nodes {
+                ${BlogCommentLayout}
+              }
+            }
+          }
+        }
+      }
+    }
+  `, {
+    variables: {
+      id: slug,
+    },
+  });
+
+  return data?.comments?.edges || [];
 }
