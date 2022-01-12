@@ -12,6 +12,8 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-php';
 import { useEffect } from 'react';
+import CommentItem, { CommentItemType } from '@component/items/CommentItem';
+import { Merge } from 'type-fest';
 
 const fetcher = (url: string) => fetch(url, {
   headers: {
@@ -24,7 +26,7 @@ type Props = {
 }
 
 export default function PostComments({ id }: Props) {
-  const { data, error } = useSWR(`/api/comments?id=${id}`, fetcher);
+  const { data, error } = useSWR<Array<{node: CommentItemType}>>(`/api/comments?id=${id}`, fetcher);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -38,13 +40,11 @@ export default function PostComments({ id }: Props) {
     <div className="bg-gray-darker">
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" flipX flipY />
       <div className="container relative z-10 -my-10">
-        {data.map(({ node: item }) => (
-          <div className="mt-4" key={item.id}>
-            <div className="text-white">{item.author.node.name}</div>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: item.content,
-              }}
+        {data && data.map(({ node }) => (
+          <div className="mt-4">
+            <CommentItem
+              key={node.id}
+              {...node}
             />
           </div>
         ))}
