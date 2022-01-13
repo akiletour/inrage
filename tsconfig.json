@@ -24,7 +24,8 @@
       "@image/*": ["public/images/*"],
       "@lib/*": ["lib/*"],
       "@component/*": ["components/*"]
-    }
+    },
+    "types": ["cypress"]
   },
   "include": [
     "types/**/*.d.ts",

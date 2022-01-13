@@ -19,6 +19,9 @@
 .DS_Store
 *.pem
 
+cypress/videos
+cypress/screenshots
+
 # debug
 npm-debug.log*
 yarn-debug.log*
