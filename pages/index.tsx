@@ -148,7 +148,7 @@ export default function Home(
           <ExpertiseItem
             title="Symfony"
             excerpt="Symfony est un framework PHP qui nous permet d’accélèrer le développement de sites ou d’applications grace à sa méthodologie et architecture évolutive."
-            link="/"
+            link={RouteLink.portfolio}
             image={ExpertiseSymfony}
           />
           <ExpertiseItem
@@ -160,7 +160,7 @@ export default function Home(
           <ExpertiseItem
             title="Joomla"
             excerpt="Joomla est un CMS puissant en terme de pérénité, modularité et de puissance dans la gestion de contenu et de l’ajout de vos développement spécifique."
-            link="/"
+            link={RouteLink.portfolio}
             image={ExpertiseJoomla}
           />
         </div>
