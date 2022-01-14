@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo';
 import Layout from '@component/layouts/Layout';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
+import sanitize from 'sanitize-html';
 import SectionTitle from '../../../components/SectionTitle';
 import ProjectItem from '../../../components/items/ProjectItem';
 
@@ -68,7 +69,11 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
                 <a className="block text-3xl" href={post.detail.websiteLink} target="_blank" rel="noreferrer nofollow">
                   {post.detail.websiteLink.replace(/(^\w+:|^)\/\//, '')}
                 </a>
-                <div className="my-4 text-lg">{post.detail.excerpt}</div>
+                <div className="my-4 text-lg">
+                  {sanitize(post.detail.excerpt, {
+                    allowedTags: [],
+                  })}
+                </div>
 
                 <div className="my-4">
                   <div className="text-white text-xl font-light uppercase tracking-widest">Date</div>
