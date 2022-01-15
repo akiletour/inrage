@@ -1,16 +1,17 @@
-import Image from 'next/image';
 import { NextSeo } from 'next-seo';
-import { RouteLink } from '@lib/route';
+import Image from 'next/image';
+
+import LeafHeartIcon from '@component/icons/LeafHeartIcon';
+import PrestationItem from '@component/items/PrestationItem';
+import Diagonal from '@component/layouts/Diagonal';
 import Layout from '@component/layouts/Layout';
-import Diagonal from '../../components/layouts/Diagonal';
-import LeafHeartIcon from '../../components/icons/LeafHeartIcon';
-import PrestationsList from '../../components/PrestationsList';
-import SectionTitle from '../../components/SectionTitle';
-import PrestationItem from '../../components/items/PrestationItem';
-import PrestationDesign from '../../public/images/prestations/charte_graphique.png';
-import PrestationWebDev from '../../public/images/prestations/developpement_site_web.png';
-import PrestationFormation from '../../public/images/prestations/formation_offerte.png';
-import PrestationSupport from '../../public/images/prestations/support_technique_772424.png';
+import PrestationsList from '@component/PrestationsList';
+import SectionTitle from '@component/SectionTitle';
+import PrestationDesign from '@image/prestations/charte_graphique.png';
+import PrestationWebDev from '@image/prestations/developpement_site_web.png';
+import PrestationFormation from '@image/prestations/formation_offerte.png';
+import PrestationSupport from '@image/prestations/support_technique_772424.png';
+import { RouteLink } from '@lib/route';
 
 export default function Prestations() {
   return (
@@ -35,37 +36,40 @@ export default function Prestations() {
         </div>
         <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
           <div>
-
             <h2 className="uppercase font-bold text-white text-2xl leading-7">
               CRÉATION DE SITE INTERNET SUR LA ROCHELLE
-              <span className="font-light block text-xl">ET PARTOUT EN FRANCE</span>
+              <span className="font-light block text-xl">
+                ET PARTOUT EN FRANCE
+              </span>
             </h2>
 
             <div className="text-gray-light text-xl mt-4">
               <p>
-                Je vous accompagne de A à Z dans la création de votre site internet et vous propose
-                la solution idéale pour répondre à vos problématiques techniques, graphiques et
-                budgétaires.
+                Je vous accompagne de A à Z dans la création de votre site
+                internet et vous propose la solution idéale pour répondre à vos
+                problématiques techniques, graphiques et budgétaires.
               </p>
               <p>
-                Afin de mener à bien votre projet, j’analyse en détail les besoins de votre activité
-                pour identifier vos enjeux et y répondre le plus efficacement par une solution
-                sur-mesure.
+                Afin de mener à bien votre projet, j’analyse en détail les
+                besoins de votre activité pour identifier vos enjeux et y
+                répondre le plus efficacement par une solution sur-mesure.
               </p>
             </div>
 
             <p className="mt-2">
-              Je reste constamment à l&apos;affût des nouvelles technologies web et assure une
-              veille
-              graphique régulière afin de vous proposer les fonctionnalités les plus récentes et
-              performantes, au sein d’un design élégant et percutant.
+              Je reste constamment à l&apos;affût des nouvelles technologies web
+              et assure une veille graphique régulière afin de vous proposer les
+              fonctionnalités les plus récentes et performantes, au sein d’un
+              design élégant et percutant.
             </p>
             <p className="mt-2">
-              Je suis en mesure d’intervenir sur tous types de projets (boutique,
-              site vitrine, apps...) grâce à mon expertise sur des CMS variés, tels que Joomla,
-              Prestashop ou encore Wordpress. Et comme la création d’un site internet ne s’achève
-              pas à sa mise en ligne, j’assure le support technique de votre outil 7j/7 et vous
-              propose des offres de maintenance TMA pour le protéger tout au long de l’année.
+              Je suis en mesure d’intervenir sur tous types de projets
+              (boutique, site vitrine, apps...) grâce à mon expertise sur des
+              CMS variés, tels que Joomla, Prestashop ou encore Wordpress. Et
+              comme la création d’un site internet ne s’achève pas à sa mise en
+              ligne, j’assure le support technique de votre outil 7j/7 et vous
+              propose des offres de maintenance TMA pour le protéger tout au
+              long de l’année.
             </p>
           </div>
         </div>
@@ -111,7 +115,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="184.0942" y="265.2684">GESTION DE PROJET</tspan>
+                <tspan x="184.0942" y="265.2684">
+                  GESTION DE PROJET
+                </tspan>
               </text>
               <text
                 fill="#F19D32"
@@ -119,7 +125,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="0" y="98.3187">DEBUT DU PROJET</tspan>
+                <tspan x="0" y="98.3187">
+                  DEBUT DU PROJET
+                </tspan>
               </text>
               <text
                 fill="#3F96CF"
@@ -127,7 +135,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="329.4956" y="56.991">VEILLE</tspan>
+                <tspan x="329.4956" y="56.991">
+                  VEILLE
+                </tspan>
               </text>
               <text
                 fill="#925BA1"
@@ -135,7 +145,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="565.0662" y="24.7987">GRAPHISME</tspan>
+                <tspan x="565.0662" y="24.7987">
+                  GRAPHISME
+                </tspan>
               </text>
               <text
                 fill="#E74C3C"
@@ -143,7 +155,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="649.1442" y="270.2156">INTEGRATION</tspan>
+                <tspan x="649.1442" y="270.2156">
+                  INTEGRATION
+                </tspan>
               </text>
               <text
                 fill="#50B66D"
@@ -151,7 +165,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="976.7459" y="278.5486">DEVELOPPEMENT</tspan>
+                <tspan x="976.7459" y="278.5486">
+                  DEVELOPPEMENT
+                </tspan>
               </text>
               <text
                 fill="#ECF0F1"
@@ -159,7 +175,9 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="1185.0481" y="21.7688">MISE EN PRODUCTION</tspan>
+                <tspan x="1185.0481" y="21.7688">
+                  MISE EN PRODUCTION
+                </tspan>
               </text>
               <text
                 fill="#35495E"
@@ -167,9 +185,14 @@ export default function Prestations() {
                 fontSize="22"
                 transform="translate(-1 -1)"
               >
-                <tspan x="1299.0454" y="278.5486">MAINTENANCE</tspan>
+                <tspan x="1299.0454" y="278.5486">
+                  MAINTENANCE
+                </tspan>
               </text>
-              <path d="M73.13 107.757c-6.491 22.066 3.004 44.26 21.23 49.621" stroke="#F19D32" />
+              <path
+                d="M73.13 107.757c-6.491 22.066 3.004 44.26 21.23 49.621"
+                stroke="#F19D32"
+              />
               <path
                 d="M68.355 109.24l6.567-5.769 1.713 8.572z"
                 fillRule="nonzero"
@@ -268,25 +291,26 @@ export default function Prestations() {
         <div className="bg-gray-darker pt-16">
           <div className="container -mb-10">
             <p className="text-gray-light text-xl">
-              La réussite d’un projet web réside en grande partie dans son organisation et la
-              méthodologie de travail employée. Pour ma part, l’ensemble de mes projets sont
-              construits autour de la méthode agile.
+              La réussite d’un projet web réside en grande partie dans son
+              organisation et la méthodologie de travail employée. Pour ma part,
+              l’ensemble de mes projets sont construits autour de la méthode
+              agile.
             </p>
 
             <p className="mt-2">
-              Elle permet de segmenter un projet en différentes étapes clés afin de vous présenter
-              de manière évolutive les avancements de la création
-              de votre site. Cette méthode offre à mes clients une transparence accrue sur l’avancée
-              de leurs projets mais également la possibilité de tester et de faire évoluer les
-              fonctionnalités développées.
+              Elle permet de segmenter un projet en différentes étapes clés afin
+              de vous présenter de manière évolutive les avancements de la
+              création de votre site. Cette méthode offre à mes clients une
+              transparence accrue sur l’avancée de leurs projets mais également
+              la possibilité de tester et de faire évoluer les fonctionnalités
+              développées.
             </p>
 
             <p className="mt-2">
-              En somme, cette méthodologie permet d’intégrer mon client dans le processus de
-              création
-              en le sollicitant à chaque étape de la construction de son outil web. Il s’assure
-              ainsi
-              au jour le jour de la qualité du produit attendu.
+              En somme, cette méthodologie permet d’intégrer mon client dans le
+              processus de création en le sollicitant à chaque étape de la
+              construction de son outil web. Il s’assure ainsi au jour le jour
+              de la qualité du produit attendu.
             </p>
           </div>
 
@@ -295,7 +319,7 @@ export default function Prestations() {
             bgCorner="fill-gray-darker"
             cta={{
               icon: <LeafHeartIcon />,
-              title: ['Demandez votre', <br />, 'devis'],
+              title: ['Demandez votre', 'devis'],
               href: RouteLink.contact,
             }}
           />
@@ -303,17 +327,17 @@ export default function Prestations() {
       </div>
 
       <div className="container">
-        <div
-          className="mt-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white"
-        >
-          Je suis entouré d&apos;une équipe fondée de créatifs, designers et développeurs.
-          Nous travaillons ensemble pour créer des choses inspirantes et engagées.
+        <div className="mt-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
+          Je suis entouré d&apos;une équipe fondée de créatifs, designers et
+          développeurs. Nous travaillons ensemble pour créer des choses
+          inspirantes et engagées.
         </div>
 
         <div className="text-center max-w-4xl mx-auto text-lg mt-4 mb-7">
-          Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au fil des années des
-          compétences diverses et complémentaires qui me permettent aujourd’hui de concevoir
-          intégralement l’outil répondant le plus précisément à vos attentes.
+          Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au
+          fil des années des compétences diverses et complémentaires qui me
+          permettent aujourd’hui de concevoir intégralement l’outil répondant le
+          plus précisément à vos attentes.
         </div>
 
         <PrestationsList />
@@ -327,35 +351,36 @@ export default function Prestations() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             <PrestationItem
               image={PrestationDesign}
-              title={['Identité visuelle &', <br />, 'Charte graphique']}
+              title={['Identité visuelle &', 'Charte graphique']}
             >
-              Conscient et engagé, nous sommes à l’affut des nouvelles technologies web, nous
-              assurons des veilles graphiques et techniques nous permettant de vous proposer des
-              fonctionnalités au gout du jours.
+              Conscient et engagé, nous sommes à l’affut des nouvelles
+              technologies web, nous assurons des veilles graphiques et
+              techniques nous permettant de vous proposer des fonctionnalités au
+              gout du jours.
             </PrestationItem>
             <PrestationItem
               image={PrestationWebDev}
-              title={['Développment de', <br />, 'votre projet']}
+              title={['Développment de', 'votre projet']}
             >
-              Expert dans son domaine et sur les CMS comme Joomla, Prestashop et WordPress. inRage
-              respectera précisément votre cahier des charges pour développer les fonctionnalités de
-              vos sites.
+              Expert dans son domaine et sur les CMS comme Joomla, Prestashop et
+              WordPress. inRage respectera précisément votre cahier des charges
+              pour développer les fonctionnalités de vos sites.
             </PrestationItem>
             <PrestationItem
               image={PrestationFormation}
-              title={['Formation offerte', <br />, 'lors de la création']}
+              title={['Formation offerte', 'lors de la création']}
             >
-              À la fin de la création de votre projet, nous offrons une formation complète à
-              l’utilisation de vos nouveaux outils web. Vous offrant une administration optimale de
-              votre site.
+              À la fin de la création de votre projet, nous offrons une
+              formation complète à l’utilisation de vos nouveaux outils web.
+              Vous offrant une administration optimale de votre site.
             </PrestationItem>
             <PrestationItem
               image={PrestationSupport}
-              title={['Support technique', <br />, '7j/7']}
+              title={['Support technique', '7j/7']}
             >
-              Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir sur votre site
-              Internet.
-              Nous sommes disponibles 7j/7 si un problème technique survient sur votre site web.
+              Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
+              sur votre site Internet. Nous sommes disponibles 7j/7 si un
+              problème technique survient sur votre site web.
             </PrestationItem>
           </div>
         </div>

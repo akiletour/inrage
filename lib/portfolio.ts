@@ -41,7 +41,8 @@ export async function getAllProjectsWithSlug() {
 }
 
 export async function getSingleProject(slug: string) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
   query ProjectBySlug($id: ID!) {
     projet(id: $id, idType: SLUG) {
       id
@@ -85,11 +86,13 @@ export async function getSingleProject(slug: string) {
       }
     }
   }
-  `, {
-    variables: {
-      id: slug,
-    },
-  });
+  `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
 
   return data;
 }
@@ -134,7 +137,8 @@ export async function getAllSupportsWithSlug() {
 }
 
 export async function getSingleSupport(slug: string) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
   query SupportBySlug($id: ID!) {
     support(id: $id, idType: SLUG) {
       id
@@ -161,17 +165,20 @@ export async function getSingleSupport(slug: string) {
       }
     }
   }
-  `, {
-    variables: {
-      id: slug,
-    },
-  });
+  `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
 
   return data;
 }
 
 export async function LastProjectBySupport(slug: string) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
   query LastProjectBySupport($id: ID!) {
     support(id: $id, idType: SLUG) {
       id
@@ -182,11 +189,13 @@ export async function LastProjectBySupport(slug: string) {
       }
     }
   }
-  `, {
-    variables: {
-      id: slug,
-    },
-  });
+  `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
 
   return data.support;
 }

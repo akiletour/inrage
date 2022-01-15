@@ -1,11 +1,12 @@
-import Link from '@component/NoScrollLink';
 import Image from 'next/image';
+
+import Link from '@component/NoScrollLink';
 
 type Props = {
   image: StaticImageData;
   link: string;
   title: string;
-}
+};
 
 export default function FeaturedProjectMenu({ image, link, title }: Props) {
   return (

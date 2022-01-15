@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import Image from 'next/image';
 
 type Props = {
@@ -12,13 +13,24 @@ type Props = {
     height?: number;
     layout?: 'fill' | 'responsive';
   };
-}
+};
 
 export default function TextImage({
-  image, title, children, imageProps = {}, position = 'left', duoTone = false,
+  image,
+  title,
+  children,
+  imageProps = {},
+  position = 'left',
+  duoTone = false,
 }: Props) {
   return (
-    <div className={`${position === 'left' ? 'md:flex-row' : 'md:flex-row-reverse md:text-right'} flex flex-col md:items-center mt-6`}>
+    <div
+      className={`${
+        position === 'left'
+          ? 'md:flex-row'
+          : 'md:flex-row-reverse md:text-right'
+      } flex flex-col md:items-center mt-6`}
+    >
       <div className="md:w-2/5">
         <Image
           src={image}
@@ -26,13 +38,24 @@ export default function TextImage({
           {...imageProps}
         />
       </div>
-      <div className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}>
+      <div
+        className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}
+      >
         {title && (
-        <h3 className="text-white text-4xl font-bold mb-3">
-          {Array.isArray(title)
-            ? title.map((ttl, index) => <span className={`block ${index > 0 && duoTone && 'font-light text-3xl'}`} key={ttl}>{ttl}</span>)
-            : title}
-        </h3>
+          <h3 className="text-white text-4xl font-bold mb-3">
+            {Array.isArray(title)
+              ? title.map((ttl, index) => (
+                  <span
+                    className={`block ${
+                      index > 0 && duoTone && 'font-light text-3xl'
+                    }`}
+                    key={ttl}
+                  >
+                    {ttl}
+                  </span>
+                ))
+              : title}
+          </h3>
         )}
         {children}
       </div>

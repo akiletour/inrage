@@ -1,22 +1,22 @@
 import Layout from '@component/layouts/Layout';
+import PortfolioLayout from '@component/portfolio/PortfolioLayout';
 import { getPortfolioProjects } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
-import PortfolioLayout from '../../components/portfolio/PortfolioLayout';
 
 interface PortfolioType {
-  pageTitle: string
+  pageTitle: string;
   projects: {
-    edges: ProjectItemType[]
-  }
+    edges: ProjectItemType[];
+  };
   supports: {
     edges: Array<{
       node: {
-        name: string
-        slug: string
-        id: number
-      }
-    }>
-  }
+        name: string;
+        slug: string;
+        id: number;
+      };
+    }>;
+  };
 }
 
 export default function Portfolio({

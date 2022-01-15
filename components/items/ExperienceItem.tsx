@@ -2,14 +2,18 @@ import Image from 'next/image';
 
 type Props = {
   logo: string | StaticImageData;
-  title: string
-  company: string
-  year: string
-  excerpt: string
-}
+  title: string;
+  company: string;
+  year: string;
+  excerpt: string;
+};
 
 export default function ExperienceItem({
-  logo, title, company, year, excerpt,
+  logo,
+  title,
+  company,
+  year,
+  excerpt,
 }: Props) {
   return (
     <div className="grid md:grid-cols-[250px_1fr] items-start justify-start">

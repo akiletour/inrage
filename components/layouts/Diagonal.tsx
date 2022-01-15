@@ -1,5 +1,4 @@
 import Link from '@component/NoScrollLink';
-import { Fragment } from 'react';
 
 type Props = {
   className?: string;
@@ -10,13 +9,19 @@ type Props = {
   preserveRatio?: boolean;
   cta?: {
     icon: JSX.Element;
-    href: string
-    title: string | Array<string | JSX.Element>;
-  }
-}
+    href: string;
+    title: string | string[];
+  };
+};
 
 export default function Diagonal({
-  className = '', flipX = false, flipY = false, bgClass = '', bgCorner = '', preserveRatio = false, cta,
+  className = '',
+  flipX = false,
+  flipY = false,
+  bgClass = '',
+  bgCorner = '',
+  preserveRatio = false,
+  cta,
 }: Props) {
   const classeNames = [`${className} w-full block`];
 
@@ -42,16 +47,22 @@ export default function Diagonal({
       </svg>
 
       {cta?.href && (
-      <Link href={cta.href}>
-        <a className="absolute left-1/2 bottom-1 -translate-x-1/2 w-18 h-18 bg-gray-dark text-gray hover:text-white rounded-full flex flex-col items-center pt-3">
-          <div>{cta.icon}</div>
-          <div className="mt-1 text-sm text-center leading-4">
-            {Array.isArray(cta.title)
-              ? cta.title.map((ttl) => <Fragment key={ttl.toString()}>{ttl}</Fragment>)
-              : <>ttl</>}
-          </div>
-        </a>
-      </Link>
+        <Link href={cta.href}>
+          <a className="absolute left-1/2 bottom-1 -translate-x-1/2 w-18 h-18 bg-gray-dark text-gray hover:text-white rounded-full flex flex-col items-center pt-3">
+            <div>{cta.icon}</div>
+            <div className="mt-1 text-sm text-center leading-4">
+              {Array.isArray(cta.title) ? (
+                cta.title.map((ttl) => (
+                  <span key={ttl} className={'block'}>
+                    {ttl}
+                  </span>
+                ))
+              ) : (
+                <>ttl</>
+              )}
+            </div>
+          </a>
+        </Link>
       )}
     </div>
   );

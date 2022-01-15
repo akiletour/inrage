@@ -1,9 +1,10 @@
 import '../styles/globals.css';
-import { AppProps } from 'next/app';
-import { DefaultSeo } from 'next-seo';
 import { AnimatePresence } from 'framer-motion';
-import Header from '../components/layouts/Header';
-import Footer from '../components/layouts/Footer';
+import { DefaultSeo } from 'next-seo';
+import { AppProps } from 'next/app';
+
+import Footer from '@component/layouts/Footer';
+import Header from '@component/layouts/Header';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const url = `https://www.inrage.fr${router.asPath}`;
@@ -11,10 +12,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <>
       <DefaultSeo
         canonical={`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_FRONT_URL}${router.asPath}`}
-        additionalLinkTags={[{
-          rel: 'icon',
-          href: '/favicon.png',
-        }]}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: '/favicon.png',
+          },
+        ]}
         openGraph={{
           type: 'website',
           locale: 'fr_FR',

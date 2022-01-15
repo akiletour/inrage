@@ -1,51 +1,52 @@
-import ErrorPage from 'next/error';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import ErrorPage from 'next/error';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import sanitize from 'sanitize-html';
+
+import ProjectItem from '@component/items/ProjectItem';
 import Layout from '@component/layouts/Layout';
+import SectionTitle from '@component/SectionTitle';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
-import sanitize from 'sanitize-html';
-import SectionTitle from '../../../components/SectionTitle';
-import ProjectItem from '../../../components/items/ProjectItem';
 
 type Props = {
   post: {
-    slug: string
-    title: string
+    slug: string;
+    title: string;
     technologies: {
       edges: Array<{
         node: {
-          name: string
+          name: string;
           acfDetail: {
             image: {
-              sourceUrl: string
-            }
-          }
-        }
-      }>
-    }
+              sourceUrl: string;
+            };
+          };
+        };
+      }>;
+    };
     detail: {
-      excerpt: string
-      websiteLink: string
-      year: string
-      missions: string
-    }
+      excerpt: string;
+      websiteLink: string;
+      year: string;
+      missions: string;
+    };
     featuredImage: {
       node: {
-        sourceUrl: string
-      }
-    }
+        sourceUrl: string;
+      };
+    };
     supports: {
       edges: Array<{
         node: {
-          name: string
-        }
-      }>
-    }
-  }
-  similarProjects: ProjectItemType[]
-}
+          name: string;
+        };
+      }>;
+    };
+  };
+  similarProjects: ProjectItemType[];
+};
 
 export default function PortfolioDetail({ post, similarProjects }: Props) {
   const router = useRouter();
@@ -57,7 +58,9 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
   return (
     <Layout>
       <div className="container">
-        {router.isFallback ? <p>Chargement en cours...</p> : (
+        {router.isFallback ? (
+          <p>Chargement en cours...</p>
+        ) : (
           <div>
             <NextSeo
               title={`${post.title} - Portfolio`}
@@ -65,8 +68,15 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
             />
             <div className="flex items-center mb-10 flex-col md:flex-row">
               <div className="md:w-2/5 text-center md:text-right">
-                <div className="text-4xl text-white font-bold">{post.title}</div>
-                <a className="block text-3xl" href={post.detail.websiteLink} target="_blank" rel="noreferrer nofollow">
+                <div className="text-4xl text-white font-bold">
+                  {post.title}
+                </div>
+                <a
+                  className="block text-3xl"
+                  href={post.detail.websiteLink}
+                  target="_blank"
+                  rel="noreferrer nofollow"
+                >
                   {post.detail.websiteLink.replace(/(^\w+:|^)\/\//, '')}
                 </a>
                 <div className="my-4 text-lg">
@@ -76,23 +86,32 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
                 </div>
 
                 <div className="my-4">
-                  <div className="text-white text-xl font-light uppercase tracking-widest">Date</div>
-                  <div className="text-white font-bold text-3xl">{post.detail.year}</div>
+                  <div className="text-white text-xl font-light uppercase tracking-widest">
+                    Date
+                  </div>
+                  <div className="text-white font-bold text-3xl">
+                    {post.detail.year}
+                  </div>
                 </div>
 
                 <div className="my-4">
-                  <div className="text-white text-xl font-light uppercase tracking-widest mb-2">Technologies</div>
+                  <div className="text-white text-xl font-light uppercase tracking-widest mb-2">
+                    Technologies
+                  </div>
                   <div className="text-white font-medium text-sm flex space-x-2 justify-center flex-wrap md:justify-end">
                     {post.technologies.edges.map((techno) => (
-                      <div key={techno.node.name} className="flex items-center flex-col w-[80px] text-center">
+                      <div
+                        key={techno.node.name}
+                        className="flex items-center flex-col w-[80px] text-center"
+                      >
                         {techno.node.acfDetail?.image?.sourceUrl && (
-                        <div className="w-6 h-6 relative">
-                          <Image
-                            src={techno.node.acfDetail.image.sourceUrl}
-                            layout="fill"
-                            alt={techno.node.name}
-                          />
-                        </div>
+                          <div className="w-6 h-6 relative">
+                            <Image
+                              src={techno.node.acfDetail.image.sourceUrl}
+                              layout="fill"
+                              alt={techno.node.name}
+                            />
+                          </div>
                         )}
 
                         <div className="mt-1">{techno.node.name}</div>
@@ -123,20 +142,21 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
             </div>
 
             <SectionTitle
-              content={`Retrouvez des projets similaires développés avec ${post.supports.edges[0].node.name} qui pourrait correspondre à ${post.title}`}
-              title={post.supports.edges[0].node.name}
+              content={`Retrouvez des projets similaires développés avec ${post?.supports?.edges[0]?.node.name} qui pourrait correspondre à ${post.title}`}
+              title={post?.supports?.edges[0]?.node.name || ''}
             />
 
             <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
-              {similarProjects.length > 0 && similarProjects.map(({ node }) => (
-                <ProjectItem
-                  key={node.id}
-                  image={node.featuredImage.node.sourceUrl}
-                  title={node.title}
-                  slug={node.slug}
-                  support={node.supports?.edges[0]?.node}
-                />
-              ))}
+              {similarProjects.length > 0 &&
+                similarProjects.map(({ node }) => (
+                  <ProjectItem
+                    key={node.id}
+                    image={node.featuredImage.node.sourceUrl}
+                    title={node.title}
+                    slug={node.slug}
+                    support={node.supports?.edges[0]?.node}
+                  />
+                ))}
             </div>
           </div>
         )}
@@ -144,46 +164,69 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
     </Layout>
   );
 }
-export const getStaticProps = async ({ params }: { params: { slug: string } }) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
   const { projet, projets } = await getSingleProject(params.slug);
   return {
     props: {
       post: projet,
       pageTitle: projet.title,
       similarProjects: projets.edges
-        .filter((
-          r: {node: {supports: {edges: ProjectItemType[]}}},
-        ) => r.node.supports.edges[0].node.slug === projet.supports.edges[0].node.slug)
-        .sort(() => 0.5 - Math.random()).slice(0, 4),
-      breadcrumb: [{
-        link: '/portfolio',
-        title: 'Portfolio',
-      }, {
-        link: `/portfolio/${projet.supports.edges[0].node.slug}`,
-        title: projet.supports.edges[0].node.name,
-      }],
+        .filter((r: { node: { supports: { edges: ProjectItemType[] } } }) => {
+          if (r?.node?.supports?.edges[0]) {
+            return (
+              r.node.supports.edges[0].node.slug ===
+              projet.supports.edges[0].node.slug
+            );
+          }
+
+          return false;
+        })
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 4),
+      breadcrumb: [
+        {
+          link: '/portfolio',
+          title: 'Portfolio',
+        },
+        {
+          link: `/portfolio/${projet.supports.edges[0].node.slug}`,
+          title: projet.supports.edges[0].node.name,
+        },
+      ],
     },
   };
 };
 
 type StaticProps = {
   node: {
-    slug: string
+    slug: string;
     supports: {
       edges: Array<{
         node: {
-          slug: string
-        }
-      }>
-    }
-  }
-}
+          slug: string;
+        };
+      }>;
+    };
+  };
+};
 
 export async function getStaticPaths() {
   const allPosts = await getAllProjectsWithSlug();
 
   return {
-    paths: allPosts.edges.map(({ node }: StaticProps) => `/portfolio/${node.supports.edges[0].node.slug}/${node.slug}`) || [],
+    paths:
+      allPosts.edges.map(
+        ({ node }: StaticProps) =>
+          `/portfolio/${
+            node?.supports?.edges[0]
+              ? `${node.supports.edges[0].node.slug}/`
+              : ''
+          }${node.slug}`
+      ) || [],
     fallback: true,
   };
 }

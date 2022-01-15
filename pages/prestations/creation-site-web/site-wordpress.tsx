@@ -1,30 +1,31 @@
 import { GetStaticProps } from 'next';
-import { PageHeaderStaticProps } from '@type/header';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
-import Diagonal from 'components/layouts/Diagonal';
-import Quote from 'components/Quote';
-import SectionTitle from 'components/SectionTitle';
-import PageBuilderImage from '@image/page-builder.png';
+
+import ContactForm from '@component/ContactForm';
+import MoreIcon from '@component/icons/MoreIcon';
+import ProjectItem from '@component/items/ProjectItem';
+import Diagonal from '@component/layouts/Diagonal';
+import Layout from '@component/layouts/Layout';
+import Link from '@component/NoScrollLink';
+import Quote from '@component/Quote';
+import SectionTitle from '@component/SectionTitle';
+import TextImage from '@component/TextImage';
 import AcfImage from '@image/acf.png';
-import TextImage from 'components/TextImage';
-import WebsiteWP from '@image/website-wp.png';
 import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import WordpressSage from '@image/developpement-theme-sage.jpeg';
-import WebsitePrestashop from '@image/website-prestashop.png';
+import PageBuilderImage from '@image/page-builder.png';
 import ProtectionShield from '@image/protection-shield.png';
+import WebsitePrestashop from '@image/website-prestashop.png';
+import WebsiteWP from '@image/website-wp.png';
 import { LastProjectBySupport } from '@lib/portfolio';
-import Link from '@component/NoScrollLink';
-import { ProjectItemType } from '@type/portfolio';
-import ProjectItem from 'components/items/ProjectItem';
-import MoreIcon from 'components/icons/MoreIcon';
-import ContactForm from 'components/ContactForm';
-import { NextSeo } from 'next-seo';
 import { RouteLink } from '@lib/route';
-import Layout from '@component/layouts/Layout';
+import { PageHeaderStaticProps } from '@type/header';
+import { ProjectItemType } from '@type/portfolio';
 
 type Props = {
-  featuredProjects: ProjectItemType[]
-}
+  featuredProjects: ProjectItemType[];
+};
 
 export default function PrestationWordPress({ featuredProjects }: Props) {
   return (
@@ -47,9 +48,9 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             La Rochelle
           </h2>
           <p className="mt-2">
-            Développeur freelance, je me spécialise avant tout
-            sur la création de site Wordpress. En effet, le développement wordpress
-            est mon domaine de prédilection, et ce, pour plusieurs raisons :
+            Développeur freelance, je me spécialise avant tout sur la création
+            de site Wordpress. En effet, le développement wordpress est mon
+            domaine de prédilection, et ce, pour plusieurs raisons :
           </p>
           <ul className="styled-list mt-2">
             <li>Wordpress est un CMS gratuit et opensource.</li>
@@ -63,9 +64,9 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </li>
             <li>
               Wordpress bénéficie d’une large communauté, il est le CMS le plus
-              utilisé au monde soit 30% des sites en ligne à ce jour. Sa communauté
-              est également très investie, les plugins et thèmes disponibles pour
-              ce CMS sont extrêmement nombreux.
+              utilisé au monde soit 30% des sites en ligne à ce jour. Sa
+              communauté est également très investie, les plugins et thèmes
+              disponibles pour ce CMS sont extrêmement nombreux.
             </li>
           </ul>
         </div>
@@ -81,9 +82,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
         />
         <div className="container text-center py-8 lg:py-0">
           <div className="md:px-18 text-lg">
-            <Quote
-              message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients"
-            />
+            <Quote message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients" />
           </div>
         </div>
         <Diagonal
@@ -102,7 +101,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
           <div className="flex flex-col lg:flex-row justify-start lg:items-center">
             <div className="flex-none lg:mr-2 h-18 flex items-center">
-              <Image src={PageBuilderImage} alt="Construction de page avec Gutenberg" />
+              <Image
+                src={PageBuilderImage}
+                alt="Construction de page avec Gutenberg"
+              />
             </div>
             <div>
               <h3 className="text-white mb-1 font-medium text-xl">Gutenberg</h3>
@@ -110,18 +112,23 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
                 Depuis la version 5.5, WordPress propose un formidable outil
                 Gutenberg pour vous permettre de construire vos pages
                 dynamiquement. Je peux mettre en place toute la construction des
-                blocs Gutenberg pour vous permettre d&apos;avoir la main à 100% sur
-                votre site.
+                blocs Gutenberg pour vous permettre d&apos;avoir la main à 100%
+                sur votre site.
               </p>
             </div>
           </div>
 
           <div className="flex flex-col lg:flex-row justify-start lg:items-center">
             <div className="flex-none mr-2 flex h-18 items-center">
-              <Image src={AcfImage} alt="Construction de page avec Advanced Custom Fields" />
+              <Image
+                src={AcfImage}
+                alt="Construction de page avec Advanced Custom Fields"
+              />
             </div>
             <div>
-              <h3 className="text-white mb-1 font-medium text-xl">Champs personnalisés ACF</h3>
+              <h3 className="text-white mb-1 font-medium text-xl">
+                Champs personnalisés ACF
+              </h3>
               <p>
                 Les Advanced Custom Fields (ACF) permettent de simplifier
                 l’intégration de contenus sur les pages d’un site. Les ACF sont
@@ -136,19 +143,19 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
         <div className="text-center mt-8">
           <p className="text-xl text-gray-light">
             Les ACF ou Advanced Custom Fields permettent à l’administrateur d’un
-            site, d&apos;interagir avec l&apos;ensemble des contenus des sites que je
-            développe. Ils se matérialisent par des champs à remplir sur le
-            backoffice et sont transformés automatiquement en contenus structurés
-            et mis en page en frontoffice.
+            site, d&apos;interagir avec l&apos;ensemble des contenus des sites
+            que je développe. Ils se matérialisent par des champs à remplir sur
+            le backoffice et sont transformés automatiquement en contenus
+            structurés et mis en page en frontoffice.
           </p>
 
           <p className="mt-4">
             Les pages comportant des ACF nécessitent dans un premier temps
-            d’adapter le thème afin d’afficher les contenus tout en respectant la
-            charte graphique imposées.
+            d’adapter le thème afin d’afficher les contenus tout en respectant
+            la charte graphique imposées.
             <br />
-            L’administrateur du site est alors
-            entièrement autonome dans l’ajout des contenus.
+            L’administrateur du site est alors entièrement autonome dans l’ajout
+            des contenus.
           </p>
 
           <p>
@@ -173,33 +180,32 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
               <span className="block text-xl">Réactivité, rapidité</span>
             </h2>
             <p className="text-xl text-gray-light mt-3">
-              Le déploiement continu
-              permet à mes clients de rester au coeur de leur projet de création
-              de site. Grâce à cette méthode, ils sont en mesure de consulter à
-              tout moment, les différentes évolutions ou modifications apportés à
-              leur site.
+              Le déploiement continu permet à mes clients de rester au coeur de
+              leur projet de création de site. Grâce à cette méthode, ils sont
+              en mesure de consulter à tout moment, les différentes évolutions
+              ou modifications apportés à leur site.
             </p>
             <p className="mt-2">
-              En phase de développement, lorsqu&apos;une fonctionnalité est réalisée, elle est
-              déployée sur mon outil de versioning Git, puis mon serveur
-              d’intégration continue (Gitlab CI) déploie automatiquement la
-              fonctionnalité sur mon serveur de préproduction. Ainsi, les
-              modifications sont visibles par mon client, 5 minutes après son
-              intégration.
-            </p>
-
-            <p className="mt-2">
-              Cette environnement de préproduction est protégé par un identifiant et un
-              mot de passe, il n’est accessible qu’au client et n’est pas indexé
-              sur les moteurs de recherche. Ainsi, le client peut valider une à
-              une les différentes modifications à distance et il m’est possible
-              de réagir rapidement si une fonctionnalité venait à
-              dysfonctionner.
+              En phase de développement, lorsqu&apos;une fonctionnalité est
+              réalisée, elle est déployée sur mon outil de versioning Git, puis
+              mon serveur d’intégration continue (Gitlab CI) déploie
+              automatiquement la fonctionnalité sur mon serveur de
+              préproduction. Ainsi, les modifications sont visibles par mon
+              client, 5 minutes après son intégration.
             </p>
 
             <p className="mt-2">
-              Le site est alors mis en production seulement lorsque mon client est
-              pleinement satisfait du résultat.
+              Cette environnement de préproduction est protégé par un
+              identifiant et un mot de passe, il n’est accessible qu’au client
+              et n’est pas indexé sur les moteurs de recherche. Ainsi, le client
+              peut valider une à une les différentes modifications à distance et
+              il m’est possible de réagir rapidement si une fonctionnalité
+              venait à dysfonctionner.
+            </p>
+
+            <p className="mt-2">
+              Le site est alors mis en production seulement lorsque mon client
+              est pleinement satisfait du résultat.
             </p>
           </div>
         </div>
@@ -223,11 +229,11 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             chaque besoin, il existe une solution technique, ainsi je suis en
             mesure de développer pour vous la fonctionnalité qui vous convient.
             <br />
-            Les extensions (plugins) développées par mes soins
-            respectent les bonnes pratiques véhiculées par Wordpress et sont à
-            même d’évoluer au gré des mises à jour du coeur de Wordpress. Si
-            vous disposez de plusieurs sites sous Wordpress, il est aisé de
-            migrer les extensions d’un site à l’autre.
+            Les extensions (plugins) développées par mes soins respectent les
+            bonnes pratiques véhiculées par Wordpress et sont à même d’évoluer
+            au gré des mises à jour du coeur de Wordpress. Si vous disposez de
+            plusieurs sites sous Wordpress, il est aisé de migrer les extensions
+            d’un site à l’autre.
           </p>
 
           <p className="mt-2">
@@ -237,12 +243,15 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
         </TextImage>
 
         <TextImage
-          title={['Développment et intégration', 'de thème WordPress sur-mesure']}
+          title={[
+            'Développment et intégration',
+            'de thème WordPress sur-mesure',
+          ]}
           image={WebsitePrestashop}
         >
           <p>
-            Pour chaque projet, nous élaborons ensemble le design de votre
-            site puis je développe le thème inhérent à vos choix graphiques et
+            Pour chaque projet, nous élaborons ensemble le design de votre site
+            puis je développe le thème inhérent à vos choix graphiques et
             fonctionnels. Cette étape est cruciale car elle définit ce que les
             visiteurs pourront visualiser sur votre site. Tous les thèmes que je
             développe répondent systématiquement à différents besoins :
@@ -250,8 +259,8 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
 
           <ul className="styled-list">
             <li>
-              Le responsive design, pour permettre à votre site d’être
-              consulté quelque soit le support (mobile, desktop…)
+              Le responsive design, pour permettre à votre site d’être consulté
+              quelque soit le support (mobile, desktop…)
             </li>
             <li>
               L’usage des dernières technologies, telles que SASS pour
@@ -264,8 +273,8 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
               limiter le poids d’un site et en accélérer l’affichage.
             </li>
             <li>
-              Ainsi que la gestion du format des images pour un affichage
-              plus rapide des pages.
+              Ainsi que la gestion du format des images pour un affichage plus
+              rapide des pages.
             </li>
           </ul>
 
@@ -280,37 +289,41 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
 
         <TextImage
           image={WordpressSage}
-          title={['Développement et création', 'de thème WordPress Sage 9 et 10']}
+          title={[
+            'Développement et création',
+            'de thème WordPress Sage 9 et 10',
+          ]}
         >
           <p>
-            Depuis 2017, j&apos;ai commencé le développement de mes thèmes
-            avec le support de Sage 8 (par roots).
-
+            Depuis 2017, j&apos;ai commencé le développement de mes thèmes avec
+            le support de Sage 8 (par roots).
           </p>
           <p className="mt-2">
             En 2019, j&apos;ai migré vers Sage 9 avec la prise en charge du
             moteur de template blade, l&apos;intégration stricte de Webpack et
             Eslint.
-
           </p>
           <p className="mt-2">
-            J&apos;ai eu l&apos;occasion de développer des thèmes pour WooCommerce et Sage comme le
-            {' '}
-            <Link href="/portfolio/wordpress/biosalines/"><a className="text-orange">projet Biosalines.</a></Link>
+            J&apos;ai eu l&apos;occasion de développer des thèmes pour
+            WooCommerce et Sage comme le{' '}
+            <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
+              <a className="text-orange">projet Biosalines.</a>
+            </Link>
           </p>
 
-          <p className="mt-2">Au fil des années, j&apos;ai pu mettre pas mal de solution en place :</p>
+          <p className="mt-2">
+            Au fil des années, j&apos;ai pu mettre pas mal de solution en place
+            :
+          </p>
 
           <ul className="styled-list">
             <li>
-              Création d&apos;un système complexe de block Gutenberg avec Sage et
-              ACF avec chargement automatique, CSS dédié et preview image,
-
+              Création d&apos;un système complexe de block Gutenberg avec Sage
+              et ACF avec chargement automatique, CSS dédié et preview image,
             </li>
             <li>
               Des utilitaires pour retirer Gutenberg sur certaine page en
               fonction des controlleurs et des pages en cours,
-
             </li>
             <li>
               Chargement automatique des champs ACF grace à Sage et
@@ -322,12 +335,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
               >
                 Wordplate ACF
               </a>
-
             </li>
             <li>
               Une stack qui auto-install une stack WordPress avec Sage et ses
               extensions tiers,
-
             </li>
             <li>Un système de gestion de CSS par page pour Sage.</li>
           </ul>
@@ -342,35 +353,41 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
-        <Image layout="fill" objectFit="cover" className="-z-10 opacity-30 md:opacity-100" src={ImageBackgroundTma} alt="Prestation de maintenance TMA" />
+        <Image
+          layout="fill"
+          objectFit="cover"
+          className="-z-10 opacity-30 md:opacity-100"
+          src={ImageBackgroundTma}
+          alt="Prestation de maintenance TMA"
+        />
         <div className="container flex items-center relative z-10 my-4 lg:-my-10">
           <div className="md:w-2/3 text-gray-light text-sm">
             <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
-              Garanti et suivi
-              {' '}
-              <br className="hidden sm:block" />
+              Garanti et suivi <br className="hidden sm:block" />
               <span className="font-light">pendant 3 mois inclus</span>
             </h2>
             <p>
-              Lorsque votre site est en ligne, il peut être sujet à de nombreux problèmes
-              tels des extensions obsolètes qui peuvent créer des failles et
-              laisser le champ libre à des utilisateurs malveillants, ou encore
-              une panne du serveur sur lequel il est hébergé.
+              Lorsque votre site est en ligne, il peut être sujet à de nombreux
+              problèmes tels des extensions obsolètes qui peuvent créer des
+              failles et laisser le champ libre à des utilisateurs malveillants,
+              ou encore une panne du serveur sur lequel il est hébergé.
             </p>
 
             <p className="mt-2">
-              Pour remédier rapidement et efficacement à ce type de problème, j’ai
-              développé une multitude d’outils pour inspecter et analyser votre
-              site en temps réel et me prévenir si l’intégrité de votre site est
-              altérée.
+              Pour remédier rapidement et efficacement à ce type de problème,
+              j’ai développé une multitude d’outils pour inspecter et analyser
+              votre site en temps réel et me prévenir si l’intégrité de votre
+              site est altérée.
             </p>
 
             <p className="mt-2">
-              Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir rapidement
-              pour le corriger et procéder si nécessaire à la mise à jour des
-              modules obsolètes.
+              Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir
+              rapidement pour le corriger et procéder si nécessaire à la mise à
+              jour des modules obsolètes.
             </p>
-            <p className="mt-2">Ainsi, votre site internet est protégé en permanence.</p>
+            <p className="mt-2">
+              Ainsi, votre site internet est protégé en permanence.
+            </p>
             <div className="flex flex-wrap flex-start mt-4">
               <Link href={RouteLink.prestationTmaWordPress}>
                 <a className="button">Forfaits de maintenance WordPress</a>
@@ -378,7 +395,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </div>
           </div>
           <div className="hidden md:w-1/3 md:flex justify-center">
-            <Image src={ProtectionShield} />
+            <Image
+              src={ProtectionShield}
+              alt={'Garanti et suivi de maintenance WordPress'}
+            />
           </div>
         </div>
         <Diagonal
@@ -396,15 +416,16 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           />
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {featuredProjects.length > 0 && featuredProjects.map(({ node }) => (
-              <ProjectItem
-                key={node.id}
-                image={node.featuredImage.node.sourceUrl}
-                title={node.title}
-                slug={node.slug}
-                support={node.supports?.edges[0]?.node}
-              />
-            ))}
+            {featuredProjects.length > 0 &&
+              featuredProjects.map(({ node }) => (
+                <ProjectItem
+                  key={node.id}
+                  image={node.featuredImage.node.sourceUrl}
+                  title={node.title}
+                  slug={node.slug}
+                  support={node?.supports?.edges[0]?.node}
+                />
+              ))}
           </div>
         </div>
         <Diagonal
@@ -413,14 +434,16 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           bgCorner="fill-orange"
           cta={{
             href: `${RouteLink.portfolio}/wordpress`,
-            title: ['voir les projets', <br />, 'WordPress'],
+            title: ['voir les projets', 'WordPress'],
             icon: <MoreIcon />,
           }}
         />
       </div>
       <div className="container">
         <SectionTitle
-          content={"Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."}
+          content={
+            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
+          }
           title="Contact"
         />
 
@@ -432,25 +455,29 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
 
 type SProps = {
   props: {
-    featuredProjects: ProjectItemType[]
-  }
-}
+    featuredProjects: ProjectItemType[];
+  };
+};
 
 type StaticProps = PageHeaderStaticProps & SProps;
 
-export const getStaticProps: GetStaticProps = async (): Promise<StaticProps> => {
-  const relatedProjects = await LastProjectBySupport('wordpress');
-  return {
-    props: {
-      pageTitle: 'Création de site WordPress',
-      breadcrumb: [{
-        link: '/prestations',
-        title: 'Prestations sous WordPress, Prestashop et Symfony',
-      }, {
-        link: '/prestations/creation-site-web',
-        title: 'Création de site internet',
-      }],
-      featuredProjects: relatedProjects.projets.edges,
-    },
+export const getStaticProps: GetStaticProps =
+  async (): Promise<StaticProps> => {
+    const relatedProjects = await LastProjectBySupport('wordpress');
+    return {
+      props: {
+        pageTitle: 'Création de site WordPress',
+        breadcrumb: [
+          {
+            link: '/prestations',
+            title: 'Prestations sous WordPress, Prestashop et Symfony',
+          },
+          {
+            link: '/prestations/creation-site-web',
+            title: 'Création de site internet',
+          },
+        ],
+        featuredProjects: relatedProjects.projets.edges,
+      },
+    };
   };
-};

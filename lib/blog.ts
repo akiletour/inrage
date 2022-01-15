@@ -23,7 +23,8 @@ export async function getAllArticlesWithSlug() {
 }
 
 export async function getSingleArticle(slug: string) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
    query getSingleArticle($id: ID!) {
      post(id: $id, idType: SLUG) {
        id
@@ -39,17 +40,20 @@ export async function getSingleArticle(slug: string) {
        }
      }
    }
-   `, {
-    variables: {
-      id: slug,
-    },
-  });
+   `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
 
   return data;
 }
 
 export async function BlogPosts(max: number = 1000) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
     query MyQuery($max: Int = 1000) {
       posts(first: $max) {
         edges {
@@ -57,11 +61,13 @@ export async function BlogPosts(max: number = 1000) {
         }
       }
     }
-  `, {
-    variables: {
-      max,
-    },
-  });
+  `,
+    {
+      variables: {
+        max,
+      },
+    }
+  );
 
   return data?.posts;
 }
@@ -79,7 +85,8 @@ const BlogCommentLayout = `
 `;
 
 export async function fetchBlogComments(slug: string) {
-  const data = await fetchAPI(`
+  const data = await fetchAPI(
+    `
     query fetchBlogComments($id: ID!) {
       comments(where: { contentId: $id, contentType: POST, parent: 0, orderby: COMMENT_DATE, order: ASC }) {
         edges {
@@ -94,11 +101,13 @@ export async function fetchBlogComments(slug: string) {
         }
       }
     }
-  `, {
-    variables: {
-      id: slug,
-    },
-  });
+  `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
 
   return data?.comments?.edges || [];
 }

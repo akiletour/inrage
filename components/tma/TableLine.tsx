@@ -1,8 +1,8 @@
 type Props = {
   title: string;
   content: string;
-  values: Array<string | boolean>
-}
+  values: Array<string | boolean>;
+};
 
 export default function TableLine({ title, content, values }: Props) {
   return (
@@ -14,11 +14,20 @@ export default function TableLine({ title, content, values }: Props) {
 
       {values.map((value, idx) => (
         // eslint-disable-next-line react/no-array-index-key
-        <div className="lg:w-25 flex-1 md:flex-none flex-col text-center text-white text-lg leading-6 flex-none flex items-center justify-center" key={idx}>
-          {typeof value === 'string'
+        <div
+          className="lg:w-25 flex-1 md:flex-none flex-col text-center text-white text-lg leading-6 flex-none flex items-center justify-center"
+          key={idx}
+        >
+          {typeof value === 'string' ? (
             // eslint-disable-next-line react/no-array-index-key
-            ? value.split('|').map((val, index) => <span key={index}>{val}</span>)
-            : <span className={`rounded-full w-2 h-2 ${value ? 'bg-[#2fcc71]' : 'bg-[#e74b3c]'}`} />}
+            value.split('|').map((val, index) => <span key={index}>{val}</span>)
+          ) : (
+            <span
+              className={`rounded-full w-2 h-2 ${
+                value ? 'bg-[#2fcc71]' : 'bg-[#e74b3c]'
+              }`}
+            />
+          )}
         </div>
       ))}
     </div>

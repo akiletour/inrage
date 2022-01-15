@@ -6,18 +6,18 @@ export type ProjectItemType = {
     featuredImage: {
       node: {
         sourceUrl: string;
-      }
+      };
     };
     supports: {
       edges: Array<{
         node: {
           name: string;
           slug: string;
-        }
-      }>
-    }
-  }
-}
+        };
+      }>;
+    };
+  };
+};
 
 export type SupportType = {
   id: number;
@@ -26,6 +26,6 @@ export type SupportType = {
   acfSupport?: {
     image: {
       sourceUrl: string;
-    }
-  }
-}
+    };
+  };
+};

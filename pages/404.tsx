@@ -1,6 +1,5 @@
-import Button from '@component/Button';
-import NoScrollLink from '@component/NoScrollLink';
 import Layout from '@component/layouts/Layout';
+import NoScrollLink from '@component/NoScrollLink';
 
 export default function Custom404() {
   return (

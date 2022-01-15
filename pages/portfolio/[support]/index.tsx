@@ -1,23 +1,27 @@
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import { useRouter } from 'next/router';
+
 import Layout from '@component/layouts/Layout';
+import PortfolioLayout from '@component/portfolio/PortfolioLayout';
 import { getAllSupportsWithSlug, getSingleSupport } from '@lib/portfolio';
 import { ProjectItemType, SupportType } from '@type/portfolio';
-import PortfolioLayout from '../../../components/portfolio/PortfolioLayout';
 
 type Props = {
-  pageTitle: string
-  projects: ProjectItemType[]
+  pageTitle: string;
+  projects: ProjectItemType[];
   support?: {
-    slug: string
-  }
+    slug: string;
+  };
   supports: Array<{
-    node: SupportType
-  }>
-}
+    node: SupportType;
+  }>;
+};
 
 export default function PortfolioSupport({
-  pageTitle, support, projects, supports,
+  pageTitle,
+  support,
+  projects,
+  supports,
 }: Props) {
   const router = useRouter();
 
@@ -27,7 +31,9 @@ export default function PortfolioSupport({
 
   return (
     <Layout>
-      {router.isFallback ? <p>Chargement en cours...</p> : (
+      {router.isFallback ? (
+        <p>Chargement en cours...</p>
+      ) : (
         <PortfolioLayout
           projects={projects}
           supports={supports}
@@ -37,7 +43,11 @@ export default function PortfolioSupport({
     </Layout>
   );
 }
-export const getStaticProps = async ({ params }: { params: { support: string } }) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { support: string };
+}) => {
   const data = await getSingleSupport(params.support);
   return {
     props: {
@@ -45,25 +55,30 @@ export const getStaticProps = async ({ params }: { params: { support: string } }
       supports: data.supports.edges,
       projects: data.support.projets.edges,
       pageTitle: data.support.name,
-      breadcrumb: [{
-        link: '/portfolio',
-        title: 'Portfolio',
-      }],
+      breadcrumb: [
+        {
+          link: '/portfolio',
+          title: 'Portfolio',
+        },
+      ],
     },
   };
 };
 
 type StaticProps = {
   node: {
-    slug: string
-  }
-}
+    slug: string;
+  };
+};
 
 export async function getStaticPaths() {
   const allPosts = await getAllSupportsWithSlug();
 
   return {
-    paths: allPosts.edges.map(({ node }: StaticProps) => `/portfolio/${node.slug}`) || [],
+    paths:
+      allPosts.edges.map(
+        ({ node }: StaticProps) => `/portfolio/${node.slug}`
+      ) || [],
     fallback: true,
   };
 }

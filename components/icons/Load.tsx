@@ -1,6 +1,6 @@
 type Props = {
   color?: string;
-}
+};
 
 export default function LoadIcon({ color = '#fff' }: Props) {
   return (
