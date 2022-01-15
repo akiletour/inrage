@@ -171,7 +171,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link href={RouteLink.prestationSymfony}>
                         <a
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
