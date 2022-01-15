@@ -34,7 +34,7 @@ export default function PortfolioLayout({
 
       <SupportSwitcher supports={supports} />
 
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 md:gap-0 md:grid-cols-3">
         {projects.length > 0 &&
           projects.map(({ node }) => (
             <ProjectItem
