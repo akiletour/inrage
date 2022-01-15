@@ -3,16 +3,26 @@ import { NextSeo } from 'next-seo';
 
 import CheckMark from '@component/CheckMark';
 import ContactForm from '@component/ContactForm';
+import MoreIcon from '@component/icons/MoreIcon';
+import ProjectItem from '@component/items/ProjectItem';
 import Diagonal from '@component/layouts/Diagonal';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import TextImage from '@component/TextImage';
+import SymfonyComponents from '@image/prestations/symfony-components.jpg';
 import SymfonyHero from '@image/prestations/symfony-hero.jpg';
 import TwigImage from '@image/prestations/twig.jpg';
 import SchemaMercure from '@image/schema-mercure.png';
+import { LastProjectBySupport } from '@lib/portfolio';
+import { RouteLink } from '@lib/route';
 import { PageHeaderStaticProps } from '@type/header';
+import { ProjectItemType } from '@type/portfolio';
 
-export default function Symfony() {
+type Props = {
+  featuredProjects: ProjectItemType[];
+};
+
+export default function Symfony({ featuredProjects }: Props) {
   return (
     <Layout>
       <NextSeo
@@ -146,96 +156,166 @@ export default function Symfony() {
         />
       </div>
 
-      <div className="container">
-        <SectionTitle
-          title={'Mon choix Numéro 1'}
-          content="Je préconise très souvent l'utilisation de Symfony pour diverse application ou console d'administration."
-        />
+      <div className="container -mb-10">
+        <div className="relative z-10">
+          <SectionTitle
+            title={'Mon choix Numéro 1'}
+            content="Je préconise très souvent l'utilisation de Symfony pour diverse application ou console d'administration."
+          />
 
-        <TextImage
-          title={[
-            'Communication en temps réel',
-            'même sur PHP, grace à Mercure',
-          ]}
-          duoTone
-          image={SchemaMercure}
-        >
-          <p>
-            Même si PHP est un langage de programmation très puissant, il
-            n&apos;est pas du tout adapté aux besoins d&apos;échange en direct.
-          </p>
-
-          <p className={'mt-2'}>
-            Mais Kévin Dunglas a fait un travail fantastique avec la création de{' '}
-            <a
-              className="text-orange"
-              href="https://mercure.rocks/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Mercure
-            </a>
-            , un outil permet de faire communiquer plusieurs systèmes en temps
-            réel comme le ferait node.
-          </p>
-
-          <p className={'mt-2'}>
-            Depuis les premières Alpha, je suis tombé amoureux de la façon de
-            faire de Mercure avec son Bundle de Symfony. Je l&apos;utilise au
-            quotidien et principalement avec React et NextJS.
-          </p>
-
-          <p className={'mt-2'}>
-            Par exemple, j&apos;ai dû mettre en place Mercure entre le CMS
-            Prestashop et console Symfony.
-          </p>
-          <p className={'mt-2'}>
-            Mon client appui sur un bouton pour demander la mise à jour de ses
-            produits sur l&apos;administration de Prestashop, on envoi
-            l&apos;information à la console Symfony. Et Mercure récupère en
-            temps réel la progression de cette tâche et l&apos;affiche sur le
-            backoffice Prestashop de mon client.
-          </p>
-        </TextImage>
-
-        <div className="mt-8">
           <TextImage
             title={[
-              'Moteur de template Twig',
-              'Flexible, rapide et sécurisé !',
+              'Communication en temps réel',
+              'même sur PHP, grace à Mercure',
             ]}
             duoTone
-            position="right"
-            titlePosition="left"
-            image={TwigImage}
+            image={SchemaMercure}
           >
-            <div className="text-left">
-              <p>
-                Twig est MON moteur de template de choix ! Je suis littéralement
-                tombé amoureux de Twig, j&apos;essaye de l&apos;intégrer partout
-                et tout le temps !
-              </p>
-              <p className="mt-2">
-                Il compile les modèles en un simple code PHP optimisé. La
-                surcharge par rapport au code PHP normal a été réduite au strict
-                minimum.
-              </p>
+            <p>
+              Même si PHP est un langage de programmation très puissant, il
+              n&apos;est pas du tout adapté aux besoins d&apos;échange en
+              direct.
+            </p>
 
-              <p className="mt-2">
-                Il dispose d&apos;un mode &quot;sandbox&quot; pour évaluer le
-                code des modèles non fiables. Cela permet à Twig d&apos;être
-                utilisé comme un langage de modèles pour des applications où les
-                utilisateurs peuvent modifier la conception des modèles.
-              </p>
+            <p className={'mt-2'}>
+              Mais Kévin Dunglas a fait un travail fantastique avec la création
+              de{' '}
+              <a
+                className="text-orange"
+                href="https://mercure.rocks/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Mercure
+              </a>
+              , un outil permet de faire communiquer plusieurs systèmes en temps
+              réel comme le ferait node.
+            </p>
 
-              <p className="mt-2">
-                Il est alimenté par un lexer et un analyseur syntaxique
-                flexibles. Cela permet au développeur de définir ses propres
-                balises et filtres personnalisés, et de créer son propre DSL.
-              </p>
-            </div>
+            <p className={'mt-2'}>
+              Depuis les premières Alpha, je suis tombé amoureux de la façon de
+              faire de Mercure avec son Bundle de Symfony. Je l&apos;utilise au
+              quotidien et principalement avec React et NextJS.
+            </p>
+
+            <p className={'mt-2'}>
+              Par exemple, j&apos;ai dû mettre en place Mercure entre le CMS
+              Prestashop et console Symfony.
+            </p>
+            <p className={'mt-2'}>
+              Mon client appui sur un bouton pour demander la mise à jour de ses
+              produits sur l&apos;administration de Prestashop, on envoi
+              l&apos;information à la console Symfony. Et Mercure récupère en
+              temps réel la progression de cette tâche et l&apos;affiche sur le
+              backoffice Prestashop de mon client.
+            </p>
           </TextImage>
+
+          <div className="mt-8">
+            <TextImage
+              title={[
+                'Moteur de template Twig',
+                'Flexible, rapide et sécurisé !',
+              ]}
+              duoTone
+              position="right"
+              titlePosition="left"
+              image={TwigImage}
+            >
+              <div className="text-left">
+                <p>
+                  Twig est MON moteur de template de choix ! Je suis
+                  littéralement tombé amoureux de Twig, j&apos;essaye de
+                  l&apos;intégrer partout et tout le temps !
+                </p>
+                <p className="mt-2">
+                  Il compile les modèles en un simple code PHP optimisé. La
+                  surcharge par rapport au code PHP normal a été réduite au
+                  strict minimum.
+                </p>
+
+                <p className="mt-2">
+                  Il dispose d&apos;un mode &quot;sandbox&quot; pour évaluer le
+                  code des modèles non fiables. Cela permet à Twig d&apos;être
+                  utilisé comme un langage de modèles pour des applications où
+                  les utilisateurs peuvent modifier la conception des modèles.
+                </p>
+
+                <p className="mt-2">
+                  Il est alimenté par un lexer et un analyseur syntaxique
+                  flexibles. Cela permet au développeur de définir ses propres
+                  balises et filtres personnalisés, et de créer son propre DSL.
+                </p>
+              </div>
+            </TextImage>
+          </div>
+
+          <div className="mt-8">
+            <TextImage
+              title={[
+                'Une multitude de composants',
+                'Symfony disponible pour tous mes besoins',
+              ]}
+              duoTone
+              image={SymfonyComponents}
+            >
+              <div className="text-left">
+                <p>
+                  La grande force de Symfony est la disponibilité de composants
+                  qui sont aussi utilisable en dehors de Symfony.
+                </p>
+                <p className="mt-2">
+                  Grace à leur documentation et leur API, je peux développer
+                  rapidement des fonctionnalités sans perdre de temps à
+                  re-développer des méthodes disponible dans ces composants.
+                </p>
+
+                <a
+                  href="https://symfony.com/components"
+                  target={'_blank'}
+                  rel="noreferrer"
+                  className="button mt-3"
+                >
+                  Liste des composants Symfony
+                </a>
+              </div>
+            </TextImage>
+          </div>
         </div>
+      </div>
+
+      <Diagonal bgCorner={'fill-orange'} bgClass={'fill-gray-darker'} />
+
+      <div className="bg-gray-darker">
+        <div className="container -mb-8 relative z-10">
+          <SectionTitle
+            title={['Réalisations', 'Symfony']}
+            content="Retrouvez ci-dessous quelques projets Symfony auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur le framework Symfony."
+          />
+
+          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+            {featuredProjects.length > 0 &&
+              featuredProjects.map(({ node }) => (
+                <ProjectItem
+                  key={node.id}
+                  image={node.featuredImage.node.sourceUrl}
+                  title={node.title}
+                  slug={node.slug}
+                  support={node?.supports?.edges[0]?.node}
+                />
+              ))}
+          </div>
+        </div>
+        <Diagonal
+          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+          cta={{
+            href: `${RouteLink.portfolio}/application-web`,
+            title: ['voir les projets', 'Symfony'],
+            icon: <MoreIcon />,
+          }}
+        />
       </div>
 
       <div className="container mt-10">
@@ -250,8 +330,17 @@ export default function Symfony() {
   );
 }
 
+type SProps = {
+  props: {
+    featuredProjects: ProjectItemType[];
+  };
+};
+
+type StaticProps = PageHeaderStaticProps & SProps;
+
 export const getStaticProps: GetStaticProps =
-  async (): Promise<PageHeaderStaticProps> => {
+  async (): Promise<StaticProps> => {
+    const relatedProjects = await LastProjectBySupport('symfony');
     return {
       props: {
         pageTitle: 'Symfony',
@@ -265,6 +354,7 @@ export const getStaticProps: GetStaticProps =
             title: 'Création de site internet',
           },
         ],
+        featuredProjects: relatedProjects.projets.edges,
       },
     };
   };
