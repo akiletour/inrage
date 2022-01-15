@@ -5,6 +5,7 @@ import Image from 'next/image';
 type Props = {
   image: string | StaticImageData;
   title?: string | string[];
+  titlePosition?: 'left' | 'right';
   children: ReactNode;
   position?: 'right' | 'left';
   duoTone?: boolean;
@@ -21,6 +22,7 @@ export default function TextImage({
   children,
   imageProps = {},
   position = 'left',
+  titlePosition,
   duoTone = false,
 }: Props) {
   return (
@@ -42,7 +44,11 @@ export default function TextImage({
         className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}
       >
         {title && (
-          <h3 className="text-white text-4xl font-bold mb-3">
+          <h3
+            className={`${
+              titlePosition ? `text-${titlePosition}` : `text-${position}`
+            } text-white text-4xl font-bold mb-3`}
+          >
             {Array.isArray(title)
               ? title.map((ttl, index) => (
                   <span

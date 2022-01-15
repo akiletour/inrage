@@ -13,6 +13,9 @@ export const RouteLink = {
   get prestationPrestashop() {
     return `${this.prestationWeb}/site-prestashop`;
   },
+  get prestationSymfony() {
+    return `${this.prestationWeb}/symfony`;
+  },
   get prestationTmaWordPress() {
     return `${this.prestationTma}/maintenance-wordpress`;
   },

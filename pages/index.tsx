@@ -161,7 +161,7 @@ export default function Home({
           <ExpertiseItem
             title="Symfony"
             excerpt="Symfony est un framework PHP qui nous permet d’accélèrer le développement de sites ou d’applications grace à sa méthodologie et architecture évolutive."
-            link={RouteLink.portfolio}
+            link={RouteLink.prestationSymfony}
             image={ExpertiseSymfony}
           />
           <ExpertiseItem

@@ -412,7 +412,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
         <div className="container -mb-8 relative z-10">
           <SectionTitle
             title="Réalisations WordPress"
-            content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occassion de collaborer dessus en tant que développeur freelance."
+            content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance."
           />
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
@@ -441,9 +441,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
       </div>
       <div className="container">
         <SectionTitle
-          content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
-          }
+          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
           title="Contact"
         />
 
