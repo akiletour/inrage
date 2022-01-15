@@ -1,48 +1,66 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
   extends: [
-    'plugin:react/recommended',
+    'airbnb-base',
     'next/core-web-vitals',
-    'airbnb',
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
-  },
-  globals: {
-    JSX: true,
-    StaticImageData: true,
-  },
-  plugins: [
-    'react',
-    '@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
   rules: {
-    'react/no-danger': 'off',
-    'import/extensions': 'off',
-    'react/jsx-filename-extension': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 'off',
-    'jsx-a11y/anchor-is-valid': 'off',
-    'jsx-a11y/label-has-associated-control': ['error', {
-      required: {
-        some: ['nesting', 'id'],
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
       },
-    }],
+    ],
   },
   overrides: [
+    // Configuration for TypeScript files
     {
-      files: ['**/*.tsx'],
+      files: ['**/*.ts', '**/*.tsx'],
+      plugins: ['@typescript-eslint', 'unused-imports'],
+      extends: [
+        'airbnb-typescript',
+        'next/core-web-vitals',
+        'plugin:prettier/recommended',
+      ],
+      parserOptions: {
+        project: './tsconfig.json',
+      },
       rules: {
-        'react/prop-types': 0,
-        'react/require-default-props': 'off',
+        'prettier/prettier': [
+          'error',
+          {
+            singleQuote: true,
+          },
+        ],
+        'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
+        'jsx-a11y/anchor-is-valid': 'off', // Next.js use his own internal link system
+        'react/require-default-props': 'off', // Allow non-defined react props as undefined
+        'react/jsx-props-no-spreading': 'off', // _app.tsx uses spread operator and also, react-hook-form
+        'import/order': [
+          'error',
+          {
+            groups: ['builtin', 'external', 'internal'],
+            pathGroups: [
+              {
+                pattern: 'react',
+                group: 'external',
+                position: 'before',
+              },
+            ],
+            pathGroupsExcludedImportTypes: ['react'],
+            'newlines-between': 'always',
+            alphabetize: {
+              order: 'asc',
+              caseInsensitive: true,
+            },
+          },
+        ],
+        '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
+        'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
+        'class-methods-use-this': 'off', // _document.tsx use render method without `this` keyword
+        '@typescript-eslint/no-unused-vars': 'off',
+        'unused-imports/no-unused-imports': 'error',
+        'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       },
     },
   ],
