@@ -1,3 +1,4 @@
+import BuildSymfony from '@image/prestations/symfony.png';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 
@@ -162,6 +163,33 @@ export default function PrestationBuildWebsite() {
             <a className="button">
               Développer son site avec
               <span className="font-bold ml-[4px] underline">Prestashop</span>
+            </a>
+          </Link>
+        </TextImage>
+
+        <TextImage
+          image={BuildSymfony}
+          title={['Développment site', 'avec Symfony']}
+        >
+          <p>
+            Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
+            prédilection !
+          </p>
+          <p className="mt-2">
+            Symfony a su s&apos;imposer comme référence dans les frameworks PHP
+            et me permet de construire des applications sur-mesure.
+          </p>
+          <p className="mt-2">
+            La grande communauté qui s&apos;est construite autour de cet outil
+            rend possible des utilisations très variées : de la plateforme
+            e-commerce en passant par Sylius à la réalisation d&apos;une API
+            avec API Platform.
+          </p>
+          <p className="mt-2 mb-3"></p>
+          <Link href={RouteLink.prestationSymfony}>
+            <a className="button">
+              Développer son site avec
+              <span className="font-bold ml-[4px] underline">Symfony</span>
             </a>
           </Link>
         </TextImage>
