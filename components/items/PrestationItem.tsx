@@ -1,17 +1,21 @@
 import Image from 'next/image';
-import { Fragment } from 'react';
+
 import Link from '@component/NoScrollLink';
 
 type Props = {
-  title: string | Array<string | JSX.Element>,
-  children: JSX.Element | string
-  image: string | StaticImageData
-  link?: string
-  linkText?: string
-}
+  title: string | string[];
+  children: JSX.Element | string;
+  image: string | StaticImageData;
+  link?: string;
+  linkText?: string;
+};
 
 export default function PrestationItem({
-  image, title, children, link = '', linkText = '',
+  image,
+  title,
+  children,
+  link = '',
+  linkText = '',
 }: Props) {
   return (
     <div className="text-center h-full flex flex-col">
@@ -25,10 +29,18 @@ export default function PrestationItem({
       </div>
 
       <h3 className="text-xl text-white font-medium mt-1 leading-7">
-        {Array.isArray(title) ? title.map((ttl) => <Fragment key={`${ttl.toString()}-`}>{ttl}</Fragment>) : title}
+        {Array.isArray(title)
+          ? title.map((ttl) => (
+              <span key={ttl} className={'block'}>
+                {ttl}
+              </span>
+            ))
+          : title}
       </h3>
 
-      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-1 mb-2">{children}</p>
+      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-1 mb-2">
+        {children}
+      </p>
 
       {link !== '' && (
         <div className="mt-auto">

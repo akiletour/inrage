@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import Prism from 'prismjs';
+
 import styles from './PostBody.module.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
@@ -13,7 +15,7 @@ import 'prismjs/components/prism-php';
 
 type Props = {
   content: string;
-}
+};
 
 export default function PostBody({ content }: Props) {
   const [post, setPost] = useState('');

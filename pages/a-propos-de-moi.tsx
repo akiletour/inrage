@@ -1,17 +1,18 @@
 import { GetStaticProps } from 'next';
-import Link from '@component/NoScrollLink';
 import { NextSeo } from 'next-seo';
-import { RouteLink } from '@lib/route';
+
+import MoreIcon from '@component/icons/MoreIcon';
+import ExperienceItem from '@component/items/ExperienceItem';
+import Diagonal from '@component/layouts/Diagonal';
 import Layout from '@component/layouts/Layout';
-import Diagonal from '../components/layouts/Diagonal';
-import SectionTitle from '../components/SectionTitle';
-import ExperienceItem from '../components/items/ExperienceItem';
-import ExpMoonscoop from '../public/images/experiences/moonscoop.png';
-import ExpMegami from '../public/images/experiences/megami-productions.png';
-import ExpCOS from '../public/images/experiences/comonscreen.png';
-import ExpKamelab from '../public/images/experiences/kamelab.png';
-import MoreIcon from '../components/icons/MoreIcon';
-import Socials from '../components/layouts/Socials';
+import Socials from '@component/layouts/Socials';
+import Link from '@component/NoScrollLink';
+import SectionTitle from '@component/SectionTitle';
+import ExpCOS from '@image/experiences/comonscreen.png';
+import ExpKamelab from '@image/experiences/kamelab.png';
+import ExpMegami from '@image/experiences/megami-productions.png';
+import ExpMoonscoop from '@image/experiences/moonscoop.png';
+import { RouteLink } from '@lib/route';
 
 export default function AboutMe() {
   return (
@@ -22,31 +23,34 @@ export default function AboutMe() {
       />
       <div className="container mt-4 -mb-20">
         <h2 className="text-white text-3xl">
-          <span className="font-bold">PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR</span>
+          <span className="font-bold">
+            PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR
+          </span>
           <br />
           <span className="font-light">FREELANCE BASÉ À LA ROCHELLE</span>
         </h2>
 
         <p className="mt-2 text-xl text-gray-light">
-          Développeur Web depuis 15 ans dans les agences
-          web à La Rochelle. Expert dans le développement et spécialisé sur Symfony, WordPress et
-          Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web Freelance à La
-          Rochelle.
+          Développeur Web depuis 15 ans dans les agences web à La Rochelle.
+          Expert dans le développement et spécialisé sur Symfony, WordPress et
+          Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web
+          Freelance à La Rochelle.
         </p>
         <p className="mt-1">
           Une de mes plus importantes et gratifiantes décisions pour ma carrière
-          que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les différents aspects de
-          la conception, de la stratégie, de la gestion et de la planification jusqu’à la production
-          complète de ce projet.
+          que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les
+          différents aspects de la conception, de la stratégie, de la gestion et
+          de la planification jusqu’à la production complète de ce projet.
         </p>
         <p className="mt-1">
-          Je suis aussi devenu plus intéressé par l’aspect commercial des projets,
-          de plus en plus conscient de l’importance d’intégrer les décisions commerciales
-          responsables de l’atteinte des objectifs d’affaires.
+          Je suis aussi devenu plus intéressé par l’aspect commercial des
+          projets, de plus en plus conscient de l’importance d’intégrer les
+          décisions commerciales responsables de l’atteinte des objectifs
+          d’affaires.
         </p>
         <p className="mt-1 mb-3">
-          Un projet, des questions ? N&apos;hésitez pas à me contacter pour
-          en discuter !
+          Un projet, des questions ? N&apos;hésitez pas à me contacter pour en
+          discuter !
         </p>
 
         <Link href={RouteLink.contact}>
@@ -54,10 +58,7 @@ export default function AboutMe() {
         </Link>
       </div>
 
-      <Diagonal
-        bgClass="fill-gray-darker"
-        bgCorner="fill-gray-dark"
-      />
+      <Diagonal bgClass="fill-gray-darker" bgCorner="fill-gray-dark" />
 
       <div className="bg-gray-darker">
         <div className="container -mb-10">
@@ -106,7 +107,7 @@ export default function AboutMe() {
           bgCorner="fill-orange"
           cta={{
             icon: <MoreIcon />,
-            title: ['Voir tous', <br />, 'les projets'],
+            title: ['Voir tous', 'les projets'],
             href: RouteLink.portfolio,
           }}
         />
@@ -120,54 +121,62 @@ export default function AboutMe() {
 
         <div>
           <div>
-            <h3 className="text-white font-medium text-3xl mb-1">Pascal GAULT</h3>
+            <h3 className="text-white font-medium text-3xl mb-1">
+              Pascal GAULT
+            </h3>
 
             <p>
-              Dès mon plus jeune âge, je commence à découvrir le monde du développement en créant
-              mes premiers sites liés à mes associations de jeux vidéos. C’est à partir de cette
-              époque que j’ai continué dans cette voie pour me professionnaliser dans la création
+              Dès mon plus jeune âge, je commence à découvrir le monde du
+              développement en créant mes premiers sites liés à mes associations
+              de jeux vidéos. C’est à partir de cette époque que j’ai continué
+              dans cette voie pour me professionnaliser dans la création
               numérique et en faire mon métier sur La Rochelle.
             </p>
 
             <p className="mt-2">
-              L’art et la technologie ont toujours été deux inspirations de ma vie
-              courante. Je viens d’un milieu artistique, qui a fusionné avec la technologie pour
-              finir par évoluer dans le développement web.
+              L’art et la technologie ont toujours été deux inspirations de ma
+              vie courante. Je viens d’un milieu artistique, qui a fusionné avec
+              la technologie pour finir par évoluer dans le développement web.
             </p>
 
             <p className="mt-2">
               Je suis guidé par la passion, le souci du détail individuel,
-              structuré et organisé. Je suis impatient de voir où ma carrière va m’emmener dans les
-              mois ou les années à venir.
+              structuré et organisé. Je suis impatient de voir où ma carrière va
+              m’emmener dans les mois ou les années à venir.
             </p>
 
             <p className="mt-2">
               Je continue à travailler et apprendre tous les jours, trouver de
-              nouvelles technologies pour faire évoluer cette passion; et pouvoir appliquer cela
-              tous les jours dans mon travail.
+              nouvelles technologies pour faire évoluer cette passion; et
+              pouvoir appliquer cela tous les jours dans mon travail.
             </p>
 
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">Ce site</h3>
+            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+              Ce site
+            </h3>
 
             <p>
-              Ce site est mon croquis numérique, mon journal et mon air de jeu dans
-              l’expérimentation de nouvelles technologies. Je suis constamment en train d’y
-              implémenter de nouvelles fonctionnalités, et parfois même faire des erreurs. Tout pour
-              un seul objectif, continuer d’apprendre.
+              Ce site est mon croquis numérique, mon journal et mon air de jeu
+              dans l’expérimentation de nouvelles technologies. Je suis
+              constamment en train d’y implémenter de nouvelles fonctionnalités,
+              et parfois même faire des erreurs. Tout pour un seul objectif,
+              continuer d’apprendre.
             </p>
 
             <p className="mt-2">
               J’espère que les gens qui visiteront mon portfolio aimeront autant
-              que j’ai apprécié de le développer. En espérant qu’ils trouveront de l’inspiration et
-              pourquoi pas, nous permettre de travailler ensemble.
+              que j’ai apprécié de le développer. En espérant qu’ils trouveront
+              de l’inspiration et pourquoi pas, nous permettre de travailler
+              ensemble.
             </p>
 
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">Mes réseaux sociaux</h3>
+            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+              Mes réseaux sociaux
+            </h3>
 
             <Socials />
           </div>
         </div>
-
       </div>
     </Layout>
   );

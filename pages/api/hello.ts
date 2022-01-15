@@ -3,12 +3,18 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import requestIp from 'request-ip';
 
 type Data = {
-  msg: string
-}
+  msg: string;
+};
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   const blog = 'https://www.inrage.fr';
-  const client = new AkismetClient({ key: process.env.AKISMET_API_KEY as string, blog });
+  const client = new AkismetClient({
+    key: process.env.AKISMET_API_KEY as string,
+    blog,
+  });
 
   const ip = requestIp.getClientIp(req) || '127.0.0.1';
 
@@ -24,9 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res;
   }
 
-  const {
-    email, name, content,
-  } = req.body;
+  const { email, name, content } = req.body;
 
   const comment = {
     ip,
@@ -47,21 +51,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(500);
     return res;
   }
-  const mailjetToken = Buffer.from(`${process.env.MJ_APIKEY_PUBLIC as string}:${process.env.MJ_APIKEY_PRIVATE as string}`).toString('base64');
+  const mailjetToken = Buffer.from(
+    `${process.env.MJ_APIKEY_PUBLIC as string}:${
+      process.env.MJ_APIKEY_PRIVATE as string
+    }`
+  ).toString('base64');
 
   const postBody = {
-    Messages: [{
-      From: {
-        Email: 'pascal@inrage.fr',
-        Name: 'Pascal GAULT',
+    Messages: [
+      {
+        From: {
+          Email: 'pascal@inrage.fr',
+          Name: 'Pascal GAULT',
+        },
+        To: [
+          {
+            Email: 'pascal@inrage.fr',
+            Name: 'Pascal GAULT',
+          },
+        ],
+        Subject: '[inRage] Formulaire de contact',
+        HTMLPart: content,
       },
-      To: [{
-        Email: 'pascal@inrage.fr',
-        Name: 'Pascal GAULT',
-      }],
-      Subject: '[inRage] Formulaire de contact',
-      HTMLPart: content,
-    }],
+    ],
   };
 
   await fetch('https://api.mailjet.com/v3.1/send', {
@@ -71,9 +83,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(postBody),
-  }).then(() => {
-    res.status(200).json({ msg: 'Ok' });
   })
+    .then(() => {
+      res.status(200).json({ msg: 'Ok' });
+    })
     .catch(() => {
       res.status(500);
       return res;

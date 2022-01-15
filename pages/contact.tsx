@@ -1,7 +1,8 @@
-import ContactForm from '@component/ContactForm';
-import Layout from '@component/layouts/Layout';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
+
+import ContactForm from '@component/ContactForm';
+import Layout from '@component/layouts/Layout';
 
 export default function Contact() {
   return (
@@ -13,9 +14,7 @@ export default function Contact() {
       <div className="container flex flex-col sm:flex-row">
         <div className="flex-none sm:w-[260px] text-center sm:text-right mb-6 sm:mb-0 sm:mr-8">
           <div className="text-orange font-bold text-4xl">
-            inRage
-            {' '}
-            <span className="font-light">SARL</span>
+            inRage <span className="font-light">SARL</span>
           </div>
           <p className="leading-6 text-lg text-gray-light mt-1">
             Développeur et créateur
@@ -45,10 +44,14 @@ export default function Contact() {
             N&apos;hésitez pas à me téléphoner pour discuter de votre projet
           </p>
 
-          <div className="text-orange font-bold text-3xl mt-2">06 51 89 89 17</div>
+          <div className="text-orange font-bold text-3xl mt-2">
+            06 51 89 89 17
+          </div>
           <div className="text-sm">du lundi au samedi de 10h à 19h</div>
         </div>
-        <div className="flex-1"><ContactForm lg /></div>
+        <div className="flex-1">
+          <ContactForm lg />
+        </div>
       </div>
     </Layout>
   );

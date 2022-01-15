@@ -1,16 +1,22 @@
-import Image from 'next/image';
-import Link from '@component/NoScrollLink';
-import { BlogItem } from '@type/blog';
 import moment from 'moment';
+import Image from 'next/image';
 import sanitize from 'sanitize-html';
+
+import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
+import { BlogItem } from '@type/blog';
+
 import ButtonLink from '../ButtonLink';
 import 'moment/locale/fr';
 
 moment.locale('fr');
 
 export default function ArticleItem({
-  featuredImage, title, excerpt, date, slug,
+  featuredImage,
+  title,
+  excerpt,
+  date,
+  slug,
 }: BlogItem) {
   const formattedDate = moment(date);
 
@@ -26,7 +32,12 @@ export default function ArticleItem({
       </div>
       <Link href={`${RouteLink.blog}/${slug}`}>
         <a>
-          <Image src={featuredImage.node.sourceUrl} width={595} height={265} alt={title} />
+          <Image
+            src={featuredImage.node.sourceUrl}
+            width={595}
+            height={265}
+            alt={title}
+          />
         </a>
       </Link>
       <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
@@ -38,9 +49,7 @@ export default function ArticleItem({
           }),
         }}
       />
-      <ButtonLink href={`${RouteLink.blog}/${slug}`}>
-        Lire la suite
-      </ButtonLink>
+      <ButtonLink href={`${RouteLink.blog}/${slug}`}>Lire la suite</ButtonLink>
     </div>
   );
 }

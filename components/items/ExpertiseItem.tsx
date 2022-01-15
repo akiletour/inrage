@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import ButtonLink from '../ButtonLink';
 
 type Props = {
@@ -6,11 +7,9 @@ type Props = {
   title: string;
   excerpt: string;
   link: string;
-}
+};
 
-export default function ExpertiseItem({
-  image, title, excerpt, link,
-}: Props) {
+export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
   return (
     <div className="grid gap-x-3 grid-cols-[80px_auto] md:grid-cols-[120px_auto] items-center">
       <div className="relative mr-2 w-10 h-10 md:w-15 md:h-15 row-span-2">
