@@ -9,6 +9,7 @@ import Diagonal from '@component/layouts/Diagonal';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import TextImage from '@component/TextImage';
+import BusStation from '@image/prestations/bus-station.png';
 import SymfonyComponents from '@image/prestations/symfony-components.jpg';
 import SymfonyHero from '@image/prestations/symfony-hero.jpg';
 import TwigImage from '@image/prestations/twig.jpg';
@@ -278,6 +279,40 @@ export default function Symfony({ featuredProjects }: Props) {
                 >
                   Liste des composants Symfony
                 </a>
+              </div>
+            </TextImage>
+          </div>
+
+          <div className="mt-8">
+            <TextImage
+              position="right"
+              titlePosition="left"
+              title={[
+                'Créer des interface de commandes',
+                'Avec Symfony Console',
+              ]}
+              duoTone
+              image={BusStation}
+            >
+              <div className="text-left">
+                <p>
+                  Depuis des années, j&apos;utilise le composant{' '}
+                  <a
+                    className="text-orange"
+                    href="https://symfony.com/doc/current/components/console.html"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Symfony Console
+                  </a>{' '}
+                  pour me permettre de créer des interfaces visuelles en ligne
+                  de commande.
+                </p>
+                <p className="mt-2">
+                  Cela me permet par exemple de créer des interfaces en posant
+                  des questions et me permettre de créer la structure d&apos;un
+                  projet de A à Z
+                </p>
               </div>
             </TextImage>
           </div>
