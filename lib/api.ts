@@ -30,3 +30,31 @@ export default async function fetchAPI(
   }
   return json.data;
 }
+
+export const SitemapData = async () =>
+  fetchAPI(`query Sitemap {
+  projets {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  posts {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  supports {
+    edges {
+      node {
+        name
+        uri
+      }
+    }
+  }
+}`);
