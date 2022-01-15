@@ -340,7 +340,7 @@ type StaticProps = PageHeaderStaticProps & SProps;
 
 export const getStaticProps: GetStaticProps =
   async (): Promise<StaticProps> => {
-    const relatedProjects = await LastProjectBySupport('symfony');
+    const relatedProjects = await LastProjectBySupport('application-web');
     return {
       props: {
         pageTitle: 'Symfony',
