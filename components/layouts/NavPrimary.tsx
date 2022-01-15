@@ -305,7 +305,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
               title="Blog"
             />
             <Link href={RouteLink.contact}>
-              <a className="mt-2 lg:mt-0 inline-flex py-1 px-2 bg-orange uppercase text-gray-darker font-medium">
+              <a
+                onClick={() => setOpen(false)}
+                className="mt-2 lg:mt-0 inline-flex py-1 px-2 bg-orange uppercase text-gray-darker font-medium"
+              >
                 Contactez-moi
               </a>
             </Link>
