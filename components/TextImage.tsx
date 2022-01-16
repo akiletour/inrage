@@ -46,14 +46,14 @@ export default function TextImage({
         {title && (
           <h3
             className={`${
-              titlePosition ? `text-${titlePosition}` : `text-${position}`
+              titlePosition ? `md:text-${titlePosition}` : `md:text-${position}`
             } text-white text-2xl mt-2 md:mt-0 md:text-4xl font-bold mb-2 md:mb-3`}
           >
             {Array.isArray(title)
               ? title.map((ttl, index) => (
                   <span
                     className={`block ${
-                      index > 0 && duoTone && 'font-light text-3xl'
+                      index > 0 && duoTone && 'font-light text-xl'
                     }`}
                     key={ttl}
                   >
