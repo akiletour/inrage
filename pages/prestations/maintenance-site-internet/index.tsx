@@ -60,7 +60,7 @@ export default function WebsiteTMA() {
       <div className="bg-gray-darker">
         <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
         <div className="container relative z-10 -my-10">
-          <div className="px-20 flex divide-x divide-gray-dark items-start justify-center">
+          <div className="md:px-20 flex flex-col space-y-6 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
             <TmaItem
               title="Infogérance et maintenance TMA"
               subject="WordPress"

@@ -21,7 +21,7 @@ export default function TmaItem({
   return (
     <div
       className={`${
-        position === 'left' ? 'text-left pl-4' : 'text-right pr-4'
+        position === 'left' ? 'md:text-left md:pl-4' : 'md:text-right md:pr-4'
       } flex-1`}
     >
       <h2 className="font-light text-2xl text-white">
