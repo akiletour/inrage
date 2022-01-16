@@ -47,7 +47,7 @@ export default function TextImage({
           <h3
             className={`${
               titlePosition ? `text-${titlePosition}` : `text-${position}`
-            } text-white text-4xl font-bold mb-3`}
+            } text-white text-2xl mt-2 md:mt-0 md:text-4xl font-bold mb-2 md:mb-3`}
           >
             {Array.isArray(title)
               ? title.map((ttl, index) => (
