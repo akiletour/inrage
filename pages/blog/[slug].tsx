@@ -31,6 +31,10 @@ export default function BlogDetail({ post }: BlogType) {
     return <ErrorPage statusCode={404} />;
   }
 
+  if (router.isFallback) {
+    return <p>Chargement en cours</p>;
+  }
+
   return (
     <Layout>
       <NextSeo
