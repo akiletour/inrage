@@ -8,6 +8,7 @@ import { getAllArticlesWithSlug, getSingleArticle } from '@lib/blog';
 
 type BlogFullArticleType = {
   id: string;
+  postId: number;
   title: string;
   slug: string;
   content: string;
@@ -29,7 +30,7 @@ export default function BlogDetail({ post }: BlogType) {
       <div className="container">
         <PostBody content={post?.content || ''} />
       </div>
-      {post?.id && <PostComments id={post?.id} />}
+      {post?.id && <PostComments id={post?.postId} />}
     </Layout>
   );
 }

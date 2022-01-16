@@ -29,6 +29,7 @@ export async function getSingleArticle(slug: string) {
      post(id: $id, idType: SLUG) {
        id
        title
+       postId
        slug
        date
        excerpt
@@ -84,7 +85,7 @@ const BlogCommentLayout = `
   }
 `;
 
-export async function fetchBlogComments(slug: string) {
+export async function fetchBlogComments(slug: number) {
   const data = await fetchAPI(
     `
     query fetchBlogComments($id: ID!) {

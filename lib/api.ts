@@ -2,7 +2,7 @@ const API_URL: string = process.env.WORDPRESS_API_URL as string;
 
 type VariableProps = {
   variables?: {
-    id?: string;
+    id?: string | number;
     max?: number;
   };
 };

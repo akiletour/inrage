@@ -4,7 +4,7 @@ import { fetchBlogComments } from '@lib/blog';
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   query: {
-    id: string;
+    id: number;
   };
 }
 

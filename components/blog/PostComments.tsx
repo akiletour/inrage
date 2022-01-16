@@ -12,7 +12,7 @@ const fetcher = (url: string) =>
   }).then((r) => r.json());
 
 type Props = {
-  id: string;
+  id: number;
 };
 
 export default function PostComments({ id }: Props) {
