@@ -60,18 +60,22 @@ export default function TmaWordPress({ entries = [] }: Props) {
       </div>
 
       <div className="relative">
-        <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
+        <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          flipX
+          flipY
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+        />
         <div className="container relative z-10">
-          <div className="sticky top-0 lg:top-11 py-2 bg-[#020202]">
-            <TableHeader
-              support="WordPress"
-              types={[
-                { name: 'Tranquilité', price: '39€ ht/mois' },
-                { name: 'Standard', price: '55€ ht/mois' },
-                { name: 'Sérénité', price: '75€ ht/mois' },
-              ]}
-            />
-          </div>
+          <TableHeader
+            support="WordPress"
+            types={[
+              { name: 'Tranquilité', price: '39€ ht/mois' },
+              { name: 'Standard', price: '55€ ht/mois' },
+              { name: 'Sérénité', price: '75€ ht/mois' },
+            ]}
+          />
 
           <div className="flex flex-col space-y-4 mt-4">
             {entries.map(({ id, name, excerpt, values }) => (
@@ -95,7 +99,11 @@ export default function TmaWordPress({ entries = [] }: Props) {
           layout="fill"
           alt="Offres de maintenance TMA inRage"
         />
-        <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
+        <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+        />
       </div>
 
       <div className="container" id="contact">
