@@ -277,7 +277,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
       <div className="bg-gray-darker">
         <div className="container -mb-8 relative z-10">
           <SectionTitle
-            title="Réalisations WordPress"
+            title="Réalisations Prestashop"
             content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur Prestashop."
           />
 
