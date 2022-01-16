@@ -75,7 +75,7 @@ export default function Symfony({ featuredProjects }: Props) {
         <Diagonal
           flipX
           flipY
-          className="h-24"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
@@ -151,13 +151,13 @@ export default function Symfony({ featuredProjects }: Props) {
           </div>
         </div>
         <Diagonal
-          className="h-24"
+          className="h-12 md:h-20 lg:h-[360px] -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
       </div>
 
-      <div className="container -mb-10">
+      <div className="container lg:-mb-10">
         <div className="relative z-10">
           <SectionTitle
             title={'Mon choix Numéro 1'}
@@ -319,10 +319,14 @@ export default function Symfony({ featuredProjects }: Props) {
         </div>
       </div>
 
-      <Diagonal bgCorner={'fill-orange'} bgClass={'fill-gray-darker'} />
+      <Diagonal
+        className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+        bgCorner={'fill-orange'}
+        bgClass={'fill-gray-darker'}
+      />
 
       <div className="bg-gray-darker">
-        <div className="container -mb-8 relative z-10">
+        <div className="container pb-10 lg:pb-0 lg:-mb-8 relative z-10">
           <SectionTitle
             title={['Réalisations', 'Symfony']}
             content="Retrouvez ci-dessous quelques projets Symfony auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur le framework Symfony."
@@ -342,7 +346,7 @@ export default function Symfony({ featuredProjects }: Props) {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{

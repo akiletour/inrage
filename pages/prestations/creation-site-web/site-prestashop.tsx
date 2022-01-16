@@ -275,7 +275,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
       </div>
 
       <div className="bg-gray-darker">
-        <div className="container -mb-8 relative z-10">
+        <div className="container pb-8 lg:pb-0 lg:-mb-8 relative z-10">
           <SectionTitle
             title="Réalisations Prestashop"
             content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur Prestashop."
@@ -295,7 +295,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
