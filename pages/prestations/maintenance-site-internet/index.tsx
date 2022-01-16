@@ -58,8 +58,14 @@ export default function WebsiteTMA() {
         </div>
       </div>
       <div className="bg-gray-darker">
-        <Diagonal flipX flipY bgClass="fill-gray-dark" bgCorner="fill-orange" />
-        <div className="container relative z-10 -my-10">
+        <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          flipX
+          flipY
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+        />
+        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
           <div className="md:px-20 flex flex-col space-y-6 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
             <TmaItem
               title="Infogérance et maintenance TMA"
@@ -82,7 +88,11 @@ export default function WebsiteTMA() {
             />
           </div>
         </div>
-        <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
+        <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          bgClass="fill-gray-dark"
+          bgCorner="fill-orange"
+        />
       </div>
 
       <div className="container">
