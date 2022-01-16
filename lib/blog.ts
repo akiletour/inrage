@@ -39,6 +39,11 @@ export async function getSingleArticle(slug: string) {
            sourceUrl
          }
        }
+       seo {
+         title
+         metaDesc
+         canonical
+       }
      }
    }
    `,

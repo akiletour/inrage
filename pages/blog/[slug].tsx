@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
@@ -12,6 +13,11 @@ type BlogFullArticleType = {
   title: string;
   slug: string;
   content: string;
+  seo: {
+    title: string;
+    metaDesc: string;
+    canonical: string;
+  };
 };
 
 type BlogType = {
@@ -27,6 +33,11 @@ export default function BlogDetail({ post }: BlogType) {
 
   return (
     <Layout>
+      <NextSeo
+        title={post.seo.title}
+        description={post.seo.metaDesc}
+        canonical={post.seo.canonical}
+      />
       <div className="container">
         <PostBody content={post?.content || ''} />
       </div>
