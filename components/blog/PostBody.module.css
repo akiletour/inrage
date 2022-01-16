@@ -38,6 +38,10 @@
     @apply text-[#727272] text-sm;
 }
 
+.content code {
+    overflow-wrap: break-word;
+}
+
 .content h2,
 .content h3 {
     @apply text-white font-bold leading-snug;
