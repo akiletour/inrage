@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import moment from 'moment';
 import Prism from 'prismjs';
+
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
 import 'prismjs/components/prism-bash';
@@ -12,6 +13,7 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-php';
 import 'moment/locale/fr';
+import style from '../blog/PostComment.module.css';
 
 export type CommentItemType = {
   id: string;
@@ -49,6 +51,7 @@ export default function CommentItem({
           <div>{moment(dateGmt).format('lll')}</div>
         </div>
         <div
+          className={style.content}
           dangerouslySetInnerHTML={{
             __html: content,
           }}
