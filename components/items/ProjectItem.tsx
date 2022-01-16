@@ -23,7 +23,7 @@ export default function ProjectItem({
   return (
     <Link href={`/portfolio/${support ? `${support.slug}/` : ''}${slug}`}>
       <a className="group text-center">
-        <div className="group-hover:scale-110 transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
+        <div className="md:group-hover:scale-110 transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
           <Image
             src={image}
             width={xl ? 343 : 257}
