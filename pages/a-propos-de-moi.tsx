@@ -13,6 +13,7 @@ import ExpKamelab from '@image/experiences/kamelab.png';
 import ExpMegami from '@image/experiences/megami-productions.png';
 import ExpMoonscoop from '@image/experiences/moonscoop.png';
 import { RouteLink } from '@lib/route';
+import Character from '@component/Character';
 
 export default function AboutMe() {
   return (
@@ -120,6 +121,7 @@ export default function AboutMe() {
         />
 
         <div>
+          <Character />
           <div>
             <h3 className="text-white font-medium text-3xl mb-1">
               Pascal GAULT
