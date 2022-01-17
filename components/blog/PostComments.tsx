@@ -4,6 +4,8 @@ import CommentItem, { CommentItemType } from '@component/items/CommentItem';
 import Diagonal from '@component/layouts/Diagonal';
 import SectionTitle from '@component/SectionTitle';
 
+import CommentForm from './CommentForm';
+
 const fetcher = (url: string) =>
   fetch(url, {
     headers: {
@@ -41,6 +43,8 @@ export default function PostComments({ id }: Props) {
               <CommentItem {...node} />
             </div>
           ))}
+
+        <CommentForm />
       </div>
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
     </div>
