@@ -62,7 +62,7 @@ export default function AboutMe() {
       <Diagonal bgClass="fill-gray-darker" bgCorner="fill-gray-dark" />
 
       <div className="bg-gray-darker">
-        <div className="container -mb-10">
+        <div className="container lg:-mb-10">
           <SectionTitle
             content="La liste de mes expériences professionnelles que j'ai acquise au fil de mes années de Développeur en tant que salarié et indépendant."
             title="Expériences"
@@ -104,6 +104,7 @@ export default function AboutMe() {
         </div>
 
         <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
