@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 
+import Character from '@component/Character';
 import MoreIcon from '@component/icons/MoreIcon';
 import ExperienceItem from '@component/items/ExperienceItem';
 import Diagonal from '@component/layouts/Diagonal';
@@ -13,7 +14,6 @@ import ExpKamelab from '@image/experiences/kamelab.png';
 import ExpMegami from '@image/experiences/megami-productions.png';
 import ExpMoonscoop from '@image/experiences/moonscoop.png';
 import { RouteLink } from '@lib/route';
-import Character from '@component/Character';
 
 export default function AboutMe() {
   return (
@@ -120,9 +120,11 @@ export default function AboutMe() {
           title="En savoir plus"
         />
 
-        <div>
-          <Character />
-          <div>
+        <div className="flex items-center mt-3 md:mt-10">
+          <div className="hidden md:block">
+            <Character />
+          </div>
+          <div className="md:pl-4">
             <h3 className="text-white font-medium text-3xl mb-1">
               Pascal GAULT
             </h3>
