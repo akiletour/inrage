@@ -117,3 +117,36 @@ export async function fetchBlogComments(slug: number) {
 
   return data?.comments?.edges || [];
 }
+
+export async function submitNewComment(
+  id: number,
+  authorEmail: string,
+  comment: string,
+  author: string
+) {
+  const data = await fetchAPI(
+    `mutation CREATE_COMMENT($id: Int, $authorEmail: String, $comment: String, $author: String) {
+      createComment(input: {
+        commentOn: $id, 
+        content: $comment, 
+        author: $author,
+        authorEmail: $authorEmail
+      }) {
+        success
+        comment {
+          content
+        }
+      }
+    }`,
+    {
+      variables: {
+        id,
+        authorEmail,
+        comment,
+        author,
+      },
+    }
+  );
+
+  return data;
+}

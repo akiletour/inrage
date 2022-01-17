@@ -15,6 +15,9 @@ type FormData = {
   phone: string;
 };
 
+export const inputClassname =
+  'border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent';
+
 export default function ContactForm({ lg = false }: Props) {
   const {
     register,
@@ -42,9 +45,6 @@ export default function ContactForm({ lg = false }: Props) {
         reset();
       });
   };
-
-  const inputClassname =
-    'border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent';
 
   return (
     <form

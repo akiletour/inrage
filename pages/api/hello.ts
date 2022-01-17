@@ -1,6 +1,7 @@
-import { AkismetClient } from 'akismet-api';
 import { NextApiRequest, NextApiResponse } from 'next';
 import requestIp from 'request-ip';
+
+import { Client } from '@lib/akismet';
 
 type Data = {
   msg: string;
@@ -10,16 +11,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const blog = 'https://www.inrage.fr';
-  const client = new AkismetClient({
-    key: process.env.AKISMET_API_KEY as string,
-    blog,
-  });
-
   const ip = requestIp.getClientIp(req) || '127.0.0.1';
 
   try {
-    const isValid = await client.verifyKey();
+    const isValid = await Client.verifyKey();
 
     if (!isValid) {
       res.status(500);
@@ -41,7 +36,7 @@ export default async function handler(
   };
 
   try {
-    const isSpam = await client.checkSpam(comment);
+    const isSpam = await Client.checkSpam(comment);
 
     if (isSpam) {
       res.status(404).json({ msg: 'spam' });
