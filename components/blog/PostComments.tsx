@@ -44,7 +44,7 @@ export default function PostComments({ id }: Props) {
             </div>
           ))}
 
-        <CommentForm />
+        <CommentForm postId={id} />
       </div>
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
     </div>

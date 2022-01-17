@@ -52,7 +52,7 @@ function reducer(state: StateType, action: Action) {
   }
 }
 
-export default function CommentForm() {
+export default function CommentForm({ postId }: { postId: number }) {
   const [formState, dispatch] = useReducer(reducer, initialState);
   const {
     register,
@@ -64,7 +64,7 @@ export default function CommentForm() {
     dispatch({ type: 'submit' });
     fetch('/api/post-comment', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, postId }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

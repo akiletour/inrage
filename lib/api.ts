@@ -4,6 +4,9 @@ type VariableProps = {
   variables?: {
     id?: string | number;
     max?: number;
+    authorEmail?: string;
+    comment?: string;
+    author?: string;
   };
 };
 
