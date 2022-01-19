@@ -127,15 +127,17 @@ export async function submitNewComment(
   id: number,
   authorEmail: string,
   comment: string,
-  author: string
+  author: string,
+  parent?: number
 ) {
   const data = await fetchAPI(
-    `mutation CREATE_COMMENT($id: Int, $authorEmail: String, $comment: String, $author: String) {
+    `mutation CREATE_COMMENT($id: Int, $authorEmail: String, $comment: String, $author: String, $parent: Int) {
       createComment(input: {
         commentOn: $id, 
         content: $comment, 
         author: $author,
-        authorEmail: $authorEmail
+        authorEmail: $authorEmail,
+        parent: $parent,
       }) {
         success
         comment {
@@ -149,6 +151,7 @@ export async function submitNewComment(
         authorEmail,
         comment,
         author,
+        parent: parent || 0,
       },
     }
   );

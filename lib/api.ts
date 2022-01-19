@@ -7,6 +7,7 @@ type VariableProps = {
     authorEmail?: string;
     comment?: string;
     author?: string;
+    parent?: number;
   };
 };
 
