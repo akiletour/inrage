@@ -40,7 +40,7 @@ export default function PostComments({ id }: Props) {
         {data &&
           data.map(({ node }) => (
             <div className="mt-4" key={node.commentId}>
-              <CommentItem {...node} />
+              <CommentItem postId={id} {...node} />
             </div>
           ))}
 

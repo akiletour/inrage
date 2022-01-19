@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import moment from 'moment';
 import Prism from 'prismjs';
@@ -13,6 +13,9 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-php';
 import 'moment/locale/fr';
+import CommentForm from '@component/blog/CommentForm';
+import { ButtonLinkRaw } from '@component/ButtonLink';
+
 import style from '../blog/PostComment.module.css';
 
 export type CommentItemType = {
@@ -29,15 +32,21 @@ export type CommentItemType = {
     nodes: CommentItemType[];
   };
   isChild?: boolean;
+  postId?: number;
 };
 
 export default function CommentItem({
   author,
+  id,
   content,
   dateGmt,
-  isChild,
+  isChild = false,
   replies,
+  postId,
+  commentId,
 }: CommentItemType) {
+  const [isReplying, setReplying] = useState(false);
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -56,12 +65,33 @@ export default function CommentItem({
             __html: content,
           }}
         />
+
+        {isChild === false && (
+          <div className="mt-2">
+            <ButtonLinkRaw
+              as="button"
+              type="button"
+              onClick={() => setReplying((r) => !r)}
+            >
+              Répondre
+            </ButtonLinkRaw>
+          </div>
+        )}
       </div>
+
+      {isChild === false && isReplying === true && (
+        <CommentForm parent={commentId} postId={postId!} />
+      )}
 
       {replies?.nodes && replies.nodes.length > 0 && (
         <div>
           {replies.nodes.map((reply) => (
-            <CommentItem key={reply.commentId} {...reply} isChild />
+            <CommentItem
+              postId={postId}
+              key={reply.commentId}
+              {...reply}
+              isChild
+            />
           ))}
         </div>
       )}

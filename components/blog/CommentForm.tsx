@@ -52,7 +52,13 @@ function reducer(state: StateType, action: Action) {
   }
 }
 
-export default function CommentForm({ postId }: { postId: number }) {
+export default function CommentForm({
+  postId,
+  parent,
+}: {
+  postId: number;
+  parent?: number;
+}) {
   const [formState, dispatch] = useReducer(reducer, initialState);
   const {
     register,
@@ -64,7 +70,7 @@ export default function CommentForm({ postId }: { postId: number }) {
     dispatch({ type: 'submit' });
     fetch('/api/post-comment', {
       method: 'POST',
-      body: JSON.stringify({ ...data, postId }),
+      body: JSON.stringify({ ...data, postId, parent }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -89,6 +95,9 @@ export default function CommentForm({ postId }: { postId: number }) {
   };
   return (
     <div className="mt-8">
+      {parent && (
+        <p className="text-white font-medium mb-2">Répondre au commentaire</p>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         {formState.error && <p>{formState.error}</p>}
         <div className="relative">
