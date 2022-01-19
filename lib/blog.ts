@@ -45,6 +45,11 @@ export async function getSingleArticle(slug: string) {
          canonical
        }
      }
+     posts {
+       edges {
+         ${ArticleListItemLayout}
+       }
+     }
    }
    `,
     {
