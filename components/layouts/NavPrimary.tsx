@@ -301,6 +301,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
             </LinkItem>
             <LinkItem
               closePrimaryNav={() => setOpen(false)}
+              isActive={pathname === RouteLink.blog}
               href={RouteLink.blog}
               title="Blog"
             />
