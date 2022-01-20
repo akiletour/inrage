@@ -37,7 +37,6 @@ export type CommentItemType = {
 
 export default function CommentItem({
   author,
-  id,
   content,
   dateGmt,
   isChild = false,
