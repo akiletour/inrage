@@ -289,7 +289,7 @@ export default function Prestations() {
           </svg>
         </div>
         <div className="bg-gray-darker pt-16">
-          <div className="container -mb-10">
+          <div className="container mb-10 md:-mb-10">
             <p className="text-gray-light text-xl">
               La réussite d’un projet web réside en grande partie dans son
               organisation et la méthodologie de travail employée. Pour ma part,
@@ -316,6 +316,7 @@ export default function Prestations() {
 
           <Diagonal
             bgClass="fill-gray-dark"
+            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
             bgCorner="fill-gray-darker"
             cta={{
               icon: <LeafHeartIcon />,
