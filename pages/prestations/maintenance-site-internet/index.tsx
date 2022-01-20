@@ -102,9 +102,9 @@ export default function WebsiteTMA() {
         />
       </div>
 
-      <div className="flex relative container mt-6">
-        <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
-          <div className="w-[945px] h-[666px] relative">
+      <div className="flex flex-col md:flex-row relative container mt-6">
+        <div className="block overflow-hidden md:absolute lg:right-[60%]">
+          <div className="md:w-[945px] md:h-[666px] relative">
             <Image
               className="max-h-[666px]"
               src="/images/tma-example.png"
@@ -117,7 +117,7 @@ export default function WebsiteTMA() {
         </div>
         <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
           <div>
-            <h3 className="font-bold text-white text-4xl">
+            <h3 className="font-bold text-white text-2xl md:text-4xl">
               Une console d&apos;infogérance dédiée
             </h3>
             <p className="mt-2">
@@ -126,7 +126,7 @@ export default function WebsiteTMA() {
               solution, que vous soyez sur Prestashop, WordPress ou une solution
               propriétaire.
             </p>
-            <h3 className="mt-4 font-bold text-white text-4xl">
+            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
               Notification immédiate
             </h3>
             <p className="mt-2">
@@ -134,7 +134,7 @@ export default function WebsiteTMA() {
               nous recevons une notification. Un technicien prend effet de votre
               message et le règle directement.
             </p>
-            <h3 className="mt-4 font-bold text-white text-4xl">
+            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
               Aucune fil d&apos;attente
             </h3>
             <p className="mt-2">
