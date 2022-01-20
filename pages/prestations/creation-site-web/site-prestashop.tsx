@@ -38,9 +38,9 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           />
         </div>
         <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
-          <h2 className="text-white text-3xl font-bold">
-            Développeur Prestashop Freelance sur
-            <br />
+          <h2 className="text-white text-xl md:text-3xl font-bold">
+            Développeur Prestashop Freelance sur{' '}
+            <br className="hidden md:block" />
             La Rochelle
           </h2>
           <p className="mt-2">
@@ -305,7 +305,7 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           }}
         />
       </div>
-      <div className="container">
+      <div className="container mt-4 md:mt-0">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
