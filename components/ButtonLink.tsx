@@ -6,7 +6,7 @@ type Props = {
 };
 
 type RawProps =
-  | { as?: 'a'; children: string; type?: never; onClick?: never }
+  | { as?: 'span'; children: string; type?: never; onClick?: never }
   | {
       as?: 'button';
       onClick: () => void;
@@ -14,7 +14,12 @@ type RawProps =
       children: string;
     };
 
-export function ButtonLinkRaw({ as = 'a', children, type, onClick }: RawProps) {
+export function ButtonLinkRaw({
+  as = 'span',
+  children,
+  type,
+  onClick,
+}: RawProps) {
   const Tag = `${as}` as keyof JSX.IntrinsicElements;
   let props = {};
 
@@ -45,7 +50,9 @@ export function ButtonLinkRaw({ as = 'a', children, type, onClick }: RawProps) {
 export default function ButtonLink({ href, children }: Props) {
   return (
     <Link href={href}>
-      <ButtonLinkRaw>{children}</ButtonLinkRaw>
+      <a>
+        <ButtonLinkRaw>{children}</ButtonLinkRaw>
+      </a>
     </Link>
   );
 }
