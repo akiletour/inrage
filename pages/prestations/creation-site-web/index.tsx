@@ -38,7 +38,7 @@ export default function PrestationBuildWebsite() {
         </div>
         <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
           <div>
-            <h2 className="font-bold text-white text-4xl">
+            <h2 className="font-bold text-white text-2xl md:text-4xl">
               Développement spécialisé dans la création de site web
             </h2>
 
@@ -68,7 +68,7 @@ export default function PrestationBuildWebsite() {
         <Diagonal
           flipX
           flipY
-          className="h-24"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
@@ -99,13 +99,13 @@ export default function PrestationBuildWebsite() {
           </div>
         </div>
         <Diagonal
-          className="h-24"
           bgClass="fill-gray-dark"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
           bgCorner="fill-gray-darker"
         />
       </div>
 
-      <div className="container -mb-10 relative z-10">
+      <div className="container mt-4 md:mt-0 lg:-mb-10 relative z-10">
         <SectionTitle
           title={['Mes solutions', 'pour vos sites']}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
@@ -195,10 +195,14 @@ export default function PrestationBuildWebsite() {
         </TextImage>
       </div>
 
-      <Diagonal bgCorner="fill-orange" bgClass="fill-gray-darker" />
+      <Diagonal
+        className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+        bgCorner="fill-orange"
+        bgClass="fill-gray-darker"
+      />
 
       <div className="bg-gray-darker">
-        <div className="container">
+        <div className="container mb-4 md:mb-0">
           <SectionTitle
             content="inRage est une agence créative et innovante basée au coeur de La Rochelle. Spécialisée dans la création de site Web."
             title="En savoir plus"
@@ -273,10 +277,14 @@ export default function PrestationBuildWebsite() {
           </TextImage>
         </div>
 
-        <Diagonal bgCorner="fill-orange" bgClass="fill-gray-dark" />
+        <Diagonal
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          bgCorner="fill-orange"
+          bgClass="fill-gray-dark"
+        />
       </div>
 
-      <div className="container">
+      <div className="container mt-4 md:mt-0">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
