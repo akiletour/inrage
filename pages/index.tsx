@@ -63,7 +63,7 @@ export default function Home({
 
       <div className="relative">
         <Diagonal
-          className="-z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -76,7 +76,7 @@ export default function Home({
           src={ImageDiscoverTma}
           alt="Prestation de maintenance TMA"
         />
-        <div className="container relative z-10 -my-10">
+        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
           <div className="md:w-1/2">
             <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
               Besoin d’une estimation de votre site
@@ -106,14 +106,14 @@ export default function Home({
           </div>
         </div>
         <Diagonal
-          className="-z-10"
           bgClass="fill-gray-darker"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgCorner="fill-orange"
         />
       </div>
 
-      <div className="bg-gray-darker">
-        <div className="container -mb-8 z-10 relative">
+      <div className="bg-gray-darker pt-8 md:pt-3">
+        <div className="container mb-10 lg:-mb-8 z-10 relative">
           <SectionTitle
             content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
             title="Projets"
@@ -134,9 +134,9 @@ export default function Home({
         </div>
 
         <Diagonal
-          className="-z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           cta={{
             icon: <MoreIcon />,
             title: ['Voir tous', 'les projets'],
@@ -190,7 +190,7 @@ export default function Home({
             title="Articles"
           />
 
-          <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+          <div className="grid md:grid-cols-2 gap-4 mb-8 lg:-mb-8 mt-6">
             {edgesPosts.map(
               ({ node: { slug, title, featuredImage, excerpt, date } }) => (
                 <div key={slug}>
@@ -208,7 +208,7 @@ export default function Home({
         </div>
 
         <Diagonal
-          className="-z-10"
+          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
@@ -219,7 +219,7 @@ export default function Home({
         />
       </div>
 
-      <div className="container">
+      <div className="container mt-8 md:mt-0">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
