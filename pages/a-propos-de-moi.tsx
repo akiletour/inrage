@@ -115,7 +115,7 @@ export default function AboutMe() {
         />
       </div>
 
-      <div className="container">
+      <div className="container mt-4 md:mt-0">
         <SectionTitle
           content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serais ravis de vous répondre."
           title="En savoir plus"
