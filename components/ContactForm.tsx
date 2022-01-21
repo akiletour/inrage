@@ -54,6 +54,7 @@ export default function ContactForm({ lg = false }: Props) {
       <div className={`grid gap-3 ${lg === false && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
+           tabIndex={1}
             className={`${inputClassname} ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
@@ -74,6 +75,7 @@ export default function ContactForm({ lg = false }: Props) {
           } relative`}
         >
           <textarea
+            tabIndex={4}
             className={`${inputClassname} min-h-[200px] h-full ${
               errors.content ? 'border-red' : 'border-gray'
             }`}
@@ -89,6 +91,7 @@ export default function ContactForm({ lg = false }: Props) {
 
         <div className="relative order-3">
           <input
+            tabIndex={2}
             className={`${inputClassname} ${
               errors.email ? 'border-red' : 'border-gray'
             }`}
@@ -105,6 +108,7 @@ export default function ContactForm({ lg = false }: Props) {
 
         <div className="relative order-4">
           <input
+            tabIndex={3}
             className={`${inputClassname} ${
               errors.phone ? 'border-red' : 'border-gray'
             }`}

@@ -63,10 +63,10 @@ export default async function handler(
             <strong>Message :</strong> ${content}
           </p>`,
         ReplyTo: {
-            Email: email,
-            Name: name
-          },
-      }
+          Email: email,
+          Name: name,
+        },
+      },
     ],
   };
 
