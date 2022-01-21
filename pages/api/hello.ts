@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import requestIp from 'request-ip';
 
-import { Client } from '@lib/akismet';
+import { checkSpam, Client } from '@lib/akismet';
 
 type Data = {
   msg: string;
@@ -11,8 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const ip = requestIp.getClientIp(req) || '127.0.0.1';
-
   try {
     const isValid = await Client.verifyKey();
 
@@ -25,27 +22,18 @@ export default async function handler(
     return res;
   }
 
-  const { email, name, content } = req.body;
-
-  const comment = {
-    ip,
-    useragent: req.headers['user-agent'] || '',
-    content,
-    email,
-    name,
-  };
+  const { email, name, content, phone } = req.body;
 
   try {
-    const isSpam = await Client.checkSpam(comment);
+    const isCommentSpam = await checkSpam(req, content, email, name);
 
-    if (isSpam) {
-      res.status(404).json({ msg: 'spam' });
-      return res;
+    if (isCommentSpam !== 200) {
+      throw Error('Not a valid message');
     }
-  } catch (err) {
-    res.status(500);
-    return res;
+  } catch (err: any) {
+    res.status(400).end();
   }
+
   const mailjetToken = Buffer.from(
     `${process.env.MJ_APIKEY_PUBLIC as string}:${
       process.env.MJ_APIKEY_PRIVATE as string
@@ -65,9 +53,20 @@ export default async function handler(
             Name: 'Pascal GAULT',
           },
         ],
-        Subject: '[inRage] Formulaire de contact',
-        HTMLPart: content,
-      },
+        Subject: `[inRage] Demande de contact ${name}`,
+        HTMLPart: `
+          <p>
+            <strong>Provenant de :</strong> ${req.headers.referer}<br />
+            <strong>Nom :</strong> ${name}<br />
+            <strong>Email :</strong> ${email}<br />
+            <strong>Téléphone :</strong> ${phone}<br />
+            <strong>Message :</strong> ${content}
+          </p>`,
+        ReplyTo: {
+            Email: email,
+            Name: name
+          },
+      }
     ],
   };
 
@@ -78,14 +77,9 @@ export default async function handler(
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(postBody),
-  })
-    .then(() => {
-      res.status(200).json({ msg: 'Ok' });
-    })
-    .catch(() => {
-      res.status(500);
-      return res;
-    });
+  }).catch(() => {
+    res.status(500).end();
+  });
 
-  return res;
+  res.status(200).json({ msg: 'Ok' });
 }
