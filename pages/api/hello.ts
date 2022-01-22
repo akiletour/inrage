@@ -38,6 +38,9 @@ export default async function handler(
     }`
   ).toString('base64');
 
+  // nl2br
+  const contentWithBreaks = content.replace(/\n/g, '<br />');
+
   const postBody = {
     Messages: [
       {
@@ -58,7 +61,7 @@ export default async function handler(
             <strong>Nom :</strong> ${name}<br />
             <strong>Email :</strong> ${email}<br />
             <strong>Téléphone :</strong> ${phone}<br />
-            <strong>Message :</strong> ${content}
+            <strong>Message :</strong> ${contentWithBreaks}
           </p>`,
         ReplyTo: {
           Email: email,
