@@ -11,15 +11,13 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const isValid = await Client.verifyKey();
+    const isKeyValid = await Client.verifyKey();
 
-    if (!isValid) {
-      res.status(500);
-      return res;
+    if (!isKeyValid) {
+      throw Error('Not a valid key');
     }
-  } catch (err) {
-    res.status(500);
-    return res;
+  } catch (err: any) {
+    res.status(500).end();
   }
 
   const { email, name, content, phone } = req.body;

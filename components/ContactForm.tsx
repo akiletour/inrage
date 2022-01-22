@@ -54,7 +54,7 @@ export default function ContactForm({ lg = false }: Props) {
       <div className={`grid gap-3 ${lg === false && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
-           tabIndex={1}
+            tabIndex={1}
             className={`${inputClassname} ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
