@@ -98,10 +98,11 @@ export async function getSingleProject(slug: string) {
   return data;
 }
 
-export async function getPortfolioProjects() {
-  const data = await fetchAPI(`
-    {
-      projets(first: 1000) {
+export async function getPortfolioProjects(preview: boolean) {
+  const data = await fetchAPI(
+    `
+    query getPortfolioProjects($stati: [PostStatusEnum]) {
+      projets(first: 1000, where: { orderby: { field: DATE, order: DESC }, stati: $stati }) {
         edges {
           ${ProjectListItemLayout}
         }
@@ -121,7 +122,15 @@ export async function getPortfolioProjects() {
         }
       }
     }
-  `);
+  `,
+    {
+      variables: {
+        onlyEnabled: !preview,
+        preview,
+        stati: preview ? ['PUBLISH', 'PRIVATE'] : ['PUBLISH'],
+      },
+    }
+  );
 
   return data;
 }

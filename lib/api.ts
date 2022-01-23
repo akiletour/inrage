@@ -8,6 +8,9 @@ type VariableProps = {
     comment?: string;
     author?: string;
     parent?: number;
+    onlyEnabled?: boolean;
+    preview?: boolean;
+    stati?: Array<'PUBLISH' | 'PRIVATE'>;
   };
 };
 

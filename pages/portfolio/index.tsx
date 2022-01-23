@@ -35,8 +35,8 @@ export default function Portfolio({
   );
 }
 
-export async function getStaticProps() {
-  const projects = await getPortfolioProjects();
+export async function getStaticProps({ preview = false }) {
+  const projects = await getPortfolioProjects(preview);
 
   return {
     props: {
