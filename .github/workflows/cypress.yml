@@ -3,7 +3,7 @@ name: Cypress Tests
 on: [deployment_status]
 
 jobs:
-  cypress-run:
+  e2e:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
@@ -12,8 +12,7 @@ jobs:
       
       - name: Checkout 🛎
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
+
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v2
         with:
@@ -23,6 +22,7 @@ jobs:
           WORDPRESS_AUTH_REFRESH_TOKEN: ${{ secrets.WORDPRESS_AUTH_REFRESH_TOKEN }}
           WORDPRESS_PREVIEW_SECRET: ${{ secrets.WORDPRESS_PREVIEW_SECRET }}
           VERCEL_URL: ${{ secrets.WORDPRESS_API_URL }}
+
       - name: Cypress tests ✅
         if: ${{ success() }}
         run: |
@@ -36,6 +36,7 @@ jobs:
             "description": "Cypress tests passed",
             "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           }'
+
       - name: Cypress tests 🚨
         if: ${{ failure() }}
         run: |
