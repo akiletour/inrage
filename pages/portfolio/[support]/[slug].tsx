@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import ErrorPage from 'next/error';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import sanitize from 'sanitize-html';
