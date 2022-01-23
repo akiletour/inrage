@@ -1,5 +1,10 @@
-export default async function preview(req, res) {
-  const { secret, id, slug } = req.query;
+import { NextApiRequest, NextApiResponse } from 'next';
+
+export default async function preview(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { secret } = req.query;
 
   // Check the secret and next parameters
   // This secret should only be known by this API route
@@ -13,5 +18,5 @@ export default async function preview(req, res) {
   res.setPreviewData({});
 
   res.writeHead(307, { Location: `/portfolio` });
-  res.end();
+  return res.end();
 }
