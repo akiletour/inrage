@@ -27,7 +27,7 @@ export default async function fetchAPI(
 ) {
   const headers: HeaderType = { 'Content-Type': 'application/json' };
 
-  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
+  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN && variables?.preview === true) {
     headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
   }
 
