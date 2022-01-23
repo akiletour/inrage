@@ -167,10 +167,12 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
 }
 export const getStaticProps = async ({
   params,
+  preview = false,
 }: {
   params: { slug: string };
+  preview?: boolean;
 }) => {
-  const { projet, projets } = await getSingleProject(params.slug);
+  const { projet, projets } = await getSingleProject(params.slug, preview);
   return {
     props: {
       post: projet,

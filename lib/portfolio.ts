@@ -41,7 +41,7 @@ export async function getAllProjectsWithSlug() {
   return data?.projets;
 }
 
-export async function getSingleProject(slug: string) {
+export async function getSingleProject(slug: string, preview: boolean = false) {
   const data = await fetchAPI(
     `
   query ProjectBySlug($id: ID!) {
@@ -91,6 +91,7 @@ export async function getSingleProject(slug: string) {
     {
       variables: {
         id: slug,
+        preview,
       },
     }
   );
