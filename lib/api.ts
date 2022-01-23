@@ -11,13 +11,22 @@ type VariableProps = {
   };
 };
 
+type HeaderType = {
+  'Content-Type': string;
+  Authorization?: string;
+};
+
 export const SlugListGraphql = 'edges { node { slug } }';
 
 export default async function fetchAPI(
   query: string,
   { variables }: VariableProps = {}
 ) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers: HeaderType = { 'Content-Type': 'application/json' };
+
+  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
+  }
 
   const res = await fetch(API_URL, {
     method: 'POST',
