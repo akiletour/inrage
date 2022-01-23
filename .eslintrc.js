@@ -16,7 +16,7 @@ module.exports = {
     // Configuration for TypeScript files
     {
       files: ['**/*.ts', '**/*.tsx'],
-      plugins: ['@typescript-eslint', 'unused-imports'],
+      plugins: ['@typescript-eslint', 'unused-imports', 'cypress'],
       extends: [
         'airbnb-typescript',
         'next/core-web-vitals',

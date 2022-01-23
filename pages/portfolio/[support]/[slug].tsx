@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import ErrorPage from 'next/error';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import sanitize from 'sanitize-html';
@@ -9,6 +8,7 @@ import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
+import Custom404 from 'pages/404';
 
 type Props = {
   post: {
@@ -52,7 +52,7 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
   const router = useRouter();
 
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
+    return <Custom404 />;
   }
 
   return (
@@ -166,10 +166,20 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
 }
 export const getStaticProps = async ({
   params,
+  preview = false,
 }: {
   params: { slug: string };
+  preview?: boolean;
 }) => {
-  const { projet, projets } = await getSingleProject(params.slug);
+  const { projet, projets } = await getSingleProject(params.slug, preview);
+  if (!projet) {
+    return {
+      props: {
+        post: null,
+        similarProjects: [],
+      },
+    };
+  }
   return {
     props: {
       post: projet,

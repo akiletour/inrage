@@ -44,6 +44,7 @@ export default function PortfolioLayout({
               title={node.title}
               slug={node.slug}
               support={node.supports?.edges[0]?.node}
+              isPrivate={node.status === 'private'}
             />
           ))}
       </div>

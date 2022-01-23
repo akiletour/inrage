@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -10,7 +14,6 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
-
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -18,30 +21,37 @@
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-
     "target": "es5",
     "outDir": "out",
     "declaration": true,
     "sourceMap": true,
-
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
     "jsx": "preserve",
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@type/*": ["types/*"],
-      "@image/*": ["public/images/*"],
-      "@lib/*": ["lib/*"],
-      "@component/*": ["components/*"]
+      "@type/*": [
+        "types/*"
+      ],
+      "@image/*": [
+        "public/images/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@component/*": [
+        "components/*"
+      ]
     },
-    "types": ["cypress"]
+    "types": [
+      "cypress"
+    ]
   },
   "include": [
     "types/**/*.d.ts",
@@ -50,7 +60,6 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "cypress"
+    "node_modules"
   ]
 }

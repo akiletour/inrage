@@ -11,6 +11,7 @@ type Props = {
     name: string;
   };
   xl?: boolean;
+  isPrivate?: boolean;
 };
 
 export default function ProjectItem({
@@ -19,19 +20,29 @@ export default function ProjectItem({
   title,
   support,
   xl = false,
+  isPrivate = false,
 }: Props) {
   return (
     <Link href={`/portfolio/${support ? `${support.slug}/` : ''}${slug}`}>
-      <a className="group text-center">
-        <div className="md:group-hover:scale-110 transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
+      <a className="project-item group text-center">
+        <div className="md:group-hover:scale-110 relative transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
           <Image
             src={image}
             width={xl ? 343 : 257}
             height={xl ? 533 : 400}
             alt={title}
           />
+          {isPrivate && (
+            <div className="absolute inset-0 bg-gray-dark opacity-50 z-50 flex items-center justify-center">
+              <div className="text-white text-center text-2xl">Private</div>
+            </div>
+          )}
         </div>
-        <div className="text-white text-base leading-5 sm:text-2xl">
+        <div
+          className={`${
+            isPrivate === false ? 'text-white' : 'text-[red]'
+          } text-base leading-5 sm:text-2xl`}
+        >
           {title}
         </div>
         {support && (
