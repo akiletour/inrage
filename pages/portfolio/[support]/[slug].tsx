@@ -173,6 +173,14 @@ export const getStaticProps = async ({
   preview?: boolean;
 }) => {
   const { projet, projets } = await getSingleProject(params.slug, preview);
+  if (!projet) {
+    return {
+      props: {
+        post: null,
+        similarProjects: [],
+      },
+    };
+  }
   return {
     props: {
       post: projet,
