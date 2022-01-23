@@ -9,6 +9,7 @@ import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
+import Custom404 from 'pages/404';
 
 type Props = {
   post: {
@@ -52,7 +53,7 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
   const router = useRouter();
 
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
+    return <Custom404 />;
   }
 
   return (
