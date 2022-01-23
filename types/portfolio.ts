@@ -3,6 +3,7 @@ export type ProjectItemType = {
     id: number;
     title: string;
     slug: string;
+    status: 'private' | 'publish';
     featuredImage: {
       node: {
         sourceUrl: string;

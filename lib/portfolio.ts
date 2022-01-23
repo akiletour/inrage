@@ -7,6 +7,7 @@ export const ProjectListItemLayout = `node {
   id
   title
   slug 
+  status
   featuredImage {
     node {
       sourceUrl
