@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
@@ -49,6 +50,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "next-sitemap": "^2.0.2",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "start-server-and-test": "^1.14.0",
