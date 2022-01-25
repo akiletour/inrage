@@ -15,9 +15,6 @@ type FormData = {
   phone: string;
 };
 
-export const inputClassname =
-  'border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent';
-
 export default function ContactForm({ lg = false }: Props) {
   const {
     register,
@@ -63,7 +60,7 @@ export default function ContactForm({ lg = false }: Props) {
         <div className="relative order-1">
           <input
             tabIndex={1}
-            className={`${inputClassname} ${
+            className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
             placeholder="Prénom NOM"
@@ -84,7 +81,7 @@ export default function ContactForm({ lg = false }: Props) {
         >
           <textarea
             tabIndex={4}
-            className={`${inputClassname} min-h-[200px] h-full ${
+            className={`input-field min-h-[200px] h-full ${
               errors.content ? 'border-red' : 'border-gray'
             }`}
             placeholder="Laissez-moi un petit message"
@@ -100,7 +97,7 @@ export default function ContactForm({ lg = false }: Props) {
         <div className="relative order-3">
           <input
             tabIndex={2}
-            className={`${inputClassname} ${
+            className={`input-field ${
               errors.email ? 'border-red' : 'border-gray'
             }`}
             placeholder="Votre adresse e-mail"
@@ -117,7 +114,7 @@ export default function ContactForm({ lg = false }: Props) {
         <div className="relative order-4">
           <input
             tabIndex={3}
-            className={`${inputClassname} ${
+            className={`input-field ${
               errors.phone ? 'border-red' : 'border-gray'
             }`}
             placeholder="Numéro de téléphone"
