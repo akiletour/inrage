@@ -6,7 +6,23 @@ export default async function handler(
 ) {
   const { email, name, content, phone } = req.body;
 
-  return fetch(process.env.SLACK_WEBHOOK_URL as string, {
+  if (!email || !name || !content || !phone) {
+    res.status(400).json({
+      status: 'error',
+      message: 'Please fill all the fields',
+    });
+    return;
+  }
+
+  if (!process.env.SLACK_WEBHOOK_URL) {
+    res.status(500).json({
+      status: 'error',
+      message: 'Slack webhook url is not defined',
+    });
+    return;
+  }
+
+  fetch(process.env.SLACK_WEBHOOK_URL as string, {
     method: 'POST',
     body: JSON.stringify({
       blocks: [
@@ -56,9 +72,9 @@ export default async function handler(
         },
       ],
     }),
-  }).then(() => {
-    res.status(200).json({
-      message: 'Success',
-    });
+  });
+
+  res.status(200).json({
+    message: 'Success',
   });
 }
