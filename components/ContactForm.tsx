@@ -30,14 +30,6 @@ export default function ContactForm({ lg = false }: Props) {
   const onSubmit = (data: FormData) => {
     setLoading(true);
     setSuccess(false);
-    fetch('/api/hello-slack', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
 
     fetch('/api/hello', {
       method: 'POST',
@@ -52,6 +44,13 @@ export default function ContactForm({ lg = false }: Props) {
         setLoading(false);
         setSuccess(true);
         reset();
+        fetch('/api/hello-slack', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
       });
   };
 
