@@ -3,7 +3,6 @@ import { useReducer } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from '@component/Button';
-import { inputClassname } from '@component/ContactForm';
 
 type FormData = {
   name: string;
@@ -102,7 +101,7 @@ export default function CommentForm({
         {formState.error && <p>{formState.error}</p>}
         <div className="relative">
           <input
-            className={`${inputClassname} ${
+            className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
             placeholder="Votre nom"
@@ -118,7 +117,7 @@ export default function CommentForm({
 
         <div className="relative mt-3">
           <input
-            className={`${inputClassname} ${
+            className={`input-field ${
               errors.email ? 'border-red' : 'border-gray'
             }`}
             placeholder="Votre adresse e-mail"
@@ -134,7 +133,7 @@ export default function CommentForm({
 
         <div className="relative mt-3">
           <textarea
-            className={`${inputClassname} min-h-[200px] h-full ${
+            className={`input-field min-h-[200px] h-full ${
               errors.content ? 'border-red' : 'border-gray'
             }`}
             {...register('content', { required: true })}
