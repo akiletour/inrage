@@ -5,7 +5,7 @@ template: |
   $CHANGES
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
-tag-template: '$NEXT_MINOR_VERSION'
+
 categories:
   - title: '🚀 Features'
     labels:
@@ -21,6 +21,7 @@ categories:
     label: 'documentation'
   - title: '🧰 Maintenance'
     label: 'chore'
+
 autolabeler:
   - label: 'bug'
     branch:
