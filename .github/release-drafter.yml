@@ -8,13 +8,13 @@ template: |
 tag-template: '$NEXT_MINOR_VERSION'
 categories:
   - title: '🚀 Features'
-    labels: 
+    labels:
       - 'feature'
       - 'feat'
   - title: '✅ Enhancements'
     label: 'enhancement'
   - title: '🐛 Bug Fixes'
-    labels: 
+    labels:
       - 'bug'
       - 'fix'
   - title: '📕 Documentation'
