@@ -2,7 +2,7 @@
 
 [![Last commit](https://img.shields.io/github/last-commit/inrage/inrage)](https://github.com/inrage/inrage/commits/main)
 ![Stars](https://img.shields.io/github/stars/inrage/inrage?label=%E2%AD%90%20Stars)
-![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)
+[![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)](https://github.com/Akiletour)
 
 
 Initially developed under WordPress, I decided to refactor the whole project under React with the support of Next JS.
@@ -16,6 +16,7 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 ## 📦 Stack
 - `TypeScript`: v4.5
 - `NextJS`: v12.x
+- `Node`: v16+
 - `WordPress`: v5.8+
 - `Framer Motion`: for animations between page transitions
 - `Akismet`: to check spam in the contact form
@@ -34,7 +35,7 @@ You can now access to the project with : http://localhost:3000
 
 ## 🔧 Configuration 
 
-In order to run correctly this project, you must define some environment variables.
+In order to run correctly this project, you must define some environment variables `.env.local`.
 
 - `AKISMET_API_KEY`: Your Akismet API Key to check spam
 - `MJ_APIKEY_PUBLIC`: Your API Mailjet username 
@@ -49,6 +50,7 @@ In order to run correctly this project, you must define some environment variabl
 in this part, we will configure the WordPress part to ensure the communication with Next JS
 
 ## WPGraphQL plugin
+
 Once the site is ready, you'll need to install the [WPGraphQL plugin](https://github.com/wp-graphql/wp-graphql). It will add GraphQL API to your WordPress site, which we'll use to query the posts. Follow these steps to install it:
 
 Download the WPGraphQL repo as a ZIP archive.
