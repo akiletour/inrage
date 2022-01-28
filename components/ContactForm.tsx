@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import Button from './Button';
+import { useFormState } from '@hook/useFormState';
 
-type Props = {
-  lg?: boolean;
-};
+import Button from './Button';
 
 type FormData = {
   name: string;
@@ -15,18 +13,16 @@ type FormData = {
   phone: string;
 };
 
-export default function ContactForm({ lg = false }: Props) {
+export default function ContactForm({ lg = false }: { lg?: boolean }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<FormData>();
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const { state, submit, success } = useFormState();
   const onSubmit = (data: FormData) => {
-    setLoading(true);
-    setSuccess(false);
+    submit();
 
     fetch('/api/hello', {
       method: 'POST',
@@ -38,8 +34,7 @@ export default function ContactForm({ lg = false }: Props) {
     })
       .then((r) => r.json())
       .then(() => {
-        setLoading(false);
-        setSuccess(true);
+        success();
         reset();
         fetch('/api/hello-slack', {
           method: 'POST',
@@ -52,11 +47,8 @@ export default function ContactForm({ lg = false }: Props) {
   };
 
   return (
-    <form
-      className={lg === false ? 'my-4' : ''}
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div className={`grid gap-3 ${lg === false && 'md:grid-cols-2'}`}>
+    <form className={!lg ? 'my-4' : ''} onSubmit={handleSubmit(onSubmit)}>
+      <div className={`grid gap-3 ${!lg && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
             tabIndex={1}
@@ -75,9 +67,7 @@ export default function ContactForm({ lg = false }: Props) {
         </div>
 
         <div
-          className={`md:row-span-3 order-10 ${
-            lg === false && 'md:order-2'
-          } relative`}
+          className={`md:row-span-3 order-10 ${!lg && 'md:order-2'} relative`}
         >
           <textarea
             tabIndex={4}
@@ -130,7 +120,7 @@ export default function ContactForm({ lg = false }: Props) {
       </div>
 
       <div className="mt-3 flex flex-col md:flex-row items-center justify-center md:justify-end">
-        {success && (
+        {state.success && (
           <div className="md:mr-4 flex-1 text-center mb-2 md:mb-0 md:text-right text-[#27ae60]">
             <span className="font-bold underline">Merci !</span> Je vous
             répondrai très prochainement dès que j’aurai pris connaissance de
@@ -139,7 +129,7 @@ export default function ContactForm({ lg = false }: Props) {
         )}
         <Button
           submit
-          isLoading={loading}
+          isLoading={state.loading}
           className="button py-3 px-4 w-full md:w-auto"
         >
           Envoyer mon message

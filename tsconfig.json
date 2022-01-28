@@ -36,6 +36,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@hook/*": [
+        "hooks/*"
+      ],
       "@type/*": [
         "types/*"
       ],
