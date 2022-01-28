@@ -1,7 +1,10 @@
 name: Build & Release draft
 
 on:
-  push: ~
+  push: 
+    branches:
+      - main
+      - dev
   pull_request:
     types: [opened, reopened, synchronize]
   pull_request_target:
