@@ -13,7 +13,7 @@ type FormData = {
   phone: string;
 };
 
-export default function ContactForm({ lg = false }: { lg: boolean }) {
+export default function ContactForm({ lg = false }: { lg?: boolean }) {
   const {
     register,
     handleSubmit,
