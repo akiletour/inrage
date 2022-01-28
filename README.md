@@ -5,9 +5,9 @@
 [![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)](https://github.com/Akiletour)
 
 
-Initially developed under WordPress, I decided to refactor the whole project under React with the support of Next JS.
+Initially developed with WordPress, I decided to refactor the whole project with Next JS.
 
-To retrieve projects (portfolio) and blog posts, I use the WordPress API with [GraphQL](https://fr.wordpress.org/plugins/wp-graphql/).
+To retrieve all projects (portfolio) and blog posts, I've used the WordPress API with [GraphQL](https://fr.wordpress.org/plugins/wp-graphql/).
 
 Since the project part has ACF custom fields. I use a second [GraphQL extension](https://www.wpgraphql.com/acf/) to manage them
 
@@ -35,7 +35,7 @@ You can now access to the project with : http://localhost:3000
 
 ## 🔧 Configuration 
 
-In order to run correctly this project, you must define some environment variables `.env.local`.
+In order to correctly run this project, you must create an environment variables named `.env.local`.
 
 - `AKISMET_API_KEY`: Your Akismet API Key to check spam
 - `MJ_APIKEY_PUBLIC`: Your API Mailjet username 
