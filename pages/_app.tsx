@@ -23,6 +23,15 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           locale: 'fr_FR',
           url: 'https://www.inrage.fr/',
           site_name: 'inRage',
+          images: [
+            {
+              url: 'https://www.inrage.fr/images/screenshot.png',
+              width: 1200,
+              height: 900,
+              alt: 'inRage',
+              type: 'image/png',
+            },
+          ],
         }}
         twitter={{
           handle: '@akiletour',
