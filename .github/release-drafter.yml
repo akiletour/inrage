@@ -32,3 +32,9 @@ autolabeler:
     branch:
       - '/feature\/.+/'
       - '/feat\/.+/'
+  - label: 'chore'
+    title:
+      - '/chore/i'
+  - label: 'documentation'
+    title:
+      - '/doc/i'
