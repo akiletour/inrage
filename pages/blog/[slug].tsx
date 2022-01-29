@@ -22,6 +22,7 @@ type BlogFullArticleType = {
     canonical: string;
   };
 };
+import { RouteLink } from '@lib/route';
 
 type BlogType = {
   post: BlogFullArticleType;
@@ -92,7 +93,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
       breadcrumb: [
         {
           title: 'Blog',
-          link: '/blog',
+          link: RouteLink.blog,
         },
       ],
     },

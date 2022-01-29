@@ -11,6 +11,7 @@ import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
 import { PageHeaderStaticProps } from '@type/header';
+import RouteLink from '@lib/route';
 
 type EntriesType = Array<{
   id: number;
@@ -232,7 +233,7 @@ export async function getStaticProps(): Promise<
       headerType: 'tma',
       breadcrumb: [
         {
-          link: '/prestations',
+          link: RouteLink.prestationTma,
           title: 'Prestations sous WordPress, Prestashop et Symfony',
         },
       ],

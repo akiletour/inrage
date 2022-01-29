@@ -335,11 +335,11 @@ export const getStaticProps: GetStaticProps =
         pageTitle: 'Création de site Prestashop',
         breadcrumb: [
           {
-            link: '/prestations',
+            link: RouteLink.prestations,
             title: 'Prestations sous WordPress, Prestashop et Symfony',
           },
           {
-            link: '/prestations/creation-site-web',
+            link: RouteLink.prestationWeb,
             title: 'Création de site internet',
           },
         ],

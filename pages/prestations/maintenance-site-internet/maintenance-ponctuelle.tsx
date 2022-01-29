@@ -12,6 +12,7 @@ import PrestationWebDev from '@image/prestations/developpement_site_web.png';
 import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
 import { PageHeaderStaticProps } from '@type/header';
+import RouteLink from '@lib/route';
 
 export default function TmaOnDemand() {
   return (
@@ -163,11 +164,11 @@ export async function getStaticProps(): Promise<PageHeaderStaticProps> {
       pageTitle: 'Maintenance ponctuelle',
       breadcrumb: [
         {
-          link: '/prestations',
+          link: RouteLink.prestations,
           title: 'Prestations sous WordPress, Prestashop et Symfony',
         },
         {
-          link: '/maintenance-site-internet',
+          link: RouteLink.prestationTma,
           title: 'Maintenance de site web',
         },
       ],

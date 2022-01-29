@@ -385,11 +385,11 @@ export const getStaticProps: GetStaticProps =
         pageTitle: 'Symfony',
         breadcrumb: [
           {
-            link: '/prestations',
+            link: RouteLink.prestations,
             title: 'Prestations sous WordPress, Prestashop et Symfony',
           },
           {
-            link: '/prestations/creation-site-web',
+            link: RouteLink.prestationWeb,
             title: 'Création de site internet',
           },
         ],

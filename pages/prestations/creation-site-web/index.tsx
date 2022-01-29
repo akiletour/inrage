@@ -304,7 +304,7 @@ export async function getStaticProps(): Promise<PageHeaderStaticProps> {
       pageTitle: 'Création de site internet',
       breadcrumb: [
         {
-          link: '/prestations',
+          link: RouteLink.prestations,
           title: 'Prestations sous WordPress, Prestashop et Symfony',
         },
       ],

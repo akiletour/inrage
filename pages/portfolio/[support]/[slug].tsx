@@ -9,6 +9,7 @@ import SectionTitle from '@component/SectionTitle';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
 import { ProjectItemType } from '@type/portfolio';
 import Custom404 from 'pages/404';
+import RouteLink from '@lib/route';
 
 type Props = {
   post: {
@@ -199,11 +200,11 @@ export const getStaticProps = async ({
         .slice(0, 4),
       breadcrumb: [
         {
-          link: '/portfolio',
+          link: RouteLink.portfolio,
           title: 'Portfolio',
         },
         {
-          link: `/portfolio/${projet.supports.edges[0].node.slug}`,
+          link: `${RouteLink.portfolio}/${projet.supports.edges[0].node.slug}`,
           title: projet.supports.edges[0].node.name,
         },
       ],
