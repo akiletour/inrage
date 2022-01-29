@@ -8,8 +8,8 @@ import ArticleItem from '@component/items/ArticleItem';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import { getAllArticlesWithSlug, getSingleArticle } from '@lib/blog';
-import { BlogItem, BlogFullArticleType } from '@type/blog';
 import { RouteLink } from '@lib/route';
+import { BlogItem, BlogFullArticleType } from '@type/blog';
 
 type BlogType = {
   post: BlogFullArticleType;

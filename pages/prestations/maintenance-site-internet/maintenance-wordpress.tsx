@@ -10,8 +10,8 @@ import TableHeader from '@component/tma/TableHeader';
 import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
+import { RouteLink } from '@lib/route';
 import { PageHeaderStaticProps } from '@type/header';
-import RouteLink from '@lib/route';
 
 type EntriesType = Array<{
   id: number;

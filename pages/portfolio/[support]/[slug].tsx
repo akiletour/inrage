@@ -7,9 +7,9 @@ import ProjectItem from '@component/items/ProjectItem';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import { getAllProjectsWithSlug, getSingleProject } from '@lib/portfolio';
+import { RouteLink } from '@lib/route';
 import { ProjectItemType } from '@type/portfolio';
 import Custom404 from 'pages/404';
-import RouteLink from '@lib/route';
 
 type Props = {
   post: {
