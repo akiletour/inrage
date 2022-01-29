@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '@component/layouts/Layout';
 import PortfolioLayout from '@component/portfolio/PortfolioLayout';
 import { getAllSupportsWithSlug, getSingleSupport } from '@lib/portfolio';
+import { RouteLink } from '@lib/route';
 import { ProjectItemType, SupportType } from '@type/portfolio';
 
 type Props = {
@@ -57,7 +58,7 @@ export const getStaticProps = async ({
       pageTitle: data.support.name,
       breadcrumb: [
         {
-          link: '/portfolio',
+          link: RouteLink.portfolio,
           title: 'Portfolio',
         },
       ],
@@ -77,7 +78,7 @@ export async function getStaticPaths() {
   return {
     paths:
       allPosts.edges.map(
-        ({ node }: StaticProps) => `/portfolio/${node.slug}`
+        ({ node }: StaticProps) => `${RouteLink.portfolio}/${node.slug}`
       ) || [],
     fallback: true,
   };
