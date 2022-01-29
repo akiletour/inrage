@@ -8,20 +8,7 @@ import ArticleItem from '@component/items/ArticleItem';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
 import { getAllArticlesWithSlug, getSingleArticle } from '@lib/blog';
-import { BlogItem } from '@type/blog';
-
-type BlogFullArticleType = {
-  id: string;
-  postId: number;
-  title: string;
-  slug: string;
-  content: string;
-  seo: {
-    title: string;
-    metaDesc: string;
-    canonical: string;
-  };
-};
+import { BlogItem, BlogFullArticleType } from '@type/blog';
 import { RouteLink } from '@lib/route';
 
 type BlogType = {
