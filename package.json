@@ -16,7 +16,7 @@
     "akismet-api": "^5.2.1",
     "framer-motion": "^5.5.5",
     "moment": "^2.29.1",
-    "next": "12.0.9",
+    "next": "12.0.10",
     "next-seo": "^4.28.1",
     "prismjs": "^1.26.0",
     "prop-types": "^15.7.2",
