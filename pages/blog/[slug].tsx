@@ -44,7 +44,7 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
           content="Retrouvez ci-dessous quelques articles qui pourrait vous intéresser."
           title="Articles reliés"
         />
-        <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+        <div className="grid md:grid-cols-2 gap-4 mt-6">
           {relatedArticles.map(
             ({ node: { slug, title, featuredImage, excerpt, date } }) => (
               <div key={slug}>
