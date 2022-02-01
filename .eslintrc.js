@@ -13,7 +13,6 @@ module.exports = {
     ],
   },
   overrides: [
-    // Configuration for TypeScript files
     {
       files: ['**/*.ts', '**/*.tsx'],
       plugins: ['@typescript-eslint', 'unused-imports', 'cypress'],
@@ -32,10 +31,10 @@ module.exports = {
             singleQuote: true,
           },
         ],
-        'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
-        'jsx-a11y/anchor-is-valid': 'off', // Next.js use his own internal link system
-        'react/require-default-props': 'off', // Allow non-defined react props as undefined
-        'react/jsx-props-no-spreading': 'off', // _app.tsx uses spread operator and also, react-hook-form
+        'react/destructuring-assignment': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        'react/require-default-props': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'import/order': [
           'error',
           {
@@ -55,9 +54,9 @@ module.exports = {
             },
           },
         ],
-        '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
-        'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
-        'class-methods-use-this': 'off', // _document.tsx use render method without `this` keyword
+        '@typescript-eslint/comma-dangle': 'off',
+        'import/prefer-default-export': 'off',
+        'class-methods-use-this': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],

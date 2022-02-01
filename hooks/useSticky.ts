@@ -11,7 +11,8 @@ export default function useSticky<T extends HTMLElement>() {
     // Observe when ref enters or leaves sticky state
     function observe() {
       if (!stickyRef.current) return;
-      const stickyActive = stickyRef.current.getBoundingClientRect().bottom <= 0;
+      const stickyActive =
+        stickyRef.current.getBoundingClientRect().bottom <= 0;
 
       if (stickyActive && !sticky) setSticky(true);
       else if (!stickyActive && sticky) setSticky(false);

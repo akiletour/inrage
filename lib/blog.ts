@@ -50,8 +50,7 @@ export async function getSingleArticle(slug: string) {
          ${ArticleListItemLayout}
        }
      }
-   }
-   `,
+   }`,
     {
       variables: {
         id: slug,
