@@ -44,7 +44,7 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
           content="Retrouvez ci-dessous quelques articles qui pourrait vous intéresser."
           title="Articles reliés"
         />
-        <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+        <div className="grid md:grid-cols-2 gap-4 mt-6">
           {relatedArticles.map(
             ({ node: { slug, title, featuredImage, excerpt, date } }) => (
               <div key={slug}>
@@ -67,16 +67,16 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { post, posts } = await getSingleArticle(params.slug);
 
-  const firstArticle =
-    posts.edges[Math.floor(Math.random() * posts.edges.length)];
-  const secondArticle =
-    posts.edges[Math.floor(Math.random() * posts.edges.length)];
+  const shuffled = posts.edges
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   return {
     props: {
       pageTitle: post.title,
       post,
-      relatedArticles: [firstArticle, secondArticle],
+      relatedArticles: shuffled.slice(0, 2),
       breadcrumb: [
         {
           title: 'Blog',

@@ -1,4 +1,5 @@
 import fetchAPI, { SlugListGraphql } from '@lib/api';
+import { BlogFullArticleType, BlogPostType } from '@type/blog';
 
 export const ArticleListItemLayout = `node {
   title
@@ -22,7 +23,9 @@ export async function getAllArticlesWithSlug() {
   return data?.posts;
 }
 
-export async function getSingleArticle(slug: string) {
+export async function getSingleArticle(
+  slug: string
+): Promise<{ post: BlogFullArticleType; posts: { edges: BlogPostType[] } }> {
   const data = await fetchAPI(
     `
    query getSingleArticle($id: ID!) {
