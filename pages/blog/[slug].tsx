@@ -67,16 +67,16 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { post, posts } = await getSingleArticle(params.slug);
 
-  const firstArticle =
-    posts.edges[Math.floor(Math.random() * posts.edges.length)];
-  const secondArticle =
-    posts.edges[Math.floor(Math.random() * posts.edges.length)];
+  const shuffled = posts.edges
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
   return {
     props: {
       pageTitle: post.title,
       post,
-      relatedArticles: [firstArticle, secondArticle],
+      relatedArticles: shuffled.slice(0, 2),
       breadcrumb: [
         {
           title: 'Blog',
