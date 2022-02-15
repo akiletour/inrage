@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
 import PostBody from '@component/blog/PostBody';
