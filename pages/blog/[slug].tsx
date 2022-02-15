@@ -10,6 +10,7 @@ import SectionTitle from '@component/SectionTitle';
 import { getAllArticlesWithSlug, getSingleArticle } from '@lib/blog';
 import { RouteLink } from '@lib/route';
 import { BlogItem, BlogFullArticleType } from '@type/blog';
+import Custom404 from 'pages/404';
 
 type BlogType = {
   post: BlogFullArticleType;
@@ -20,7 +21,7 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
   const router = useRouter();
 
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
+    return <Custom404 />;
   }
 
   if (router.isFallback) {
@@ -66,6 +67,12 @@ export default function BlogDetail({ post, relatedArticles }: BlogType) {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { post, posts } = await getSingleArticle(params.slug);
+
+  if (!post) {
+    return {
+      props: {},
+    };
+  }
 
   const shuffled = posts.edges
     .map((value) => ({ value, sort: Math.random() }))
