@@ -20,7 +20,9 @@ categories:
   - title: '📕 Documentation'
     label: 'documentation'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    label:
+      - 'chore'
+      - 'test'
 
 autolabeler:
   - label: 'bug'
