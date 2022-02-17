@@ -1,11 +1,11 @@
 name: Jest
 
-on: [deployment_status]
+on: [deployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_status]
 
 jobs:
   jest:
     if: github.event.deployment_status.state == 'success'
-    runs-one: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v2
