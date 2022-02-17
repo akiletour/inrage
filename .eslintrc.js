@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    jest: true,
+  },
   extends: [
     'airbnb-base',
     'next/core-web-vitals',
@@ -12,10 +15,11 @@ module.exports = {
       },
     ],
   },
+  plugins: ['testing-library'],
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
-      plugins: ['@typescript-eslint', 'unused-imports', 'cypress'],
+      plugins: ['@typescript-eslint', 'unused-imports'],
       extends: [
         'airbnb-typescript',
         'next/core-web-vitals',
@@ -61,6 +65,10 @@ module.exports = {
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       },
+    },
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
     },
   ],
 };
