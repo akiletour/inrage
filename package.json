@@ -9,7 +9,8 @@
     "lint": "next lint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "cypress:open": "cypress open",
-    "test": "start-server-and-test dev 3000 cypress:open"
+    "cypress": "start-server-and-test dev 3000 cypress:open",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@types/prismjs": "^1.16.6",
@@ -31,6 +32,9 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.9",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/react": "^17.0.38",
     "@types/request-ip": "^0.0.37",
     "@types/sanitize-html": "^2.6.1",
@@ -49,7 +53,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-testing-library": "^5.0.5",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^27.5.1",
     "next-sitemap": "^2.0.2",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
