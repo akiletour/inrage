@@ -1,6 +1,6 @@
 name: Jest
 
-on: [deployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_statusdeployment_status]
+on: [deployment_status]
 
 jobs:
   jest:
