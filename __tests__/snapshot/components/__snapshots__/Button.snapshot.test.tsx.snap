@@ -63,7 +63,7 @@ exports[`renders Button loading unchanged 1`] = `
         </circle>
       </svg>
     </div>
-    Hello Button
+    Hello
   </button>
 </div>
 `;
