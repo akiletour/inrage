@@ -10,6 +10,7 @@ const customJestConfig = {
   testRegex: '(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$',
   moduleNameMapper: {
     '^@/hook/(.*)$': '<rootDir>/hooks/$1',
+    '^@/component/(.*)$': '<rootDir>/components/$1',
   },
 };
 
