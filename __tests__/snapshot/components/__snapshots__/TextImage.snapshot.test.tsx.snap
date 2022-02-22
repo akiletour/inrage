@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TextImage unchanged 1`] = `
+<div>
+  <div
+    class="md:flex-row flex flex-col md:items-center mt-6"
+  >
+    <div
+      class="md:w-2/5"
+    />
+    <div
+      class="md:w-3/5 md:pl-4"
+    >
+      <h3
+        class="md:text-left text-white text-2xl mt-2 md:mt-0 md:text-4xl font-bold mb-2 md:mb-3"
+      >
+        Hello
+      </h3>
+      World
+    </div>
+  </div>
+</div>
+`;
