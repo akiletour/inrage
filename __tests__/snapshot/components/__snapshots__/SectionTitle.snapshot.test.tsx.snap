@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders SectionTitle unchanged 1`] = `
+<div>
+  <div
+    class="flex md:items-center flex-col md:flex-row "
+  >
+    <h2
+      class="false text-white flex-none text-3xl font-bold max-w-[390px]"
+    >
+      Hello
+    </h2>
+    <p
+      class="mt-2 md:mt-0 text-gray-light flex-1 flex items-center"
+    >
+      <span
+        class="hidden md:block w-[2px] h-[120px] mx-8 bg-gray flex-none -skew-x-[30deg]"
+      />
+      World
+    </p>
+  </div>
+</div>
+`;
