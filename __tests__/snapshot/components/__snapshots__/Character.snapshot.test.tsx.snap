@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Character unchanged 1`] = `
+<div>
+  <div>
+    <div
+      class="newcharacter404"
+    >
+      <div
+        class="words"
+      >
+        <div
+          class="word"
+        >
+          &lt;?php
+        </div>
+        <div
+          class="word"
+        >
+          &lt;div&gt;
+        </div>
+      </div>
+      <div
+        class="words"
+      >
+        <div
+          class="word-right"
+        >
+          &lt;html&gt;
+        </div>
+        <div
+          class="word-right"
+        >
+          body
+        </div>
+      </div>
+      <div
+        class="chair404"
+      />
+      <div
+        class="leftshoe404"
+      />
+      <div
+        class="rightshoe404"
+      />
+      <div
+        class="legs404"
+      />
+      <div
+        class="torso404"
+      >
+        <div
+          class="body404"
+        />
+        <div
+          class="leftarm404"
+        />
+        <div
+          class="rightarm404"
+        />
+        <div
+          class="head404"
+        >
+          <div
+            class="eyes404"
+          />
+        </div>
+      </div>
+      <div
+        class="laptop404"
+      />
+    </div>
+  </div>
+</div>
+`;
