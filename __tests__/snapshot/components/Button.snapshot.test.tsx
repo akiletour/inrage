@@ -8,7 +8,7 @@ it('renders Button unchanged', () => {
 });
 
 it('renders Button loading unchanged', () => {
-  const { container } = render(<Button isLoading>Hello Button</Button>);
+  const { container } = render(<Button isLoading>Hello</Button>);
   expect(container).toMatchSnapshot();
 });
 
