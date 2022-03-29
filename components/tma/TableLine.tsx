@@ -15,7 +15,7 @@ export default function TableLine({ title, content, values }: Props) {
       {values.map((value, idx) => (
         // eslint-disable-next-line react/no-array-index-key
         <div
-          className="lg:w-25 flex-1 md:flex-none flex-col text-center text-white text-lg leading-6 lg:flex-none flex items-center justify-center"
+          className="lg:w-25 flex-1 lg:flex-none flex-col text-center text-white text-lg leading-6 flex items-center justify-center"
           key={idx}
         >
           {typeof value === 'string' ? (
