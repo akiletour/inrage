@@ -102,9 +102,9 @@ export default function WebsiteTMA() {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row relative container mt-6">
-        <div className="block overflow-hidden md:absolute lg:right-[60%]">
-          <div className="md:w-[945px] md:h-[666px] relative">
+      <div className="flex flex-col lg:flex-row relative container mt-6">
+        <div className="block overflow-hidden lg:absolute lg:right-[60%]">
+          <div className="lg:w-[945px] lg:h-[666px] relative">
             <Image
               className="max-h-[666px]"
               src="/images/tma-example.png"
