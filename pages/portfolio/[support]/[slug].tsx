@@ -186,16 +186,21 @@ export const getStaticProps = async ({
       post: projet,
       pageTitle: projet.title,
       similarProjects: projets.edges
-        .filter((r: { node: { supports: { edges: ProjectItemType[] } } }) => {
-          if (r?.node?.supports?.edges[0]) {
-            return (
-              r.node.supports.edges[0].node.slug ===
-              projet.supports.edges[0].node.slug
-            );
-          }
+        .filter(
+          (r: {
+            node: { slug: string; supports: { edges: ProjectItemType[] } };
+          }) => {
+            if (r?.node?.supports?.edges[0]) {
+              return (
+                r.node.supports.edges[0].node.slug ===
+                  projet.supports.edges[0].node.slug &&
+                projet.slug !== r.node.slug
+              );
+            }
 
-          return false;
-        })
+            return false;
+          }
+        )
         .sort(() => 0.5 - Math.random())
         .slice(0, 4),
       breadcrumb: [
