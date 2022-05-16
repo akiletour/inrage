@@ -54,7 +54,8 @@
     },
     "types": [
       "jest",
-      "cypress",
+      "node",
+      "@types/testing-library__jest-dom"
     ]
   },
   "include": [

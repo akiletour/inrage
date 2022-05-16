@@ -1,7 +1,4 @@
 module.exports = {
-  env: {
-    jest: true,
-  },
   extends: [
     'airbnb-base',
     'next/core-web-vitals',
@@ -18,16 +15,18 @@ module.exports = {
   plugins: ['testing-library'],
   overrides: [
     {
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
       files: ['**/*.ts', '**/*.tsx'],
       plugins: ['@typescript-eslint', 'unused-imports'],
       extends: [
         'airbnb-typescript',
         'next/core-web-vitals',
+        'plugin:jest-dom/recommended',
         'plugin:prettier/recommended',
       ],
-      parserOptions: {
-        project: './tsconfig.json',
-      },
       rules: {
         'prettier/prettier': [
           'error',

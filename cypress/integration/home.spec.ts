@@ -12,6 +12,6 @@ context('Home Page', () => {
   });
 
   checkEmptyLinks();
-});
+})
 
 export {};
