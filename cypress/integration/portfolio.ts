@@ -33,15 +33,19 @@ context('Private Portfolio list page', () => {
 
 context('Public project detail', () => {
   it('should not access to a private project', () => {
-    cy.visit('/portfolio/wordpress/centre-auditif-audilab');
+    cy.visit(
+      '/portfolio/wordpress/centre-auditif-audilab'
+    );
     cy.get('body').should('not.contain', 'Audilab').should('contain', '404');
   });
 
   it('should access to the private project', () => {
     cy.visit('/api/preview?secret=secret_preview');
 
+    cy.visit(
+      '/portfolio/wordpress/centre-auditif-audilab'
+    );
     cy.get('body')
-    cy.visit('/portfolio/wordpress/centre-auditif-audilab');
       .should('contain', 'Centre auditif Audilab')
       .should('not.contain', '404');
   });
