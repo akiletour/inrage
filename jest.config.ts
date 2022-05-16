@@ -1,4 +1,4 @@
-const nextJest = require('next/jest');
+import nextJest from 'next/jest';
 
 const createJestConfig = nextJest({
   dir: './',
@@ -6,6 +6,7 @@ const createJestConfig = nextJest({
 
 const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom'],
   testEnvironment: 'jest-environment-jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$',
   moduleNameMapper: {
@@ -13,6 +14,7 @@ const customJestConfig = {
     '^@component/(.*)$': '<rootDir>/components/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
   },
+  modulePathIgnorePatterns: ['cypress'],
 };
 
 module.exports = createJestConfig(customJestConfig);

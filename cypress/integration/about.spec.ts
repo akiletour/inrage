@@ -1,6 +1,6 @@
-import { checkEmptyLinks } from '../support/commands';
-
 /// <reference types="cypress"/>
+
+import { checkEmptyLinks } from '../support/commands';
 
 context('About page', () => {
   beforeEach(() => {
@@ -14,4 +14,5 @@ context('About page', () => {
   checkEmptyLinks();
 });
 
-export {};
+const asModule = {}
+export default asModule

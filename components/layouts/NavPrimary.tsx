@@ -84,11 +84,11 @@ export default function NavPrimary({ isSticky = false }: Props) {
   return (
     <div className="h-11 relative z-50">
       <div
-        className={
+        className={`sticky-menu ${
           isSticky
             ? 'fixed top-0 left-0 right-0 bg-gray-darker transition-all'
             : ''
-        }
+        }`}
       >
         <div className="container flex items-center justify-between py-2">
           <Link href="/">
@@ -105,7 +105,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
           <button
             onClick={toggleNavPrimary}
             type="button"
-            className="block lg:hidden bg-orange text-white p-1 rounded-md"
+            className="burger-menu block lg:hidden bg-orange text-white p-1 rounded-md"
           >
             <svg
               className="w-4 h-4"
@@ -121,7 +121,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
           </button>
 
           <div
-            className={`${
+            className={`nav-menu ${
               width < 1025 && isOpen
                 ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-2 text-center flex-col absolute top-full left-0 w-full'
                 : 'hidden relative space-x-3'
