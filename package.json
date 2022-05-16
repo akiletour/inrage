@@ -18,7 +18,7 @@
     "akismet-api": "^5.2.1",
     "eslint-plugin-jest-dom": "^4.0.1",
     "framer-motion": "^5.5.5",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "next": "^12.1.0",
     "next-seo": "^4.28.1",
     "prismjs": "^1.27.0",
