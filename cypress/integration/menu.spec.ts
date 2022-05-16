@@ -1,6 +1,6 @@
 context('Menu', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
   });
 
   it('should display the sticky header after X pixels', () => {
