@@ -65,3 +65,11 @@ body {
 .input-field {
   @apply border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent;
 }
+
+.has-background {
+  @apply py-1 px-2;
+}
+
+.has-white-color {
+  @apply text-white;
+}
