@@ -1,6 +1,6 @@
-import { checkEmptyLinks } from '../support/commands';
-
 /// <reference types="cypress"/>
+
+import { checkEmptyLinks } from '../support/commands';
 
 context('Home Page', () => {
   beforeEach(() => {

@@ -16,7 +16,7 @@ export default async function handler(
     if (!isKeyValid) {
       throw Error('Not a valid key');
     }
-  } catch (err: any) {
+  } catch {
     res.status(500).end();
   }
 
@@ -28,7 +28,7 @@ export default async function handler(
     if (isCommentSpam !== 200) {
       throw Error('Not a valid message');
     }
-  } catch (err: any) {
+  } catch {
     res.status(400).end();
   }
 

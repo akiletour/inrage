@@ -1,3 +1,5 @@
+/// <reference types="cypress"/>
+
 context('Menu', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');

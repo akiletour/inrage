@@ -46,7 +46,7 @@ export default function CommentForm({
         success();
         reset();
       })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         error(err.message);
       });
   };

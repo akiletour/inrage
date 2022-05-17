@@ -64,7 +64,7 @@ export async function getSingleArticle(
   return data;
 }
 
-export async function BlogPosts(max: number = 1000) {
+export async function BlogPosts(max = 1000) {
   const data = await fetchAPI(
     `
     query MyQuery($max: Int = 1000) {

@@ -19,7 +19,7 @@ export default async function handler(
     if (!submitComment) {
       throw Error('Error submitting comment');
     }
-  } catch (err: any) {
+  } catch {
     res.status(500).end();
   }
 
