@@ -4,6 +4,7 @@ import Image from 'next/image';
 import ContactForm from '@component/ContactForm';
 import Diagonal from '@component/layouts/Diagonal';
 import Layout from '@component/layouts/Layout';
+import NoScrollLink from '@component/NoScrollLink';
 import SectionTitle from '@component/SectionTitle';
 import TextImage from '@component/TextImage';
 import TableHeader from '@component/tma/TableHeader';
@@ -148,35 +149,35 @@ export async function getStaticProps(): Promise<
           id: 1,
           name: "Sauvegarde de l'ensemble de vos données",
           excerpt:
-            'Sauvegarde journalière de votre base de données et de vos fichiers sur nos serveurs sécurisés.',
+            'Sauvegarde journalière de votre base de données et de vos fichiers sur nos serveurs sécurisés',
           values: ['1x|par jour', '1x|par jour', '2x|par jour'],
         },
         {
           id: 2,
           name: 'Supervision logicielle',
           excerpt:
-            'Scan de sécurité toutes les heures, rapport disponible dans une interface dédiée. Surveillance des mises à jour de vos extensions, WordPress et thème.',
+            'Scan de sécurité toutes les heures, rapport disponible dans une interface dédiée. Surveillance des mises à jour de vos extensions, WordPress et thème',
           values: [false, true, true],
         },
         {
           id: 3,
           name: 'Environnement de pré-production',
           excerpt:
-            'Application des mises à jour et développement sur nos serveurs avant de les basculer sur votre site en production.',
+            'Application des mises à jour et développement sur nos serveurs avant de les basculer sur votre site en production',
           values: [false, true, true],
         },
         {
           id: 4,
           name: 'Supervision pro-active',
           excerpt:
-            'Robot de surveillance du parcours client pour tester que toutes les pages fonctionnent correctement.',
+            'Robot de surveillance du parcours client pour tester que toutes les pages fonctionnent correctement',
           values: [false, false, true],
         },
         {
           id: 5,
           name: 'Mise à jour et montée de version',
           excerpt:
-            "Lors de la prise en charge et tout au long de la maintenance de votre site WordPress. Je met à jour WordPress vers sa dernière version et je met à jour toutes les extensions pour qu'elles soient compatible avec cette version.",
+            "Lors de la prise en charge et tout au long de la maintenance de votre site WordPress. Je met à jour WordPress vers sa dernière version et je met à jour toutes les extensions pour qu'elles soient compatible avec cette version",
           values: [true, true, true],
         },
         {
@@ -190,7 +191,7 @@ export async function getStaticProps(): Promise<
           id: 7,
           name: 'iThemes Security Pro',
           excerpt:
-            'Une licence de sécurité offerte pendant tout le contrat de TMA.',
+            'Une licence de sécurité offerte pendant tout le contrat de TMA',
           values: [true, true, true],
         },
         {
@@ -211,14 +212,14 @@ export async function getStaticProps(): Promise<
           id: 9,
           name: 'Développement spécifique*',
           excerpt:
-            'Heures de développement d’infogérance pour corriger ou faire évoluer votre site.',
+            'Heures de développement d’infogérance pour corriger ou faire évoluer votre site',
           values: ['1|heure', '3|heures', '8|heures'],
         },
         {
           id: 10,
           name: 'Supervision 24/7 et sur 365 jours',
           excerpt:
-            'Dans le forfait « Tranquilité », l’astreinte est de 9h à 19h, du lundi au vendredi inclus.',
+            'Dans le forfait « Tranquilité », l’astreinte est de 9h à 19h, du lundi au vendredi inclus',
           values: [false, true, true],
         },
         {
@@ -239,7 +240,7 @@ export async function getStaticProps(): Promise<
           id: 13,
           name: 'Engagement',
           excerpt:
-            "Durée de l'engagement de votre contrat de maintenance inRage.",
+            "Durée de l'engagement de votre contrat de maintenance inRage",
           values: ['12 mois', '12 mois', '12 mois'],
         },
       ],
