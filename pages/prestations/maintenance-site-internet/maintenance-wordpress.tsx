@@ -56,6 +56,17 @@ export default function TmaWordPress({ entries = [] }: Props) {
               Nos robots vérifient l’intégralité de vos fichiers et de la base
               de données pour prévenir un futur piratage.
             </p>
+
+            <p className="mt-3 text-gray-light">
+              Pour vous permettre d&apos;avoir un meilleur suivi ainsi
+              qu&apos;une maintenance fiable, nos forfaits sont à engagement de
+              12 mois. Si vous désirez une intervention ponctuelle sur votre
+              site, vous pouvez vous rendre dans la section{' '}
+              <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
+                <a className="underline text-orange">Maintenance ponctuelle</a>
+              </NoScrollLink>
+              .
+            </p>
           </div>
         </TextImage>
       </div>
