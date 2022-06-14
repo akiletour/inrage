@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 type Props = {
   image: string | StaticImageData;
