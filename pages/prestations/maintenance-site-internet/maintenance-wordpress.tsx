@@ -201,6 +201,13 @@ export async function getStaticProps(): Promise<
           values: [true, true, true],
         },
         {
+          id: 14,
+          name: 'Rapport de maintenance',
+          excerpt:
+            'Chaque mois, vous recevez un rapport de maintenance de toutes les actions effectuées sur votre site au format PDF',
+          values: [true, true, true],
+        },
+        {
           id: 9,
           name: 'Développement spécifique*',
           excerpt:
