@@ -361,7 +361,7 @@ exports[`renders frontpage without changing 1`] = `
               WordPress
             </h3>
             <div
-              class="col-span-2 col-auto"
+              class="col-auto"
             >
               <p
                 class="mb-1 text-sm sm:text-md md:text-base"
@@ -402,7 +402,7 @@ exports[`renders frontpage without changing 1`] = `
               Symfony
             </h3>
             <div
-              class="col-span-2 col-auto"
+              class="col-auto"
             >
               <p
                 class="mb-1 text-sm sm:text-md md:text-base"
@@ -443,7 +443,7 @@ exports[`renders frontpage without changing 1`] = `
               Prestashop
             </h3>
             <div
-              class="col-span-2 col-auto"
+              class="col-auto"
             >
               <p
                 class="mb-1 text-sm sm:text-md md:text-base"
@@ -484,7 +484,7 @@ exports[`renders frontpage without changing 1`] = `
               Joomla
             </h3>
             <div
-              class="col-span-2 col-auto"
+              class="col-auto"
             >
               <p
                 class="mb-1 text-sm sm:text-md md:text-base"

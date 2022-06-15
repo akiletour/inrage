@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 import ButtonLink from '../ButtonLink';
 
@@ -16,7 +16,7 @@ export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
         <Image layout="fill" src={image} alt={title} />
       </div>
       <h3 className="text-white font-medium text-xl md:text-2xl">{title}</h3>
-      <div className="col-span-2 col-auto">
+      <div className="col-auto">
         <p className="mb-1 text-sm sm:text-md md:text-base">{excerpt}</p>
         <ButtonLink href={link}>En savoir plus</ButtonLink>
       </div>
