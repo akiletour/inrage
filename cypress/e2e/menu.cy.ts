@@ -9,19 +9,25 @@ context('Menu', () => {
     cy.get('.sticky-menu').should('have.class', 'fixed');
   });
 
-  it('should display the burger menu on mobile', () => {
+  it('should not display the burger menu on desktop', () => {
     cy.get('.burger-menu').should('not.be.visible');
-    cy.viewport('iphone-6');
-    cy.get('.nav-menu').should('not.be.visible');
-    cy.get('.burger-menu').should('be.visible');
-
-    cy.get('.burger-menu').click();
-   
-    cy.get('.nav-menu').should('be.visible');
-
-    cy.get('button.block > .bg-gray-darker').click();
-    cy.get('.nav-menu').should('not.be.visible');
   });
 });
+
+context('Mobile menu', () => {
+  beforeEach(() => {
+    cy.viewport('iphone-6');
+  })
+
+  it('should open the mobile menu', () => {
+      cy.get('.nav-menu').should('not.be.visible');
+      cy.get('.burger-menu').should('be.visible').click();
+     
+      cy.get('.nav-menu').should('be.visible');
+
+      cy.get('button.block > .bg-gray-darker').click();
+      cy.get('.nav-menu').should('not.be.visible'); 
+  })
+})
 
 export {};
