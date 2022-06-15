@@ -4,7 +4,7 @@ import { checkEmptyLinks } from '../support/commands';
 
 context('About page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/a-propos-de-moi');
+    cy.visit('/a-propos-de-moi');
   });
 
   it('Should contain a H1', () => {
