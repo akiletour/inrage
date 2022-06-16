@@ -40,7 +40,7 @@ context('Public project detail', () => {
   });
 
   it('should access to the private project', () => {
-    cy.visit('/api/preview?secret=secret_preview');
+    cy.visit(`/api/preview?secret=${Cypress.env('WORDPRESS_PREVIEW_SECRET')}`);
 
     cy.visit(
       '/portfolio/wordpress/centre-auditif-audilab'
