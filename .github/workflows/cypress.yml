@@ -17,6 +17,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           config: baseUrl=${{ github.event.deployment_status.target_url }},WORDPRESS_PREVIEW_SECRET=${{ secrets.WORDPRESS_PREVIEW_SECRET }}
+          cache-key: node-v16-on-${{ runner.os }}-hash-${{ hashFiles('yarn.lock') }}
 
       - name: Cypress tests ✅
         if: ${{ success() }}
