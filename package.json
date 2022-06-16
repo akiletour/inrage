@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "cypress:open": "cypress open",
+    "cypress:open": "CYPRESS_WORDPRESS_PREVIEW_SECRET=secret_preview cypress open",
     "cypress": "start-server-and-test dev 3000 cypress:open",
     "test": "jest --watch"
   },
