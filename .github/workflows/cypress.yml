@@ -16,12 +16,10 @@ jobs:
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v4
         with:
-          start: yarn dev
+          config: baseUrl=${{ github.event.deployment_status.target_url }}
         env:
-          WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
           WORDPRESS_AUTH_REFRESH_TOKEN: ${{ secrets.WORDPRESS_AUTH_REFRESH_TOKEN }}
           WORDPRESS_PREVIEW_SECRET: ${{ secrets.WORDPRESS_PREVIEW_SECRET }}
-          VERCEL_URL: ${{ secrets.WORDPRESS_API_URL }}
 
       - name: Cypress tests ✅
         if: ${{ success() }}
