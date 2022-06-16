@@ -16,9 +16,7 @@ jobs:
       - name: Run Cypress 🌲
         uses: cypress-io/github-action@v4
         with:
-          config: baseUrl=${{ github.event.deployment_status.target_url }}
-        env:
-          WORDPRESS_PREVIEW_SECRET: ${{ secrets.WORDPRESS_PREVIEW_SECRET }}
+          config: baseUrl=${{ github.event.deployment_status.target_url }},WORDPRESS_PREVIEW_SECRET=${{ secrets.WORDPRESS_PREVIEW_SECRET }}
 
       - name: Cypress tests ✅
         if: ${{ success() }}
