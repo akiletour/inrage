@@ -129,7 +129,6 @@ export default function AboutMe() {
             <h3 className="text-white font-medium text-3xl mb-1">
               Pascal GAULT
             </h3>
-
             <p>
               Dès mon plus jeune âge, je commence à découvrir le monde du
               développement en créant mes premiers sites liés à mes associations
@@ -137,29 +136,34 @@ export default function AboutMe() {
               dans cette voie pour me professionnaliser dans la création
               numérique et en faire mon métier sur La Rochelle.
             </p>
-
+            <p></p>
             <p className="mt-2">
               L’art et la technologie ont toujours été deux inspirations de ma
               vie courante. Je viens d’un milieu artistique, qui a fusionné avec
               la technologie pour finir par évoluer dans le développement web.
             </p>
-
             <p className="mt-2">
-              Je suis guidé par la passion, le souci du détail individuel,
-              structuré et organisé. Je suis impatient de voir où ma carrière va
-              m’emmener dans les mois ou les années à venir.
+              J&apos;ai passé plus de la moitié de ma vie à être guidé par la
+              passion du développement. Cela semble un peu bizarre non ?
+              C&apos;est un vaste monde où tout va vite, des nouvelles
+              fonctionnalités et des technologies exitantes tous les jours. Même
+              dans mon quotidien, je me sers de mon métier pour optimiser et
+              résoudre des problèmes de mon quotidien.
             </p>
 
+            <p className="mt-2">
+              Je vis actuellement dans une petite ville proche de La Rochelle,
+              dans une super maison aux côtés de Christelle, ma femme et de
+              notre petite princesse Octavia ♥.
+            </p>
             <p className="mt-2">
               Je continue à travailler et apprendre tous les jours, trouver de
               nouvelles technologies pour faire évoluer cette passion; et
               pouvoir appliquer cela tous les jours dans mon travail.
             </p>
-
             <h3 className="text-white font-medium text-3xl mt-4 mb-1">
               Ce site
             </h3>
-
             <p>
               Ce site est mon croquis numérique, mon journal et mon air de jeu
               dans l’expérimentation de nouvelles technologies. Je suis
@@ -167,7 +171,6 @@ export default function AboutMe() {
               et parfois même faire des erreurs. Tout pour un seul objectif,
               continuer d’apprendre.
             </p>
-
             <p className="mt-2">
               J’espère que les gens qui visiteront mon portfolio aimeront autant
               que j’ai apprécié de le développer. En espérant qu’ils trouveront
@@ -175,10 +178,21 @@ export default function AboutMe() {
               ensemble.
             </p>
 
+            <p className="mt-2">
+              Ce site est actuellement développé en ReactJS avec le fomidable
+              framework NextJS. Si vous voulez en savoir plus sur sa conception,
+              le code source est{' '}
+              <a
+                className="text-orange underline"
+                href="https://github.com/akiletour/inrage"
+              >
+                disponible sur GitHub
+              </a>
+              .
+            </p>
             <h3 className="text-white font-medium text-3xl mt-4 mb-1">
               Mes réseaux sociaux
             </h3>
-
             <Socials />
           </div>
         </div>
