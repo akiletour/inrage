@@ -851,18 +851,7 @@ exports[`renders frontpage without changing 1`] = `
                 class="input-field border-gray"
                 name="name"
                 placeholder="Prénom NOM"
-                tabindex="1"
                 type="text"
-              />
-            </div>
-            <div
-              class="md:row-span-3 order-10 md:order-2 relative"
-            >
-              <textarea
-                class="input-field min-h-[200px] h-full border-gray"
-                name="content"
-                placeholder="Laissez-moi un petit message"
-                tabindex="4"
               />
             </div>
             <div
@@ -872,7 +861,6 @@ exports[`renders frontpage without changing 1`] = `
                 class="input-field border-gray"
                 name="email"
                 placeholder="Votre adresse e-mail"
-                tabindex="2"
                 type="email"
               />
             </div>
@@ -883,8 +871,16 @@ exports[`renders frontpage without changing 1`] = `
                 class="input-field border-gray"
                 name="phone"
                 placeholder="Numéro de téléphone"
-                tabindex="3"
                 type="tel"
+              />
+            </div>
+            <div
+              class="md:row-span-3 order-10 md:order-2 relative"
+            >
+              <textarea
+                class="input-field min-h-[200px] h-full border-gray"
+                name="content"
+                placeholder="Laissez-moi un petit message"
               />
             </div>
           </div>
