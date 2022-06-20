@@ -51,7 +51,6 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
       <div className={`grid gap-3 ${!lg && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
-            tabIndex={1}
             className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
@@ -66,27 +65,8 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
           )}
         </div>
 
-        <div
-          className={`md:row-span-3 order-10 ${!lg && 'md:order-2'} relative`}
-        >
-          <textarea
-            tabIndex={4}
-            className={`input-field min-h-[200px] h-full ${
-              errors.content ? 'border-red' : 'border-gray'
-            }`}
-            placeholder="Laissez-moi un petit message"
-            {...register('content', { required: true })}
-          />
-          {errors.content && (
-            <span className="absolute text-red bottom-full mb-1 right-0 text-xs">
-              Champ requis
-            </span>
-          )}
-        </div>
-
         <div className="relative order-3">
           <input
-            tabIndex={2}
             className={`input-field ${
               errors.email ? 'border-red' : 'border-gray'
             }`}
@@ -103,7 +83,6 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
 
         <div className="relative order-4">
           <input
-            tabIndex={3}
             className={`input-field ${
               errors.phone ? 'border-red' : 'border-gray'
             }`}
@@ -113,6 +92,22 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
           />
           {errors.phone && (
             <span className="absolute text-red top-4 right-2 text-xs">
+              Champ requis
+            </span>
+          )}
+        </div>
+        <div
+          className={`md:row-span-3 order-10 ${!lg && 'md:order-2'} relative`}
+        >
+          <textarea
+            className={`input-field min-h-[200px] h-full ${
+              errors.content ? 'border-red' : 'border-gray'
+            }`}
+            placeholder="Laissez-moi un petit message"
+            {...register('content', { required: true })}
+          />
+          {errors.content && (
+            <span className="absolute text-red bottom-full mb-1 right-0 text-xs">
               Champ requis
             </span>
           )}
