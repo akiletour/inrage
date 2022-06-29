@@ -37,7 +37,7 @@
     "@next/eslint-plugin-next": "^12.1.6",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
-    "@testing-library/react-hooks": "^8.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/request-ip": "^0.0.37",
