@@ -19,7 +19,7 @@
     "eslint-plugin-jest-dom": "^4.0.2",
     "framer-motion": "^6.3.11",
     "moment": "^2.29.3",
-    "next": "^12.1.6",
+    "next": "^12.2.0",
     "next-seo": "^5.4.0",
     "prismjs": "^1.28.0",
     "prop-types": "^15.7.2",
