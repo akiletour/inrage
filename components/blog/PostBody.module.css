@@ -82,3 +82,22 @@
     font-family: Monaco,Consolas,Andale Mono,DejaVu Sans Mono,monospace;
 }
 
+.content [class~=wp-block-columns] {
+  @apply flex;
+}
+
+.content [class~=is-vertically-aligned-center] {
+  @apply self-center;
+}
+
+.content [class~=wp-block-columns] [class~=wp-block-column]:first-child {
+  @apply mr-4;
+}
+
+.content [class~=button] {
+  @apply text-white;
+}
+
+.content [class~=has-text-align-center] {
+  @apply text-center;
+}
