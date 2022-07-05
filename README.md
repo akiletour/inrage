@@ -4,6 +4,10 @@
 ![Stars](https://img.shields.io/github/stars/inrage/inrage?label=%E2%AD%90%20Stars)
 [![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)](https://github.com/Akiletour)
 
+<p align="center">
+<img alt="Portfolio inRage - Pascal GAULT" src="./public/images/inline-logo.png" />
+</p>
+
 
 Initially developed with WordPress, I decided to refactor the whole project with Next JS.
 
