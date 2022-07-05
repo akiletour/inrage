@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import sanitize from 'sanitize-html';
 
+import PostBody from '@component/blog/PostBody';
 import ProjectItem from '@component/items/ProjectItem';
 import Layout from '@component/layouts/Layout';
 import SectionTitle from '@component/SectionTitle';
@@ -27,6 +28,7 @@ type Props = {
         };
       }>;
     };
+    content: string;
     detail: {
       excerpt: string;
       websiteLink: string;
@@ -141,6 +143,12 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
                 />
               </div>
             </div>
+
+            {post.content && (
+              <div className="my-8">
+                <PostBody content={post?.content || ''} />
+              </div>
+            )}
 
             <SectionTitle
               content={`Retrouvez des projets similaires développés avec ${post?.supports?.edges[0]?.node.name} qui pourrait correspondre à ${post.title}`}

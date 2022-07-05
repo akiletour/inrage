@@ -49,6 +49,7 @@ export async function getSingleProject(slug: string, preview: boolean = false) {
       id
       title
       slug
+      content
       featuredImage {
         node {
           sourceUrl
