@@ -101,3 +101,12 @@
 .content [class~=has-text-align-center] {
   @apply text-center;
 }
+
+.content [class~=wp-block-gallery] [class~=blocks-gallery-grid] {
+  @apply grid gap-3;
+}
+
+
+.content [class~=wp-block-gallery][class~=columns-3] [class~=blocks-gallery-grid] {
+  @apply grid-cols-3;
+}
