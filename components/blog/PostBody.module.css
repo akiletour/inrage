@@ -83,7 +83,7 @@
 }
 
 .content [class~=wp-block-columns] {
-  @apply flex;
+  @apply block md:flex;
 }
 
 .content [class~=is-vertically-aligned-center] {
@@ -108,5 +108,5 @@
 
 
 .content [class~=wp-block-gallery][class~=columns-3] [class~=blocks-gallery-grid] {
-  @apply grid-cols-3;
+  @apply grid-cols-1 md:grid-cols-3;
 }
