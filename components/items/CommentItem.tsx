@@ -79,7 +79,11 @@ export default function CommentItem({
       </div>
 
       {isChild === false && isReplying === true && (
-        <CommentForm parent={commentId} postId={postId!} />
+        <CommentForm
+          parentAuthor={author.node.name}
+          parent={commentId}
+          postId={postId!}
+        />
       )}
 
       {replies?.nodes && replies.nodes.length > 0 && (
