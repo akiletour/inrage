@@ -12,9 +12,11 @@ type FormData = {
 export default function CommentForm({
   postId,
   parent,
+  parentAuthor,
 }: {
   postId: number;
   parent?: number;
+  parentAuthor?: string;
 }) {
   const { state, submit, success, error } = useFormState();
   const {
@@ -53,7 +55,10 @@ export default function CommentForm({
   return (
     <div className="mt-8">
       {parent && (
-        <p className="text-white font-medium mb-2">Répondre au commentaire</p>
+        <p className="text-white font-medium mb-2">
+          Répondre au commentaire de{' '}
+          <span className="underline">{parentAuthor}</span> :
+        </p>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         {state.error && <p>{state.error}</p>}
