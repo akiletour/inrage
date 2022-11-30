@@ -1,5 +1,7 @@
 // @ts-check
 
+const { withSentryConfig } = require('@sentry/nextjs');
+
 /**
  * @type {import('next').NextConfig}
  * */
@@ -14,6 +16,11 @@ const nextConfig = {
     locales: ['fr'],
     defaultLocale: 'fr',
   },
+  sentry: {
+    hideSourceMaps: true,
+  },
 };
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, {
+  silent: true,
+});
