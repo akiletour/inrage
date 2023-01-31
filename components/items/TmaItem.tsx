@@ -30,7 +30,7 @@ export default function TmaItem({
       </h2>
       <p className="my-2">{excerpt}</p>
       <Link href={cta.link}>
-        <a className="button">{cta.text}</a>
+        <span className="button">{cta.text}</span>
       </Link>
     </div>
   );

@@ -31,14 +31,18 @@ export default function ArticleItem({
         </div>
       </div>
       <Link href={`${RouteLink.blog}/${slug}`}>
-        <a>
+        <span>
           <Image
             src={featuredImage.node.sourceUrl}
             width={595}
             height={265}
             alt={title}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
-        </a>
+        </span>
       </Link>
       <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
       <div

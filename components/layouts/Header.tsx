@@ -6,9 +6,9 @@ import Image from 'next/image';
 import Link from '@component/NoScrollLink';
 import { HeaderType, pageExcerptType, pageTitleType } from '@type/header';
 
-import useSticky from '../../hooks/useSticky';
 import Diagonal from './Diagonal';
 import NavPrimary from './NavPrimary';
+import useSticky from '../../hooks/useSticky';
 
 const DynamicHeaderTma = dynamic(() => import('./HeaderTma'));
 
@@ -43,14 +43,14 @@ export default function Header({
           </h1>
           <div className="hidden sm:grid mt-2 uppercase text-xs grid-flow-col gap-1 justify-start text-white opacity-80">
             <Link href="/">
-              <a className="underline">Accueil</a>
+              <span className="underline">Accueil</span>
             </Link>
             {breadcrumb.length > 0 &&
               breadcrumb.map((bc) => (
                 <Fragment key={bc.link}>
                   <span>/</span>
                   <Link href={bc.link}>
-                    <a className="underline">{bc.title}</a>
+                    <span className="underline">{bc.title}</span>
                   </Link>
                 </Fragment>
               ))}
@@ -76,8 +76,9 @@ export default function Header({
         priority
         className="-z-10"
         src="/images/iledere-pont.jpeg"
-        layout="fill"
         alt="Pont de l'ile de ré"
+        fill
+        sizes="100vw"
       />
       <Diagonal
         preserveRatio

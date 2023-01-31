@@ -18,7 +18,14 @@ export default function ExperienceItem({
   return (
     <div className="grid md:grid-cols-[250px_1fr] items-start justify-start">
       <div className="flex justify-center row-span-4">
-        <Image src={logo} alt={company} />
+        <Image
+          src={logo}
+          alt={company}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
       </div>
       <div className="text-white text-2xl font-medium">{title}</div>
       <div className="uppercase text-white">{company}</div>

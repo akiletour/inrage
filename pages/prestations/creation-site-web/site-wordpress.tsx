@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import MoreIcon from '@component/icons/MoreIcon';
@@ -39,6 +39,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           <Image
             src={WebsiteWP}
             alt="Développeur WordPress Freelance sur La Rochelle"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </div>
         <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
@@ -104,6 +108,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
               <Image
                 src={PageBuilderImage}
                 alt="Construction de page avec Gutenberg"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <div>
@@ -123,6 +131,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
               <Image
                 src={AcfImage}
                 alt="Construction de page avec Advanced Custom Fields"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <div>
@@ -307,7 +319,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             J&apos;ai eu l&apos;occasion de développer des thèmes pour
             WooCommerce et Sage comme le{' '}
             <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
-              <a className="text-orange">projet Biosalines.</a>
+              <span className="text-orange">projet Biosalines.</span>
             </Link>
           </p>
 
@@ -354,11 +366,14 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
           bgCorner="fill-orange"
         />
         <Image
-          layout="fill"
-          objectFit="cover"
           className="-z-10 opacity-30 md:opacity-100"
           src={ImageBackgroundTma}
           alt="Prestation de maintenance TMA"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
         <div className="container flex items-center relative z-10 my-4 lg:-my-10">
           <div className="md:w-2/3 text-gray-light text-sm">
@@ -390,7 +405,9 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </p>
             <div className="flex flex-wrap flex-start mt-4">
               <Link href={RouteLink.prestationTmaWordPress}>
-                <a className="button">Forfaits de maintenance WordPress</a>
+                <span className="button">
+                  Forfaits de maintenance WordPress
+                </span>
               </Link>
             </div>
           </div>
@@ -398,6 +415,10 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             <Image
               src={ProtectionShield}
               alt={'Garanti et suivi de maintenance WordPress'}
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </div>
         </div>

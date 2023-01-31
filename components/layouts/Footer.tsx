@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
 
-import LogoWhite from '../../public/logo-white.svg';
 import Socials from './Socials';
+import LogoWhite from '../../public/logo-white.svg';
 
 export default function Footer() {
   return (
@@ -48,23 +48,27 @@ export default function Footer() {
                 className="opacity-30"
                 src={LogoWhite}
                 alt="inRage - Pascal GAULT"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
               <Link href={RouteLink.aboutMe}>
-                <a>A propos de moi</a>
+                <span>A propos de moi</span>
               </Link>
               <Link href={RouteLink.prestations}>
-                <a>Prestations</a>
+                <span>Prestations</span>
               </Link>
               <Link href={RouteLink.portfolio}>
-                <a>Portfolio</a>
+                <span>Portfolio</span>
               </Link>
               <Link href={RouteLink.blog}>
-                <a>Blog</a>
+                <span>Blog</span>
               </Link>
               <Link href={RouteLink.contact}>
-                <a>Contactez-moi</a>
+                <span>Contactez-moi</span>
               </Link>
             </div>
             <div className="my-2">
@@ -82,21 +86,25 @@ export default function Footer() {
                   height={16}
                   src="/images/github-inline.svg"
                   alt="Code open-source disponible sur Github"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </span>
             </a>
             <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
               <Link href={RouteLink.legals}>
-                <a>Mentions légales</a>
+                <span>Mentions légales</span>
               </Link>
               <Link href={RouteLink.sitemap}>
-                <a>Plan du site</a>
+                <span>Plan du site</span>
               </Link>
             </div>
           </div>
           <div className="text-center sm:text-right flex sm:items-end flex-col pt-2">
             <Link href={RouteLink.contact}>
-              <a className="button">Demandez un devis</a>
+              <span className="button">Demandez un devis</span>
             </Link>
             <div className="my-2 text-3xl font-bold text-orange">
               06 51 89 89 17

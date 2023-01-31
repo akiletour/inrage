@@ -50,9 +50,7 @@ export function ButtonLinkRaw({
 export default function ButtonLink({ href, children }: Props) {
   return (
     <Link href={href}>
-      <a>
-        <ButtonLinkRaw>{children}</ButtonLinkRaw>
-      </a>
+      <ButtonLinkRaw>{children}</ButtonLinkRaw>
     </Link>
   );
 }

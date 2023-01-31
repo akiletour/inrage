@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import Diagonal from '@component/layouts/Diagonal';
@@ -33,6 +33,10 @@ export default function PrestationBuildWebsite() {
               priority
               height={736}
               alt="Création de site Internet sur la rochelle"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </div>
         </div>
@@ -134,10 +138,10 @@ export default function PrestationBuildWebsite() {
             permettent de faire évoluer votre site au gré de vos besoins.
           </p>
           <Link href={RouteLink.prestationWordPress}>
-            <a className="button">
+            <span className="button">
               Développer son site avec
               <span className="font-bold ml-[4px] underline">WordPress</span>
-            </a>
+            </span>
           </Link>
         </TextImage>
 
@@ -160,10 +164,10 @@ export default function PrestationBuildWebsite() {
           </p>
 
           <Link href={RouteLink.prestationPrestashop}>
-            <a className="button">
+            <span className="button">
               Développer son site avec
               <span className="font-bold ml-[4px] underline">Prestashop</span>
-            </a>
+            </span>
           </Link>
         </TextImage>
 
@@ -187,10 +191,10 @@ export default function PrestationBuildWebsite() {
           </p>
           <p className="mt-2 mb-3"></p>
           <Link href={RouteLink.prestationSymfony}>
-            <a className="button">
+            <span className="button">
               Développer son site avec
               <span className="font-bold ml-[4px] underline">Symfony</span>
-            </a>
+            </span>
           </Link>
         </TextImage>
       </div>

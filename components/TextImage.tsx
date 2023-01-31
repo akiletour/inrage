@@ -18,7 +18,7 @@ type Props = {
 
 export default function TextImage({
   image,
-  title,
+  title = '',
   children,
   imageProps = {},
   position = 'left',
@@ -38,6 +38,10 @@ export default function TextImage({
           src={image}
           alt={Array.isArray(title) ? title.join(' ') : title}
           {...imageProps}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
         />
       </div>
       <div

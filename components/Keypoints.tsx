@@ -20,8 +20,9 @@ export default function Keypoints() {
       <Image
         className="-z-10"
         src="/images/yohann-tilotti_bloody-sky.jpeg"
-        layout="fill"
         alt="Yohann Tilotti - Bloody Sky"
+        fill
+        sizes="100vw"
       />
       <div className="container grid grid-cols-2 md:grid-cols-4 gap-y-4 py-4">
         <KeypointItem

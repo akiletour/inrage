@@ -1,9 +1,9 @@
 import { RouteLink } from '@lib/route';
 
+import PrestationItem from './items/PrestationItem';
 import ImagePrestationBuildWebsite from '../public/images/prestations/creation-site-internet.png';
 import ImagePrestationHosting from '../public/images/prestations/hebergement-optimise-rapide.png';
 import ImagePrestationTma from '../public/images/prestations/infogerance-tma-maintenance.png';
-import PrestationItem from './items/PrestationItem';
 
 export default function PrestationsList() {
   return (

@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import { AnimatePresence } from 'framer-motion';
-import { DefaultSeo, OrganizationJsonLd } from 'next-seo';
 import { AppProps } from 'next/app';
+import { DefaultSeo, OrganizationJsonLd } from 'next-seo';
 
 import Footer from '@component/layouts/Footer';
 import Header from '@component/layouts/Header';
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         pageExcerpt={pageProps.excerpt || ''}
       />
       <AnimatePresence
-        exitBeforeEnter
+        mode="wait"
         initial={false}
         onExitComplete={() => window.scrollTo(0, 0)}
       >

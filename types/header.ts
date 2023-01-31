@@ -5,7 +5,7 @@ export type pageExcerptType = string | string[];
 type Breadcrumb = {
   link: string;
   title: string;
-}
+};
 
 export interface PageHeaderStaticProps {
   props: {
@@ -13,5 +13,5 @@ export interface PageHeaderStaticProps {
     breadcrumb: Breadcrumb[];
     headerType?: HeaderType;
     excerpt?: pageExcerptType;
-  }
+  };
 }

@@ -1,6 +1,6 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import sanitize from 'sanitize-html';
 
 import PostBody from '@component/blog/PostBody';
@@ -111,8 +111,9 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
                           <div className="w-6 h-6 relative">
                             <Image
                               src={techno.node.acfDetail.image.sourceUrl}
-                              layout="fill"
                               alt={techno.node.name}
+                              fill
+                              sizes="100vw"
                             />
                           </div>
                         )}
@@ -140,6 +141,10 @@ export default function PortfolioDetail({ post, similarProjects }: Props) {
                   width={640}
                   height={1136}
                   alt={post.title}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </div>
             </div>

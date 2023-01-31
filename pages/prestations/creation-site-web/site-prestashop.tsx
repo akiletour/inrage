@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import MoreIcon from '@component/icons/MoreIcon';
@@ -35,6 +35,10 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           <Image
             src={WebsitePrestashop}
             alt="Développeur Prestashop Freelance sur La Rochelle"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </div>
         <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
@@ -220,11 +224,14 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           bgCorner="fill-orange"
         />
         <Image
-          layout="fill"
-          objectFit="cover"
           className="-z-10 opacity-30 md:opacity-100"
           src={ImageBackgroundTma}
           alt="Prestation de maintenance TMA"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
         <div className="container flex items-center relative z-10 my-4 lg:-my-10">
           <div className="md:w-2/3 text-gray-light text-sm">
@@ -256,7 +263,9 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
             </p>
             <div className="flex flex-wrap flex-start mt-4">
               <Link href={RouteLink.prestationTmaPrestashop}>
-                <a className="button">Forfaits de maintenance Prestashop</a>
+                <span className="button">
+                  Forfaits de maintenance Prestashop
+                </span>
               </Link>
             </div>
           </div>
@@ -264,6 +273,10 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
             <Image
               src={ProtectionShield}
               alt={'Forfaits de maintenance Prestashop'}
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </div>
         </div>

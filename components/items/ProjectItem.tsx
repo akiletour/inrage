@@ -24,13 +24,17 @@ export default function ProjectItem({
 }: Props) {
   return (
     <Link href={`/portfolio/${support ? `${support.slug}/` : ''}${slug}`}>
-      <a className="project-item group text-center">
+      <div className="project-item group text-center">
         <div className="md:group-hover:scale-110 relative transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
           <Image
             src={image}
             width={xl ? 343 : 257}
             height={xl ? 533 : 400}
             alt={title}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
           {isPrivate && (
             <div className="absolute inset-0 bg-gray-dark opacity-50 z-50 flex items-center justify-center">
@@ -50,7 +54,7 @@ export default function ProjectItem({
             {support.name}
           </div>
         )}
-      </a>
+      </div>
     </Link>
   );
 }

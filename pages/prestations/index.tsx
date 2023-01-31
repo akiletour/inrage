@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import LeafHeartIcon from '@component/icons/LeafHeartIcon';
 import PrestationItem from '@component/items/PrestationItem';
@@ -31,6 +31,10 @@ export default function Prestations() {
               priority
               height={736}
               alt="Création de site Internet sur la rochelle"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </div>
         </div>

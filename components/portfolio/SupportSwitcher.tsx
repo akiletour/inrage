@@ -17,7 +17,7 @@ export default function SupportSwitcher({ supports }: Props) {
   return (
     <div className="grid grid-cols-4 gap-4 text-center my-6">
       <Link href={RouteLink.portfolio}>
-        <a
+        <span
           className={
             asPath === RouteLink.portfolio ? 'text-orange' : 'text-white'
           }
@@ -35,7 +35,7 @@ export default function SupportSwitcher({ supports }: Props) {
           <span className="mt-1 block text-sm md:text-lg">
             Tous les projets
           </span>
-        </a>
+        </span>
       </Link>
       {supports.length > 0 &&
         supports.map(({ node: support }) => (
@@ -43,7 +43,7 @@ export default function SupportSwitcher({ supports }: Props) {
             key={support.id}
             href={`${RouteLink.portfolio}/${support.slug}`}
           >
-            <a
+            <div
               className={
                 asPath === `${RouteLink.portfolio}/${support.slug}`
                   ? 'text-orange'
@@ -53,16 +53,17 @@ export default function SupportSwitcher({ supports }: Props) {
               {support?.acfSupport && (
                 <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
                   <Image
-                    layout="fill"
                     src={support.acfSupport.image.sourceUrl}
                     alt={support.name}
+                    fill
+                    sizes="100vw"
                   />
                 </div>
               )}
               <span className="mt-1 block text-sm md:text-lg">
                 {support.name}
               </span>
-            </a>
+            </div>
           </Link>
         ))}
     </div>

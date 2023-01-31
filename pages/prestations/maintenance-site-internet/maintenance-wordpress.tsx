@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import Diagonal from '@component/layouts/Diagonal';
@@ -64,7 +64,9 @@ export default function TmaWordPress({ entries = [] }: Props) {
               12 mois. Si vous désirez une intervention ponctuelle sur votre
               site, vous pouvez vous rendre dans la section{' '}
               <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
-                <a className="underline text-orange">Maintenance ponctuelle</a>
+                <span className="underline text-orange">
+                  Maintenance ponctuelle
+                </span>
               </NoScrollLink>
               .
             </p>
@@ -109,8 +111,9 @@ export default function TmaWordPress({ entries = [] }: Props) {
         <Image
           className="-z-10"
           src={BgTma}
-          layout="fill"
           alt="Offres de maintenance TMA inRage"
+          fill
+          sizes="100vw"
         />
         <Diagonal
           className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
