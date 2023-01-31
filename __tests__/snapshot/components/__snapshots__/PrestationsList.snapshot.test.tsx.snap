@@ -6,9 +6,8 @@ exports[`renders PrestationsList unchanged 1`] = `
     class="grid md:grid-cols-3 gap-6 md:gap-3 lg:gap-6"
   >
     <div
-      class="text-center h-full flex flex-col"
+      class="text-center h-full flex flex-col items-center"
     >
-      <div />
       <h3
         class="text-xl text-white font-medium mt-1 leading-7"
       >
@@ -32,17 +31,19 @@ exports[`renders PrestationsList unchanged 1`] = `
         class="mt-auto"
       >
         <a
-          class="button"
           href="/prestations/creation-site-web"
         >
-          Découvrir mes prestations
+          <span
+            class="button"
+          >
+            Découvrir mes prestations
+          </span>
         </a>
       </div>
     </div>
     <div
-      class="text-center h-full flex flex-col"
+      class="text-center h-full flex flex-col items-center"
     >
-      <div />
       <h3
         class="text-xl text-white font-medium mt-1 leading-7"
       >
@@ -66,17 +67,19 @@ exports[`renders PrestationsList unchanged 1`] = `
         class="mt-auto"
       >
         <a
-          class="button"
           href="/prestations/maintenance-site-internet"
         >
-          Mes offres de maintenance
+          <span
+            class="button"
+          >
+            Mes offres de maintenance
+          </span>
         </a>
       </div>
     </div>
     <div
-      class="text-center h-full flex flex-col"
+      class="text-center h-full flex flex-col items-center"
     >
-      <div />
       <h3
         class="text-xl text-white font-medium mt-1 leading-7"
       >
@@ -100,10 +103,13 @@ exports[`renders PrestationsList unchanged 1`] = `
         class="mt-auto"
       >
         <a
-          class="button"
           href="/contact"
         >
-          Me contacter
+          <span
+            class="button"
+          >
+            Me contacter
+          </span>
         </a>
       </div>
     </div>
