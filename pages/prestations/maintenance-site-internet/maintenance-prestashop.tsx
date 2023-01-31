@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import Diagonal from '@component/layouts/Diagonal';

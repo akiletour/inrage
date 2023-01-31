@@ -24,7 +24,7 @@ export default function ProjectItem({
 }: Props) {
   return (
     <Link href={`/portfolio/${support ? `${support.slug}/` : ''}${slug}`}>
-      <a className="project-item group text-center">
+      <div className="project-item group text-center">
         <div className="md:group-hover:scale-110 relative transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
           <Image
             src={image}
@@ -50,7 +50,7 @@ export default function ProjectItem({
             {support.name}
           </div>
         )}
-      </a>
+      </div>
     </Link>
   );
 }

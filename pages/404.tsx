@@ -9,7 +9,7 @@ export default function Custom404() {
         <p className="text-xl">LA PAGE QUE VOUS RECHERCHEZ EST INTROUVABLE.</p>
 
         <NoScrollLink href="/">
-          <a className="button mt-4">Retour à l&apos;accueil</a>
+          <span className="button mt-4">Retour à l&apos;accueil</span>
         </NoScrollLink>
       </div>
     </Layout>

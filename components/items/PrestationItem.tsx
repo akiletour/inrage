@@ -45,7 +45,7 @@ export default function PrestationItem({
       {link !== '' && (
         <div className="mt-auto">
           <Link href={link}>
-            <a className="button">{linkText}</a>
+            <span className="button">{linkText}</span>
           </Link>
         </div>
       )}

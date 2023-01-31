@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import Diagonal from '@component/layouts/Diagonal';
@@ -64,7 +64,9 @@ export default function TmaWordPress({ entries = [] }: Props) {
               12 mois. Si vous désirez une intervention ponctuelle sur votre
               site, vous pouvez vous rendre dans la section{' '}
               <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
-                <a className="underline text-orange">Maintenance ponctuelle</a>
+                <span className="underline text-orange">
+                  Maintenance ponctuelle
+                </span>
               </NoScrollLink>
               .
             </p>

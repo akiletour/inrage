@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import TmaItem from '@component/items/TmaItem';
 import Diagonal from '@component/layouts/Diagonal';

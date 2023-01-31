@@ -12,7 +12,7 @@ export default async function preview(
     !process.env.WORDPRESS_PREVIEW_SECRET ||
     secret !== process.env.WORDPRESS_PREVIEW_SECRET
   ) {
-    return res.status(401).json({ message: 'Invalid token' });
+    throw new Error('API throw error test');
   }
 
   res.setPreviewData({});

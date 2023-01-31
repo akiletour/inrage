@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import LeafHeartIcon from '@component/icons/LeafHeartIcon';
@@ -95,12 +95,14 @@ export default function Home({
 
             <div className="flex flex-wrap flex-start">
               <Link href={RouteLink.contact}>
-                <a className="button mt-3 mr-2">
+                <span className="button mt-3 mr-2">
                   Demandez votre devis maintenant
-                </a>
+                </span>
               </Link>
               <Link href={RouteLink.prestationTma}>
-                <a className="button-outline mt-3">Mes offres de maintenance</a>
+                <span className="button-outline mt-3">
+                  Mes offres de maintenance
+                </span>
               </Link>
             </div>
           </div>

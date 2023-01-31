@@ -55,7 +55,7 @@ export default function AboutMe() {
         </p>
 
         <Link href={RouteLink.contact}>
-          <a className="button">Contactez-moi</a>
+          <span className="button">Contactez-moi</span>
         </Link>
       </div>
 

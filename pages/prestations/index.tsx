@@ -1,5 +1,5 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import LeafHeartIcon from '@component/icons/LeafHeartIcon';
 import PrestationItem from '@component/items/PrestationItem';

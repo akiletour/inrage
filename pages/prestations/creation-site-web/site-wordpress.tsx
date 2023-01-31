@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
 import MoreIcon from '@component/icons/MoreIcon';
@@ -307,7 +307,7 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             J&apos;ai eu l&apos;occasion de développer des thèmes pour
             WooCommerce et Sage comme le{' '}
             <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
-              <a className="text-orange">projet Biosalines.</a>
+              <span className="text-orange">projet Biosalines.</span>
             </Link>
           </p>
 
@@ -390,7 +390,9 @@ export default function PrestationWordPress({ featuredProjects }: Props) {
             </p>
             <div className="flex flex-wrap flex-start mt-4">
               <Link href={RouteLink.prestationTmaWordPress}>
-                <a className="button">Forfaits de maintenance WordPress</a>
+                <span className="button">
+                  Forfaits de maintenance WordPress
+                </span>
               </Link>
             </div>
           </div>

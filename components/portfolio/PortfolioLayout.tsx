@@ -2,9 +2,9 @@ import { NextSeo } from 'next-seo';
 
 import { ProjectItemType, SupportType } from '@type/portfolio';
 
+import SupportSwitcher from './SupportSwitcher';
 import ProjectItem from '../items/ProjectItem';
 import SectionTitle from '../SectionTitle';
-import SupportSwitcher from './SupportSwitcher';
 
 interface Props {
   pageTitle: string;
