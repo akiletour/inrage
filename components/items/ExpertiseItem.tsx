@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 
 import ButtonLink from '../ButtonLink';
 
@@ -13,7 +13,7 @@ export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
   return (
     <div className="grid gap-x-3 grid-cols-[80px_auto] md:grid-cols-[120px_auto] items-center">
       <div className="relative mr-2 w-10 h-10 md:w-15 md:h-15 row-span-2">
-        <Image layout="fill" src={image} alt={title} />
+        <Image src={image} alt={title} fill sizes="100vw" />
       </div>
       <h3 className="text-white font-medium text-xl md:text-2xl">{title}</h3>
       <div className="col-auto">

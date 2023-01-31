@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         pageExcerpt={pageProps.excerpt || ''}
       />
       <AnimatePresence
-        exitBeforeEnter
+        mode="wait"
         initial={false}
         onExitComplete={() => window.scrollTo(0, 0)}
       >

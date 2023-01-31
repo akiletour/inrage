@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 import Diagonal from '@component/layouts/Diagonal';
 import NavPrimary from '@component/layouts/NavPrimary';
@@ -62,9 +62,9 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
         priority
         className="-z-10"
         src={BgTma}
-        layout="fill"
         alt="Offres de maintenance TMA inRage"
-      />
+        fill
+        sizes="100vw" />
       <Diagonal
         preserveRatio
         bgCorner="fill-orange"

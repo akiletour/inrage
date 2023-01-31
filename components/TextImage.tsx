@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 
 type Props = {
   image: string | StaticImageData;
@@ -38,7 +38,10 @@ export default function TextImage({
           src={image}
           alt={Array.isArray(title) ? title.join(' ') : title}
           {...imageProps}
-        />
+          style={{
+            maxWidth: "100%",
+            height: "auto"
+          }} />
       </div>
       <div
         className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}

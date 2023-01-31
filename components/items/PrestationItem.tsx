@@ -18,15 +18,17 @@ export default function PrestationItem({
   linkText = '',
 }: Props) {
   return (
-    <div className="text-center h-full flex flex-col">
-      <div>
-        <Image
-          width={178}
-          height={178}
-          src={image}
-          alt={Array.isArray(title) ? title.join(' ') : title}
-        />
-      </div>
+    <div className="text-center h-full flex flex-col items-center">
+      <Image
+        width={178}
+        height={178}
+        src={image}
+        alt={Array.isArray(title) ? title.join(' ') : title}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+        }}
+      />
 
       <h3 className="text-xl text-white font-medium mt-1 leading-7">
         {Array.isArray(title)

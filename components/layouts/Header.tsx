@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import Image from "next/image";
 
 import Link from '@component/NoScrollLink';
 import { HeaderType, pageExcerptType, pageTitleType } from '@type/header';
@@ -76,9 +76,9 @@ export default function Header({
         priority
         className="-z-10"
         src="/images/iledere-pont.jpeg"
-        layout="fill"
         alt="Pont de l'ile de ré"
-      />
+        fill
+        sizes="100vw" />
       <Diagonal
         preserveRatio
         bgCorner="fill-orange"

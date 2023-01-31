@@ -70,11 +70,14 @@ export default function Home({
           bgCorner="fill-orange"
         />
         <Image
-          layout="fill"
-          objectFit="cover"
           className="-z-10 opacity-30 md:opacity-100"
           src={ImageDiscoverTma}
           alt="Prestation de maintenance TMA"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
         <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
           <div className="md:w-1/2">

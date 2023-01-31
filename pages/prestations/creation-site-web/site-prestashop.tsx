@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import Image from 'next/image';
+import Image from "next/image";
 import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
@@ -35,7 +35,10 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           <Image
             src={WebsitePrestashop}
             alt="Développeur Prestashop Freelance sur La Rochelle"
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
         <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
           <h2 className="text-white text-xl md:text-3xl font-bold">
@@ -220,12 +223,14 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
           bgCorner="fill-orange"
         />
         <Image
-          layout="fill"
-          objectFit="cover"
           className="-z-10 opacity-30 md:opacity-100"
           src={ImageBackgroundTma}
           alt="Prestation de maintenance TMA"
-        />
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover"
+          }} />
         <div className="container flex items-center relative z-10 my-4 lg:-my-10">
           <div className="md:w-2/3 text-gray-light text-sm">
             <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
@@ -266,7 +271,10 @@ export default function PrestationPrestashop({ featuredProjects }: Props) {
             <Image
               src={ProtectionShield}
               alt={'Forfaits de maintenance Prestashop'}
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
         </div>
         <Diagonal
