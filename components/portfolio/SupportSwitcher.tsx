@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Link from '@component/NoScrollLink';
@@ -56,7 +56,8 @@ export default function SupportSwitcher({ supports }: Props) {
                     src={support.acfSupport.image.sourceUrl}
                     alt={support.name}
                     fill
-                    sizes="100vw" />
+                    sizes="100vw"
+                  />
                 </div>
               )}
               <span className="mt-1 block text-sm md:text-lg">

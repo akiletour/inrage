@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 
 import LeafHeartIcon from '@component/icons/LeafHeartIcon';
@@ -32,9 +32,10 @@ export default function Prestations() {
               height={736}
               alt="Création de site Internet sur la rochelle"
               style={{
-                maxWidth: "100%",
-                height: "auto"
-              }} />
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
           </div>
         </div>
         <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">

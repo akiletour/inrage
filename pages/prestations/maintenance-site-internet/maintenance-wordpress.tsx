@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 
 import ContactForm from '@component/ContactForm';
@@ -113,7 +113,8 @@ export default function TmaWordPress({ entries = [] }: Props) {
           src={BgTma}
           alt="Offres de maintenance TMA inRage"
           fill
-          sizes="100vw" />
+          sizes="100vw"
+        />
         <Diagonal
           className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"

@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { StaticImageData } from 'next/image';
 
 type Props = {
   logo: string | StaticImageData;
@@ -22,9 +22,10 @@ export default function ExperienceItem({
           src={logo}
           alt={company}
           style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
       </div>
       <div className="text-white text-2xl font-medium">{title}</div>
       <div className="uppercase text-white">{company}</div>

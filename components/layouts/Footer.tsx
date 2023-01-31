@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
@@ -49,9 +49,10 @@ export default function Footer() {
                 src={LogoWhite}
                 alt="inRage - Pascal GAULT"
                 style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </div>
             <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
               <Link href={RouteLink.aboutMe}>
@@ -86,9 +87,10 @@ export default function Footer() {
                   src="/images/github-inline.svg"
                   alt="Code open-source disponible sur Github"
                   style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                  }} />
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               </span>
             </a>
             <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">

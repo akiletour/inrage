@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 import Link from '@component/NoScrollLink';
 
@@ -32,9 +32,10 @@ export default function ProjectItem({
             height={xl ? 533 : 400}
             alt={title}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
           {isPrivate && (
             <div className="absolute inset-0 bg-gray-dark opacity-50 z-50 flex items-center justify-center">
               <div className="text-white text-center text-2xl">Private</div>

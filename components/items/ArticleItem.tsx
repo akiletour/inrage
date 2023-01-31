@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Image from "next/image";
+import Image from 'next/image';
 import sanitize from 'sanitize-html';
 
 import Link from '@component/NoScrollLink';
@@ -38,9 +38,10 @@ export default function ArticleItem({
             height={265}
             alt={title}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </span>
       </Link>
       <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
