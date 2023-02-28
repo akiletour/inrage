@@ -1,6 +1,5 @@
-import posts from '@graphql-query/latest-blog-posts.graphql';
-
 import ArticleItem from '@component/items/ArticleItem';
+import posts from '@graphql-query/latest-blog-posts.graphql';
 import { ArticleList, List } from '@type/graphql';
 import { fetcher } from '@util/index';
 

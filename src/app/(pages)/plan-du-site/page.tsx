@@ -1,7 +1,7 @@
-import sitemap from '@graphql-query/sitemap.graphql';
 import Link from 'next/link';
 
 import Layout from '@component/Layout';
+import sitemap from '@graphql-query/sitemap.graphql';
 import { RouteLink } from '@lib/route';
 import { Sitemap as SitemapType } from '@type/graphql/sitemap';
 import { fetcher } from '@util/index';

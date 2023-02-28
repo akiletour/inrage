@@ -1,6 +1,5 @@
-import projects from '@graphql-query/latest-projects.graphql';
-
 import ProjectItem from '@component/items/ProjectItem';
+import projects from '@graphql-query/latest-projects.graphql';
 import { List, ProjectList } from '@type/graphql';
 import { fetcher } from '@util/index';
 
