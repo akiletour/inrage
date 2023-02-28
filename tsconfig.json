@@ -36,33 +36,48 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@graphql-query/*": [
+        "src/app/graphql/*"
+      ],
+      "@layout/*": [
+        "src/app/layouts/*"
+      ],
       "@hook/*": [
-        "hooks/*"
+        "src/app/hooks/*"
       ],
       "@type/*": [
-        "types/*"
+        "src/app/types/*"
       ],
       "@image/*": [
         "public/images/*"
       ],
       "@lib/*": [
-        "lib/*"
+        "src/app/libs/*"
       ],
       "@component/*": [
-        "components/*"
+        "src/app/components/*"
+      ],
+      "@util/*": [
+        "src/app/utils/*"
       ]
     },
     "types": [
       "jest",
       "node",
       "@types/testing-library__jest-dom"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
   },
   "include": [
-    "types/**/*.d.ts",
+    "src/app/types/**/*.d.ts",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
