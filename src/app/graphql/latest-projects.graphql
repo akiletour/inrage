@@ -1,0 +1,25 @@
+query projects {
+  projets(first: 4) {
+    edges {
+      node { 
+        id
+        title
+        slug 
+        status
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}
