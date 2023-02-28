@@ -21,6 +21,14 @@ const nextConfig = {
   },
   sentry: {
     hideSourceMaps: true,
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(graphql|gql)/,
+      exclude: /node_modules/,
+      loader: 'graphql-operations-string-loader',
+    });
+
+    return config;
   },
 };
 
