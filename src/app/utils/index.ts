@@ -13,16 +13,23 @@ export const REVALIDATE = {
   ONE_MINUTE: 60,
 };
 
-export const fetcher = cache(async (query: string) => {
-  const headers: HeaderType = { 'Content-Type': 'application/json' };
+type VariableProps = {
+  id?: string;
+};
 
-  const res = await fetch(getApi, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query,
-    }),
-  });
+export const fetcher = cache(
+  async (query: string, variables: VariableProps = {}) => {
+    const headers: HeaderType = { 'Content-Type': 'application/json' };
 
-  return res.json();
-});
+    const res = await fetch(getApi, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    });
+
+    return res.json();
+  }
+);
