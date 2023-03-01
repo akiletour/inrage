@@ -11,13 +11,7 @@ import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
 import { RouteLink } from '@lib/route';
-
-type EntriesType = Array<{
-  id: number;
-  name: string;
-  excerpt: string;
-  values: Array<string | boolean>;
-}>;
+import { EntriesType } from '@type/graphql/portfolio';
 
 const entries: EntriesType = [
   {
