@@ -19,8 +19,6 @@ const nextConfig = {
     locales: ['fr'],
     defaultLocale: 'fr',
   },
-  sentry: {
-    hideSourceMaps: true,
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(graphql|gql)/,
@@ -29,6 +27,9 @@ const nextConfig = {
     });
 
     return config;
+  },
+  sentry: {
+    hideSourceMaps: true,
   },
 };
 
