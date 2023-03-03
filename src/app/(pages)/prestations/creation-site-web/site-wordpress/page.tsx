@@ -30,7 +30,7 @@ export default async function PrestationWordPress() {
   const { data } = await getLastProjectsBySupports('wordpress');
 
   return (
-    <Layout>
+    <Layout title="Création de site WordPress">
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
           <Image

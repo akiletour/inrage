@@ -25,7 +25,7 @@ export default async function Symfony() {
   const { data } = await getLastProjectsBySupports('application-web');
 
   return (
-    <Layout>
+    <Layout title="Symfony">
       <div className="container">
         <TextImage
           title={['Pourquoi utiliser Symfony ?', 'Une architecture solide']}

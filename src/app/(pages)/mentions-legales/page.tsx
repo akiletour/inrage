@@ -8,7 +8,7 @@ const LegalTitle = ({ children }: { children: string }) => {
 
 export default function Legals() {
   return (
-    <Layout>
+    <Layout title="Mentions légales">
       <div className="container">
         <LegalTitle>Propriétaire du site</LegalTitle>
         <p>

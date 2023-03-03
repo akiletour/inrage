@@ -26,7 +26,7 @@ export default async function PrestationPrestashop() {
   const { data } = await getLastProjectsBySupports('prestashop');
 
   return (
-    <Layout>
+    <Layout title="Création de site Prestashop">
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
           <Image

@@ -10,7 +10,7 @@ import { RouteLink } from '@lib/route';
 
 export default function WebsiteTMA() {
   return (
-    <Layout>
+    <Layout title="Maintenance de site web">
       <div className="container">
         <TextImage
           position="right"

@@ -78,7 +78,14 @@ const entries: EntriesType = [
 
 export default function TmaPrestashop() {
   return (
-    <Layout>
+    <Layout
+      title={['Maintenance et sécurité', 'e-commerce Prestashop']}
+      excerpt={[
+        'Une boutique performante et sécurisé est la clé de la sérénité. Que vous vendiez 10 produits ou 5 000, la maintenance de votre boutique e-commerce Prestashop est cruciale pour son bon déroulement.',
+        "Prestashop est l'un des plus puissant CMS pour le e-commerce et donc très vulnérable aux personnes malveillantes.",
+      ]}
+      tmaLayout
+    >
       <div className="container">
         <TextImage position="right" image={LogoGrey}>
           <div className="text-left">

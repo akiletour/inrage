@@ -12,7 +12,7 @@ import PrestationSupport from '@image/prestations/support_technique_772424.png';
 
 export default function TmaOnDemand() {
   return (
-    <Layout>
+    <Layout title="Maintenance ponctuelle">
       <div className="container">
         <TextImage position="right" image={TmaOnDemandIntro}>
           <div className="text-left">

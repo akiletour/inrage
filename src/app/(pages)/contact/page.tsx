@@ -3,7 +3,7 @@ import Layout from '@component/Layout';
 
 export default function Contact() {
   return (
-    <Layout>
+    <Layout title="Contactez-moi">
       <div className="container flex flex-col sm:flex-row">
         <div className="flex-none sm:w-[260px] text-center sm:text-right mb-6 sm:mb-0 sm:mr-8">
           <div className="text-orange font-bold text-4xl">

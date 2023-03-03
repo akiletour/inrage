@@ -14,7 +14,7 @@ import { RouteLink } from '@lib/route';
 
 export default function AboutMe() {
   return (
-    <Layout>
+    <Layout title="À propos de moi">
       <div className="container mt-4 -mb-20">
         <h2 className="text-white text-3xl">
           <span className="font-bold">

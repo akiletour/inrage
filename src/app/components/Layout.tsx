@@ -8,7 +8,9 @@ import Header from '@layout/Header';
 
 type Props = {
   children: ReactNode;
-  title?: string;
+  title?: string | string[];
+  excerpt?: string | string[];
+  tmaLayout?: boolean;
 };
 
 const variants = {
@@ -17,10 +19,19 @@ const variants = {
   exit: { opacity: 0, x: 0, y: -100 },
 };
 
-function Layout({ title = '', children }: Props): JSX.Element {
+function Layout({
+  children,
+  title = '',
+  excerpt = '',
+  tmaLayout = false,
+}: Props): JSX.Element {
   return (
     <div>
-      <Header pageTitle={title} />
+      <Header
+        pageTitle={title}
+        pageExcerpt={excerpt}
+        headerType={tmaLayout === true ? 'tma' : 'default'}
+      />
       <motion.main
         initial="hidden"
         animate="enter"
