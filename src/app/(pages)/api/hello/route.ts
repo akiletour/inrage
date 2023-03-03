@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { isAkismetSpam } from '@util/akismet';
+import { Mailjet } from '@util/mailjet';
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,6 +22,16 @@ export async function POST(request: NextRequest) {
         }
       );
     }
+
+    const mailjetApi = new Mailjet(
+      name,
+      email,
+      phone,
+      content,
+      request.headers.get('referer') ?? ''
+    );
+
+    mailjetApi.send();
 
     return NextResponse.json({ success: true, message: 'Message sent' });
   } catch (error) {
