@@ -115,7 +115,7 @@ const entries: EntriesType = [
 export default function TmaWordPress() {
   return (
     <Layout
-    title={['Infogérance & Maintenance TMA', 'WordPress']}
+      title={['Infogérance & Maintenance TMA', 'WordPress']}
       excerpt={[
         'La sécurité de WordPress est un sujet critique et crucial pour tout administrateur de sites soucieux de préserver son site…',
         'WordPress est LA plus grosse plateforme connue à ce jour avec près de 30% des sites mondiaux qui utilise WordPress.',

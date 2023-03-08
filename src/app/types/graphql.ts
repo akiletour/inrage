@@ -1,4 +1,4 @@
-type FeaturedImageNode = {
+export type FeaturedImageNode = {
   node: {
     sourceUrl: string;
   };
