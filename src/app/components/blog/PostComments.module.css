@@ -1,0 +1,4 @@
+.content a,
+.content code {
+    overflow-wrap: break-word;
+}

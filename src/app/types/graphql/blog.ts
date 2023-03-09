@@ -17,6 +17,7 @@ export interface SinglePostType {
     post: {
       content: string;
       title: string;
+      slug: string;
     };
 
     posts: {

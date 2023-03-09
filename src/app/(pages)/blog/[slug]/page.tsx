@@ -1,4 +1,5 @@
 import PostBody from '@component/blog/PostBody';
+import PostComments from '@component/blog/PostComments';
 import ArticleItem from '@component/items/ArticleItem';
 import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
@@ -46,6 +47,8 @@ export default async function Page({ params }: Props) {
       <div className="container">
         <PostBody content={post.content} />
       </div>
+
+      <PostComments identifier={post.slug} />
 
       <div className="container">
         <SectionTitle
