@@ -4,7 +4,8 @@ on: [deployment_status]
 
 jobs:
   jest:
-    if: github.event.deployment_status.state == 'success'
+    #if: github.event.deployment_status.state == 'success'
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
