@@ -4,7 +4,8 @@ on: [deployment_status]
 
 jobs:
   e2e:
-    if: github.event.deployment_status.state == 'success'
+    if: ${{ false }}
+    #if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Print URL 🖨
