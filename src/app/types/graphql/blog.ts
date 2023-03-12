@@ -15,6 +15,7 @@ export interface BlogPostsSlugs {
 export interface SinglePostType {
   data: {
     post: {
+      id: string;
       content: string;
       title: string;
       slug: string;

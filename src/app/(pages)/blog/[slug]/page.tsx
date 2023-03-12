@@ -48,7 +48,8 @@ export default async function Page({ params }: Props) {
         <PostBody content={post.content} />
       </div>
 
-      <PostComments identifier={post.slug} />
+      {/* @ts-expect-error Server Component */}
+      <PostComments identifier={post.id} />
 
       <div className="container">
         <SectionTitle
