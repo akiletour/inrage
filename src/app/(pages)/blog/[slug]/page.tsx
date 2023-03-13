@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
       </div>
 
       {/* @ts-expect-error Server Component */}
-      <PostComments identifier={post.id} />
+      <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
 
       <div className="container">
         <SectionTitle

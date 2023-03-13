@@ -11,15 +11,18 @@ type FormData = {
   content: string;
 };
 
+type Props = {
+  postDatabaseId: number;
+  postId: string;
+  parent?: number;
+  parentAuthor?: string;
+};
+
 export default function CommentForm({
   postId,
   parent,
   parentAuthor,
-}: {
-  postId: string;
-  parent?: number;
-  parentAuthor?: string;
-}) {
+}: Props) {
   const { state, submit, success, error } = useFormState();
   const {
     register,
@@ -27,6 +30,7 @@ export default function CommentForm({
     reset,
     formState: { errors },
   } = useForm<FormData>();
+
   const onSubmit = (data: FormData) => {
     submit();
     fetch('/api/post-comment', {

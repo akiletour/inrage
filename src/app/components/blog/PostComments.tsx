@@ -9,6 +9,7 @@ import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 
 type Props = {
+  postDatabaseId: number;
   identifier: string;
 };
 
@@ -17,7 +18,10 @@ const getComments = (postId: string): Promise<List<CommentItemType>> =>
     id: postId,
   });
 
-export default async function PostComments({ identifier }: Props) {
+export default async function PostComments({
+  postDatabaseId,
+  identifier,
+}: Props) {
   const { data } = await getComments(identifier);
 
   return (
@@ -33,11 +37,11 @@ export default async function PostComments({ identifier }: Props) {
         {data?.comments?.edges &&
           data?.comments?.edges.map(({ node }) => (
             <div className="mt-4" key={node.id}>
-              <CommentItem postId={identifier} {...node} />
+              <CommentItem postId={postDatabaseId} {...node} />
             </div>
           ))}
 
-        <CommentForm postId={identifier} />
+        <CommentForm postId={postDatabaseId} />
       </div>
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
     </div>

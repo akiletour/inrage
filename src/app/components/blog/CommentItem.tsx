@@ -51,6 +51,7 @@ export default function CommentItem({
   useEffect(() => {
     Prism.highlightAll();
   }, []);
+
   return (
     <div className={`${isChild ? 'ml-2 pl-2 border-l-2 border-orange' : ''}`}>
       <div className="bg-gray-dark py-2 px-3 mt-4">

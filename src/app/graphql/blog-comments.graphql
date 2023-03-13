@@ -11,6 +11,7 @@ query fetchBlogComments($id: ID!) {
 		edges {
 			node {
 				id
+        databaseId
 				parentDatabaseId
 				content
 				dateGmt
