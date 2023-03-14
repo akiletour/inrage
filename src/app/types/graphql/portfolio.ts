@@ -11,11 +11,23 @@ export interface SupportProjects {
   data: {
     support: {
       id: string;
+      name: string;
       projets: {
         edges: Array<{
           node: ProjectList;
         }>;
       };
+    };
+  };
+}
+
+export interface PortfolioCategory {
+  slug: string;
+  name: string;
+  id: number;
+  acfSupport: {
+    image: {
+      sourceUrl: string;
     };
   };
 }
