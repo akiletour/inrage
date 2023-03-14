@@ -15,6 +15,10 @@ export const REVALIDATE = {
 
 type VariableProps = {
   id?: string;
+  authorEmail?: string;
+  comment?: string;
+  author?: string;
+  parent?: string;
 };
 
 export const fetcher = cache(

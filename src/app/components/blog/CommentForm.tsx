@@ -18,11 +18,7 @@ type Props = {
   parentAuthor?: string;
 };
 
-export default function CommentForm({
-  postId,
-  parent,
-  parentAuthor,
-}: Props) {
+export default function CommentForm({ postId, parent, parentAuthor }: Props) {
   const { state, submit, success, error } = useFormState();
   const {
     register,

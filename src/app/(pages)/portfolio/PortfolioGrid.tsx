@@ -1,8 +1,10 @@
 import ProjectItem from '@component/items/ProjectItem';
-import { List, ProjectList } from '@type/graphql';
+import { ProjectList } from '@type/graphql';
 
 type Props = {
-  projects: List<ProjectList>;
+  projects: Array<{
+    node: ProjectList;
+  }>;
 };
 
 export default async function PortfolioGrid({ projects }: Props) {

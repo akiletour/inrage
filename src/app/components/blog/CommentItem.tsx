@@ -85,7 +85,7 @@ export default function CommentItem({
         <CommentForm
           parentAuthor={author.node.name}
           parent={databaseId}
-          postId={postId!}
+          postId={postId as string}
         />
       )}
 
