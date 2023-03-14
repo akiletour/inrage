@@ -1,0 +1,33 @@
+import Layout from '@component/Layout';
+import SupportSwitcher from '@component/portfolio/SupportSwitcher';
+import SectionTitle from '@component/SectionTitle';
+import PortfolioProjects from '@graphql-query/portfolio-category-projects.graphql';
+import { SupportProjects } from '@type/graphql/portfolio';
+import { fetcher } from '@util/index';
+
+import PortfolioGrid from '../PortfolioGrid';
+
+const getData = (category: string): Promise<SupportProjects> =>
+  fetcher(PortfolioProjects, { id: category });
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const { data } = await getData(params.slug);
+
+  return (
+    <Layout title={data.support.name}>
+      <div className="container">
+        <SectionTitle
+          content={
+            "Pour toute demande ou devis, n'hésitez pas à nous contacter en remplissant le formulaire ci-dessous, nous serons ravis de vous répondre."
+          }
+          title={data.support.name}
+        />
+        {/* @ts-expect-error Server Component */}
+        <SupportSwitcher pathname={`/portfolio/${params.slug}`} />
+
+        {/* @ts-expect-error Server Component */}
+        <PortfolioGrid projects={data.support.projets.edges} />
+      </div>
+    </Layout>
+  );
+}
