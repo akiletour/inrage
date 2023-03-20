@@ -1,4 +1,4 @@
-import { ProjectList } from '@type/graphql';
+import { FeaturedImageNode, List, ProjectList } from '@type/graphql';
 
 export type EntriesType = Array<{
   id: number;
@@ -6,6 +6,18 @@ export type EntriesType = Array<{
   excerpt: string;
   values: Array<string | boolean>;
 }>;
+
+export interface ProjectsSlugs {
+  data: {
+    projets: {
+      edges: Array<{
+        node: {
+          slug: string;
+        };
+      }>;
+    };
+  };
+}
 
 export interface SupportProjects {
   data: {
@@ -28,6 +40,36 @@ export interface PortfolioCategory {
   acfSupport: {
     image: {
       sourceUrl: string;
+    };
+  };
+}
+
+interface TechnologyType {
+  name: string;
+  acfDetail: {
+    image: {
+      sourceUrl: string;
+    };
+  };
+}
+
+export interface SingleProject {
+  data: {
+    projet: {
+      id: string;
+      title: string;
+      slug: string;
+      cotent: string | null;
+      featuredImage: FeaturedImageNode;
+      technologies: List<TechnologyType>;
+      supports: {
+        edges: Array<{
+          node: {
+            name: string;
+            slug: string;
+          };
+        }>;
+      };
     };
   };
 }
