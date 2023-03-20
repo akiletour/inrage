@@ -34,7 +34,7 @@ export type CommentItemType = {
     nodes: CommentItemType[];
   };
   isChild?: boolean;
-  postId?: string;
+  postId?: number;
 };
 
 export default function CommentItem({
@@ -85,7 +85,7 @@ export default function CommentItem({
         <CommentForm
           parentAuthor={author.node.name}
           parent={databaseId}
-          postId={postId as string}
+          postId={postId as number}
         />
       )}
 

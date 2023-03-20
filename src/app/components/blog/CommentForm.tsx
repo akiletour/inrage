@@ -12,8 +12,7 @@ type FormData = {
 };
 
 type Props = {
-  postDatabaseId: number;
-  postId: string;
+  postId: number;
   parent?: number;
   parentAuthor?: string;
 };
