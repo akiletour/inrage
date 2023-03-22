@@ -51,7 +51,7 @@ export default async function Page({ params }: Props) {
     .slice(0, 4);
 
   return (
-    <Layout>
+    <Layout title={data.title}>
       <div className="container">
         <div className="flex items-center mb-10 flex-col md:flex-row">
           <div className="md:w-2/5 text-center md:text-right">
