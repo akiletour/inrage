@@ -7,6 +7,7 @@ import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql';
 import SingleProjectData from '@graphql-query/single-project.graphql';
+import RouteLink from '@lib/route';
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -51,7 +52,16 @@ export default async function Page({ params }: Props) {
     .slice(0, 4);
 
   return (
-    <Layout title={data.title}>
+    <Layout
+      breadcrumbs={[
+        { link: RouteLink.portfolio, title: 'Portfolio' },
+        {
+          link: `${RouteLink.portfolio}/${data?.supports?.edges[0]?.node?.slug}`,
+          title: data.supports.edges[0]?.node.name ?? '',
+        },
+      ]}
+      title={data.title}
+    >
       <div className="container">
         <div className="flex items-center mb-10 flex-col md:flex-row">
           <div className="md:w-2/5 text-center md:text-right">

@@ -2,6 +2,7 @@ import Layout from '@component/Layout';
 import SupportSwitcher from '@component/portfolio/SupportSwitcher';
 import SectionTitle from '@component/SectionTitle';
 import PortfolioProjects from '@graphql-query/portfolio-category-projects.graphql';
+import { RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -14,7 +15,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { data } = await getData(params.slug);
 
   return (
-    <Layout title={data.support.name}>
+    <Layout
+      breadcrumbs={[{ link: RouteLink.portfolio, title: 'Portfolio' }]}
+      title={data.support.name}
+    >
       <div className="container">
         <SectionTitle
           content={
