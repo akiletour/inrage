@@ -81,5 +81,35 @@ export interface SingleProject {
         excerpt: string;
       };
     };
+    projets: {
+      edges: Array<{
+        node: {
+          slug: string;
+          title: string;
+          id: number;
+          featuredImage: {
+            node: {
+              sourceUrl: string;
+            };
+          };
+          support: {
+            edges: Array<{
+              node: {
+                slug: string;
+              };
+            }>;
+          };
+
+          supports: {
+            edges: Array<{
+              node: {
+                name: string;
+                slug: string;
+              };
+            }>;
+          };
+        };
+      }>;
+    };
   };
 }

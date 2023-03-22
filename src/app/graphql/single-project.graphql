@@ -36,7 +36,7 @@ query ProjectBySlug($id: ID!) {
 			excerpt
 		}
 	}
-	projets(first: 1000) {
+	projets(where: {notIn: [$id]}, first: 1000) {
 		edges {
 			node {
 				id
