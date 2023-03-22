@@ -11,6 +11,10 @@ type Props = {
   title?: string | string[];
   excerpt?: string | string[];
   tmaLayout?: boolean;
+  breadcrumbs?: Array<{
+    link: string;
+    title: string;
+  }>;
 };
 
 const variants = {
@@ -24,6 +28,7 @@ function Layout({
   title = '',
   excerpt = '',
   tmaLayout = false,
+  breadcrumbs = [],
 }: Props): JSX.Element {
   return (
     <div>
@@ -31,6 +36,7 @@ function Layout({
         pageTitle={title}
         pageExcerpt={excerpt}
         headerType={tmaLayout === true ? 'tma' : 'default'}
+        breadcrumb={breadcrumbs}
       />
       <motion.main
         initial="hidden"

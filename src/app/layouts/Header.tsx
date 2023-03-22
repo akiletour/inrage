@@ -13,7 +13,7 @@ const DynamicHeaderTma = dynamic(() => import('@layout/HeaderTma'));
 
 interface Props {
   pageTitle?: PageTitleType;
-  breadcrumb?: Array<{
+  breadcrumb: Array<{
     title: string;
     link: string;
   }>;
