@@ -9,10 +9,23 @@ import PrestationDesign from '@image/prestations/charte_graphique.png';
 import PrestationWebDev from '@image/prestations/developpement_site_web.png';
 import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
+import { RouteLink } from '@lib/route';
 
 export default function TmaOnDemand() {
   return (
-    <Layout title="Maintenance ponctuelle">
+    <Layout
+      breadcrumbs={[
+        {
+          link: RouteLink.prestations,
+          title: 'Prestations sous WordPress, Prestashop et Symfony',
+        },
+        {
+          link: RouteLink.prestationTma,
+          title: 'Maintenance de site web',
+        },
+      ]}
+      title="Maintenance ponctuelle"
+    >
       <div className="container">
         <TextImage position="right" image={TmaOnDemandIntro}>
           <div className="text-left">

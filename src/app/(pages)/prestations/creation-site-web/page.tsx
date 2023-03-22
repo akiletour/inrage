@@ -16,7 +16,15 @@ import { RouteLink } from '@lib/route';
 
 export default function PrestationBuildWebsite() {
   return (
-    <Layout title="Création de site internet">
+    <Layout
+      breadcrumbs={[
+        {
+          link: RouteLink.prestations,
+          title: 'Prestations sous WordPress, Prestashop et Symfony',
+        },
+      ]}
+      title="Création de site internet"
+    >
       <div className="flex relative container mt-6 lg:-mt-12">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
           <div className="w-[697px] h-[736px] relative">

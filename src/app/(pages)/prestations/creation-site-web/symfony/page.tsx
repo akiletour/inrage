@@ -25,7 +25,19 @@ export default async function Symfony() {
   const { data } = await getLastProjectsBySupports('application-web');
 
   return (
-    <Layout title="Symfony">
+    <Layout
+      breadcrumbs={[
+        {
+          link: RouteLink.prestations,
+          title: 'Prestations sous WordPress, Prestashop et Symfony',
+        },
+        {
+          link: RouteLink.prestationWeb,
+          title: 'Création de site internet',
+        },
+      ]}
+      title="Symfony"
+    >
       <div className="container">
         <TextImage
           title={['Pourquoi utiliser Symfony ?', 'Une architecture solide']}
