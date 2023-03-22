@@ -16,6 +16,13 @@ import { RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
+export const metadata = {
+  title:
+    'Développeur Freelance spécialisé dans la création de site avec Symfony',
+  description:
+    'Développeur Freelance Symfony spécialisé dans la création de site et application avec le Framework PHP Symfony.',
+};
+
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
   fetcher(LastProjectsBySupports, {
     id: slug,

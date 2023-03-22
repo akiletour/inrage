@@ -31,6 +31,20 @@ export async function generateStaticParams() {
 const getData = (slug: string): Promise<SinglePostType> =>
   fetcher(getSinglePost, { id: slug });
 
+export async function generateMetadata({ params }: Props) {
+  const {
+    data: { post },
+  } = await getData(params.slug);
+
+  return {
+    title: post.seo.title,
+    description: post.seo.metaDesc,
+    alternates: {
+      canonical: post.seo.canonical,
+    },
+  };
+}
+
 export default async function Page({ params }: Props) {
   const {
     data: { post, posts },

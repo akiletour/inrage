@@ -7,6 +7,12 @@ import { fetcher } from '@util/index';
 
 import PortfolioGrid from './PortfolioGrid';
 
+export const metadata = {
+  title: 'Portfolio des projets de création de site Internet',
+  description:
+    "Retrouvez la liste des projets de création de site web, de boutique e-commerce ou encore d'application web",
+};
+
 const getData = (): Promise<List<ProjectList>> => fetcher(PortfolioProjects);
 
 export default async function Page() {

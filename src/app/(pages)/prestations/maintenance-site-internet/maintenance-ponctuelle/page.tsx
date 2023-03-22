@@ -11,6 +11,13 @@ import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
 import { RouteLink } from '@lib/route';
 
+export const metadata = {
+  title:
+    'Développement, maintenance et intervention ponctuelle site web | Freelance - inRage',
+  description:
+    'Développeur freelance, je peux intervenir ponctuellement sur votre site sous forme d’heures de développement, que ce soit pour l’intégration d’un nouveau bloc ou une nouvelle fonctionnalité.',
+};
+
 export default function TmaOnDemand() {
   return (
     <Layout

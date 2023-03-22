@@ -24,6 +24,7 @@ export interface SupportProjects {
     support: {
       id: string;
       name: string;
+      excerpt: string;
       projets: {
         edges: Array<{
           node: ProjectList;

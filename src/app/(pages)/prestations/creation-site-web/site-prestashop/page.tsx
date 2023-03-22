@@ -17,6 +17,13 @@ import { RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
+export const metadata = {
+  title:
+    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+  description:
+    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+};
+
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
   fetcher(LastProjectsBySupports, {
     id: slug,

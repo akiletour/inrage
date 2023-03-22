@@ -1,5 +1,9 @@
 import Layout from '@component/Layout';
 
+export const metadata = {
+  title: 'Mentions légales - inRage',
+};
+
 const LegalTitle = ({ children }: { children: string }) => {
   return (
     <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>

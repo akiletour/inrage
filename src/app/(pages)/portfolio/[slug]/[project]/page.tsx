@@ -33,6 +33,14 @@ export async function generateStaticParams() {
 const getSingleProject = (slug: string): Promise<SingleProject> =>
   fetcher(SingleProjectData, { id: slug });
 
+export async function generateMetadata({ params }: Props) {
+  const { data } = await getSingleProject(params.project);
+  return {
+    title: `${data.projet.title} - Portfolio`,
+    description: data.projet.detail.excerpt,
+  };
+}
+
 export default async function Page({ params }: Props) {
   const {
     data: { projet: data, projets: relatedRawProjects },

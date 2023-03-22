@@ -19,6 +19,11 @@ export interface SinglePostType {
       content: string;
       title: string;
       slug: string;
+      seo: {
+        title: string;
+        metaDesc: string;
+        canonical: string;
+      };
     };
 
     posts: {

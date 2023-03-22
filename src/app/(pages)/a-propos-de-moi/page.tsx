@@ -12,6 +12,12 @@ import ExpMegami from '@image/experiences/megami-productions.png';
 import ExpMoonscoop from '@image/experiences/moonscoop.png';
 import { RouteLink } from '@lib/route';
 
+export const metadata = {
+  title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
+  description:
+    "15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web",
+};
+
 export default function AboutMe() {
   return (
     <Layout title="À propos de moi">

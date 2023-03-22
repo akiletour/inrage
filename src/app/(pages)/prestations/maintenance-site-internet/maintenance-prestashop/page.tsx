@@ -11,6 +11,13 @@ import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
 import { EntriesType } from '@type/graphql/portfolio';
 
+export const metadata = {
+  title:
+    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+  description:
+    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+};
+
 const entries: EntriesType = [
   {
     id: 1,

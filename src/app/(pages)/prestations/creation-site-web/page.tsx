@@ -14,6 +14,12 @@ import BuildPrestashop from '@image/website-prestashop.png';
 import BuildWordPress from '@image/website-wp.png';
 import { RouteLink } from '@lib/route';
 
+export const metadata = {
+  title: 'Création de site internet | Freelance création de site web - inRage',
+  description:
+    'Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !',
+};
+
 export default function PrestationBuildWebsite() {
   return (
     <Layout

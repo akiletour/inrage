@@ -21,6 +21,13 @@ import ExpertiseWordPress from '@image/expertises/wordpress.png';
 import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg';
 import { RouteLink } from '@lib/route';
 
+export const metadata = {
+  title:
+    'Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop',
+  description:
+    'Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop.',
+};
+
 export default function Homepage() {
   return (
     <Layout>

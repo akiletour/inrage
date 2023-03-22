@@ -13,6 +13,12 @@ import LogoGrey from '@image/logo-grey-inline-white.png';
 import { RouteLink } from '@lib/route';
 import { EntriesType } from '@type/graphql/portfolio';
 
+export const metadata = {
+  title: 'Maintenance site WordPress | Freelance - inRage',
+  description:
+    'Développeur freelance, découvrez mon offre de maintenance WordPress sur mesure. Avec plus de 150 clients en infogérance WordPress, je suis expert dans la maintenance TMA WordPress.',
+};
+
 const entries: EntriesType = [
   {
     id: 1,

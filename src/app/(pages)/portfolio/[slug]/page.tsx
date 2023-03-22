@@ -8,10 +8,24 @@ import { fetcher } from '@util/index';
 
 import PortfolioGrid from '../PortfolioGrid';
 
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
 const getData = (category: string): Promise<SupportProjects> =>
   fetcher(PortfolioProjects, { id: category });
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: Props) {
+  const { data } = await getData(params.slug);
+  return {
+    title: `${data.support.name} - Portfolio`,
+    description: data.support.excerpt,
+  };
+}
+
+export default async function Page({ params }: Props) {
   const { data } = await getData(params.slug);
 
   return (

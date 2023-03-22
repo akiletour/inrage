@@ -21,6 +21,12 @@ import { RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
+export const metadata = {
+  title: 'Création de site WordPress | Freelance Wordpress - inRage',
+  description:
+    'Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress.',
+};
+
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
   fetcher(LastProjectsBySupports, {
     id: slug,
