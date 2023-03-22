@@ -1,4 +1,4 @@
-import { FeaturedImageNode, List, ProjectList } from '@type/graphql';
+import { FeaturedImageNode, ProjectList } from '@type/graphql';
 
 export type EntriesType = Array<{
   id: number;
@@ -59,9 +59,13 @@ export interface SingleProject {
       id: string;
       title: string;
       slug: string;
-      cotent: string | null;
+      content: string | null;
       featuredImage: FeaturedImageNode;
-      technologies: List<TechnologyType>;
+      technologies: {
+        edges: Array<{
+          node: TechnologyType;
+        }>;
+      };
       supports: {
         edges: Array<{
           node: {
@@ -69,6 +73,12 @@ export interface SingleProject {
             slug: string;
           };
         }>;
+      };
+      detail: {
+        websiteLink: string;
+        year: string;
+        missions: string;
+        excerpt: string;
       };
     };
   };
