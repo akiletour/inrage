@@ -7,7 +7,7 @@ import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql';
 import SingleProjectData from '@graphql-query/single-project.graphql';
-import RouteLink from '@lib/route';
+import { RouteLink } from '@lib/route';
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
