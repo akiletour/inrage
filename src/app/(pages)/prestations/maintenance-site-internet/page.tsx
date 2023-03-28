@@ -6,12 +6,15 @@ import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import TextImage from '@component/TextImage';
 import TmaImage from '@image/tma.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
   title: 'Maintenance site web | Freelance maintenance site internet - inRage',
   description:
     'Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site.',
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestationTma),
+  },
 };
 
 export default function WebsiteTMA() {

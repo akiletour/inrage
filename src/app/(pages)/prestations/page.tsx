@@ -10,12 +10,15 @@ import PrestationDesign from '@image/prestations/charte_graphique.png';
 import PrestationWebDev from '@image/prestations/developpement_site_web.png';
 import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
   title: 'Prestations sous WordPress, Prestashop et Symfony - inRage',
   description:
     "Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web.",
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestations),
+  },
 };
 
 export default function Prestations() {

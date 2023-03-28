@@ -9,13 +9,16 @@ import PrestationDesign from '@image/prestations/charte_graphique.png';
 import PrestationWebDev from '@image/prestations/developpement_site_web.png';
 import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
   title:
     'Développement, maintenance et intervention ponctuelle site web | Freelance - inRage',
   description:
     'Développeur freelance, je peux intervenir ponctuellement sur votre site sous forme d’heures de développement, que ce soit pour l’intégration d’un nouveau bloc ou une nouvelle fonctionnalité.',
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
+  },
 };
 
 export default function TmaOnDemand() {

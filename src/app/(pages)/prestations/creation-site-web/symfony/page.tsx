@@ -12,7 +12,7 @@ import SymfonyComponents from '@image/prestations/symfony-components.jpg';
 import SymfonyHero from '@image/prestations/symfony-hero.jpg';
 import TwigImage from '@image/prestations/twig.jpg';
 import SchemaMercure from '@image/schema-mercure.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -21,6 +21,9 @@ export const metadata = {
     'Développeur Freelance spécialisé dans la création de site avec Symfony',
   description:
     'Développeur Freelance Symfony spécialisé dans la création de site et application avec le Framework PHP Symfony.',
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestationSymfony),
+  },
 };
 
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>

@@ -9,6 +9,7 @@ import TableHeader from '@component/tma/TableHeader';
 import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
+import { RouteLink, getCanonicalUrl } from '@lib/route';
 import { EntriesType } from '@type/graphql/portfolio';
 
 export const metadata = {
@@ -16,6 +17,9 @@ export const metadata = {
     'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
   description:
     'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
+  },
 };
 
 const entries: EntriesType = [

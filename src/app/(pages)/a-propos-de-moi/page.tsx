@@ -10,12 +10,15 @@ import ExpCOS from '@image/experiences/comonscreen.png';
 import ExpKamelab from '@image/experiences/kamelab.png';
 import ExpMegami from '@image/experiences/megami-productions.png';
 import ExpMoonscoop from '@image/experiences/moonscoop.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
   title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
   description:
     "15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web",
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.aboutMe),
+  },
 };
 
 export default function AboutMe() {

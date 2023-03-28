@@ -13,7 +13,7 @@ import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import ProtectionShield from '@image/protection-shield.png';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import WebsiteWP from '@image/website-wp.png';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -22,6 +22,9 @@ export const metadata = {
     'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
   description:
     'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
+  },
 };
 
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>

@@ -5,7 +5,7 @@ import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import allBlogPostsSlug from '@graphql-query/all-blog-posts-slug.graphql';
 import getSinglePost from '@graphql-query/single-post.graphql';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog';
 import { fetcher } from '@util/index';
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props) {
     title: post.seo.title,
     description: post.seo.metaDesc,
     alternates: {
-      canonical: post.seo.canonical,
+      canonical: getCanonicalUrl(`${RouteLink.blog}/${post.slug}`),
     },
   };
 }

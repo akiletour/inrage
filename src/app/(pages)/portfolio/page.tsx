@@ -2,6 +2,7 @@ import Layout from '@component/Layout';
 import SupportSwitcher from '@component/portfolio/SupportSwitcher';
 import SectionTitle from '@component/SectionTitle';
 import PortfolioProjects from '@graphql-query/portfolio-projects.graphql';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { List, ProjectList } from '@type/graphql';
 import { fetcher } from '@util/index';
 
@@ -11,6 +12,9 @@ export const metadata = {
   title: 'Portfolio des projets de création de site Internet',
   description:
     "Retrouvez la liste des projets de création de site web, de boutique e-commerce ou encore d'application web",
+  alternates: {
+    canonical: getCanonicalUrl(RouteLink.portfolio),
+  },
 };
 
 const getData = (): Promise<List<ProjectList>> => fetcher(PortfolioProjects);

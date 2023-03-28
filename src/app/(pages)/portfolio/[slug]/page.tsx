@@ -2,7 +2,7 @@ import Layout from '@component/Layout';
 import SupportSwitcher from '@component/portfolio/SupportSwitcher';
 import SectionTitle from '@component/SectionTitle';
 import PortfolioProjects from '@graphql-query/portfolio-category-projects.graphql';
-import { RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -22,6 +22,9 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${data.support.name} - Portfolio`,
     description: data.support.excerpt,
+    alternates: {
+      canonical: getCanonicalUrl(`${RouteLink.portfolio}/${data.support.slug}`),
+    },
   };
 }
 

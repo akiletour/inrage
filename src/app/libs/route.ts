@@ -32,4 +32,8 @@ export const RouteLink = {
   sitemap: '/plan-du-site',
 };
 
+export const getCanonicalUrl = (part: string = ''): string => {
+  return `https://${process.env.VERCEL_URL}${part}`;
+};
+
 export default RouteLink;
