@@ -36,4 +36,11 @@ export const getCanonicalUrl = (part: string = ''): string => {
   return `https://${process.env.VERCEL_URL}${part}`;
 };
 
+export const replaceBackendUrlContent = (content: string): string => {
+  return content.replace(
+    process.env.BACKEND_URL as string,
+    `https://${process.env.VERCEL_URL}`
+  );
+};
+
 export default RouteLink;

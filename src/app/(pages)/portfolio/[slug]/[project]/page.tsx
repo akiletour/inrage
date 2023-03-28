@@ -7,7 +7,11 @@ import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql';
 import SingleProjectData from '@graphql-query/single-project.graphql';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import {
+  getCanonicalUrl,
+  replaceBackendUrlContent,
+  RouteLink,
+} from '@lib/route';
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -158,7 +162,7 @@ export default async function Page({ params }: Props) {
 
         {data.content && (
           <div className="my-8">
-            <PostBody content={data?.content || ''} />
+            <PostBody content={replaceBackendUrlContent(data?.content) || ''} />
           </div>
         )}
 
