@@ -22,7 +22,6 @@
     "graphql-tag": "^2.12.6",
     "moment": "^2.29.3",
     "next": "^v13.2.5-canary.9",
-    "next-seo": "^5.15.0",
     "prismjs": "^1.29.0",
     "prop-types": "^15.7.2",
     "raw-loader": "^4.0.2",
