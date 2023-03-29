@@ -1,0 +1,9 @@
+query articlesSlug { 
+  posts(first: 1000) { 
+    edges {
+      node {
+        slug
+      }
+    }
+  }
+}

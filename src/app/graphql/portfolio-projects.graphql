@@ -1,0 +1,25 @@
+query PortfolioProjects {
+   projets(first: 1000, where: { orderby: { field: DATE, order: DESC } }) { 
+      edges {
+      node { 
+          id
+          title
+          slug 
+          status
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          supports {
+            edges {
+              node {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }

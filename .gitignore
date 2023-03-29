@@ -41,3 +41,5 @@ tsconfig.tsbuildinfo
 
 # Sentry
 .sentryclirc
+
+.vscode

@@ -1,7 +1,7 @@
 # inRage: A React / NextJS portfolio of a French Web developer
 
-[![Last commit](https://img.shields.io/github/last-commit/inrage/inrage)](https://github.com/inrage/inrage/commits/main)
-![Stars](https://img.shields.io/github/stars/inrage/inrage?label=%E2%AD%90%20Stars)
+[![Last commit](https://img.shields.io/github/last-commit/akiletour/inrage)](https://github.com/akiletour/inrage/commits/main)
+![Stars](https://img.shields.io/github/stars/akiletour/inrage?label=%E2%AD%90%20Stars)
 [![Follow](https://img.shields.io/github/followers/akiletour?label=Please%20follow%20%20to%20support%20my%20work&style=social)](https://github.com/Akiletour)
 
 <p align="center">

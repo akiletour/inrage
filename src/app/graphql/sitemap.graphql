@@ -1,0 +1,26 @@
+query sitemap {
+  projets {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  posts {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  supports {
+    edges {
+      node {
+        title: name
+        uri
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+mutation CREATE_COMMENT(
+	$id: Int
+	$authorEmail: String
+	$comment: String
+	$author: String
+	$parent: ID
+) {
+	createComment(
+		input: {
+			commentOn: $id
+			content: $comment
+			author: $author
+			authorEmail: $authorEmail
+			parent: $parent
+		}
+	) {
+		success
+		comment {
+			content
+		}
+	}
+}

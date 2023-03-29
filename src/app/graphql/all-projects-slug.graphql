@@ -1,0 +1,10 @@
+query projectSlugs { 
+  projets(first: 1000) { 
+    edges {
+      node {
+        slug
+      }
+    }
+  }
+}
+

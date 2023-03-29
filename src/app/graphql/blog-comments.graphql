@@ -1,0 +1,40 @@
+query fetchBlogComments($id: ID!) {
+	comments(
+		where: {
+			contentId: $id
+			contentType: POST
+			parent: 0
+			orderby: COMMENT_DATE
+			order: ASC
+		}
+	) {
+		edges {
+			node {
+				id
+        databaseId
+				parentDatabaseId
+				content
+				dateGmt
+				author {
+					node {
+						name
+					}
+				}
+				replies(where: { orderby: COMMENT_DATE_GMT, order: ASC }) {
+					nodes {
+						id
+						databaseId
+						content
+						dateGmt
+						author {
+							node {
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
