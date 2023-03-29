@@ -21,10 +21,10 @@ type Props = {
   };
 };
 
-export const revalidate = 60;
-
 const getAllProjectsSlugs = (): Promise<ProjectsSlugs> =>
   fetcher(allProjectsSlugs);
+
+export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
   const { data } = await getAllProjectsSlugs();
