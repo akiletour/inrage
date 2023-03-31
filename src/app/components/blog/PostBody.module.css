@@ -3,7 +3,7 @@
 }
 
 .content > p:first-child {
-    @apply text-white text-3xl;
+    @apply text-white text-2xl md:text-3xl;
 }
 
 .content [class^="wp-block-image"] {
