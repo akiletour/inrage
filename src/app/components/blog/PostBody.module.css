@@ -110,3 +110,20 @@
 .content [class~=wp-block-gallery][class~=columns-3] [class~=blocks-gallery-grid] {
   @apply grid-cols-1 md:grid-cols-3;
 }
+
+.content [class~=wp-block-jetpack-gif-wrapper] {
+  height: 0;
+  margin: 0;
+  padding: calc(56.2% + 12px) 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.content [class~=wp-block-jetpack-gif-wrapper] iframe {
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
