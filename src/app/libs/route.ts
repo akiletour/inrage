@@ -33,7 +33,7 @@ export const RouteLink = {
 };
 
 export const getCanonicalUrl = (part: string = ''): string => {
-  return `https://${process.env.VERCEL_URL}${part}`;
+  return `${process.env.NEXT_PUBLIC_FRONT_URL}${part}`;
 };
 
 export const replaceBackendUrlContent = (content: string): string => {
