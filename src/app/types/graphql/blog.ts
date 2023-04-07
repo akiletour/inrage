@@ -16,6 +16,7 @@ export interface SinglePostType {
   data: {
     post: {
       id: string;
+      databaseId: number;
       content: string;
       title: string;
       slug: string;

@@ -36,7 +36,7 @@ export default async function PostComments({
         />
         {data?.comments?.edges &&
           data?.comments?.edges.map(({ node }) => (
-            <div className="mt-4" key={node.id}>
+            <div className="mt-4" key={node.databaseId}>
               <CommentItem postId={postDatabaseId} {...node} />
             </div>
           ))}

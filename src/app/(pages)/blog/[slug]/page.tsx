@@ -19,8 +19,6 @@ type Props = {
   };
 };
 
-export const revalidate = 60;
-
 const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> =>
   fetcher(allBlogPostsSlug);
 
