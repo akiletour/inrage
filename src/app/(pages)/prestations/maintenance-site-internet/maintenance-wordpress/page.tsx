@@ -10,7 +10,7 @@ import TableHeader from '@component/tma/TableHeader';
 import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { EntriesType } from '@type/graphql/portfolio';
 
 export const metadata = {
@@ -53,9 +53,9 @@ const entries: EntriesType = [
   },
   {
     id: 5,
-    name: 'Mise à jour et montée de version',
+    name: 'Mise à jour et montée de version majeure',
     excerpt:
-      "Lors de la prise en charge et tout au long de la maintenance de votre site WordPress. Je met à jour WordPress vers sa dernière version et je met à jour toutes les extensions pour qu'elles soient compatible avec cette version",
+      "Lors de la prise en charge et tout au long de la maintenance de votre site WordPress. Je met à jour WordPress vers sa dernière version et ainsi que toutes les extensions pour qu'elles soient compatible avec cette version",
     values: [true, true, true],
   },
   {
@@ -79,10 +79,17 @@ const entries: EntriesType = [
     values: [true, true, true],
   },
   {
+    id: 15,
+    name: 'Mise à niveau de la version PHP',
+    excerpt:
+      'Je vous accompagne pour monter la version de PHP de votre hébergement pour rester compatible avec vos plugins et le coeur de WordPress. Sous réserve de faisabilité avec votre thème et votre hébergeur',
+    values: [false, true, true],
+  },
+  {
     id: 14,
     name: 'Rapport de maintenance',
     excerpt:
-      'Chaque mois, vous recevez un rapport de maintenance de toutes les actions effectuées sur votre site au format PDF',
+      'Chaque mois, vous recevez un rapport de maintenance de toutes les actions effectuées sur votre site au format PDF avec les dernières recommandations et les points clé de vigilance de votre site WordPress',
     values: [true, true, true],
   },
   {
