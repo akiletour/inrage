@@ -85,7 +85,7 @@ export default function Prestations() {
       <div className="mt-10">
         <div className="px-3">
           <svg
-            className="block w-full h-auto -mb-[5.75%]"
+            className="block max-w-[1280px] w-full mx-auto h-auto -mb-[5.75%] lg:-mb-9"
             height="279"
             viewBox="0 0 1473 279"
             width="1473"
