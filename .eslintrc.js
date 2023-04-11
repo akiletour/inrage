@@ -12,7 +12,6 @@ module.exports = {
       },
     ],
   },
-  plugins: ['testing-library'],
   overrides: [
     {
       parser: '@typescript-eslint/parser',
@@ -24,7 +23,6 @@ module.exports = {
       extends: [
         'airbnb-typescript',
         'next/core-web-vitals',
-        'plugin:jest-dom/recommended',
         'plugin:prettier/recommended',
       ],
       rules: {
@@ -64,10 +62,6 @@ module.exports = {
         'unused-imports/no-unused-imports': 'error',
         'unused-imports/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       },
-    },
-    {
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react'],
     },
   ],
 };

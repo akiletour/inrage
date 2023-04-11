@@ -62,9 +62,7 @@
       ]
     },
     "types": [
-      "jest",
-      "node",
-      "@types/testing-library__jest-dom"
+      "node"
     ],
     "plugins": [
       {
