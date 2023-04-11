@@ -58,7 +58,7 @@ export default function WebsiteTMA() {
         </TextImage>
 
         <div className="mt-8 text-3xl text-white text-center">
-          Les performances de votre internet sont importantes pour le
+          Les performances de votre site internet<br /> sont importantes pour le
           référencement de ce dernier.{' '}
         </div>
         <div className="md:px-10 text-center mt-3 text-xl">
