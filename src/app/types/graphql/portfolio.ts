@@ -13,6 +13,13 @@ export interface ProjectsSlugs {
       edges: Array<{
         node: {
           slug: string;
+          supports: {
+            edges: Array<{
+              node: {
+                slug: string;
+              };
+            }>;
+          };
         };
       }>;
     };
