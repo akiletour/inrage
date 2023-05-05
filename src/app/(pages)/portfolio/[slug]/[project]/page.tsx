@@ -30,7 +30,8 @@ export async function generateStaticParams() {
   const { data } = await getAllProjectsSlugs();
 
   return data.projets.edges.map(({ node }) => ({
-    slug: node.slug,
+    slug: node.supports.edges[0]?.node.slug,
+    project: node.slug,
   }));
 }
 
