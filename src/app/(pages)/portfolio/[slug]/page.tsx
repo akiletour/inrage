@@ -1,9 +1,10 @@
 import Layout from '@component/Layout';
 import SupportSwitcher from '@component/portfolio/SupportSwitcher';
 import SectionTitle from '@component/SectionTitle';
+import PortfolioCategories from '@graphql-query/portfolio-categories.graphql';
 import PortfolioProjects from '@graphql-query/portfolio-category-projects.graphql';
 import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { SupportProjects } from '@type/graphql/portfolio';
+import { PortfolioCategory, SupportProjects } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
 import PortfolioGrid from '../PortfolioGrid';
@@ -26,6 +27,18 @@ export async function generateMetadata({ params }: Props) {
       canonical: getCanonicalUrl(`${RouteLink.portfolio}/${data.support.slug}`),
     },
   };
+}
+
+const getAllCategoriesSlugs = (): Promise<{
+  data: { supports: { edges: Array<{ node: PortfolioCategory }> } };
+}> => fetcher(PortfolioCategories);
+
+export async function generateStaticParams() {
+  const { data } = await getAllCategoriesSlugs();
+
+  return data.supports.edges.map(({ node }) => ({
+    slug: node.slug,
+  }));
 }
 
 export default async function Page({ params }: Props) {
