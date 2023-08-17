@@ -59,7 +59,8 @@
       ],
       "@util/*": [
         "src/app/utils/*"
-      ]
+      ],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "types": [
       "node"
@@ -75,7 +76,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules",
