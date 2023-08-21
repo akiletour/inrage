@@ -56,10 +56,8 @@ export default async function Page({ params }: Props) {
           }
           title={data.support.name}
         />
-        {/* @ts-expect-error Server Component */}
         <SupportSwitcher pathname={`/portfolio/${params.slug}`} />
 
-        {/* @ts-expect-error Server Component */}
         <PortfolioGrid projects={data.support.projets.edges} />
       </div>
     </Layout>

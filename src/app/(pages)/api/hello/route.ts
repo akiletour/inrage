@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
         JSON.stringify({ message: 'Message marked as spam' }),
         {
           status: 422,
-        }
+        },
       );
     }
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       email,
       phone,
       content,
-      request.headers.get('referer') ?? ''
+      request.headers.get('referer') ?? '',
     );
 
     mailjetApi.send();

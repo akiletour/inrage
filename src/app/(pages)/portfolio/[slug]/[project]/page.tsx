@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props) {
     description: data.projet.detail.excerpt,
     alternates: {
       canonical: getCanonicalUrl(
-        `${RouteLink.portfolio}/${data.projet.supports.edges[0]?.node.slug}/${data.projet.slug}`
+        `${RouteLink.portfolio}/${data.projet.supports.edges[0]?.node.slug}/${data.projet.slug}`,
       ),
     },
   };
@@ -53,10 +53,11 @@ export default async function Page({ params }: Props) {
 
   const relatedProjects = relatedRawProjects.edges
     .filter((r) => {
-      if (r.node.supports.edges[0] && data.supports.edges[0]) {
+      const firstDataSupport = data.supports.edges[0];
+      if (r.node.supports.edges[0] && firstDataSupport) {
         return (
-          r.node.supports.edges[0].node.slug ===
-          data.supports.edges[0].node.slug && data.slug !== r.node.slug
+          r.node.supports.edges[0].node.slug === firstDataSupport.node.slug &&
+          data.slug !== r.node.slug
         );
       }
       return false;

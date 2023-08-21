@@ -4,9 +4,16 @@ import Image from 'next/image';
 import ButtonLink from '@component/ButtonLink';
 import Link from '@component/NoScrollLink';
 import 'moment/locale/fr';
-import { ArticleList } from '@type/graphql';
 
 moment.locale('fr');
+
+type Props = {
+  image: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+};
 
 export default function ArticleItem({
   image,
@@ -14,7 +21,7 @@ export default function ArticleItem({
   description,
   date,
   slug,
-}: ArticleList) {
+}: Props) {
   const formattedDate = moment(date);
 
   return (

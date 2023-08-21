@@ -31,11 +31,9 @@ export default async function Page() {
           }
           title="Portfolio"
         />
-        {/* @ts-expect-error Server Component */}
         <SupportSwitcher pathname="/portfolio" />
 
-        {/* @ts-expect-error Server Component */}
-        <PortfolioGrid projects={data.projets.edges} />
+        <PortfolioGrid projects={data?.projets?.edges ?? []} />
       </div>
     </Layout>
   );

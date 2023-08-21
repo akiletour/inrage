@@ -14,7 +14,7 @@ export class Mailjet {
     email: string,
     phone: string,
     message: string,
-    referrer: string
+    referrer: string,
   ) {
     this.name = name;
     this.email = email;
@@ -25,7 +25,7 @@ export class Mailjet {
 
   getToken() {
     return Buffer.from(
-      `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`
+      `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`,
     ).toString('base64');
   }
 

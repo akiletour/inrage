@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         JSON.stringify({ message: 'Slack webhook URL is not defined' }),
         {
           status: 500,
-        }
+        },
       );
     }
 

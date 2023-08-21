@@ -10,7 +10,7 @@ export const isAkismetSpam = async (
   request: NextRequest,
   author: string,
   email: string,
-  content: string
+  content: string,
 ): Promise<boolean> => {
   try {
     const userAgent = request.headers.get('user-agent') ?? '';

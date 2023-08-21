@@ -35,5 +35,5 @@ export const fetcher = cache(
     });
 
     return res.json();
-  }
+  },
 );

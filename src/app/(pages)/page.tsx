@@ -114,7 +114,6 @@ export default function Homepage() {
           />
 
           <Suspense fallback={<p>Loading</p>}>
-            {/* @ts-expect-error Server Component */}
             <LastProjects />
           </Suspense>
         </div>
@@ -175,10 +174,7 @@ export default function Homepage() {
             title="Articles"
           />
 
-          <Suspense fallback={<p>Loading</p>}>
-            {/* @ts-expect-error Server Component */}
-            <LastArticles />
-          </Suspense>
+          <LastArticles />
         </div>
 
         <Diagonal
