@@ -19,6 +19,7 @@
     "clsx": "^2.0.0",
     "concurrently": "^8.2.0",
     "contentlayer": "^0.3.4",
+    "date-fns": "^2.30.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "framer-motion": "^10.12.8",
     "graphql": "^16.6.0",
