@@ -74,7 +74,10 @@ export default function Footer() {
             <div className="my-2">
               <Socials />
             </div>
-            <div>© 2008-2021 - inRage SARL. Tous droits réservés.</div>
+            <div>
+              © 2008-{new Date().getFullYear()} - inRage SARL. Tous droits
+              réservés.
+            </div>
             <a
               href="https://github.com/akiletour/inrage"
               className="text-white block md:flex mt-2 items-center"
