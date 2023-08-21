@@ -1,17 +1,12 @@
 import Image from 'next/image';
 import sanitize from 'sanitize-html';
 
-import PostBody from '@component/blog/PostBody';
 import ProjectItem from '@component/items/ProjectItem';
 import Layout from '@component/Layout';
 import SectionTitle from '@component/SectionTitle';
 import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql';
 import SingleProjectData from '@graphql-query/single-project.graphql';
-import {
-  getCanonicalUrl,
-  replaceBackendUrlContent,
-  RouteLink,
-} from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio';
 import { fetcher } from '@util/index';
 
@@ -61,7 +56,7 @@ export default async function Page({ params }: Props) {
       if (r.node.supports.edges[0] && data.supports.edges[0]) {
         return (
           r.node.supports.edges[0].node.slug ===
-            data.supports.edges[0].node.slug && data.slug !== r.node.slug
+          data.supports.edges[0].node.slug && data.slug !== r.node.slug
         );
       }
       return false;
@@ -161,11 +156,7 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
 
-        {data.content && (
-          <div className="my-8">
-            <PostBody content={replaceBackendUrlContent(data?.content) || ''} />
-          </div>
-        )}
+        {data.content && <div className="my-8">{data?.content}</div>}
 
         <SectionTitle
           content={`Retrouvez des projets similaires développés avec ${data?.supports?.edges[0]?.node.name} qui pourrait correspondre à ${data.title}`}
