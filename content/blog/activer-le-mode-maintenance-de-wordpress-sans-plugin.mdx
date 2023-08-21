@@ -1,0 +1,91 @@
+---
+title: Activer le mode maintenance de WordPress sans plugin
+description: Nous allons voir comment mettre son site WordPress en maintenance directement depuis le FTP et sans utiliser des plugins.
+excerpt: Nous allons voir comment mettre son site WordPress en maintenance directement depuis le FTP et sans utiliser des plugins. Je vois beaucoup de monde utiliser un plugin pour mettre en maintenance leur site, lors de leur mise à jour ou pendant les maintenances. Il n’y a pas forcément besoin d’utiliser un plugin pour faire ça...
+image: /images/blog/maintenance-wordpress-sans-plugin.webp
+date: "2022-07-11"
+authors:
+  - akiletour
+---
+
+<Callout>Nous allons voir comment mettre son site WordPress en maintenance directement depuis le FTP et sans utiliser des plugins.</Callout>
+
+Je vois beaucoup de monde utiliser un plugin pour mettre en maintenance leur site, lors de leur mise à jour ou pendant les maintenances.
+
+Il n’y a pas forcément besoin d’utiliser un plugin pour faire ça, car WordPress est doté d’une fonctionnalité de maintenance par défaut.
+
+Quand vous mettez à jour votre site via le backoffice, vous ne le voyez peut-être pas, mais WordPress active ce fameux mode maintenance et bloque l’intégralité du site ou de son backoffice.
+
+L’idée aujourd’hui, et de faire exactement la même chose, mais de manière manuelle.
+
+## Comment mettre WordPress en mode maintenance
+
+Lors des mises en production ou preproduction, il m’arrive souvent de mettre le site en mode maintenance pour m’assurer que les utilisateurs et/ou les administrateurs ne puissent pas changer ou voir du contenu avant que la nouvelle fonctionnalité soit en place.
+
+Pour faire cela, je m’inspire de la méthode WP_Upgrader::maintenance_mode de WordPress. Si l’on regarde de plus près, il créer un fichier `.maintenance` à la racine du site avec du contenu PHP pour définir l’heure de début de la maintenance (avec $upgrading = TIMESTAMP).
+
+Ensuite, lors du chargement d’une page, WordPress regarde si ce fichier existe, et si c’est le cas, il compare la variable `$upgrading` de notre fichier `.maintenance`; s’il la durée est supérieur à 10min, il considère que le site n’est plus en maintenance.
+
+De notre côté, on ne veut pas de date de fin, car notre maintenance peut parfois durer plus de 10 minutes.
+
+L’idée va être de créer un fichier .maintenance à la racine du site, et le contenu de la variable `$upgrading` sera dynamique (pour ne jamais dépasser les 10minutes).
+
+```php
+<?php
+// .maintenance
+$upgrading = time();
+```
+
+Et voilà, on se retrouve avec un site en mode maintenance et personne ne peut y accéder, une fois la mise en production terminée, je supprime simplement ce fichier.
+
+## Maintenance depuis le thème WordPress
+
+Une autre façon de faire qui est intéressante, c’est de passer par les hooks de WordPress depuis notre thème par exemple. Elle peut se faire directement depuis le FTP, ou par le site.
+
+### Etape 1 : Allez dans l’éditeur de fichiers des thèmes
+
+<div className="flex items-center gap-2">
+  <Image
+    src="/images/blog/editeur-theme-wordpress-option.webp"
+    width="309"
+    height="195"
+    alt="Editeur de fichiers des thèmes WordPress"
+    className="flex-none"
+  />
+
+  <div>
+    Il se trouve dans Apparence => Editeur de fichiers des thèmes.
+
+    Si vous ne trouvez pas, votre compte n’a peut être pas les droits d’éditer ce fichier. Demandez à votre administrateur de le faire.
+  </div>
+</div>
+
+### Etape 2 : Ouvrez le fichier functions.php
+
+<div className="flex items-center gap-2">
+  <Image
+    src="/images/blog/editeur-theme-wordpress-option2.webp"
+    width="520"
+    height="262"
+    alt="Editeur de fichiers des thèmes WordPress"
+    className="flex-none"
+  />
+
+ Dans la barre de navigation à droite, vous verrez quelque chose comme Fonctions du thème (functions.php). 
+</div>
+
+### Etape 3 : Ajouter le mode maintenance
+
+Déplacez-vous tout en bas du fichier pour y rajouter le hook ci-dessous pour passer le site en mode maintenance :
+
+```php
+add_action('get_header', function() {
+	if (!current_user_can('edit_themes') || !is_user_logged_in()) {
+		wp_die('<h1>En maintenance</h1><br />Indisponibilité temporaire pour cause de maintenance. Veuillez revenir dans un instant.');
+	}
+});
+```
+
+Comme vous pouvez le voir, on vérifie que l’utilisateur n’est pas identifié et on lui met le message de maintenance.
+
+Cela est très pratique pour donner l’accès aux administrateurs sur le site.

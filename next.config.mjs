@@ -3,6 +3,9 @@ import { withContentlayer } from 'next-contentlayer';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['i2.wp.com', 'i0.wp.com', 'i1.wp.com'],
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(graphql|gql)/,

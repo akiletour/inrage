@@ -1,28 +1,30 @@
+import { compareDesc } from 'date-fns';
+
 import ArticleItem from '@component/items/ArticleItem';
-import posts from '@graphql-query/latest-blog-posts.graphql';
-import { ArticleList, List } from '@type/graphql';
-import { fetcher } from '@util/index';
+import { allPosts } from 'contentlayer/generated';
 
-export const getLatestPosts = (): Promise<List<ArticleList>> => fetcher(posts);
-
-export default async function LastArticles() {
-  const { data } = await getLatestPosts();
+export default function LastArticles() {
+  const posts = allPosts
+    .filter((post) => post.published)
+    .sort((a, b) => {
+      return compareDesc(new Date(a.date), new Date(b.date));
+    })
+    .slice(0, 2);
 
   return (
     <div className="grid md:grid-cols-2 gap-4 mb-8 lg:-mb-8 mt-6">
-      {data?.posts?.edges.map(
-        ({ node: { slug, title, featuredImage, excerpt, date } }) => (
+      {posts.length &&
+        posts.map(({ slug, title, image, excerpt, date }) => (
           <div key={slug}>
             <ArticleItem
               slug={slug}
-              featuredImage={featuredImage}
+              image={image}
               title={title}
               date={date}
-              excerpt={excerpt}
+              description={excerpt}
             />
           </div>
-        )
-      )}
+        ))}
     </div>
   );
 }

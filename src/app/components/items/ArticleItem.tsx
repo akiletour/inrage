@@ -1,19 +1,17 @@
 import moment from 'moment';
 import Image from 'next/image';
-import sanitize from 'sanitize-html';
 
 import ButtonLink from '@component/ButtonLink';
 import Link from '@component/NoScrollLink';
-import { RouteLink } from '@lib/route';
 import 'moment/locale/fr';
 import { ArticleList } from '@type/graphql';
 
 moment.locale('fr');
 
 export default function ArticleItem({
-  featuredImage,
+  image,
   title,
-  excerpt,
+  description,
   date,
   slug,
 }: ArticleList) {
@@ -29,10 +27,10 @@ export default function ArticleItem({
           {formattedDate.format('MMM').substring(0, 3)}
         </div>
       </div>
-      <Link href={`${RouteLink.blog}/${slug}`}>
+      <Link href={`${slug}`}>
         <span>
           <Image
-            src={featuredImage.node.sourceUrl}
+            src={image}
             width={595}
             height={265}
             alt={title}
@@ -44,15 +42,8 @@ export default function ArticleItem({
         </span>
       </Link>
       <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
-      <div
-        className="mt-1 mb-2"
-        dangerouslySetInnerHTML={{
-          __html: sanitize(excerpt, {
-            allowedTags: ['p'],
-          }),
-        }}
-      />
-      <ButtonLink href={`${RouteLink.blog}/${slug}`}>Lire la suite</ButtonLink>
+      <p className="mt-1 mb-2">{description}</p>
+      <ButtonLink href={`${slug}`}>Lire la suite</ButtonLink>
     </div>
   );
 }

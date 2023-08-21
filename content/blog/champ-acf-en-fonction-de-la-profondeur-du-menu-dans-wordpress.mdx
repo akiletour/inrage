@@ -1,0 +1,123 @@
+---
+title: Champ ACF en fonction de la profondeur du menu dans WordPress
+description: ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l&#x27;assigner uniquement à un niveau de
+excerpt: ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l’assigner uniquement à un niveau de profondeur, nous allons découvrir comment le mettre en place simplement.
+image: /images/blog/champ-menu-acf-level-depth.jpg
+date: "2023-03-06"
+authors:
+  - akiletour
+---
+
+<Callout>
+ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l’assigner uniquement à un niveau de profondeur, nous allons découvrir comment le mettre en place simplement.
+</Callout>
+
+Pour ce faire, nous allons rajouter un nouveau type de règle qui sera assigné au sous-niveau `Formulaire`, on lui assignera des valeurs, et l’on mettra en place la logique pour déterminer si l’élément de menu peut avoir nos champs ou non.
+
+Pour rajouter un type de règle, nous n’avons pas besoin de la version Pro d’Advanced Custom Fields. C’est disponible dès la version gratuite d’ACF.
+
+Tout le code que vous verrez ci-dessous devra être appelé par votre thème, un (mu-)plugin ou autre. Pour des raisons de simplicité, nous allons le faire au niveau du fichier `functions.php` de notre thème.
+
+## Ajout d’un type de règle
+
+Dans un premier temps, nous allons rajouter un nouveau type de règle à ACF en se basant sur le hook `acf/location/rule_types` que propose ACF pour surcharger son menu :
+
+```php
+add_filter('acf/location/rule_types', function ($choices) {
+  $acfFormsGroup = __('Forms', 'acf');
+  $choices[$acfFormsGroup]['menu_level'] = "Profondeur de l'élément du menu";
+
+  return $choices;
+});
+```
+
+Désormais, quand nous désirons rajouter un nouveau groupe de champ, on peut voir dans les règles notre nouveau type de champ :
+
+<Image
+  src="/images/blog/setting-acf-depth-menu.webp"
+  width="789"
+  height="323"
+  alt="Profondeur de l'élément du menu"
+/>
+
+## Générer les valeurs de la règle
+
+Maintenant que notre ACF comprend qu’il a une nouvelle règle de localisation, nous allons voir comment rajouter des valeurs à ce dernier.
+
+Un menu possède des niveaux de profondeur de 0 (premier premier niveau) jusqu’à N. On va utiliser le hook `acf/location/rule_values/menu_level` pour le faire :
+
+```php
+add_filter('acf/location/rule_values/menu_level', function () {
+  $maxDepthMenu = 4;
+
+  return array_combine(
+    range(0, $maxDepthMenu),
+    array_map('strval', range(0, $maxDepthMenu))
+  );
+});
+```
+
+Dans le code ci-dessus, nous allons générer les valeurs possibles de la règle en partant de 0 jusqu’à `$maxDepthMenu` qui est défini à 4 dans notre exemple. Mais vous n’avez pas de restriction pour mettre la valeur maximale que vous désirez.
+
+<Image
+  src="/images/blog/setting-acf-depth-menu2.webp"
+  width="1024"
+  height="222"
+  alt="Profondeur de l'élément du menu"
+/>
+
+## Compilation de nos règles et de leurs valeurs
+
+La dernière étape consiste à dire à Advanced Custom Fields que nous désirons ajouter nos champs ACF à nos éléments de menu.
+
+```php
+add_filter('acf/location/rule_match/menu_level', function ($match, $rule, $options) {
+  if (get_current_screen()->base === 'nav-menus' && $rule['operator'] === "==") {
+    $match = ($options['nav_menu_item_depth'] === (int)$rule['value']);
+  }
+
+  return $match;
+}, 10, 3);
+```
+
+Même si le code semble un peu fastidieux, il en reste très simple. Nous déterminons que si nous sommes sur la page des menus (`nav-menus`), nous comparons la profondeur du menu avec l’option que nous avons choisi dans le groupe de champs lors de sa configuration.
+
+<Image
+  src="/images/blog/setting-acf-depth-menu3.webp"
+  width="631"
+  height="763"
+  alt="Profondeur de l'élément du menu"
+/>
+
+## Conclusion
+
+Désormais, vous savez comment restreindre un champ ACF à un élément de menu par rapport à sa profondeur.
+
+```php
+<?php
+// wp-content/themes/VOTRE_THEME/functions.php
+
+add_filter('acf/location/rule_types', function ($choices) {
+  $acfFormsGroup = __('Forms', 'acf');
+  $choices[$acfFormsGroup]['menu_level'] = "Profondeur de l'élément du menu";
+
+  return $choices;
+});
+
+add_filter('acf/location/rule_values/menu_level', function () {
+  $maxDepthMenu = 4;
+
+  return array_combine(
+    range(0, $maxDepthMenu),
+    array_map('strval', range(0, $maxDepthMenu))
+  );
+});
+
+add_filter('acf/location/rule_match/menu_level', function ($match, $rule, $options) {
+  if (get_current_screen()->base === 'nav-menus' && $rule['operator'] === "==") {
+    $match = ($options['nav_menu_item_depth'] === (int)$rule['value']);
+  }
+
+  return $match;
+}, 10, 3);
+```

@@ -1,0 +1,394 @@
+---
+title: Blocs Gutenberg avec Sage 9 sur WordPress
+description: Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).
+excerpt: Découvrons comment organiser son thème WordPress sur le moteur Sage 9 pour créer et gérer ses différents blocs Gutenberg avec ACF directement depuis notre thème.
+image: /images/blog/bloc-gutenberg-wordpress-sage.webp
+date: "2021-10-26"
+authors:
+  - akiletour
+---
+
+<Callout>Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).</Callout>
+
+L’objectif de cet article va être de créer un bloc Gutenberg avec des champs ACF sur le moteur de thème [Sage 9](https://roots.io/sage/).
+
+À la sortie de Sage 9, WordPress n’avait pas encore en tête de gérer des blocs Gutenberg avec ACF; cela n’existait pas encore. Désormais c’est possible; et heureusement pour nous, la structure de Sage nous permettant aisément de développer cette fonctionnalité.
+
+Sommaire :
+
+1. Collecter automatiquement tous nos blocs Gutenberg dans Sage
+2. Création d’un bloc exemple “Témoignage”
+3. Création d’un style dédié pour ce bloc
+4. Gestion de la vue côté front
+5. Mise à disposition des sources
+
+### Architecture des blocs
+
+```
+app/
+  Blocks/ <-- Où seront stocké tous nos blocs Gutenberg
+    AbstractBlock.php <-- classe abstraite commune à tous nos blocs
+    QuoteBlock.php <-- Configuration de notre bloc témoignage d'exemple
+  blocks.php <-- collecteur de blocs Gutenberg
+resources/
+  assets/
+    images/
+      blocks-previews/
+        quote.jpg <-- Image de prévisualisation de notre bloc témoignage
+    styles/
+      blocks/
+        quote.scss <-- style dédié à notre bloc Gutenberg
+  views/
+    blocks/
+      block-quote.blade.php <-- Vue de notre bloc témoignage d'exemple
+```
+
+## Création d’un collecteur de blocs Gutenberg dans Sage
+
+L’idée de cette section va être de créer un fichier qui va collecter automatiquement tous les blocs Gutenberg.
+
+La logique de Sage 9 se trouve dans le répertoire app/ à la racine de notre thème. Nous allons suivre cette même logique pour nous permettre de créer notre collecteur de blocs.
+
+Nous allons créer un répertoire Blocks au sein du répertoire app de notre thème. Celui-ci contiendra toute la logique de nos blocs.
+
+```bash
+mkdir app/Blocks
+```
+
+A l’intérieur de ce dernier, nous allons créer une classe abstraite PHP AbstractBlocks.php. Elle contiendra toute la logique commune à nos blocs Gutenberg.
+
+```php
+<?php
+// app/Blocks/AbstractBlock.php
+
+namespace App\Blocks;
+
+use function App\asset_path;
+
+abstract class AbstractBlock
+{
+    public string $name = '';
+    public string $icon = '';
+
+    public function __construct()
+    {
+        add_action('acf/init', [$this, 'registerBlockType']);
+    }
+
+    public function registerBlockType(): void
+    {
+        acf_register_block_type([
+            'name' => $this->name,
+            'title' => $this->labels()['title'],
+            'description' => $this->labels()['description'],
+            'render_callback' => [$this, 'acfBlockRenderCallback'],
+            'category' => 'layout',
+            'icon' => $this->icon,
+            'enqueue_style' => asset_path('styles/' . $this->name . '.css'),
+            'example' => [
+                'attributes' => [
+                    'mode' => 'preview',
+                    'data' => [
+                        'image_path' => \App\asset_path('images/blocks-previews/' . $this->name . '.jpg'),
+                    ]
+                ]
+            ],
+        ]);
+    }
+
+    abstract protected function labels(): array;
+
+    public function acfBlockRenderCallback($block, $content, $is_preview)
+    {
+        if ($is_preview && isset($block['data']['image_path'])) {
+            echo '<img class="img-fluid" src="' . $block['data']['image_path'] . '"
+            alt="' . $this->name . '" />';
+            return;
+        }
+
+        echo \App\template(
+            \App\locate_template('views/blocks/block-' . $this->name . '.blade.php'),
+            ['block' => $block]
+        );
+    }
+}
+```
+
+<strong class="text-white">$name</strong> = correspondra au slug de notre bloc<br />
+<strong class="text-white">$icon</strong> = l’îcone qui sera utilisé dans notre éditeur Gutenberg, vous pouvez choisir une icone grace aux [Dashicons de WordPress](https://developer.wordpress.org/resource/dashicons/).
+
+## Préparation de l’initialisation
+
+Maintenant que toute la base est prête pour accepter nos blocs; on va devoir dire à Sage 9 de charger correctement tous les fichiers dans le dossier Blocks.
+
+Nous allons créer un fichier dans le dossier app/ que l’on va nommer blocks.php :
+
+```php
+<?php
+// app/blocks.php
+
+namespace App;
+
+$blocks = collect(glob(__DIR__ . '/Blocks' . '/*.php'))
+->map(function ($file_name) {
+    return str_replace('.php', '', basename($file_name));
+})->reject(function ($class_name) {
+    return $class_name === 'AbstractBlock';
+})->map(function ($class_name) {
+    $full_class_name = "\\App\\Blocks\\{$class_name}";
+    $class = new $full_class_name;
+    return 'acf/'.$class->name;
+})->values()->toArray();
+```
+
+Ce fichier va collecter tous les blocs dans le répertoire Blocks/
+
+Il ne nous reste plus qu’à appeler notre fichier blocks.php dans le fichier functions.php dans le dossier resources (ligne 61) du thème comme ceci :
+
+```php
+/**
+ * Sage required files
+ *
+ * The mapped array determines the code library included in your theme.
+ * Add or remove files to the array as needed. Supports child theme overrides.
+ */
+array_map(function ($file) use ($sage_error) {
+    $file = "../app/{$file}.php";
+    if (!locate_template($file, true, true)) {
+        $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
+    }
+}, ['helpers', 'setup', 'filters', 'admin', 'blocks']);
+```
+
+## Création de notre bloc Témoignage Gutenberg
+
+On rentre dans le vif du sujet avec la création de notre premier bloc Gutenberg avec Sage 9.
+
+### Configuration du bloc
+
+Pour commencer, nous allons créer un nouveau bloc dans notre répertoire app/Blocks. Il va nous permettre de connecter notre bloc à l’administration d’une page avec Gutenberg :
+
+```php
+<?php
+// app/Blocks/QuoteBlock.php
+
+namespace App\Blocks;
+
+class QuoteBlock extends AbstractBlock
+{
+    public string $name = 'quote';
+    public string $icon = 'format-quote';
+
+    protected function labels(): array
+    {
+        return [
+            'title' => __('Témoignage', 'sage'),
+            'description' => __('Affiche un bloc bleu pleine page avec un témoignage', 'sage')
+        ];
+    }
+}
+```
+
+Comme on l’a vu plus haut, on va devoir définir deux paramètres :
+
+<strong>$name</strong> : Où on va définir le slug “quote”,
+<strong>$icon</strong> : et on va choisir une présentation de témoignage avec nos Dashicons
+
+La méthode labels() va nous servir à définir toutes les traductions de notre bloc.
+
+### Style du bloc
+
+Pour personnaliser l’affichage de notre bloc, on va créer un fichier de style SCSS dans le répertoire resources/assets/styles/blocks/ :
+
+```scss
+## resources/assets/styles/blocks/quote.scss
+
+.block-quote {
+  background: black;
+  color: #fff;
+}
+```
+
+Ce fichier sera compilé avec Webpack lors de l’exécution de yarn build. Il va ensuite être lu par Gutenberg pour définir le style de notre bloc.
+
+Pour ce faire, on va dire à Sage 9 qu’il doit aussi compiler indépendamment notre fichier CSS :
+
+```json
+{
+  "entry": {
+    "quote": [
+      "./styles/blocks/quote.scss"
+    ]
+  },
+}
+```
+
+### Image de prévisualisation
+
+Lors du passage de notre souris sur le bloc Gutenberg dans l’administration, on va afficher une image de présivualisation de notre bloc pour indiquer à nos administrateurs à quoi ressemble notre bloc.
+
+_Je préfère cette méthode plutôt que d’afficher le bloc avec des données d’exemple._
+
+Vous êtes libre de la taille de votre image de prévisualisation, elle sera automatiquement redimensionnée par WordPress.
+
+<Image
+  src="/images/blog/previews-gutenberg-quote.webp"
+  width="503"
+  height="162"
+  alt="Prévisualisation du bloc Témoignage"
+/>
+
+Vous devez placer l’image dans le répertoire resources/assets/images/blocks/quote.jpg
+
+### Afficher notre bloc côté front et Gutenberg
+
+Nous allons désormais créer la vue de notre bloc Gutenberg qui sera partagée entre le front et le back depuis notre thème sage.
+
+Nativement, Gutenberg ne sait pas lire le format .blade.php. Mais grace à notre AbstractBlock, on va pouvoir dire à Gutenberg comment le faire.
+
+Créons un fichier dans notre répertoire views resources/views/blocks/block-quote.blade.php :
+
+```html
+<div class="block-quote">
+  Hello World
+</div>
+```
+
+## Dynamiser notre bloc avec ACF
+
+Désormais toute la structure de nos blocs est en place, on va pouvoir passer à l’ajout des champs personnalisés.
+
+### Wordplate ACF
+
+Je ne suis pas un très grand fan de gérer mes champs ACF avec l’interface du backoffice. Même si l’interface est très pratique et user-friendly pour certain cas, je préfère construire mes ACF directement depuis mon thème.
+
+Cela me permet de basculer ce thème sur une autre instance de WordPress sans devoir tout recréer côté Backoffice.
+
+Pour ça, je m’appuie sur un compagnon de longue date qui se nomme [Wordplate ACF](https://github.com/wordplate/extended-acf/).
+
+Il est installable grâce à Composer ! ça tombe bien, notre thème Sage 9 utilise aussi composer pour son fonctionnement interne !
+
+```bash
+composer require wordplate/acf
+```
+
+Le [README de Wordplate ACF](https://github.com/wordplate/extended-acf/blob/master/README.md) est très complet et introduit tout le comportement d’ACF au travers de son outil.
+
+### Prise en charge d’ACF dans nos blocs Gutenberg sur notre thème Sage
+
+Au même titre que le chargement de nos blocs Gutenberg dans le thème Sage. Nous allons mettre en place dans notre AbstractBlock.php une petite méthode pour nous simplifier la vie.
+
+Nos blocs en interne auront juste les champs à gérer, le reste se fera dans notre classe abstraite.
+
+Commençons par rajouter une nouvelle méthode registerAcfBlockFields dans notre AbstractBlock.php :
+
+```php
+<?php
+// app/Blocks/AbstractBlock.php
+
+namespace App\Blocks;
+
+use WordPlate\Acf\Location;
+use function App\asset_path;
+
+abstract class AbstractBlock {
+  // [...]
+
+  protected function registerAcfBlockFields(): void
+  {
+    $fields = wp_parse_args($this, [
+      'title' => $this->name,
+      'fields' => $this->fields(),
+      'location' => $this->location(),
+      'hide_on_screen' => '',
+    ]);
+
+    register_extended_field_group($fields);
+  }
+
+  public function location(): array
+  {
+      return [
+          Location::if('block', 'acf/' . $this->name)
+      ];
+  }
+
+  abstract protected function fields(): array;
+
+  public function registerBlockType(): void
+  {
+    // [...]
+    $this->registerAcfBlockFields();
+  }
+
+}
+```
+
+Comme vous pouvez le voir, on ajoute notre champ au travers du helper de Wordplate ACF register_extended_field_group(). Ensuite, on déclare une méthode abstraite pour rajouter les champs à notre classe de bloc.
+
+### Ajout des champs ACF dans notre bloc témoignage
+
+On va pouvoir désormais rajouter des champs personnalisé à notre bloc Gutenberg Témoignage.
+
+Pour cela, on va avoir besoin d’un champ texte, d’un auteur avec son titre/fonction et d’un avatar.
+
+<Image
+  src="/images/blog/previews-gutenberg-quote.webp"
+  width="1024"
+  height="272"
+  alt="Prévisualisation du bloc Témoignage"
+/>
+
+C’est parti pour éditer notre fichier app/Blocks/QuoteBlock.php pour y faire nos changements et rajouter nos champs personnalisés :
+
+```php
+<?php
+// app/Blocks/QuoteBlock.php
+
+namespace App\Blocks;
+
+use WordPlate\Acf\Fields\Image;
+use WordPlate\Acf\Fields\Text;
+use WordPlate\Acf\Fields\Textarea;
+
+class QuoteBlock extends AbstractBlock
+{
+    // [...]
+
+    protected function fields(): array
+    {
+        return [
+            Textarea::make('Contenu', 'blockquote')->rows(4)->newLines('br'),
+            Image::make('Photo', 'avatar')->returnFormat('id'),
+            Text::make('Nom', 'fullname'),
+            Text::make('Fonction', 'function'),
+        ];
+    }
+}
+```
+
+### Modification de la vue
+
+Il ne nous reste plus qu’à modifier la vue de notre block dans le fichier resources/views/blocks/quote.blade.php
+
+```blade
+<div class="block-quote {{ $block['className'] }}">
+  <div class="block-quote__text">{!! get_field('blockquote') !!}</div>
+  <div class="author">
+    <div class="author__avatar">
+      {!! wp_get_attachment_image(get_field('avatar')) !!}
+    </div>
+    <div>
+      <div class="author__name">{!! get_field('fullname') !!}</div>
+      <div class="author__function">{!! get_field('function') !!}</div>
+    </div>
+  </div>
+</div>
+```
+
+Vous êtes désormais fin prêt à gérer tous vos autres blocs Gutenberg avec votre thème Sage 9.
+
+Si vous le désirez, j’ai mis à disposition les sources de cette article sur Github :
+
+https://github.com/inrage/wordpress-sage9-blocks
+
