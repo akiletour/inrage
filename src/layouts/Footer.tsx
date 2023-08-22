@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from '@component/NoScrollLink';
 import { RouteLink } from '@lib/route';
 
-import LogoWhite from '../../../public/logo-white.svg';
+import LogoWhite from '../../public/logo-white.svg';
 import Socials from '../components/Socials';
 
 export default function Footer() {

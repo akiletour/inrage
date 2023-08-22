@@ -37,28 +37,28 @@
     "baseUrl": ".",
     "paths": {
       "@graphql-query/*": [
-        "src/app/graphql/*"
+        "src/graphql/*"
       ],
       "@layout/*": [
-        "src/app/layouts/*"
+        "src/layouts/*"
       ],
       "@hook/*": [
-        "src/app/hooks/*"
+        "src/hooks/*"
       ],
       "@type/*": [
-        "src/app/types/*"
+        "src/types/*"
       ],
       "@image/*": [
         "public/images/*"
       ],
       "@lib/*": [
-        "src/app/libs/*"
+        "src/libs/*"
       ],
       "@component/*": [
-        "src/app/components/*"
+        "src/components/*"
       ],
       "@util/*": [
-        "src/app/utils/*"
+        "src/utils/*"
       ],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
