@@ -6,6 +6,7 @@ import Layout from '@component/Layout';
 import { Mdx } from '@component/mdx-components';
 import SectionTitle from '@component/SectionTitle';
 import { RouteLink } from '@lib/route';
+import { absoluteUrl } from '@util/index';
 import { allPosts } from 'contentlayer/generated';
 
 import '../mdx.css';
@@ -44,11 +45,32 @@ export async function generateMetadata({
     return {};
   }
 
-  // const url = env.NEXT_PUBLIC_APP_URL;
-
   return {
     title: post.title,
     description: post.description,
+    authors: post.authors.map((author) => ({
+      name: author,
+    })),
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      url: absoluteUrl(post.slug),
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [post.image],
+    },
   };
 }
 

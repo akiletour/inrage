@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { Analytics } from '@component/analytics';
 import Footer from '@layout/Footer';
 
 import './globals.css';
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <div>{children}</div>
+        <Analytics />
         <Footer />
       </body>
     </html>
