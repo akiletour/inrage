@@ -1,0 +1,88 @@
+---
+title: Redirection d’un formulaire Contact Form 7 vers une URL
+description: Nous allons découvrir comment faire une redirection avec Contact Form 7 vers une page de confirmation (ou une URL) après la soumission d’un formulaire.
+excerpt: Nous allons découvrir comment faire une redirection avec Contact Form 7 vers une page de confirmation (ou une URL) après la soumission d'un formulaire.
+image: /images/blog/wpcf7-redirect-submit.webp
+date: "2021-02-03"
+authors:
+  - akiletour
+---
+
+<Callout>Nous allons découvrir comment faire une redirection avec Contact Form 7 vers une page de confirmation (ou une URL) après la soumission d'un formulaire.</Callout>
+
+Jusqu'à présent, Contact Form 7 ne propose pas de redirections après la soumission d'un formulaire. Nous allons voir comment mettre en place une redirection vers une page spécifique.
+
+On me demande très souvent de mettre en place une page de confirmation de contact sur les sites que je développe sous WordPress. Pour la plupart, c'est principalement pour avoir une remontée de tracking sur Google Analytics pour les formulaires. 
+
+Sachez que ce n'est plus du tout le cas désormais et que c'est même recommandé de ne pas le faire. Je vous invite à lire l'article (en anglais) pour savoir [comment tracker les soumissions de formulaire sans redirection dans Google Analytics](https://contactform7.com/tracking-form-submissions-with-google-analytics/).
+
+## Comment effectuer une redirection Contact Form 7
+
+La manière la plus simple de mettre en place la redirection de vos formulaires est d'utiliser ce que l'on appelle des évènements personnalisés Javascript (custom DOM events).
+
+N'hésitez pas à regarder l'article sur [comment charger Contact Form 7 que sur les pages que vous désirez](/blog/charger-contact-form-7-uniquement-sur-certaines-pages/).
+
+L'un des avantages majeurs de Contact Form 7, il en utilise partout dès qu'une action répond.
+
+- wpcf7invalid : quand un champ est invalide (requis, pas au bon format, ...)
+- wpcf7spam : couplé avec Akismet, WPCF7 peut remonter une activité potentiellement malveillante
+- wpcf7mailsent : Quand tout s'est bien passé
+- wpcf7mailfailed : Quand la soumission du formulaire s'est bien passée, mais qu'une erreur est survenue sur l'envoi
+- wpcf7submit : Quand l'utilisateur vient tout juste de soumettre le formulaire
+
+Pour effectuer la redirection de Contact Form 7, on va se concentrer sur l'évènement wpcf7mailsent.
+
+Voici un exemple de ce que l'on va pouvoir mettre en place :
+
+```javascript
+<script>
+document.addEventListener( 'wpcf7mailsent', function( event ) {
+  location = 'http://example.com/';
+}, false );
+</script>
+```
+
+Déclarez ceci dans votre fiche de thème. Bien évidemment, pensez à remplacer http://example.com par le lien de la page de confirmation.
+
+## Ajustement du message de confirmation
+
+Maintenant que notre page de confirmation est en place, il nous reste un petit ajustement au message par défaut de Contact Form 7 (dans le cadre vert).
+
+<Image
+  width="980"
+  height="850"
+  alt="Message de confirmation Contact Form 7"
+  src="/images/blog/screenshot-20210203144026.gif"
+/>
+
+On voit quand même le message avant que la redirection vers notre page de confirmation se fasse. L’idée va être de cacher en CSS ce message (uniquement s’il est validé).
+
+Dans le style.css de notre thème, rajoutons ce bloc CSS :
+
+```css
+.wpcf7 .wpcf7-form.sent .wpcf7-response-output {
+  display: none !important;
+}
+```
+
+## Utilisation d’un plugin
+
+Pour ceux qui ne veulent pas mettre les mains dans le code pour rediriger les utilisateurs, je vous conseille d’utiliser le plugin [Redirection for Contact Form 7](https://wordpress.org/plugins/wpcf7-redirect/).
+
+Ce plugin est très complet et vous permettra d’effectuer plein d’action :
+
+- Redirection vers une url (dans un nouvel onglet ou pas)
+- Lancer un script Javascript (très pratique pour la conversion Analytics que j’ai mentionné plus haut)
+- Passer des champs lors de la redirection pour un affichage personnalisé
+- Ajout d’un honeypot pour minimiser les spams
+- De sauvegarder la soumission du formulaire en base de données.
+
+Grâce à ce plugin, vous avez la possibilité de gérer plus facilement vos redirections et indépendamment pour chaque formulaire de votre site grâce à une intégration directement dans Contact Form.
+
+<Image
+  width="1024"
+  height="482"
+  alt="Configuration du plugin Redirection for Contact Form 7"
+  src="/images/blog/screenshot-20210203131320@2x.webp"
+/>
+

@@ -1,0 +1,31 @@
+---
+title: Contact Form 7 - Utiliser l’URL pour définir la valeur d’un select ou radio
+description: Contact Form 7 est mon must-have en termes de plugin contact pour WordPress. On va apprendre à utiliser l'URL pour définir la valeur d'un champ select.
+excerpt: Contact Form 7 est mon must-have en termes de plugin contact pour WordPress. L’une de ses fonctionnalités est la possibilité d’utiliser les variables de l’URL pour préremplir les champs.
+image: /images/blog/contact-form-valeur-select-url.webp
+date: "2019-05-20"
+authors:
+  - akiletour
+---
+
+<Callout>Contact Form 7 est mon must-have en termes de plugin contact pour WordPress. L’une de ses fonctionnalités est la possibilité d’utiliser les variables de l’URL pour préremplir les champs.</Callout>
+
+La documentation de [Contact Form 7](https://fr.wordpress.org/plugins/contact-form-7/) vous explique comment définir un champ texte depuis l’URL avec $_GET; mais ils n’expliquent pas réellement comment le faire pour une liste d’option (select).
+
+Dans mon exemple, j’ai eu besoin de mettre en place un formulaire pour les professionnels ainsi que les particuliers, si nous venons depuis la page d’accueil professionnel, on définit automatiquement notre radio sur « Je suis professionnel ».
+
+La première étape va être de définir la valeur par défaut de notre champ Contact Form avec la variable `default:get`.
+
+```html
+<label>
+  Je suis* [radio* type use_label_element default:get "Particulier" "Professionnel"]
+</label>
+```
+
+Nous avons aussi la possibilité de définir la variable depuis une requête $_POST en définissant la variable `default:post`
+
+Maintenant, nous avons plus qu’à aller sur notre page de cette manière :
+
+```conf
+/contact/?type=Professionnel
+```

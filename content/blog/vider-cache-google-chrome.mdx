@@ -1,0 +1,38 @@
+---
+title: Comment vider son Cache Chrome
+description: Découvrons ensemble comment on peut vider le cache Chrome à l'aide des outils de développement Console DevTools de Google Chrome simplement et rapidement.
+excerpt: Il n’est parfois pas évident d'expliquer aux utilisateurs que sur la version en préproduction, il y a eu pas mal de changement sur le style ou dans les pages et qu'ils doivent vider leur cache Chrome.
+image: /images/blog/chrome-remove-cache.webp
+date: "2019-04-17"
+authors:
+  - akiletour
+---
+
+<Callout>Il n’est parfois pas évident d'expliquer aux utilisateurs que sur la version en préproduction, il y a eu pas mal de changement sur le style ou dans les pages et qu'ils doivent vider leur cache Chrome.</Callout>
+
+En production, nous avons moins de soucis à ce niveau là, car les fichiers sont générés avec des noms aléatoire.
+
+Pour les utilisateurs de Google Chrome, il existe mille et une façons de vider son cache. Je vais vous présenter la façon qui pour moi, est la meilleure et la plus rapide.
+
+L'idée aujourd'hui, c'est que l'on va se servir de la Console Devtools de Google Chrome pour y désactiver le cache quand cette console est ouverte.
+
+L'avantage de cette méthode, c'est que lorsque l'on veut accéder au site sans cache, nous avons juste à ouvrir la console et rafraîchir la page.
+
+## Vider le Cache Chrome ?, Comment on fait ?
+
+Sur **Windows**, pour ouvrir la **Console DevTools**, il faut appuyer sur la touche `F12` du clavier.
+
+Sur **Mac** c'est cette combinaison de Jedi `cmd+alt+i` ou via le menu en haut à droite sur les 3 points verticaux  => Plus d'outils => Outils de développement
+
+On va maintenant se diriger dans l'onglet Network et cliquer sur Disable Cache.
+
+<Image
+  src="/images/blog/chrome-cache-1.webp"
+  width="1024"
+  height="392"
+  alt="Désactiver le cache Chrome"
+/>
+
+Une fois que l’on a activé “Disable Cache”, on peut rafraîchir la page, et fermer la Console DevTools.
+
+Du coup la prochaine fois, on aura plus qu’à ouvrir la Console DevTools et rafraîchir la page directement sans cache.

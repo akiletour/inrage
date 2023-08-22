@@ -63,7 +63,8 @@ export default async function PostPage({ params }: PostPageProps) {
     .filter((p) => p.slug !== post.slug)
     .sort(() => {
       return 0.5 - Math.random();
-    });
+    })
+    .slice(0, 2);
 
   return (
     <Layout

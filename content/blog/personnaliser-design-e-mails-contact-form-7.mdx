@@ -1,0 +1,146 @@
+---
+title: Personnaliser le design des e-mails Contact Form 7
+description: Nous allons voir comment personnaliser le design des e-mails Contact Form 7, pour que vos utilisateurs se sentent comme à la maison à la place du design inexistant par défaut disponible dans Contact Form 7.
+excerpt: Nous allons voir comment personnaliser le design des e-mails Contact Form 7, pour que vos utilisateurs se sentent comme à la maison à la place du design inexistant par défaut disponible dans Contact Form 7.
+image: /images/blog/contact-form-7-email-design-custom.webp
+date: "2020-07-26"
+authors:
+  - akiletour
+---
+
+<Callout>Nous allons voir comment personnaliser le design des e-mails Contact Form 7, pour que vos utilisateurs se sentent comme à la maison à la place du design inexistant par défaut disponible dans Contact Form 7.</Callout>
+
+L'idée va être de construire la structure HTML de notre design d'e-mail dans le code source. Et ainsi, permettre à nos administrateurs du site de gérer uniquement le contenu de l'e-mail.
+
+Grâce à cette méthode, on évite à l'administrateur de passer 15 minutes à trouver dans le contenu de l'e-mail.
+
+Vous avez la possibilité de l’implémenter sous forme de plugin ou directement dans le thème. Personnellement, je choisis généralement l'usage du thème pour personnaliser les e-mails de mes clients. Car souvent, on essaye de respecter au mieux, la charte graphique du site.
+
+Je vais prendre le cas d'un de mes clients qui souhaitait mettre en place un design personnalisé sur ses demandes de rendez-vous.
+
+## Composer le design des e-mails pour Contact Form avec topol.io
+
+Si vous avez déjà essayé de construire en HTML vos designs d'e-mails, vous savez qu'il est très compliqué d'utiliser un HTML / CSS d'aujourd'hui. 
+
+C'est pourquoi je vous préconise d'utiliser le formidable outil [topol.io](https://topol.io/) qui se chargera pour vous de la mise en page côté code. Et donc, vous permettra de vous concentrer sur la mise en page avec un éditeur Drag & Drop.
+
+Il vous limitera ainsi sur les possibles incompatibilités avec les différents outils de messagerie; au niveau du CSS et vous permettra de rendre vos e-mails responsive pour mobile plus simplement.
+
+Ha ! J'allais oublier, il est gratuit ! ;)
+
+<Image
+  src="/images/blog/e-mail-template.webp"
+  width="1024"
+  height="820"
+  alt="Template e-mail topol"
+/>
+
+## Appliquer le design à vos e-mails personnalisés Contact Form
+
+Maintenant que nous savons comment créer notre joli e-mail, nous allons voir comment les intégrer à notre site WordPress et particulièrement avec Contact Form 7.
+
+Dès que nous allons expédier un e-mail, nous allons capturer le contenu du message via le hook `wpcf7_before_send_mail` nous permettant d’injecter le début et la fin de notre design HTML d’e-mail.
+
+### Décomposer notre design HTML
+
+Comme évoqué un peu plus haut, nous allons laisser la possibilité aux administrateurs de personnaliser le contenu de l’e-mail. Pour cela, on va créer deux fichiers dans notre thème pour récupérer le haut et le bas de l’e-mail.
+
+Personnellement dans mon thème, j’ai un répertoire dédié pour les e-mails dans `/wp-content/themes/montheme/templates/emails`. Avec deux fichiers `mail_header.php` et `mail_footer.php`
+
+Dans l’image ci-dessus, on peut voir que toute la partie “Vos souhaits, Vos informations, …”, c’est le contenu administrable dans le backoffice.
+
+Je vais donc récupérer tout ce qui se trouve avant “Vos souhaits” dans le HTML et le mettre dans `mail_header.php` et tout ce qui se trouve après dans `mail_footer.php`.
+
+### Injection de notre design avant l’expédition
+
+On va devoir utiliser le hook wpcf7_before_send_mail pour nous permettre de récupérer le contenu de l’e-mail pour le modifier avec notre design.
+
+On va rajouter une nouvelle action tout en bas de notre fichier `functions.php` de notre thème :
+
+```php
+add_action('wpcf7_before_send_mail', function($cf7) {
+  $mail = $cf7->prop('mail');
+  $mailHeaderTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_header.php');
+  $mailFooterTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_footer.php');
+
+  // Replace the email body with the designed one
+  $mail['body'] = $mailHeaderTmpl . $mail['body'] . $mailFooterTmpl;
+
+  // Save our new body content
+  $cf7->set_properties(array('mail' => $mail));
+});
+```
+
+Nous venons de modifier le contenu de l’e-mail avec notre design personnalisé. Il s’applique à tous les formulaires du site et uniquement sur l’e-mail principal. Nous allons voir un peu plus bas comment le modifier spécifiquement sur un formulaire ou sur l’e-mail secondaire.
+
+### Appliquer le design des e-mails sur un formulaire Contact Form spécifique
+
+Si vous ne désirez pas personnaliser tous les e-mails sortant, mais uniquement certains d’entre eux. On peut vérifier lors de l’appel du hook avec un `switch/case`, sur quel formulaire on se trouve :
+
+```php
+add_action('wpcf7_before_send_mail', function($cf7) {
+
+  switch($cf7->name()) {
+    case 'prenez-rendez-vous':
+      $mail = $cf7->prop('mail');
+      $mailHeaderTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_header.php');
+      $mailFooterTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_footer.php');
+
+      // Replace the email body with the designed one
+      $mail['body'] = $mailHeaderTmpl . $mail['body'] . $mailFooterTmpl;
+
+      // Save our new body content
+      $cf7->set_properties(array('mail' => $mail));
+      break;
+  }
+});
+```
+
+### Design de l’e-mail secondaire Contact Form
+
+Contact Form 7 vous permet d’envoyer un second e-mail dans vos formulaires. Très souvent utilisé pour des réponses automatisées pour vos visiteurs.
+
+Il peut être important de personnaliser l’e-mail que vos utilisateurs vont recevoir pour la confirmation d’un rendez-vous ou tout autre message transactionnel par e-mail.
+
+Dans l’exemple un peu plus haut, on se concentrait uniquement sur l’expédition des e-mails principaux, nous allons voir comment modifier l’e-mail secondaire.
+
+Tout se joue lors de la récupération et la sauvegarde des propriétés du formulaire. En effet, plus haut on récupérait `$cf7->prop('mail')` et on sauvegardait avec `$cf7->set_properties(array('mail' => $mail))`
+
+Pour interagir avec le second e-mail, il faut récupérer `mail_2` au lieu de `mail` comme ci-dessous :
+
+```php
+add_action('wpcf7_before_send_mail', function($cf7) {
+  $mail = $cf7->prop('mail_2');
+  $mailHeaderTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_header.php');
+  $mailFooterTmpl = file_get_contents(dirname(__FILE__) . '/templates/emails/mail_footer.php');
+
+  // Replace the email body with the designed one
+  $mail['body'] = $mailHeaderTmpl . $mail['body'] . $mailFooterTmpl;
+
+  // Save our new body content
+  $cf7->set_properties(array('mail_2' => $mail));
+});
+```
+
+### Utilisation via des shortcodes et le hook wpcf7_before_send_mail
+
+Vous avez la possibilité de le faire sous forme de “shortcode”. Soit, via les [fonctions natives](https://codex.wordpress.org/fr:Shortcode) de WordPress ou par `str_replace` dans le hook `wpcf7_before_send_mail`:
+
+```php
+add_action('wpcf7_before_send_mail', function($cf7) {
+  switch($cf7->name()) {
+    case 'prenez-rendez-vous':
+      $mail = $cf7->prop('mail');
+
+      $mail['body'] = str_replace('[mail_layout_header]', file_get_contents(dirname(__FILE__) . '/../templates/emails/mail_header.php'), $mail['body']);
+      $mail['body'] = str_replace('[mail_layout_footer]', file_get_contents(dirname(__FILE__) . '/../templates/emails/mail_footer.php'), $mail['body']);
+
+      $cf7->set_properties(array('mail' => $mail));
+      break;
+  }
+});
+```
+
+À vous de voir la méthode que vous préférez !
+
+Vous êtes maintenant capable de personnaliser le contenu des e-mails pour vos utilisateurs !

@@ -1,0 +1,133 @@
+---
+title: Types d’environnements sous WordPress 5.5
+description: Introduction à la nouvelle fonction wp_get_environnement_type sur WordPress 5.5 pour gèrer son type d'environnement (development à production)
+excerpt: Introduction à la nouvelle fonction wp_get_environnement_type() sur WordPress 5.5 nous permettant de savoir sur quel type d’environnement on se trouve. Très pratique pour les développeurs de thèmes ou de plugins d’effectuer des tâches précises en fonction du type d’environnement.
+image: /images/blog/wordpress-environment-type.webp
+date: "2020-08-15"
+authors:
+  - akiletour
+---
+
+<Callout>Introduction à la nouvelle fonction `wp_get_environnement_type()` sur WordPress 5.5 nous permettant de savoir sur quel type d’environnement on se trouve. Très pratique pour les développeurs de thèmes ou de plugins d’effectuer des tâches précises en fonction du type d’environnement.</Callout>
+
+<Image
+  src="/images/blog/wordpress-5-5.webp"
+  width="1024"
+  height="498"
+  alt="WordPress 5.5"
+/>
+
+Depuis que je suis développeur Symfony, j’ai du mal à vivre sans cet écosystème de type d’environnements. Aujourd’hui, WordPress vient de m’offrir un petit cadeau avec l’arrivée de la version 5.5. Une prise en charge complète des environnements sous WordPress !
+
+Je vais vous présenter dans cet article, la fonction `wp_get_environnement_type()` qui va nous permettre de récupérer l’environnement dans lequel on se trouve.
+
+Par défaut, si aucun type d’environnement est défini, alors, ce dernier nous retourne « production ».
+
+Vous avez accès nativement à trois types d’environnement :
+
+- development : Lors de la phase de développement ou d’intégration
+- staging : Pour tout ce qui est preprod, recette ou QA
+- production : Votre site est en ligne 😉
+
+Vous allez pouvoir en rajouter autant que vous le souhaitez. Nous verrons un peu plus bas comment rajouter un type d’environnement test dans notre site.
+
+Voici un exemple ci-dessous comment cette fonctionnalité peut être utilisée pour déterminer le type d’environnement sur lequel on se trouve :
+
+```php
+switch ( wp_get_environment_type() ) {
+    case 'development':
+        do_nothing();
+        break;
+
+    case 'staging':
+        do_staging_thing();
+        break;
+
+    default:
+        do_production_thing();
+        break;
+}
+```
+
+## Définir un type d’environnement
+
+Il y a [deux façons](https://core.trac.wordpress.org/browser/trunk/src/wp-includes/load.php?rev=48662#L157) de définir l’environnement dans WordPress 5.5. Soit par les variables d’environnement PHP `WP_ENVIRONMENT_TYPE` soit par les constants de WordPress (`define()`).
+
+Peu importe la méthode que vous utilisez ci-dessus. Si celle-ci n’est pas dans la liste des types d’environnement autorisés, la valeur `production` sera utilisée.
+
+Pour l’exemple, nous allons voir comment définir notre environnement au travers des constants de WordPress, on va éditer le fichier `wp-config.php` à la racine de notre projet :
+
+```php
+define('WP_ENVIRONMENT_TYPE', 'staging');
+```
+
+<div className="bg-orange text-white p-2">A noter : Si vous définissez le type d’environnement à **development**, par défaut WordPress va basculer la constant `WP_DEBUG` a true. Si elle n’est pas déjà définie dans le fichier wp-config.php</div>
+
+## Comment ajouter un type d’environnement à WordPress
+
+Au même titre que pour définir votre type d’environnement, vous avez la possibilité de définir la liste des environnements autorisés au travers de la **variable d’environnement** `WP_ENVIRONMENT_TYPES` (attention au “S” à la fin) ou par une **constant de WordPress**.
+
+Disons que nous voulons rajouter l’environnement test à notre site. On va définir la constant suivante :
+
+```php
+define(
+    'WP_ENVIRONMENT_TYPES',
+    array(
+        'production',
+        'staging',
+        'development',
+        'test',
+    )
+);
+```
+
+## Page accessible uniquement en développement
+
+Je vous avais parlé de Bedrock et Sage pour [générer une URL personnalisée selon l’environnement](/blog/generer-url-wordpress-personnalisee-bedrock-sage/). Et maintenant, ça arrive nativement sur WordPress ! Nous avons plus besoin de passer par Bedrock.
+
+Je vais reprendre l’exemple que j’avais fait pour créer une page WordPress. Elle a pour but de lister tous les styles de notre thème.
+
+Je veux que cette page soit uniquement disponible pendant la phase de développement. Inutile de montrer ça à mes visiteurs ou à mon robot favoris 😉
+
+```php
+add_action(
+    'init',
+    function () {
+        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+        if ($url_path === 'ui') {
+            $load = locate_template('views/ui.blade.php');
+            if ($load) {
+                echo template($load);
+                exit();
+            }
+        }
+    }
+);
+```
+
+Dans l’état actuel, tout le monde peut voir cette page, l’idée va être de vérifier que `wp_get_environment_type()` est bien défini sur `development` :
+
+```php
+/**
+ * Add an UI board only for development environnement type
+ */
+if (wp_get_environment_type() === 'development') {
+    add_action(
+        'init',
+        function () {
+            $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+            if ($url_path === 'ui') {
+                $load = locate_template('views/ui.blade.php');
+                if ($load) {
+                    echo template($load);
+                    exit();
+                }
+            }
+        }
+    );
+}
+```
+
+Et hop ! Le tour est joué, cette nouvelle fonctionnalité de WordPress nous offre une flexibilité lors de nos développements de plugins ou de thèmes !
+
+Et voilà, j’espère que toi, développeur, tu es aussi ravi que nous avec l’arrivée de wp_get_environment_type() 🙂

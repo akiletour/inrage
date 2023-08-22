@@ -1,0 +1,295 @@
+---
+title: Créer un serveur MySQL de réplication (slave) des données existantes
+description: Comment mettre en place une procédure de réplication MySQL en temps réel avec un Master-Slave
+excerpt: Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).
+image: /images/blog/cover-server-mysql-replication.jpg
+date: "2021-03-16"
+authors:
+  - akiletour
+---
+
+<Callout>
+MySQL Master-Slave Replication est une procédure permettant de répliquer en temps réel les données d'un serveur MySQL vers un autre. Nous allons voir ensemble comment mettre cette combinaison en place.
+</Callout>
+
+Nous ne sommes pas à l'abri d'un incident sur nos serveurs de production et cela même avec un backup journalier de nos bases de données. 
+
+Après le tragique incendie qui s'est déclaré dans la nuit du 9 mars sur le site d'OVHCloud à Strasbourg, qui a détruit intégralement un datacenter et une portion d'un autre. Je me suis dit qu'il serait judicieux de faire un tutoriel pour expliquer comment j'ai réussi à surmonter cette crise, et qui pourrait vous permettre d'en faire autant et d'avoir une réplication MySQL de vos données sur deux serveurs en temps réel.
+
+## Mise en situation
+
+Prenons un exemple concret, nous sommes le 9 mars 2021, il est 01h32 et nous avons un serveur web avec MySQL qui est sauvegardé tous les jours à 3h00 du matin sur un autre serveur (ce qui est très bien ;)). 
+
+Soudain, notre serveur commence à suffoquer et sentir le bruler sur les petits fils de son câble d'alimentation. Vous le savez, nous le savons. Un [tragique incendie](https://www.journaldunet.com/web-tech/cloud/1498567-incendie-chez-ovh-de-nombreuses-sauvegardes-irrecuperables/) est en train de se déclarer dans la salle de notre serveur.
+
+<Image
+  src="/images/blog/surchauffe-ovh-serveur-1024x241.jpg"
+  width="1024"
+  height="241"
+  alt="Surchauffe d'un serveur OVH"
+/>
+
+<p className="my-8">Notre petit serveur passe en mode Super Saiyan, et tant bien que mal à mettre ses ventilateurs à 4500 RPM pour se refroidir. Mais il est déjà trop tard...</p>
+
+<iframe src="https://giphy.com/embed/2UCt7zbmsLoCXybx6t" width="100%" height="100%" className="aspect-video" frameBorder="0" allowFullScreen></iframe>
+
+### La restauration du serveur
+
+De mon côté, après de longues heures d'attente et de scroll sur Twitter pour savoir ce qu'il est en train de se passer. Je me rends compte que notre serveur est perdu à tout jamais #RIP
+
+On prend de l'avance, on achète un nouveau VPS, on réinstalle tout le serveur web et là on réimporte notre sauvegarde de notre base de données (Big Up Bacula ;)) du 8 mars 2021 à 03h12. 
+
+WOAH ! 24 heures de delta perdu, de clients perdus, de commandes perdues.
+
+Cela va générer des conflits d'ID dans tous les sens avec nos marketplaces, car ces IDs n'existent pas encore chez nous, mais déjà chez eux !
+
+Comment aurait-t-on pu réduire ce temps ? Je ne vais pas faire un backup de mes bases de données toutes les 30 minutes, non ?
+
+Alors oui (on peut), mais non. C'est là que la réplication MySQL est une très bonne pratique pour éviter ce genre de problèmes. 
+
+Synchroniser en temps réel un serveur MySQL sur un ou plusieurs serveurs en plus de nos sauvegardes journalières c'est la clé de la sérénité !
+
+## Comment créer un serveur MySQL de réplication pour notre base de données
+
+Dans ma configuration actuelle, je possède deux serveurs MySQL, un serveur maitre (master) inr-dbm-01 et un serveur secondaire (slave) inr-dbs-01 : 
+
+- inr-dbm-01 (master // OVH VPS) avec l'IP : 10.20.30.40
+- inr-dbs-01 (slave // Online VPS) avec l'IP : 50.60.70.80
+
+inr-dbm-01 fait office de serveur MySQL principal pour la production, où mes sites sont hébergés, et inr-dbs-01 quant à lui est le serveur secondaire qui réplique en temps réel inr-dbm-01.
+
+Dès qu'une opération est effectuée sur inr-dbm-01, inr-dbs-01 reçoit aussi l'information !
+
+## Configuration du serveur principal
+
+Nous allons devoir prévenir nos clients qu'un temps de maintenance de quelques minutes va interrompre l'écriture sur notre serveur MySQL principal, car nous allons passer les bases de données en lecture seule le temps de la sauvegarde de cette dernière.
+
+Ce temps de maintenance va dépendre de la taille de votre base de données bien évidemment.
+
+### 1/ Mise à jour de la configuration MySQL
+
+Pour MySQL, éditez le fichier `/etc/mysql/mysql.conf.d/mysqld.conf` et sous le groupe `[mysqld]` supprimez les commentaires et ajoutez :
+
+PS : Si vous êtes sur MariaDB, le fichier de configuration se trouve ici : `/etc/mysql/mariadb.conf.d/50-server.cnf`
+
+```conf
+[mysqld]
+
+bind-address = 0.0.0.0
+server-id = 1
+log_bin = /var/log/mysql/mysql-bin.log
+```
+
+Cela va permettre à la base de données de recevoir des connexions sur tout le monde (bind-address); il était configuré sur 127.0.0.1 avant. 
+
+Le server-id devra être unique entre ce serveur et le serveur enfant que l'on regardera un peu plus bas.
+
+Et le `log_bin` va permettre d'activer les logs au format binaire pour la communication entre nos deux serveurs.
+
+### 2/ Redémarrage du service
+
+Pour appliquer les changements, nous devons redémarrer notre serveur MySQL :
+
+```bash
+systemctl restart mysql
+```
+
+### 3/ Création d'un utilisateur pour la réplication
+
+Nous allons créer un utilisateur qui sera dédié à la réplication des données sur notre serveur secondaire.
+
+```bash
+mysql -uroot -p
+
+mysql> CREATE USER 'replicator'@'50.60.70.80' IDENTIFIED BY 'Sl@v3p@$$W0RD';
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'replicator'@'50.60.70.80';
+```
+
+`replicator` est le nom de l'utilisateur et `50.60.70.80` est l'adresse IP de notre serveur secondaire (inr-dbs-01). Changez ces valeurs par les vôtres.
+
+### 4/ Lecture seule de votre serveur MySQL principal
+
+Nous allons verrouiller (READ-ONLY) la lecture et l'écriture (INSERT / UPDATES, ...) de toutes les tables nous permettant de faire une sauvegarde (snapshot) de notre base de données.
+
+```bash
+$ mysql -uroot -p
+
+mysql> FLUSH TABLES WITH READ LOCK;
+```
+
+Attention, le verrouillage de nos tables s'arrête si vous fermer le client MySQL cli ou si vous tapez UNLOCK TABLES. Gardez bien le lock jusqu'à la fin de la sauvegarde de votre base de données.
+
+### 5/ Position du log pour la réplication
+
+Nous allons devoir sauvegarder les valeurs de `File` et `Position` ce qui va nous permettre plus tard d'initialiser la réplication de notre serveur MySQL secondaire de réplication.
+
+```conf
+root@inr-dbm-01: ~ # mysql -uroot -p
+
+mysql> SHOW MASTER STATUS;
++------------------+-----------+--------------+------------------+-------------------+
+| File             | Position  | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+-----------+--------------+------------------+-------------------+
+| mysql-bin.003577 | 141378624 |              |                  |                   |
++------------------+-----------+--------------+------------------+-------------------+
+```
+
+6/ Sauvegarde de notre base de données
+
+Nous sauvegarder l'intégralité de notre base de données dans un fichier dump.sql
+
+```bash
+mysqldump -uroot -p --all-databases --single-transaction --triggers --routines > dump.sql
+```
+
+### 7/ Déblocage de notre base de données
+
+Une fois que notre sauvegarde est terminée, nous allons pouvoir retirer le READ-ONLY de notre base de données :
+
+```bash
+mysql -uroot -p
+
+mysql> UNLOCK TABLES;
+```
+
+Votre base de données est désormais réutilisable en production ! Et grâce à la position du log de l'étape 5, notre serveur secondaire pourra se repositionner correctement pour effectuer les opérations de différences entre les deux bases de données.
+
+### 8/ Transfert de notre base de données sur notre serveur secondaire
+
+Le plus gros du travail est fait, il ne nous reste plus qu'à transférer notre sauvegarde vers notre serveur MySQL secondaire :
+
+```bash
+scp dump.sql root@50.60.70.80:/tmp/
+```
+
+Vous avez bien mérité un bon café !
+
+<iframe src="https://giphy.com/embed/l2JI4zgwXw5IfyssE" width="100%" height="100%" className="aspect-video mt-3" frameBorder="0" allowFullScreen></iframe>
+
+## Configuration du serveur secondaire
+
+Comme pour le serveur principal, nous allons devoir faire quelques ajustements au niveau de la configuration de MySQL, de restaurer la base de données et de démarrer le processus de réplication.
+
+### 1/ Mise à jour de la configuration MySQL
+
+Pour MySQL, éditez le fichier `/etc/mysql/mysql.conf.d/mysqld.conf` et sous le groupe `[mysqld]` supprimez les commentaires et ajoutez :
+
+PS : Si vous êtes sur MariaDB, le fichier de configuration se trouve ici : `/etc/mysql/mariadb.conf.d/50-server.cnf`
+
+```conf
+[mysqld]
+bind-address = 10.20.30.40
+server-id = 2
+log_bin = /var/log/mysql/mysql-bin.log
+```
+
+Comme pour le serveur principal, nous avons défini les 3 lignes de configuration, server-id est unique et différente de inr-dbm-01 (dans notre cas 2) et nous avons verrouillé MySQL à l'écoute de notre serveur principal (car on ne veut pas que tout le monde écoute dessus).
+
+### 2/ Redémarrage de MySQL sur le serveur secondaire de réplication
+
+```bash
+systemctl restart mysql
+```
+
+### 3/ Communication entre le secondaire et primaire
+
+```bash
+mysql -uroot -p
+
+mysql> STOP SLAVE;
+mysql> CHANGE MASTER TO
+    -> MASTER_HOST='10.20.30.40',
+    -> MASTER_USER='replicator',
+    -> MASTER_PASSWORD='Sl@v3p@$$W0RD',
+    -> MASTER_LOG_FILE='mysql-bin.003577',
+    -> MASTER_LOG_POS=141378624;
+mysql> START SLAVE;
+```
+
+Pensez à changer les valeurs par les vôtres.
+
+### 4/ Vérification du fonctionnement 
+
+Pour vérifier que tout fonctionne et que votre serveur MySQL secondaire est bien connecté au serveur principal :
+
+```bash
+mysql> SHOW SLAVE STATUS\G
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: 10.20.30.40
+                  Master_User: replicator
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: mysql-bin.003577
+          Read_Master_Log_Pos: 229958895
+               Relay_Log_File: mysql02-relay-bin.000002
+                Relay_Log_Pos: 11083560
+        Relay_Master_Log_File: mysql-bin.003577
+             Slave_IO_Running: Yes <-- #IMPORTANT#
+            Slave_SQL_Running: Yes <-- #IMPORTANT#
+              Replicate_Do_DB:
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: 0
+                   Last_Error:
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 152461864
+              Relay_Log_Space: 88580800
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: 1575 <-- #IMPORTANT#
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: 0
+                Last_IO_Error:
+               Last_SQL_Errno: 0
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: 1
+                  Master_UUID: ee9774f5-8552-11e8-b6cb-00505684dbd9
+             Master_Info_File: /var/lib/mysql/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: System lock
+           Master_Retry_Count: 86400
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set:
+            Executed_Gtid_Set:
+                Auto_Position: 0
+         Replicate_Rewrite_DB:
+                 Channel_Name:
+           Master_TLS_Version:
+ ```
+
+Vous devez vérifier quelques paramètres pour être sûr que tout fonctionne correctement :
+
+- `Slave_IO_Running`: Yes
+- `Slave_SQL_Running`: Yes
+- `Seconds_Behind_Master`: 1575 (si ce chiffre n'est pas à 0, nous devons attendre qu'il le soit pour nous assurer que la synchronisation est terminée)
+
+## En conclusion
+
+Vous savez désormais répliquer en temps réel votre serveur de base de données en temps réel et cela vous permet de réduire le delta entre votre sauvegarde et le serveur principal.
+
+Ce qui est arrivé à OVH le 9 mars 2021 peut arriver à n'importe qui et à n'importe quel moment. Je ne le répèterais jamais assez ! mais faites vos backups et testez-les !
+
+Si vous ne savez pas le faire, ou si vous n'avez pas le temps de le faire, sachez qu'il existe beaucoup de sociétés d'infogérance qui peut prendre en charge ces opérations.
+
+Depuis des années, je travaille avec la société [Dutiko](https://www.dutiko.com) qui est spécialisée dans l'infogérance 24/7 depuis plus de 11 ans !
+
+Ils infogèrent mes serveurs et cela m'a permis de sauver ma petite société à mainte reprise des flammes, des erreurs humaines (les miennes ;)) ou celle de mes clients et des problèmes matériels !
+
+Ce qui me permet de me concentrer sur mon travail de [développeur Freelance et de maintenance](/prestations/maintenance-site-internet/maintenance-ponctuelle/)

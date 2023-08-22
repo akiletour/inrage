@@ -1,0 +1,60 @@
+---
+title: Trouver l'ID de la page WordPress la plus haute dans l'arborescence
+description: Nous allons voir comment trouver l'ID de la page parente la plus haute dans l'arborescence sur WordPress permettant de styliser avec une classe spécifique.
+excerpt: Dans le cadre d'un projet sur WordPress, mon client avait l'idée de faire un site qui se compose en deux arborescences bien distinctes
+image: /images/blog/wordpress-id-parent.webp
+date: "2019-04-15"
+authors:
+  - akiletour
+---
+
+<Callout>Dans le cadre d'un projet sur [WordPress](/services/wordpress/), mon client avait l'idée de faire un site qui se compose en deux arborescences bien distinctes</Callout>
+
+- Professionnel
+- Particulier
+
+Quand nous sommes sur la partie professionnelle, la page d’accueil ainsi que le menu devait être câblée pour les professionnels.
+
+Pour cela, j’ai dû trouver une petite fonction permettant de retourner l’ID de la page la plus haute dans l’arborescence pour savoir si l’on était sur particulier ou professionnel.
+
+## Mise en place
+
+J’ai donc rajouté dans le fichier function.php du thème (`/wp-content/themes/xxxx/function.php`)
+
+```php
+function isPro() {
+    global $post;
+
+    if ($post->post_parent) {
+        $ancestror = get_post_ancestors( $post->ID );
+        $root      = count( $ancestror ) - 1;
+        $parent    = $ancestror[ $root ];
+    } else {
+        $parent = $post->ID;
+    }
+
+    return $parent;
+}
+```
+
+Une autre alternative est de vérifier le slug de la page au lieu de l’ID et d’ajouter la classe au `<body>` pour y appliquer un style particulier.
+
+
+```php
+function isPro() {
+    global $post;
+
+    if ($post->post_parent) {
+        $ancestror = get_post_ancestors( $post->ID );
+        $root      = count( $ancestror ) - 1;
+        $parent    = $ancestror[ $root ];
+        $slug      = get_post_field( 'post_name', $parent );
+
+        if($slug === "professionel") {
+          add_filter( 'body_class', function( $classes ) {
+           return array_merge( $classes, array( 'is-pro' ) );
+          } );
+        }
+    }
+}
+```

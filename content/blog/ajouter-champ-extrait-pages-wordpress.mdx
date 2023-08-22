@@ -1,0 +1,56 @@
+---
+title: Ajouter un champ extrait sur les pages WordPress
+description: Comment ajouter un nouveau champ extrait (excerpt) dans les pages WordPress pour pouvoir récupèrer l'extrait de la page dans les résultats de recherche.
+excerpt: Contrairement aux articles de WordPress, les pages ne possèdent pas de champ extrait. C’est pourtant une information qui peut être utile  dans l’utilisation de notre thème.
+image: /images/blog/extrait-page-wordpress.webp
+date: "2019-04-26"
+authors:
+  - akiletour
+---
+
+<Callout>Contrairement aux articles de WordPress, les pages ne possèdent pas de champ extrait. C’est pourtant une information qui peut être utile  dans l’utilisation de notre thème.</Callout>
+
+Récemment, j’ai dû mettre en place un formulaire de recherche sur WordPress et le client désirait voir les extraits des pages et articles apparaitre.
+
+Nous avons plusieurs méthodes pour mettre ce genre de chose en place, et quand on peut mettre les mains dans le thème, c’est vachement plus simple.
+
+## Fonction dans le thème
+
+L’idée va être de modifier la partie `function.php` de notre thème qui se situe dans le dossier `/wp-content/themes/xxx/`.
+
+Et nous allons y rajouter ceci :
+
+```php
+function my_excerpt_pages() {
+  add_meta_box('postexcerpt', __('Extrait'), 'post_excerpt_meta_box', 'page', 'normal', 'core');
+}
+add_action( 'admin_menu', 'my_excerpt_pages' );
+```
+
+## Via les extensions
+
+La seconde méthode consiste à rajouter une extension au sein de WordPress pour faire ceci. Il en existe pas mal, mais [PJW Page Excerpt](https://fr.wordpress.org/plugins/pjw-page-excerpt/) semble faire le travail convenablement sans ajouter de fioriture autour.
+
+Votre page possède maintenant un champ extrait. Si vous ne voyez pas ce champ, pensez à aller dans “Options de l’écran” disponible en haut de l’écran.
+
+<Image
+  src="/images/blog/Modifier_la_page_‹_alterna_—_WordPress.webp"
+  width="1024"
+  height="314"
+  alt="Modifier la page  WordPress"
+/>
+
+Une fois mis en place, nous avons la possibilité de l’afficher dans le fichier de notre thème en éditant le fichier que l’on veut. Dans notre cas, nous allons modifier la partie recherche (search.php).
+
+```php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <header class="entry-header">
+    <?php
+    the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
+    ?>
+  </header>
+  <div class="entry-content">
+    <?php the_excerpt(); ?>
+  </div>
+</article>
+```
