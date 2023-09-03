@@ -1,29 +1,20 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Link from '@component/NoScrollLink';
+import Link from "@component/NoScrollLink";
+import { ProjectSupports } from "content/config/portfolio";
+import { Portfolio } from "contentlayer/generated";
 
 type Props = {
-  slug: string;
-  image: string;
-  title: string;
-  support?: {
-    slug: string;
-    name: string;
-  };
+  post: Portfolio;
   xl?: boolean;
-  isPrivate?: boolean;
 };
 
-export default function ProjectItem({
-  slug,
-  image,
-  title,
-  support,
-  xl = false,
-  isPrivate = false,
-}: Props) {
+export default function ProjectItem({ post, xl = false }: Props) {
+  const { slug, image, title } = post;
+  const support = ProjectSupports[post.category];
+
   return (
-    <Link href={`/portfolio/${support ? `${support.slug}/` : ''}${slug}`}>
+    <Link href={slug}>
       <div className="project-item group text-center">
         <div className="md:group-hover:scale-110 relative transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
           <Image
@@ -32,21 +23,12 @@ export default function ProjectItem({
             height={xl ? 533 : 400}
             alt={title}
             style={{
-              maxWidth: '100%',
-              height: 'auto',
+              maxWidth: "100%",
+              height: "auto",
             }}
           />
-          {isPrivate && (
-            <div className="absolute inset-0 bg-gray-dark opacity-50 z-50 flex items-center justify-center">
-              <div className="text-white text-center text-2xl">Private</div>
-            </div>
-          )}
         </div>
-        <div
-          className={`${
-            isPrivate === false ? 'text-white' : 'text-[red]'
-          } text-base leading-5 sm:text-2xl`}
-        >
+        <div className={`text-white text-base leading-5 sm:text-2xl`}>
           {title}
         </div>
         {support && (
