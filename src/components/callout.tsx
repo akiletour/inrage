@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 interface CalloutProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function Callout({ children }: CalloutProps) {
