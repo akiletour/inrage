@@ -25,7 +25,7 @@ export default function Keypoints() {
         fill
         sizes="100vw"
       />
-      <div className="container grid grid-cols-2 md:grid-cols-4 gap-y-4 py-4">
+      <div className="container grid grid-cols-2 gap-y-4 py-4 md:grid-cols-4">
         <KeypointItem
           icon={<CupIcon className="h-3 md:h-5" />}
           value="2356"

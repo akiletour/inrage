@@ -16,8 +16,8 @@ export default function ExperienceItem({
   excerpt,
 }: Props) {
   return (
-    <div className="grid md:grid-cols-[250px_1fr] items-start justify-start">
-      <div className="flex justify-center row-span-4">
+    <div className="grid items-start justify-start md:grid-cols-[250px_1fr]">
+      <div className="row-span-4 flex justify-center">
         <Image
           src={logo}
           alt={company}
@@ -27,7 +27,7 @@ export default function ExperienceItem({
           }}
         />
       </div>
-      <div className="text-white text-2xl font-medium">{title}</div>
+      <div className="text-2xl font-medium text-white">{title}</div>
       <div className="uppercase text-white">{company}</div>
       <div>{year}</div>
       <p className="mt-2 max-w-2xl leading-5">{excerpt}</p>

@@ -21,12 +21,12 @@ export default function TmaItem({
   return (
     <div
       className={`${
-        position === 'left' ? 'md:text-left md:pl-4' : 'md:text-right md:pr-4'
+        position === 'left' ? 'md:pl-4 md:text-left' : 'md:pr-4 md:text-right'
       } flex-1`}
     >
-      <h2 className="font-light text-2xl text-white">
+      <h2 className="text-2xl font-light text-white">
         {title}
-        <span className="text-4xl block font-black">{subject}</span>
+        <span className="block text-4xl font-black">{subject}</span>
       </h2>
       <p className="my-2">{excerpt}</p>
       <Link href={cta.link}>

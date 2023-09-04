@@ -26,11 +26,11 @@ export default function ArticleItem({
 
   return (
     <div className="relative flex flex-col">
-      <div className="absolute top-1 w-6 text-center left-1 z-10 bg-white">
-        <div className="py-1 bg-orange font-medium text-gray-darker text-2xl">
+      <div className="absolute left-1 top-1 z-10 w-6 bg-white text-center">
+        <div className="bg-orange py-1 text-2xl font-medium text-gray-darker">
           {formattedDate.format('DD')}
         </div>
-        <div className="text-gray-darker uppercase">
+        <div className="uppercase text-gray-darker">
           {formattedDate.format('MMM').substring(0, 3)}
         </div>
       </div>
@@ -48,8 +48,8 @@ export default function ArticleItem({
           />
         </span>
       </Link>
-      <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
-      <p className="mt-1 mb-2">{description}</p>
+      <h3 className="mt-1 text-2xl font-medium text-white">{title}</h3>
+      <p className="mb-2 mt-1">{description}</p>
       <ButtonLink href={`${slug}`}>Lire la suite</ButtonLink>
     </div>
   );

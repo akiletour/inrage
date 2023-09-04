@@ -10,7 +10,7 @@ export default async function LastProjects() {
     })
     .slice(0, 4);
   return (
-    <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+    <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:gap-0 md:grid-cols-4">
       {data.map((node) => (
         <ProjectItem post={node} key={node.slug} />
       ))}

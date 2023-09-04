@@ -48,9 +48,9 @@ export default function Diagonal({
 
       {cta?.href && (
         <Link href={cta.href}>
-          <div className="absolute left-1/2 -bottom-2 md:bottom-1 -translate-x-1/2 w-14 md:w-18 h-14 md:h-18 bg-gray-dark text-gray hover:text-white rounded-full flex flex-col items-center pt-3">
+          <div className="absolute -bottom-2 left-1/2 flex h-14 w-14 -translate-x-1/2 flex-col items-center rounded-full bg-gray-dark pt-3 text-gray hover:text-white md:bottom-1 md:h-18 md:w-18">
             <div>{cta.icon}</div>
-            <div className="mt-1 text-xs md:text-sm text-center leading-4">
+            <div className="mt-1 text-center text-xs leading-4 md:text-sm">
               {Array.isArray(cta.title) ? (
                 cta.title.map((ttl) => (
                   <span key={ttl} className={'block'}>

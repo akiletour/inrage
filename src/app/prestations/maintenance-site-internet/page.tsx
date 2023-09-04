@@ -35,7 +35,7 @@ export default function WebsiteTMA() {
           image={TmaImage}
           title={["L'infogérance & maintenance TMA", "Qu'est-ce que c'est ?"]}
         >
-          <p className="mt-2 text-gray-light text-2xl">
+          <p className="mt-2 text-2xl text-gray-light">
             C’est d’être accompagné chaque jour dans le bon fonctionnement de
             son site WordPress.
           </p>
@@ -57,11 +57,11 @@ export default function WebsiteTMA() {
           </p>
         </TextImage>
 
-        <div className="mt-8 text-3xl text-white text-center">
+        <div className="mt-8 text-center text-3xl text-white">
           Les performances de votre site internet
           <br /> sont importantes pour le référencement de ce dernier.{' '}
         </div>
-        <div className="md:px-10 text-center mt-3 text-xl">
+        <div className="mt-3 text-center text-xl md:px-10">
           Après une analyse approfondie, nous pouvons vous conseiller de
           plusieurs manières afin d’optimiser vos temps de chargement et la
           réduction des appels à la base de données pour y garantir une
@@ -76,8 +76,8 @@ export default function WebsiteTMA() {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
-        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
-          <div className="md:px-20 flex flex-col space-y-6 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
+        <div className="container relative z-10 py-5 md:-my-10 xl:py-0">
+          <div className="flex flex-col items-start justify-center space-y-6 md:flex-row md:space-y-0 md:divide-x md:divide-gray-dark md:px-20">
             <TmaItem
               title="Infogérance et maintenance TMA"
               subject="WordPress"
@@ -113,9 +113,9 @@ export default function WebsiteTMA() {
         />
       </div>
 
-      <div className="flex flex-col lg:flex-row relative container mt-6">
+      <div className="container relative mt-6 flex flex-col lg:flex-row">
         <div className="block overflow-hidden lg:absolute lg:right-[60%]">
-          <div className="lg:w-[945px] lg:h-[666px] relative">
+          <div className="relative lg:h-[666px] lg:w-[945px]">
             <Image
               className="max-h-[666px]"
               src="/images/tma-example.png"
@@ -130,9 +130,9 @@ export default function WebsiteTMA() {
             />
           </div>
         </div>
-        <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
+        <div className="relative flex items-center lg:ml-[45%] lg:h-[736px]">
           <div>
-            <h3 className="font-bold text-white text-2xl md:text-4xl">
+            <h3 className="text-2xl font-bold text-white md:text-4xl">
               Une console d&apos;infogérance dédiée
             </h3>
             <p className="mt-2">
@@ -141,7 +141,7 @@ export default function WebsiteTMA() {
               solution, que vous soyez sur Prestashop, WordPress ou une solution
               propriétaire.
             </p>
-            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
+            <h3 className="mt-4 text-2xl font-bold text-white md:text-4xl">
               Notification immédiate
             </h3>
             <p className="mt-2">
@@ -149,7 +149,7 @@ export default function WebsiteTMA() {
               nous recevons une notification. Un technicien prend effet de votre
               message et le règle directement.
             </p>
-            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
+            <h3 className="mt-4 text-2xl font-bold text-white md:text-4xl">
               Aucune fil d&apos;attente
             </h3>
             <p className="mt-2">

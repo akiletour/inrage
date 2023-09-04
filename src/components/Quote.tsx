@@ -3,7 +3,7 @@ type Props = {
 };
 export default function Quote({ message }: Props) {
   return (
-    <div className="lg:px-18 text-center italic text-2xl md:text-4xl text-white font-light md:font-thin">
+    <div className="text-center text-2xl font-light italic text-white md:text-4xl md:font-thin lg:px-18">
       <div className="relative">
         <svg
           className="absolute -left-3 -top-4 fill-orange opacity-50"

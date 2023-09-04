@@ -6,11 +6,11 @@ interface Props {
 
 export default function KeypointItem({ icon, value, label }: Props) {
   return (
-    <div className="text-center text-white flex items-center flex-col">
-      <div className="w-10 md:w-15 h-10 md:h-15 border-2 border-white rounded-full flex items-center justify-center">
+    <div className="flex flex-col items-center text-center text-white">
+      <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white md:h-15 md:w-15">
         {icon}
       </div>
-      <div className="font-medium text-2xl mt-2">{value}</div>
+      <div className="mt-2 text-2xl font-medium">{value}</div>
       <div className="leading-5">{label}</div>
     </div>
   );

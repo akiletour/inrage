@@ -142,10 +142,10 @@ export default function TmaWordPress() {
         <TextImage position="right" image={LogoGrey}>
           <div className="text-left">
             <h2>
-              <span className="text-orange uppercase text-4xl font-medium">
+              <span className="text-4xl font-medium uppercase text-orange">
                 Supervision et infogérance
               </span>
-              <span className="block text-white font-light text-3xl">
+              <span className="block text-3xl font-light text-white">
                 24h/24 et 7j/7
               </span>
             </h2>
@@ -171,7 +171,7 @@ export default function TmaWordPress() {
               12 mois. Si vous désirez une intervention ponctuelle sur votre
               site, vous pouvez vous rendre dans la section{' '}
               <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
-                <span className="underline text-orange">
+                <span className="text-orange underline">
                   Maintenance ponctuelle
                 </span>
               </NoScrollLink>
@@ -199,7 +199,7 @@ export default function TmaWordPress() {
             ]}
           />
 
-          <div className="flex flex-col space-y-4 mt-4">
+          <div className="mt-4 flex flex-col space-y-4">
             {entries.map(({ id, name, excerpt, values }) => (
               <TableLine
                 key={id}
@@ -211,7 +211,7 @@ export default function TmaWordPress() {
           </div>
 
           <div className="ml-4 mt-4">
-            <span className="text-orange font-bold text-4xl leading-5">*</span>{' '}
+            <span className="text-4xl font-bold leading-5 text-orange">*</span>{' '}
             Le nombre d&apos;heures est personnalisable selon vos besoins.
           </div>
         </div>

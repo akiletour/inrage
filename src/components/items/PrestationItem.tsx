@@ -18,7 +18,7 @@ export default function PrestationItem({
   linkText = '',
 }: Props) {
   return (
-    <div className="text-center h-full flex flex-col items-center">
+    <div className="flex h-full flex-col items-center text-center">
       <Image
         width={178}
         height={178}
@@ -30,7 +30,7 @@ export default function PrestationItem({
         }}
       />
 
-      <h3 className="text-xl text-white font-medium mt-1 leading-7">
+      <h3 className="mt-1 text-xl font-medium leading-7 text-white">
         {Array.isArray(title)
           ? title.map((ttl) => (
               <span key={ttl} className={'block'}>
@@ -40,7 +40,7 @@ export default function PrestationItem({
           : title}
       </h3>
 
-      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-1 mb-2">
+      <p className="mb-2 mt-1 text-base leading-5 md:text-sm lg:text-base lg:leading-5">
         {children}
       </p>
 

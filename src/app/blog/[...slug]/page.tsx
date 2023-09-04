@@ -94,7 +94,7 @@ export default async function PostPage({ params }: PostPageProps) {
       title={post.title}
     >
       <div className="container">
-        <div className="max-w-5xl w-full mx-auto text-xl">
+        <div className="mx-auto w-full max-w-5xl text-xl">
           <Mdx code={post.body.code} />
         </div>
 
@@ -104,7 +104,7 @@ export default async function PostPage({ params }: PostPageProps) {
             title="Articles reliés"
           />
 
-          <div className="grid md:grid-cols-2 gap-4 mt-6">
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
             {relatedPosts.map(({ slug, image, title, date, excerpt }) => (
               <div key={slug}>
                 <ArticleItem

@@ -10,7 +10,7 @@ const getSitemap = (): Promise<SitemapType> => fetcher(sitemap);
 
 function LegalTitle({ children }: { children: string }) {
   return (
-    <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>
+    <h2 className={'mb-2 mt-6 text-3xl font-bold text-white'}>{children}</h2>
   );
 }
 
@@ -23,7 +23,7 @@ export default async function Sitemap() {
   return (
     <Layout title="Plan du site">
       <div className="container">
-        <div className="flex flex-col lg:flex-row justify-between">
+        <div className="flex flex-col justify-between lg:flex-row">
           <div>
             <LegalTitle>Pages</LegalTitle>
 

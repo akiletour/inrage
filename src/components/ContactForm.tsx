@@ -60,7 +60,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('name', { required: true })}
           />
           {errors.name && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute right-2 top-4 text-xs text-red">
               Champ requis
             </span>
           )}
@@ -76,7 +76,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('email', { required: true })}
           />
           {errors.email && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute right-2 top-4 text-xs text-red">
               Champ requis
             </span>
           )}
@@ -92,32 +92,32 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('phone', { required: true })}
           />
           {errors.phone && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute right-2 top-4 text-xs text-red">
               Champ requis
             </span>
           )}
         </div>
         <div
-          className={`md:row-span-3 order-10 ${!lg && 'md:order-2'} relative`}
+          className={`order-10 md:row-span-3 ${!lg && 'md:order-2'} relative`}
         >
           <textarea
-            className={`input-field min-h-[200px] h-full ${
+            className={`input-field h-full min-h-[200px] ${
               errors.content ? 'border-red' : 'border-gray'
             }`}
             placeholder="Laissez-moi un petit message"
             {...register('content', { required: true })}
           />
           {errors.content && (
-            <span className="absolute text-red bottom-full mb-1 right-0 text-xs">
+            <span className="absolute bottom-full right-0 mb-1 text-xs text-red">
               Champ requis
             </span>
           )}
         </div>
       </div>
 
-      <div className="mt-3 flex flex-col md:flex-row items-center justify-center md:justify-end">
+      <div className="mt-3 flex flex-col items-center justify-center md:flex-row md:justify-end">
         {state.success && (
-          <div className="md:mr-4 flex-1 text-center mb-2 md:mb-0 md:text-right text-[#27ae60]">
+          <div className="mb-2 flex-1 text-center text-[#27ae60] md:mb-0 md:mr-4 md:text-right">
             <span className="font-bold underline">Merci !</span> Je vous
             répondrai très prochainement dès que j’aurai pris connaissance de
             votre message.
@@ -126,7 +126,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         <Button
           submit
           isLoading={state.loading}
-          className="button py-3 px-4 w-full md:w-auto"
+          className="button w-full px-4 py-3 md:w-auto"
         >
           Envoyer mon message
         </Button>

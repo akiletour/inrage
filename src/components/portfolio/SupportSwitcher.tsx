@@ -1,33 +1,31 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Link from '@component/NoScrollLink';
-import PortfolioCategories from '@graphql-query/portfolio-categories.graphql';
-import { RouteLink } from '@lib/route';
-import { List } from '@type/graphql';
-import { PortfolioCategory } from '@type/graphql/portfolio';
-import { fetcher } from '@util/index';
+import Link from "@component/NoScrollLink";
+import { RouteLink } from "@lib/route";
 
-const getCategories = (): Promise<List<PortfolioCategory>> =>
-  fetcher(PortfolioCategories);
+import { ProjectSupports } from "content/config/portfolio";
 
 export default async function SupportSwitcher({
   pathname,
 }: {
   pathname: string;
 }) {
-  const { data } = await getCategories();
+  const data = Object.keys(ProjectSupports).map((key) => ({
+    id: key,
+    ...ProjectSupports[key],
+  }));
 
   return (
-    <div className="grid grid-cols-4 gap-4 text-center my-6">
+    <div className="my-6 grid grid-cols-4 gap-4 text-center">
       <Link href={RouteLink.portfolio}>
         <span
           className={
-            pathname === RouteLink.portfolio ? 'text-orange' : 'text-white'
+            pathname === RouteLink.portfolio ? "text-orange" : "text-white"
           }
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 md:w-10 h-6 md:h-10 mx-auto"
+            className="mx-auto h-6 w-6 md:h-10 md:w-10"
             viewBox="0 0 320 512"
           >
             <path
@@ -40,35 +38,29 @@ export default async function SupportSwitcher({
           </span>
         </span>
       </Link>
-      {data?.supports?.edges &&
-        data?.supports?.edges.map(({ node: support }) => (
-          <Link
-            key={support.id}
-            href={`${RouteLink.portfolio}/${support.slug}`}
+      {data.map((support) => (
+        <Link key={support.id} href={`${RouteLink.portfolio}/${support.id}`}>
+          <div
+            className={
+              pathname === `${RouteLink.portfolio}/${support.id}`
+                ? "text-orange"
+                : "text-white"
+            }
           >
-            <div
-              className={
-                pathname === `${RouteLink.portfolio}/${support.slug}`
-                  ? 'text-orange'
-                  : 'text-white'
-              }
-            >
-              {support?.acfSupport && (
-                <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
-                  <Image
-                    src={support.acfSupport.image.sourceUrl}
-                    alt={support.name}
-                    fill
-                    sizes="100vw"
-                  />
-                </div>
-              )}
-              <span className="mt-1 block text-sm md:text-lg">
-                {support.name}
-              </span>
+            <div className="relative mx-auto h-6 w-6 md:h-10 md:w-10">
+              <Image
+                src={support.image}
+                alt={support.name}
+                fill
+                sizes="100vw"
+              />
             </div>
-          </Link>
-        ))}
+            <span className="mt-1 block text-sm md:text-lg">
+              {support.name}
+            </span>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 }

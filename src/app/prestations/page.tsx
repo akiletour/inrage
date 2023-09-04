@@ -1,19 +1,19 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Diagonal from '@component/Diagonal';
-import LeafHeartIcon from '@component/icons/LeafHeartIcon';
-import PrestationItem from '@component/items/PrestationItem';
-import Layout from '@component/Layout';
-import PrestationsList from '@component/PrestationsList';
-import SectionTitle from '@component/SectionTitle';
-import PrestationDesign from '@image/prestations/charte_graphique.png';
-import PrestationWebDev from '@image/prestations/developpement_site_web.png';
-import PrestationFormation from '@image/prestations/formation_offerte.png';
-import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Diagonal from "@component/Diagonal";
+import LeafHeartIcon from "@component/icons/LeafHeartIcon";
+import PrestationItem from "@component/items/PrestationItem";
+import Layout from "@component/Layout";
+import PrestationsList from "@component/PrestationsList";
+import SectionTitle from "@component/SectionTitle";
+import PrestationDesign from "@image/prestations/charte_graphique.png";
+import PrestationWebDev from "@image/prestations/developpement_site_web.png";
+import PrestationFormation from "@image/prestations/formation_offerte.png";
+import PrestationSupport from "@image/prestations/support_technique_772424.png";
+import { getCanonicalUrl, RouteLink } from "@lib/route";
 
 export const metadata = {
-  title: 'Prestations sous WordPress, Prestashop et Symfony - inRage',
+  title: "Prestations sous WordPress, Prestashop et Symfony - inRage",
   description:
     "Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web.",
   alternates: {
@@ -24,9 +24,9 @@ export const metadata = {
 export default function Prestations() {
   return (
     <Layout title="Prestations sous WordPress, Prestashop et Symfony">
-      <div className="flex relative container mt-6 lg:-mt-12">
-        <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
-          <div className="w-[697px] h-[736px] relative">
+      <div className="container relative mt-6 flex lg:-mt-12">
+        <div className="absolute hidden overflow-hidden lg:right-[60%] lg:block">
+          <div className="relative h-[736px] w-[697px]">
             <Image
               className="max-h-[736px]"
               src="/images/presentation-prestations.png"
@@ -35,22 +35,22 @@ export default function Prestations() {
               height={736}
               alt="Création de site Internet sur la rochelle"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </div>
         </div>
-        <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
+        <div className="relative flex items-center lg:ml-[45%] lg:h-[736px]">
           <div>
-            <h2 className="uppercase font-bold text-white text-2xl leading-7">
+            <h2 className="text-2xl font-bold uppercase leading-7 text-white">
               CRÉATION DE SITE INTERNET SUR LA ROCHELLE
-              <span className="font-light block text-xl">
+              <span className="block text-xl font-light">
                 ET PARTOUT EN FRANCE
               </span>
             </h2>
 
-            <div className="text-gray-light text-xl mt-4">
+            <div className="mt-4 text-xl text-gray-light">
               <p>
                 Je vous accompagne de A à Z dans la création de votre site
                 internet et vous propose la solution idéale pour répondre à vos
@@ -85,7 +85,7 @@ export default function Prestations() {
       <div className="mt-10">
         <div className="px-3">
           <svg
-            className="block max-w-[1280px] w-full mx-auto h-auto -mb-[5.75%] lg:-mb-9"
+            className="mx-auto mb-[-5.75%] block h-auto w-full max-w-[1280px] lg:-mb-9"
             height="279"
             viewBox="0 0 1473 279"
             width="1473"
@@ -297,7 +297,7 @@ export default function Prestations() {
         </div>
         <div className="bg-gray-darker pt-16">
           <div className="container mb-10 md:-mb-10">
-            <p className="text-gray-light text-xl">
+            <p className="text-xl text-gray-light">
               La réussite d’un projet web réside en grande partie dans son
               organisation et la méthodologie de travail employée. Pour ma part,
               l’ensemble de mes projets sont construits autour de la méthode
@@ -323,11 +323,11 @@ export default function Prestations() {
 
           <Diagonal
             bgClass="fill-gray-dark"
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
             bgCorner="fill-gray-darker"
             cta={{
               icon: <LeafHeartIcon />,
-              title: ['Demandez votre', 'devis'],
+              title: ["Demandez votre", "devis"],
               href: RouteLink.contact,
             }}
           />
@@ -335,13 +335,13 @@ export default function Prestations() {
       </div>
 
       <div className="container">
-        <div className="mt-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
+        <div className="mx-auto mt-4 max-w-4xl text-center text-xl font-medium text-white sm:text-2xl">
           Je suis entouré d&apos;une équipe fondée de créatifs, designers et
           développeurs. Nous travaillons ensemble pour créer des choses
           inspirantes et engagées.
         </div>
 
-        <div className="text-center max-w-4xl mx-auto text-lg mt-4 mb-7">
+        <div className="mx-auto mb-7 mt-4 max-w-4xl text-center text-lg">
           Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au
           fil des années des compétences diverses et complémentaires qui me
           permettent aujourd’hui de concevoir intégralement l’outil répondant le
@@ -356,10 +356,10 @@ export default function Prestations() {
             content="Consulter en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             <PrestationItem
               image={PrestationDesign}
-              title={['Identité visuelle &', 'Charte graphique']}
+              title={["Identité visuelle &", "Charte graphique"]}
             >
               Conscient et engagé, nous sommes à l’affut des nouvelles
               technologies web, nous assurons des veilles graphiques et
@@ -368,7 +368,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationWebDev}
-              title={['Développment de', 'votre projet']}
+              title={["Développment de", "votre projet"]}
             >
               Expert dans son domaine et sur les CMS comme Joomla, Prestashop et
               WordPress. inRage respectera précisément votre cahier des charges
@@ -376,7 +376,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationFormation}
-              title={['Formation offerte', 'lors de la création']}
+              title={["Formation offerte", "lors de la création"]}
             >
               À la fin de la création de votre projet, nous offrons une
               formation complète à l’utilisation de vos nouveaux outils web.
@@ -384,7 +384,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationSupport}
-              title={['Support technique', '7j/7']}
+              title={["Support technique", "7j/7"]}
             >
               Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
               sur votre site Internet. Nous sommes disponibles 7j/7 si un

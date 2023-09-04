@@ -19,7 +19,7 @@ export const components = {
   h2: ({ className, ...props }: React.HTMLProps<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'mt-10 scroll-m-20 pb-1 text-3xl tracking-tight first:mt-0 text-white font-bold leading-snug',
+        'mt-10 scroll-m-20 pb-1 text-3xl font-bold leading-snug tracking-tight text-white first:mt-0',
         className,
       )}
       {...props}
@@ -64,7 +64,7 @@ export const components = {
   a: ({ className, ...props }: React.HTMLProps<HTMLAnchorElement>) => (
     <a
       className={cn(
-        'font-medium underline text-orange hover:text-orange-dark underline-offset-4',
+        'font-medium text-orange underline underline-offset-4 hover:text-orange-dark',
         className,
       )}
       {...props}
@@ -88,7 +88,7 @@ export const components = {
   }: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
       className={cn(
-        'mt-6 border-l-2 pl-6 italic [&>*]:text-muted-foreground',
+        '[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic',
         className,
       )}
       {...props}
@@ -100,7 +100,7 @@ export const components = {
   pre: ({ className, ...props }: React.HTMLProps<HTMLPreElement>) => (
     <pre
       className={cn(
-        '-mx-4 mb-4 mt-6 overflow-x-auto rounded-lg border bg-black p-2',
+        'bg-black -mx-4 mb-4 mt-6 overflow-x-auto rounded-lg border p-2',
         className,
       )}
       {...props}
@@ -109,14 +109,14 @@ export const components = {
   code: ({ className, ...props }: React.HTMLProps<HTMLElement>) => (
     <code
       className={cn(
-        'relative rounded bg-gray-darker text-white px-[0.3rem] py-[0.2rem] font-mono text-sm',
+        'relative rounded bg-gray-darker px-[0.3rem] py-[0.2rem] font-mono text-sm text-white',
         className,
       )}
       {...props}
     />
   ),
   Image: ({ className, ...props }: ImageProps) => (
-    <Image className={cn('rounded-md border mt-2', className)} {...props} />
+    <Image className={cn('mt-2 rounded-md border', className)} {...props} />
   ),
   Callout,
 };

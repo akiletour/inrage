@@ -5,23 +5,23 @@ type Props = {
 };
 
 export default function SectionTitle({
-  className = '',
+  className = "",
   title,
   content,
 }: Props) {
   return (
-    <div className={`flex md:items-center flex-col md:flex-row ${className}`}>
+    <div className={`flex flex-col md:flex-row md:items-center ${className}`}>
       <h2
         className={`${
-          Array.isArray(title) && 'flex flex-col'
-        } text-white flex-none text-3xl font-bold max-w-[390px]`}
+          Array.isArray(title) && "flex flex-col"
+        } max-w-[390px] flex-none text-3xl font-bold text-white`}
       >
         {Array.isArray(title)
           ? title.map((ttl) => <span key={ttl.toString()}>{ttl}</span>)
           : title}
       </h2>
-      <p className="mt-2 md:mt-0 text-gray-light flex-1 flex items-center">
-        <span className="hidden md:block w-[2px] h-[120px] mx-8 bg-gray flex-none -skew-x-[30deg]" />
+      <p className="mt-2 flex flex-1 items-center text-gray-light md:mt-0">
+        <span className="mx-8 hidden h-[120px] w-[2px] flex-none skew-x-[-30deg] bg-gray md:block" />
         {content}
       </p>
     </div>

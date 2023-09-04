@@ -11,13 +11,13 @@ type Props = {
 
 export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
   return (
-    <div className="grid gap-x-3 grid-cols-[80px_auto] md:grid-cols-[120px_auto] items-center">
-      <div className="relative mr-2 w-10 h-10 md:w-15 md:h-15 row-span-2">
+    <div className="grid grid-cols-[80px_auto] items-center gap-x-3 md:grid-cols-[120px_auto]">
+      <div className="relative row-span-2 mr-2 h-10 w-10 md:h-15 md:w-15">
         <Image src={image} alt={title} fill sizes="100vw" />
       </div>
-      <h3 className="text-white font-medium text-xl md:text-2xl">{title}</h3>
+      <h3 className="text-xl font-medium text-white md:text-2xl">{title}</h3>
       <div className="col-auto">
-        <p className="mb-1 text-sm sm:text-md md:text-base">{excerpt}</p>
+        <p className="sm:text-md mb-1 text-sm md:text-base">{excerpt}</p>
         <ButtonLink href={link}>En savoir plus</ButtonLink>
       </div>
     </div>

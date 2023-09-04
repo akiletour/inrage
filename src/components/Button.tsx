@@ -20,7 +20,7 @@ export default function Button({
       className={`button relative ${className}`}
     >
       {isLoading && (
-        <div className="absolute inset-0 bg-orange-dark justify-center z-10 flex items-center">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-orange-dark">
           <LoadIcon />
         </div>
       )}

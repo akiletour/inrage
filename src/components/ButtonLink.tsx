@@ -29,7 +29,7 @@ export function ButtonLinkRaw({
   return (
     <Tag
       {...props}
-      className="group hover:text-orange transition-all text-white font-medium flex items-center"
+      className="group flex items-center font-medium text-white transition-all hover:text-orange"
     >
       {children}
       <svg

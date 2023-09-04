@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <div className="mt-5">
       <svg
-        className="relative w-full h-[15vh] max-h-20 -mb-1"
+        className="relative -mb-1 h-[15vh] max-h-20 w-full"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 24 150 28"
         preserveAspectRatio="none"
@@ -40,8 +40,8 @@ export default function Footer() {
         </g>
       </svg>
 
-      <div className="bg-gray-darker pt-3 pb-6">
-        <div className="container flex flex-col sm:flex-row justify-between">
+      <div className="bg-gray-darker pb-6 pt-3">
+        <div className="container flex flex-col justify-between sm:flex-row">
           <div>
             <div>
               <Image
@@ -54,7 +54,7 @@ export default function Footer() {
                 }}
               />
             </div>
-            <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
+            <div className="mt-1 grid grid-flow-col justify-start gap-1 text-sm text-orange">
               <Link href={RouteLink.aboutMe}>
                 <span>A propos de moi</span>
               </Link>
@@ -80,10 +80,10 @@ export default function Footer() {
             </div>
             <a
               href="https://github.com/akiletour/inrage"
-              className="text-white block md:flex mt-2 items-center"
+              className="mt-2 block items-center text-white md:flex"
             >
               Code open-source inrage.fr disponible sur{' '}
-              <span className="inline-block md:block md:ml-1">
+              <span className="inline-block md:ml-1 md:block">
                 <Image
                   width={72}
                   height={16}
@@ -96,7 +96,7 @@ export default function Footer() {
                 />
               </span>
             </a>
-            <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
+            <div className="mt-1 grid grid-flow-col justify-start gap-2 text-sm text-orange">
               <Link href={RouteLink.legals}>
                 <span>Mentions légales</span>
               </Link>
@@ -105,14 +105,14 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="text-center sm:text-right flex sm:items-end flex-col pt-2">
+          <div className="flex flex-col pt-2 text-center sm:items-end sm:text-right">
             <Link href={RouteLink.contact}>
               <span className="button">Demandez un devis</span>
             </Link>
             <div className="my-2 text-3xl font-bold text-orange">
               06 51 89 89 17
             </div>
-            <div className="text-center md:text-right text-sm">
+            <div className="text-center text-sm md:text-right">
               SIRET : 813 430 592 00010
               <br />
               R.C.S : La Rochelle 813 430 592

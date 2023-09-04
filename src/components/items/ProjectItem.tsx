@@ -16,7 +16,7 @@ export default function ProjectItem({ post, xl = false }: Props) {
   return (
     <Link href={slug}>
       <div className="project-item group text-center">
-        <div className="md:group-hover:scale-110 relative transition-all block text-center sm:pt-[5%] sm:px-[10%] sm:pb-[7%]">
+        <div className="relative block text-center transition-all sm:px-[10%] sm:pb-[7%] sm:pt-[5%] md:group-hover:scale-110">
           <Image
             src={image}
             width={xl ? 343 : 257}
@@ -28,11 +28,11 @@ export default function ProjectItem({ post, xl = false }: Props) {
             }}
           />
         </div>
-        <div className={`text-white text-base leading-5 sm:text-2xl`}>
+        <div className={`text-base leading-5 text-white sm:text-2xl`}>
           {title}
         </div>
         {support && (
-          <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">
+          <div className="mt-1 text-xs uppercase sm:text-base md:text-sm lg:text-base">
             {support.name}
           </div>
         )}

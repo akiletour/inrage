@@ -41,7 +41,7 @@ export default function Homepage() {
           content="Développeur Freelance créatif et innovant basé au coeur de La Rochelle et spécialisé dans la création de site internet. Depuis l'âge de 14 ans, je développe, compose et crée des projets web."
         />
 
-        <div className="my-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
+        <div className="mx-auto my-4 max-w-4xl text-center text-xl font-medium text-white sm:text-2xl">
           Je suis entouré d&apos;une équipe fondée de créatifs, designers et
           développeurs. Nous travaillons ensemble pour créer des choses
           inspirantes et engagées.
@@ -68,9 +68,9 @@ export default function Homepage() {
             objectFit: 'cover',
           }}
         />
-        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
+        <div className="container relative z-10 py-5 md:-my-10 xl:py-0">
           <div className="md:w-1/2">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+            <h2 className="mb-3 text-2xl font-medium text-white sm:text-3xl">
               Besoin d’une estimation de votre site
               <br className="hidden sm:block" />
               et/ou de sa maintenance
@@ -85,9 +85,9 @@ export default function Homepage() {
               contact pour définir ensemble les tâches.
             </p>
 
-            <div className="flex flex-wrap flex-start">
+            <div className="flex-start flex flex-wrap">
               <Link href={RouteLink.contact}>
-                <span className="button mt-3 mr-2">
+                <span className="button mr-2 mt-3">
                   Demandez votre devis maintenant
                 </span>
               </Link>
@@ -107,7 +107,7 @@ export default function Homepage() {
       </div>
 
       <div className="bg-gray-darker pt-8 md:pt-3">
-        <div className="container mb-10 lg:-mb-8 z-10 relative">
+        <div className="container relative z-10 mb-10 lg:-mb-8">
           <SectionTitle
             content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
             title="Projets"
@@ -135,7 +135,7 @@ export default function Homepage() {
           content="Je propose un large éventail de services axés sur les résultats pour les marques, en veillant à ce que leur présence en ligne reflète réellement leurs objectifs et leurs inspirations."
         />
 
-        <div className="my-4 grid md:grid-cols-2 gap-x-2 gap-y-6">
+        <div className="my-4 grid gap-x-2 gap-y-6 md:grid-cols-2">
           <ExpertiseItem
             title="WordPress"
             excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."

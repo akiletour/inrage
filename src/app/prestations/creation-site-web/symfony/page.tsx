@@ -89,7 +89,7 @@ export default async function Symfony() {
         </TextImage>
       </div>
 
-      <div className="bg-gray-darker mt-10">
+      <div className="mt-10 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -98,17 +98,17 @@ export default async function Symfony() {
           bgCorner="fill-gray-darker"
         />
         <div className="container">
-          <div className="lg:px-18 text-lg">
-            <h2 className="text-white text-center text-4xl font-bold mb-6">
+          <div className="text-lg lg:px-18">
+            <h2 className="mb-6 text-center text-4xl font-bold text-white">
               Les plus grandes forces
               <br />
               de Symfony
             </h2>
 
-            <div className="lg:flex lg:space-x-6 lg:justify-between">
-              <div className="lg:w-1/2 text-center">
-                <h3 className="mb-2 text-white inline-flex items-center mt-2 text-xl">
-                  <span className="mr-2 flex-none text-gray-darker font-black text-2xl w-4 h-4 bg-gray rounded-full flex justify-center items-center">
+            <div className="lg:flex lg:justify-between lg:space-x-6">
+              <div className="text-center lg:w-1/2">
+                <h3 className="my-2 inline-flex items-center text-xl text-white">
+                  <span className="mr-2 flex h-4 w-4 flex-none items-center justify-center rounded-full bg-gray text-2xl font-black text-gray-darker">
                     1
                   </span>
                   <span className={'font-bold'}>Performance</span>
@@ -121,9 +121,9 @@ export default async function Symfony() {
                 </p>
               </div>
 
-              <div className="lg:w-1/2 text-center">
-                <h3 className="mb-2 text-white inline-flex items-center mt-2 text-xl">
-                  <span className="mr-2 flex-none text-gray-darker font-black text-2xl w-4 h-4 bg-gray rounded-full flex justify-center items-center">
+              <div className="text-center lg:w-1/2">
+                <h3 className="my-2 inline-flex items-center text-xl text-white">
+                  <span className="mr-2 flex h-4 w-4 flex-none items-center justify-center rounded-full bg-gray text-2xl font-black text-gray-darker">
                     2
                   </span>
                   <span className={'font-bold'}>Interopérabilité</span>
@@ -138,7 +138,7 @@ export default async function Symfony() {
             </div>
 
             <div className="mt-10">
-              <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+              <ul className="grid grid-cols-2 gap-2 lg:grid-cols-3">
                 <li>
                   <CheckMark>Communauté très active</CheckMark>
                 </li>
@@ -169,7 +169,7 @@ export default async function Symfony() {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="-z-10 h-12 md:h-20 lg:h-[360px]"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
@@ -338,19 +338,19 @@ export default async function Symfony() {
       </div>
 
       <Diagonal
-        className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+        className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
         bgCorner={'fill-orange'}
         bgClass={'fill-gray-darker'}
       />
 
       <div className="bg-gray-darker">
-        <div className="container pb-10 lg:pb-0 lg:-mb-8 relative z-10">
+        <div className="container relative z-10 pb-10 lg:-mb-8 lg:pb-0">
           <SectionTitle
             title={['Réalisations', 'Symfony']}
             content="Retrouvez ci-dessous quelques projets Symfony auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur le framework Symfony."
           />
 
-          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:gap-0 md:grid-cols-4">
             {data.support.projets.edges.length > 0 &&
               data.support.projets.edges.map(({ node }) => (
                 <ProjectItem
@@ -364,7 +364,7 @@ export default async function Symfony() {
           </div>
         </div>
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{

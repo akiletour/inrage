@@ -50,7 +50,7 @@ export default async function PrestationPrestashop() {
       title="Création de site Prestashop"
     >
       <div className="container flex items-center">
-        <div className="md:w-2/5 hidden md:block">
+        <div className="hidden md:block md:w-2/5">
           <Image
             src={WebsitePrestashop}
             alt="Développeur Prestashop Freelance sur La Rochelle"
@@ -60,8 +60,8 @@ export default async function PrestationPrestashop() {
             }}
           />
         </div>
-        <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
-          <h2 className="text-white text-xl md:text-3xl font-bold">
+        <div className="pt-2 text-lg leading-6 md:w-3/5 md:pl-5">
+          <h2 className="text-xl font-bold text-white md:text-3xl">
             Développeur Prestashop Freelance sur{' '}
             <br className="hidden md:block" />
             La Rochelle
@@ -84,7 +84,7 @@ export default async function PrestationPrestashop() {
         </div>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="mt-4 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -92,9 +92,9 @@ export default async function PrestationPrestashop() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
-          <div className="md:px-18 text-lg">
-            <h2 className="text-3xl text-white font-bold mb-2">
+        <div className="container py-8 text-center lg:py-0">
+          <div className="text-lg md:px-18">
+            <h2 className="mb-2 text-3xl font-bold text-white">
               Pourquoi choisir Prestashop ?
             </h2>
 
@@ -174,7 +174,7 @@ export default async function PrestationPrestashop() {
         </TextImage>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="mt-4 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -182,15 +182,15 @@ export default async function PrestationPrestashop() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
+        <div className="container py-8 text-center lg:py-0">
           <div className="">
-            <h2 className="text-center text-white text-3xl">
+            <h2 className="text-center text-3xl text-white">
               Migration de Prestashop 1.6 vers 1.7
               <span className="block text-xl">
                 Un outil pour vous faciliter la vie
               </span>
             </h2>
-            <p className="text-xl text-gray-light mt-3">
+            <p className="mt-3 text-xl text-gray-light">
               La dernière version de Prestashop (1.7.5) est très largement
               plébiscitée par la communauté pour ses performances et sa
               fiabilité. Notamment car elle est développée sur la base du
@@ -214,7 +214,7 @@ export default async function PrestationPrestashop() {
       </div>
 
       <div className="container">
-        <h2 className="text-white text-3xl font-bold mb-4">
+        <h2 className="mb-4 text-3xl font-bold text-white">
           L&apos;intégration de votre catalogue produit
         </h2>
         <p>
@@ -236,7 +236,7 @@ export default async function PrestationPrestashop() {
 
       <div className="relative">
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="-z-10 h-12 md:h-20 lg:h-[360px]"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -252,9 +252,9 @@ export default async function PrestationPrestashop() {
             objectFit: 'cover',
           }}
         />
-        <div className="container flex items-center relative z-10 my-4 lg:-my-10">
-          <div className="md:w-2/3 text-gray-light text-sm">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+        <div className="container relative z-10 my-4 flex items-center lg:-my-10">
+          <div className="text-sm text-gray-light md:w-2/3">
+            <h2 className="mb-3 text-2xl font-medium text-white sm:text-3xl">
               Garanti et suivi <br className="hidden sm:block" />
               <span className="font-light">pendant 3 mois inclus</span>
             </h2>
@@ -280,7 +280,7 @@ export default async function PrestationPrestashop() {
             <p className="mt-2">
               Ainsi, votre site internet est protégé en permanence.
             </p>
-            <div className="flex flex-wrap flex-start mt-4">
+            <div className="flex-start mt-4 flex flex-wrap">
               <Link href={RouteLink.prestationTmaPrestashop}>
                 <span className="button">
                   Forfaits de maintenance Prestashop
@@ -288,7 +288,7 @@ export default async function PrestationPrestashop() {
               </Link>
             </div>
           </div>
-          <div className="hidden md:w-1/3 md:flex justify-center">
+          <div className="hidden justify-center md:flex md:w-1/3">
             <Image
               src={ProtectionShield}
               alt={'Forfaits de maintenance Prestashop'}
@@ -300,20 +300,20 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="-z-10 h-12 md:h-20 lg:h-[360px]"
           bgClass="fill-gray-darker"
           bgCorner="fill-orange"
         />
       </div>
 
       <div className="bg-gray-darker">
-        <div className="container pb-8 lg:pb-0 lg:-mb-8 relative z-10">
+        <div className="container relative z-10 pb-8 lg:-mb-8 lg:pb-0">
           <SectionTitle
             title="Réalisations Prestashop"
             content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur Prestashop."
           />
 
-          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:gap-0 md:grid-cols-4">
             {data.support.projets.edges.length > 0 &&
               data.support.projets.edges.map(({ node }) => (
                 <ProjectItem
@@ -327,7 +327,7 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{

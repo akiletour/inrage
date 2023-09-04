@@ -1,15 +1,15 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from "react";
 
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useWindowSize } from 'react-use';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useWindowSize } from "react-use";
 
-import FeaturedProjectMenu from '@component/FeaturedProjectMenu';
-import Link from '@component/NoScrollLink';
-import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg';
-import ExpertPrestashop from '@image/platinum-300x300.png';
-import ExpertWordPress from '@image/wordpress-expert.png';
-import { RouteLink } from '@lib/route';
+import FeaturedProjectMenu from "@component/FeaturedProjectMenu";
+import Link from "@component/NoScrollLink";
+import FeaturedProjectImage from "@image/featured-projects/parapharmaciemoinschere.jpeg";
+import ExpertPrestashop from "@image/platinum-300x300.png";
+import ExpertWordPress from "@image/wordpress-expert.png";
+import { RouteLink } from "@lib/route";
 
 type LinkProps = {
   title: string;
@@ -32,15 +32,15 @@ function LinkItem({
         <Link href={href}>
           <span
             onClick={() => closePrimaryNav()}
-            className={`uppercase block text-lg pt-2 lg:py-2 group-hover:text-orange ${
-              isActive ? 'text-orange' : 'text-white'
+            className={`block pt-2 text-lg uppercase group-hover:text-orange lg:py-2 ${
+              isActive ? "text-orange" : "text-white"
             }`}
           >
             {title}
           </span>
         </Link>
-        <div className="block lg:hidden group-hover:block lg:absolute w-full lg:w-[800px] lg:right-0 lg:top-full lg:pt-2">
-          <div className="lg:border-t-4 lg:bg-gray-darker lg:border-orange lg:bg-opacity-90 lg:p-2">
+        <div className="block w-full group-hover:block lg:absolute lg:right-0 lg:top-full lg:hidden lg:w-[800px] lg:pt-2">
+          <div className="lg:border-t-4 lg:border-orange/90 lg:bg-gray-darker/90 lg:p-2">
             {children}
           </div>
         </div>
@@ -51,8 +51,8 @@ function LinkItem({
     <Link href={href}>
       <span
         onClick={() => closePrimaryNav()}
-        className={`block pt-2 lg:pt-0 uppercase text-lg ${
-          isActive ? 'text-orange' : 'text-white hover:text-orange'
+        className={`block pt-2 text-lg uppercase lg:pt-0 ${
+          isActive ? "text-orange" : "text-white hover:text-orange"
         }`}
       >
         {title}
@@ -71,21 +71,19 @@ export default function NavPrimary({ isSticky = false }: Props) {
   const [isOpen, setOpen] = useState(false);
 
   const n1TitleClassnames =
-    'uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1';
+    "uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1";
   const n2TitleClassnames =
-    'text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark';
+    "text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark";
 
   const toggleNavPrimary = useCallback(() => {
     setOpen((r) => !r);
   }, []);
 
   return (
-    <div className="h-11 relative z-50">
+    <div className="relative z-50 h-11">
       <div
         className={`sticky-menu ${
-          isSticky
-            ? 'fixed top-0 left-0 right-0 bg-gray-darker transition-all'
-            : ''
+          isSticky ? "fixed inset-x-0 top-0 bg-gray-darker transition-all" : ""
         }`}
       >
         <div className="container flex items-center justify-between py-2">
@@ -96,8 +94,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
               height="56"
               alt="Pascal GAULT, développeur Freelance sur La Rochelle"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </Link>
@@ -105,10 +103,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
           <button
             onClick={toggleNavPrimary}
             type="button"
-            className="burger-menu block lg:hidden bg-orange text-white p-1 rounded-md"
+            className="burger-menu block rounded-md bg-orange p-1 text-white lg:hidden"
           >
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               viewBox="0 0 18 18"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -123,9 +121,9 @@ export default function NavPrimary({ isSticky = false }: Props) {
           <div
             className={`nav-menu ${
               width < 1025 && isOpen
-                ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-2 text-center flex-col absolute top-full left-0 w-full'
-                : 'hidden relative space-x-3'
-            } lg:flex items-center`}
+                ? "absolute left-0 top-full block w-full flex-col space-y-2 divide-y divide-gray-dark bg-gray-darker text-center lg:flex"
+                : "relative hidden space-x-3"
+            } items-center lg:flex`}
           >
             <LinkItem
               closePrimaryNav={() => setOpen(false)}
@@ -149,7 +147,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       Création de site
                     </span>
                   </Link>
-                  <ul className="lg:list-disc lg:pl-2 marker:text-orange-dark">
+                  <ul className="marker:text-orange-dark lg:list-disc lg:pl-2">
                     <li>
                       <Link href={RouteLink.prestationWordPress}>
                         <span
@@ -191,7 +189,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       Maintenance de site
                     </span>
                   </Link>
-                  <ul className="lg:list-disc lg:pl-2 marker:text-orange-dark">
+                  <ul className="marker:text-orange-dark lg:list-disc lg:pl-2">
                     <li>
                       <Link href={RouteLink.prestationTmaWordPress}>
                         <span
@@ -224,7 +222,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                     </li>
                   </ul>
                 </div>
-                <div className="hidden lg:flex space-x-2 ml-auto">
+                <div className="ml-auto hidden space-x-2 lg:flex">
                   <div>
                     <Image
                       src={ExpertPrestashop}
@@ -232,8 +230,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       height={150}
                       alt="Expert développeur Prestashop"
                       style={{
-                        maxWidth: '100%',
-                        height: 'auto',
+                        maxWidth: "100%",
+                        height: "auto",
                       }}
                     />
                   </div>
@@ -244,8 +242,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       height={150}
                       alt="Expert développeur Prestashop"
                       style={{
-                        maxWidth: '100%',
-                        height: 'auto',
+                        maxWidth: "100%",
+                        height: "auto",
                       }}
                     />
                   </div>
@@ -316,23 +314,23 @@ export default function NavPrimary({ isSticky = false }: Props) {
             <Link href={RouteLink.contact}>
               <span
                 onClick={() => setOpen(false)}
-                className="mt-2 lg:mt-0 inline-flex py-1 px-2 bg-orange uppercase text-gray-darker font-medium"
+                className="mt-2 inline-flex bg-orange px-2 py-1 font-medium uppercase text-gray-darker lg:mt-0"
               >
                 Contactez-moi
               </span>
             </Link>
 
-            <div className="block lg:hidden text-3xl text-orange font-bold pt-2">
+            <div className="block pt-2 text-3xl font-bold text-orange lg:hidden">
               06 51 89 89 17
             </div>
             <button
               type="button"
-              className="block lg:hidden w-full"
+              className="block w-full lg:hidden"
               onClick={toggleNavPrimary}
             >
-              <div className="bg-gray-darker -mt-1">
+              <div className="-mt-1 bg-gray-darker">
                 <svg
-                  className="translate translate-y-[30px] block w-full h-auto"
+                  className="translate block h-auto w-full translate-y-[30px]"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 415 76"
                 >

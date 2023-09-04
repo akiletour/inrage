@@ -5,5 +5,5 @@ interface CalloutProps {
 }
 
 export function Callout({ children }: CalloutProps) {
-  return <div className="text-white text-2xl md:text-3xl">{children}</div>;
+  return <div className="text-2xl text-white md:text-3xl">{children}</div>;
 }

@@ -39,7 +39,7 @@ export default function TmaOnDemand() {
       <div className="container">
         <TextImage position="right" image={TmaOnDemandIntro}>
           <div className="text-left">
-            <h2 className="text-white uppercase text-3xl font-bold mb-3">
+            <h2 className="mb-3 text-3xl font-bold uppercase text-white">
               <span className="block">
                 Vous avez besoin de moi pour une tâche,
               </span>
@@ -69,7 +69,7 @@ export default function TmaOnDemand() {
         </TextImage>
       </div>
 
-      <div className="bg-gray-darker mt-4 mb-4">
+      <div className="my-4 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -77,17 +77,17 @@ export default function TmaOnDemand() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="w-full max-w-3xl mx-auto text-center py-8 lg:py-0">
+        <div className="mx-auto w-full max-w-3xl py-8 text-center lg:py-0">
           <div>
-            <h2 className="text-center text-white text-3xl">
-              <span className="uppercase font-bold">
+            <h2 className="text-center text-3xl text-white">
+              <span className="font-bold uppercase">
                 Pourquoi faire appel à un support
               </span>
-              <span className="block uppercase text-xl">
+              <span className="block text-xl uppercase">
                 WordPress, Prestashop ou encore Woocommerce ?
               </span>
             </h2>
-            <p className="text-xl text-gray-light mt-3">
+            <p className="mt-3 text-xl text-gray-light">
               Je comprends parfaitement que votre but est d’avoir une boutique
               en ligne performance et de générer des ventes, ou un bien un site
               vitrine fonctionnel, attractif avec une bonne conversion dessus.
@@ -112,7 +112,7 @@ export default function TmaOnDemand() {
             commander un ticket d&apos;heure :
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 relative z-10">
+          <div className="relative z-10 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             <PrestationItem
               image={PrestationDesign}
               title={['Intégration', 'spécifique']}

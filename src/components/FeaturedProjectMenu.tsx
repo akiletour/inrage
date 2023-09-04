@@ -21,7 +21,7 @@ export default function FeaturedProjectMenu({ image, link, title }: Props) {
           }}
         />
       </div>
-      <div className="text-white font-medium text-center">{title}</div>
+      <div className="text-center font-medium text-white">{title}</div>
     </Link>
   );
 }

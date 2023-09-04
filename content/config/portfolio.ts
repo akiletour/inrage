@@ -9,14 +9,24 @@ export const ProjectTechnologies = [
   { name: 'WooCommerce', image: '/images/technologies/woocommerce.svg' },
 ];
 
-export const ProjectSupports = {
+type ProjectSupport = {
+  [key: string]: {
+    name: string;
+    image: string;
+  };
+};
+
+export const ProjectSupports: ProjectSupport = {
   wordpress: {
     name: 'WordPress',
+    image: '/images/supports/creation-wordpress.webp',
   },
   prestashop: {
     name: 'PrestaShop',
+    image: '/images/supports/creation-prestashop.webp',
   },
   'application-web': {
     name: 'Application web',
+    image: '/images/supports/developpement-application-web.webp',
   }
 };

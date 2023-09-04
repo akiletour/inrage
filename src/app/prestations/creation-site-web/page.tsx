@@ -34,9 +34,9 @@ export default function PrestationBuildWebsite() {
       ]}
       title="Création de site internet"
     >
-      <div className="flex relative container mt-6 lg:-mt-12">
-        <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
-          <div className="w-[697px] h-[736px] relative">
+      <div className="container relative mt-6 flex lg:-mt-12">
+        <div className="absolute hidden overflow-hidden lg:right-[60%] lg:block">
+          <div className="relative h-[736px] w-[697px]">
             <Image
               className="max-h-[736px]"
               src="/images/build-website.png"
@@ -51,13 +51,13 @@ export default function PrestationBuildWebsite() {
             />
           </div>
         </div>
-        <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
+        <div className="relative flex items-center lg:ml-[45%] lg:h-[736px]">
           <div>
-            <h2 className="font-bold text-white text-2xl md:text-4xl">
+            <h2 className="text-2xl font-bold text-white md:text-4xl">
               Développement spécialisé dans la création de site web
             </h2>
 
-            <div className="text-gray-light font-medium text-xl mt-4">
+            <div className="mt-4 text-xl font-medium text-gray-light">
               <p>
                 Développeur web freelance sur La Rochelle depuis 15 ans,
                 j’interviens pour toutes demandes de création de sites internet.
@@ -79,17 +79,17 @@ export default function PrestationBuildWebsite() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-darker mt-10">
+      <div className="mt-10 bg-gray-darker">
         <Diagonal
           flipX
           flipY
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
         <div className="container text-center">
-          <div className="md:px-18 text-lg">
-            <h2 className="text-white text-4xl font-bold mb-6">
+          <div className="text-lg md:px-18">
+            <h2 className="mb-6 text-4xl font-bold text-white">
               Un processus de développement
               <br />
               qui fonctionne
@@ -115,12 +115,12 @@ export default function PrestationBuildWebsite() {
         </div>
         <Diagonal
           bgClass="fill-gray-dark"
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgCorner="fill-gray-darker"
         />
       </div>
 
-      <div className="container mt-4 md:mt-0 lg:-mb-10 relative z-10">
+      <div className="container relative z-10 mt-4 md:mt-0 lg:-mb-10">
         <SectionTitle
           title={['Mes solutions', 'pour vos sites']}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
@@ -143,7 +143,7 @@ export default function PrestationBuildWebsite() {
             avancée de son backoffice afin qu’il réponde le plus efficacement à
             vos besoins.
           </p>
-          <p className="mt-2 mb-3">
+          <p className="mb-3 mt-2">
             De plus, Wordpress dispose d’une communauté importante et investie.
             Ainsi, de nombreux plugins et fonctionnalités sont existants, ils
             permettent de faire évoluer votre site au gré de vos besoins.
@@ -151,7 +151,7 @@ export default function PrestationBuildWebsite() {
           <Link href={RouteLink.prestationWordPress}>
             <span className="button">
               Développer son site avec
-              <span className="font-bold ml-[4px] underline">WordPress</span>
+              <span className="ml-[4px] font-bold underline">WordPress</span>
             </span>
           </Link>
         </TextImage>
@@ -169,7 +169,7 @@ export default function PrestationBuildWebsite() {
             développer rapidement un outil de e-commerce entièrement
             administrable en toute autonomie.
           </p>
-          <p className="mt-2 mb-3">
+          <p className="mb-3 mt-2">
             C’est également un outil open source qui dispose d’une communauté
             solide.
           </p>
@@ -177,7 +177,7 @@ export default function PrestationBuildWebsite() {
           <Link href={RouteLink.prestationPrestashop}>
             <span className="button">
               Développer son site avec
-              <span className="font-bold ml-[4px] underline">Prestashop</span>
+              <span className="ml-[4px] font-bold underline">Prestashop</span>
             </span>
           </Link>
         </TextImage>
@@ -200,18 +200,18 @@ export default function PrestationBuildWebsite() {
             e-commerce en passant par Sylius à la réalisation d&apos;une API
             avec API Platform.
           </p>
-          <p className="mt-2 mb-3"></p>
+          <p className="mb-3 mt-2"></p>
           <Link href={RouteLink.prestationSymfony}>
             <span className="button">
               Développer son site avec
-              <span className="font-bold ml-[4px] underline">Symfony</span>
+              <span className="ml-[4px] font-bold underline">Symfony</span>
             </span>
           </Link>
         </TextImage>
       </div>
 
       <Diagonal
-        className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+        className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
         bgCorner="fill-orange"
         bgClass="fill-gray-darker"
       />
@@ -293,7 +293,7 @@ export default function PrestationBuildWebsite() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgCorner="fill-orange"
           bgClass="fill-gray-dark"
         />

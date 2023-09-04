@@ -101,10 +101,10 @@ export default function TmaPrestashop() {
         <TextImage position="right" image={LogoGrey}>
           <div className="text-left">
             <h2>
-              <span className="text-orange uppercase text-4xl font-medium">
+              <span className="text-4xl font-medium uppercase text-orange">
                 Maintenance et Sécurité
               </span>
-              <span className="block text-white font-light text-3xl">
+              <span className="block text-3xl font-light text-white">
                 Prestashop
               </span>
             </h2>
@@ -146,7 +146,7 @@ export default function TmaPrestashop() {
             ]}
           />
 
-          <div className="flex flex-col space-y-4 mt-4">
+          <div className="mt-4 flex flex-col space-y-4">
             {entries.map(({ id, name, excerpt, values }) => (
               <TableLine
                 key={id}
@@ -158,7 +158,7 @@ export default function TmaPrestashop() {
           </div>
 
           <div className="ml-4 mt-4">
-            <span className="text-orange font-bold text-4xl leading-5">*</span>{' '}
+            <span className="text-4xl font-bold leading-5 text-orange">*</span>{' '}
             Le nombre d&apos;heures est personnalisable selon vos besoins.
           </div>
         </div>

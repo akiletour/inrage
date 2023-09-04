@@ -23,7 +23,7 @@ export default async function BlogList() {
   return (
     <Layout title="Blog sur le développement web">
       <div className="container mb-10">
-        <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+        <div className="-mb-8 mt-6 grid gap-4 md:grid-cols-2">
           {posts.map(({ title, slug, excerpt, date, image }) => (
             <ArticleItem
               slug={slug}

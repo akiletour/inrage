@@ -105,9 +105,9 @@ export default async function ProjectPage({ params }: PostPageProps) {
       title={post.title}
     >
       <div className="container">
-        <div className="flex items-center mb-10 flex-col md:flex-row">
-          <div className="md:w-2/5 text-center md:text-right">
-            <div className="text-4xl text-white font-bold">{post.title}</div>
+        <div className="mb-10 flex flex-col items-center md:flex-row">
+          <div className="text-center md:w-2/5 md:text-right">
+            <div className="text-4xl font-bold text-white">{post.title}</div>
 
             {post.website && (
               <a
@@ -123,18 +123,18 @@ export default async function ProjectPage({ params }: PostPageProps) {
             <div className="my-4 text-lg">{post.excerpt}</div>
 
             <div className="my-4">
-              <div className="text-white text-xl font-light uppercase tracking-widest">
+              <div className="text-xl font-light uppercase tracking-widest text-white">
                 Date
               </div>
-              <div className="text-white font-bold text-3xl">{post.date}</div>
+              <div className="text-3xl font-bold text-white">{post.date}</div>
             </div>
 
             {post.technologies && (
               <div className="my-4">
-                <div className="text-white text-xl font-light uppercase tracking-widest mb-2">
+                <div className="mb-2 text-xl font-light uppercase tracking-widest text-white">
                   Technologies
                 </div>
-                <div className="text-white font-medium text-sm flex space-x-2 justify-center flex-wrap md:justify-end">
+                <div className="flex flex-wrap justify-center space-x-2 text-sm font-medium text-white md:justify-end">
                   {post.technologies.map((techno) => {
                     const item = ProjectTechnologies.find(
                       (r) => r.name === techno,
@@ -147,9 +147,9 @@ export default async function ProjectPage({ params }: PostPageProps) {
                     return (
                       <div
                         key={item.name}
-                        className="flex items-center flex-col w-[80px] text-center"
+                        className="flex w-[80px] flex-col items-center text-center"
                       >
-                        <div className="w-6 h-6 relative">
+                        <div className="relative h-6 w-6">
                           <Image
                             src={item.image}
                             alt={item.name}
@@ -167,7 +167,7 @@ export default async function ProjectPage({ params }: PostPageProps) {
             )}
 
             <div>
-              <div className="text-white text-xl font-light uppercase tracking-widest">
+              <div className="text-xl font-light uppercase tracking-widest text-white">
                 Missions
               </div>
               {post.missions && (
@@ -179,7 +179,7 @@ export default async function ProjectPage({ params }: PostPageProps) {
               )}
             </div>
           </div>
-          <div className="md:w-3/5 mt-4 md:mt-0 md:pl-4">
+          <div className="mt-4 md:mt-0 md:w-3/5 md:pl-4">
             <Image
               src={post.image}
               width={640}
@@ -198,7 +198,7 @@ export default async function ProjectPage({ params }: PostPageProps) {
           title={postSupport.name}
         />
 
-        <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-0 md:grid-cols-4">
           {relatedPosts.length > 0 &&
             relatedPosts.map((rPost) => (
               <ProjectItem key={rPost.slug} post={rPost} />

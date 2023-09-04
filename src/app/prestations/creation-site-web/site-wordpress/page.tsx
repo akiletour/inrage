@@ -53,7 +53,7 @@ export default async function PrestationWordPress() {
       title="Création de site WordPress"
     >
       <div className="container flex items-center">
-        <div className="md:w-2/5 hidden md:block">
+        <div className="hidden md:block md:w-2/5">
           <Image
             src={WebsiteWP}
             alt="Développeur WordPress Freelance sur La Rochelle"
@@ -63,8 +63,8 @@ export default async function PrestationWordPress() {
             }}
           />
         </div>
-        <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
-          <h2 className="text-white text-xl md:text-3xl font-bold">
+        <div className="pt-2 text-lg leading-6 md:w-3/5 md:pl-5">
+          <h2 className="text-xl font-bold text-white md:text-3xl">
             Développeur WordPress Freelance sur{' '}
             <br className="hidden md:block" />
             La Rochelle
@@ -94,7 +94,7 @@ export default async function PrestationWordPress() {
         </div>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="mt-4 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -102,8 +102,8 @@ export default async function PrestationWordPress() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
-          <div className="md:px-18 text-lg">
+        <div className="container py-8 text-center lg:py-0">
+          <div className="text-lg md:px-18">
             <Quote message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients" />
           </div>
         </div>
@@ -120,9 +120,9 @@ export default async function PrestationWordPress() {
           content="Sur Wordpress, pour faciliter la prise en main de mes clients et leur permettre d’ajouter du contenu en toute autonomie, il est possible de personnaliser intégralement l’espace d’administration d’un site."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-4">
-          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
-            <div className="flex-none lg:mr-2 h-18 flex items-center">
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex flex-col justify-start lg:flex-row lg:items-center">
+            <div className="flex h-18 flex-none items-center lg:mr-2">
               <Image
                 src={PageBuilderImage}
                 alt="Construction de page avec Gutenberg"
@@ -133,7 +133,7 @@ export default async function PrestationWordPress() {
               />
             </div>
             <div>
-              <h3 className="text-white mb-1 font-medium text-xl">Gutenberg</h3>
+              <h3 className="mb-1 text-xl font-medium text-white">Gutenberg</h3>
               <p>
                 Depuis la version 5.5, WordPress propose un formidable outil
                 Gutenberg pour vous permettre de construire vos pages
@@ -144,8 +144,8 @@ export default async function PrestationWordPress() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
-            <div className="flex-none mr-2 flex h-18 items-center">
+          <div className="flex flex-col justify-start lg:flex-row lg:items-center">
+            <div className="mr-2 flex h-18 flex-none items-center">
               <Image
                 src={AcfImage}
                 alt="Construction de page avec Advanced Custom Fields"
@@ -156,7 +156,7 @@ export default async function PrestationWordPress() {
               />
             </div>
             <div>
-              <h3 className="text-white mb-1 font-medium text-xl">
+              <h3 className="mb-1 text-xl font-medium text-white">
                 Champs personnalisés ACF
               </h3>
               <p>
@@ -170,7 +170,7 @@ export default async function PrestationWordPress() {
             </div>
           </div>
         </div>
-        <div className="text-center mt-8">
+        <div className="mt-8 text-center">
           <p className="text-xl text-gray-light">
             Les ACF ou Advanced Custom Fields permettent à l’administrateur d’un
             site, d&apos;interagir avec l&apos;ensemble des contenus des sites
@@ -195,7 +195,7 @@ export default async function PrestationWordPress() {
         </div>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="mt-4 bg-gray-darker">
         <Diagonal
           flipX
           flipY
@@ -203,13 +203,13 @@ export default async function PrestationWordPress() {
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
+        <div className="container py-8 text-center lg:py-0">
           <div className="">
-            <h2 className="text-center text-white text-3xl">
+            <h2 className="text-center text-3xl text-white">
               Déploiement continu
               <span className="block text-xl">Réactivité, rapidité</span>
             </h2>
-            <p className="text-xl text-gray-light mt-3">
+            <p className="mt-3 text-xl text-gray-light">
               Le déploiement continu permet à mes clients de rester au coeur de
               leur projet de création de site. Grâce à cette méthode, ils sont
               en mesure de consulter à tout moment, les différentes évolutions
@@ -358,7 +358,7 @@ export default async function PrestationWordPress() {
             <li>
               Chargement automatique des champs ACF grace à Sage et
               <a
-                className="text-orange ml-1"
+                className="ml-1 text-orange"
                 href="https://github.com/wordplate/extended-acf"
                 rel="noreferrer"
                 target="_blank"
@@ -377,7 +377,7 @@ export default async function PrestationWordPress() {
 
       <div className="relative">
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="-z-10 h-12 md:h-20 lg:h-[360px]"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -393,9 +393,9 @@ export default async function PrestationWordPress() {
             objectFit: 'cover',
           }}
         />
-        <div className="container flex items-center relative z-10 my-4 lg:-my-10">
-          <div className="md:w-2/3 text-gray-light text-sm">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+        <div className="container relative z-10 my-4 flex items-center lg:-my-10">
+          <div className="text-sm text-gray-light md:w-2/3">
+            <h2 className="mb-3 text-2xl font-medium text-white sm:text-3xl">
               Garanti et suivi <br className="hidden sm:block" />
               <span className="font-light">pendant 3 mois inclus</span>
             </h2>
@@ -421,7 +421,7 @@ export default async function PrestationWordPress() {
             <p className="mt-2">
               Ainsi, votre site internet est protégé en permanence.
             </p>
-            <div className="flex flex-wrap flex-start mt-4">
+            <div className="flex-start mt-4 flex flex-wrap">
               <Link href={RouteLink.prestationTmaWordPress}>
                 <span className="button">
                   Forfaits de maintenance WordPress
@@ -429,7 +429,7 @@ export default async function PrestationWordPress() {
               </Link>
             </div>
           </div>
-          <div className="hidden md:w-1/3 md:flex justify-center">
+          <div className="hidden justify-center md:flex md:w-1/3">
             <Image
               src={ProtectionShield}
               alt={'Garanti et suivi de maintenance WordPress'}
@@ -441,20 +441,20 @@ export default async function PrestationWordPress() {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="-z-10 h-12 md:h-20 lg:h-[360px]"
           bgClass="fill-gray-darker"
           bgCorner="fill-orange"
         />
       </div>
 
       <div className="bg-gray-darker">
-        <div className="container py-10 lg:py-0 lg:-mb-8 relative z-10">
+        <div className="container relative z-10 py-10 lg:-mb-8 lg:py-0">
           <SectionTitle
             title="Réalisations WordPress"
             content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance."
           />
 
-          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:gap-0 md:grid-cols-4">
             {data.support.projets.edges.length > 0 &&
               data.support.projets.edges.map(({ node }) => (
                 <ProjectItem
@@ -468,7 +468,7 @@ export default async function PrestationWordPress() {
           </div>
         </div>
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{

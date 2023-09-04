@@ -6,10 +6,10 @@ type Props = {
 
 export default function CheckMark({ children }: Props) {
   return (
-    <div className={'flex text-left items-center'}>
+    <div className={'flex items-center text-left'}>
       <div className={'flex-none'}>
         <svg
-          className={'text-orange w-4 h-4 mr-1'}
+          className={'mr-1 h-4 w-4 text-orange'}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
         >

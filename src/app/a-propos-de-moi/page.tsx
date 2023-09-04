@@ -24,8 +24,8 @@ export const metadata = {
 export default function AboutMe() {
   return (
     <Layout title="À propos de moi">
-      <div className="container mt-4 -mb-20">
-        <h2 className="text-white text-3xl">
+      <div className="container -mb-20 mt-4">
+        <h2 className="text-3xl text-white">
           <span className="font-bold">
             PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR
           </span>
@@ -51,7 +51,7 @@ export default function AboutMe() {
           décisions commerciales responsables de l’atteinte des objectifs
           d’affaires.
         </p>
-        <p className="mt-1 mb-3">
+        <p className="mb-3 mt-1">
           Un projet, des questions ? N&apos;hésitez pas à me contacter pour en
           discuter !
         </p>
@@ -70,7 +70,7 @@ export default function AboutMe() {
             title="Expériences"
           />
 
-          <div className="flex flex-col space-y-6 pt-6 pb-10">
+          <div className="flex flex-col space-y-6 pb-10 pt-6">
             <ExperienceItem
               logo={ExpMoonscoop}
               title="Développeur Joomla"
@@ -106,7 +106,7 @@ export default function AboutMe() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
@@ -123,12 +123,12 @@ export default function AboutMe() {
           title="En savoir plus"
         />
 
-        <div className="flex items-center mt-3 md:mt-10">
+        <div className="mt-3 flex items-center md:mt-10">
           <div className="hidden md:block">
             <Character />
           </div>
           <div className="md:pl-4">
-            <h3 className="text-white font-medium text-3xl mb-1">
+            <h3 className="mb-1 text-3xl font-medium text-white">
               Pascal GAULT
             </h3>
             <p>
@@ -163,7 +163,7 @@ export default function AboutMe() {
               nouvelles technologies pour faire évoluer cette passion; et
               pouvoir appliquer cela tous les jours dans mon travail.
             </p>
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+            <h3 className="mb-1 mt-4 text-3xl font-medium text-white">
               Ce site
             </h3>
             <p>
@@ -192,7 +192,7 @@ export default function AboutMe() {
               </a>
               .
             </p>
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+            <h3 className="mb-1 mt-4 text-3xl font-medium text-white">
               Mes réseaux sociaux
             </h3>
             <Socials />

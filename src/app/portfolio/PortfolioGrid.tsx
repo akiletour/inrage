@@ -7,7 +7,7 @@ type Props = {
 
 export default async function PortfolioGrid({ projects }: Props) {
   return (
-    <div className="grid grid-cols-2 gap-4 md:gap-0 md:grid-cols-3">
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-0">
       {projects.map((post) => (
         <ProjectItem key={post.slug} xl post={post} />
       ))}
