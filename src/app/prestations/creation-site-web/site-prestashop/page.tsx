@@ -8,14 +8,13 @@ import Layout from '@component/Layout';
 import Link from '@component/NoScrollLink';
 import SectionTitle from '@component/SectionTitle';
 import TextImage from '@component/TextImage';
-import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql';
 import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import ProtectionShield from '@image/protection-shield.png';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import WebsiteWP from '@image/website-wp.png';
 import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { SupportProjects } from '@type/graphql/portfolio';
-import { fetcher } from '@util/index';
+import { allPortfolios } from 'contentlayer/generated';
+import { compareDesc } from 'date-fns';
 
 export const metadata = {
   title:
@@ -27,13 +26,13 @@ export const metadata = {
   },
 };
 
-const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
-  fetcher(LastProjectsBySupports, {
-    id: slug,
-  });
-
 export default async function PrestationPrestashop() {
-  const { data } = await getLastProjectsBySupports('prestashop');
+  const data = allPortfolios
+    .filter((post) => post.date && post.category === 'prestashop')
+    .sort((a, b) => {
+      return compareDesc(new Date(a.date), new Date(b.date));
+    })
+    .slice(0, 4);
 
   return (
     <Layout
@@ -314,16 +313,9 @@ export default async function PrestationPrestashop() {
           />
 
           <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:gap-0 md:grid-cols-4">
-            {data.support.projets.edges.length > 0 &&
-              data.support.projets.edges.map(({ node }) => (
-                <ProjectItem
-                  key={node.id}
-                  image={node.featuredImage.node.sourceUrl}
-                  title={node.title}
-                  slug={node.slug}
-                  support={node.supports?.edges[0]?.node}
-                />
-              ))}
+            {data.map((node) => (
+              <ProjectItem post={node} key={node.slug} />
+            ))}
           </div>
         </div>
         <Diagonal

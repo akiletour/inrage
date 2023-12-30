@@ -48,12 +48,14 @@ export default async function SupportSwitcher({
             }
           >
             <div className="relative mx-auto h-6 w-6 md:h-10 md:w-10">
-              <Image
-                src={support.image}
-                alt={support.name}
-                fill
-                sizes="100vw"
-              />
+              {support.image &&
+                <Image
+                  src={support.image}
+                  alt={support.name ?? ""}
+                  fill
+                  sizes="100vw"
+                />
+              }
             </div>
             <span className="mt-1 block text-sm md:text-lg">
               {support.name}

@@ -11,7 +11,6 @@ import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
 import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { EntriesType } from '@type/graphql/portfolio';
 
 export const metadata = {
   title: 'Maintenance site WordPress | Freelance - inRage',
@@ -22,7 +21,7 @@ export const metadata = {
   },
 };
 
-const entries: EntriesType = [
+const entries = [
   {
     id: 1,
     name: "Sauvegarde de l'ensemble de vos données",

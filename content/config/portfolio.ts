@@ -4,9 +4,11 @@ export const ProjectTechnologies = [
     name: 'API Google Map',
     image: '/images/technologies/api-google-map.webp',
   },
+  { name: 'Sage 9', image: '/images/technologies/sage9.png' },
   { name: 'Sage 10', image: '/images/technologies/sage10.webp' },
   { name: 'WordPress', image: '/images/technologies/wordpress.webp' },
   { name: 'WooCommerce', image: '/images/technologies/woocommerce.svg' },
+  { name: 'Sketch', image: '/images/technologies/sketch.svg' },
 ];
 
 type ProjectSupport = {

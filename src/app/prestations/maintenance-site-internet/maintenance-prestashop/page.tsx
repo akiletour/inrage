@@ -10,7 +10,6 @@ import TableLine from '@component/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
 import { RouteLink, getCanonicalUrl } from '@lib/route';
-import { EntriesType } from '@type/graphql/portfolio';
 
 export const metadata = {
   title:
@@ -22,7 +21,7 @@ export const metadata = {
   },
 };
 
-const entries: EntriesType = [
+const entries = [
   {
     id: 1,
     name: "Sauvegarde de l'ensemble de vos données",

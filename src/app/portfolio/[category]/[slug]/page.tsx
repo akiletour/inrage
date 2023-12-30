@@ -12,6 +12,7 @@ import {
 import SectionTitle from "@component/SectionTitle";
 import ProjectItem from "@component/items/ProjectItem";
 import { absoluteUrl } from "@util/index";
+import { Mdx } from '@component/mdx-components';
 
 interface PostPageProps {
   params: {
@@ -34,8 +35,10 @@ export async function generateMetadata({ params }: PostPageProps) {
     return {};
   }
 
+  const categoryName = ProjectSupports[post.category]?.name ?? "";
+
   return {
-    title: `${post.title} - Portfolio - ${ProjectSupports[post.category].name}`,
+    title: `${post.title} - Portfolio - ${categoryName}`,
     description: post.excerpt ?? "",
     openGraph: {
       title: post.title,
@@ -93,6 +96,10 @@ export default async function ProjectPage({ params }: PostPageProps) {
 
   const postSupport = ProjectSupports[post.category];
 
+  if(!postSupport) {
+    notFound();
+  }
+
   return (
     <Layout
       breadcrumbs={[
@@ -134,7 +141,8 @@ export default async function ProjectPage({ params }: PostPageProps) {
                 <div className="mb-2 text-xl font-light uppercase tracking-widest text-white">
                   Technologies
                 </div>
-                <div className="flex flex-wrap justify-center space-x-2 text-sm font-medium text-white md:justify-end">
+                <div
+                  className="flex flex-wrap justify-center space-x-2 text-sm font-medium text-white md:justify-end">
                   {post.technologies.map((techno) => {
                     const item = ProjectTechnologies.find(
                       (r) => r.name === techno,
@@ -192,6 +200,12 @@ export default async function ProjectPage({ params }: PostPageProps) {
             />
           </div>
         </div>
+
+        {post.body && (
+          <div className="mx-auto mb-20 w-full max-w-5xl text-xl">
+            <Mdx code={post.body.code} />
+          </div>
+        )}
 
         <SectionTitle
           content={`Retrouvez des projets similaires développés avec ${postSupport.name} qui pourrait correspondre à ${post.title}`}

@@ -61,8 +61,6 @@ export const Post = defineDocumentType(() => ({
   computedFields,
 }));
 
-console.log(Object.keys(ProjectSupports));
-
 export const Portfolio = defineDocumentType(() => ({
   name: "Portfolio",
   filePathPattern: `portfolio/**/*.mdx`,
