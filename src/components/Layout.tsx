@@ -1,10 +1,11 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, {ReactNode, useEffect} from 'react';
 
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 
 import Header from '@layout/Header';
+import {usePathname} from "next/navigation";
 
 type Props = {
   children: ReactNode;
@@ -30,6 +31,10 @@ function Layout({
   tmaLayout = false,
   breadcrumbs = [],
 }: Props): JSX.Element {
+  const pathname = usePathname();
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathname]);
   return (
     <div>
       <Header
@@ -38,15 +43,15 @@ function Layout({
         headerType={tmaLayout === true ? 'tma' : 'default'}
         breadcrumb={breadcrumbs}
       />
-      <motion.main
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        variants={variants}
-        transition={{ type: 'linear' }}
-      >
-        {children}
-      </motion.main>
+        <motion.main
+          initial="hidden"
+          animate="enter"
+          exit="exit"
+          variants={variants}
+          transition={{ type: 'linear' }}
+        >
+          {children}
+        </motion.main>
     </div>
   );
 }
