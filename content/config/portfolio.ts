@@ -9,6 +9,7 @@ export const ProjectTechnologies = [
   { name: 'WordPress', image: '/images/technologies/wordpress.webp' },
   { name: 'WooCommerce', image: '/images/technologies/woocommerce.svg' },
   { name: 'Sketch', image: '/images/technologies/sketch.svg' },
+  { name: 'ReactJS', image: '/images/technologies/reactjs.svg' },
 ];
 
 type ProjectSupport = {
