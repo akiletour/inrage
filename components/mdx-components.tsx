@@ -2,7 +2,7 @@ import * as React from "react"
 import Image, { ImageProps } from "next/image"
 import { Callout } from "@component/callout"
 import { cn } from "@lib/utils"
-import { useMDXComponent } from "next-contentlayer/hooks"
+import { useMDXComponent } from "next-contentlayer2/hooks"
 
 export const components = {
   h1: ({ className, ...props }: React.HTMLProps<HTMLHeadingElement>) => (

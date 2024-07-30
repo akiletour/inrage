@@ -1,12 +1,13 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+import { defineDocumentType, makeSource } from "contentlayer2/source-files"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
+import remarkGfm from "remark-gfm"
+
 import {
   ProjectSupports,
   ProjectTechnologies,
-} from "./content/config/portfolio";
+} from "./content/config/portfolio"
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -18,7 +19,7 @@ const computedFields = {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
-};
+}
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -59,7 +60,7 @@ export const Post = defineDocumentType(() => ({
     },
   },
   computedFields,
-}));
+}))
 
 export const Portfolio = defineDocumentType(() => ({
   name: "Portfolio",
@@ -105,7 +106,7 @@ export const Portfolio = defineDocumentType(() => ({
     },
   },
   computedFields,
-}));
+}))
 
 export default makeSource({
   contentDirPath: "./content",
@@ -113,7 +114,6 @@ export default makeSource({
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
-      rehypeSlug,
       [
         rehypePrettyCode,
         {
@@ -127,17 +127,19 @@ export default makeSource({
                   type: "text",
                   value: " ",
                 },
-              ];
+              ]
             }
           },
           onVisitHighlightedLine(node) {
-            node.properties.className.push("line--highlighted");
+            node.properties.className.push("line--highlighted")
           },
           onVisitHighlightedWord(node) {
-            node.properties.className = ["word--highlighted"];
+            node.properties.className = ["word--highlighted"]
           },
         },
       ],
+      rehypeSlug,
+
       [
         rehypeAutolinkHeadings,
         {
@@ -149,4 +151,4 @@ export default makeSource({
       ],
     ],
   },
-});
+})
