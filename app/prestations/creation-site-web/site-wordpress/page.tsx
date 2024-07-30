@@ -1,52 +1,52 @@
-import Image from 'next/image';
-
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import Quote from '@component/Quote';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import AcfImage from '@image/acf.png';
-import ImageBackgroundTma from '@image/bg-tma.jpeg';
-import WordpressSage from '@image/developpement-theme-sage.jpeg';
-import PageBuilderImage from '@image/page-builder.png';
-import ProtectionShield from '@image/protection-shield.png';
-import WebsitePrestashop from '@image/website-prestashop.png';
-import WebsiteWP from '@image/website-wp.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { allPortfolios } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
+import Image from "next/image"
+import ContactForm from "@component/ContactForm"
+import Diagonal from "@component/Diagonal"
+import MoreIcon from "@component/icons/MoreIcon"
+import ProjectItem from "@component/items/ProjectItem"
+import Layout from "@component/Layout"
+import Link from "@component/NoScrollLink"
+import Quote from "@component/Quote"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import { Button } from "@component/ui/Button"
+import AcfImage from "@image/acf.png"
+import ImageBackgroundTma from "@image/bg-tma.jpeg"
+import WordpressSage from "@image/developpement-theme-sage.jpeg"
+import PageBuilderImage from "@image/page-builder.png"
+import ProtectionShield from "@image/protection-shield.png"
+import WebsitePrestashop from "@image/website-prestashop.png"
+import WebsiteWP from "@image/website-wp.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
+import { allPortfolios } from "contentlayer/generated"
+import { compareDesc } from "date-fns"
 
 export const metadata = {
-  title: 'Création de site WordPress | Freelance Wordpress - inRage',
+  title: "Création de site WordPress | Freelance Wordpress - inRage",
   description:
-    'Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress.',
+    "Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },
-};
+}
 
 export default async function PrestationWordPress() {
   const data = allPortfolios
-    .filter((post) => post.date && post.category === 'wordpress')
+    .filter((post) => post.date && post.category === "wordpress")
     .sort((a, b) => {
-      return compareDesc(new Date(a.date), new Date(b.date));
+      return compareDesc(new Date(a.date), new Date(b.date))
     })
-    .slice(0, 4);
+    .slice(0, 4)
 
   return (
     <Layout
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: "Prestations sous WordPress, Prestashop et Symfony",
         },
         {
           link: RouteLink.prestationWeb,
-          title: 'Création de site internet',
+          title: "Création de site internet",
         },
       ]}
       title="Création de site WordPress"
@@ -57,14 +57,14 @@ export default async function PrestationWordPress() {
             src={WebsiteWP}
             alt="Développeur WordPress Freelance sur La Rochelle"
             style={{
-              maxWidth: '100%',
-              height: 'auto',
+              maxWidth: "100%",
+              height: "auto",
             }}
           />
         </div>
         <div className="pt-2 text-lg leading-6 md:w-3/5 md:pl-5">
           <h2 className="text-xl font-bold text-white md:text-3xl">
-            Développeur WordPress Freelance sur{' '}
+            Développeur WordPress Freelance sur{" "}
             <br className="hidden md:block" />
             La Rochelle
           </h2>
@@ -115,7 +115,7 @@ export default async function PrestationWordPress() {
 
       <div className="container mt-4 md:mt-0">
         <SectionTitle
-          title={['Backoffice sur-mesure', 'orienté utilisateur']}
+          title={["Backoffice sur-mesure", "orienté utilisateur"]}
           content="Sur Wordpress, pour faciliter la prise en main de mes clients et leur permettre d’ajouter du contenu en toute autonomie, il est possible de personnaliser intégralement l’espace d’administration d’un site."
         />
 
@@ -126,8 +126,8 @@ export default async function PrestationWordPress() {
                 src={PageBuilderImage}
                 alt="Construction de page avec Gutenberg"
                 style={{
-                  maxWidth: '100%',
-                  height: 'auto',
+                  maxWidth: "100%",
+                  height: "auto",
                 }}
               />
             </div>
@@ -149,8 +149,8 @@ export default async function PrestationWordPress() {
                 src={AcfImage}
                 alt="Construction de page avec Advanced Custom Fields"
                 style={{
-                  maxWidth: '100%',
-                  height: 'auto',
+                  maxWidth: "100%",
+                  height: "auto",
                 }}
               />
             </div>
@@ -247,7 +247,7 @@ export default async function PrestationWordPress() {
       <div className="container">
         <TextImage
           position="right"
-          title={['Développment', "d'extensions sur-mesure"]}
+          title={["Développment", "d'extensions sur-mesure"]}
           image={WebsiteWP}
         >
           <p>
@@ -273,8 +273,8 @@ export default async function PrestationWordPress() {
 
         <TextImage
           title={[
-            'Développment et intégration',
-            'de thème WordPress sur-mesure',
+            "Développment et intégration",
+            "de thème WordPress sur-mesure",
           ]}
           image={WebsitePrestashop}
         >
@@ -319,8 +319,8 @@ export default async function PrestationWordPress() {
         <TextImage
           image={WordpressSage}
           title={[
-            'Développement et création',
-            'de thème WordPress Sage 9 et 10',
+            "Développement et création",
+            "de thème WordPress Sage 9 et 10",
           ]}
         >
           <p>
@@ -334,7 +334,7 @@ export default async function PrestationWordPress() {
           </p>
           <p className="mt-2">
             J&apos;ai eu l&apos;occasion de développer des thèmes pour
-            WooCommerce et Sage comme le{' '}
+            WooCommerce et Sage comme le{" "}
             <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
               <span className="text-orange">projet Biosalines.</span>
             </Link>
@@ -389,7 +389,7 @@ export default async function PrestationWordPress() {
           fill
           sizes="100vw"
           style={{
-            objectFit: 'cover',
+            objectFit: "cover",
           }}
         />
         <div className="container relative z-10 my-4 flex items-center lg:-my-10">
@@ -421,20 +421,20 @@ export default async function PrestationWordPress() {
               Ainsi, votre site internet est protégé en permanence.
             </p>
             <div className="flex-start mt-4 flex flex-wrap">
-              <Link href={RouteLink.prestationTmaWordPress}>
-                <span className="button">
+              <Button asChild>
+                <Link href={RouteLink.prestationTmaWordPress}>
                   Forfaits de maintenance WordPress
-                </span>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
           <div className="hidden justify-center md:flex md:w-1/3">
             <Image
               src={ProtectionShield}
-              alt={'Garanti et suivi de maintenance WordPress'}
+              alt={"Garanti et suivi de maintenance WordPress"}
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -465,7 +465,7 @@ export default async function PrestationWordPress() {
           bgCorner="fill-orange"
           cta={{
             href: `${RouteLink.portfolio}/wordpress`,
-            title: ['voir les projets', 'WordPress'],
+            title: ["voir les projets", "WordPress"],
             icon: <MoreIcon />,
           }}
         />
@@ -479,5 +479,5 @@ export default async function PrestationWordPress() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

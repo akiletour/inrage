@@ -1,49 +1,49 @@
-import Image from 'next/image';
-
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import ImageBackgroundTma from '@image/bg-tma.jpeg';
-import ProtectionShield from '@image/protection-shield.png';
-import WebsitePrestashop from '@image/website-prestashop.png';
-import WebsiteWP from '@image/website-wp.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { allPortfolios } from 'contentlayer/generated';
-import { compareDesc } from 'date-fns';
+import Image from "next/image"
+import ContactForm from "@component/ContactForm"
+import Diagonal from "@component/Diagonal"
+import MoreIcon from "@component/icons/MoreIcon"
+import ProjectItem from "@component/items/ProjectItem"
+import Layout from "@component/Layout"
+import Link from "@component/NoScrollLink"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import { Button } from "@component/ui/Button"
+import ImageBackgroundTma from "@image/bg-tma.jpeg"
+import ProtectionShield from "@image/protection-shield.png"
+import WebsitePrestashop from "@image/website-prestashop.png"
+import WebsiteWP from "@image/website-wp.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
+import { allPortfolios } from "contentlayer/generated"
+import { compareDesc } from "date-fns"
 
 export const metadata = {
   title:
-    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+    "Création de site e-commerce Prestashop | Freelance Prestashop - inRage",
   description:
-    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+    "Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
-};
+}
 
 export default async function PrestationPrestashop() {
   const data = allPortfolios
-    .filter((post) => post.date && post.category === 'prestashop')
+    .filter((post) => post.date && post.category === "prestashop")
     .sort((a, b) => {
-      return compareDesc(new Date(a.date), new Date(b.date));
+      return compareDesc(new Date(a.date), new Date(b.date))
     })
-    .slice(0, 4);
+    .slice(0, 4)
 
   return (
     <Layout
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: "Prestations sous WordPress, Prestashop et Symfony",
         },
         {
           link: RouteLink.prestationWeb,
-          title: 'Création de site internet',
+          title: "Création de site internet",
         },
       ]}
       title="Création de site Prestashop"
@@ -54,14 +54,14 @@ export default async function PrestationPrestashop() {
             src={WebsitePrestashop}
             alt="Développeur Prestashop Freelance sur La Rochelle"
             style={{
-              maxWidth: '100%',
-              height: 'auto',
+              maxWidth: "100%",
+              height: "auto",
             }}
           />
         </div>
         <div className="pt-2 text-lg leading-6 md:w-3/5 md:pl-5">
           <h2 className="text-xl font-bold text-white md:text-3xl">
-            Développeur Prestashop Freelance sur{' '}
+            Développeur Prestashop Freelance sur{" "}
             <br className="hidden md:block" />
             La Rochelle
           </h2>
@@ -126,7 +126,7 @@ export default async function PrestationPrestashop() {
 
       <div className="container">
         <TextImage
-          title={['Développment et intégration', 'de thèmes Prestashop']}
+          title={["Développment et intégration", "de thèmes Prestashop"]}
           image={WebsiteWP}
         >
           <p>
@@ -149,7 +149,7 @@ export default async function PrestationPrestashop() {
 
         <TextImage
           position="right"
-          title={['Développement', 'de modules Prestashop']}
+          title={["Développement", "de modules Prestashop"]}
           image={WebsitePrestashop}
         >
           <p>
@@ -248,7 +248,7 @@ export default async function PrestationPrestashop() {
           fill
           sizes="100vw"
           style={{
-            objectFit: 'cover',
+            objectFit: "cover",
           }}
         />
         <div className="container relative z-10 my-4 flex items-center lg:-my-10">
@@ -280,20 +280,20 @@ export default async function PrestationPrestashop() {
               Ainsi, votre site internet est protégé en permanence.
             </p>
             <div className="flex-start mt-4 flex flex-wrap">
-              <Link href={RouteLink.prestationTmaPrestashop}>
-                <span className="button">
+              <Button asChild>
+                <Link href={RouteLink.prestationTmaPrestashop}>
                   Forfaits de maintenance Prestashop
-                </span>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
           <div className="hidden justify-center md:flex md:w-1/3">
             <Image
               src={ProtectionShield}
-              alt={'Forfaits de maintenance Prestashop'}
+              alt={"Forfaits de maintenance Prestashop"}
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -324,7 +324,7 @@ export default async function PrestationPrestashop() {
           bgCorner="fill-orange"
           cta={{
             href: `${RouteLink.portfolio}/prestashop`,
-            title: ['voir les projets', 'Prestashop'],
+            title: ["voir les projets", "Prestashop"],
             icon: <MoreIcon />,
           }}
         />
@@ -340,5 +340,5 @@ export default async function PrestationPrestashop() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

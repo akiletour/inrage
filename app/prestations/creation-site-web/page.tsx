@@ -1,27 +1,27 @@
-import Image from 'next/image';
-
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import DevOps from '@image/devops.png';
-import Lighthouse from '@image/lighthouse-100percent-inrage.png';
-import BuildSymfony from '@image/prestations/symfony.png';
-import SketchLogo from '@image/sketch_logo.png';
-import BuildPrestashop from '@image/website-prestashop.png';
-import BuildWordPress from '@image/website-wp.png';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import Image from "next/image"
+import ContactForm from "@component/ContactForm"
+import Diagonal from "@component/Diagonal"
+import Layout from "@component/Layout"
+import Link from "@component/NoScrollLink"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import { Button } from "@component/ui/Button"
+import DevOps from "@image/devops.png"
+import Lighthouse from "@image/lighthouse-100percent-inrage.png"
+import BuildSymfony from "@image/prestations/symfony.png"
+import SketchLogo from "@image/sketch_logo.png"
+import BuildPrestashop from "@image/website-prestashop.png"
+import BuildWordPress from "@image/website-wp.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
-  title: 'Création de site internet | Freelance création de site web - inRage',
+  title: "Création de site internet | Freelance création de site web - inRage",
   description:
-    'Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !',
+    "Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWeb),
   },
-};
+}
 
 export default function PrestationBuildWebsite() {
   return (
@@ -29,7 +29,7 @@ export default function PrestationBuildWebsite() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: "Prestations sous WordPress, Prestashop et Symfony",
         },
       ]}
       title="Création de site internet"
@@ -45,8 +45,8 @@ export default function PrestationBuildWebsite() {
               height={736}
               alt="Création de site Internet sur la rochelle"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -122,13 +122,13 @@ export default function PrestationBuildWebsite() {
 
       <div className="container relative z-10 mt-4 md:mt-0 lg:-mb-10">
         <SectionTitle
-          title={['Mes solutions', 'pour vos sites']}
+          title={["Mes solutions", "pour vos sites"]}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
         />
 
         <TextImage
           image={BuildWordPress}
-          title={['Développment site vitrine', 'avec WordPress']}
+          title={["Développment site vitrine", "avec WordPress"]}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
@@ -148,18 +148,18 @@ export default function PrestationBuildWebsite() {
             Ainsi, de nombreux plugins et fonctionnalités sont existants, ils
             permettent de faire évoluer votre site au gré de vos besoins.
           </p>
-          <Link href={RouteLink.prestationWordPress}>
-            <span className="button">
+          <Button asChild>
+            <Link href={RouteLink.prestationWordPress}>
               Développer son site avec
               <span className="ml-[4px] font-bold underline">WordPress</span>
-            </span>
-          </Link>
+            </Link>
+          </Button>
         </TextImage>
 
         <TextImage
           position="right"
           image={BuildPrestashop}
-          title={['Développement site e-commerce', 'avec Prestashop']}
+          title={["Développement site e-commerce", "avec Prestashop"]}
         >
           <p className="mt-2">
             Prestashop est le CMS phare dans la création de boutique en ligne.
@@ -174,17 +174,17 @@ export default function PrestationBuildWebsite() {
             solide.
           </p>
 
-          <Link href={RouteLink.prestationPrestashop}>
-            <span className="button">
+          <Button asChild>
+            <Link href={RouteLink.prestationPrestashop}>
               Développer son site avec
               <span className="ml-[4px] font-bold underline">Prestashop</span>
-            </span>
-          </Link>
+            </Link>
+          </Button>
         </TextImage>
 
         <TextImage
           image={BuildSymfony}
-          title={['Développment site', 'avec Symfony']}
+          title={["Développment site", "avec Symfony"]}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
@@ -201,12 +201,12 @@ export default function PrestationBuildWebsite() {
             avec API Platform.
           </p>
           <p className="mb-3 mt-2"></p>
-          <Link href={RouteLink.prestationSymfony}>
-            <span className="button">
+          <Button asChild>
+            <Link href={RouteLink.prestationSymfony}>
               Développer son site avec
               <span className="ml-[4px] font-bold underline">Symfony</span>
-            </span>
-          </Link>
+            </Link>
+          </Button>
         </TextImage>
       </div>
 
@@ -281,7 +281,7 @@ export default function PrestationBuildWebsite() {
             <p className="mt-2">
               Dès lors que l&apos;intégration de votre maquette commence, que ce
               soit sur WordPress, Symfony, Prestashop ou encore React JS. Je
-              contrôle à chaque déploiement les performances de votre site.{' '}
+              contrôle à chaque déploiement les performances de votre site.{" "}
             </p>
 
             <p className="mt-2">
@@ -310,5 +310,5 @@ export default function PrestationBuildWebsite() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }
