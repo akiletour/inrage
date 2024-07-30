@@ -11,11 +11,11 @@ body {
 }
 
 .button {
-  @apply h-5 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
+  @apply h-5 bg-[red] hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
 }
 
 .button-outline {
-  @apply h-5 border-2 border-orange text-center justify-center text-orange items-center px-2 inline-flex font-medium;
+  @apply h-5 border-2 border-[red] text-center justify-center text-orange items-center px-2 inline-flex font-medium;
 }
 
 .parallax > use {

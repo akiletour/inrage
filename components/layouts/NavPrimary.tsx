@@ -10,6 +10,7 @@ import FeaturedProjectImage from "@image/featured-projects/parapharmaciemoinsche
 import ExpertPrestashop from "@image/platinum-300x300.png";
 import ExpertWordPress from "@image/wordpress-expert.png";
 import { RouteLink } from "@lib/route";
+import { Button } from "@component/ui/button";
 
 type LinkProps = {
   title: string;
@@ -311,14 +312,9 @@ export default function NavPrimary({ isSticky = false }: Props) {
               href={RouteLink.blog}
               title="Blog"
             />
-            <Link href={RouteLink.contact}>
-              <span
-                onClick={() => setOpen(false)}
-                className="mt-2 inline-flex bg-orange px-2 py-1 font-medium uppercase text-gray-darker lg:mt-0"
-              >
-                Contactez-moi
-              </span>
-            </Link>
+            <Button asChild>
+              <Link href={RouteLink.contact}>Contactez-moi</Link>
+            </Button>
 
             <div className="block pt-2 text-3xl font-bold text-orange lg:hidden">
               06 51 89 89 17

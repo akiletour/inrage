@@ -1,10 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Link from '@component/NoScrollLink';
-import { RouteLink } from '@lib/route';
+import Link from "@component/NoScrollLink";
+import { RouteLink } from "@lib/route";
 
-import LogoWhite from '../../public/logo-white.svg';
-import Socials from '../components/Socials';
+import LogoWhite from "../../public/logo-white.svg";
+import Socials from "@component/Socials";
+import { Button } from "@component/ui/Button";
 
 export default function Footer() {
   return (
@@ -49,8 +50,8 @@ export default function Footer() {
                 src={LogoWhite}
                 alt="inRage - Pascal GAULT"
                 style={{
-                  maxWidth: '100%',
-                  height: 'auto',
+                  maxWidth: "100%",
+                  height: "auto",
                 }}
               />
             </div>
@@ -82,7 +83,7 @@ export default function Footer() {
               href="https://github.com/akiletour/inrage"
               className="mt-2 block items-center text-white md:flex"
             >
-              Code open-source inrage.fr disponible sur{' '}
+              Code open-source inrage.fr disponible sur{" "}
               <span className="inline-block md:ml-1 md:block">
                 <Image
                   width={72}
@@ -90,8 +91,8 @@ export default function Footer() {
                   src="/images/github-inline.svg"
                   alt="Code open-source disponible sur Github"
                   style={{
-                    maxWidth: '100%',
-                    height: 'auto',
+                    maxWidth: "100%",
+                    height: "auto",
                   }}
                 />
               </span>
@@ -106,9 +107,9 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex flex-col pt-2 text-center sm:items-end sm:text-right">
-            <Link href={RouteLink.contact}>
-              <span className="button">Demandez un devis</span>
-            </Link>
+            <Button asChild>
+              <Link href={RouteLink.contact}>Demandez un devis</Link>
+            </Button>
             <div className="my-2 text-3xl font-bold text-orange">
               06 51 89 89 17
             </div>

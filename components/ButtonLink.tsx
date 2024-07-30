@@ -1,7 +1,7 @@
 import Link from '@component/NoScrollLink';
 
-type Props = {
-  href: string;
+type Props = {href: string;
+
   children: string;
 };
 

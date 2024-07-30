@@ -1,10 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Diagonal from '@component/Diagonal';
-import useSticky from '@hook/useSticky';
-import BgTma from '@image/bg-tma.jpeg';
-import NavPrimary from '@layout/NavPrimary';
-import { PageExcerptType, PageTitleType } from '@type/header';
+import Diagonal from "@component/Diagonal";
+import useSticky from "@hook/useSticky";
+import BgTma from "@image/bg-tma.jpeg";
+import NavPrimary from "@layout/NavPrimary";
+import { PageExcerptType, PageTitleType } from "@type/header";
+import { Button } from "@component/ui/Button";
 
 type Props = {
   pageTitle: PageTitleType;
@@ -15,12 +16,12 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
   const [ref, sticky] = useSticky<HTMLDivElement>();
 
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
+    const element = document.getElementById("contact");
     if (!element) {
       return;
     }
 
-    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    element.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
@@ -48,13 +49,9 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
             : excerpt}
         </div>
 
-        <button
-          className="button"
-          type="button"
-          onClick={() => scrollToContact()}
-        >
+        <Button type="button" onClick={() => scrollToContact()}>
           Demandez un devis
-        </button>
+        </Button>
       </div>
 
       <Image

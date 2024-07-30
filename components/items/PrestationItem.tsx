@@ -1,6 +1,7 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 
-import Link from '@component/NoScrollLink';
+import Link from "@component/NoScrollLink";
+import { Button } from "@component/ui/Button";
 
 type Props = {
   title: string | string[];
@@ -14,8 +15,8 @@ export default function PrestationItem({
   image,
   title,
   children,
-  link = '',
-  linkText = '',
+  link = "",
+  linkText = "",
 }: Props) {
   return (
     <div className="flex h-full flex-col items-center text-center">
@@ -23,17 +24,17 @@ export default function PrestationItem({
         width={178}
         height={178}
         src={image}
-        alt={Array.isArray(title) ? title.join(' ') : title}
+        alt={Array.isArray(title) ? title.join(" ") : title}
         style={{
-          maxWidth: '100%',
-          height: 'auto',
+          maxWidth: "100%",
+          height: "auto",
         }}
       />
 
       <h3 className="mt-1 text-xl font-medium leading-7 text-white">
         {Array.isArray(title)
           ? title.map((ttl) => (
-              <span key={ttl} className={'block'}>
+              <span key={ttl} className={"block"}>
                 {ttl}
               </span>
             ))
@@ -44,12 +45,10 @@ export default function PrestationItem({
         {children}
       </p>
 
-      {link !== '' && (
-        <div className="mt-auto">
-          <Link href={link}>
-            <span className="button">{linkText}</span>
-          </Link>
-        </div>
+      {link !== "" && (
+        <Button asChild className="mt-auto">
+          <Link href={link}>{linkText}</Link>
+        </Button>
       )}
     </div>
   );

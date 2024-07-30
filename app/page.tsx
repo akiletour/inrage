@@ -1,31 +1,32 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import LastArticles from '@component/blog/LastArticles';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import LeafHeartIcon from '@component/icons/LeafHeartIcon';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExpertiseItem from '@component/items/ExpertiseItem';
-import Keypoints from '@component/Keypoints';
-import Layout from '@component/Layout';
-import LastProjects from '@component/portfolio/LastProjects';
-import PrestationsList from '@component/PrestationsList';
-import SectionTitle from '@component/SectionTitle';
-import ExpertiseJoomla from '@image/expertises/joomla.png';
-import ExpertisePrestashop from '@image/expertises/prestashop.png';
-import ExpertiseSymfony from '@image/expertises/symfony.png';
-import ExpertiseWordPress from '@image/expertises/wordpress.png';
-import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import LastArticles from "@component/blog/LastArticles";
+import ContactForm from "@component/ContactForm";
+import Diagonal from "@component/Diagonal";
+import LeafHeartIcon from "@component/icons/LeafHeartIcon";
+import MoreIcon from "@component/icons/MoreIcon";
+import ExpertiseItem from "@component/items/ExpertiseItem";
+import Keypoints from "@component/Keypoints";
+import Layout from "@component/Layout";
+import LastProjects from "@component/portfolio/LastProjects";
+import PrestationsList from "@component/PrestationsList";
+import SectionTitle from "@component/SectionTitle";
+import ExpertiseJoomla from "@image/expertises/joomla.png";
+import ExpertisePrestashop from "@image/expertises/prestashop.png";
+import ExpertiseSymfony from "@image/expertises/symfony.png";
+import ExpertiseWordPress from "@image/expertises/wordpress.png";
+import ImageDiscoverTma from "@image/prestations/presentation-integration-web.jpeg";
+import { getCanonicalUrl, RouteLink } from "@lib/route";
+import { Button } from "@component/ui/Button";
 
 export const metadata = {
   title:
-    'Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop',
+    "Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop",
   description:
-    'Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop.',
+    "Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop.",
   alternates: {
     canonical: getCanonicalUrl(),
   },
@@ -65,7 +66,7 @@ export default function Homepage() {
           fill
           sizes="100vw"
           style={{
-            objectFit: 'cover',
+            objectFit: "cover",
           }}
         />
         <div className="container relative z-10 py-5 md:-my-10 xl:py-0">
@@ -86,16 +87,16 @@ export default function Homepage() {
             </p>
 
             <div className="flex-start flex flex-wrap">
-              <Link href={RouteLink.contact}>
-                <span className="button mr-2 mt-3">
+              <Button asChild className="mr-2 mt-3">
+                <Link href={RouteLink.contact}>
                   Demandez votre devis maintenant
-                </span>
-              </Link>
-              <Link href={RouteLink.prestationTma}>
-                <span className="button-outline mt-3">
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="mt-3">
+                <Link href={RouteLink.prestationTma}>
                   Mes offres de maintenance
-                </span>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -123,7 +124,7 @@ export default function Homepage() {
           className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
           cta={{
             icon: <MoreIcon />,
-            title: ['Voir tous', 'les projets'],
+            title: ["Voir tous", "les projets"],
             href: RouteLink.portfolio,
           }}
         />
@@ -183,7 +184,7 @@ export default function Homepage() {
           bgCorner="fill-orange"
           cta={{
             icon: <LeafHeartIcon />,
-            title: ['Voir tous', 'les articles'],
+            title: ["Voir tous", "les articles"],
             href: RouteLink.blog,
           }}
         />

@@ -1,30 +1,31 @@
-import Character from '@component/Character';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExperienceItem from '@component/items/ExperienceItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import Socials from '@component/Socials';
-import ExpCOS from '@image/experiences/comonscreen.png';
-import ExpKamelab from '@image/experiences/kamelab.png';
-import ExpMegami from '@image/experiences/megami-productions.png';
-import ExpMoonscoop from '@image/experiences/moonscoop.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Character from "@component/Character"
+import Diagonal from "@component/Diagonal"
+import MoreIcon from "@component/icons/MoreIcon"
+import ExperienceItem from "@component/items/ExperienceItem"
+import Layout from "@component/Layout"
+import Link from "@component/NoScrollLink"
+import SectionTitle from "@component/SectionTitle"
+import Socials from "@component/Socials"
+import { Button } from "@component/ui/Button"
+import ExpCOS from "@image/experiences/comonscreen.png"
+import ExpKamelab from "@image/experiences/kamelab.png"
+import ExpMegami from "@image/experiences/megami-productions.png"
+import ExpMoonscoop from "@image/experiences/moonscoop.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
-  title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
+  title: "Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle",
   description:
     "15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.aboutMe),
   },
-};
+}
 
 export default function AboutMe() {
   return (
     <Layout title="À propos de moi">
-      <div className="container -mb-20 mt-4">
+      <div className="container relative z-10 -mb-20 mt-4">
         <h2 className="text-3xl text-white">
           <span className="font-bold">
             PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR
@@ -56,9 +57,9 @@ export default function AboutMe() {
           discuter !
         </p>
 
-        <Link href={RouteLink.contact}>
-          <span className="button">Contactez-moi</span>
-        </Link>
+        <Button asChild>
+          <Link href={RouteLink.contact}>Contactez-moi</Link>
+        </Button>
       </div>
 
       <Diagonal bgClass="fill-gray-darker" bgCorner="fill-gray-dark" />
@@ -111,7 +112,7 @@ export default function AboutMe() {
           bgCorner="fill-orange"
           cta={{
             icon: <MoreIcon />,
-            title: ['Voir tous', 'les projets'],
+            title: ["Voir tous", "les projets"],
             href: RouteLink.portfolio,
           }}
         />
@@ -183,7 +184,7 @@ export default function AboutMe() {
             <p className="mt-2">
               Ce site est actuellement développé en ReactJS avec le fomidable
               framework NextJS. Si vous voulez en savoir plus sur sa conception,
-              le code source est{' '}
+              le code source est{" "}
               <a
                 className="text-orange underline"
                 href="https://github.com/akiletour/inrage"
@@ -200,5 +201,5 @@ export default function AboutMe() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
