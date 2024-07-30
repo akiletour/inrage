@@ -3,18 +3,23 @@ title: Types d’environnements sous WordPress 5.5
 description: Introduction à la nouvelle fonction wp_get_environnement_type sur WordPress 5.5 pour gèrer son type d'environnement (development à production)
 excerpt: Introduction à la nouvelle fonction wp_get_environnement_type() sur WordPress 5.5 nous permettant de savoir sur quel type d’environnement on se trouve. Très pratique pour les développeurs de thèmes ou de plugins d’effectuer des tâches précises en fonction du type d’environnement.
 image: /images/blog/wordpress-environment-type.webp
-date: "2020-08-15"
+date: '2020-08-15'
 authors:
   - akiletour
 ---
 
-<Callout>Introduction à la nouvelle fonction `wp_get_environnement_type()` sur WordPress 5.5 nous permettant de savoir sur quel type d’environnement on se trouve. Très pratique pour les développeurs de thèmes ou de plugins d’effectuer des tâches précises en fonction du type d’environnement.</Callout>
+<Callout>
+  Introduction à la nouvelle fonction `wp_get_environnement_type()` sur
+  WordPress 5.5 nous permettant de savoir sur quel type d’environnement on se
+  trouve. Très pratique pour les développeurs de thèmes ou de plugins
+  d’effectuer des tâches précises en fonction du type d’environnement.
+</Callout>
 
 <Image
-  src="/images/blog/wordpress-5-5.webp"
-  width="1024"
-  height="498"
-  alt="WordPress 5.5"
+  src='/images/blog/wordpress-5-5.webp'
+  width='1024'
+  height='498'
+  alt='WordPress 5.5'
 />
 
 Depuis que je suis développeur Symfony, j’ai du mal à vivre sans cet écosystème de type d’environnements. Aujourd’hui, WordPress vient de m’offrir un petit cadeau avec l’arrivée de la version 5.5. Une prise en charge complète des environnements sous WordPress !
@@ -61,7 +66,11 @@ Pour l’exemple, nous allons voir comment définir notre environnement au trave
 define('WP_ENVIRONMENT_TYPE', 'staging');
 ```
 
-<div className="bg-orange text-white p-2">A noter : Si vous définissez le type d’environnement à **development**, par défaut WordPress va basculer la constant `WP_DEBUG` a true. Si elle n’est pas déjà définie dans le fichier wp-config.php</div>
+<div className='bg-orange p-2 text-white'>
+  A noter : Si vous définissez le type d’environnement à **development**, par
+  défaut WordPress va basculer la constant `WP_DEBUG` a true. Si elle n’est pas
+  déjà définie dans le fichier wp-config.php
+</div>
 
 ## Comment ajouter un type d’environnement à WordPress
 

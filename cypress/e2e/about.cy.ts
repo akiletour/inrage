@@ -1,18 +1,18 @@
 /// <reference types="cypress"/>
 
-import { checkEmptyLinks } from "../support/commands"
+import { checkEmptyLinks } from '../support/commands';
 
-context("About page", () => {
+context('About page', () => {
   beforeEach(() => {
-    cy.visit("/a-propos-de-moi")
-  })
+    cy.visit('/a-propos-de-moi');
+  });
 
-  it("Should contain a H1", () => {
-    cy.get("h1").contains("A propos de moi")
-  })
+  it('Should contain a H1', () => {
+    cy.get('h1').contains('A propos de moi');
+  });
 
-  checkEmptyLinks()
-})
+  checkEmptyLinks();
+});
 
-const asModule = {}
-export default asModule
+const asModule = {};
+export default asModule;

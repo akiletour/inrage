@@ -1,11 +1,11 @@
-import { forwardRef } from "react"
-import LoadIcon from "@component/icons/Load"
+import { forwardRef } from 'react';
+import LoadIcon from '@component/icons/Load';
 
-import { Button, ButtonProps } from "./button"
+import { Button, ButtonProps } from './button';
 
 type ButtonFormProps = ButtonProps & {
-  isLoading?: boolean
-}
+  isLoading?: boolean;
+};
 
 const ButtonForm = forwardRef<HTMLButtonElement, ButtonFormProps>(
   ({ children, isLoading, ...props }, ref) => {
@@ -13,17 +13,17 @@ const ButtonForm = forwardRef<HTMLButtonElement, ButtonFormProps>(
       <Button ref={ref} {...props}>
         <>
           {isLoading && (
-            <span className="absolute inset-0 z-10 flex items-center justify-center bg-orange-dark">
+            <span className='absolute inset-0 z-10 flex items-center justify-center bg-orange-dark'>
               <LoadIcon />
             </span>
           )}
           {children}
         </>
       </Button>
-    )
+    );
   }
-)
+);
 
-ButtonForm.displayName = "ButtonForm"
+ButtonForm.displayName = 'ButtonForm';
 
-export { ButtonForm }
+export { ButtonForm };

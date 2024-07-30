@@ -3,12 +3,16 @@ title: Charger Contact Form 7 uniquement sur certaines pages
 description: Comment ne plus charger le Javascript et le style CSS de Contact Form 7 sur toutes les pages WordPress mais uniquement sur certaines
 excerpt: Contact Form 7 se charge par défaut sur toutes les pages WordPress. Cela à un impact sur la compression de nos CSS et Javascript. Découvrons comment le charger uniquement sur certaines pages.
 image: /images/blog/contact-form-load-all-pages.webp
-date: "2020-11-16"
+date: '2020-11-16'
 authors:
   - akiletour
 ---
 
-<Callout>Contact Form 7 se charge par défaut sur toutes les pages WordPress. Cela à un impact sur la compression de nos CSS et Javascript. Découvrons comment le charger uniquement sur certaines pages.</Callout>
+<Callout>
+  Contact Form 7 se charge par défaut sur toutes les pages WordPress. Cela à un
+  impact sur la compression de nos CSS et Javascript. Découvrons comment le
+  charger uniquement sur certaines pages.
+</Callout>
 
 Techniquement, il est très compliqué pour les [développeurs de plugin](/backend.inrage.fr/prestations/creation-site-web/site-wordpress/) de ne pas charger leur plugin uniquement sur les pages où ils sont utilisés.
 
@@ -26,7 +30,7 @@ Je recommande de le faire par le thème pour ne pas impacter les futurs dévelop
 
 ### Désactiver le chargement avec le wp-config.php
 
-Nous pouvons simplement supprimer le chargement de Contact Form 7 en y rajoutant deux constantes `WPCF7_LOAD_JS` et `WPCF7_LOAD_CSS` dans le fichier `wp-config.php` : 
+Nous pouvons simplement supprimer le chargement de Contact Form 7 en y rajoutant deux constantes `WPCF7_LOAD_JS` et `WPCF7_LOAD_CSS` dans le fichier `wp-config.php` :
 
 ```php
 define( 'WPCF7_LOAD_JS', false );
@@ -48,7 +52,7 @@ Et donc, si vous changez de thème, ces changements n'auront pas d'impact avec v
 
 ## Etape 2 : Charger Contact Form 7 sur la page désirée
 
-Comme vous pouvez le constater, nous avons désactivé intégralement le CSS et le Javascript, et cela même sur la page contact. 
+Comme vous pouvez le constater, nous avons désactivé intégralement le CSS et le Javascript, et cela même sur la page contact.
 
 Nous allons devoir le remettre spécifiquement pour notre page contact, le chargement de Contact Form 7.
 
@@ -64,11 +68,11 @@ Avant l'appel du `get_header();` nous allons pouvoir insérer le chargement de n
 
 ```php
 <?php
- 
+
 if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
   wpcf7_enqueue_scripts();
 }
- 
+
 if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
   wpcf7_enqueue_styles();
 }
@@ -98,7 +102,7 @@ add_action('wp_enqueue_scripts', function () {
 });
 ```
 
-Comme vous pouvez le voir, on demande à WordPress, est-ce que l'on est sur la page Contact. Oui ? alors est-ce que les fonctions `wpcf7_enqueue_scripts` et `wpcf7_enqueue_styles` existent ? 
+Comme vous pouvez le voir, on demande à WordPress, est-ce que l'on est sur la page Contact. Oui ? alors est-ce que les fonctions `wpcf7_enqueue_scripts` et `wpcf7_enqueue_styles` existent ?
 
 Si oui, alors on charge notre Javascript et style CSS de Contact Form 7.
 
@@ -118,6 +122,6 @@ if (is_page('contact') {
 wp_head();
 ```
 
-Voilà, maintenant vous savez tout pour désactiver le chargement des ressources JS et CSS de Contact Form 7 ! 
+Voilà, maintenant vous savez tout pour désactiver le chargement des ressources JS et CSS de Contact Form 7 !
 
 Si vous voulez un peu plus d'informations, je vous invite à regarder la documentation de [Contact Form](https://contactform7.com/loading-javascript-and-stylesheet-only-when-it-is-necessary/) à ce sujet.

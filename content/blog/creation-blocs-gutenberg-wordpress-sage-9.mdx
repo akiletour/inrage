@@ -3,12 +3,15 @@ title: Blocs Gutenberg avec Sage 9 sur WordPress
 description: Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).
 excerpt: Découvrons comment organiser son thème WordPress sur le moteur Sage 9 pour créer et gérer ses différents blocs Gutenberg avec ACF directement depuis notre thème.
 image: /images/blog/bloc-gutenberg-wordpress-sage.webp
-date: "2021-10-26"
+date: '2021-10-26'
 authors:
   - akiletour
 ---
 
-<Callout>Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).</Callout>
+<Callout>
+  Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs
+  Gutenberg avec Advanced Custom Fields (ACF).
+</Callout>
 
 L’objectif de cet article va être de créer un bloc Gutenberg avec des champs ACF sur le moteur de thème [Sage 9](https://roots.io/sage/).
 
@@ -114,8 +117,11 @@ abstract class AbstractBlock
 }
 ```
 
-<strong class="text-white">$name</strong> = correspondra au slug de notre bloc<br />
-<strong class="text-white">$icon</strong> = l’îcone qui sera utilisé dans notre éditeur Gutenberg, vous pouvez choisir une icone grace aux [Dashicons de WordPress](https://developer.wordpress.org/resource/dashicons/).
+<strong class='text-white'>$name</strong> = correspondra au slug de notre bloc
+<br />
+<strong class='text-white'>$icon</strong> = l’îcone qui sera utilisé dans notre
+éditeur Gutenberg, vous pouvez choisir une icone grace aux [Dashicons de
+WordPress](https://developer.wordpress.org/resource/dashicons/).
 
 ## Préparation de l’initialisation
 
@@ -192,7 +198,8 @@ class QuoteBlock extends AbstractBlock
 Comme on l’a vu plus haut, on va devoir définir deux paramètres :
 
 <strong>$name</strong> : Où on va définir le slug “quote”,
-<strong>$icon</strong> : et on va choisir une présentation de témoignage avec nos Dashicons
+<strong>$icon</strong> : et on va choisir une présentation de témoignage avec
+nos Dashicons
 
 La méthode labels() va nous servir à définir toutes les traductions de notre bloc.
 
@@ -201,9 +208,7 @@ La méthode labels() va nous servir à définir toutes les traductions de notre 
 Pour personnaliser l’affichage de notre bloc, on va créer un fichier de style SCSS dans le répertoire resources/assets/styles/blocks/ :
 
 ```scss
-## resources/assets/styles/blocks/quote.scss
-
-.block-quote {
+## resources/assets/styles/blocks/quote.scss .block-quote {
   background: black;
   color: #fff;
 }
@@ -216,10 +221,8 @@ Pour ce faire, on va dire à Sage 9 qu’il doit aussi compiler indépendamment 
 ```json
 {
   "entry": {
-    "quote": [
-      "./styles/blocks/quote.scss"
-    ]
-  },
+    "quote": ["./styles/blocks/quote.scss"]
+  }
 }
 ```
 
@@ -232,10 +235,10 @@ _Je préfère cette méthode plutôt que d’afficher le bloc avec des données 
 Vous êtes libre de la taille de votre image de prévisualisation, elle sera automatiquement redimensionnée par WordPress.
 
 <Image
-  src="/images/blog/previews-gutenberg-quote.webp"
-  width="503"
-  height="162"
-  alt="Prévisualisation du bloc Témoignage"
+  src='/images/blog/previews-gutenberg-quote.webp'
+  width='503'
+  height='162'
+  alt='Prévisualisation du bloc Témoignage'
 />
 
 Vous devez placer l’image dans le répertoire resources/assets/images/blocks/quote.jpg
@@ -249,9 +252,7 @@ Nativement, Gutenberg ne sait pas lire le format .blade.php. Mais grace à notre
 Créons un fichier dans notre répertoire views resources/views/blocks/block-quote.blade.php :
 
 ```html
-<div class="block-quote">
-  Hello World
-</div>
+<div class="block-quote">Hello World</div>
 ```
 
 ## Dynamiser notre bloc avec ACF
@@ -333,10 +334,10 @@ On va pouvoir désormais rajouter des champs personnalisé à notre bloc Gutenbe
 Pour cela, on va avoir besoin d’un champ texte, d’un auteur avec son titre/fonction et d’un avatar.
 
 <Image
-  src="/images/blog/previews-gutenberg-quote.webp"
-  width="1024"
-  height="272"
-  alt="Prévisualisation du bloc Témoignage"
+  src='/images/blog/previews-gutenberg-quote.webp'
+  width='1024'
+  height='272'
+  alt='Prévisualisation du bloc Témoignage'
 />
 
 C’est parti pour éditer notre fichier app/Blocks/QuoteBlock.php pour y faire nos changements et rajouter nos champs personnalisés :
@@ -391,4 +392,3 @@ Vous êtes désormais fin prêt à gérer tous vos autres blocs Gutenberg avec v
 Si vous le désirez, j’ai mis à disposition les sources de cette article sur Github :
 
 https://github.com/inrage/wordpress-sage9-blocks
-

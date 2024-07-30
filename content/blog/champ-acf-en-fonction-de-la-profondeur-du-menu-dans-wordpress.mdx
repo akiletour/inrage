@@ -3,13 +3,15 @@ title: Champ ACF en fonction de la profondeur du menu dans WordPress
 description: ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l&#x27;assigner uniquement à un niveau de
 excerpt: ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l’assigner uniquement à un niveau de profondeur, nous allons découvrir comment le mettre en place simplement.
 image: /images/blog/champ-menu-acf-level-depth.jpg
-date: "2023-03-06"
+date: '2023-03-06'
 authors:
   - akiletour
 ---
 
 <Callout>
-ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu, mais il ne propose pas de pouvoir l’assigner uniquement à un niveau de profondeur, nous allons découvrir comment le mettre en place simplement.
+  ACF propose de pouvoir rajouter des champs personnalisés à un élément de menu,
+  mais il ne propose pas de pouvoir l’assigner uniquement à un niveau de
+  profondeur, nous allons découvrir comment le mettre en place simplement.
 </Callout>
 
 Pour ce faire, nous allons rajouter un nouveau type de règle qui sera assigné au sous-niveau `Formulaire`, on lui assignera des valeurs, et l’on mettra en place la logique pour déterminer si l’élément de menu peut avoir nos champs ou non.
@@ -34,9 +36,9 @@ add_filter('acf/location/rule_types', function ($choices) {
 Désormais, quand nous désirons rajouter un nouveau groupe de champ, on peut voir dans les règles notre nouveau type de champ :
 
 <Image
-  src="/images/blog/setting-acf-depth-menu.webp"
-  width="789"
-  height="323"
+  src='/images/blog/setting-acf-depth-menu.webp'
+  width='789'
+  height='323'
   alt="Profondeur de l'élément du menu"
 />
 
@@ -60,9 +62,9 @@ add_filter('acf/location/rule_values/menu_level', function () {
 Dans le code ci-dessus, nous allons générer les valeurs possibles de la règle en partant de 0 jusqu’à `$maxDepthMenu` qui est défini à 4 dans notre exemple. Mais vous n’avez pas de restriction pour mettre la valeur maximale que vous désirez.
 
 <Image
-  src="/images/blog/setting-acf-depth-menu2.webp"
-  width="1024"
-  height="222"
+  src='/images/blog/setting-acf-depth-menu2.webp'
+  width='1024'
+  height='222'
   alt="Profondeur de l'élément du menu"
 />
 
@@ -83,9 +85,9 @@ add_filter('acf/location/rule_match/menu_level', function ($match, $rule, $optio
 Même si le code semble un peu fastidieux, il en reste très simple. Nous déterminons que si nous sommes sur la page des menus (`nav-menus`), nous comparons la profondeur du menu avec l’option que nous avons choisi dans le groupe de champs lors de sa configuration.
 
 <Image
-  src="/images/blog/setting-acf-depth-menu3.webp"
-  width="631"
-  height="763"
+  src='/images/blog/setting-acf-depth-menu3.webp'
+  width='631'
+  height='763'
   alt="Profondeur de l'élément du menu"
 />
 

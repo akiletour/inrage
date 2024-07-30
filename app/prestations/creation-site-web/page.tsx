@@ -1,27 +1,27 @@
-import Image from "next/image"
-import ContactForm from "@component/ContactForm"
-import Diagonal from "@component/Diagonal"
-import Layout from "@component/Layout"
-import Link from "@component/NoScrollLink"
-import SectionTitle from "@component/SectionTitle"
-import TextImage from "@component/TextImage"
-import { Button } from "@component/ui/button"
-import DevOps from "@image/devops.png"
-import Lighthouse from "@image/lighthouse-100percent-inrage.png"
-import BuildSymfony from "@image/prestations/symfony.png"
-import SketchLogo from "@image/sketch_logo.png"
-import BuildPrestashop from "@image/website-prestashop.png"
-import BuildWordPress from "@image/website-wp.png"
-import { getCanonicalUrl, RouteLink } from "@lib/route"
+import Image from 'next/image';
+import ContactForm from '@component/ContactForm';
+import Diagonal from '@component/Diagonal';
+import Layout from '@component/Layout';
+import Link from '@component/NoScrollLink';
+import SectionTitle from '@component/SectionTitle';
+import TextImage from '@component/TextImage';
+import { Button } from '@component/ui/button';
+import DevOps from '@image/devops.png';
+import Lighthouse from '@image/lighthouse-100percent-inrage.png';
+import BuildSymfony from '@image/prestations/symfony.png';
+import SketchLogo from '@image/sketch_logo.png';
+import BuildPrestashop from '@image/website-prestashop.png';
+import BuildWordPress from '@image/website-wp.png';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
-  title: "Création de site internet | Freelance création de site web - inRage",
+  title: 'Création de site internet | Freelance création de site web - inRage',
   description:
-    "Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !",
+    'Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWeb),
   },
-}
+};
 
 export default function PrestationBuildWebsite() {
   return (
@@ -29,42 +29,42 @@ export default function PrestationBuildWebsite() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: "Prestations sous WordPress, Prestashop et Symfony",
+          title: 'Prestations sous WordPress, Prestashop et Symfony',
         },
       ]}
-      title="Création de site internet"
+      title='Création de site internet'
     >
-      <div className="container relative mt-6 flex lg:-mt-12">
-        <div className="absolute hidden overflow-hidden lg:right-[60%] lg:block">
-          <div className="relative h-[736px] w-[697px]">
+      <div className='container relative mt-6 flex lg:-mt-12'>
+        <div className='absolute hidden overflow-hidden lg:right-[60%] lg:block'>
+          <div className='relative h-[736px] w-[697px]'>
             <Image
-              className="max-h-[736px]"
-              src="/images/build-website.png"
+              className='max-h-[736px]'
+              src='/images/build-website.png'
               width={697}
               priority
               height={736}
-              alt="Création de site Internet sur la rochelle"
+              alt='Création de site Internet sur la rochelle'
               style={{
-                maxWidth: "100%",
-                height: "auto",
+                maxWidth: '100%',
+                height: 'auto',
               }}
             />
           </div>
         </div>
-        <div className="relative flex items-center lg:ml-[45%] lg:h-[736px]">
+        <div className='relative flex items-center lg:ml-[45%] lg:h-[736px]'>
           <div>
-            <h2 className="text-2xl font-bold text-white md:text-4xl">
+            <h2 className='text-2xl font-bold text-white md:text-4xl'>
               Développement spécialisé dans la création de site web
             </h2>
 
-            <div className="mt-4 text-xl font-medium text-gray-light">
+            <div className='mt-4 text-xl font-medium text-gray-light'>
               <p>
                 Développeur web freelance sur La Rochelle depuis 15 ans,
                 j’interviens pour toutes demandes de création de sites internet.
               </p>
             </div>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Je réalise pour vous tout type d’applications web, du site vitrine
               à la boutique en ligne, en passant par les sites applicatifs
               spécifiques à vos attentes. Je suis spécialisé dans le
@@ -72,41 +72,41 @@ export default function PrestationBuildWebsite() {
               WordPress ainsi que la création de sites e-commerce avec
               Prestashop.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Je vous propose également une solution d’hébergement professionnel
               sur mesure, dimensionné pour le trafic de votre site.
             </p>
           </div>
         </div>
       </div>
-      <div className="mt-10 bg-gray-darker">
+      <div className='mt-10 bg-gray-darker'>
         <Diagonal
           flipX
           flipY
-          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
+          className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+          bgClass='fill-gray-dark'
+          bgCorner='fill-gray-darker'
         />
-        <div className="container text-center">
-          <div className="text-lg md:px-18">
-            <h2 className="mb-6 text-4xl font-bold text-white">
+        <div className='container text-center'>
+          <div className='text-lg md:px-18'>
+            <h2 className='mb-6 text-4xl font-bold text-white'>
               Un processus de développement
               <br />
               qui fonctionne
             </h2>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               J’interviens pour vous sur l’ensemble de la chaîne de production.
               Je vous accompagne tout d’abord dans la conception de votre outil
               puis réalise pour vous les maquettes graphiques de votre site.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               J’intègre ensuite ces différentes maquettes afin de rendre vos
               attentes interactives. Je développe également les fonctionnalités
               spécifiques nécessaires à votre activité avant de rendre votre
               site entièrement consultable en ligne.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Pour plus de transparence et de sécurité dans le développement de
               votre outil, j’ai mis en place les méthodes d’intégration et de
               déploiement continu.
@@ -114,36 +114,36 @@ export default function PrestationBuildWebsite() {
           </div>
         </div>
         <Diagonal
-          bgClass="fill-gray-dark"
-          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-          bgCorner="fill-gray-darker"
+          bgClass='fill-gray-dark'
+          className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+          bgCorner='fill-gray-darker'
         />
       </div>
 
-      <div className="container relative z-10 mt-4 md:mt-0 lg:-mb-10">
+      <div className='container relative z-10 mt-4 md:mt-0 lg:-mb-10'>
         <SectionTitle
-          title={["Mes solutions", "pour vos sites"]}
+          title={['Mes solutions', 'pour vos sites']}
           content="L'utilisation de CMS aussi populaires que Prestashop et Wordpress, disposant de communauté active et importante, vous garanti d'avoir d'une solution qui pourra évoluer au fur et à mesure de vos besoins et des évolutions technologiques."
         />
 
         <TextImage
           image={BuildWordPress}
-          title={["Développment site vitrine", "avec WordPress"]}
+          title={['Développment site vitrine', 'avec WordPress']}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
             prédilection !
           </p>
-          <p className="mt-2">
+          <p className='mt-2'>
             Idéal pour la création de site vitrine, Wordpress permet de
             développer rapidement des sites entièrement administrables.
           </p>
-          <p className="mt-2">
+          <p className='mt-2'>
             C’est un outil open source qui permet également la personnalisation
             avancée de son backoffice afin qu’il réponde le plus efficacement à
             vos besoins.
           </p>
-          <p className="mb-3 mt-2">
+          <p className='mb-3 mt-2'>
             De plus, Wordpress dispose d’une communauté importante et investie.
             Ainsi, de nombreux plugins et fonctionnalités sont existants, ils
             permettent de faire évoluer votre site au gré de vos besoins.
@@ -151,25 +151,25 @@ export default function PrestationBuildWebsite() {
           <Button asChild>
             <Link href={RouteLink.prestationWordPress}>
               Développer son site avec
-              <span className="ml-[4px] font-bold underline">WordPress</span>
+              <span className='ml-[4px] font-bold underline'>WordPress</span>
             </Link>
           </Button>
         </TextImage>
 
         <TextImage
-          position="right"
+          position='right'
           image={BuildPrestashop}
-          title={["Développement site e-commerce", "avec Prestashop"]}
+          title={['Développement site e-commerce', 'avec Prestashop']}
         >
-          <p className="mt-2">
+          <p className='mt-2'>
             Prestashop est le CMS phare dans la création de boutique en ligne.
           </p>
-          <p className="mt-2">
+          <p className='mt-2'>
             A la manière de Wordpress, la création de site prestashop permet de
             développer rapidement un outil de e-commerce entièrement
             administrable en toute autonomie.
           </p>
-          <p className="mb-3 mt-2">
+          <p className='mb-3 mt-2'>
             C’est également un outil open source qui dispose d’une communauté
             solide.
           </p>
@@ -177,54 +177,54 @@ export default function PrestationBuildWebsite() {
           <Button asChild>
             <Link href={RouteLink.prestationPrestashop}>
               Développer son site avec
-              <span className="ml-[4px] font-bold underline">Prestashop</span>
+              <span className='ml-[4px] font-bold underline'>Prestashop</span>
             </Link>
           </Button>
         </TextImage>
 
         <TextImage
           image={BuildSymfony}
-          title={["Développment site", "avec Symfony"]}
+          title={['Développment site', 'avec Symfony']}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
             prédilection !
           </p>
-          <p className="mt-2">
+          <p className='mt-2'>
             Symfony a su s&apos;imposer comme référence dans les frameworks PHP
             et me permet de construire des applications sur-mesure.
           </p>
-          <p className="mt-2">
+          <p className='mt-2'>
             La grande communauté qui s&apos;est construite autour de cet outil
             rend possible des utilisations très variées : de la plateforme
             e-commerce en passant par Sylius à la réalisation d&apos;une API
             avec API Platform.
           </p>
-          <p className="mb-3 mt-2"></p>
+          <p className='mb-3 mt-2'></p>
           <Button asChild>
             <Link href={RouteLink.prestationSymfony}>
               Développer son site avec
-              <span className="ml-[4px] font-bold underline">Symfony</span>
+              <span className='ml-[4px] font-bold underline'>Symfony</span>
             </Link>
           </Button>
         </TextImage>
       </div>
 
       <Diagonal
-        className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-        bgCorner="fill-orange"
-        bgClass="fill-gray-darker"
+        className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+        bgCorner='fill-orange'
+        bgClass='fill-gray-darker'
       />
 
-      <div className="bg-gray-darker">
-        <div className="container mb-4 md:mb-0">
+      <div className='bg-gray-darker'>
+        <div className='container mb-4 md:mb-0'>
           <SectionTitle
-            content="inRage est une agence créative et innovante basée au coeur de La Rochelle. Spécialisée dans la création de site Web."
-            title="En savoir plus"
+            content='inRage est une agence créative et innovante basée au coeur de La Rochelle. Spécialisée dans la création de site Web.'
+            title='En savoir plus'
           />
 
           <TextImage
-            title="Création et intégration avec Sketch"
+            title='Création et intégration avec Sketch'
             image={SketchLogo}
           >
             <p>
@@ -232,15 +232,15 @@ export default function PrestationBuildWebsite() {
               projets digitaux, j’utilise le logiciel Sketch. Ce logiciel, très
               complet, fait le lien entre le web designer et le développeur.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Une des forces de Sketch est son approche 100% vectorielle :
               pratique, simple et rapide.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Sketch est conçu pour créer des UI : C’est à dire, tout ce que
               vous avez créer sur cet outil est réalisable en HTML/CSS.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Enfin, une autre fonctionnalité permet d’exporter les assets d’un
               projet. En d’autres termes, grâce à sketch, le développeur dispose
               de l’ensemble des informations nécessaires pour intégrer la
@@ -249,9 +249,9 @@ export default function PrestationBuildWebsite() {
           </TextImage>
 
           <TextImage
-            position="right"
+            position='right'
             image={DevOps}
-            title="Intégration et déploiement continu"
+            title='Intégration et déploiement continu'
           >
             <p>
               L&apos;intégration continue consiste à segmenter le développement
@@ -262,14 +262,14 @@ export default function PrestationBuildWebsite() {
               d&apos;intégration au plus tôt lors du développement.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               De plus, elle permet d&apos;automatiser l&apos;exécution des tests
               et de voir l&apos;évolution du développement du site internet.
               Cette méthode de travail est également largement plébiscitée pour
               les projets nécessitant l’intervention de plusieurs développeurs.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Cette méthode est efficace lorsqu’elle est associée à une autre
               méthode : le déploiement continu. Cette dernière permet à mes
               clients de consulter les modifications apportées à leur site en
@@ -277,14 +277,14 @@ export default function PrestationBuildWebsite() {
             </p>
           </TextImage>
 
-          <TextImage image={Lighthouse} title="Google Lighthouse et GTMetrix">
-            <p className="mt-2">
+          <TextImage image={Lighthouse} title='Google Lighthouse et GTMetrix'>
+            <p className='mt-2'>
               Dès lors que l&apos;intégration de votre maquette commence, que ce
               soit sur WordPress, Symfony, Prestashop ou encore React JS. Je
-              contrôle à chaque déploiement les performances de votre site.{" "}
+              contrôle à chaque déploiement les performances de votre site.{' '}
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Cela permet de garder un oeil sur les dernières recommandations du
               web, que ce soit en terme de performance, accessibilité, meilleurs
               pratiques ou encore le SEO naturel.
@@ -293,22 +293,22 @@ export default function PrestationBuildWebsite() {
         </div>
 
         <Diagonal
-          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-          bgCorner="fill-orange"
-          bgClass="fill-gray-dark"
+          className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+          bgCorner='fill-orange'
+          bgClass='fill-gray-dark'
         />
       </div>
 
-      <div className="container mt-4 md:mt-0">
+      <div className='container mt-4 md:mt-0'>
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
           }
-          title="Contact"
+          title='Contact'
         />
 
         <ContactForm />
       </div>
     </Layout>
-  )
+  );
 }

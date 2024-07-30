@@ -59,7 +59,7 @@ body {
 .styled-list li::before {
   @apply absolute left-0 top-1 mr-2 block h-1 w-1 flex-none bg-gray-light;
 
-  content: "";
+  content: '';
 }
 
 .input-field {

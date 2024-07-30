@@ -1,13 +1,13 @@
 export class Mailjet {
-  name: string
+  name: string;
 
-  email: string
+  email: string;
 
-  phone: string
+  phone: string;
 
-  message: string
+  message: string;
 
-  referrer: string
+  referrer: string;
 
   constructor(
     name: string,
@@ -16,21 +16,21 @@ export class Mailjet {
     message: string,
     referrer: string
   ) {
-    this.name = name
-    this.email = email
-    this.phone = phone
-    this.message = message
-    this.referrer = referrer
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.message = message;
+    this.referrer = referrer;
   }
 
   getToken() {
     return Buffer.from(
       `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`
-    ).toString("base64")
+    ).toString('base64');
   }
 
   getMessageBody() {
-    const contentWithBreaks = this.message.replace(/\n/g, "<br />")
+    const contentWithBreaks = this.message.replace(/\n/g, '<br />');
 
     return `<p>
             <strong>Provenant de :</strong> ${this.referrer}<br />
@@ -38,7 +38,7 @@ export class Mailjet {
             <strong>Email :</strong> ${this.email}<br />
             <strong>Téléphone :</strong> ${this.phone}<br />
             <strong>Message :</strong> ${contentWithBreaks}
-          </p>`
+          </p>`;
   }
 
   prepareMailjetBody() {
@@ -46,13 +46,13 @@ export class Mailjet {
       Messages: [
         {
           From: {
-            Email: "pascal@inrage.fr",
-            Name: "Pascal GAULT",
+            Email: 'pascal@inrage.fr',
+            Name: 'Pascal GAULT',
           },
           To: [
             {
-              Email: "pascal@inrage.fr",
-              Name: "Pascal GAULT",
+              Email: 'pascal@inrage.fr',
+              Name: 'Pascal GAULT',
             },
           ],
           Subject: `[inRage] Demande de contact ${this.name}`,
@@ -63,19 +63,19 @@ export class Mailjet {
           },
         },
       ],
-    })
+    });
   }
 
   async send() {
-    return fetch("https://api.mailjet.com/v3.1/send", {
-      method: "POST",
+    return fetch('https://api.mailjet.com/v3.1/send', {
+      method: 'POST',
       headers: {
         Authorization: `Basic ${this.getToken()}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: this.prepareMailjetBody(),
     }).catch(() => {
-      throw new Error("Mailjet API error")
-    })
+      throw new Error('Mailjet API error');
+    });
   }
 }

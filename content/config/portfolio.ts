@@ -31,5 +31,5 @@ export const ProjectSupports: ProjectSupport = {
   'application-web': {
     name: 'Application web',
     image: '/images/supports/developpement-application-web.webp',
-  }
+  },
 };

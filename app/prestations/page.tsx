@@ -1,55 +1,55 @@
-import Image from "next/image"
-import Diagonal from "@component/Diagonal"
-import LeafHeartIcon from "@component/icons/LeafHeartIcon"
-import PrestationItem from "@component/items/PrestationItem"
-import Layout from "@component/Layout"
-import PrestationsList from "@component/PrestationsList"
-import SectionTitle from "@component/SectionTitle"
-import PrestationDesign from "@image/prestations/charte_graphique.png"
-import PrestationWebDev from "@image/prestations/developpement_site_web.png"
-import PrestationFormation from "@image/prestations/formation_offerte.png"
-import PrestationSupport from "@image/prestations/support_technique_772424.png"
-import { getCanonicalUrl, RouteLink } from "@lib/route"
+import Image from 'next/image';
+import Diagonal from '@component/Diagonal';
+import LeafHeartIcon from '@component/icons/LeafHeartIcon';
+import PrestationItem from '@component/items/PrestationItem';
+import Layout from '@component/Layout';
+import PrestationsList from '@component/PrestationsList';
+import SectionTitle from '@component/SectionTitle';
+import PrestationDesign from '@image/prestations/charte_graphique.png';
+import PrestationWebDev from '@image/prestations/developpement_site_web.png';
+import PrestationFormation from '@image/prestations/formation_offerte.png';
+import PrestationSupport from '@image/prestations/support_technique_772424.png';
+import { getCanonicalUrl, RouteLink } from '@lib/route';
 
 export const metadata = {
-  title: "Prestations sous WordPress, Prestashop et Symfony - inRage",
+  title: 'Prestations sous WordPress, Prestashop et Symfony - inRage',
   description:
     "Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestations),
   },
-}
+};
 
 export default function Prestations() {
   return (
-    <Layout title="Prestations sous WordPress, Prestashop et Symfony">
-      <div className="container relative mt-6 flex lg:-mt-12">
-        <div className="absolute hidden overflow-hidden lg:right-[60%] lg:block">
-          <div className="relative h-[736px] w-[697px]">
+    <Layout title='Prestations sous WordPress, Prestashop et Symfony'>
+      <div className='container relative mt-6 flex lg:-mt-12'>
+        <div className='absolute hidden overflow-hidden lg:right-[60%] lg:block'>
+          <div className='relative h-[736px] w-[697px]'>
             <Image
-              className="max-h-[736px]"
-              src="/images/presentation-prestations.png"
+              className='max-h-[736px]'
+              src='/images/presentation-prestations.png'
               width={697}
               priority
               height={736}
-              alt="Création de site Internet sur la rochelle"
+              alt='Création de site Internet sur la rochelle'
               style={{
-                maxWidth: "100%",
-                height: "auto",
+                maxWidth: '100%',
+                height: 'auto',
               }}
             />
           </div>
         </div>
-        <div className="relative flex items-center lg:ml-[45%] lg:h-[736px]">
+        <div className='relative flex items-center lg:ml-[45%] lg:h-[736px]'>
           <div>
-            <h2 className="text-2xl font-bold uppercase leading-7 text-white">
+            <h2 className='text-2xl font-bold uppercase leading-7 text-white'>
               CRÉATION DE SITE INTERNET SUR LA ROCHELLE
-              <span className="block text-xl font-light">
+              <span className='block text-xl font-light'>
                 ET PARTOUT EN FRANCE
               </span>
             </h2>
 
-            <div className="mt-4 text-xl text-gray-light">
+            <div className='mt-4 text-xl text-gray-light'>
               <p>
                 Je vous accompagne de A à Z dans la création de votre site
                 internet et vous propose la solution idéale pour répondre à vos
@@ -62,13 +62,13 @@ export default function Prestations() {
               </p>
             </div>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Je reste constamment à l&apos;affût des nouvelles technologies web
               et assure une veille graphique régulière afin de vous proposer les
               fonctionnalités les plus récentes et performantes, au sein d’un
               design élégant et percutant.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Je suis en mesure d’intervenir sur tous types de projets
               (boutique, site vitrine, apps...) grâce à mon expertise sur des
               CMS variés, tels que Joomla, Prestashop ou encore Wordpress. Et
@@ -81,229 +81,229 @@ export default function Prestations() {
         </div>
       </div>
 
-      <div className="mt-10">
-        <div className="px-3">
+      <div className='mt-10'>
+        <div className='px-3'>
           <svg
-            className="mx-auto mb-[-5.75%] block h-auto w-full max-w-[1280px] lg:-mb-9"
-            height="279"
-            viewBox="0 0 1473 279"
-            width="1473"
-            xmlns="http://www.w3.org/2000/svg"
+            className='mx-auto mb-[-5.75%] block h-auto w-full max-w-[1280px] lg:-mb-9'
+            height='279'
+            viewBox='0 0 1473 279'
+            width='1473'
+            xmlns='http://www.w3.org/2000/svg'
           >
-            <g fillRule="evenodd" fill="none">
+            <g fillRule='evenodd' fill='none'>
               <path
-                d="M334.926 194.637L932.094 87.268 1060.546 0l128.081 194.637z"
-                fillRule="nonzero"
-                fill="#50B66D"
-                opacity=".5"
+                d='M334.926 194.637L932.094 87.268 1060.546 0l128.081 194.637z'
+                fillRule='nonzero'
+                fill='#50B66D'
+                opacity='.5'
               />
               <path
-                d="M1212.891 194.637l95.067-39.75 164.357 39.75z"
-                fillRule="nonzero"
-                fill="#35495E"
-                opacity=".5"
+                d='M1212.891 194.637l95.067-39.75 164.357 39.75z'
+                fillRule='nonzero'
+                fill='#35495E'
+                opacity='.5'
               />
               <path
-                d="M1092.242 194.637l65.72-132.275 111.37 132.275z"
-                fillRule="nonzero"
-                fill="#ECF0F1"
-                opacity=".5"
+                d='M1092.242 194.637l65.72-132.275 111.37 132.275z'
+                fillRule='nonzero'
+                fill='#ECF0F1'
+                opacity='.5'
               />
               <path
-                d="M421.827 194.447l78.789-145.995 57.478 55.816 214.471 90.179z"
-                fillRule="nonzero"
-                fill="#925BA1"
-                opacity=".5"
+                d='M421.827 194.447l78.789-145.995 57.478 55.816 214.471 90.179z'
+                fillRule='nonzero'
+                fill='#925BA1'
+                opacity='.5'
               />
               <text
-                fill="#C92480"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#C92480'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="184.0942" y="265.2684">
+                <tspan x='184.0942' y='265.2684'>
                   GESTION DE PROJET
                 </tspan>
               </text>
               <text
-                fill="#F19D32"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#F19D32'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="0" y="98.3187">
+                <tspan x='0' y='98.3187'>
                   DEBUT DU PROJET
                 </tspan>
               </text>
               <text
-                fill="#3F96CF"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#3F96CF'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="329.4956" y="56.991">
+                <tspan x='329.4956' y='56.991'>
                   VEILLE
                 </tspan>
               </text>
               <text
-                fill="#925BA1"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#925BA1'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="565.0662" y="24.7987">
+                <tspan x='565.0662' y='24.7987'>
                   GRAPHISME
                 </tspan>
               </text>
               <text
-                fill="#E74C3C"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#E74C3C'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="649.1442" y="270.2156">
+                <tspan x='649.1442' y='270.2156'>
                   INTEGRATION
                 </tspan>
               </text>
               <text
-                fill="#50B66D"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#50B66D'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="976.7459" y="278.5486">
+                <tspan x='976.7459' y='278.5486'>
                   DEVELOPPEMENT
                 </tspan>
               </text>
               <text
-                fill="#ECF0F1"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#ECF0F1'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="1185.0481" y="21.7688">
+                <tspan x='1185.0481' y='21.7688'>
                   MISE EN PRODUCTION
                 </tspan>
               </text>
               <text
-                fill="#35495E"
-                fontFamily="Helvetica"
-                fontSize="22"
-                transform="translate(-1 -1)"
+                fill='#35495E'
+                fontFamily='Helvetica'
+                fontSize='22'
+                transform='translate(-1 -1)'
               >
-                <tspan x="1299.0454" y="278.5486">
+                <tspan x='1299.0454' y='278.5486'>
                   MAINTENANCE
                 </tspan>
               </text>
               <path
-                d="M73.13 107.757c-6.491 22.066 3.004 44.26 21.23 49.621"
-                stroke="#F19D32"
+                d='M73.13 107.757c-6.491 22.066 3.004 44.26 21.23 49.621'
+                stroke='#F19D32'
               />
               <path
-                d="M68.355 109.24l6.567-5.769 1.713 8.572z"
-                fillRule="nonzero"
-                fill="#F19D32"
+                d='M68.355 109.24l6.567-5.769 1.713 8.572z'
+                fillRule='nonzero'
+                fill='#F19D32'
               />
               <path
-                d="M308.065 237.902c17.752-14.626 17.635-27.698 15.391-43.264"
-                stroke="#C92480"
+                d='M308.065 237.902c17.752-14.626 17.635-27.698 15.391-43.264'
+                stroke='#C92480'
               />
               <path
-                d="M312.85 239.352l-8.673 1.093 3.391-8.058z"
-                fillRule="nonzero"
-                fill="#C92480"
+                d='M312.85 239.352l-8.673 1.093 3.391-8.058z'
+                fillRule='nonzero'
+                fill='#C92480'
               />
               <path
-                d="M367.378 67.802c-1.08 22.975-26.171 52.561-39.95 62.009"
-                stroke="#3F96CF"
+                d='M367.378 67.802c-1.08 22.975-26.171 52.561-39.95 62.009'
+                stroke='#3F96CF'
               />
               <path
-                d="M371.406 70.765l-4.321-7.599-4.421 7.541z"
-                fillRule="nonzero"
-                fill="#3F96CF"
+                d='M371.406 70.765l-4.321-7.599-4.421 7.541z'
+                fillRule='nonzero'
+                fill='#3F96CF'
               />
               <path
-                d="M585.683 36.512c-16.127 16.4-20.792 54.911-18.366 71.441"
-                stroke="#925BA1"
+                d='M585.683 36.512c-16.127 16.4-20.792 54.911-18.366 71.441'
+                stroke='#925BA1'
               />
               <path
-                d="M580.772 35.569l8.512-1.992-2.531 8.367z"
-                fillRule="nonzero"
-                fill="#925BA1"
+                d='M580.772 35.569l8.512-1.992-2.531 8.367z'
+                fillRule='nonzero'
+                fill='#925BA1'
               />
               <path
-                d="M711.519 237.902c-17.752-14.626-17.635-27.698-15.391-43.264"
-                stroke="#E74C3C"
+                d='M711.519 237.902c-17.752-14.626-17.635-27.698-15.391-43.264'
+                stroke='#E74C3C'
               />
               <path
-                d="M706.734 239.352l8.673 1.093-3.391-8.058z"
-                fillRule="nonzero"
-                fill="#E74C3C"
+                d='M706.734 239.352l8.673 1.093-3.391-8.058z'
+                fillRule='nonzero'
+                fill='#E74C3C'
               />
               <path
-                d="M1072.391 252.748c17.752-14.626 19.427-42.544 17.183-58.111"
-                stroke="#50B66D"
+                d='M1072.391 252.748c17.752-14.626 19.427-42.544 17.183-58.111'
+                stroke='#50B66D'
               />
               <path
-                d="M1077.177 254.199l-8.673 1.092 3.39-8.057z"
-                fillRule="nonzero"
-                fill="#50B66D"
+                d='M1077.177 254.199l-8.673 1.092 3.39-8.057z'
+                fillRule='nonzero'
+                fill='#50B66D'
               />
               <path
-                d="M1287.293 33.676c-1.08 22.975-64.164 80.272-77.943 89.721"
-                stroke="#ECF0F1"
+                d='M1287.293 33.676c-1.08 22.975-64.164 80.272-77.943 89.721'
+                stroke='#ECF0F1'
               />
               <path
-                d="M1291.32 36.639L1287 29.04l-4.421 7.541z"
-                fillRule="nonzero"
-                fill="#ECF0F1"
+                d='M1291.32 36.639L1287 29.04l-4.421 7.541z'
+                fillRule='nonzero'
+                fill='#ECF0F1'
               />
               <path
-                d="M1361.688 253.262c-17.752-14.626-36.464-43.059-34.22-58.625"
-                stroke="#35495E"
+                d='M1361.688 253.262c-17.752-14.626-36.464-43.059-34.22-58.625'
+                stroke='#35495E'
               />
               <path
-                d="M1356.903 254.713l8.673 1.092-3.391-8.057z"
-                fillRule="nonzero"
-                fill="#35495E"
+                d='M1356.903 254.713l8.673 1.092-3.391-8.057z'
+                fillRule='nonzero'
+                fill='#35495E'
               />
               <path
-                d="M211.987 194.637l80.562-80.972 174.915 80.972z"
-                fillRule="nonzero"
-                fill="#3F96CF"
-                opacity=".5"
+                d='M211.987 194.637l80.562-80.972 174.915 80.972z'
+                fillRule='nonzero'
+                fill='#3F96CF'
+                opacity='.5'
               />
               <path
-                d="M4.558 194.637l173.787-69.409 80.335 67.409z"
-                fillRule="nonzero"
-                fill="#F19D32"
-                opacity=".5"
+                d='M4.558 194.637l173.787-69.409 80.335 67.409z'
+                fillRule='nonzero'
+                fill='#F19D32'
+                opacity='.5'
               />
               <path
-                d="M624.81 194.44l102.28-83.18 30.51-45.23 96.494 84.517 95.26 43.9z"
-                fillRule="nonzero"
-                fill="#E74C3C"
-                opacity=".7"
+                d='M624.81 194.44l102.28-83.18 30.51-45.23 96.494 84.517 95.26 43.9z'
+                fillRule='nonzero'
+                fill='#E74C3C'
+                opacity='.7'
               />
               <path
-                d="M1471.692 194.637l-65.756-11.105-98.105 4.947-126.841-8.451-118.527 6.661-131.685-10.421-185.684 11.685-177.565-7.878-202.435 7.035-128.421-3.894-134.21 6.21-40.948-1.263-59.013 6.474h1469.813z"
-                fillRule="nonzero"
-                fill="#CA2381"
-                opacity=".5"
+                d='M1471.692 194.637l-65.756-11.105-98.105 4.947-126.841-8.451-118.527 6.661-131.685-10.421-185.684 11.685-177.565-7.878-202.435 7.035-128.421-3.894-134.21 6.21-40.948-1.263-59.013 6.474h1469.813z'
+                fillRule='nonzero'
+                fill='#CA2381'
+                opacity='.5'
               />
             </g>
           </svg>
         </div>
-        <div className="bg-gray-darker pt-16">
-          <div className="container mb-10 md:-mb-10">
-            <p className="text-xl text-gray-light">
+        <div className='bg-gray-darker pt-16'>
+          <div className='container mb-10 md:-mb-10'>
+            <p className='text-xl text-gray-light'>
               La réussite d’un projet web réside en grande partie dans son
               organisation et la méthodologie de travail employée. Pour ma part,
               l’ensemble de mes projets sont construits autour de la méthode
               agile.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Elle permet de segmenter un projet en différentes étapes clés afin
               de vous présenter de manière évolutive les avancements de la
               création de votre site. Cette méthode offre à mes clients une
@@ -312,7 +312,7 @@ export default function Prestations() {
               développées.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               En somme, cette méthodologie permet d’intégrer mon client dans le
               processus de création en le sollicitant à chaque étape de la
               construction de son outil web. Il s’assure ainsi au jour le jour
@@ -321,26 +321,26 @@ export default function Prestations() {
           </div>
 
           <Diagonal
-            bgClass="fill-gray-dark"
-            className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-            bgCorner="fill-gray-darker"
+            bgClass='fill-gray-dark'
+            className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+            bgCorner='fill-gray-darker'
             cta={{
               icon: <LeafHeartIcon />,
-              title: ["Demandez votre", "devis"],
+              title: ['Demandez votre', 'devis'],
               href: RouteLink.contact,
             }}
           />
         </div>
       </div>
 
-      <div className="container">
-        <div className="mx-auto mt-4 max-w-4xl text-center text-xl font-medium text-white sm:text-2xl">
+      <div className='container'>
+        <div className='mx-auto mt-4 max-w-4xl text-center text-xl font-medium text-white sm:text-2xl'>
           Je suis entouré d&apos;une équipe fondée de créatifs, designers et
           développeurs. Nous travaillons ensemble pour créer des choses
           inspirantes et engagées.
         </div>
 
-        <div className="mx-auto mb-7 mt-4 max-w-4xl text-center text-lg">
+        <div className='mx-auto mb-7 mt-4 max-w-4xl text-center text-lg'>
           Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au
           fil des années des compétences diverses et complémentaires qui me
           permettent aujourd’hui de concevoir intégralement l’outil répondant le
@@ -349,16 +349,16 @@ export default function Prestations() {
 
         <PrestationsList />
 
-        <div className="mt-10">
+        <div className='mt-10'>
           <SectionTitle
-            title="Pourquoi moi ?"
-            content="Consulter en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
+            title='Pourquoi moi ?'
+            content='Consulter en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création.'
           />
 
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <div className='mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4'>
             <PrestationItem
               image={PrestationDesign}
-              title={["Identité visuelle &", "Charte graphique"]}
+              title={['Identité visuelle &', 'Charte graphique']}
             >
               Conscient et engagé, nous sommes à l’affut des nouvelles
               technologies web, nous assurons des veilles graphiques et
@@ -367,7 +367,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationWebDev}
-              title={["Développment de", "votre projet"]}
+              title={['Développment de', 'votre projet']}
             >
               Expert dans son domaine et sur les CMS comme Joomla, Prestashop et
               WordPress. inRage respectera précisément votre cahier des charges
@@ -375,7 +375,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationFormation}
-              title={["Formation offerte", "lors de la création"]}
+              title={['Formation offerte', 'lors de la création']}
             >
               À la fin de la création de votre projet, nous offrons une
               formation complète à l’utilisation de vos nouveaux outils web.
@@ -383,7 +383,7 @@ export default function Prestations() {
             </PrestationItem>
             <PrestationItem
               image={PrestationSupport}
-              title={["Support technique", "7j/7"]}
+              title={['Support technique', '7j/7']}
             >
               Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
               sur votre site Internet. Nous sommes disponibles 7j/7 si un
@@ -393,5 +393,5 @@ export default function Prestations() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
