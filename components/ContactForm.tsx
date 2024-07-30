@@ -27,6 +27,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
     fetch("/api/hello", {
       method: "POST",
       body: JSON.stringify(data),
+      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -38,6 +39,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         reset()
         fetch("/api/hello-slack", {
           method: "POST",
+          cache: "no-store",
           body: JSON.stringify(data),
           headers: {
             "Content-Type": "application/json",

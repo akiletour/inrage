@@ -1,28 +1,27 @@
-import Image from "next/image";
-
-import Diagonal from "@component/Diagonal";
-import useSticky from "@hook/useSticky";
-import BgTma from "@image/bg-tma.jpeg";
-import NavPrimary from "@layout/NavPrimary";
-import { PageExcerptType, PageTitleType } from "@type/header";
-import { Button } from "@component/ui/Button";
+import Image from "next/image"
+import Diagonal from "@component/Diagonal"
+import { Button } from "@component/ui/button"
+import useSticky from "@hook/useSticky"
+import BgTma from "@image/bg-tma.jpeg"
+import NavPrimary from "@layout/NavPrimary"
+import { PageExcerptType, PageTitleType } from "@type/header"
 
 type Props = {
-  pageTitle: PageTitleType;
-  excerpt: PageExcerptType;
-};
+  pageTitle: PageTitleType
+  excerpt: PageExcerptType
+}
 
 export default function HeaderTma({ pageTitle, excerpt }: Props) {
-  const [ref, sticky] = useSticky<HTMLDivElement>();
+  const [ref, sticky] = useSticky<HTMLDivElement>()
 
   const scrollToContact = () => {
-    const element = document.getElementById("contact");
+    const element = document.getElementById("contact")
     if (!element) {
-      return;
+      return
     }
 
-    element.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
+    element.scrollIntoView({ behavior: "smooth", block: "center" })
+  }
 
   return (
     <div className="relative h-auto w-full" ref={ref}>
@@ -69,5 +68,5 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
         className="h-auto w-full"
       />
     </div>
-  );
+  )
 }

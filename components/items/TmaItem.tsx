@@ -1,5 +1,5 @@
 import Link from "@component/NoScrollLink"
-import { Button } from "@component/ui/Button"
+import { Button } from "@component/ui/button"
 
 type Props = {
   title: string

@@ -1,15 +1,14 @@
-import Image, { StaticImageData } from "next/image";
-
-import Link from "@component/NoScrollLink";
-import { Button } from "@component/ui/Button";
+import Image, { StaticImageData } from "next/image"
+import Link from "@component/NoScrollLink"
+import { Button } from "@component/ui/button"
 
 type Props = {
-  title: string | string[];
-  children: JSX.Element | string;
-  image: string | StaticImageData;
-  link?: string;
-  linkText?: string;
-};
+  title: string | string[]
+  children: JSX.Element | string
+  image: string | StaticImageData
+  link?: string
+  linkText?: string
+}
 
 export default function PrestationItem({
   image,
@@ -51,5 +50,5 @@ export default function PrestationItem({
         </Button>
       )}
     </div>
-  );
+  )
 }

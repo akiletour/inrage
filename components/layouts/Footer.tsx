@@ -1,11 +1,10 @@
-import Image from "next/image";
+import Image from "next/image"
+import Link from "@component/NoScrollLink"
+import Socials from "@component/Socials"
+import { Button } from "@component/ui/button"
+import { RouteLink } from "@lib/route"
 
-import Link from "@component/NoScrollLink";
-import { RouteLink } from "@lib/route";
-
-import LogoWhite from "../../public/logo-white.svg";
-import Socials from "@component/Socials";
-import { Button } from "@component/ui/Button";
+import LogoWhite from "../../public/logo-white.svg"
 
 export default function Footer() {
   return (
@@ -128,5 +127,5 @@ export default function Footer() {
         </div>
       </div>
     </div>
-  );
+  )
 }

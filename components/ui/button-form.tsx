@@ -1,10 +1,11 @@
-import { forwardRef } from "react";
-import { Button, ButtonProps } from "./Button";
-import LoadIcon from "@component/icons/Load";
+import { forwardRef } from "react"
+import LoadIcon from "@component/icons/Load"
+
+import { Button, ButtonProps } from "./button"
 
 type ButtonFormProps = ButtonProps & {
-  isLoading?: boolean;
-};
+  isLoading?: boolean
+}
 
 const ButtonForm = forwardRef<HTMLButtonElement, ButtonFormProps>(
   ({ children, isLoading, ...props }, ref) => {
@@ -19,10 +20,10 @@ const ButtonForm = forwardRef<HTMLButtonElement, ButtonFormProps>(
           {children}
         </>
       </Button>
-    );
-  },
-);
+    )
+  }
+)
 
-ButtonForm.displayName = "ButtonForm";
+ButtonForm.displayName = "ButtonForm"
 
-export { ButtonForm };
+export { ButtonForm }
