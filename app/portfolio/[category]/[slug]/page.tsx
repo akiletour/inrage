@@ -1,41 +1,42 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import Image from "next/image"
+import { notFound } from "next/navigation"
+import ProjectItem from "@component/items/ProjectItem"
+import Layout from "@component/Layout"
+import { Mdx } from "@component/mdx-components"
+import SectionTitle from "@component/SectionTitle"
+import RouteLink from "@lib/route"
+import { absoluteUrl } from "@util/index"
+import { allPortfolios } from "contentlayer/generated"
 
-import Layout from "@component/Layout";
-import RouteLink from "@lib/route";
-import { allPortfolios } from "contentlayer/generated";
+import "../../../blog/mdx.css"
 
 import {
   ProjectSupports,
   ProjectTechnologies,
-} from "../../../../../content/config/portfolio";
-import SectionTitle from "@component/SectionTitle";
-import ProjectItem from "@component/items/ProjectItem";
-import { absoluteUrl } from "@util/index";
-import { Mdx } from '@component/mdx-components';
+} from "../../../../content/config/portfolio"
 
 interface PostPageProps {
   params: {
-    category: string;
-    slug: string;
-  };
+    category: string
+    slug: string
+  }
 }
 
 export async function generateStaticParams() {
   return allPortfolios.map((post) => ({
     category: post.slugAsParams.split("/")[0],
     slug: post.slugAsParams.split("/")[1],
-  }));
+  }))
 }
 
 export async function generateMetadata({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
+  const post = await getPostFromParams(params)
 
   if (!post) {
-    return {};
+    return {}
   }
 
-  const categoryName = ProjectSupports[post.category]?.name ?? "";
+  const categoryName = ProjectSupports[post.category]?.name ?? ""
 
   return {
     title: `${post.title} - Portfolio - ${categoryName}`,
@@ -60,44 +61,44 @@ export async function generateMetadata({ params }: PostPageProps) {
       description: post.excerpt ?? "",
       images: [post.image],
     },
-  };
+  }
 }
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const post = allPortfolios.find(
-    (p) => p.slugAsParams === `${params.category}/${params.slug}`,
-  );
+    (p) => p.slugAsParams === `${params.category}/${params.slug}`
+  )
 
   if (!post) {
-    return null;
+    return null
   }
 
-  return post;
+  return post
 }
 
 async function getRelatedPosts(post: any) {
   const relatedPosts = allPortfolios
     .filter((p) => p.category === post.category && p.slug !== post.slug)
     .sort(() => {
-      return 0.5 - Math.random();
+      return 0.5 - Math.random()
     })
-    .slice(0, 4);
+    .slice(0, 4)
 
-  return relatedPosts;
+  return relatedPosts
 }
 
 export default async function ProjectPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
-  const relatedPosts = await getRelatedPosts(post);
+  const post = await getPostFromParams(params)
+  const relatedPosts = await getRelatedPosts(post)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
-  const postSupport = ProjectSupports[post.category];
+  const postSupport = ProjectSupports[post.category]
 
-  if(!postSupport) {
-    notFound();
+  if (!postSupport) {
+    notFound()
   }
 
   return (
@@ -141,15 +142,14 @@ export default async function ProjectPage({ params }: PostPageProps) {
                 <div className="mb-2 text-xl font-light uppercase tracking-widest text-white">
                   Technologies
                 </div>
-                <div
-                  className="flex flex-wrap justify-center space-x-2 text-sm font-medium text-white md:justify-end">
+                <div className="flex flex-wrap justify-center space-x-2 text-sm font-medium text-white md:justify-end">
                   {post.technologies.map((techno) => {
                     const item = ProjectTechnologies.find(
-                      (r) => r.name === techno,
-                    );
+                      (r) => r.name === techno
+                    )
 
                     if (!item) {
-                      return null;
+                      return null
                     }
 
                     return (
@@ -168,7 +168,7 @@ export default async function ProjectPage({ params }: PostPageProps) {
 
                         <div className="mt-1">{item.name}</div>
                       </div>
-                    );
+                    )
                   })}
                 </div>
               </div>
@@ -220,5 +220,5 @@ export default async function ProjectPage({ params }: PostPageProps) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
