@@ -1,10 +1,10 @@
 type Props = {
-  support: string;
+  support: string
   types: Array<{
-    name: string;
-    price: string;
-  }>;
-};
+    name: string
+    price: string
+  }>
+}
 
 export default function TableHeader({ support, types }: Props) {
   return (
@@ -33,5 +33,5 @@ export default function TableHeader({ support, types }: Props) {
         </div>
       </div>
     </>
-  );
+  )
 }

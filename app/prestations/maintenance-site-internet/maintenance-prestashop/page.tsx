@@ -1,97 +1,96 @@
-import Image from 'next/image';
-
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TableHeader from '@component/tma/TableHeader';
-import TableLine from '@component/tma/TableLine';
-import BgTma from '@image/bg-tma.jpeg';
-import LogoGrey from '@image/logo-grey-inline-white.png';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import Image from "next/image"
+import ContactForm from "@component/ContactForm"
+import Diagonal from "@component/Diagonal"
+import Layout from "@component/Layout"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import TableHeader from "@component/tma/TableHeader"
+import TableLine from "@component/tma/TableLine"
+import BgTma from "@image/bg-tma.jpeg"
+import LogoGrey from "@image/logo-grey-inline-white.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
   title:
-    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+    "Création de site e-commerce Prestashop | Freelance Prestashop - inRage",
   description:
-    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+    "Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },
-};
+}
 
 const entries = [
   {
     id: 1,
     name: "Sauvegarde de l'ensemble de vos données",
     excerpt:
-      'Sauvegarde journalière de votre base de données et de vos fichiers sur nos serveurs sécurisés.',
-    values: ['1x|par jour', '2x|par jour'],
+      "Sauvegarde journalière de votre base de données et de vos fichiers sur nos serveurs sécurisés.",
+    values: ["1x|par jour", "2x|par jour"],
   },
   {
     id: 2,
-    name: 'Supervision logicielle',
+    name: "Supervision logicielle",
     excerpt:
-      'Scan de sécurité toutes les heures, rapport disponible dans une interface dédiée. Surveillance des mises à jour de vos extensions, Prestashop et thème.',
+      "Scan de sécurité toutes les heures, rapport disponible dans une interface dédiée. Surveillance des mises à jour de vos extensions, Prestashop et thème.",
     values: [true, true],
   },
   {
     id: 3,
-    name: 'Environnement de pré-production',
+    name: "Environnement de pré-production",
     excerpt:
-      'Application des mises à jour et développement sur nos serveurs avant de les basculer sur votre site en production.',
+      "Application des mises à jour et développement sur nos serveurs avant de les basculer sur votre site en production.",
     values: [false, true],
   },
   {
     id: 4,
-    name: 'Supervision pro-active',
+    name: "Supervision pro-active",
     excerpt:
-      'Robot de surveillance du parcours client pour tester que toutes les pages fonctionnent correctement.',
+      "Robot de surveillance du parcours client pour tester que toutes les pages fonctionnent correctement.",
     values: [false, true],
   },
   {
     id: 9,
-    name: 'Développement spécifique*',
+    name: "Développement spécifique*",
     excerpt:
-      'Heures de développement d’infogérance pour corriger ou faire évoluer votre site.',
-    values: ['1|heure', '4|heures'],
+      "Heures de développement d’infogérance pour corriger ou faire évoluer votre site.",
+    values: ["1|heure", "4|heures"],
   },
   {
     id: 10,
-    name: 'Supervision 24/7 et sur 365 jours',
+    name: "Supervision 24/7 et sur 365 jours",
     excerpt:
-      'Dans le forfait « Sérénité », l’astreinte est de 9h à 19h, du lundi au vendredi inclus.',
+      "Dans le forfait « Sérénité », l’astreinte est de 9h à 19h, du lundi au vendredi inclus.",
     values: [false, true],
   },
   {
     id: 11,
-    name: 'GTI',
+    name: "GTI",
     excerpt:
       "Garantie de temps d'intervention au moment ou vous déclarer l’intervention dans la console",
-    values: ['4h', '2h'],
+    values: ["4h", "2h"],
   },
   {
     id: 12,
-    name: 'Certificat SSL',
+    name: "Certificat SSL",
     excerpt:
-      'Installation et configuration d’un certificat SSL avec modification (si besoin) sur le site pour prendre en charge le SSL',
+      "Installation et configuration d’un certificat SSL avec modification (si besoin) sur le site pour prendre en charge le SSL",
     values: [true, true],
   },
   {
     id: 13,
-    name: 'Engagement',
+    name: "Engagement",
     excerpt: "Durée de l'engagement de votre contrat de maintenance inRage.",
-    values: ['12 mois', '12 mois'],
+    values: ["12 mois", "12 mois"],
   },
-];
+]
 
 export default function TmaPrestashop() {
   return (
     <Layout
-      title={['Maintenance et sécurité', 'e-commerce Prestashop']}
+      title={["Maintenance et sécurité", "e-commerce Prestashop"]}
       excerpt={[
-        'Une boutique performante et sécurisé est la clé de la sérénité. Que vous vendiez 10 produits ou 5 000, la maintenance de votre boutique e-commerce Prestashop est cruciale pour son bon déroulement.',
+        "Une boutique performante et sécurisé est la clé de la sérénité. Que vous vendiez 10 produits ou 5 000, la maintenance de votre boutique e-commerce Prestashop est cruciale pour son bon déroulement.",
         "Prestashop est l'un des plus puissant CMS pour le e-commerce et donc très vulnérable aux personnes malveillantes.",
       ]}
       tmaLayout
@@ -140,8 +139,8 @@ export default function TmaPrestashop() {
           <TableHeader
             support="Prestashop"
             types={[
-              { name: 'Sérénité', price: '39€ ht/mois' },
-              { name: 'Avancée', price: '55€ ht/mois' },
+              { name: "Sérénité", price: "39€ ht/mois" },
+              { name: "Avancée", price: "55€ ht/mois" },
             ]}
           />
 
@@ -157,7 +156,7 @@ export default function TmaPrestashop() {
           </div>
 
           <div className="ml-4 mt-4">
-            <span className="text-4xl font-bold leading-5 text-orange">*</span>{' '}
+            <span className="text-4xl font-bold leading-5 text-orange">*</span>{" "}
             Le nombre d&apos;heures est personnalisable selon vos besoins.
           </div>
         </div>
@@ -186,5 +185,5 @@ export default function TmaPrestashop() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

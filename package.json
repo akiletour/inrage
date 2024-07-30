@@ -11,7 +11,8 @@
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "cypress": "CYPRESS_WORDPRESS_PREVIEW_SECRET=secret_preview cypress open",
     "test": "jest --watch",
-    "format": "prettier --check ."
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",

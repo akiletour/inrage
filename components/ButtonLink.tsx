@@ -1,30 +1,31 @@
-import Link from '@component/NoScrollLink';
+import Link from "@component/NoScrollLink"
 
-type Props = {href: string;
+type Props = {
+  href: string
 
-  children: string;
-};
+  children: string
+}
 
 type RawProps =
-  | { as?: 'span'; children: string; type?: never; onClick?: never }
+  | { as?: "span"; children: string; type?: never; onClick?: never }
   | {
-      as?: 'button';
-      onClick: () => void;
-      type: 'button' | 'submit';
-      children: string;
-    };
+      as?: "button"
+      onClick: () => void
+      type: "button" | "submit"
+      children: string
+    }
 
 export function ButtonLinkRaw({
-  as = 'span',
+  as = "span",
   children,
   type,
   onClick,
 }: RawProps) {
-  const Tag = `${as}` as keyof JSX.IntrinsicElements;
-  let props = {};
+  const Tag = `${as}` as keyof JSX.IntrinsicElements
+  let props = {}
 
-  if (as === 'button') {
-    props = { type, onClick };
+  if (as === "button") {
+    props = { type, onClick }
   }
   return (
     <Tag
@@ -44,7 +45,7 @@ export function ButtonLinkRaw({
         />
       </svg>
     </Tag>
-  );
+  )
 }
 
 export default function ButtonLink({ href, children }: Props) {
@@ -52,5 +53,5 @@ export default function ButtonLink({ href, children }: Props) {
     <Link href={href}>
       <ButtonLinkRaw>{children}</ButtonLinkRaw>
     </Link>
-  );
+  )
 }

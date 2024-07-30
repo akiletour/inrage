@@ -1,5 +1,5 @@
-query projectSlugs { 
-  projets(first: 1000) { 
+query projectSlugs {
+  projets(first: 1000) {
     edges {
       node {
         slug
@@ -15,4 +15,3 @@ query projectSlugs {
     }
   }
 }
-

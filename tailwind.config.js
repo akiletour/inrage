@@ -9,7 +9,7 @@ module.exports = {
       {},
       ...Object.entries(Array.from(Array(46).keys())).map(([k, v]) => ({
         [`${k}`]: `${v * 8}px`,
-      })),
+      }))
     ),
     container: false,
     colors: {
@@ -53,4 +53,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

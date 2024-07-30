@@ -1,10 +1,10 @@
-import Layout from "@component/Layout";
-import SupportSwitcher from "@component/portfolio/SupportSwitcher";
-import SectionTitle from "@component/SectionTitle";
-import { getCanonicalUrl, RouteLink } from "@lib/route";
+import Layout from "@component/Layout"
+import SupportSwitcher from "@component/portfolio/SupportSwitcher"
+import SectionTitle from "@component/SectionTitle"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
+import { allPortfolios } from "contentlayer/generated"
 
-import PortfolioGrid from "./PortfolioGrid";
-import { allPortfolios } from "contentlayer/generated";
+import PortfolioGrid from "./PortfolioGrid"
 
 export const metadata = {
   title: "Portfolio des projets de création de site Internet",
@@ -13,7 +13,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.portfolio),
   },
-};
+}
 
 export default async function Page() {
   return (
@@ -30,5 +30,5 @@ export default async function Page() {
         <PortfolioGrid projects={allPortfolios} />
       </div>
     </Layout>
-  );
+  )
 }

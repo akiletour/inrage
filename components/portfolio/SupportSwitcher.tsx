@@ -1,19 +1,17 @@
-import Image from "next/image";
-
-import Link from "@component/NoScrollLink";
-import { RouteLink } from "@lib/route";
-
-import { ProjectSupports } from "content/config/portfolio";
+import Image from "next/image"
+import Link from "@component/NoScrollLink"
+import { RouteLink } from "@lib/route"
+import { ProjectSupports } from "content/config/portfolio"
 
 export default async function SupportSwitcher({
   pathname,
 }: {
-  pathname: string;
+  pathname: string
 }) {
   const data = Object.keys(ProjectSupports).map((key) => ({
     id: key,
     ...ProjectSupports[key],
-  }));
+  }))
 
   return (
     <div className="my-6 grid grid-cols-4 gap-4 text-center">
@@ -48,14 +46,14 @@ export default async function SupportSwitcher({
             }
           >
             <div className="relative mx-auto h-6 w-6 md:h-10 md:w-10">
-              {support.image &&
+              {support.image && (
                 <Image
                   src={support.image}
                   alt={support.name ?? ""}
                   fill
                   sizes="100vw"
                 />
-              }
+              )}
             </div>
             <span className="mt-1 block text-sm md:text-lg">
               {support.name}
@@ -64,5 +62,5 @@ export default async function SupportSwitcher({
         </Link>
       ))}
     </div>
-  );
+  )
 }

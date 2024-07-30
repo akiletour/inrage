@@ -1,25 +1,25 @@
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import PrestationItem from '@component/items/PrestationItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TmaOnDemandIntro from '@image/character_back_build.png';
-import PrestationDesign from '@image/prestations/charte_graphique.png';
-import PrestationWebDev from '@image/prestations/developpement_site_web.png';
-import PrestationFormation from '@image/prestations/formation_offerte.png';
-import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import ContactForm from "@component/ContactForm"
+import Diagonal from "@component/Diagonal"
+import PrestationItem from "@component/items/PrestationItem"
+import Layout from "@component/Layout"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import TmaOnDemandIntro from "@image/character_back_build.png"
+import PrestationDesign from "@image/prestations/charte_graphique.png"
+import PrestationWebDev from "@image/prestations/developpement_site_web.png"
+import PrestationFormation from "@image/prestations/formation_offerte.png"
+import PrestationSupport from "@image/prestations/support_technique_772424.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
   title:
-    'Développement, maintenance et intervention ponctuelle site web | Freelance - inRage',
+    "Développement, maintenance et intervention ponctuelle site web | Freelance - inRage",
   description:
-    'Développeur freelance, je peux intervenir ponctuellement sur votre site sous forme d’heures de développement, que ce soit pour l’intégration d’un nouveau bloc ou une nouvelle fonctionnalité.',
+    "Développeur freelance, je peux intervenir ponctuellement sur votre site sous forme d’heures de développement, que ce soit pour l’intégration d’un nouveau bloc ou une nouvelle fonctionnalité.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
   },
-};
+}
 
 export default function TmaOnDemand() {
   return (
@@ -27,11 +27,11 @@ export default function TmaOnDemand() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: "Prestations sous WordPress, Prestashop et Symfony",
         },
         {
           link: RouteLink.prestationTma,
-          title: 'Maintenance de site web',
+          title: "Maintenance de site web",
         },
       ]}
       title="Maintenance ponctuelle"
@@ -115,7 +115,7 @@ export default function TmaOnDemand() {
           <div className="relative z-10 mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             <PrestationItem
               image={PrestationDesign}
-              title={['Intégration', 'spécifique']}
+              title={["Intégration", "spécifique"]}
             >
               Intégration spécifique sur votre site Prestashop ou WordPress
               d&apos;une nouvelle fonctionnalité (dans la limite possible de
@@ -124,7 +124,7 @@ export default function TmaOnDemand() {
             <div className="md:mt-6">
               <PrestationItem
                 image={PrestationWebDev}
-                title={["Réparation d'un", 'bug ou erreur']}
+                title={["Réparation d'un", "bug ou erreur"]}
               >
                 Identification et correction d&apos;une erreur ou un bug sur
                 votre site dans l&apos;immédiat ou par devis après
@@ -134,7 +134,7 @@ export default function TmaOnDemand() {
             <div className="md:mt-6">
               <PrestationItem
                 image={PrestationFormation}
-                title={['Conseil, question', 'ou analyse']}
+                title={["Conseil, question", "ou analyse"]}
               >
                 Besoin d&apos;un réglage particulier dans votre administration ?
                 D&apos;un conseil technique ou d&apos;une analyse d&apos;un code
@@ -143,7 +143,7 @@ export default function TmaOnDemand() {
             </div>
             <PrestationItem
               image={PrestationSupport}
-              title={['Support technique', '7j/7']}
+              title={["Support technique", "7j/7"]}
             >
               Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
               sur votre site Internet. Nous sommes disponibles 7j/7 si un
@@ -169,5 +169,5 @@ export default function TmaOnDemand() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

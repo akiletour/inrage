@@ -1,44 +1,44 @@
-import Link from '@component/NoScrollLink';
+import Link from "@component/NoScrollLink"
 
 type Props = {
-  className?: string;
-  flipX?: boolean;
-  flipY?: boolean;
-  bgClass?: string;
-  bgCorner?: string;
-  preserveRatio?: boolean;
+  className?: string
+  flipX?: boolean
+  flipY?: boolean
+  bgClass?: string
+  bgCorner?: string
+  preserveRatio?: boolean
   cta?: {
-    icon: JSX.Element;
-    href: string;
-    title: string | string[];
-  };
-};
+    icon: JSX.Element
+    href: string
+    title: string | string[]
+  }
+}
 
 export default function Diagonal({
-  className = '',
+  className = "",
   flipX = false,
   flipY = false,
-  bgClass = '',
-  bgCorner = '',
+  bgClass = "",
+  bgCorner = "",
   preserveRatio = false,
   cta,
 }: Props) {
-  const classeNames = [`${className} w-full block`];
+  const classeNames = [`${className} w-full block`]
 
   if (flipX) {
-    classeNames.push('-scale-x-100');
+    classeNames.push("-scale-x-100")
   }
 
   if (flipY) {
-    classeNames.push('-scale-y-100');
+    classeNames.push("-scale-y-100")
   }
 
   return (
     <div className="relative">
       <svg
-        className={classeNames.join(' ')}
+        className={classeNames.join(" ")}
         height="361"
-        preserveAspectRatio={preserveRatio ? 'xMinYMin meet' : 'xMidYMax slice'}
+        preserveAspectRatio={preserveRatio ? "xMinYMin meet" : "xMidYMax slice"}
         viewBox="0 0 1920 361"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -53,7 +53,7 @@ export default function Diagonal({
             <div className="mt-1 text-center text-xs leading-4 md:text-sm">
               {Array.isArray(cta.title) ? (
                 cta.title.map((ttl) => (
-                  <span key={ttl} className={'block'}>
+                  <span key={ttl} className={"block"}>
                     {ttl}
                   </span>
                 ))
@@ -65,5 +65,5 @@ export default function Diagonal({
         </Link>
       )}
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
 name: Build & Release draft
 
 on:
-  push: 
+  push:
     branches:
       - main
 

@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Print URL 🖨
         run: echo Testing URL ${{ github.event.deployment_status.target_url }}
-      
+
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
@@ -21,7 +21,6 @@ jobs:
           cache-key: node-v16-on-${{ runner.os }}-hash-${{ hashFiles('yarn.lock') }}
         env:
           CYPRESS_WORDPRESS_PREVIEW_SECRET: ${{ secrets.WORDPRESS_PREVIEW_SECRET }}
-
 
       - name: Cypress tests ✅
         if: ${{ success() }}

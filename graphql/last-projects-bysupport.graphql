@@ -1,24 +1,23 @@
 query LastProjectBySupport($id: ID!) {
-    support(id: $id, idType: SLUG) {
-      id
-      projets(first: 4) {
-        edges {
-          node { 
-            id
-            title
-            slug 
-            status
-            featuredImage {
-              node {
-                sourceUrl
-              }
+  support(id: $id, idType: SLUG) {
+    id
+    projets(first: 4) {
+      edges {
+        node {
+          id
+          title
+          slug
+          status
+          featuredImage {
+            node {
+              sourceUrl
             }
-            supports {
-              edges {
-                node {
-                  name
-                  slug
-                }
+          }
+          supports {
+            edges {
+              node {
+                name
+                slug
               }
             }
           }
@@ -26,3 +25,4 @@ query LastProjectBySupport($id: ID!) {
       }
     }
   }
+}

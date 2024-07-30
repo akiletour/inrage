@@ -1,13 +1,12 @@
-import Image, { StaticImageData } from 'next/image';
-
-import ButtonLink from '@component/ButtonLink';
+import Image, { StaticImageData } from "next/image"
+import ButtonLink from "@component/ButtonLink"
 
 type Props = {
-  image: string | StaticImageData;
-  title: string;
-  excerpt: string;
-  link: string;
-};
+  image: string | StaticImageData
+  title: string
+  excerpt: string
+  link: string
+}
 
 export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
   return (
@@ -21,5 +20,5 @@ export default function ExpertiseItem({ image, title, excerpt, link }: Props) {
         <ButtonLink href={link}>En savoir plus</ButtonLink>
       </div>
     </div>
-  );
+  )
 }

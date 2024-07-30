@@ -1,15 +1,15 @@
-import ContactForm from '@component/ContactForm';
-import Layout from '@component/Layout';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import ContactForm from "@component/ContactForm"
+import Layout from "@component/Layout"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
-  title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',
+  title: "Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT",
   description:
-    'Vous avez une idée de projet web et vous souhaitez me consulter pour que l’on puisse y réfléchir ensemble ? N&#039;hésitez pas à me contact au 06 51 89 89 17.',
+    "Vous avez une idée de projet web et vous souhaitez me consulter pour que l’on puisse y réfléchir ensemble ? N&#039;hésitez pas à me contact au 06 51 89 89 17.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.contact),
   },
-};
+}
 
 export default function Contact() {
   return (
@@ -57,5 +57,5 @@ export default function Contact() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,12 +1,11 @@
-import Image, { StaticImageData } from 'next/image';
-
-import Link from '@component/NoScrollLink';
+import Image, { StaticImageData } from "next/image"
+import Link from "@component/NoScrollLink"
 
 type Props = {
-  image: StaticImageData;
-  link: string;
-  title: string;
-};
+  image: StaticImageData
+  link: string
+  title: string
+}
 
 export default function FeaturedProjectMenu({ image, link, title }: Props) {
   return (
@@ -16,12 +15,12 @@ export default function FeaturedProjectMenu({ image, link, title }: Props) {
           src={image}
           alt={title}
           style={{
-            maxWidth: '100%',
-            height: 'auto',
+            maxWidth: "100%",
+            height: "auto",
           }}
         />
       </div>
       <div className="text-center font-medium text-white">{title}</div>
     </Link>
-  );
+  )
 }

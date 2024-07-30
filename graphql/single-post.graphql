@@ -1,37 +1,36 @@
 query getSingleArticle($id: ID!) {
-	post(id: $id, idType: SLUG) {
-		id
-		title
-		databaseId
-		slug
-		date
-		excerpt
-		content(format: RENDERED)
-		featuredImage {
-			node {
-				sourceUrl
-			}
-		}
-		seo {
-			title
-			metaDesc
-			canonical
-		}
-	}
-	posts {
-		edges {
-			node {
-				title
-				slug
-				date
-				excerpt
-				featuredImage {
-					node {
-						sourceUrl
-					}
-				}
-			}
-		}
-	}
+  post(id: $id, idType: SLUG) {
+    id
+    title
+    databaseId
+    slug
+    date
+    excerpt
+    content(format: RENDERED)
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    seo {
+      title
+      metaDesc
+      canonical
+    }
+  }
+  posts {
+    edges {
+      node {
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
 }
-

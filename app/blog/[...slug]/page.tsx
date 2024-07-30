@@ -1,48 +1,47 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { Metadata } from "next"
+import { notFound } from "next/navigation"
+import ArticleItem from "@component/items/ArticleItem"
+import Layout from "@component/Layout"
+import { Mdx } from "@component/mdx-components"
+import SectionTitle from "@component/SectionTitle"
+import { RouteLink } from "@lib/route"
+import { absoluteUrl } from "@util/index"
+import { allPosts } from "contentlayer/generated"
 
-import ArticleItem from '@component/items/ArticleItem';
-import Layout from '@component/Layout';
-import { Mdx } from '@component/mdx-components';
-import SectionTitle from '@component/SectionTitle';
-import { RouteLink } from '@lib/route';
-import { absoluteUrl } from '@util/index';
-import { allPosts } from 'contentlayer/generated';
-
-import '../mdx.css';
+import "../mdx.css"
 
 interface PostPageProps {
   params: {
-    slug: string[];
-  };
+    slug: string[]
+  }
 }
 
-async function getPostFromParams(params: PostPageProps['params']) {
-  const slug = params?.slug?.join('/');
-  const post = allPosts.find((p) => p.slugAsParams === slug);
+async function getPostFromParams(params: PostPageProps["params"]) {
+  const slug = params?.slug?.join("/")
+  const post = allPosts.find((p) => p.slugAsParams === slug)
 
   if (!post) {
-    return null;
+    return null
   }
 
-  return post;
+  return post
 }
 
 export async function generateStaticParams(): Promise<
-  PostPageProps['params'][]
+  PostPageProps["params"][]
 > {
   return allPosts.map((post) => ({
-    slug: post.slugAsParams.split('/'),
-  }));
+    slug: post.slugAsParams.split("/"),
+  }))
 }
 
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const post = await getPostFromParams(params);
+  const post = await getPostFromParams(params)
 
   if (!post) {
-    return {};
+    return {}
   }
 
   return {
@@ -54,7 +53,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.description,
-      type: 'article',
+      type: "article",
       url: absoluteUrl(post.slug),
       images: [
         {
@@ -66,31 +65,31 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.title,
       description: post.description,
       images: [post.image],
     },
-  };
+  }
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
+  const post = await getPostFromParams(params)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   const relatedPosts = allPosts
     .filter((p) => p.slug !== post.slug)
     .sort(() => {
-      return 0.5 - Math.random();
+      return 0.5 - Math.random()
     })
-    .slice(0, 2);
+    .slice(0, 2)
 
   return (
     <Layout
-      breadcrumbs={[{ link: RouteLink.blog, title: 'Blog' }]}
+      breadcrumbs={[{ link: RouteLink.blog, title: "Blog" }]}
       title={post.title}
     >
       <div className="container">
@@ -120,5 +119,5 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

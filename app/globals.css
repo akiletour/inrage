@@ -7,15 +7,15 @@ body {
 }
 
 .container {
-  @apply max-w-7xl mx-auto px-2 md:px-4;
+  @apply mx-auto max-w-7xl px-2 md:px-4;
 }
 
 .button {
-  @apply h-5 bg-[red] hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
+  @apply inline-flex h-5 items-center justify-center bg-[red] px-2 text-center font-medium text-gray-darker transition-all hover:bg-orange-dark hover:text-white;
 }
 
 .button-outline {
-  @apply h-5 border-2 border-[red] text-center justify-center text-orange items-center px-2 inline-flex font-medium;
+  @apply inline-flex h-5 items-center justify-center border-2 border-[red] px-2 text-center font-medium text-orange;
 }
 
 .parallax > use {
@@ -53,21 +53,21 @@ body {
 }
 
 .styled-list li {
-  @apply relative pl-2 mt-1 leading-5;
+  @apply relative mt-1 pl-2 leading-5;
 }
 
 .styled-list li::before {
-  @apply w-1 h-1 flex-none bg-gray-light mr-2 block absolute left-0 top-1;
+  @apply absolute left-0 top-1 mr-2 block h-1 w-1 flex-none bg-gray-light;
 
   content: "";
 }
 
 .input-field {
-  @apply border outline-none focus:shadow-orange focus:shadow-center focus:border-orange text-white placeholder:text-gray py-3 w-full text-base pl-3 bg-transparent;
+  @apply w-full border bg-transparent py-3 pl-3 text-base text-white outline-none placeholder:text-gray focus:border-orange focus:shadow-center focus:shadow-orange;
 }
 
 .has-background {
-  @apply py-1 px-2;
+  @apply px-2 py-1;
 }
 
 .has-white-color {

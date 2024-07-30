@@ -1,12 +1,12 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image"
 
 type Props = {
-  logo: string | StaticImageData;
-  title: string;
-  company: string;
-  year: string;
-  excerpt: string;
-};
+  logo: string | StaticImageData
+  title: string
+  company: string
+  year: string
+  excerpt: string
+}
 
 export default function ExperienceItem({
   logo,
@@ -22,8 +22,8 @@ export default function ExperienceItem({
           src={logo}
           alt={company}
           style={{
-            maxWidth: '100%',
-            height: 'auto',
+            maxWidth: "100%",
+            height: "auto",
           }}
         />
       </div>
@@ -32,5 +32,5 @@ export default function ExperienceItem({
       <div>{year}</div>
       <p className="mt-2 max-w-2xl leading-5">{excerpt}</p>
     </div>
-  );
+  )
 }

@@ -1,17 +1,16 @@
-import Image from "next/image";
-
-import Link from "@component/NoScrollLink";
-import { ProjectSupports } from "content/config/portfolio";
-import { Portfolio } from "contentlayer/generated";
+import Image from "next/image"
+import Link from "@component/NoScrollLink"
+import { ProjectSupports } from "content/config/portfolio"
+import { Portfolio } from "contentlayer/generated"
 
 type Props = {
-  post: Portfolio;
-  xl?: boolean;
-};
+  post: Portfolio
+  xl?: boolean
+}
 
 export default function ProjectItem({ post, xl = false }: Props) {
-  const { slug, image, title } = post;
-  const support = ProjectSupports[post.category];
+  const { slug, image, title } = post
+  const support = ProjectSupports[post.category]
 
   return (
     <Link href={slug}>
@@ -38,5 +37,5 @@ export default function ProjectItem({ post, xl = false }: Props) {
         )}
       </div>
     </Link>
-  );
+  )
 }

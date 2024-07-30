@@ -1,21 +1,20 @@
-import Image from 'next/image';
-
-import Diagonal from '@component/Diagonal';
-import TmaItem from '@component/items/TmaItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TmaImage from '@image/tma.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Image from "next/image"
+import Diagonal from "@component/Diagonal"
+import TmaItem from "@component/items/TmaItem"
+import Layout from "@component/Layout"
+import SectionTitle from "@component/SectionTitle"
+import TextImage from "@component/TextImage"
+import TmaImage from "@image/tma.png"
+import { getCanonicalUrl, RouteLink } from "@lib/route"
 
 export const metadata = {
-  title: 'Maintenance site web | Freelance maintenance site internet - inRage',
+  title: "Maintenance site web | Freelance maintenance site internet - inRage",
   description:
-    'Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site.',
+    "Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },
-};
+}
 
 export default function WebsiteTMA() {
   return (
@@ -23,7 +22,7 @@ export default function WebsiteTMA() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: "Prestations sous WordPress, Prestashop et Symfony",
         },
       ]}
       title="Maintenance de site web"
@@ -59,7 +58,7 @@ export default function WebsiteTMA() {
 
         <div className="mt-8 text-center text-3xl text-white">
           Les performances de votre site internet
-          <br /> sont importantes pour le référencement de ce dernier.{' '}
+          <br /> sont importantes pour le référencement de ce dernier.{" "}
         </div>
         <div className="mt-3 text-center text-xl md:px-10">
           Après une analyse approfondie, nous pouvons vous conseiller de
@@ -85,7 +84,7 @@ export default function WebsiteTMA() {
               excerpt="Forfait infogérance de votre site WordPress clé en main, sans surcout. Une infogérance complète pour maintenir à jours votre site et prévenir de toutes failles de sécurité liées aux extensions."
               cta={{
                 link: RouteLink.prestationTmaWordPress,
-                text: 'Découvrez les offres WordPress',
+                text: "Découvrez les offres WordPress",
               }}
             />
             <TmaItem
@@ -94,7 +93,7 @@ export default function WebsiteTMA() {
               excerpt="Une supervision complète de votre solution e-commerce Prestashop pour vous aider à maintenir votre processus d’achat, de contact et votre catalogue dans les meilleures conditions."
               cta={{
                 link: RouteLink.prestationTmaPrestashop,
-                text: 'Découvrez les offres Prestashop',
+                text: "Découvrez les offres Prestashop",
               }}
             />
           </div>
@@ -124,8 +123,8 @@ export default function WebsiteTMA() {
               height={666}
               alt="Une console d'infogérance et de maintenance TMA dédiée"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </div>
@@ -161,5 +160,5 @@ export default function WebsiteTMA() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

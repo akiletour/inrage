@@ -1,19 +1,19 @@
-import moment from 'moment';
-import Image from 'next/image';
+import Image from "next/image"
+import ButtonLink from "@component/ButtonLink"
+import Link from "@component/NoScrollLink"
+import moment from "moment"
 
-import ButtonLink from '@component/ButtonLink';
-import Link from '@component/NoScrollLink';
-import 'moment/locale/fr';
+import "moment/locale/fr"
 
-moment.locale('fr');
+moment.locale("fr")
 
 type Props = {
-  image: string;
-  title: string;
-  description: string;
-  date: string;
-  slug: string;
-};
+  image: string
+  title: string
+  description: string
+  date: string
+  slug: string
+}
 
 export default function ArticleItem({
   image,
@@ -22,16 +22,16 @@ export default function ArticleItem({
   date,
   slug,
 }: Props) {
-  const formattedDate = moment(date);
+  const formattedDate = moment(date)
 
   return (
     <div className="relative flex flex-col">
       <div className="absolute left-1 top-1 z-10 w-6 bg-white text-center">
         <div className="bg-orange py-1 text-2xl font-medium text-gray-darker">
-          {formattedDate.format('DD')}
+          {formattedDate.format("DD")}
         </div>
         <div className="uppercase text-gray-darker">
-          {formattedDate.format('MMM').substring(0, 3)}
+          {formattedDate.format("MMM").substring(0, 3)}
         </div>
       </div>
       <Link href={`${slug}`}>
@@ -42,8 +42,8 @@ export default function ArticleItem({
             height={265}
             alt={title}
             style={{
-              maxWidth: '100%',
-              height: 'auto',
+              maxWidth: "100%",
+              height: "auto",
             }}
           />
         </span>
@@ -52,5 +52,5 @@ export default function ArticleItem({
       <p className="mb-2 mt-1">{description}</p>
       <ButtonLink href={`${slug}`}>Lire la suite</ButtonLink>
     </div>
-  );
+  )
 }

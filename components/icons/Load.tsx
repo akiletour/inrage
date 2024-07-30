@@ -1,8 +1,8 @@
 type Props = {
-  color?: string;
-};
+  color?: string
+}
 
-export default function LoadIcon({ color = '#fff' }: Props) {
+export default function LoadIcon({ color = "#fff" }: Props) {
   return (
     <svg
       height={58}
@@ -41,5 +41,5 @@ export default function LoadIcon({ color = '#fff' }: Props) {
         />
       </circle>
     </svg>
-  );
+  )
 }

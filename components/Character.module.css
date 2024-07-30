@@ -73,7 +73,9 @@
   width: 73px;
   height: 18px;
   background-position: -162px -350px;
-  animation: blink404 10s steps(1) infinite, pan 10s ease-in-out infinite;
+  animation:
+    blink404 10s steps(1) infinite,
+    pan 10s ease-in-out infinite;
 }
 
 .leftarm404 {

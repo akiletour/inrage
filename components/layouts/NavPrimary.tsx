@@ -1,24 +1,22 @@
-import { ReactNode, useCallback, useState } from "react";
-
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useWindowSize } from "react-use";
-
-import FeaturedProjectMenu from "@component/FeaturedProjectMenu";
-import Link from "@component/NoScrollLink";
-import FeaturedProjectImage from "@image/featured-projects/parapharmaciemoinschere.jpeg";
-import ExpertPrestashop from "@image/platinum-300x300.png";
-import ExpertWordPress from "@image/wordpress-expert.png";
-import { RouteLink } from "@lib/route";
-import { Button } from "@component/ui/button";
+import { ReactNode, useCallback, useState } from "react"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import FeaturedProjectMenu from "@component/FeaturedProjectMenu"
+import Link from "@component/NoScrollLink"
+import { Button } from "@component/ui/button"
+import FeaturedProjectImage from "@image/featured-projects/parapharmaciemoinschere.jpeg"
+import ExpertPrestashop from "@image/platinum-300x300.png"
+import ExpertWordPress from "@image/wordpress-expert.png"
+import { RouteLink } from "@lib/route"
+import { useWindowSize } from "react-use"
 
 type LinkProps = {
-  title: string;
-  isActive?: boolean;
-  href: string;
-  children?: ReactNode;
-  closePrimaryNav: () => void;
-};
+  title: string
+  isActive?: boolean
+  href: string
+  children?: ReactNode
+  closePrimaryNav: () => void
+}
 
 function LinkItem({
   title,
@@ -46,7 +44,7 @@ function LinkItem({
           </div>
         </div>
       </div>
-    );
+    )
   }
   return (
     <Link href={href}>
@@ -59,26 +57,26 @@ function LinkItem({
         {title}
       </span>
     </Link>
-  );
+  )
 }
 
 type Props = {
-  isSticky?: boolean;
-};
+  isSticky?: boolean
+}
 
 export default function NavPrimary({ isSticky = false }: Props) {
-  const pathname = usePathname();
-  const { width } = useWindowSize(1024);
-  const [isOpen, setOpen] = useState(false);
+  const pathname = usePathname()
+  const { width } = useWindowSize(1024)
+  const [isOpen, setOpen] = useState(false)
 
   const n1TitleClassnames =
-    "uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1";
+    "uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1"
   const n2TitleClassnames =
-    "text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark";
+    "text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark"
 
   const toggleNavPrimary = useCallback(() => {
-    setOpen((r) => !r);
-  }, []);
+    setOpen((r) => !r)
+  }, [])
 
   return (
     <div className="relative z-50 h-11">
@@ -349,5 +347,5 @@ export default function NavPrimary({ isSticky = false }: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

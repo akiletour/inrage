@@ -1,12 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image"
+import Diagonal from "@component/Diagonal"
+import KeypointItem from "@component/items/KeypointItem"
 
-import Diagonal from '@component/Diagonal';
-import KeypointItem from '@component/items/KeypointItem';
-
-import AchieveIcon from './icons/AchieveIcon';
-import CupIcon from './icons/CupIcon';
-import LeafHeartIcon from './icons/LeafHeartIcon';
-import ThumbIcon from './icons/ThumbIcon';
+import AchieveIcon from "./icons/AchieveIcon"
+import CupIcon from "./icons/CupIcon"
+import LeafHeartIcon from "./icons/LeafHeartIcon"
+import ThumbIcon from "./icons/ThumbIcon"
 
 export default function Keypoints() {
   return (
@@ -53,5 +52,5 @@ export default function Keypoints() {
         bgCorner="fill-orange"
       />
     </div>
-  );
+  )
 }
