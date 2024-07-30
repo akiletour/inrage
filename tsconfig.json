@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -36,35 +32,17 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql-query/*": [
-        "src/graphql/*"
-      ],
-      "@layout/*": [
-        "src/layouts/*"
-      ],
-      "@hook/*": [
-        "src/hooks/*"
-      ],
-      "@type/*": [
-        "src/types/*"
-      ],
-      "@image/*": [
-        "public/images/*"
-      ],
-      "@lib/*": [
-        "src/libs/*"
-      ],
-      "@component/*": [
-        "src/components/*"
-      ],
-      "@util/*": [
-        "src/utils/*"
-      ],
+      "@graphql-query/*": ["graphql/*"],
+      "@layout/*": ["components/layouts/*"],
+      "@hook/*": ["hooks/*"],
+      "@type/*": ["types/*"],
+      "@image/*": ["public/images/*"],
+      "@lib/*": ["libs/*"],
+      "@component/*": ["components/*"],
+      "@util/*": ["utils/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"
@@ -72,15 +50,12 @@
     ]
   },
   "include": [
-    "src/app/types/**/*.d.ts",
+    "app/types/**/*.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
   ],
-  "exclude": [
-    "node_modules",
-    "cypress"
-  ]
+  "exclude": ["node_modules", "cypress"]
 }
