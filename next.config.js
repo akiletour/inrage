@@ -1,4 +1,4 @@
-const { withContentlayer } = require("next-contentlayer2")
+const { withContentlayer } = require("next-contentlayer2");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -11,10 +11,10 @@ const nextConfig = {
       test: /\.(graphql|gql)/,
       exclude: /node_modules/,
       loader: "graphql-operations-string-loader",
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
-module.exports = withContentlayer(nextConfig)
+module.exports = withContentlayer(nextConfig);
