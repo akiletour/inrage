@@ -4,7 +4,6 @@ import { NextRequest } from 'next/server';
 const blog = new Blog({
   url: 'https://www.inrage.fr',
 });
-const akismet = new Client(process.env.AKISMET_API_KEY as string, blog);
 
 export const isAkismetSpam = async (
   request: NextRequest,
@@ -31,6 +30,8 @@ export const isAkismetSpam = async (
       content,
       type: CommentType.contactForm,
     });
+
+    const akismet = new Client(process.env.AKISMET_API_KEY as string, blog);
 
     const isSpam = await akismet.checkComment(comment);
 
