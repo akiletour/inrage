@@ -28,7 +28,7 @@ export default function Legals() {
           <br />
           Courriel : contact(at)inrage.fr
           <br />
-          Tél : +33 (0)6 51 89 89 17
+          Tél : +33 (0)6 82 96 38 39
           <br />
         </p>
 

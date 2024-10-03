@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     },
     contactPoints: [
       {
-        telephone: '+33 (0)6 51 89 89 17',
+        telephone: '+33 (0)6 82 96 38 39',
         contactType: 'Pascal GAULT',
         areaServed: 'FR',
         availableLanguage: 'French',
