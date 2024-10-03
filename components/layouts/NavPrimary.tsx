@@ -315,7 +315,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
             </Button>
 
             <div className='block pt-2 text-3xl font-bold text-orange lg:hidden'>
-              06 51 89 89 17
+              06 82 96 38 89
             </div>
             <button
               type='button'

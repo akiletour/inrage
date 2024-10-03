@@ -110,7 +110,7 @@ export default function Footer() {
               <Link href={RouteLink.contact}>Demandez un devis</Link>
             </Button>
             <div className='my-2 text-3xl font-bold text-orange'>
-              06 51 89 89 17
+              06 82 96 38 89
             </div>
             <div className='text-center text-sm md:text-right'>
               SIRET : 813 430 592 00010
