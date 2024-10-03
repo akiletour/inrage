@@ -1,5 +1,5 @@
-import Layout from '@component/Layout';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Layout from '@/components/Layout';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Mentions légales - inRage',

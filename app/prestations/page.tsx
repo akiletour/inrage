@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import Diagonal from '@component/Diagonal';
-import LeafHeartIcon from '@component/icons/LeafHeartIcon';
-import PrestationItem from '@component/items/PrestationItem';
-import Layout from '@component/Layout';
-import PrestationsList from '@component/PrestationsList';
-import SectionTitle from '@component/SectionTitle';
+import Diagonal from '@/components/Diagonal';
+import LeafHeartIcon from '@/components/icons/LeafHeartIcon';
+import PrestationItem from '@/components/items/PrestationItem';
+import Layout from '@/components/Layout';
+import PrestationsList from '@/components/PrestationsList';
+import SectionTitle from '@/components/SectionTitle';
 import PrestationDesign from '@image/prestations/charte_graphique.png';
 import PrestationWebDev from '@image/prestations/developpement_site_web.png';
 import PrestationFormation from '@image/prestations/formation_offerte.png';
 import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Prestations sous WordPress, Prestashop et Symfony - inRage',

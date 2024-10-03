@@ -1,18 +1,18 @@
 import Image from 'next/image';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import { Button } from '@component/ui/button';
+import ContactForm from '@/components/ContactForm';
+import Diagonal from '@/components/Diagonal';
+import Layout from '@/components/Layout';
+import Link from '@/components/NoScrollLink';
+import SectionTitle from '@/components/SectionTitle';
+import TextImage from '@/components/TextImage';
+import { Button } from '@/components/ui/button';
 import DevOps from '@image/devops.png';
 import Lighthouse from '@image/lighthouse-100percent-inrage.png';
 import BuildSymfony from '@image/prestations/symfony.png';
 import SketchLogo from '@image/sketch_logo.png';
 import BuildPrestashop from '@image/website-prestashop.png';
 import BuildWordPress from '@image/website-wp.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Création de site internet | Freelance création de site web - inRage',

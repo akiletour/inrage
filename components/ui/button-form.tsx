@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import LoadIcon from '@component/icons/Load';
+import LoadIcon from '@/components/icons/Load';
 
 import { Button, ButtonProps } from './button';
 

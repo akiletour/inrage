@@ -1,4 +1,4 @@
-import ProjectItem from '@component/items/ProjectItem';
+import ProjectItem from '@/components/items/ProjectItem';
 import { allPortfolios } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 

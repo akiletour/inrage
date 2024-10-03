@@ -1,17 +1,17 @@
-import Character from '@component/Character';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExperienceItem from '@component/items/ExperienceItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import Socials from '@component/Socials';
-import { Button } from '@component/ui/button';
+import Character from '@/components/Character';
+import Diagonal from '@/components/Diagonal';
+import MoreIcon from '@/components/icons/MoreIcon';
+import ExperienceItem from '@/components/items/ExperienceItem';
+import Layout from '@/components/Layout';
+import Link from '@/components/NoScrollLink';
+import SectionTitle from '@/components/SectionTitle';
+import Socials from '@/components/Socials';
+import { Button } from '@/components/ui/button';
 import ExpCOS from '@image/experiences/comonscreen.png';
 import ExpKamelab from '@image/experiences/kamelab.png';
 import ExpMegami from '@image/experiences/megami-productions.png';
 import ExpMoonscoop from '@image/experiences/moonscoop.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',

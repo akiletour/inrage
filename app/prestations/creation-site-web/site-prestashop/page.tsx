@@ -1,18 +1,18 @@
 import Image from 'next/image';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import { Button } from '@component/ui/button';
+import ContactForm from '@/components/ContactForm';
+import Diagonal from '@/components/Diagonal';
+import MoreIcon from '@/components/icons/MoreIcon';
+import ProjectItem from '@/components/items/ProjectItem';
+import Layout from '@/components/Layout';
+import Link from '@/components/NoScrollLink';
+import SectionTitle from '@/components/SectionTitle';
+import TextImage from '@/components/TextImage';
+import { Button } from '@/components/ui/button';
 import ImageBackgroundTma from '@image/bg-tma.jpeg';
 import ProtectionShield from '@image/protection-shield.png';
 import WebsitePrestashop from '@image/website-prestashop.png';
 import WebsiteWP from '@image/website-wp.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 import { allPortfolios } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 

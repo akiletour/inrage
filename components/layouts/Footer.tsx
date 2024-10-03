@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Link from '@component/NoScrollLink';
-import Socials from '@component/Socials';
-import { Button } from '@component/ui/button';
-import { RouteLink } from '@lib/route';
+import Link from '@/components/NoScrollLink';
+import Socials from '@/components/Socials';
+import { Button } from '@/components/ui/button';
+import { RouteLink } from '@/libs/route';
 
 import LogoWhite from '../../public/logo-white.svg';
 

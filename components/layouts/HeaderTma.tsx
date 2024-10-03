@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import Diagonal from '@component/Diagonal';
-import { Button } from '@component/ui/button';
-import useSticky from '@hook/useSticky';
+import Diagonal from '@/components/Diagonal';
+import { Button } from '@/components/ui/button';
+import useSticky from '@/hooks/useSticky';
 import BgTma from '@image/bg-tma.jpeg';
-import NavPrimary from '@layout/NavPrimary';
-import { PageExcerptType, PageTitleType } from '@type/header';
+import NavPrimary from '@/components/layouts/NavPrimary';
+import { PageExcerptType, PageTitleType } from '@/types/header';
 
 type Props = {
   pageTitle: PageTitleType;

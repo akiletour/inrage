@@ -1,4 +1,4 @@
-import ArticleItem from '@component/items/ArticleItem';
+import ArticleItem from '@/components/items/ArticleItem';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 

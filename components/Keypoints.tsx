@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Diagonal from '@component/Diagonal';
-import KeypointItem from '@component/items/KeypointItem';
+import Diagonal from '@/components/Diagonal';
+import KeypointItem from '@/components/items/KeypointItem';
 
 import AchieveIcon from './icons/AchieveIcon';
 import CupIcon from './icons/CupIcon';

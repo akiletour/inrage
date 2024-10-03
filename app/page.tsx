@@ -1,24 +1,24 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import LastArticles from '@component/blog/LastArticles';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import LeafHeartIcon from '@component/icons/LeafHeartIcon';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExpertiseItem from '@component/items/ExpertiseItem';
-import Keypoints from '@component/Keypoints';
-import Layout from '@component/Layout';
-import LastProjects from '@component/portfolio/LastProjects';
-import PrestationsList from '@component/PrestationsList';
-import SectionTitle from '@component/SectionTitle';
-import { Button } from '@component/ui/button';
+import LastArticles from '@/components/blog/LastArticles';
+import ContactForm from '@/components/ContactForm';
+import Diagonal from '@/components/Diagonal';
+import LeafHeartIcon from '@/components/icons/LeafHeartIcon';
+import MoreIcon from '@/components/icons/MoreIcon';
+import ExpertiseItem from '@/components/items/ExpertiseItem';
+import Keypoints from '@/components/Keypoints';
+import Layout from '@/components/Layout';
+import LastProjects from '@/components/portfolio/LastProjects';
+import PrestationsList from '@/components/PrestationsList';
+import SectionTitle from '@/components/SectionTitle';
+import { Button } from '@/components/ui/button';
 import ExpertiseJoomla from '@image/expertises/joomla.png';
 import ExpertisePrestashop from '@image/expertises/prestashop.png';
 import ExpertiseSymfony from '@image/expertises/symfony.png';
 import ExpertiseWordPress from '@image/expertises/wordpress.png';
 import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title:

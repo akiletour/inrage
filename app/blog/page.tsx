@@ -1,6 +1,6 @@
-import ArticleItem from '@component/items/ArticleItem';
-import Layout from '@component/Layout';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import ArticleItem from '@/components/items/ArticleItem';
+import Layout from '@/components/Layout';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 

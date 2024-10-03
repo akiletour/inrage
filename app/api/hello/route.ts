@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isAkismetSpam } from '@util/akismet';
-import { Mailjet } from '@util/mailjet';
+import { isAkismetSpam } from '@/utils/akismet';
+import { Mailjet } from '@/utils/mailjet';
 
-export async function POST(request: NextRequest) {
+export const dynamic = 'force-dynamic';
+
+export const POST = async (request: NextRequest) => {
+  console.log(request.headers.get('user-agent'));
   try {
     const { email, name, content, phone } = await request.json();
 
@@ -38,4 +41,4 @@ export async function POST(request: NextRequest) {
       status: 400,
     });
   }
-}
+};

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { Analytics } from '@component/analytics';
-import Footer from '@layout/Footer';
+import { Analytics } from '@/components/analytics';
+import Footer from '@/components/layouts/Footer';
 
 import './globals.css';
 

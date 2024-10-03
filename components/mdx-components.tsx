@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Image, { ImageProps } from 'next/image';
-import { Callout } from '@component/callout';
-import { cn } from '@lib/utils';
+import { Callout } from '@/components/callout';
+import { cn } from '@/libs/utils';
 import { useMDXComponent } from 'next-contentlayer2/hooks';
 
 export const components = {

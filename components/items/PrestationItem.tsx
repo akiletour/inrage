@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from 'next/image';
-import Link from '@component/NoScrollLink';
-import { Button } from '@component/ui/button';
+import Link from '@/components/NoScrollLink';
+import { Button } from '@/components/ui/button';
 
 type Props = {
   title: string | string[];

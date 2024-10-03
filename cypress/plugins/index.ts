@@ -13,9 +13,9 @@
 // the project's config changing)
 
 /**
- * @type {Cypress.PluginConfig}
+ * @/types {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+// eslint-disable-next-line no-unused-vars, @/typesscript-eslint/no-unused-vars, @/typesscript-eslint/no-explicit-any
 const loadConfig = (_on: any, _config: any) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config

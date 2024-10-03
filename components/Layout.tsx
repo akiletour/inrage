@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import Header from '@layout/Header';
+import Header from '@/components/layouts/Header';
 import { motion } from 'framer-motion';
 
 type Props = {

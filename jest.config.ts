@@ -10,9 +10,9 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$',
   moduleNameMapper: {
-    '^@hook/(.*)$': '<rootDir>/hooks/$1',
-    '^@component/(.*)$': '<rootDir>/components/$1',
-    '^@lib/(.*)$': '<rootDir>/lib/$1',
+    '^@/hooks/(.*)$': '<rootDir>/hooks/$1',
+    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/libs/(.*)$': '<rootDir>/lib/$1',
   },
   modulePathIgnorePatterns: ['cypress'],
 };

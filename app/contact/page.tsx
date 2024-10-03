@@ -1,6 +1,6 @@
-import ContactForm from '@component/ContactForm';
-import Layout from '@component/Layout';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import ContactForm from '@/components/ContactForm';
+import Layout from '@/components/Layout';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',

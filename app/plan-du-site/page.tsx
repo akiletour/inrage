@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Layout from '@component/Layout';
-import sitemap from '@graphql-query/sitemap.graphql';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { Sitemap as SitemapType } from '@type/graphql/sitemap';
-import { fetcher } from '@util/index';
+import Layout from '@/components/Layout';
+import sitemap from '@/graphql/sitemap.graphql';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
+import { Sitemap as SitemapType } from '@/types/graphql/sitemap';
+import { fetcher } from '@/utils';
 
 const getSitemap = (): Promise<SitemapType> => fetcher(sitemap);
 

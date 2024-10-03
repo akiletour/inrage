@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Diagonal from '@component/Diagonal';
-import TmaItem from '@component/items/TmaItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
+import Diagonal from '@/components/Diagonal';
+import TmaItem from '@/components/items/TmaItem';
+import Layout from '@/components/Layout';
+import SectionTitle from '@/components/SectionTitle';
+import TextImage from '@/components/TextImage';
 import TmaImage from '@image/tma.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title: 'Maintenance site web | Freelance maintenance site internet - inRage',

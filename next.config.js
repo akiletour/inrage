@@ -1,6 +1,6 @@
 const { withContentlayer } = require('next-contentlayer2');
 
-/** @type {import('next').NextConfig} */
+/** @/types {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {

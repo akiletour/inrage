@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import ButtonLink from '@component/ButtonLink';
-import Link from '@component/NoScrollLink';
+import ButtonLink from '@/components/ButtonLink';
+import Link from '@/components/NoScrollLink';
 import moment from 'moment';
 
 import 'moment/locale/fr';
@@ -21,7 +21,7 @@ export default function ArticleItem({
   description,
   date,
   slug,
-}: Props) {
+}: Readonly<Props>) {
   const formattedDate = moment(date);
 
   return (

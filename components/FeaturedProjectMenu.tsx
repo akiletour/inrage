@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from 'next/image';
-import Link from '@component/NoScrollLink';
+import Link from '@/components/NoScrollLink';
 
 type Props = {
   image: StaticImageData;

@@ -1,7 +1,7 @@
 import ImagePrestationBuildWebsite from '@image/prestations/creation-site-internet.png';
 import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png';
 import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png';
-import { RouteLink } from '@lib/route';
+import { RouteLink } from '@/libs/route';
 
 import PrestationItem from './items/PrestationItem';
 

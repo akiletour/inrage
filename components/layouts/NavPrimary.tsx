@@ -1,13 +1,13 @@
 import { ReactNode, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import FeaturedProjectMenu from '@component/FeaturedProjectMenu';
-import Link from '@component/NoScrollLink';
-import { Button } from '@component/ui/button';
+import FeaturedProjectMenu from '@/components/FeaturedProjectMenu';
+import Link from '@/components/NoScrollLink';
+import { Button } from '@/components/ui/button';
 import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg';
 import ExpertPrestashop from '@image/platinum-300x300.png';
 import ExpertWordPress from '@image/wordpress-expert.png';
-import { RouteLink } from '@lib/route';
+import { RouteLink } from '@/libs/route';
 import { useWindowSize } from 'react-use';
 
 type LinkProps = {

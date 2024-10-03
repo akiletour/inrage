@@ -1,18 +1,18 @@
-import CheckMark from '@component/CheckMark';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import { Button } from '@component/ui/button';
+import CheckMark from '@/components/CheckMark';
+import ContactForm from '@/components/ContactForm';
+import Diagonal from '@/components/Diagonal';
+import MoreIcon from '@/components/icons/MoreIcon';
+import ProjectItem from '@/components/items/ProjectItem';
+import Layout from '@/components/Layout';
+import SectionTitle from '@/components/SectionTitle';
+import TextImage from '@/components/TextImage';
+import { Button } from '@/components/ui/button';
 import BusStation from '@image/prestations/bus-station.png';
 import SymfonyComponents from '@image/prestations/symfony-components.jpg';
 import SymfonyHero from '@image/prestations/symfony-hero.jpg';
 import TwigImage from '@image/prestations/twig.jpg';
 import SchemaMercure from '@image/schema-mercure.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 import { allPortfolios } from 'contentlayer/generated';
 import { compareDesc } from 'date-fns';
 

@@ -1,7 +1,7 @@
-import Layout from '@component/Layout';
-import SupportSwitcher from '@component/portfolio/SupportSwitcher';
-import SectionTitle from '@component/SectionTitle';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Layout from '@/components/Layout';
+import SupportSwitcher from '@/components/portfolio/SupportSwitcher';
+import SectionTitle from '@/components/SectionTitle';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 import { allPortfolios } from 'contentlayer/generated';
 
 import PortfolioGrid from './PortfolioGrid';

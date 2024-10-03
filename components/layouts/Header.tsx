@@ -1,13 +1,15 @@
 import { Fragment } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Diagonal from '@component/Diagonal';
-import Link from '@component/NoScrollLink';
-import useSticky from '@hook/useSticky';
-import NavPrimary from '@layout/NavPrimary';
-import { HeaderType, PageExcerptType, PageTitleType } from '@type/header';
+import Diagonal from '@/components/Diagonal';
+import Link from '@/components/NoScrollLink';
+import useSticky from '@/hooks/useSticky';
+import NavPrimary from '@/components/layouts/NavPrimary';
+import { HeaderType, PageExcerptType, PageTitleType } from '@/types/header';
 
-const DynamicHeaderTma = dynamic(() => import('@layout/HeaderTma'));
+const DynamicHeaderTma = dynamic(
+  () => import('@/components/layouts/HeaderTma')
+);
 
 interface Props {
   pageTitle?: PageTitleType;

@@ -9,7 +9,7 @@ import {
   ProjectTechnologies,
 } from './content/config/portfolio';
 
-/** @type {import('contentlayer/source-files').ComputedFields} */
+/** @/types {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
   slug: {
     type: 'string',

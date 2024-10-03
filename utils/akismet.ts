@@ -1,28 +1,38 @@
+import { Author, Blog, Client, Comment, CommentType } from '@cedx/akismet';
 import { NextRequest } from 'next/server';
-import { AkismetClient } from 'akismet-api';
 
-const Client = new AkismetClient({
-  key: process.env.AKISMET_API_KEY as string,
-  blog: 'https://www.inrage.fr',
+const blog = new Blog({
+  url: 'https://www.inrage.fr',
 });
+const akismet = new Client(process.env.AKISMET_API_KEY as string, blog);
 
 export const isAkismetSpam = async (
   request: NextRequest,
-  author: string,
+  authorName: string,
   email: string,
   content: string
 ): Promise<boolean> => {
   try {
-    const userAgent = request.headers.get('user-agent') ?? '';
-    const userIp = request.ip || '127.0.0.1';
+    const userAgent = request.headers.get('user-agent') ?? 'unknown';
+    console.log(userAgent);
+    const userIp = request.ip ?? '127.0.0.1';
 
-    const isSpam = await Client.checkSpam({
-      user_ip: userIp,
-      user_agent: userAgent,
-      comment_author: author,
-      comment_author_email: email,
-      comment_content: content,
+    const author = new Author({
+      email,
+      ipAddress: userIp,
+      name: authorName,
+      role: 'guest',
+      userAgent: userAgent,
     });
+
+    const comment = new Comment({
+      author,
+      date: new Date(),
+      content,
+      type: CommentType.contactForm,
+    });
+
+    const isSpam = await akismet.checkComment(comment);
 
     if (isSpam) {
       return true;

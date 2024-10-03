@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import { Mdx } from '@component/mdx-components';
-import SectionTitle from '@component/SectionTitle';
-import RouteLink from '@lib/route';
-import { absoluteUrl } from '@util/index';
+import ProjectItem from '@/components/items/ProjectItem';
+import Layout from '@/components/Layout';
+import { Mdx } from '@/components/mdx-components';
+import SectionTitle from '@/components/SectionTitle';
+import RouteLink from '@/libs/route';
+import { absoluteUrl } from '@/utils';
 import { allPortfolios } from 'contentlayer/generated';
 
 import '../../../blog/mdx.css';
@@ -13,7 +13,7 @@ import '../../../blog/mdx.css';
 import {
   ProjectSupports,
   ProjectTechnologies,
-} from '../../../../content/config/portfolio';
+} from '@/content/config/portfolio';
 
 interface PostPageProps {
   params: {

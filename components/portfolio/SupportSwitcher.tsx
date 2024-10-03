@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import Link from '@component/NoScrollLink';
-import { RouteLink } from '@lib/route';
-import { ProjectSupports } from 'content/config/portfolio';
+import Link from '@/components/NoScrollLink';
+import { RouteLink } from '@/libs/route';
+import { ProjectSupports } from '@/content/config/portfolio';
 
 export default async function SupportSwitcher({
   pathname,
-}: {
+}: Readonly<{
   pathname: string;
-}) {
+}>) {
   const data = Object.keys(ProjectSupports).map((key) => ({
     id: key,
     ...ProjectSupports[key],

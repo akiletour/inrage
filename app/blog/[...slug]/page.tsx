@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ArticleItem from '@component/items/ArticleItem';
-import Layout from '@component/Layout';
-import { Mdx } from '@component/mdx-components';
-import SectionTitle from '@component/SectionTitle';
-import { RouteLink } from '@lib/route';
-import { absoluteUrl } from '@util/index';
+import ArticleItem from '@/components/items/ArticleItem';
+import Layout from '@/components/Layout';
+import { Mdx } from '@/components/mdx-components';
+import SectionTitle from '@/components/SectionTitle';
+import { RouteLink } from '@/libs/route';
+import { absoluteUrl } from '@/utils/index';
 import { allPosts } from 'contentlayer/generated';
 
 import '../mdx.css';

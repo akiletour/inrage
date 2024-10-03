@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from '@component/NoScrollLink';
-import { ProjectSupports } from 'content/config/portfolio';
+import Link from '@/components/NoScrollLink';
+import { ProjectSupports } from '@/content/config/portfolio';
 import { Portfolio } from 'contentlayer/generated';
 
 type Props = {

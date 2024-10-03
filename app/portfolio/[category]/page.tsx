@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
-import Layout from '@component/Layout';
-import SupportSwitcher from '@component/portfolio/SupportSwitcher';
-import SectionTitle from '@component/SectionTitle';
-import RouteLink from '@lib/route';
-import { ProjectSupports } from 'content/config/portfolio';
+import Layout from '@/components/Layout';
+import SupportSwitcher from '@/components/portfolio/SupportSwitcher';
+import SectionTitle from '@/components/SectionTitle';
+import RouteLink from '@/libs/route';
+import { ProjectSupports } from '@/content/config/portfolio';
 import { allPortfolios } from 'contentlayer/generated';
 
 import PortfolioGrid from '../PortfolioGrid';

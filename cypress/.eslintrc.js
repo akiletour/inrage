@@ -6,7 +6,7 @@ module.exports = {
         Cypress: true,
       },
       files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
+      parser: '@/typesscript-eslint/parser',
       parserOptions: {
         project: ['./tsconfig.json'], // Specify it only for TypeScript files
       },

@@ -1,4 +1,4 @@
-import ProjectItem from '@component/items/ProjectItem';
+import ProjectItem from '@/components/items/ProjectItem';
 import { Portfolio } from 'contentlayer/generated';
 
 type Props = {

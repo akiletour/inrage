@@ -1,14 +1,14 @@
 import Image from 'next/image';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TableHeader from '@component/tma/TableHeader';
-import TableLine from '@component/tma/TableLine';
+import ContactForm from '@/components/ContactForm';
+import Diagonal from '@/components/Diagonal';
+import Layout from '@/components/Layout';
+import SectionTitle from '@/components/SectionTitle';
+import TextImage from '@/components/TextImage';
+import TableHeader from '@/components/tma/TableHeader';
+import TableLine from '@/components/tma/TableLine';
 import BgTma from '@image/bg-tma.jpeg';
 import LogoGrey from '@image/logo-grey-inline-white.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
   title:

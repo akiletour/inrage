@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from 'next/image';
-import ButtonLink from '@component/ButtonLink';
+import ButtonLink from '@/components/ButtonLink';
 
 type Props = {
   image: string | StaticImageData;
