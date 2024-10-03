@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-import Link from "@component/NoScrollLink";
-import { RouteLink } from "@lib/route";
+import Link from '@component/NoScrollLink';
+import { RouteLink } from '@lib/route';
 
-import LogoWhite from "../../../public/logo-white.svg";
-import Socials from "../components/Socials";
+import LogoWhite from '../../../public/logo-white.svg';
+import Socials from '../components/Socials';
 
 export default function Footer() {
   return (
@@ -49,8 +49,8 @@ export default function Footer() {
                 src={LogoWhite}
                 alt="inRage - Pascal GAULT"
                 style={{
-                  maxWidth: "100%",
-                  height: "auto",
+                  maxWidth: '100%',
+                  height: 'auto',
                 }}
               />
             </div>
@@ -79,7 +79,7 @@ export default function Footer() {
               href="https://github.com/akiletour/inrage"
               className="text-white block md:flex mt-2 items-center"
             >
-              Code open-source inrage.fr disponible sur{" "}
+              Code open-source inrage.fr disponible sur{' '}
               <span className="inline-block md:block md:ml-1">
                 <Image
                   width={72}
@@ -87,8 +87,8 @@ export default function Footer() {
                   src="/images/github-inline.svg"
                   alt="Code open-source disponible sur Github"
                   style={{
-                    maxWidth: "100%",
-                    height: "auto",
+                    maxWidth: '100%',
+                    height: 'auto',
                   }}
                 />
               </span>
