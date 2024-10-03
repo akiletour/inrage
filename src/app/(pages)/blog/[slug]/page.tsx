@@ -68,7 +68,6 @@ export default async function Page({ params }: Props) {
         <PostBody content={replaceBackendUrlContent(post.content)} />
       </div>
 
-      {/* @ts-expect-error Server Component */}
       <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
 
       <div className="container">
