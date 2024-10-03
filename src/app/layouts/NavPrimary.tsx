@@ -1,15 +1,15 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from "react";
 
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useWindowSize } from 'react-use';
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useWindowSize } from "react-use";
 
-import FeaturedProjectMenu from '@component/FeaturedProjectMenu';
-import Link from '@component/NoScrollLink';
-import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg';
-import ExpertPrestashop from '@image/platinum-300x300.png';
-import ExpertWordPress from '@image/wordpress-expert.png';
-import { RouteLink } from '@lib/route';
+import FeaturedProjectMenu from "@component/FeaturedProjectMenu";
+import Link from "@component/NoScrollLink";
+import FeaturedProjectImage from "@image/featured-projects/parapharmaciemoinschere.jpeg";
+import ExpertPrestashop from "@image/platinum-300x300.png";
+import ExpertWordPress from "@image/wordpress-expert.png";
+import { RouteLink } from "@lib/route";
 
 type LinkProps = {
   title: string;
@@ -33,7 +33,7 @@ function LinkItem({
           <span
             onClick={() => closePrimaryNav()}
             className={`uppercase block text-lg pt-2 lg:py-2 group-hover:text-orange ${
-              isActive ? 'text-orange' : 'text-white'
+              isActive ? "text-orange" : "text-white"
             }`}
           >
             {title}
@@ -52,7 +52,7 @@ function LinkItem({
       <span
         onClick={() => closePrimaryNav()}
         className={`block pt-2 lg:pt-0 uppercase text-lg ${
-          isActive ? 'text-orange' : 'text-white hover:text-orange'
+          isActive ? "text-orange" : "text-white hover:text-orange"
         }`}
       >
         {title}
@@ -71,9 +71,9 @@ export default function NavPrimary({ isSticky = false }: Props) {
   const [isOpen, setOpen] = useState(false);
 
   const n1TitleClassnames =
-    'uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1';
+    "uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-1";
   const n2TitleClassnames =
-    'text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark';
+    "text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark";
 
   const toggleNavPrimary = useCallback(() => {
     setOpen((r) => !r);
@@ -84,8 +84,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
       <div
         className={`sticky-menu ${
           isSticky
-            ? 'fixed top-0 left-0 right-0 bg-gray-darker transition-all'
-            : ''
+            ? "fixed top-0 left-0 right-0 bg-gray-darker transition-all"
+            : ""
         }`}
       >
         <div className="container flex items-center justify-between py-2">
@@ -96,8 +96,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
               height="56"
               alt="Pascal GAULT, développeur Freelance sur La Rochelle"
               style={{
-                maxWidth: '100%',
-                height: 'auto',
+                maxWidth: "100%",
+                height: "auto",
               }}
             />
           </Link>
@@ -123,8 +123,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
           <div
             className={`nav-menu ${
               width < 1025 && isOpen
-                ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-2 text-center flex-col absolute top-full left-0 w-full'
-                : 'hidden relative space-x-3'
+                ? "block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-2 text-center flex-col absolute top-full left-0 w-full"
+                : "hidden relative space-x-3"
             } lg:flex items-center`}
           >
             <LinkItem
@@ -232,8 +232,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       height={150}
                       alt="Expert développeur Prestashop"
                       style={{
-                        maxWidth: '100%',
-                        height: 'auto',
+                        maxWidth: "100%",
+                        height: "auto",
                       }}
                     />
                   </div>
@@ -244,8 +244,8 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       height={150}
                       alt="Expert développeur Prestashop"
                       style={{
-                        maxWidth: '100%',
-                        height: 'auto',
+                        maxWidth: "100%",
+                        height: "auto",
                       }}
                     />
                   </div>
@@ -323,7 +323,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
             </Link>
 
             <div className="block lg:hidden text-3xl text-orange font-bold pt-2">
-              06 51 89 89 17
+              06 82 96 38 39
             </div>
             <button
               type="button"
