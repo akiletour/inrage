@@ -12,7 +12,6 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "@sentry/nextjs": "^7.51.0",
     "@types/prismjs": "^1.26.0",
     "akismet-api": "^6.0.0",
     "eslint-plugin-jest-dom": "^4.0.3",
