@@ -1,14 +1,17 @@
 ---
 title: Comment ajouter un nouveau champ produit dans Prestashop
-description: Ajouter un nouveau champ produit personnalisé dans Prestashop 1.7 ou 1.6 n'est pas très compliqué en soit quand on sait où le faire. 
+description: Ajouter un nouveau champ produit personnalisé dans Prestashop 1.7 ou 1.6 n'est pas très compliqué en soit quand on sait où le faire.
 excerpt: Ajouter un nouveau champ produit personnalisé dans Prestashop n’est pas très compliqué en soit quand on sait où le faire.
 image: /images/blog/champ-produit-prestashop.webp
-date: "2019-05-19"
+date: '2019-05-19'
 authors:
   - akiletour
 ---
 
-<Callout>Ajouter un nouveau champ produit personnalisé dans Prestashop n'est pas très compliqué en soit quand on sait où le faire.</Callout>
+<Callout>
+  Ajouter un nouveau champ produit personnalisé dans Prestashop n'est pas très
+  compliqué en soit quand on sait où le faire.
+</Callout>
 
 L’avantage de cette méthode, c’est quelle peut aussi bien fonctionner sur la version 1.6 de Prestashop que sur la version 1.7.
 
@@ -51,7 +54,7 @@ class Composition extends Module
 
 Nous allons rajouter quelques méthodes à notre modules, une pour l’installation / désinstallation et une autre pour le [hook](https://devdocs.prestashop.com/1.7/modules/concepts/hooks/) que nous allons avoir besoin pour modifier notre vue de l’administration des produits.
 
-Après la méthode __construct(), ajoutons donc ces méthodes d’installation.
+Après la méthode \_\_construct(), ajoutons donc ces méthodes d’installation.
 
 ```php
 public function install() {

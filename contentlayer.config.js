@@ -1,52 +1,52 @@
-import { defineDocumentType, makeSource } from "contentlayer2/source-files"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode from "rehype-pretty-code"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
+import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
 import {
   ProjectSupports,
   ProjectTechnologies,
-} from "./content/config/portfolio"
+} from './content/config/portfolio';
 
-/** @type {import('contentlayer/source-files').ComputedFields} */
+/** @/types {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
   slug: {
-    type: "string",
+    type: 'string',
     resolve: (doc) => `/${doc._raw.flattenedPath}`,
   },
   slugAsParams: {
-    type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    type: 'string',
+    resolve: (doc) => doc._raw.flattenedPath.split('/').slice(1).join('/'),
   },
-}
+};
 
 export const Post = defineDocumentType(() => ({
-  name: "Post",
+  name: 'Post',
   filePathPattern: `blog/**/*.mdx`,
-  contentType: "mdx",
+  contentType: 'mdx',
   fields: {
     title: {
-      type: "string",
+      type: 'string',
       required: true,
     },
     description: {
-      type: "string",
+      type: 'string',
     },
     date: {
-      type: "date",
+      type: 'date',
       required: true,
     },
     published: {
-      type: "boolean",
+      type: 'boolean',
       default: true,
     },
     excerpt: {
-      type: "string",
+      type: 'string',
       required: true,
     },
     image: {
-      type: "string",
+      type: 'string',
       required: true,
     },
     authors: {
@@ -54,62 +54,62 @@ export const Post = defineDocumentType(() => ({
       // Until this is fixed, we can use a simple list.
       // type: "reference",
       // of: Author,
-      type: "list",
-      of: { type: "string" },
+      type: 'list',
+      of: { type: 'string' },
       required: true,
     },
   },
   computedFields,
-}))
+}));
 
 export const Portfolio = defineDocumentType(() => ({
-  name: "Portfolio",
+  name: 'Portfolio',
   filePathPattern: `portfolio/**/*.mdx`,
-  contentType: "mdx",
+  contentType: 'mdx',
   fields: {
     title: {
-      type: "string",
+      type: 'string',
       required: true,
     },
     excerpt: {
-      type: "string",
+      type: 'string',
     },
     date: {
-      type: "number",
+      type: 'number',
       required: true,
     },
     website: {
-      type: "string",
+      type: 'string',
       required: false,
     },
     image: {
-      type: "string",
+      type: 'string',
       required: true,
     },
     missions: {
-      type: "list",
-      of: { type: "string" },
+      type: 'list',
+      of: { type: 'string' },
       required: false,
     },
     category: {
-      type: "enum",
+      type: 'enum',
       options: Object.keys(ProjectSupports),
       required: true,
     },
     technologies: {
-      type: "list",
+      type: 'list',
       of: {
-        type: "enum",
+        type: 'enum',
         options: ProjectTechnologies.map((tech) => tech.name),
       },
       required: false,
     },
   },
   computedFields,
-}))
+}));
 
 export default makeSource({
-  contentDirPath: "./content",
+  contentDirPath: './content',
   documentTypes: [Post, Portfolio],
   mdx: {
     remarkPlugins: [remarkGfm],
@@ -117,24 +117,24 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: "github-dark",
+          theme: 'github-dark',
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
             // lines to be copy/pasted
             if (node.children.length === 0) {
               node.children = [
                 {
-                  type: "text",
-                  value: " ",
+                  type: 'text',
+                  value: ' ',
                 },
-              ]
+              ];
             }
           },
           onVisitHighlightedLine(node) {
-            node.properties.className.push("line--highlighted")
+            node.properties.className.push('line--highlighted');
           },
           onVisitHighlightedWord(node) {
-            node.properties.className = ["word--highlighted"]
+            node.properties.className = ['word--highlighted'];
           },
         },
       ],
@@ -144,11 +144,11 @@ export default makeSource({
         rehypeAutolinkHeadings,
         {
           properties: {
-            className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
+            className: ['subheading-anchor'],
+            ariaLabel: 'Link to section',
           },
         },
       ],
     ],
   },
-})
+});

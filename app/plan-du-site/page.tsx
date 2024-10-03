@@ -1,34 +1,34 @@
-import Link from "next/link"
-import Layout from "@component/Layout"
-import sitemap from "@graphql-query/sitemap.graphql"
-import { getCanonicalUrl, RouteLink } from "@lib/route"
-import { Sitemap as SitemapType } from "@type/graphql/sitemap"
-import { fetcher } from "@util/index"
+import Link from 'next/link';
+import Layout from '@/components/Layout';
+import sitemap from '@/graphql/sitemap.graphql';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
+import { Sitemap as SitemapType } from '@/types/graphql/sitemap';
+import { fetcher } from '@/utils';
 
-const getSitemap = (): Promise<SitemapType> => fetcher(sitemap)
+const getSitemap = (): Promise<SitemapType> => fetcher(sitemap);
 
 function LegalTitle({ children }: { children: string }) {
   return (
-    <h2 className={"mb-2 mt-6 text-3xl font-bold text-white"}>{children}</h2>
-  )
+    <h2 className={'mb-2 mt-6 text-3xl font-bold text-white'}>{children}</h2>
+  );
 }
 
 export default async function Sitemap() {
-  const data = await getSitemap()
+  const data = await getSitemap();
   const {
     data: { projets, posts, supports },
-  } = data
+  } = data;
 
   return (
-    <Layout title="Plan du site">
-      <div className="container">
-        <div className="flex flex-col justify-between lg:flex-row">
+    <Layout title='Plan du site'>
+      <div className='container'>
+        <div className='flex flex-col justify-between lg:flex-row'>
           <div>
             <LegalTitle>Pages</LegalTitle>
 
-            <ul className="styled-list">
+            <ul className='styled-list'>
               <li>
-                <Link href="/">Accueil</Link>
+                <Link href='/'>Accueil</Link>
               </li>
               <li>
                 <Link href={RouteLink.aboutMe}>A propos de moi</Link>
@@ -39,13 +39,13 @@ export default async function Sitemap() {
             </ul>
 
             <LegalTitle>Prestations</LegalTitle>
-            <ul className="styled-list">
+            <ul className='styled-list'>
               <li>
                 <Link href={RouteLink.prestations}>Prestations</Link>
-                <ul className={"styled-list"}>
+                <ul className={'styled-list'}>
                   <li>
                     <Link href={RouteLink.prestationWeb}>Création de site</Link>
-                    <ul className={"styled-list"}>
+                    <ul className={'styled-list'}>
                       <li>
                         <Link href={RouteLink.prestationWordPress}>
                           WordPress
@@ -65,7 +65,7 @@ export default async function Sitemap() {
                     <Link href={RouteLink.prestationTma}>
                       Maintenance de site
                     </Link>
-                    <ul className={"styled-list"}>
+                    <ul className={'styled-list'}>
                       <li>
                         <Link href={RouteLink.prestationTmaWordPress}>
                           Maintenance WordPress
@@ -90,7 +90,7 @@ export default async function Sitemap() {
 
           <div>
             <LegalTitle>Portfolio</LegalTitle>
-            <ul className="styled-list">
+            <ul className='styled-list'>
               {supports.edges.map(({ node: { title, uri } }) => (
                 <li key={title}>
                   <Link href={uri}>{title}</Link>
@@ -98,7 +98,7 @@ export default async function Sitemap() {
               ))}
             </ul>
 
-            <ul className="styled-list mt-3">
+            <ul className='styled-list mt-3'>
               {projets.edges.map(({ node: { title, uri } }) => (
                 <li key={title}>
                   <Link href={uri}>{title}</Link>
@@ -110,7 +110,7 @@ export default async function Sitemap() {
           <div>
             <LegalTitle>Blog</LegalTitle>
 
-            <ul className="styled-list">
+            <ul className='styled-list'>
               {posts.edges.map(({ node: { title, uri } }) => (
                 <li key={title}>
                   <Link href={uri}>{title}</Link>
@@ -121,12 +121,12 @@ export default async function Sitemap() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const metadata = {
-  title: "Plan du site",
+  title: 'Plan du site',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.sitemap),
   },
-}
+};

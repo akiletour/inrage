@@ -3,41 +3,53 @@ title: Créer un serveur MySQL de réplication (slave) des données existantes
 description: Comment mettre en place une procédure de réplication MySQL en temps réel avec un Master-Slave
 excerpt: Comment organiser son thème WordPress Sage 9 pour créer et gérer des blocs Gutenberg avec Advanced Custom Fields (ACF).
 image: /images/blog/cover-server-mysql-replication.jpg
-date: "2021-03-16"
+date: '2021-03-16'
 authors:
   - akiletour
 ---
 
 <Callout>
-MySQL Master-Slave Replication est une procédure permettant de répliquer en temps réel les données d'un serveur MySQL vers un autre. Nous allons voir ensemble comment mettre cette combinaison en place.
+  MySQL Master-Slave Replication est une procédure permettant de répliquer en
+  temps réel les données d'un serveur MySQL vers un autre. Nous allons voir
+  ensemble comment mettre cette combinaison en place.
 </Callout>
 
-Nous ne sommes pas à l'abri d'un incident sur nos serveurs de production et cela même avec un backup journalier de nos bases de données. 
+Nous ne sommes pas à l'abri d'un incident sur nos serveurs de production et cela même avec un backup journalier de nos bases de données.
 
 Après le tragique incendie qui s'est déclaré dans la nuit du 9 mars sur le site d'OVHCloud à Strasbourg, qui a détruit intégralement un datacenter et une portion d'un autre. Je me suis dit qu'il serait judicieux de faire un tutoriel pour expliquer comment j'ai réussi à surmonter cette crise, et qui pourrait vous permettre d'en faire autant et d'avoir une réplication MySQL de vos données sur deux serveurs en temps réel.
 
 ## Mise en situation
 
-Prenons un exemple concret, nous sommes le 9 mars 2021, il est 01h32 et nous avons un serveur web avec MySQL qui est sauvegardé tous les jours à 3h00 du matin sur un autre serveur (ce qui est très bien ;)). 
+Prenons un exemple concret, nous sommes le 9 mars 2021, il est 01h32 et nous avons un serveur web avec MySQL qui est sauvegardé tous les jours à 3h00 du matin sur un autre serveur (ce qui est très bien ;)).
 
 Soudain, notre serveur commence à suffoquer et sentir le bruler sur les petits fils de son câble d'alimentation. Vous le savez, nous le savons. Un [tragique incendie](https://www.journaldunet.com/web-tech/cloud/1498567-incendie-chez-ovh-de-nombreuses-sauvegardes-irrecuperables/) est en train de se déclarer dans la salle de notre serveur.
 
 <Image
-  src="/images/blog/surchauffe-ovh-serveur-1024x241.jpg"
-  width="1024"
-  height="241"
+  src='/images/blog/surchauffe-ovh-serveur-1024x241.jpg'
+  width='1024'
+  height='241'
   alt="Surchauffe d'un serveur OVH"
 />
 
-<p className="my-8">Notre petit serveur passe en mode Super Saiyan, et tant bien que mal à mettre ses ventilateurs à 4500 RPM pour se refroidir. Mais il est déjà trop tard...</p>
+<p className='my-8'>
+  Notre petit serveur passe en mode Super Saiyan, et tant bien que mal à mettre
+  ses ventilateurs à 4500 RPM pour se refroidir. Mais il est déjà trop tard...
+</p>
 
-<iframe src="https://giphy.com/embed/2UCt7zbmsLoCXybx6t" width="100%" height="100%" className="aspect-video" frameBorder="0" allowFullScreen></iframe>
+<iframe
+  src='https://giphy.com/embed/2UCt7zbmsLoCXybx6t'
+  width='100%'
+  height='100%'
+  className='aspect-video'
+  frameBorder='0'
+  allowFullScreen
+></iframe>
 
 ### La restauration du serveur
 
 De mon côté, après de longues heures d'attente et de scroll sur Twitter pour savoir ce qu'il est en train de se passer. Je me rends compte que notre serveur est perdu à tout jamais #RIP
 
-On prend de l'avance, on achète un nouveau VPS, on réinstalle tout le serveur web et là on réimporte notre sauvegarde de notre base de données (Big Up Bacula ;)) du 8 mars 2021 à 03h12. 
+On prend de l'avance, on achète un nouveau VPS, on réinstalle tout le serveur web et là on réimporte notre sauvegarde de notre base de données (Big Up Bacula ;)) du 8 mars 2021 à 03h12.
 
 WOAH ! 24 heures de delta perdu, de clients perdus, de commandes perdues.
 
@@ -45,13 +57,13 @@ Cela va générer des conflits d'ID dans tous les sens avec nos marketplaces, ca
 
 Comment aurait-t-on pu réduire ce temps ? Je ne vais pas faire un backup de mes bases de données toutes les 30 minutes, non ?
 
-Alors oui (on peut), mais non. C'est là que la réplication MySQL est une très bonne pratique pour éviter ce genre de problèmes. 
+Alors oui (on peut), mais non. C'est là que la réplication MySQL est une très bonne pratique pour éviter ce genre de problèmes.
 
 Synchroniser en temps réel un serveur MySQL sur un ou plusieurs serveurs en plus de nos sauvegardes journalières c'est la clé de la sérénité !
 
 ## Comment créer un serveur MySQL de réplication pour notre base de données
 
-Dans ma configuration actuelle, je possède deux serveurs MySQL, un serveur maitre (master) inr-dbm-01 et un serveur secondaire (slave) inr-dbs-01 : 
+Dans ma configuration actuelle, je possède deux serveurs MySQL, un serveur maitre (master) inr-dbm-01 et un serveur secondaire (slave) inr-dbs-01 :
 
 - inr-dbm-01 (master // OVH VPS) avec l'IP : 10.20.30.40
 - inr-dbs-01 (slave // Online VPS) avec l'IP : 50.60.70.80
@@ -80,7 +92,7 @@ server-id = 1
 log_bin = /var/log/mysql/mysql-bin.log
 ```
 
-Cela va permettre à la base de données de recevoir des connexions sur tout le monde (bind-address); il était configuré sur 127.0.0.1 avant. 
+Cela va permettre à la base de données de recevoir des connexions sur tout le monde (bind-address); il était configuré sur 127.0.0.1 avant.
 
 Le server-id devra être unique entre ce serveur et le serveur enfant que l'on regardera un peu plus bas.
 
@@ -164,7 +176,14 @@ scp dump.sql root@50.60.70.80:/tmp/
 
 Vous avez bien mérité un bon café !
 
-<iframe src="https://giphy.com/embed/l2JI4zgwXw5IfyssE" width="100%" height="100%" className="aspect-video mt-3" frameBorder="0" allowFullScreen></iframe>
+<iframe
+  src='https://giphy.com/embed/l2JI4zgwXw5IfyssE'
+  width='100%'
+  height='100%'
+  className='mt-3 aspect-video'
+  frameBorder='0'
+  allowFullScreen
+></iframe>
 
 ## Configuration du serveur secondaire
 
@@ -208,7 +227,7 @@ mysql> START SLAVE;
 
 Pensez à changer les valeurs par les vôtres.
 
-### 4/ Vérification du fonctionnement 
+### 4/ Vérification du fonctionnement
 
 Pour vérifier que tout fonctionne et que votre serveur MySQL secondaire est bien connecté au serveur principal :
 
@@ -272,7 +291,7 @@ Master_SSL_Verify_Server_Cert: No
          Replicate_Rewrite_DB:
                  Channel_Name:
            Master_TLS_Version:
- ```
+```
 
 Vous devez vérifier quelques paramètres pour être sûr que tout fonctionne correctement :
 

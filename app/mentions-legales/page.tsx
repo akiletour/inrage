@@ -1,23 +1,23 @@
-import Layout from "@component/Layout"
-import { getCanonicalUrl, RouteLink } from "@lib/route"
+import Layout from '@/components/Layout';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
-  title: "Mentions légales - inRage",
+  title: 'Mentions légales - inRage',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.legals),
   },
-}
+};
 
 const LegalTitle = ({ children }: { children: string }) => {
   return (
-    <h2 className={"mb-2 mt-6 text-3xl font-bold text-white"}>{children}</h2>
-  )
-}
+    <h2 className={'mb-2 mt-6 text-3xl font-bold text-white'}>{children}</h2>
+  );
+};
 
 export default function Legals() {
   return (
-    <Layout title="Mentions légales">
-      <div className="container">
+    <Layout title='Mentions légales'>
+      <div className='container'>
         <LegalTitle>Propriétaire du site</LegalTitle>
         <p>
           Pascal GAULT
@@ -79,21 +79,21 @@ export default function Legals() {
         <LegalTitle>Hébergement</LegalTitle>
 
         <p>
-          Le site <span className="underline">inrage.fr</span> est hébergé sur
+          Le site <span className='underline'>inrage.fr</span> est hébergé sur
           l&apos;infrastructure de Vercel Inc.
         </p>
         <p>San Francisco Bay Area, West Coast, Western US</p>
         <p>
           <a
-            className="text-orange"
-            href="https://vercel.com/"
-            target={"_blank"}
-            rel="noreferrer"
+            className='text-orange'
+            href='https://vercel.com/'
+            target={'_blank'}
+            rel='noreferrer'
           >
             www.vercel.com
           </a>
         </p>
       </div>
     </Layout>
-  )
+  );
 }

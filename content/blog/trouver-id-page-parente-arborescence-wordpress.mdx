@@ -3,12 +3,16 @@ title: Trouver l'ID de la page WordPress la plus haute dans l'arborescence
 description: Nous allons voir comment trouver l'ID de la page parente la plus haute dans l'arborescence sur WordPress permettant de styliser avec une classe spécifique.
 excerpt: Dans le cadre d'un projet sur WordPress, mon client avait l'idée de faire un site qui se compose en deux arborescences bien distinctes
 image: /images/blog/wordpress-id-parent.webp
-date: "2019-04-15"
+date: '2019-04-15'
 authors:
   - akiletour
 ---
 
-<Callout>Dans le cadre d'un projet sur [WordPress](/services/wordpress/), mon client avait l'idée de faire un site qui se compose en deux arborescences bien distinctes</Callout>
+<Callout>
+  Dans le cadre d'un projet sur [WordPress](/services/wordpress/), mon client
+  avait l'idée de faire un site qui se compose en deux arborescences bien
+  distinctes
+</Callout>
 
 - Professionnel
 - Particulier
@@ -38,7 +42,6 @@ function isPro() {
 ```
 
 Une autre alternative est de vérifier le slug de la page au lieu de l’ID et d’ajouter la classe au `<body>` pour y appliquer un style particulier.
-
 
 ```php
 function isPro() {

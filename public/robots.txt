@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.inrage.fr
+
+# Sitemaps
+Sitemap: https://www.inrage.fr/sitemap.xml

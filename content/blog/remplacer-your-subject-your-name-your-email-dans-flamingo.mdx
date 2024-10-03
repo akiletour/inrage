@@ -3,12 +3,17 @@ title: Remplacer [your-subject] [your-name] [your-email] dans Flamingo
 description: Modifier les variables de Flamingo your-name, your-email et your-subject si vous utilisez vos propres variables dans vos formulaires Contact Form 7.i vous utilisez Flamingo pour sauvegarder les e-mails envoyés par vos formulaires Contact Form, il se peut que vous n'utilisiez pas les champs par défaut [your-subject], [your-name] et [your-email]. Nous allons voir comment override ces champs pour utiliser les vôtres.
 excerpt: Si vous utilisez Flamingo pour sauvegarder les e-mails envoyés par vos formulaires Contact Form, il se peut que vous n'utilisiez pas les champs par défaut [your-subject], [your-name] et [your-email]. Nous allons voir comment override ces champs pour utiliser les vôtres.
 image: /images/blog/remplacer-your-subject-flamingo.webp
-date: "2019-10-02"
+date: '2019-10-02'
 authors:
   - akiletour
 ---
 
-<Callout>Si vous utilisez Flamingo pour sauvegarder les e-mails envoyés par vos formulaires Contact Form, il se peut que vous n'utilisiez pas les champs par défaut [your-subject], [your-name] et [your-email]. Nous allons voir comment override ces champs pour utiliser les vôtres.</Callout>
+<Callout>
+  Si vous utilisez Flamingo pour sauvegarder les e-mails envoyés par vos
+  formulaires Contact Form, il se peut que vous n'utilisiez pas les champs par
+  défaut [your-subject], [your-name] et [your-email]. Nous allons voir comment
+  override ces champs pour utiliser les vôtres.
+</Callout>
 
 Chez [inRage](/contact), nous utilisons par exemple les champs ci-dessous pour remplir nos différents formulaires :
 
@@ -22,10 +27,10 @@ Si l’on se rend dans "Messages entrants" de [Flamingo](https://fr.wordpress.or
 Étant donné que Flamingo ne peut pas savoir quel champ va où, il va utiliser les champs fournis par défaut dans [Contact Form](https://fr.wordpress.org/plugins/contact-form-7/).
 
 <Image
-  src="/images/blog/Messages_entrants_Flamingo_‹_Pascal_GAULT_—_WordPress-1024x797-1.webp"
-  width="1024"
-  height="797"
-  alt="Messages entrants Flamingo ‹ Pascal GAULT — WordPress"
+  src='/images/blog/Messages_entrants_Flamingo_‹_Pascal_GAULT_—_WordPress-1024x797-1.webp'
+  width='1024'
+  height='797'
+  alt='Messages entrants Flamingo ‹ Pascal GAULT — WordPress'
 />
 
 ## Comment définir l’email, le nom et le sujet dans Flamingo
@@ -33,10 +38,10 @@ Si l’on se rend dans "Messages entrants" de [Flamingo](https://fr.wordpress.or
 L’idée va être de définir des réglages supplémentaires au niveau de la création de notre formulaire.
 
 <Image
-  src="/images/blog/Ajouter_un_formulaire_de_contact_‹_Pascal_GAULT_—_WordPress-1024x604-1.webp"
-  width="1024"
-  height="604"
-  alt="Ajouter un formulaire de contact ‹ Pascal GAULT — WordPress"
+  src='/images/blog/Ajouter_un_formulaire_de_contact_‹_Pascal_GAULT_—_WordPress-1024x604-1.webp'
+  width='1024'
+  height='604'
+  alt='Ajouter un formulaire de contact ‹ Pascal GAULT — WordPress'
 />
 
 Pour définir ces variables, on va se rendre dans l’onglet “Réglages additionnels” au niveau de notre formulaire Contact Form.
@@ -52,13 +57,12 @@ flamingo_subject : "[subject]
 Vos prochains messages seront maintenant au bon format et seront affichés correctement dans Flamingo.
 
 <Image
-  src="/images/blog/Messages_entrants_Flamingo_‹_Pascal_GAULT_—_WordPress-1-1024x160-1.webp"
-  width="1024"
-  height="160"
-  alt="Messages entrants Flamingo ‹ Pascal GAULT — WordPress"
+  src='/images/blog/Messages_entrants_Flamingo_‹_Pascal_GAULT_—_WordPress-1-1024x160-1.webp'
+  width='1024'
+  height='160'
+  alt='Messages entrants Flamingo ‹ Pascal GAULT — WordPress'
 />
 
 Je vous invite à regarder la [documentation officiel de Contact Form](https://contactform7.com/save-submitted-messages-with-flamingo/) pour savoir comment fonctionne les variables au niveau de Flamingo.
 
 Nous pouvons pour le moment modifier que les 3 variables, mais par la suite il y en aura surement plus.
-

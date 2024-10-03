@@ -3,12 +3,16 @@ title: Générer une URL personnalisée WordPress avec Bedrock et Sage
 description: Découvrez comment générer une URL personnalisée sur WordPress depuis notre thème en utilisant Bedrock et Sage développé par Sage grâce aux variables d'env.
 excerpt: On va voir comment créer une URL WordPress personnalisée quand on utilise le moteur du thème Sage développé par Roots pour les besoins de notre thème et de son intégration.
 image: /images/blog/bedrock-sage-url-personnalise.webp
-date: "2020-01-20"
+date: '2020-01-20'
 authors:
   - akiletour
 ---
 
-<Callout>On va voir comment créer une URL WordPress personnalisée quand on utilise le moteur du thème Sage développé par Roots pour les besoins de notre thème et de son intégration.</Callout>
+<Callout>
+  On va voir comment créer une URL WordPress personnalisée quand on utilise le
+  moteur du thème Sage développé par Roots pour les besoins de notre thème et de
+  son intégration.
+</Callout>
 
 Je suis constamment en train de créer une page dans le backoffice de [WordPress](/portfolio/vitrine) pour ajouter une entrée vers ma page ui.blade.php me permettant de voir tous les composants CSS, les animations etc...
 
@@ -17,10 +21,10 @@ Il m'arrive fréquemment de laisser cette page quand je pousse le projet en pré
 [Bedrock](https://roots.io/bedrock/) possède une formidable gestion des variables d'environnement. Je me suis donc basé sur ça pour générer une URL WordPress personnalisée pour afficher ma page ui.blade.php uniquement en local.
 
 <Image
-  src="/images/blog/planche-ui-wordpress-1013x1024-1.webp"
-  width="1013"
-  height="1024"
-  alt="Planche UI WordPress"
+  src='/images/blog/planche-ui-wordpress-1013x1024-1.webp'
+  width='1013'
+  height='1024'
+  alt='Planche UI WordPress'
 />
 
 Le code que vous trouverez ci-dessous est très rapide à ajouter sur chacun des projets qui utilisent Bedrock et [Sage](https://roots.io/sage/).
@@ -65,4 +69,3 @@ Donc si vous n’êtes pas encore sur Bedrock, ça peut vous aider 😉 Je repre
 
 Désormais, quand on est sur la version local du projet. Si on accède à http://127.0.0.1:8000/ui on voit bien la page.
 Par contre, si on y accède depuis la version en préproduction ou production. On se voit rediriger vers la page 404.
-

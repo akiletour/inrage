@@ -1,50 +1,50 @@
-import { ReactNode } from "react"
-import Image, { StaticImageData } from "next/image"
+import { ReactNode } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
 type Props = {
-  image: string | StaticImageData
-  title?: string | string[]
-  titlePosition?: "left" | "right"
-  children: ReactNode
-  position?: "right" | "left"
-  duoTone?: boolean
+  image: string | StaticImageData;
+  title?: string | string[];
+  titlePosition?: 'left' | 'right';
+  children: ReactNode;
+  position?: 'right' | 'left';
+  duoTone?: boolean;
   imageProps?: {
-    width?: number
-    height?: number
-    layout?: "fill" | "responsive"
-  }
-}
+    width?: number;
+    height?: number;
+    layout?: 'fill' | 'responsive';
+  };
+};
 
 export default function TextImage({
   image,
-  title = "",
+  title = '',
   children,
   imageProps = {},
-  position = "left",
+  position = 'left',
   titlePosition,
   duoTone = false,
 }: Props) {
   return (
     <div
       className={`${
-        position === "left"
-          ? "md:flex-row"
-          : "md:flex-row-reverse md:text-right"
+        position === 'left'
+          ? 'md:flex-row'
+          : 'md:flex-row-reverse md:text-right'
       } mt-6 flex flex-col md:items-center`}
     >
-      <div className="md:w-2/5">
+      <div className='md:w-2/5'>
         <Image
           src={image}
-          alt={Array.isArray(title) ? title.join(" ") : title}
+          alt={Array.isArray(title) ? title.join(' ') : title}
           {...imageProps}
           style={{
-            maxWidth: "100%",
-            height: "auto",
+            maxWidth: '100%',
+            height: 'auto',
           }}
         />
       </div>
       <div
-        className={`md:w-3/5 ${position === "left" ? "md:pl-4" : "md:pr-4"}`}
+        className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}
       >
         {title && (
           <h3
@@ -56,7 +56,7 @@ export default function TextImage({
               ? title.map((ttl, index) => (
                   <span
                     className={`block ${
-                      index > 0 && duoTone && "text-xl font-light"
+                      index > 0 && duoTone && 'text-xl font-light'
                     }`}
                     key={ttl}
                   >
@@ -69,5 +69,5 @@ export default function TextImage({
         {children}
       </div>
     </div>
-  )
+  );
 }

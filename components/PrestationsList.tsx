@@ -1,18 +1,18 @@
-import ImagePrestationBuildWebsite from "@image/prestations/creation-site-internet.png"
-import ImagePrestationHosting from "@image/prestations/hebergement-optimise-rapide.png"
-import ImagePrestationTma from "@image/prestations/infogerance-tma-maintenance.png"
-import { RouteLink } from "@lib/route"
+import ImagePrestationBuildWebsite from '@image/prestations/creation-site-internet.png';
+import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png';
+import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png';
+import { RouteLink } from '@/libs/route';
 
-import PrestationItem from "./items/PrestationItem"
+import PrestationItem from './items/PrestationItem';
 
 export default function PrestationsList() {
   return (
-    <div className="grid gap-6 md:grid-cols-3 md:gap-3 lg:gap-6">
+    <div className='grid gap-6 md:grid-cols-3 md:gap-3 lg:gap-6'>
       <PrestationItem
         image={ImagePrestationBuildWebsite}
-        title={["Conception / Refonte", "de sites Internet"]}
+        title={['Conception / Refonte', 'de sites Internet']}
         link={RouteLink.prestationWeb}
-        linkText="Découvrir mes prestations"
+        linkText='Découvrir mes prestations'
       >
         Sites vitrines, associatifs, e-commerce ou dédiés. Je vous accompagne
         dès la genèse de votre projet pour vous proposer des solutions
@@ -23,9 +23,9 @@ export default function PrestationsList() {
 
       <PrestationItem
         image={ImagePrestationTma}
-        title={["Maintenance &", "Infogérance"]}
+        title={['Maintenance &', 'Infogérance']}
         link={RouteLink.prestationTma}
-        linkText="Mes offres de maintenance"
+        linkText='Mes offres de maintenance'
       >
         La maintenance d’un site internet s’avère complexe lorsqu’on ne dispose
         pas du bagage technique nécessaire voire le temps de s’en occuper. Pour
@@ -36,9 +36,9 @@ export default function PrestationsList() {
 
       <PrestationItem
         image={ImagePrestationHosting}
-        title={["Hébergement optimisé &", "ultra rapide"]}
+        title={['Hébergement optimisé &', 'ultra rapide']}
         link={RouteLink.contact}
-        linkText="Me contacter"
+        linkText='Me contacter'
       >
         Lorsque vous souhaitez mettre en ligne un site, il est nécessaire de
         choisir une offre d’hébergement parmis une foule d’offres et de
@@ -48,5 +48,5 @@ export default function PrestationsList() {
         votre site web.
       </PrestationItem>
     </div>
-  )
+  );
 }

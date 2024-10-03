@@ -1,58 +1,58 @@
-import Character from "@component/Character"
-import Diagonal from "@component/Diagonal"
-import MoreIcon from "@component/icons/MoreIcon"
-import ExperienceItem from "@component/items/ExperienceItem"
-import Layout from "@component/Layout"
-import Link from "@component/NoScrollLink"
-import SectionTitle from "@component/SectionTitle"
-import Socials from "@component/Socials"
-import { Button } from "@component/ui/button"
-import ExpCOS from "@image/experiences/comonscreen.png"
-import ExpKamelab from "@image/experiences/kamelab.png"
-import ExpMegami from "@image/experiences/megami-productions.png"
-import ExpMoonscoop from "@image/experiences/moonscoop.png"
-import { getCanonicalUrl, RouteLink } from "@lib/route"
+import Character from '@/components/Character';
+import Diagonal from '@/components/Diagonal';
+import MoreIcon from '@/components/icons/MoreIcon';
+import ExperienceItem from '@/components/items/ExperienceItem';
+import Layout from '@/components/Layout';
+import Link from '@/components/NoScrollLink';
+import SectionTitle from '@/components/SectionTitle';
+import Socials from '@/components/Socials';
+import { Button } from '@/components/ui/button';
+import ExpCOS from '@image/experiences/comonscreen.png';
+import ExpKamelab from '@image/experiences/kamelab.png';
+import ExpMegami from '@image/experiences/megami-productions.png';
+import ExpMoonscoop from '@image/experiences/moonscoop.png';
+import { getCanonicalUrl, RouteLink } from '@/libs/route';
 
 export const metadata = {
-  title: "Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle",
+  title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
   description:
     "15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.aboutMe),
   },
-}
+};
 
 export default function AboutMe() {
   return (
-    <Layout title="À propos de moi">
-      <div className="container relative z-10 -mb-20 mt-4">
-        <h2 className="text-3xl text-white">
-          <span className="font-bold">
+    <Layout title='À propos de moi'>
+      <div className='container relative z-10 -mb-20 mt-4'>
+        <h2 className='text-3xl text-white'>
+          <span className='font-bold'>
             PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR
           </span>
           <br />
-          <span className="font-light">FREELANCE BASÉ À LA ROCHELLE</span>
+          <span className='font-light'>FREELANCE BASÉ À LA ROCHELLE</span>
         </h2>
 
-        <p className="mt-2 text-xl text-gray-light">
+        <p className='mt-2 text-xl text-gray-light'>
           Développeur Web depuis 15 ans dans les agences web à La Rochelle.
           Expert dans le développement et spécialisé sur Symfony, WordPress et
           Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web
           Freelance à La Rochelle.
         </p>
-        <p className="mt-1">
+        <p className='mt-1'>
           Une de mes plus importantes et gratifiantes décisions pour ma carrière
           que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les
           différents aspects de la conception, de la stratégie, de la gestion et
           de la planification jusqu’à la production complète de ce projet.
         </p>
-        <p className="mt-1">
+        <p className='mt-1'>
           Je suis aussi devenu plus intéressé par l’aspect commercial des
           projets, de plus en plus conscient de l’importance d’intégrer les
           décisions commerciales responsables de l’atteinte des objectifs
           d’affaires.
         </p>
-        <p className="mb-3 mt-1">
+        <p className='mb-3 mt-1'>
           Un projet, des questions ? N&apos;hésitez pas à me contacter pour en
           discuter !
         </p>
@@ -62,74 +62,74 @@ export default function AboutMe() {
         </Button>
       </div>
 
-      <Diagonal bgClass="fill-gray-darker" bgCorner="fill-gray-dark" />
+      <Diagonal bgClass='fill-gray-darker' bgCorner='fill-gray-dark' />
 
-      <div className="bg-gray-darker">
-        <div className="container lg:-mb-10">
+      <div className='bg-gray-darker'>
+        <div className='container lg:-mb-10'>
           <SectionTitle
             content="La liste de mes expériences professionnelles que j'ai acquise au fil de mes années de Développeur en tant que salarié et indépendant."
-            title="Expériences"
+            title='Expériences'
           />
 
-          <div className="flex flex-col space-y-6 pb-10 pt-6">
+          <div className='flex flex-col space-y-6 pb-10 pt-6'>
             <ExperienceItem
               logo={ExpMoonscoop}
-              title="Développeur Joomla"
-              company="Moonscoop Digital Media, La Rochelle, France"
-              year="2008 - 4 ans"
+              title='Développeur Joomla'
+              company='Moonscoop Digital Media, La Rochelle, France'
+              year='2008 - 4 ans'
               excerpt="Membre d'une équipe de 3 développeurs frontend et backend. Développement de site client basé principalement sur le CMS Joomla et PHP."
             />
 
             <ExperienceItem
               logo={ExpMegami}
-              title="Développeur Joomla, WordPress et administrateur système"
-              company="Megami Production, La Rochelle, France"
-              year="2012 - 7 ans"
+              title='Développeur Joomla, WordPress et administrateur système'
+              company='Megami Production, La Rochelle, France'
+              year='2012 - 7 ans'
               excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
             />
 
             <ExperienceItem
               logo={ExpCOS}
-              title="Développeur Symfony, WordPress et Prestashop"
+              title='Développeur Symfony, WordPress et Prestashop'
               company="Com' On Screen, Paris, France"
-              year="2012 - 7 ans"
+              year='2012 - 7 ans'
               excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
             />
 
             <ExperienceItem
               logo={ExpKamelab}
-              title="Développeur Symfony, WordPress, Prestashop et DevOps"
-              company="Kamélab, La Rochelle, France"
-              year="Depuis 2018"
-              excerpt="Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et notre graphiste Romain Ouvrard."
+              title='Développeur Symfony, WordPress, Prestashop et DevOps'
+              company='Kamélab, La Rochelle, France'
+              year='Depuis 2018'
+              excerpt='Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et notre graphiste Romain Ouvrard.'
             />
           </div>
         </div>
 
         <Diagonal
-          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
+          className='-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45'
+          bgClass='fill-gray-dark'
+          bgCorner='fill-orange'
           cta={{
             icon: <MoreIcon />,
-            title: ["Voir tous", "les projets"],
+            title: ['Voir tous', 'les projets'],
             href: RouteLink.portfolio,
           }}
         />
       </div>
 
-      <div className="container mt-4 md:mt-0">
+      <div className='container mt-4 md:mt-0'>
         <SectionTitle
           content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serais ravis de vous répondre."
-          title="En savoir plus"
+          title='En savoir plus'
         />
 
-        <div className="mt-3 flex items-center md:mt-10">
-          <div className="hidden md:block">
+        <div className='mt-3 flex items-center md:mt-10'>
+          <div className='hidden md:block'>
             <Character />
           </div>
-          <div className="md:pl-4">
-            <h3 className="mb-1 text-3xl font-medium text-white">
+          <div className='md:pl-4'>
+            <h3 className='mb-1 text-3xl font-medium text-white'>
               Pascal GAULT
             </h3>
             <p>
@@ -140,12 +140,12 @@ export default function AboutMe() {
               numérique et en faire mon métier sur La Rochelle.
             </p>
             <p></p>
-            <p className="mt-2">
+            <p className='mt-2'>
               L’art et la technologie ont toujours été deux inspirations de ma
               vie courante. Je viens d’un milieu artistique, qui a fusionné avec
               la technologie pour finir par évoluer dans le développement web.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               J&apos;ai passé plus de la moitié de ma vie à être guidé par la
               passion du développement. Cela semble un peu bizarre non ?
               C&apos;est un vaste monde où tout va vite, des nouvelles
@@ -154,17 +154,17 @@ export default function AboutMe() {
               résoudre des problèmes de mon quotidien.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Je vis actuellement dans une petite ville proche de La Rochelle,
               dans une super maison aux côtés de Christelle, ma femme et de
               notre petite princesse Octavia ♥.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               Je continue à travailler et apprendre tous les jours, trouver de
               nouvelles technologies pour faire évoluer cette passion; et
               pouvoir appliquer cela tous les jours dans mon travail.
             </p>
-            <h3 className="mb-1 mt-4 text-3xl font-medium text-white">
+            <h3 className='mb-1 mt-4 text-3xl font-medium text-white'>
               Ce site
             </h3>
             <p>
@@ -174,26 +174,26 @@ export default function AboutMe() {
               et parfois même faire des erreurs. Tout pour un seul objectif,
               continuer d’apprendre.
             </p>
-            <p className="mt-2">
+            <p className='mt-2'>
               J’espère que les gens qui visiteront mon portfolio aimeront autant
               que j’ai apprécié de le développer. En espérant qu’ils trouveront
               de l’inspiration et pourquoi pas, nous permettre de travailler
               ensemble.
             </p>
 
-            <p className="mt-2">
+            <p className='mt-2'>
               Ce site est actuellement développé en ReactJS avec le fomidable
               framework NextJS. Si vous voulez en savoir plus sur sa conception,
-              le code source est{" "}
+              le code source est{' '}
               <a
-                className="text-orange underline"
-                href="https://github.com/akiletour/inrage"
+                className='text-orange underline'
+                href='https://github.com/akiletour/inrage'
               >
                 disponible sur GitHub
               </a>
               .
             </p>
-            <h3 className="mb-1 mt-4 text-3xl font-medium text-white">
+            <h3 className='mb-1 mt-4 text-3xl font-medium text-white'>
               Mes réseaux sociaux
             </h3>
             <Socials />
@@ -201,5 +201,5 @@ export default function AboutMe() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }

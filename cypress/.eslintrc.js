@@ -5,11 +5,11 @@ module.exports = {
         cy: true,
         Cypress: true,
       },
-      files: ["**/*.ts", "**/*.tsx"],
-      parser: "@typescript-eslint/parser",
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@/typesscript-eslint/parser',
       parserOptions: {
-        project: ["./tsconfig.json"], // Specify it only for TypeScript files
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
       },
     },
   ],
-}
+};

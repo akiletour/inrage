@@ -1,78 +1,78 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, name, content, phone } = await req.json()
+    const { email, name, content, phone } = await req.json();
 
     if (!email || !name || !content || !phone) {
-      throw new Error("Missing parameters")
+      throw new Error('Missing parameters');
     }
 
     if (!process.env.SLACK_WEBHOOK_URL) {
       return new NextResponse(
-        JSON.stringify({ message: "Slack webhook URL is not defined" }),
+        JSON.stringify({ message: 'Slack webhook URL is not defined' }),
         {
           status: 500,
         }
-      )
+      );
     }
 
     fetch(process.env.SLACK_WEBHOOK_URL as string, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         blocks: [
           {
-            type: "header",
+            type: 'header',
             text: {
-              type: "plain_text",
-              text: "Demande de contact",
+              type: 'plain_text',
+              text: 'Demande de contact',
             },
           },
           {
-            type: "section",
+            type: 'section',
             text: {
-              type: "plain_text",
+              type: 'plain_text',
               text: content,
               emoji: true,
             },
           },
           {
-            type: "divider",
+            type: 'divider',
           },
           {
-            type: "context",
+            type: 'context',
             elements: [
               {
-                type: "mrkdwn",
+                type: 'mrkdwn',
                 text: `*Identité* : ${name}`,
               },
               {
-                type: "mrkdwn",
+                type: 'mrkdwn',
                 text: `*E-mail* : ${email}`,
               },
               {
-                type: "mrkdwn",
+                type: 'mrkdwn',
                 text: `*Téléphone* : ${phone}`,
               },
             ],
           },
           {
-            type: "context",
+            type: 'context',
             elements: [
               {
-                type: "mrkdwn",
-                text: `*Depuis* : ${req.headers.get("referer")}`,
+                type: 'mrkdwn',
+                text: `*Depuis* : ${req.headers.get('referer')}`,
               },
             ],
           },
         ],
       }),
-    })
+    });
 
-    return NextResponse.json({ success: true, message: "Message sent" })
+    return NextResponse.json({ success: true, message: 'Message sent' });
   } catch (error) {
-    return new NextResponse(JSON.stringify({ message: "Bad request" }), {
+    return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
       status: 400,
-    })
+    });
   }
 }
