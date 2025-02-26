@@ -1,10 +1,10 @@
 query projects {
   projets(first: 4) {
     edges {
-      node { 
+      node {
         id
         title
-        slug 
+        slug
         status
         featuredImage {
           node {

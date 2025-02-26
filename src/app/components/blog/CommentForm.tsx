@@ -1,33 +1,33 @@
-'use client';
+'use client'
 
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-import Button from '@component/Button';
-import { useFormState } from '@hook/useFormState';
+import Button from '@component/Button'
+import { useFormState } from '@hook/useFormState'
 
 type FormData = {
-  name: string;
-  email: string;
-  content: string;
-};
+  name: string
+  email: string
+  content: string
+}
 
 type Props = {
-  postId: number;
-  parent?: number;
-  parentAuthor?: string;
-};
+  postId: number
+  parent?: number
+  parentAuthor?: string
+}
 
 export default function CommentForm({ postId, parent, parentAuthor }: Props) {
-  const { state, submit, success, error } = useFormState();
+  const { state, submit, success, error } = useFormState()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => {
-    submit();
+    submit()
     fetch('/api/post-comment', {
       method: 'POST',
       body: JSON.stringify({ ...data, postId, parent }),
@@ -40,19 +40,19 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
         if (r.status !== 200) {
           throw new Error(
             'Désolé, une erreur est survenue lors de la soumission du formulaire'
-          );
+          )
         }
 
-        return r.json();
+        return r.json()
       })
       .then(() => {
-        success();
-        reset();
+        success()
+        reset()
       })
       .catch((err: any) => {
-        error(err.message);
-      });
-  };
+        error(err.message)
+      })
+  }
   return (
     <div className="mt-8">
       {parent && (
@@ -126,5 +126,5 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
         </div>
       </form>
     </div>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from 'react'
 
-import Link, { LinkProps } from 'next/link';
+import Link, { LinkProps } from 'next/link'
 
 interface IProps extends LinkProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 function NoScrollLink({ children, href, passHref }: IProps): JSX.Element {
@@ -11,7 +11,7 @@ function NoScrollLink({ children, href, passHref }: IProps): JSX.Element {
     <Link href={href} passHref={passHref} scroll={false}>
       {children}
     </Link>
-  );
+  )
 }
 
-export default NoScrollLink;
+export default NoScrollLink

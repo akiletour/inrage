@@ -1,6 +1,6 @@
 type Props = {
-  message: string;
-};
+  message: string
+}
 export default function Quote({ message }: Props) {
   return (
     <div className="lg:px-18 text-center italic text-2xl md:text-4xl text-white font-light md:font-thin">
@@ -16,5 +16,5 @@ export default function Quote({ message }: Props) {
         <div className="relative z-10">{message}</div>
       </div>
     </div>
-  );
+  )
 }

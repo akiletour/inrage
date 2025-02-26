@@ -1,16 +1,16 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TableHeader from '@component/tma/TableHeader';
-import TableLine from '@component/tma/TableLine';
-import BgTma from '@image/bg-tma.jpeg';
-import LogoGrey from '@image/logo-grey-inline-white.png';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
-import { EntriesType } from '@type/graphql/portfolio';
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import TableHeader from '@component/tma/TableHeader'
+import TableLine from '@component/tma/TableLine'
+import BgTma from '@image/bg-tma.jpeg'
+import LogoGrey from '@image/logo-grey-inline-white.png'
+import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { EntriesType } from '@type/graphql/portfolio'
 
 export const metadata = {
   title:
@@ -20,7 +20,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },
-};
+}
 
 const entries: EntriesType = [
   {
@@ -85,7 +85,7 @@ const entries: EntriesType = [
     excerpt: "Durée de l'engagement de votre contrat de maintenance inRage.",
     values: ['12 mois', '12 mois'],
   },
-];
+]
 
 export default function TmaPrestashop() {
   return (
@@ -187,5 +187,5 @@ export default function TmaPrestashop() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

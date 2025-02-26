@@ -1,16 +1,16 @@
-import Character from '@component/Character';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExperienceItem from '@component/items/ExperienceItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import Socials from '@component/Socials';
-import ExpCOS from '@image/experiences/comonscreen.png';
-import ExpKamelab from '@image/experiences/kamelab.png';
-import ExpMegami from '@image/experiences/megami-productions.png';
-import ExpMoonscoop from '@image/experiences/moonscoop.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Character from '@component/Character'
+import Diagonal from '@component/Diagonal'
+import MoreIcon from '@component/icons/MoreIcon'
+import ExperienceItem from '@component/items/ExperienceItem'
+import Layout from '@component/Layout'
+import Link from '@component/NoScrollLink'
+import SectionTitle from '@component/SectionTitle'
+import Socials from '@component/Socials'
+import ExpCOS from '@image/experiences/comonscreen.png'
+import ExpKamelab from '@image/experiences/kamelab.png'
+import ExpMegami from '@image/experiences/megami-productions.png'
+import ExpMoonscoop from '@image/experiences/moonscoop.png'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
 
 export const metadata = {
   title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
@@ -19,7 +19,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.aboutMe),
   },
-};
+}
 
 export default function AboutMe() {
   return (
@@ -200,5 +200,5 @@ export default function AboutMe() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,45 +1,45 @@
-import Image from 'next/image';
-import sanitize from 'sanitize-html';
+import Image from 'next/image'
+import sanitize from 'sanitize-html'
 
-import PostBody from '@component/blog/PostBody';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql';
-import SingleProjectData from '@graphql-query/single-project.graphql';
+import PostBody from '@component/blog/PostBody'
+import ProjectItem from '@component/items/ProjectItem'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql'
+import SingleProjectData from '@graphql-query/single-project.graphql'
 import {
   getCanonicalUrl,
   replaceBackendUrlContent,
   RouteLink,
-} from '@lib/route';
-import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio';
-import { fetcher } from '@util/index';
+} from '@lib/route'
+import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio'
+import { fetcher } from '@util/index'
 
 type Props = {
   params: {
-    project: string;
-  };
-};
+    project: string
+  }
+}
 
 const getAllProjectsSlugs = (): Promise<ProjectsSlugs> =>
-  fetcher(allProjectsSlugs);
+  fetcher(allProjectsSlugs)
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
-  const { data } = await getAllProjectsSlugs();
+  const { data } = await getAllProjectsSlugs()
 
   return data.projets.edges.map(({ node }) => ({
     slug: node.supports.edges[0]?.node.slug,
     project: node.slug,
-  }));
+  }))
 }
 
 const getSingleProject = (slug: string): Promise<SingleProject> =>
-  fetcher(SingleProjectData, { id: slug });
+  fetcher(SingleProjectData, { id: slug })
 
 export async function generateMetadata({ params }: Props) {
-  const { data } = await getSingleProject(params.project);
+  const { data } = await getSingleProject(params.project)
   return {
     title: `${data.projet.title} - Portfolio`,
     description: data.projet.detail.excerpt,
@@ -48,13 +48,13 @@ export async function generateMetadata({ params }: Props) {
         `${RouteLink.portfolio}/${data.projet.supports.edges[0]?.node.slug}/${data.projet.slug}`
       ),
     },
-  };
+  }
 }
 
 export default async function Page({ params }: Props) {
   const {
     data: { projet: data, projets: relatedRawProjects },
-  } = await getSingleProject(params.project);
+  } = await getSingleProject(params.project)
 
   const relatedProjects = relatedRawProjects.edges
     .filter((r) => {
@@ -62,12 +62,12 @@ export default async function Page({ params }: Props) {
         return (
           r.node.supports.edges[0].node.slug ===
             data.supports.edges[0].node.slug && data.slug !== r.node.slug
-        );
+        )
       }
-      return false;
+      return false
     })
     .sort(() => 0.5 - Math.random())
-    .slice(0, 4);
+    .slice(0, 4)
 
   return (
     <Layout
@@ -186,5 +186,5 @@ export default async function Page({ params }: Props) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import ArticleItem from '@component/items/ArticleItem';
-import Layout from '@component/Layout';
-import posts from '@graphql-query/all-blog-posts.graphql';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { ArticleList, List } from '@type/graphql';
-import { fetcher } from '@util/index';
+import ArticleItem from '@component/items/ArticleItem'
+import Layout from '@component/Layout'
+import posts from '@graphql-query/all-blog-posts.graphql'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { ArticleList, List } from '@type/graphql'
+import { fetcher } from '@util/index'
 
 export const metadata = {
   title: 'Liste des articles de développement - inRage',
@@ -12,12 +12,12 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.blog),
   },
-};
+}
 
-const allPosts = (): Promise<List<ArticleList>> => fetcher(posts);
+const allPosts = (): Promise<List<ArticleList>> => fetcher(posts)
 
 export default async function BlogList() {
-  const { data } = await allPosts();
+  const { data } = await allPosts()
   return (
     <Layout title="Blog sur le développement web">
       <div className="container mb-10">
@@ -37,5 +37,5 @@ export default async function BlogList() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

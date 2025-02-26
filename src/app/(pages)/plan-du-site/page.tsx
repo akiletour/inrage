@@ -1,24 +1,24 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
-import Layout from '@component/Layout';
-import sitemap from '@graphql-query/sitemap.graphql';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
-import { Sitemap as SitemapType } from '@type/graphql/sitemap';
-import { fetcher } from '@util/index';
+import Layout from '@component/Layout'
+import sitemap from '@graphql-query/sitemap.graphql'
+import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { Sitemap as SitemapType } from '@type/graphql/sitemap'
+import { fetcher } from '@util/index'
 
-const getSitemap = (): Promise<SitemapType> => fetcher(sitemap);
+const getSitemap = (): Promise<SitemapType> => fetcher(sitemap)
 
 function LegalTitle({ children }: { children: string }) {
   return (
     <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>
-  );
+  )
 }
 
 export default async function Sitemap() {
-  const data = await getSitemap();
+  const data = await getSitemap()
   const {
     data: { projets, posts, supports },
-  } = data;
+  } = data
 
   return (
     <Layout title="Plan du site">
@@ -122,7 +122,7 @@ export default async function Sitemap() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
 export const metadata = {
@@ -130,4 +130,4 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.sitemap),
   },
-};
+}

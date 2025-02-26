@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from 'react'
 
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
-import Header from '@layout/Header';
+import Header from '@layout/Header'
 
 type Props = {
-  children: ReactNode;
-  title?: string | string[];
-  excerpt?: string | string[];
-  tmaLayout?: boolean;
+  children: ReactNode
+  title?: string | string[]
+  excerpt?: string | string[]
+  tmaLayout?: boolean
   breadcrumbs?: Array<{
-    link: string;
-    title: string;
-  }>;
-};
+    link: string
+    title: string
+  }>
+}
 
 const variants = {
   hidden: { opacity: 0, x: -100, y: 0 },
   enter: { opacity: 1, x: 0, y: 0 },
   exit: { opacity: 0, x: 0, y: -100 },
-};
+}
 
 function Layout({
   children,
@@ -48,7 +48,7 @@ function Layout({
         {children}
       </motion.main>
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

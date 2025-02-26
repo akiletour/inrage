@@ -1,25 +1,25 @@
-import { Suspense } from 'react';
+import { Suspense } from 'react'
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
-import LastArticles from '@component/blog/LastArticles';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import LeafHeartIcon from '@component/icons/LeafHeartIcon';
-import MoreIcon from '@component/icons/MoreIcon';
-import ExpertiseItem from '@component/items/ExpertiseItem';
-import Keypoints from '@component/Keypoints';
-import Layout from '@component/Layout';
-import LastProjects from '@component/portfolio/LastProjects';
-import PrestationsList from '@component/PrestationsList';
-import SectionTitle from '@component/SectionTitle';
-import ExpertiseJoomla from '@image/expertises/joomla.png';
-import ExpertisePrestashop from '@image/expertises/prestashop.png';
-import ExpertiseSymfony from '@image/expertises/symfony.png';
-import ExpertiseWordPress from '@image/expertises/wordpress.png';
-import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import LastArticles from '@component/blog/LastArticles'
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import LeafHeartIcon from '@component/icons/LeafHeartIcon'
+import MoreIcon from '@component/icons/MoreIcon'
+import ExpertiseItem from '@component/items/ExpertiseItem'
+import Keypoints from '@component/Keypoints'
+import Layout from '@component/Layout'
+import LastProjects from '@component/portfolio/LastProjects'
+import PrestationsList from '@component/PrestationsList'
+import SectionTitle from '@component/SectionTitle'
+import ExpertiseJoomla from '@image/expertises/joomla.png'
+import ExpertisePrestashop from '@image/expertises/prestashop.png'
+import ExpertiseSymfony from '@image/expertises/symfony.png'
+import ExpertiseWordPress from '@image/expertises/wordpress.png'
+import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
 
 export const metadata = {
   title:
@@ -29,7 +29,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(),
   },
-};
+}
 
 export default function Homepage() {
   return (
@@ -114,7 +114,6 @@ export default function Homepage() {
           />
 
           <Suspense fallback={<p>Loading</p>}>
-            {/* @ts-expect-error Server Component */}
             <LastProjects />
           </Suspense>
         </div>
@@ -176,7 +175,6 @@ export default function Homepage() {
           />
 
           <Suspense fallback={<p>Loading</p>}>
-            {/* @ts-expect-error Server Component */}
             <LastArticles />
           </Suspense>
         </div>
@@ -204,5 +202,5 @@ export default function Homepage() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, name, content, phone } = await req.json();
+    const { email, name, content, phone } = await req.json()
 
     if (!email || !name || !content || !phone) {
-      throw new Error('Missing parameters');
+      throw new Error('Missing parameters')
     }
 
     if (!process.env.SLACK_WEBHOOK_URL) {
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         {
           status: 500,
         }
-      );
+      )
     }
 
     fetch(process.env.SLACK_WEBHOOK_URL as string, {
@@ -67,12 +67,12 @@ export async function POST(req: NextRequest) {
           },
         ],
       }),
-    });
+    })
 
-    return NextResponse.json({ success: true, message: 'Message sent' });
+    return NextResponse.json({ success: true, message: 'Message sent' })
   } catch (error) {
     return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
       status: 400,
-    });
+    })
   }
 }

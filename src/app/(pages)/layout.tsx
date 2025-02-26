@@ -1,16 +1,15 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
-import Footer from '@layout/Footer';
+import Footer from '@layout/Footer'
 
-import './globals.css';
+import './globals.css'
 
 export async function generateMetadata() {
   return {
     openGraph: {
-      type: 'website',
       locale: 'fr-FR',
       url: 'https://www.inrage.fr',
-      site_name: 'inRage',
+      siteName: 'inRage',
       images: [
         {
           url: 'https://www.inrage.fr/images/screenshot.png',
@@ -26,7 +25,7 @@ export async function generateMetadata() {
       creator: '@akiletour',
       site: '@akiletour',
     },
-  };
+  }
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -58,7 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       'https://www.linkedin.com/in/akiletour/',
       'https://twitter.com/akiletour',
     ],
-  };
+  }
   return (
     <html lang="fr">
       <head />
@@ -71,5 +70,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Footer />
       </body>
     </html>
-  );
+  )
 }

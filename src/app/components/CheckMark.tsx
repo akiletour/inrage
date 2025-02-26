@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
 type Props = {
-  children: ReactNode | string;
-};
+  children: ReactNode | string
+}
 
 export default function CheckMark({ children }: Props) {
   return (
@@ -21,5 +21,5 @@ export default function CheckMark({ children }: Props) {
       </div>
       <div className={'text-base'}>{children}</div>
     </div>
-  );
+  )
 }

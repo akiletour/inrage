@@ -1,31 +1,31 @@
 export type FeaturedImageNode = {
   node: {
-    sourceUrl: string;
-  };
-};
+    sourceUrl: string
+  }
+}
 
 export interface ProjectList {
-  id: string;
-  title: string;
-  slug: string;
-  status: 'publish' | 'draft' | 'private' | 'future';
-  featuredImage: FeaturedImageNode;
+  id: string
+  title: string
+  slug: string
+  status: 'publish' | 'draft' | 'private' | 'future'
+  featuredImage: FeaturedImageNode
   supports: {
     edges: Array<{
       node: {
-        name: string;
-        slug: string;
-      };
-    }>;
-  };
+        name: string
+        slug: string
+      }
+    }>
+  }
 }
 
 export interface ArticleList {
-  title: string;
-  slug: string;
-  date: string;
-  excerpt: string;
-  featuredImage: FeaturedImageNode;
+  title: string
+  slug: string
+  date: string
+  excerpt: string
+  featuredImage: FeaturedImageNode
 }
 
 export interface List<T> {
@@ -33,8 +33,8 @@ export interface List<T> {
     string,
     {
       edges: Array<{
-        node: T;
-      }>;
+        node: T
+      }>
     }
-  >;
+  >
 }

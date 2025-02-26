@@ -1,6 +1,6 @@
-import ContactForm from '@component/ContactForm';
-import Layout from '@component/Layout';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import ContactForm from '@component/ContactForm'
+import Layout from '@component/Layout'
+import { RouteLink, getCanonicalUrl } from '@lib/route'
 
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',
@@ -9,7 +9,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.contact),
   },
-};
+}
 
 export default function Contact() {
   return (
@@ -57,5 +57,5 @@ export default function Contact() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

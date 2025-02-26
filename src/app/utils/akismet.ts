@@ -1,10 +1,10 @@
-import { AkismetClient } from 'akismet-api';
-import { NextRequest } from 'next/server';
+import { AkismetClient } from 'akismet-api'
+import { NextRequest } from 'next/server'
 
 const Client = new AkismetClient({
   key: process.env.AKISMET_API_KEY as string,
   blog: 'https://www.inrage.fr',
-});
+})
 
 export const isAkismetSpam = async (
   request: NextRequest,
@@ -13,8 +13,8 @@ export const isAkismetSpam = async (
   content: string
 ): Promise<boolean> => {
   try {
-    const userAgent = request.headers.get('user-agent') ?? '';
-    const userIp = request.ip || '127.0.0.1';
+    const userAgent = request.headers.get('user-agent') ?? ''
+    const userIp = request.ip || '127.0.0.1'
 
     const isSpam = await Client.checkSpam({
       user_ip: userIp,
@@ -22,14 +22,14 @@ export const isAkismetSpam = async (
       comment_author: author,
       comment_author_email: email,
       comment_content: content,
-    });
+    })
 
     if (isSpam) {
-      return true;
+      return true
     }
 
-    return false;
+    return false
   } catch (error) {
-    return true;
+    return true
   }
-};
+}

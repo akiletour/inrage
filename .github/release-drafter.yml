@@ -1,5 +1,5 @@
-name-template: "v$RESOLVED_VERSION"
-tag-template: "v$RESOLVED_VERSION"
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
 template: |
   ## What’s New
   $CHANGES
@@ -7,36 +7,36 @@ template: |
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 
 categories:
-  - title: "🚀 Features"
+  - title: '🚀 Features'
     labels:
-      - "feature"
-      - "feat"
-  - title: "✅ Enhancements"
-    label: "enhancement"
-  - title: "🐛 Bug Fixes"
+      - 'feature'
+      - 'feat'
+  - title: '✅ Enhancements'
+    label: 'enhancement'
+  - title: '🐛 Bug Fixes'
     labels:
-      - "bug"
-      - "fix"
-  - title: "📕 Documentation"
-    label: "documentation"
-  - title: "🧰 Maintenance"
+      - 'bug'
+      - 'fix'
+  - title: '📕 Documentation'
+    label: 'documentation'
+  - title: '🧰 Maintenance'
     labels:
-      - "chore"
-      - "test"
+      - 'chore'
+      - 'test'
 
 autolabeler:
-  - label: "bug"
+  - label: 'bug'
     branch:
       - '/fix\/.+/'
     title:
-      - "/fix/i"
-  - label: "enhancement"
+      - '/fix/i'
+  - label: 'enhancement'
     branch:
       - '/feature\/.+/'
       - '/feat\/.+/'
-  - label: "chore"
+  - label: 'chore'
     title:
-      - "/chore/i"
-  - label: "documentation"
+      - '/chore/i'
+  - label: 'documentation'
     title:
-      - "/doc/i"
+      - '/doc/i'

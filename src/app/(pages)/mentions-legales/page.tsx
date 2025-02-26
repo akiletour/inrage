@@ -1,18 +1,18 @@
-import Layout from '@component/Layout';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import Layout from '@component/Layout'
+import { RouteLink, getCanonicalUrl } from '@lib/route'
 
 export const metadata = {
   title: 'Mentions légales - inRage',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.legals),
   },
-};
+}
 
 const LegalTitle = ({ children }: { children: string }) => {
   return (
     <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>
-  );
-};
+  )
+}
 
 export default function Legals() {
   return (
@@ -95,5 +95,5 @@ export default function Legals() {
         </p>
       </div>
     </Layout>
-  );
+  )
 }

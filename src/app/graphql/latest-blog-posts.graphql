@@ -1,5 +1,5 @@
-query posts { 
-  posts(first: 2) { 
+query posts {
+  posts(first: 2) {
     edges {
       node {
         title

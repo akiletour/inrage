@@ -1,28 +1,28 @@
-import Diagonal from '@component/Diagonal';
-import SectionTitle from '@component/SectionTitle';
-import BlogCommentsQuery from '@graphql-query/blog-comments.graphql';
-import { List } from '@type/graphql';
-import { CommentItemType } from '@type/graphql/comment';
-import { fetcher } from '@util/index';
+import Diagonal from '@component/Diagonal'
+import SectionTitle from '@component/SectionTitle'
+import BlogCommentsQuery from '@graphql-query/blog-comments.graphql'
+import { List } from '@type/graphql'
+import { CommentItemType } from '@type/graphql/comment'
+import { fetcher } from '@util/index'
 
-import CommentForm from './CommentForm';
-import CommentItem from './CommentItem';
+import CommentForm from './CommentForm'
+import CommentItem from './CommentItem'
 
 type Props = {
-  postDatabaseId: number;
-  identifier: string;
-};
+  postDatabaseId: number
+  identifier: string
+}
 
 const getComments = (postId: string): Promise<List<CommentItemType>> =>
   fetcher(BlogCommentsQuery, {
     id: postId,
-  });
+  })
 
 export default async function PostComments({
   postDatabaseId,
   identifier,
 }: Props) {
-  const { data } = await getComments(identifier);
+  const { data } = await getComments(identifier)
 
   return (
     <div className="bg-gray-darker">
@@ -45,5 +45,5 @@ export default async function PostComments({
       </div>
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" />
     </div>
-  );
+  )
 }

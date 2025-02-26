@@ -1,9 +1,9 @@
-import ImagePrestationBuildWebsite from '@image/prestations/creation-site-internet.png';
-import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png';
-import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png';
-import { RouteLink } from '@lib/route';
+import ImagePrestationBuildWebsite from '@image/prestations/creation-site-internet.png'
+import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png'
+import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png'
+import { RouteLink } from '@lib/route'
 
-import PrestationItem from './items/PrestationItem';
+import PrestationItem from './items/PrestationItem'
 
 export default function PrestationsList() {
   return (
@@ -48,5 +48,5 @@ export default function PrestationsList() {
         votre site web.
       </PrestationItem>
     </div>
-  );
+  )
 }

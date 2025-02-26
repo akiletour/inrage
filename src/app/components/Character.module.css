@@ -8,7 +8,7 @@
 .rightshoe404,
 .legs404,
 .laptop404 {
-  background: url("/images/character.png") 0 0 no-repeat;
+  background: url('/images/character.png') 0 0 no-repeat;
   width: 200px;
   height: 200px;
 }
@@ -73,7 +73,9 @@
   width: 73px;
   height: 18px;
   background-position: -162px -350px;
-  animation: blink404 10s steps(1) infinite, pan 10s ease-in-out infinite;
+  animation:
+    blink404 10s steps(1) infinite,
+    pan 10s ease-in-out infinite;
 }
 
 .leftarm404 {

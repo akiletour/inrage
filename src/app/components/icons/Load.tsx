@@ -1,6 +1,6 @@
 type Props = {
-  color?: string;
-};
+  color?: string
+}
 
 export default function LoadIcon({ color = '#fff' }: Props) {
   return (
@@ -41,5 +41,5 @@ export default function LoadIcon({ color = '#fff' }: Props) {
         />
       </circle>
     </svg>
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import Link from '@component/NoScrollLink';
+import Link from '@component/NoScrollLink'
 
 type Props = {
-  title: string;
-  subject: string;
-  excerpt: string;
-  position?: 'left' | 'right';
+  title: string
+  subject: string
+  excerpt: string
+  position?: 'left' | 'right'
   cta: {
-    text: string;
-    link: string;
-  };
-};
+    text: string
+    link: string
+  }
+}
 
 export default function TmaItem({
   title,
@@ -33,5 +33,5 @@ export default function TmaItem({
         <span className="button">{cta.text}</span>
       </Link>
     </div>
-  );
+  )
 }

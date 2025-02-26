@@ -1,14 +1,14 @@
-import moment from 'moment';
-import Image from 'next/image';
-import sanitize from 'sanitize-html';
+import moment from 'moment'
+import Image from 'next/image'
+import sanitize from 'sanitize-html'
 
-import ButtonLink from '@component/ButtonLink';
-import Link from '@component/NoScrollLink';
-import { RouteLink } from '@lib/route';
-import 'moment/locale/fr';
-import { ArticleList } from '@type/graphql';
+import ButtonLink from '@component/ButtonLink'
+import Link from '@component/NoScrollLink'
+import { RouteLink } from '@lib/route'
+import 'moment/locale/fr'
+import { ArticleList } from '@type/graphql'
 
-moment.locale('fr');
+moment.locale('fr')
 
 export default function ArticleItem({
   featuredImage,
@@ -17,7 +17,7 @@ export default function ArticleItem({
   date,
   slug,
 }: ArticleList) {
-  const formattedDate = moment(date);
+  const formattedDate = moment(date)
 
   return (
     <div className="relative flex flex-col">
@@ -54,5 +54,5 @@ export default function ArticleItem({
       />
       <ButtonLink href={`${RouteLink.blog}/${slug}`}>Lire la suite</ButtonLink>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import style from './Character.module.css';
+import style from './Character.module.css'
 
 export default function Character() {
   return (
@@ -27,5 +27,5 @@ export default function Character() {
         <div className={style.laptop404}></div>
       </div>
     </div>
-  );
+  )
 }

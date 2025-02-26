@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
 
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 
-import Button from '@component/Button';
-import { useFormState } from '@hook/useFormState';
+import Button from '@component/Button'
+import { useFormState } from '@hook/useFormState'
 
 type FormData = {
-  name: string;
-  email: string;
-  content: string;
-  phone: string;
-};
+  name: string
+  email: string
+  content: string
+  phone: string
+}
 
 export default function ContactForm({ lg = false }: { lg?: boolean }) {
   const {
@@ -20,10 +20,10 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>();
-  const { state, submit, success } = useFormState();
+  } = useForm<FormData>()
+  const { state, submit, success } = useFormState()
   const onSubmit = (data: FormData) => {
-    submit();
+    submit()
 
     fetch('/api/hello', {
       method: 'POST',
@@ -35,17 +35,17 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
     })
       .then((r) => r.json())
       .then(() => {
-        success();
-        reset();
+        success()
+        reset()
         fetch('/api/hello-slack', {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
           },
-        });
-      });
-  };
+        })
+      })
+  }
 
   return (
     <form className={!lg ? 'my-4' : ''} onSubmit={handleSubmit(onSubmit)}>
@@ -132,5 +132,5 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         </Button>
       </div>
     </form>
-  );
+  )
 }

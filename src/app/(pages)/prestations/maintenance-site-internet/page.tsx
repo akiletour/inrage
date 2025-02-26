@@ -1,12 +1,12 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import Diagonal from '@component/Diagonal';
-import TmaItem from '@component/items/TmaItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TmaImage from '@image/tma.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import Diagonal from '@component/Diagonal'
+import TmaItem from '@component/items/TmaItem'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import TmaImage from '@image/tma.png'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
 
 export const metadata = {
   title: 'Maintenance site web | Freelance maintenance site internet - inRage',
@@ -15,7 +15,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },
-};
+}
 
 export default function WebsiteTMA() {
   return (
@@ -161,5 +161,5 @@ export default function WebsiteTMA() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

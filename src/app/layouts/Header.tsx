@@ -1,24 +1,24 @@
-import { Fragment } from 'react';
+import { Fragment } from 'react'
 
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
 
-import Diagonal from '@component/Diagonal';
-import Link from '@component/NoScrollLink';
-import useSticky from '@hook/useSticky';
-import NavPrimary from '@layout/NavPrimary';
-import { HeaderType, PageExcerptType, PageTitleType } from '@type/header';
+import Diagonal from '@component/Diagonal'
+import Link from '@component/NoScrollLink'
+import useSticky from '@hook/useSticky'
+import NavPrimary from '@layout/NavPrimary'
+import { HeaderType, PageExcerptType, PageTitleType } from '@type/header'
 
-const DynamicHeaderTma = dynamic(() => import('@layout/HeaderTma'));
+const DynamicHeaderTma = dynamic(() => import('@layout/HeaderTma'))
 
 interface Props {
-  pageTitle?: PageTitleType;
+  pageTitle?: PageTitleType
   breadcrumb: Array<{
-    title: string;
-    link: string;
-  }>;
-  headerType?: HeaderType;
-  pageExcerpt?: PageExcerptType;
+    title: string
+    link: string
+  }>
+  headerType?: HeaderType
+  pageExcerpt?: PageExcerptType
 }
 
 export default function Header({
@@ -27,9 +27,9 @@ export default function Header({
   breadcrumb = [],
   headerType = 'default',
 }: Props) {
-  const [ref, sticky] = useSticky<HTMLDivElement>();
+  const [ref, sticky] = useSticky<HTMLDivElement>()
   if (headerType === 'tma') {
-    return <DynamicHeaderTma pageTitle={pageTitle} excerpt={pageExcerpt} />;
+    return <DynamicHeaderTma pageTitle={pageTitle} excerpt={pageExcerpt} />
   }
 
   return (
@@ -86,5 +86,5 @@ export default function Header({
         className="h-auto w-full"
       />
     </div>
-  );
+  )
 }

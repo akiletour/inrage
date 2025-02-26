@@ -1,18 +1,18 @@
-import Link from '@component/NoScrollLink';
+import Link from '@component/NoScrollLink'
 
 type Props = {
-  className?: string;
-  flipX?: boolean;
-  flipY?: boolean;
-  bgClass?: string;
-  bgCorner?: string;
-  preserveRatio?: boolean;
+  className?: string
+  flipX?: boolean
+  flipY?: boolean
+  bgClass?: string
+  bgCorner?: string
+  preserveRatio?: boolean
   cta?: {
-    icon: JSX.Element;
-    href: string;
-    title: string | string[];
-  };
-};
+    icon: JSX.Element
+    href: string
+    title: string | string[]
+  }
+}
 
 export default function Diagonal({
   className = '',
@@ -23,14 +23,14 @@ export default function Diagonal({
   preserveRatio = false,
   cta,
 }: Props) {
-  const classeNames = [`${className} w-full block`];
+  const classeNames = [`${className} w-full block`]
 
   if (flipX) {
-    classeNames.push('-scale-x-100');
+    classeNames.push('-scale-x-100')
   }
 
   if (flipY) {
-    classeNames.push('-scale-y-100');
+    classeNames.push('-scale-y-100')
   }
 
   return (
@@ -65,5 +65,5 @@ export default function Diagonal({
         </Link>
       )}
     </div>
-  );
+  )
 }

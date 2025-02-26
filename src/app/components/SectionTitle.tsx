@@ -1,8 +1,8 @@
 type Props = {
-  className?: string;
-  title: string | Array<string | JSX.Element>;
-  content: string;
-};
+  className?: string
+  title: string | Array<string | JSX.Element>
+  content: string
+}
 
 export default function SectionTitle({
   className = '',
@@ -25,5 +25,5 @@ export default function SectionTitle({
         {content}
       </p>
     </div>
-  );
+  )
 }

@@ -1,42 +1,42 @@
-import PostBody from '@component/blog/PostBody';
-import PostComments from '@component/blog/PostComments';
-import ArticleItem from '@component/items/ArticleItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import allBlogPostsSlug from '@graphql-query/all-blog-posts-slug.graphql';
-import getSinglePost from '@graphql-query/single-post.graphql';
+import PostBody from '@component/blog/PostBody'
+import PostComments from '@component/blog/PostComments'
+import ArticleItem from '@component/items/ArticleItem'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import allBlogPostsSlug from '@graphql-query/all-blog-posts-slug.graphql'
+import getSinglePost from '@graphql-query/single-post.graphql'
 import {
   getCanonicalUrl,
   replaceBackendUrlContent,
   RouteLink,
-} from '@lib/route';
-import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog';
-import { fetcher } from '@util/index';
+} from '@lib/route'
+import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog'
+import { fetcher } from '@util/index'
 
 type Props = {
   params: {
-    slug: string;
-  };
-};
+    slug: string
+  }
+}
 
 const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> =>
-  fetcher(allBlogPostsSlug);
+  fetcher(allBlogPostsSlug)
 
 export async function generateStaticParams() {
-  const { data } = await getAllBlogPostsSlugs();
+  const { data } = await getAllBlogPostsSlugs()
 
   return data.posts.edges.map(({ node }) => ({
     slug: node.slug,
-  }));
+  }))
 }
 
 const getData = (slug: string): Promise<SinglePostType> =>
-  fetcher(getSinglePost, { id: slug });
+  fetcher(getSinglePost, { id: slug })
 
 export async function generateMetadata({ params }: Props) {
   const {
     data: { post },
-  } = await getData(params.slug);
+  } = await getData(params.slug)
 
   return {
     title: post.seo.title,
@@ -44,20 +44,20 @@ export async function generateMetadata({ params }: Props) {
     alternates: {
       canonical: getCanonicalUrl(`${RouteLink.blog}/${post.slug}`),
     },
-  };
+  }
 }
 
 export default async function Page({ params }: Props) {
   const {
     data: { post, posts },
-  } = await getData(params.slug);
+  } = await getData(params.slug)
 
   const shuffled = posts.edges
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value);
+    .map(({ value }) => value)
 
-  const relatedPosts = shuffled.slice(0, 2);
+  const relatedPosts = shuffled.slice(0, 2)
 
   return (
     <Layout
@@ -68,7 +68,6 @@ export default async function Page({ params }: Props) {
         <PostBody content={replaceBackendUrlContent(post.content)} />
       </div>
 
-      {/* @ts-expect-error Server Component */}
       <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
 
       <div className="container">
@@ -94,5 +93,5 @@ export default async function Page({ params }: Props) {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

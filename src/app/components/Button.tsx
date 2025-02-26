@@ -1,11 +1,11 @@
-import LoadIcon from './icons/Load';
+import LoadIcon from './icons/Load'
 
 type Props = {
-  className?: string;
-  isLoading?: boolean;
-  submit?: boolean;
-  children: JSX.Element | string;
-};
+  className?: string
+  isLoading?: boolean
+  submit?: boolean
+  children: JSX.Element | string
+}
 
 export default function Button({
   className = '',
@@ -26,5 +26,5 @@ export default function Button({
       )}
       {children}
     </button>
-  );
+  )
 }

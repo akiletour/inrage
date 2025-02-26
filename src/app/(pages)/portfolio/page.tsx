@@ -1,12 +1,12 @@
-import Layout from '@component/Layout';
-import SupportSwitcher from '@component/portfolio/SupportSwitcher';
-import SectionTitle from '@component/SectionTitle';
-import PortfolioProjects from '@graphql-query/portfolio-projects.graphql';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { List, ProjectList } from '@type/graphql';
-import { fetcher } from '@util/index';
+import Layout from '@component/Layout'
+import SupportSwitcher from '@component/portfolio/SupportSwitcher'
+import SectionTitle from '@component/SectionTitle'
+import PortfolioProjects from '@graphql-query/portfolio-projects.graphql'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { List, ProjectList } from '@type/graphql'
+import { fetcher } from '@util/index'
 
-import PortfolioGrid from './PortfolioGrid';
+import PortfolioGrid from './PortfolioGrid'
 
 export const metadata = {
   title: 'Portfolio des projets de création de site Internet',
@@ -15,12 +15,16 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.portfolio),
   },
-};
+}
 
-const getData = (): Promise<List<ProjectList>> => fetcher(PortfolioProjects);
+const getData = (): Promise<List<ProjectList>> => fetcher(PortfolioProjects)
 
 export default async function Page() {
-  const { data } = await getData();
+  const { data } = await getData()
+
+  if (!data.projets) {
+    return null
+  }
 
   return (
     <Layout title="Portfolio">
@@ -31,12 +35,10 @@ export default async function Page() {
           }
           title="Portfolio"
         />
-        {/* @ts-expect-error Server Component */}
         <SupportSwitcher pathname="/portfolio" />
 
-        {/* @ts-expect-error Server Component */}
         <PortfolioGrid projects={data.projets.edges} />
       </div>
     </Layout>
-  );
+  )
 }

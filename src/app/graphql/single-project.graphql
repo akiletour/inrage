@@ -1,63 +1,62 @@
 query ProjectBySlug($id: ID!) {
-	projet(id: $id, idType: SLUG) {
-		id
-		title
-		slug
-		content
-		featuredImage {
-			node {
-				sourceUrl
-			}
-		}
-		technologies {
-			edges {
-				node {
-					name
-					acfDetail {
-						image {
-							sourceUrl
-						}
-					}
-				}
-			}
-		}
-		supports {
-			edges {
-				node {
-					name
-					slug
-				}
-			}
-		}
-		detail {
-			websiteLink
-			year
-			missions
-			excerpt
-		}
-	}
-	projets(where: {notIn: [$id]}, first: 1000) {
-		edges {
-			node {
-				id
-				title
-				slug
-				status
-				featuredImage {
-					node {
-						sourceUrl
-					}
-				}
-				supports {
-					edges {
-						node {
-							name
-							slug
-						}
-					}
-				}
-			}
-		}
-	}
+  projet(id: $id, idType: SLUG) {
+    id
+    title
+    slug
+    content
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    technologies {
+      edges {
+        node {
+          name
+          acfDetail {
+            image {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+    supports {
+      edges {
+        node {
+          name
+          slug
+        }
+      }
+    }
+    detail {
+      websiteLink
+      year
+      missions
+      excerpt
+    }
+  }
+  projets(where: { notIn: [$id] }, first: 1000) {
+    edges {
+      node {
+        id
+        title
+        slug
+        status
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
 }
-

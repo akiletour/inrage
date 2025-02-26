@@ -1,18 +1,18 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import Link from '@component/NoScrollLink';
+import Link from '@component/NoScrollLink'
 
 type Props = {
-  slug: string;
-  image: string;
-  title: string;
+  slug: string
+  image: string
+  title: string
   support?: {
-    slug: string;
-    name: string;
-  };
-  xl?: boolean;
-  isPrivate?: boolean;
-};
+    slug: string
+    name: string
+  }
+  xl?: boolean
+  isPrivate?: boolean
+}
 
 export default function ProjectItem({
   slug,
@@ -56,5 +56,5 @@ export default function ProjectItem({
         )}
       </div>
     </Link>
-  );
+  )
 }

@@ -1,41 +1,41 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import moment from 'moment';
-import Prism from 'prismjs';
+import moment from 'moment'
+import Prism from 'prismjs'
 
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-markup-templating';
-import 'prismjs/themes/prism-tomorrow.css';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-php';
-import 'moment/locale/fr';
-import CommentForm from '@component/blog/CommentForm';
-import { ButtonLinkRaw } from '@component/ButtonLink';
+import 'prismjs/plugins/line-numbers/prism-line-numbers'
+import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-markup-templating'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-css'
+import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-php'
+import 'moment/locale/fr'
+import CommentForm from '@component/blog/CommentForm'
+import { ButtonLinkRaw } from '@component/ButtonLink'
 
-import style from './PostComments.module.css';
+import style from './PostComments.module.css'
 
 export type CommentItemType = {
-  id: string;
-  databaseId: number;
-  content: string;
-  dateGmt: Date;
+  id: string
+  databaseId: number
+  content: string
+  dateGmt: Date
   author: {
     node: {
-      name: string;
-    };
-  };
+      name: string
+    }
+  }
   replies?: {
-    nodes: CommentItemType[];
-  };
-  isChild?: boolean;
-  postId?: number;
-};
+    nodes: CommentItemType[]
+  }
+  isChild?: boolean
+  postId?: number
+}
 
 export default function CommentItem({
   author,
@@ -46,11 +46,11 @@ export default function CommentItem({
   postId,
   databaseId,
 }: CommentItemType) {
-  const [isReplying, setReplying] = useState(false);
+  const [isReplying, setReplying] = useState(false)
 
   useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+    Prism.highlightAll()
+  }, [])
 
   return (
     <div className={`${isChild ? 'ml-2 pl-2 border-l-2 border-orange' : ''}`}>
@@ -97,5 +97,5 @@ export default function CommentItem({
         </div>
       )}
     </div>
-  );
+  )
 }

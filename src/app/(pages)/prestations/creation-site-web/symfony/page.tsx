@@ -1,20 +1,20 @@
-import CheckMark from '@component/CheckMark';
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql';
-import BusStation from '@image/prestations/bus-station.png';
-import SymfonyComponents from '@image/prestations/symfony-components.jpg';
-import SymfonyHero from '@image/prestations/symfony-hero.jpg';
-import TwigImage from '@image/prestations/twig.jpg';
-import SchemaMercure from '@image/schema-mercure.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { SupportProjects } from '@type/graphql/portfolio';
-import { fetcher } from '@util/index';
+import CheckMark from '@component/CheckMark'
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import MoreIcon from '@component/icons/MoreIcon'
+import ProjectItem from '@component/items/ProjectItem'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql'
+import BusStation from '@image/prestations/bus-station.png'
+import SymfonyComponents from '@image/prestations/symfony-components.jpg'
+import SymfonyHero from '@image/prestations/symfony-hero.jpg'
+import TwigImage from '@image/prestations/twig.jpg'
+import SchemaMercure from '@image/schema-mercure.png'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { SupportProjects } from '@type/graphql/portfolio'
+import { fetcher } from '@util/index'
 
 export const metadata = {
   title:
@@ -24,15 +24,15 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationSymfony),
   },
-};
+}
 
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
   fetcher(LastProjectsBySupports, {
     id: slug,
-  });
+  })
 
 export default async function Symfony() {
-  const { data } = await getLastProjectsBySupports('application-web');
+  const { data } = await getLastProjectsBySupports('application-web')
 
   return (
     <Layout
@@ -384,5 +384,5 @@ export default async function Symfony() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,18 +1,18 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import DevOps from '@image/devops.png';
-import Lighthouse from '@image/lighthouse-100percent-inrage.png';
-import BuildSymfony from '@image/prestations/symfony.png';
-import SketchLogo from '@image/sketch_logo.png';
-import BuildPrestashop from '@image/website-prestashop.png';
-import BuildWordPress from '@image/website-wp.png';
-import { RouteLink, getCanonicalUrl } from '@lib/route';
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import Layout from '@component/Layout'
+import Link from '@component/NoScrollLink'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import DevOps from '@image/devops.png'
+import Lighthouse from '@image/lighthouse-100percent-inrage.png'
+import BuildSymfony from '@image/prestations/symfony.png'
+import SketchLogo from '@image/sketch_logo.png'
+import BuildPrestashop from '@image/website-prestashop.png'
+import BuildWordPress from '@image/website-wp.png'
+import { RouteLink, getCanonicalUrl } from '@lib/route'
 
 export const metadata = {
   title: 'Création de site internet | Freelance création de site web - inRage',
@@ -21,7 +21,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWeb),
   },
-};
+}
 
 export default function PrestationBuildWebsite() {
   return (
@@ -310,5 +310,5 @@ export default function PrestationBuildWebsite() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

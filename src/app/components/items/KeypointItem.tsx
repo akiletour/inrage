@@ -1,7 +1,7 @@
 interface Props {
-  icon: JSX.Element;
-  value: string;
-  label: string;
+  icon: JSX.Element
+  value: string
+  label: string
 }
 
 export default function KeypointItem({ icon, value, label }: Props) {
@@ -13,5 +13,5 @@ export default function KeypointItem({ icon, value, label }: Props) {
       <div className="font-medium text-2xl mt-2">{value}</div>
       <div className="leading-5">{label}</div>
     </div>
-  );
+  )
 }

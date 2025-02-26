@@ -1,7 +1,7 @@
-import Github from './socials/Github';
-import LinkedIn from './socials/LinkedIn';
-import Malt from './socials/Malt';
-import Twitter from './socials/Twitter';
+import Github from './socials/Github'
+import LinkedIn from './socials/LinkedIn'
+import Malt from './socials/Malt'
+import Twitter from './socials/Twitter'
 
 export default function Socials() {
   return (
@@ -43,5 +43,5 @@ export default function Socials() {
         <Malt />
       </a>
     </div>
-  );
+  )
 }

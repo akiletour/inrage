@@ -1,20 +1,20 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image'
 
 type Props = {
-  image: string | StaticImageData;
-  title?: string | string[];
-  titlePosition?: 'left' | 'right';
-  children: ReactNode;
-  position?: 'right' | 'left';
-  duoTone?: boolean;
+  image: string | StaticImageData
+  title?: string | string[]
+  titlePosition?: 'left' | 'right'
+  children: ReactNode
+  position?: 'right' | 'left'
+  duoTone?: boolean
   imageProps?: {
-    width?: number;
-    height?: number;
-    layout?: 'fill' | 'responsive';
-  };
-};
+    width?: number
+    height?: number
+    layout?: 'fill' | 'responsive'
+  }
+}
 
 export default function TextImage({
   image,
@@ -70,5 +70,5 @@ export default function TextImage({
         {children}
       </div>
     </div>
-  );
+  )
 }

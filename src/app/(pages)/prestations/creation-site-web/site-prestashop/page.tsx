@@ -1,21 +1,21 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import MoreIcon from '@component/icons/MoreIcon';
-import ProjectItem from '@component/items/ProjectItem';
-import Layout from '@component/Layout';
-import Link from '@component/NoScrollLink';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql';
-import ImageBackgroundTma from '@image/bg-tma.jpeg';
-import ProtectionShield from '@image/protection-shield.png';
-import WebsitePrestashop from '@image/website-prestashop.png';
-import WebsiteWP from '@image/website-wp.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
-import { SupportProjects } from '@type/graphql/portfolio';
-import { fetcher } from '@util/index';
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import MoreIcon from '@component/icons/MoreIcon'
+import ProjectItem from '@component/items/ProjectItem'
+import Layout from '@component/Layout'
+import Link from '@component/NoScrollLink'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql'
+import ImageBackgroundTma from '@image/bg-tma.jpeg'
+import ProtectionShield from '@image/protection-shield.png'
+import WebsitePrestashop from '@image/website-prestashop.png'
+import WebsiteWP from '@image/website-wp.png'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { SupportProjects } from '@type/graphql/portfolio'
+import { fetcher } from '@util/index'
 
 export const metadata = {
   title:
@@ -25,15 +25,15 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
-};
+}
 
 const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
   fetcher(LastProjectsBySupports, {
     id: slug,
-  });
+  })
 
 export default async function PrestationPrestashop() {
-  const { data } = await getLastProjectsBySupports('prestashop');
+  const { data } = await getLastProjectsBySupports('prestashop')
 
   return (
     <Layout
@@ -348,5 +348,5 @@ export default async function PrestationPrestashop() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }

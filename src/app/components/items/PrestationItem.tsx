@@ -1,14 +1,14 @@
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image'
 
-import Link from '@component/NoScrollLink';
+import Link from '@component/NoScrollLink'
 
 type Props = {
-  title: string | string[];
-  children: JSX.Element | string;
-  image: string | StaticImageData;
-  link?: string;
-  linkText?: string;
-};
+  title: string | string[]
+  children: JSX.Element | string
+  image: string | StaticImageData
+  link?: string
+  linkText?: string
+}
 
 export default function PrestationItem({
   image,
@@ -52,5 +52,5 @@ export default function PrestationItem({
         </div>
       )}
     </div>
-  );
+  )
 }

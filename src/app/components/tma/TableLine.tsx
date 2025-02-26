@@ -1,8 +1,8 @@
 type Props = {
-  title: string;
-  content: string;
-  values: Array<string | boolean>;
-};
+  title: string
+  content: string
+  values: Array<string | boolean>
+}
 
 export default function TableLine({ title, content, values }: Props) {
   return (
@@ -31,5 +31,5 @@ export default function TableLine({ title, content, values }: Props) {
         </div>
       ))}
     </div>
-  );
+  )
 }

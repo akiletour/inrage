@@ -1,15 +1,15 @@
-import ContactForm from '@component/ContactForm';
-import Diagonal from '@component/Diagonal';
-import PrestationItem from '@component/items/PrestationItem';
-import Layout from '@component/Layout';
-import SectionTitle from '@component/SectionTitle';
-import TextImage from '@component/TextImage';
-import TmaOnDemandIntro from '@image/character_back_build.png';
-import PrestationDesign from '@image/prestations/charte_graphique.png';
-import PrestationWebDev from '@image/prestations/developpement_site_web.png';
-import PrestationFormation from '@image/prestations/formation_offerte.png';
-import PrestationSupport from '@image/prestations/support_technique_772424.png';
-import { getCanonicalUrl, RouteLink } from '@lib/route';
+import ContactForm from '@component/ContactForm'
+import Diagonal from '@component/Diagonal'
+import PrestationItem from '@component/items/PrestationItem'
+import Layout from '@component/Layout'
+import SectionTitle from '@component/SectionTitle'
+import TextImage from '@component/TextImage'
+import TmaOnDemandIntro from '@image/character_back_build.png'
+import PrestationDesign from '@image/prestations/charte_graphique.png'
+import PrestationWebDev from '@image/prestations/developpement_site_web.png'
+import PrestationFormation from '@image/prestations/formation_offerte.png'
+import PrestationSupport from '@image/prestations/support_technique_772424.png'
+import { getCanonicalUrl, RouteLink } from '@lib/route'
 
 export const metadata = {
   title:
@@ -19,7 +19,7 @@ export const metadata = {
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
   },
-};
+}
 
 export default function TmaOnDemand() {
   return (
@@ -169,5 +169,5 @@ export default function TmaOnDemand() {
         <ContactForm />
       </div>
     </Layout>
-  );
+  )
 }
