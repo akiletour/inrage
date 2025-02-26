@@ -10,9 +10,7 @@ const nextConfig = {
   images: {
     domains: ['i2.wp.com', 'i0.wp.com', 'i1.wp.com'],
   },
-  experimental: {
-    appDir: true,
-  },
+
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(graphql|gql)/,
