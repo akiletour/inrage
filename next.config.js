@@ -5,7 +5,8 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  output: "standalone",
+  //swcMinify: true,
   images: {
     domains: ["i2.wp.com", "i0.wp.com", "i1.wp.com"],
   },
