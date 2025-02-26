@@ -2,7 +2,7 @@
   "name": "inrage-react",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -19,12 +19,12 @@
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
     "moment": "^2.30.1",
-    "next": "^14.2.24",
+    "next": "15.2.0",
     "prismjs": "^1.29.0",
     "prop-types": "^15.8.1",
     "raw-loader": "^4.0.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "react-hook-form": "^7.54.2",
     "react-use": "^17.6.0",
     "request-ip": "^3.3.0",
@@ -34,9 +34,9 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.5.8",
+    "@next/eslint-plugin-next": "15.2.0",
     "@types/node": "^18.19.76",
-    "@types/react": "^18.3.18",
+    "@types/react": "19.0.10",
     "@types/request-ip": "^0.0.37",
     "@types/sanitize-html": "^2.13.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
@@ -46,7 +46,7 @@
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-next": "14.2.24",
+    "eslint-config-next": "15.2.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-cypress": "^2.15.2",
     "eslint-plugin-import": "^2.31.0",
@@ -61,5 +61,10 @@
     "prettier": "^2.8.8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.0.10"
+    }
   }
 }

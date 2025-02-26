@@ -16,9 +16,9 @@ import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio'
 import { fetcher } from '@util/index'
 
 type Props = {
-  params: {
+  params: Promise<{
     project: string
-  }
+  }>
 }
 
 const getAllProjectsSlugs = (): Promise<ProjectsSlugs> =>
@@ -38,7 +38,8 @@ export async function generateStaticParams() {
 const getSingleProject = (slug: string): Promise<SingleProject> =>
   fetcher(SingleProjectData, { id: slug })
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const { data } = await getSingleProject(params.project)
   return {
     title: `${data.projet.title} - Portfolio`,
@@ -51,7 +52,8 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const {
     data: { projet: data, projets: relatedRawProjects },
   } = await getSingleProject(params.project)
@@ -70,7 +72,7 @@ export default async function Page({ params }: Props) {
     .slice(0, 4)
 
   return (
-    <Layout
+    (<Layout
       breadcrumbs={[
         { link: RouteLink.portfolio, title: 'Portfolio' },
         {
@@ -185,6 +187,6 @@ export default async function Page({ params }: Props) {
             ))}
         </div>
       </div>
-    </Layout>
-  )
+    </Layout>)
+  );
 }

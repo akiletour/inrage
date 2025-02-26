@@ -10,15 +10,16 @@ import { fetcher } from '@util/index'
 import PortfolioGrid from '../PortfolioGrid'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 const getData = (category: string): Promise<SupportProjects> =>
   fetcher(PortfolioProjects, { id: category })
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const { data } = await getData(params.slug)
   return {
     title: `${data.support.name} - Portfolio`,
@@ -41,7 +42,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const { data } = await getData(params.slug)
 
   return (

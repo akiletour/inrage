@@ -10,15 +10,15 @@ const nextConfig = {
   images: {
     domains: ['i2.wp.com', 'i0.wp.com', 'i1.wp.com'],
   },
-
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(graphql|gql)/,
-      exclude: /node_modules/,
-      loader: 'graphql-operations-string-loader',
-    })
-
-    return config
+  experimental: {
+    turbo: {
+      rules: {
+        '*.graphql': {
+          loaders: ['graphql-operations-string-loader'],
+          as: 'graphql',
+        },
+      },
+    },
   },
 }
 

@@ -14,9 +14,9 @@ import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog'
 import { fetcher } from '@util/index'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> =>
@@ -33,7 +33,8 @@ export async function generateStaticParams() {
 const getData = (slug: string): Promise<SinglePostType> =>
   fetcher(getSinglePost, { id: slug })
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
   const {
     data: { post },
   } = await getData(params.slug)
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const {
     data: { post, posts },
   } = await getData(params.slug)
