@@ -6,7 +6,7 @@ import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
 import TextImage from '@component/TextImage'
 import TmaImage from '@image/tma.png'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
   title: 'Maintenance site web | Freelance maintenance site internet - inRage',

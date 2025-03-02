@@ -12,7 +12,7 @@ import BuildSymfony from '@image/prestations/symfony.png'
 import SketchLogo from '@image/sketch_logo.png'
 import BuildPrestashop from '@image/website-prestashop.png'
 import BuildWordPress from '@image/website-wp.png'
-import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
   title: 'Création de site internet | Freelance création de site web - inRage',

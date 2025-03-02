@@ -1,5 +1,5 @@
 import Layout from '@component/Layout'
-import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
   title: 'Mentions légales - inRage',

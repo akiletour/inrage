@@ -16,8 +16,8 @@ import PageBuilderImage from '@image/page-builder.png'
 import ProtectionShield from '@image/protection-shield.png'
 import WebsitePrestashop from '@image/website-prestashop.png'
 import WebsiteWP from '@image/website-wp.png'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
 import { getLastProjectsBySupports } from '@lib/portfolio'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
   title: 'Création de site WordPress | Freelance Wordpress - inRage',

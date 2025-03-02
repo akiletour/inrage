@@ -9,7 +9,7 @@ import {
   getCanonicalUrl,
   replaceBackendUrlContent,
   RouteLink,
-} from '@lib/route'
+} from '@lib/router'
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio'
 import { fetcher } from '@util/index'
 

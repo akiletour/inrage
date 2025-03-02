@@ -1,6 +1,6 @@
 import ContactForm from '@component/ContactForm'
 import Layout from '@component/Layout'
-import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',

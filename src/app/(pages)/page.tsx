@@ -19,7 +19,7 @@ import ExpertisePrestashop from '@image/expertises/prestashop.png'
 import ExpertiseSymfony from '@image/expertises/symfony.png'
 import ExpertiseWordPress from '@image/expertises/wordpress.png'
 import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
   title:

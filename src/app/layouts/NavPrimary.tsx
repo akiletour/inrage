@@ -9,7 +9,7 @@ import Link from '@component/NoScrollLink'
 import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg'
 import ExpertPrestashop from '@image/platinum-300x300.png'
 import ExpertWordPress from '@image/wordpress-expert.png'
-import { RouteLink } from '@lib/route'
+import { RouteLink } from '@lib/router'
 
 type LinkProps = {
   title: string

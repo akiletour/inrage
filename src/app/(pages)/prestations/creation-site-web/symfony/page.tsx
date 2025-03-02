@@ -12,7 +12,7 @@ import SymfonyHero from '@image/prestations/symfony-hero.jpg'
 import TwigImage from '@image/prestations/twig.jpg'
 import SchemaMercure from '@image/schema-mercure.png'
 import { getLastProjectsBySupports } from '@lib/portfolio'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
   title:

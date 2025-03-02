@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import Link from '@component/NoScrollLink'
 
 type Props = {
@@ -8,7 +10,7 @@ type Props = {
   bgCorner?: string
   preserveRatio?: boolean
   cta?: {
-    icon: JSX.Element
+    icon: ReactNode
     href: string
     title: string | string[]
   }

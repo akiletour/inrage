@@ -4,7 +4,7 @@ import sanitize from 'sanitize-html'
 
 import ButtonLink from '@component/ButtonLink'
 import Link from '@component/NoScrollLink'
-import { RouteLink } from '@lib/route'
+import { RouteLink } from '@lib/router'
 import 'moment/locale/fr'
 import { ArticleList } from '@type/graphql'
 

@@ -9,7 +9,7 @@ import TableHeader from '@component/tma/TableHeader'
 import TableLine from '@component/tma/TableLine'
 import BgTma from '@image/bg-tma.jpeg'
 import LogoGrey from '@image/logo-grey-inline-white.png'
-import { RouteLink, getCanonicalUrl } from '@lib/route'
+import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { EntriesType } from '@type/graphql/portfolio'
 
 export const metadata = {

@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
+
 interface Props {
-  icon: JSX.Element
+  icon: ReactNode
   value: string
   label: string
 }

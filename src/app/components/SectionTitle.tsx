@@ -1,6 +1,8 @@
+import { ReactNode } from 'react'
+
 type Props = {
   className?: string
-  title: string | Array<string | JSX.Element>
+  title: string | Array<string | ReactNode>
   content: string
 }
 
@@ -17,7 +19,7 @@ export default function SectionTitle({
         } text-white flex-none text-3xl font-bold max-w-[390px]`}
       >
         {Array.isArray(title)
-          ? title.map((ttl) => <span key={ttl.toString()}>{ttl}</span>)
+          ? title.map((ttl) => <span key={ttl?.toString()}>{ttl}</span>)
           : title}
       </h2>
       <p className="mt-2 md:mt-0 text-gray-light flex-1 flex items-center">

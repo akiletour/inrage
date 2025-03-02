@@ -7,7 +7,7 @@ import {
   getCanonicalUrl,
   replaceBackendUrlContent,
   RouteLink,
-} from '@lib/route'
+} from '@lib/router'
 import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog'
 import { fetcher } from '@util/index'
 

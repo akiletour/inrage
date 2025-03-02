@@ -10,7 +10,7 @@ import ExpCOS from '@image/experiences/comonscreen.png'
 import ExpKamelab from '@image/experiences/kamelab.png'
 import ExpMegami from '@image/experiences/megami-productions.png'
 import ExpMoonscoop from '@image/experiences/moonscoop.png'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
   title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',

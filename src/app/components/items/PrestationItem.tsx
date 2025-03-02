@@ -1,10 +1,12 @@
+import { ReactNode } from 'react'
+
 import Image, { StaticImageData } from 'next/image'
 
 import Link from '@component/NoScrollLink'
 
 type Props = {
   title: string | string[]
-  children: JSX.Element | string
+  children: ReactNode | string
   image: string | StaticImageData
   link?: string
   linkText?: string

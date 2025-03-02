@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
 import Link from '@component/NoScrollLink'
-import { RouteLink } from '@lib/route'
 import { getPortfolioCategories } from '@lib/portfolio'
+import { RouteLink } from '@lib/router'
 
 export default async function SupportSwitcher({
   pathname,

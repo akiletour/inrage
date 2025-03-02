@@ -1,12 +1,12 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
-import { PortfolioCategory, SupportProjects } from '@type/graphql/portfolio'
+import { getPortfolioCategories } from '@lib/portfolio'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { SupportProjects } from '@type/graphql/portfolio'
 import { fetcher } from '@util/index'
 
 import PortfolioGrid from '../PortfolioGrid'
-import { getPortfolioCategories } from '@lib/portfolio'
 
 type Props = {
   params: Promise<{
@@ -64,9 +64,11 @@ export async function generateMetadata(props: Props) {
 export async function generateStaticParams() {
   const { data } = await getPortfolioCategories()
 
-  return data.supports.edges.map(({ node }) => ({
-    slug: node.slug,
-  }))
+  return (
+    data?.supports?.edges.map(({ node }) => ({
+      slug: node.slug,
+    })) ?? []
+  )
 }
 
 export default async function Page(props: Props) {

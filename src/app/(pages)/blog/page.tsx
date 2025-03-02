@@ -1,6 +1,6 @@
 import ArticleItem from '@component/items/ArticleItem'
 import Layout from '@component/Layout'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { ArticleList, List } from '@type/graphql'
 import { fetcher } from '@util/index'
 

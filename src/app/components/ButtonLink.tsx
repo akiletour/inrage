@@ -20,7 +20,7 @@ export function ButtonLinkRaw({
   type,
   onClick,
 }: RawProps) {
-  const Tag = `${as}` as keyof JSX.IntrinsicElements
+  const Tag = as
   let props = {}
 
   if (as === 'button') {

@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 import { isAkismetSpam } from '@util/akismet'
 import { Mailjet } from '@util/mailjet'
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
     const { email, name, content, phone } = await request.json()
 

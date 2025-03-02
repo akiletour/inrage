@@ -1,5 +1,4 @@
 import { AkismetClient } from 'akismet-api'
-import { NextRequest } from 'next/server'
 
 const Client = new AkismetClient({
   key: process.env.AKISMET_API_KEY as string,
@@ -7,14 +6,14 @@ const Client = new AkismetClient({
 })
 
 export const isAkismetSpam = async (
-  request: NextRequest,
+  request: Request,
   author: string,
   email: string,
   content: string
 ): Promise<boolean> => {
   try {
     const userAgent = request.headers.get('user-agent') ?? ''
-    const userIp = request.ip || '127.0.0.1'
+    const userIp = request.headers.get('X-Forwarded-For') || '127.0.0.1'
 
     const isSpam = await Client.checkSpam({
       user_ip: userIp,

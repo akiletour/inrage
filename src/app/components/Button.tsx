@@ -1,10 +1,12 @@
+import { ReactNode } from 'react'
+
 import LoadIcon from './icons/Load'
 
 type Props = {
   className?: string
   isLoading?: boolean
   submit?: boolean
-  children: JSX.Element | string
+  children: ReactNode | string
 }
 
 export default function Button({

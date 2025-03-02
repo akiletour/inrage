@@ -1,7 +1,7 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import { getCanonicalUrl, RouteLink } from '@lib/route'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { List, ProjectList } from '@type/graphql'
 import { fetcher } from '@util/index'
 

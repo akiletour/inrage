@@ -29,7 +29,7 @@ function Layout({
   excerpt = '',
   tmaLayout = false,
   breadcrumbs = [],
-}: Props): JSX.Element {
+}: Props): ReactNode {
   return (
     <div>
       <Header
