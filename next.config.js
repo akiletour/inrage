@@ -11,14 +11,7 @@ const nextConfig = {
     domains: ['i2.wp.com', 'i0.wp.com', 'i1.wp.com'],
   },
   experimental: {
-    turbo: {
-      rules: {
-        '*.graphql': {
-          loaders: ['graphql-operations-string-loader'],
-          as: 'graphql',
-        },
-      },
-    },
+    turbo: {},
   },
 }
 
