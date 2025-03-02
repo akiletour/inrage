@@ -64,7 +64,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "19.0.10"
+      "@types/react": "19.0.10",
+      "formidable": "3.5.2"
     }
   }
 }
