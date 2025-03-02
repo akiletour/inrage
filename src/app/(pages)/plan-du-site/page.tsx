@@ -1,12 +1,37 @@
 import Link from 'next/link'
 
 import Layout from '@component/Layout'
-import sitemap from '@graphql-query/sitemap.graphql'
 import { RouteLink, getCanonicalUrl } from '@lib/route'
 import { Sitemap as SitemapType } from '@type/graphql/sitemap'
 import { fetcher } from '@util/index'
 
-const getSitemap = (): Promise<SitemapType> => fetcher(sitemap)
+const getSitemap = (): Promise<SitemapType> =>
+  fetcher(`query sitemap {
+  projets {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  posts {
+    edges {
+      node {
+        title
+        uri
+      }
+    }
+  }
+  supports {
+    edges {
+      node {
+        title: name
+        uri
+      }
+    }
+  }
+}`)
 
 function LegalTitle({ children }: { children: string }) {
   return (

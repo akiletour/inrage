@@ -8,14 +8,12 @@ import Layout from '@component/Layout'
 import Link from '@component/NoScrollLink'
 import SectionTitle from '@component/SectionTitle'
 import TextImage from '@component/TextImage'
-import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql'
 import ImageBackgroundTma from '@image/bg-tma.jpeg'
 import ProtectionShield from '@image/protection-shield.png'
 import WebsitePrestashop from '@image/website-prestashop.png'
 import WebsiteWP from '@image/website-wp.png'
 import { getCanonicalUrl, RouteLink } from '@lib/route'
-import { SupportProjects } from '@type/graphql/portfolio'
-import { fetcher } from '@util/index'
+import { getLastProjectsBySupports } from '@lib/portfolio'
 
 export const metadata = {
   title:
@@ -26,11 +24,6 @@ export const metadata = {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
 }
-
-const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
-  fetcher(LastProjectsBySupports, {
-    id: slug,
-  })
 
 export default async function PrestationPrestashop() {
   const { data } = await getLastProjectsBySupports('prestashop')

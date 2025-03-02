@@ -9,7 +9,6 @@ import Link from '@component/NoScrollLink'
 import Quote from '@component/Quote'
 import SectionTitle from '@component/SectionTitle'
 import TextImage from '@component/TextImage'
-import LastProjectsBySupports from '@graphql-query/last-projects-bysupport.graphql'
 import AcfImage from '@image/acf.png'
 import ImageBackgroundTma from '@image/bg-tma.jpeg'
 import WordpressSage from '@image/developpement-theme-sage.jpeg'
@@ -18,8 +17,7 @@ import ProtectionShield from '@image/protection-shield.png'
 import WebsitePrestashop from '@image/website-prestashop.png'
 import WebsiteWP from '@image/website-wp.png'
 import { getCanonicalUrl, RouteLink } from '@lib/route'
-import { SupportProjects } from '@type/graphql/portfolio'
-import { fetcher } from '@util/index'
+import { getLastProjectsBySupports } from '@lib/portfolio'
 
 export const metadata = {
   title: 'Création de site WordPress | Freelance Wordpress - inRage',
@@ -29,11 +27,6 @@ export const metadata = {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },
 }
-
-const getLastProjectsBySupports = (slug: string): Promise<SupportProjects> =>
-  fetcher(LastProjectsBySupports, {
-    id: slug,
-  })
 
 export default async function PrestationWordPress() {
   const { data } = await getLastProjectsBySupports('wordpress')

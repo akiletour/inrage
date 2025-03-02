@@ -1,9 +1,25 @@
 import ArticleItem from '@component/items/ArticleItem'
-import posts from '@graphql-query/latest-blog-posts.graphql'
 import { ArticleList, List } from '@type/graphql'
 import { fetcher } from '@util/index'
 
-export const getLatestPosts = (): Promise<List<ArticleList>> => fetcher(posts)
+export const getLatestPosts = (): Promise<List<ArticleList>> =>
+  fetcher(`query posts {
+  posts(first: 2) {
+    edges {
+      node {
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+}`)
 
 export default async function LastArticles() {
   const { data } = await getLatestPosts()

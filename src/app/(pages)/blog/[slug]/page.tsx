@@ -3,8 +3,6 @@ import PostComments from '@component/blog/PostComments'
 import ArticleItem from '@component/items/ArticleItem'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
-import allBlogPostsSlug from '@graphql-query/all-blog-posts-slug.graphql'
-import getSinglePost from '@graphql-query/single-post.graphql'
 import {
   getCanonicalUrl,
   replaceBackendUrlContent,
@@ -19,8 +17,11 @@ type Props = {
   }>
 }
 
-const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> =>
-  fetcher(allBlogPostsSlug)
+const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> => {
+  return fetcher(
+    `query articlesSlug { posts(first: 100) { edges { node { slug } } } } `
+  )
+}
 
 export async function generateStaticParams() {
   const { data } = await getAllBlogPostsSlugs()
@@ -31,10 +32,48 @@ export async function generateStaticParams() {
 }
 
 const getData = (slug: string): Promise<SinglePostType> =>
-  fetcher(getSinglePost, { id: slug })
+  fetcher(
+    `query getSingleArticle($id: ID!) {
+      post(id: $id, idType: SLUG) {
+        id
+        title
+        databaseId
+        slug
+        date
+        excerpt
+        content(format: RENDERED)
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        seo {
+          title
+          metaDesc
+          canonical
+        }
+      }
+      posts {
+        edges {
+          node {
+            title
+            slug
+            date
+            excerpt
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+  }`,
+    { id: slug }
+  )
 
 export async function generateMetadata(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const {
     data: { post },
   } = await getData(params.slug)
@@ -49,7 +88,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function Page(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const {
     data: { post, posts },
   } = await getData(params.slug)

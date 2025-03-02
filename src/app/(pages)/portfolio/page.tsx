@@ -1,7 +1,6 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import PortfolioProjects from '@graphql-query/portfolio-projects.graphql'
 import { getCanonicalUrl, RouteLink } from '@lib/route'
 import { List, ProjectList } from '@type/graphql'
 import { fetcher } from '@util/index'
@@ -17,7 +16,32 @@ export const metadata = {
   },
 }
 
-const getData = (): Promise<List<ProjectList>> => fetcher(PortfolioProjects)
+const getData = (): Promise<List<ProjectList>> =>
+  fetcher(`query PortfolioProjects {
+  projets(first: 1000, where: { orderby: { field: DATE, order: DESC } }) {
+    edges {
+      node {
+        id
+        title
+        slug
+        status
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}`)
 
 export default async function Page() {
   const { data } = await getData()

@@ -5,8 +5,6 @@ import PostBody from '@component/blog/PostBody'
 import ProjectItem from '@component/items/ProjectItem'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
-import allProjectsSlugs from '@graphql-query/all-projects-slug.graphql'
-import SingleProjectData from '@graphql-query/single-project.graphql'
 import {
   getCanonicalUrl,
   replaceBackendUrlContent,
@@ -22,7 +20,23 @@ type Props = {
 }
 
 const getAllProjectsSlugs = (): Promise<ProjectsSlugs> =>
-  fetcher(allProjectsSlugs)
+  fetcher(`query projectSlugs {
+  projets(first: 100) {
+    edges {
+      node {
+        slug
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}`)
 
 export const dynamic = 'force-static'
 
@@ -36,10 +50,74 @@ export async function generateStaticParams() {
 }
 
 const getSingleProject = (slug: string): Promise<SingleProject> =>
-  fetcher(SingleProjectData, { id: slug })
+  fetcher(
+    `query ProjectBySlug($id: ID!) {
+  projet(id: $id, idType: SLUG) {
+    id
+    title
+    slug
+    content
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    technologies {
+      edges {
+        node {
+          name
+          acfDetail {
+            image {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+    supports {
+      edges {
+        node {
+          name
+          slug
+        }
+      }
+    }
+    detail {
+      websiteLink
+      year
+      missions
+      excerpt
+    }
+  }
+  projets(where: { notIn: [$id] }, first: 1000) {
+    edges {
+      node {
+        id
+        title
+        slug
+        status
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}`,
+    { id: slug }
+  )
 
 export async function generateMetadata(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const { data } = await getSingleProject(params.project)
   return {
     title: `${data.projet.title} - Portfolio`,
@@ -53,7 +131,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function Page(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const {
     data: { projet: data, projets: relatedRawProjects },
   } = await getSingleProject(params.project)
@@ -72,7 +150,7 @@ export default async function Page(props: Props) {
     .slice(0, 4)
 
   return (
-    (<Layout
+    <Layout
       breadcrumbs={[
         { link: RouteLink.portfolio, title: 'Portfolio' },
         {
@@ -187,6 +265,6 @@ export default async function Page(props: Props) {
             ))}
         </div>
       </div>
-    </Layout>)
-  );
+    </Layout>
+  )
 }

@@ -1,6 +1,5 @@
 import ArticleItem from '@component/items/ArticleItem'
 import Layout from '@component/Layout'
-import posts from '@graphql-query/all-blog-posts.graphql'
 import { getCanonicalUrl, RouteLink } from '@lib/route'
 import { ArticleList, List } from '@type/graphql'
 import { fetcher } from '@util/index'
@@ -14,7 +13,24 @@ export const metadata = {
   },
 }
 
-const allPosts = (): Promise<List<ArticleList>> => fetcher(posts)
+const allPosts = (): Promise<List<ArticleList>> =>
+  fetcher(`query posts {
+  posts(first: 200) {
+    edges {
+      node {
+        title
+        slug
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+}`)
 
 export default async function BlogList() {
   const { data } = await allPosts()

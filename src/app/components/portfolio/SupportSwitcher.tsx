@@ -1,21 +1,15 @@
 import Image from 'next/image'
 
 import Link from '@component/NoScrollLink'
-import PortfolioCategories from '@graphql-query/portfolio-categories.graphql'
 import { RouteLink } from '@lib/route'
-import { List } from '@type/graphql'
-import { PortfolioCategory } from '@type/graphql/portfolio'
-import { fetcher } from '@util/index'
-
-const getCategories = (): Promise<List<PortfolioCategory>> =>
-  fetcher(PortfolioCategories)
+import { getPortfolioCategories } from '@lib/portfolio'
 
 export default async function SupportSwitcher({
   pathname,
 }: {
   pathname: string
 }) {
-  const { data } = await getCategories()
+  const { data } = await getPortfolioCategories()
 
   return (
     <div className="grid grid-cols-4 gap-4 text-center my-6">

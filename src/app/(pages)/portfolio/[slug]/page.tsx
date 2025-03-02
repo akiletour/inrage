@@ -1,13 +1,12 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import PortfolioCategories from '@graphql-query/portfolio-categories.graphql'
-import PortfolioProjects from '@graphql-query/portfolio-category-projects.graphql'
 import { getCanonicalUrl, RouteLink } from '@lib/route'
 import { PortfolioCategory, SupportProjects } from '@type/graphql/portfolio'
 import { fetcher } from '@util/index'
 
 import PortfolioGrid from '../PortfolioGrid'
+import { getPortfolioCategories } from '@lib/portfolio'
 
 type Props = {
   params: Promise<{
@@ -16,10 +15,42 @@ type Props = {
 }
 
 const getData = (category: string): Promise<SupportProjects> =>
-  fetcher(PortfolioProjects, { id: category })
+  fetcher(
+    `query PortfolioProjects($id: ID!) {
+      support(id: $id, idType: SLUG) {
+        id
+        slug
+        name
+        projets(first: 100, where: { orderby: { field: DATE, order: DESC } }) {
+          edges {
+            node {
+              id
+              title
+              slug
+              status
+              featuredImage {
+                node {
+                  sourceUrl
+                }
+              }
+              supports {
+                edges {
+                  node {
+                    name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`,
+    { id: category }
+  )
 
 export async function generateMetadata(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const { data } = await getData(params.slug)
   return {
     title: `${data.support.name} - Portfolio`,
@@ -30,12 +61,8 @@ export async function generateMetadata(props: Props) {
   }
 }
 
-const getAllCategoriesSlugs = (): Promise<{
-  data: { supports: { edges: Array<{ node: PortfolioCategory }> } }
-}> => fetcher(PortfolioCategories)
-
 export async function generateStaticParams() {
-  const { data } = await getAllCategoriesSlugs()
+  const { data } = await getPortfolioCategories()
 
   return data.supports.edges.map(({ node }) => ({
     slug: node.slug,
@@ -43,7 +70,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page(props: Props) {
-  const params = await props.params;
+  const params = await props.params
   const { data } = await getData(params.slug)
 
   return (

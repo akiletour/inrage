@@ -1,10 +1,33 @@
 import ProjectItem from '@component/items/ProjectItem'
-import projects from '@graphql-query/latest-projects.graphql'
 import { List, ProjectList } from '@type/graphql'
 import { fetcher } from '@util/index'
 
 export const getLatestProjects = (): Promise<List<ProjectList>> => {
-  return fetcher(projects)
+  return fetcher(`query projects {
+  projets(first: 4) {
+    edges {
+      node {
+        id
+        title
+        slug
+        status
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        supports {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}`)
 }
 
 export default async function LastProjects() {
