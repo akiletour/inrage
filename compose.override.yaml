@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    environment:
+      # On Linux, you may want to comment the following line for improved performance
+      WATCHPACK_POLLING: 'true'
+      # Development usage only
+      NODE_TLS_REJECT_UNAUTHORIZED: '0'
+    volumes:
+      - ./:/srv/app
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
