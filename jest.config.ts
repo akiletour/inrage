@@ -1,8 +1,8 @@
-import nextJest from 'next/jest';
+import nextJest from 'next/jest'
 
 const createJestConfig = nextJest({
   dir: './',
-});
+})
 
 const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/'],
@@ -15,6 +15,6 @@ const customJestConfig = {
     '^@lib/(.*)$': '<rootDir>/lib/$1',
   },
   modulePathIgnorePatterns: ['cypress'],
-};
+}
 
-module.exports = createJestConfig(customJestConfig);
+module.exports = createJestConfig(customJestConfig)

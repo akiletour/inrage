@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx}'],
   theme: {
     spacing: Object.assign(
       {},
@@ -49,4 +49,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

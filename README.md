@@ -8,7 +8,6 @@
 <img alt="Portfolio inRage - Pascal GAULT" src="./public/images/inline-logo.png" />
 </p>
 
-
 Initially developed with WordPress, I decided to refactor the whole project with Next JS.
 
 To retrieve all projects (portfolio) and blog posts, I've used the WordPress API with [GraphQL](https://fr.wordpress.org/plugins/wp-graphql/).
@@ -18,17 +17,18 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 ![inRage](./public/images/screenshot.png)
 
 ## 📦 Stack
-- `TypeScript`: v4.5
-- `NextJS`: v12.x
-- `Node`: v16+
-- `WordPress`: v5.8+
+
+- `TypeScript`: v5
+- `NextJS`: v15.x
+- `Node`: v22+
+- `WordPress`: v6.7+
 - `Framer Motion`: for animations between page transitions
 - `Akismet`: to check spam in the contact form
 - `GraphQL`: communication with the WordPress API
 
 ## ⚡️ Installation
 
-Make sure to use newest version of Node JS (v16).
+Make sure to use newest version of Node JS (v22).
 
 ```bash
 yarn
@@ -37,14 +37,14 @@ yarn dev
 
 You can now access to the project with : http://localhost:3000
 
-## 🔧 Configuration 
+## 🔧 Configuration
 
 In order to correctly run this project, you must create an environment variables named `.env.local`.
 
 - `AKISMET_API_KEY`: Your Akismet API Key to check spam
-- `MJ_APIKEY_PUBLIC`: Your API Mailjet username 
+- `MJ_APIKEY_PUBLIC`: Your API Mailjet username
 - `MJ_APIKEY_PRIVATE`: Your API Mailjet password
-- `WORDPRESS_API_URL`: https://YOUR-WEBSITE/graphql 
+- `WORDPRESS_API_URL`: https://YOUR-WEBSITE/graphql
 - `WORDPRESS_AUTH_REFRESH_TOKEN`: If you need to access to your private and unpublished content
 - `WORDPRESS_PREVIEW_SECRET`: The token used by `/api/preview?secret=XXX`
 - `SLACK_WEBHOOK_URL`: If set, on each contact message, a slack webhook will be sent.
@@ -71,7 +71,7 @@ It's recommended that you use something like the WordPress Salt generator ([http
 
 You can install and activate the plugin like any WordPress plugin. Download the .zip from Github Release page of WPGraphql [JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication/releases) and add to your plugins directory, then activate.
 
-Once installed, in the GraphQL IDE, run the following mutation : 
+Once installed, in the GraphQL IDE, run the following mutation :
 
 ```graphql
 mutation Login {
@@ -86,7 +86,6 @@ mutation Login {
   }
 }
 ```
-
 
 Copy the `refreshToken` returned by the mutation, then open `.env.local`, and make the following changes:
 
