@@ -18,17 +18,17 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 
 ## 📦 Stack
 
-- `TypeScript`: v4.5
-- `NextJS`: v12.x
-- `Node`: v16+
-- `WordPress`: v5.8+
+- `TypeScript`: v5
+- `NextJS`: v15.x
+- `Node`: v22+
+- `WordPress`: v6.7+
 - `Framer Motion`: for animations between page transitions
 - `Akismet`: to check spam in the contact form
 - `GraphQL`: communication with the WordPress API
 
 ## ⚡️ Installation
 
-Make sure to use newest version of Node JS (v16).
+Make sure to use newest version of Node JS (v22).
 
 ```bash
 yarn
