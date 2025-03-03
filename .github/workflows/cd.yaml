@@ -42,7 +42,7 @@ jobs:
             echo "NEXT_PUBLIC_FRONT_URL=$STAGING_PUBLIC_FRONT_URL" >> $GITHUB_ENV
           fi
       - name: Build Docker images
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
         with:
