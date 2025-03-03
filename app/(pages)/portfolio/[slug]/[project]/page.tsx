@@ -201,7 +201,6 @@ export default async function Page(props: Props) {
                   >
                     {techno.node.acfDetail?.image?.sourceUrl && (
                       <div className="w-6 h-6 relative">
-                        {/* @ts-ignore */}
                         <Image
                           src={techno.node.acfDetail.image.sourceUrl}
                           alt={techno.node.name}

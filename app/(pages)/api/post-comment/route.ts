@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true, message: 'Comment sent' })
-  } catch (error) {
+  } catch {
     return new NextResponse(
       JSON.stringify({ message: 'Error submitting comment' }),
       {

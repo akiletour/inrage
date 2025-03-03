@@ -49,7 +49,7 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
         success()
         reset()
       })
-      .catch((err: any) => {
+      .catch((err) => {
         error(err.message)
       })
   }

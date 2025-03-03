@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, message: 'Message sent' })
-  } catch (error) {
+  } catch {
     return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
       status: 400,
     })

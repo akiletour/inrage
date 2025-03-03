@@ -29,6 +29,7 @@ export const isAkismetSpam = async (
 
     return false
   } catch (error) {
+    console.error(error)
     return true
   }
 }

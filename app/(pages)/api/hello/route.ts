@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     mailjetApi.send()
 
     return NextResponse.json({ success: true, message: 'Message sent' })
-  } catch (error) {
+  } catch {
     return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
       status: 400,
     })
