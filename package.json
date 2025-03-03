@@ -43,7 +43,7 @@
     "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "^10.4.20",
     "cypress": "^12.17.4",
-    "eslint": "^8.57.1",
+    "eslint": "^9.18.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-next": "15.2.0",
@@ -60,12 +60,13 @@
     "postcss": "^8.5.3",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3"
+    "typescript": "^5"
   },
   "pnpm": {
     "overrides": {
       "@types/react": "19.0.10",
       "formidable": "3.5.2"
     }
-  }
+  },
+  "packageManager": "pnpm@10.3.0"
 }

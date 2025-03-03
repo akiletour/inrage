@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -17,7 +17,7 @@
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-    "target": "ES2024",
+    "target": "es5",
     "outDir": "out",
     "declaration": true,
     "sourceMap": true,
@@ -39,7 +39,8 @@
       "@image/*": ["public/images/*"],
       "@lib/*": ["src/app/libs/*"],
       "@component/*": ["src/app/components/*"],
-      "@util/*": ["src/app/utils/*"]
+      "@util/*": ["src/app/utils/*"],
+      "@/*": ["src/app/*"]
     },
     "types": ["node"],
     "plugins": [

@@ -1,4 +1,4 @@
-import Character from '@component/Character'
+import Character from '@/components/Character'
 import Diagonal from '@component/Diagonal'
 import MoreIcon from '@component/icons/MoreIcon'
 import ExperienceItem from '@component/items/ExperienceItem'
