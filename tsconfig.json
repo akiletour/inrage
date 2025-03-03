@@ -17,7 +17,7 @@
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "noFallthroughCasesInSwitch": true,
-    "target": "es5",
+    "target": "ES2017",
     "outDir": "out",
     "declaration": true,
     "sourceMap": true,
@@ -32,15 +32,15 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql-query/*": ["src/app/graphql/*"],
-      "@layout/*": ["src/app/layouts/*"],
-      "@hook/*": ["src/app/hooks/*"],
-      "@type/*": ["src/app/types/*"],
+      "@graphql-queryc*": ["app/graphql/*"],
+      "@layout/*": ["app/layouts/*"],
+      "@hook/*": ["app/hooks/*"],
+      "@type/*": ["app/types/*"],
       "@image/*": ["public/images/*"],
-      "@lib/*": ["src/app/libs/*"],
-      "@component/*": ["src/app/components/*"],
-      "@util/*": ["src/app/utils/*"],
-      "@/*": ["src/app/*"]
+      "@lib/*": ["app/libs/*"],
+      "@component/*": ["app/components/*"],
+      "@util/*": ["app/utils/*"],
+      "@/*": ["app/*"]
     },
     "types": ["node"],
     "plugins": [
@@ -50,7 +50,7 @@
     ]
   },
   "include": [
-    "src/app/types/**/*.d.ts",
+    "app/types/**/*.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

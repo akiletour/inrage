@@ -1,0 +1,21 @@
+services:
+  pwa:
+    image: ${WEB_DOCKER_IMAGE}
+    build:
+      context: .
+      target: prod
+      args:
+        NEXT_PUBLIC_FRONT_URL: ${NEXT_PUBLIC_FRONT_URL}
+        WORDPRESS_API_URL: ${WORDPRESS_API_URL}
+    environment:
+      WORDPRESS_API_URL: ${WORDPRESS_API_URL}
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1',
+        ]
+      start_period: 5s
+      interval: 5s
+      timeout: 3s
+      retries: 5

@@ -1,0 +1,13 @@
+services:
+  web:
+    image: ${IMAGES_PREFIX:-}web
+    environment:
+      # Used to configure the communication with WordPress
+      BACKEND_URL: ${BACKEND_URL:-http://127.0.0.1:8000}
+      WORDPRESS_API_URL: ${BACKEND_URL:-http://127.0.0.1:8000}/graphql
+
+      # Used to determine the front URL
+      NEXT_PUBLIC_FRONT_URL: ${NEXT_PUBLIC_FRONT_URL:-http://localhost:3000}
+
+      # Used by Slack to send a notification to the Slack channel
+      SLACK_WEBHOOK_URL: ''
