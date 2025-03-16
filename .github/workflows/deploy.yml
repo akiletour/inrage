@@ -18,6 +18,9 @@ on:
       argocd-password:
         description: ArgoCD deployer password
         required: true
+      webhook-url:
+        description: Production webhook URL
+        required: true
 
 jobs:
   deploy_staging:
@@ -37,3 +40,13 @@ jobs:
           version: 2.6.7
           command: app set argocd/${{ inputs.argocd-appname }}
           options: --parameter pwa.branch=${{ github.sha }}
+  deploy:
+    name: Production deployment
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+    environment:
+      name: production
+    steps:
+      - uses: inrage/webhook-action@v1
+        with:
+          webhook_production: ${{ secrets.webhook-url }}

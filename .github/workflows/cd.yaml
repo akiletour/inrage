@@ -81,3 +81,4 @@ jobs:
       argocd-server: ${{ secrets.STAGING_ARGOCD_SERVER }}
       argocd-username: ${{ secrets.STAGING_ARGOCD_USERNAME }}
       argocd-password: ${{ secrets.STAGING_ARGOCD_PASSWORD }}
+      webhook-url: ${{ secrets.WEBHOOK_URL }}
