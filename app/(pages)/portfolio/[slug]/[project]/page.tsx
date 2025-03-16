@@ -12,6 +12,7 @@ import {
 } from '@lib/router'
 import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio'
 import { fetcher } from '@util/index'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: Promise<{
@@ -135,6 +136,10 @@ export default async function Page(props: Props) {
   const {
     data: { projet: data, projets: relatedRawProjects },
   } = await getSingleProject(params.project)
+
+  if (!data) {
+    return notFound()
+  }
 
   const relatedProjects = relatedRawProjects.edges
     .filter((r) => {
