@@ -8,7 +8,7 @@ interface IProps extends LinkProps {
 
 function NoScrollLink({ children, href, passHref }: IProps): ReactNode {
   return (
-    <Link href={href} passHref={passHref} scroll={false}>
+    <Link href={href} passHref={passHref}>
       {children}
     </Link>
   )
