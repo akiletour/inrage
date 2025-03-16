@@ -7,7 +7,7 @@ import { fetcher } from '@util/index'
 
 const getSitemap = (): Promise<SitemapType> =>
   fetcher(`query sitemap {
-  projets {
+  projets(first: 100) {
     edges {
       node {
         title
@@ -15,7 +15,7 @@ const getSitemap = (): Promise<SitemapType> =>
       }
     }
   }
-  posts {
+  posts(first: 100) {
     edges {
       node {
         title
@@ -23,7 +23,7 @@ const getSitemap = (): Promise<SitemapType> =>
       }
     }
   }
-  supports {
+  supports(first: 100) {
     edges {
       node {
         title: name
