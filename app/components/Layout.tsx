@@ -1,8 +1,8 @@
 'use client'
 
-import React, { ReactNode } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 import Header from '@layout/Header'
 
@@ -38,15 +38,18 @@ function Layout({
         headerType={tmaLayout === true ? 'tma' : 'default'}
         breadcrumb={breadcrumbs}
       />
-      <motion.main
+      <motion.div
         initial="hidden"
         animate="enter"
         exit="exit"
+        layout
         variants={variants}
         transition={{ type: 'linear' }}
       >
-        {children}
-      </motion.main>
+        <Fragment key={Array.isArray(title) ? title.join(',') : title}>
+          {children}
+        </Fragment>
+      </motion.div>
     </div>
   )
 }

@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/github-workflow.json
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      argocd-appname:
+        type: string
+        description: ArgoCD application name
+        required: true
+    secrets:
+      argocd-server:
+        description: ArgoCD server URI
+        required: true
+      argocd-username:
+        description: ArgoCD deployer username
+        required: true
+      argocd-password:
+        description: ArgoCD deployer password
+        required: true
+      webhook-url:
+        description: Production webhook URL
+        required: true
+
+jobs:
+  deploy_staging:
+    name: Staging deployment
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    environment:
+      name: staging
+    steps:
+      - uses: clowdhaus/argo-cd-action/@main
+        with:
+          version: 2.6.7
+          command: login ${{ secrets.argocd-server }}
+          options: --password ${{ secrets.argocd-password }} --username ${{ secrets.argocd-username }}
+      - uses: clowdhaus/argo-cd-action/@main
+        with:
+          version: 2.6.7
+          command: app set argocd/${{ inputs.argocd-appname }}
+          options: --parameter pwa.branch=${{ github.sha }}
+  deploy:
+    name: Production deployment
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+    environment:
+      name: production
+    steps:
+      - uses: inrage/webhook-action@v1
+        with:
+          webhook_production: ${{ secrets.webhook-url }}
