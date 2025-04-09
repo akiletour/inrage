@@ -40,15 +40,15 @@ export default function AboutMe() {
           Freelance à La Rochelle.
         </p>
         <p className="mt-1">
-          Une de mes plus importantes et gratifiantes décisions pour ma carrière
-          que j’ai faite. De ce fait, j’ai l’opportunité de travailler sur les
+          Une de mes décisions les plus importantes et gratifiantes pour ma
+          carrière. De ce fait, j’ai l’opportunité de travailler sur les
           différents aspects de la conception, de la stratégie, de la gestion et
           de la planification jusqu’à la production complète de ce projet.
         </p>
         <p className="mt-1">
-          Je suis aussi devenu plus intéressé par l’aspect commercial des
-          projets, de plus en plus conscient de l’importance d’intégrer les
-          décisions commerciales responsables de l’atteinte des objectifs
+          Je suis également devenu plus intéressé par l’aspect commercial des
+          projets, de plus en plus conscient de l’importance d’intégrer des
+          décisions commerciales responsables pour atteindre les objectifs
           d’affaires.
         </p>
         <p className="mt-1 mb-3">
@@ -66,7 +66,7 @@ export default function AboutMe() {
       <div className="bg-gray-darker">
         <div className="container lg:-mb-10">
           <SectionTitle
-            content="La liste de mes expériences professionnelles que j'ai acquise au fil de mes années de Développeur en tant que salarié et indépendant."
+            content="Voici la liste de mes expériences professionnelles que j'ai acquises au fil de mes années en tant que développeur, salarié et indépendant."
             title="Expériences"
           />
 
@@ -76,7 +76,7 @@ export default function AboutMe() {
               title="Développeur Joomla"
               company="Moonscoop Digital Media, La Rochelle, France"
               year="2008 - 4 ans"
-              excerpt="Membre d'une équipe de 3 développeurs frontend et backend. Développement de site client basé principalement sur le CMS Joomla et PHP."
+              excerpt="Membre d'une équipe de 3 développeurs frontend et backend. Développement de sites clients basé principalement sur le CMS Joomla et PHP."
             />
 
             <ExperienceItem
@@ -100,7 +100,7 @@ export default function AboutMe() {
               title="Développeur Symfony, WordPress, Prestashop et DevOps"
               company="Kamélab, La Rochelle, France"
               year="Depuis 2018"
-              excerpt="Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et notre graphiste Romain Ouvrard."
+              excerpt="Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et de notre graphiste Romain Ouvrard."
             />
           </div>
         </div>
@@ -132,56 +132,56 @@ export default function AboutMe() {
               Pascal GAULT
             </h3>
             <p>
-              Dès mon plus jeune âge, je commence à découvrir le monde du
+              Dès mon plus jeune âge, j&apos;ai commencé à découvrir le monde du
               développement en créant mes premiers sites liés à mes associations
-              de jeux vidéos. C’est à partir de cette époque que j’ai continué
+              de jeux vidéo. C’est à partir de cette époque que j’ai continué
               dans cette voie pour me professionnaliser dans la création
-              numérique et en faire mon métier sur La Rochelle.
+              numérique et en faire mon métier à La Rochelle.
             </p>
-            <p></p>
             <p className="mt-2">
               L’art et la technologie ont toujours été deux inspirations de ma
-              vie courante. Je viens d’un milieu artistique, qui a fusionné avec
-              la technologie pour finir par évoluer dans le développement web.
+              vie quotidienne. Je viens d’un milieu artistique, qui a fusionné
+              avec la technologie pour finir par évoluer dans le développement
+              web.
             </p>
             <p className="mt-2">
               J&apos;ai passé plus de la moitié de ma vie à être guidé par la
-              passion du développement. Cela semble un peu bizarre non ?
-              C&apos;est un vaste monde où tout va vite, des nouvelles
-              fonctionnalités et des technologies exitantes tous les jours. Même
+              passion du développement. Cela semble un peu bizarre, non ?
+              C&apos;est un vaste monde où tout va vite, avec de nouvelles
+              fonctionnalités et des technologies excitantes chaque jour. Même
               dans mon quotidien, je me sers de mon métier pour optimiser et
-              résoudre des problèmes de mon quotidien.
+              résoudre des problèmes de ma vie quotidienne.
             </p>
 
             <p className="mt-2">
               Je vis actuellement dans une petite ville proche de La Rochelle,
-              dans une super maison aux côtés de Christelle, ma femme et de
+              dans une super maison aux côtés de Christelle, ma femme, et de
               notre petite princesse Octavia ♥.
             </p>
             <p className="mt-2">
-              Je continue à travailler et apprendre tous les jours, trouver de
-              nouvelles technologies pour faire évoluer cette passion; et
+              Je continue à travailler et à apprendre tous les jours, à trouver
+              de nouvelles technologies pour faire évoluer cette passion et
               pouvoir appliquer cela tous les jours dans mon travail.
             </p>
             <h3 className="text-white font-medium text-3xl mt-4 mb-1">
               Ce site
             </h3>
             <p>
-              Ce site est mon croquis numérique, mon journal et mon air de jeu
+              Ce site est mon croquis numérique, mon journal et mon aire de jeu
               dans l’expérimentation de nouvelles technologies. Je suis
               constamment en train d’y implémenter de nouvelles fonctionnalités,
-              et parfois même faire des erreurs. Tout pour un seul objectif,
-              continuer d’apprendre.
+              et parfois même de faire des erreurs. Tout cela pour un seul
+              objectif : continuer d’apprendre.
             </p>
             <p className="mt-2">
-              J’espère que les gens qui visiteront mon portfolio aimeront autant
-              que j’ai apprécié de le développer. En espérant qu’ils trouveront
-              de l’inspiration et pourquoi pas, nous permettre de travailler
-              ensemble.
+              J’espère que les gens qui visiteront mon portfolio l&apos;aimeront
+              autant que j’ai apprécié de le développer. En espérant qu’ils
+              trouveront de l’inspiration et, pourquoi pas, nous permettront de
+              travailler ensemble.
             </p>
 
             <p className="mt-2">
-              Ce site est actuellement développé en ReactJS avec le fomidable
+              Ce site est actuellement développé en ReactJS avec le formidable
               framework NextJS. Si vous voulez en savoir plus sur sa conception,
               le code source est{' '}
               <a
