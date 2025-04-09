@@ -113,7 +113,7 @@ export default async function Page(props: Props) {
 
       <div className="container">
         <SectionTitle
-          content="Retrouvez ci-dessous quelques articles qui pourrait vous intéresser."
+          content="Retrouvez ci-dessous quelques articles qui pourraient vous intéresser."
           title="Articles reliés"
         />
 
