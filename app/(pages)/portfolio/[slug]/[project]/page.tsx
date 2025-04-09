@@ -252,7 +252,7 @@ export default async function Page(props: Props) {
         )}
 
         <SectionTitle
-          content={`Retrouvez des projets similaires développés avec ${data?.supports?.edges[0]?.node.name} qui pourrait correspondre à ${data.title}`}
+          content={`Retrouvez des projets similaires développés avec ${data?.supports?.edges[0]?.node.name} qui pourraient correspondre à ${data.title}`}
           title={data?.supports?.edges[0]?.node.name || ''}
         />
 
