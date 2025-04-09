@@ -119,8 +119,8 @@ export default async function Page(props: Props) {
 
         <div className="grid md:grid-cols-2 gap-4 mt-6">
           {relatedPosts.map(
-            ({ node: { id, slug, featuredImage, title, date, excerpt } }) => (
-              <div key={id}>
+            ({ node: { slug, featuredImage, title, date, excerpt } }) => (
+              <div key={slug}>
                 <ArticleItem
                   slug={slug}
                   featuredImage={featuredImage}
