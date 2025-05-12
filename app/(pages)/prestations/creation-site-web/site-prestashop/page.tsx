@@ -120,7 +120,7 @@ export default async function PrestationPrestashop() {
 
       <div className="container">
         <TextImage
-          title={['Développment et intégration', 'de thèmes Prestashop']}
+          title={['Développement et intégration', 'de thèmes Prestashop']}
           image={WebsiteWP}
         >
           <p>
@@ -333,7 +333,7 @@ export default async function PrestationPrestashop() {
       <div className="container mt-4 md:mt-0">
         <SectionTitle
           content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
+            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           }
           title="Contact"
         />

@@ -161,7 +161,7 @@ export default function TmaOnDemand() {
       <div className="container">
         <SectionTitle
           content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
+            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           }
           title="Contact"
         />

@@ -12,12 +12,12 @@ export default function PrestationsList() {
         image={ImagePrestationBuildWebsite}
         title={['Conception / Refonte', 'de sites Internet']}
         link={RouteLink.prestationWeb}
-        linkText="Découvrir mes prestations"
+        linkText="Découvrez mes prestations"
       >
         Sites vitrines, associatifs, e-commerce ou dédiés. Je vous accompagne
         dès la genèse de votre projet pour vous proposer des solutions
         puissantes et performantes et répondre le plus efficacement aux enjeux
-        de votre activité. Je suis expert dans la création de site sur les CMS
+        de votre activité. Je suis expert dans la création de sites sur les CMS
         Joomla, WordPress et Prestashop.
       </PrestationItem>
 
@@ -28,10 +28,10 @@ export default function PrestationsList() {
         linkText="Mes offres de maintenance"
       >
         La maintenance d’un site internet s’avère complexe lorsqu’on ne dispose
-        pas du bagage technique nécessaire voire le temps de s’en occuper. Pour
+        pas du bagage technique nécessaire, voire du temps de s’en occuper. Pour
         ces tâches délicates et chronophages, je vous propose de prendre le
-        relai et d’assurer pour vous la gestion de vos sauvegardes, ainsi que la
-        maintenance et la sécurité de votre serveur dans sa globalité.
+        relais et d’assurer pour vous la gestion de vos sauvegardes, ainsi que
+        la maintenance et la sécurité de votre serveur dans sa globalité.
       </PrestationItem>
 
       <PrestationItem

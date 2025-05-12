@@ -128,7 +128,7 @@ export default function PrestationBuildWebsite() {
 
         <TextImage
           image={BuildWordPress}
-          title={['Développment site vitrine', 'avec WordPress']}
+          title={['Développement site vitrine', 'avec WordPress']}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
@@ -184,7 +184,7 @@ export default function PrestationBuildWebsite() {
 
         <TextImage
           image={BuildSymfony}
-          title={['Développment site', 'avec Symfony']}
+          title={['Développement site', 'avec Symfony']}
         >
           <p>
             Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
@@ -302,7 +302,7 @@ export default function PrestationBuildWebsite() {
       <div className="container mt-4 md:mt-0">
         <SectionTitle
           content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
+            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           }
           title="Contact"
         />

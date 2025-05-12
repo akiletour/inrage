@@ -241,7 +241,7 @@ export default async function PrestationWordPress() {
       <div className="container">
         <TextImage
           position="right"
-          title={['Développment', "d'extensions sur-mesure"]}
+          title={['Développement', "d'extensions sur-mesure"]}
           image={WebsiteWP}
         >
           <p>
@@ -267,7 +267,7 @@ export default async function PrestationWordPress() {
 
         <TextImage
           title={[
-            'Développment et intégration',
+            'Développement et intégration',
             'de thème WordPress sur-mesure',
           ]}
           image={WebsitePrestashop}
@@ -473,7 +473,7 @@ export default async function PrestationWordPress() {
       </div>
       <div className="container mt-4 md:mt-0">
         <SectionTitle
-          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serais ravis de vous répondre."
+          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           title="Contact"
         />
 

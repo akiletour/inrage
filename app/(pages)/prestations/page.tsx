@@ -353,7 +353,7 @@ export default function Prestations() {
         <div className="mt-10">
           <SectionTitle
             title="Pourquoi moi ?"
-            content="Consulter en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
+            content="Consultez en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
@@ -361,14 +361,14 @@ export default function Prestations() {
               image={PrestationDesign}
               title={['Identité visuelle &', 'Charte graphique']}
             >
-              Conscient et engagé, nous sommes à l’affut des nouvelles
+              Conscients et engagés, nous sommes à l’affût des nouvelles
               technologies web, nous assurons des veilles graphiques et
               techniques nous permettant de vous proposer des fonctionnalités au
-              gout du jours.
+              goût du jours.
             </PrestationItem>
             <PrestationItem
               image={PrestationWebDev}
-              title={['Développment de', 'votre projet']}
+              title={['Développement de', 'votre projet']}
             >
               Expert dans son domaine et sur les CMS comme Joomla, Prestashop et
               WordPress. inRage respectera précisément votre cahier des charges
