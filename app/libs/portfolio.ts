@@ -1,42 +1,5 @@
-import { List } from '@type/graphql'
-import { fetcher } from '@util/index'
+import { getRelatedMdx } from '@util/mdx'
 
-export const getLastProjectsBySupports = (
-  slug: string
-): Promise<SupportProjects> =>
-  fetcher(
-    `query LastProjectBySupport($id: ID!) {
-  support(id: $id, idType: SLUG) {
-    id
-    projets(first: 4) {
-      edges {
-        node {
-          id
-          title
-          slug
-          status
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          supports {
-            edges {
-              node {
-                name
-                slug
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}`,
-    {
-      id: slug,
-    }
-  )
 export const portfolioCategories = {
   wordpress: {
     title: 'WordPress',
@@ -94,6 +57,14 @@ export const portfolioTools = {
   },
 }
 
+export const getLastProjectsBySupports = async (slug: string) => {
+  return getRelatedMdx({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+    limit: 4,
+    category: slug,
+  })
+}
 
 export const getPortfolioCategories = async () => {
   return Object.values(portfolioCategories)

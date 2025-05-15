@@ -5,6 +5,7 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { Sitemap as SitemapType } from '@type/graphql/sitemap-type'
 import { fetcher } from '@util/index'
 import { portfolioCategories } from '@lib/portfolio'
+import { getRelatedMdx } from '@util/mdx'
 
 const getSitemap = (): Promise<SitemapType> =>
   fetcher(`query sitemap {
@@ -108,17 +109,19 @@ export default async function Sitemap() {
           <div>
             <LegalTitle>Portfolio</LegalTitle>
             <ul className="styled-list">
-              {supports.edges.map(({ node: { title, uri } }) => (
+              {projectCategories.map(({ title, slug }) => (
                 <li key={title}>
-                  <Link href={uri}>{title}</Link>
+                  <Link href={`${RouteLink.portfolio}/${slug}`}>{title}</Link>
                 </li>
               ))}
             </ul>
 
             <ul className="styled-list mt-3">
-              {projets.edges.map(({ node: { title, uri } }) => (
+              {projects.map(({ title, slug, support }) => (
                 <li key={title}>
-                  <Link href={uri}>{title}</Link>
+                  <Link href={`${RouteLink.portfolio}/${support.slug}/${slug}`}>
+                    {title}
+                  </Link>
                 </li>
               ))}
             </ul>

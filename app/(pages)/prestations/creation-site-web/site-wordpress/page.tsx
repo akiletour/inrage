@@ -29,7 +29,7 @@ export const metadata = {
 }
 
 export default async function PrestationWordPress() {
-  const { data } = await getLastProjectsBySupports('wordpress')
+  const projects = await getLastProjectsBySupports('wordpress')
 
   return (
     <Layout
@@ -448,14 +448,14 @@ export default async function PrestationWordPress() {
           />
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {data.support.projets.edges.length > 0 &&
-              data.support.projets.edges.map(({ node }) => (
+            {projects.length > 0 &&
+              projects.map(({ title, image, slug, support }) => (
                 <ProjectItem
-                  key={node.id}
-                  image={node.featuredImage.node.sourceUrl}
-                  title={node.title}
-                  slug={node.slug}
-                  support={node?.supports?.edges[0]?.node}
+                  key={title}
+                  image={`/images/portfolio/${image}`}
+                  title={title}
+                  slug={slug}
+                  support={support}
                 />
               ))}
           </div>

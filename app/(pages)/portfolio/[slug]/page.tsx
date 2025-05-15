@@ -1,12 +1,11 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import { getPortfolioCategories } from '@lib/portfolio'
+import { portfolioCategories } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { SupportProjects } from '@type/graphql/portfolio'
-import { fetcher } from '@util/index'
 
 import PortfolioGrid from '../PortfolioGrid'
+import { getRelatedMdx } from '@util/mdx'
 
 type Props = {
   params: Promise<{
@@ -14,82 +13,52 @@ type Props = {
   }>
 }
 
-const getData = (category: string): Promise<SupportProjects> =>
-  fetcher(
-    `query PortfolioProjects($id: ID!) {
-      support(id: $id, idType: SLUG) {
-        id
-        slug
-        name
-        projets(first: 100, where: { orderby: { field: DATE, order: DESC } }) {
-          edges {
-            node {
-              id
-              title
-              slug
-              status
-              featuredImage {
-                node {
-                  sourceUrl
-                }
-              }
-              supports {
-                edges {
-                  node {
-                    name
-                    slug
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`,
-    { id: category }
-  )
-
 export async function generateMetadata(props: Props) {
   const params = await props.params
-  const { data } = await getData(params.slug)
+
+  const category =
+    portfolioCategories[params.slug as keyof typeof portfolioCategories]
+
   return {
-    title: `${data.support.name} - Portfolio`,
-    description: data.support.excerpt,
+    title: `${category.title} - Portfolio`,
+    description: '',
     alternates: {
-      canonical: getCanonicalUrl(`${RouteLink.portfolio}/${data.support.slug}`),
+      canonical: getCanonicalUrl(`${RouteLink.portfolio}/${category.slug}`),
     },
   }
 }
 
 export async function generateStaticParams() {
-  const { data } = await getPortfolioCategories()
-
-  return (
-    data?.supports?.edges.map(({ node }) => ({
-      slug: node.slug,
-    })) ?? []
-  )
+  return Object.keys(portfolioCategories).map(async (slug) => ({ slug }))
 }
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const { data } = await getData(params.slug)
+  const data = await getRelatedMdx({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+    currentSlug: undefined,
+    category: params.slug
+  })
+
+  const category =
+    portfolioCategories[params.slug as keyof typeof portfolioCategories]
 
   return (
     <Layout
       breadcrumbs={[{ link: RouteLink.portfolio, title: 'Portfolio' }]}
-      title={data.support.name}
+      title={category.title}
     >
       <div className="container">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           }
-          title={data.support.name}
+          title={category.title}
         />
-        <SupportSwitcher pathname={`/portfolio/${params.slug}`} />
+        <SupportSwitcher pathname={`/portfolio/${category.slug}`} />
 
-        <PortfolioGrid projects={data.support.projets.edges} />
+        <PortfolioGrid projects={data} />
       </div>
     </Layout>
   )
