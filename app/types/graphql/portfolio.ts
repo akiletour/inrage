@@ -42,14 +42,6 @@ export interface SupportProjects {
   }
 }
 
-interface TechnologyType {
-  name: string
-  acfDetail: {
-    image: {
-      sourceUrl: string
-    }
-  }
-}
 
 export interface SingleProject {
   data: {
