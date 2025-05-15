@@ -77,7 +77,7 @@ export default async function Page(props: Props) {
     currentSlug: params.project,
     limit: 4,
     category: params.slug,
-    sort: 'random'
+    sort: 'random',
   })
 
   const MdxContent = content
@@ -164,16 +164,14 @@ export default async function Page(props: Props) {
               </div>
             </div>
           </div>
-          <div className="md:w-3/5 mt-4 md:mt-0 md:pl-4">
+          <div className="md:w-3/5 max-w-[650px] mt-4 md:mt-0 md:pl-4">
             <Image
               src={`/images/portfolio/${metadata.image.large}`}
               width={650}
+              priority
               height={1150}
               alt={metadata.title}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
+              className="w-full h-auto max-w-none"
             />
           </div>
         </div>
