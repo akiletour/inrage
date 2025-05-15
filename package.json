@@ -12,7 +12,11 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.3.2",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/mdx": "^2.0.13",
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
     "autoprefixer": "^10.4.21",
@@ -31,6 +35,8 @@
     "react-dom": "19.0.0",
     "react-hook-form": "^7.56.3",
     "react-use": "^17.6.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.1.0",
     "request-ip": "^3.3.0",
     "sanitize-html": "^2.16.0",
     "sharp": "^0.32.6",
@@ -54,7 +60,8 @@
   "pnpm": {
     "overrides": {
       "@types/react": "19.0.10",
-      "formidable": "3.5.2"
+      "formidable": "3.5.2",
+      "unist-util-mdx-define>estree-walker": "^2.0.2"
     }
   },
   "packageManager": "pnpm@10.3.0"
