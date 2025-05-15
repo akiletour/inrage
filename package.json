@@ -2,7 +2,7 @@
   "name": "inrage-react",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -12,6 +12,7 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
     "autoprefixer": "^10.4.21",

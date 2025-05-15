@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     spacing: Object.assign(
       {},
@@ -48,5 +48,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // @ts-expect-error - Using require for Tailwind plugin
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('@tailwindcss/typography'),
+  ],
 }
