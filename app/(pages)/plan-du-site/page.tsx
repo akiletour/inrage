@@ -4,29 +4,14 @@ import Layout from '@component/Layout'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { Sitemap as SitemapType } from '@type/graphql/sitemap-type'
 import { fetcher } from '@util/index'
+import { portfolioCategories } from '@lib/portfolio'
 
 const getSitemap = (): Promise<SitemapType> =>
   fetcher(`query sitemap {
-  projets(first: 100) {
-    edges {
-      node {
-        title
-        uri
-      }
-    }
-  }
   posts(first: 100) {
     edges {
       node {
         title
-        uri
-      }
-    }
-  }
-  supports(first: 100) {
-    edges {
-      node {
-        title: name
         uri
       }
     }
@@ -42,8 +27,14 @@ function LegalTitle({ children }: { children: string }) {
 export default async function Sitemap() {
   const data = await getSitemap()
   const {
-    data: { projets, posts, supports },
+    data: { posts },
   } = data
+
+  const projectCategories = Object.values(portfolioCategories)
+  const projects = await getRelatedMdx({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+  })
 
   return (
     <Layout title="Plan du site">

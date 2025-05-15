@@ -42,17 +42,6 @@ export interface SupportProjects {
   }
 }
 
-export interface PortfolioCategory {
-  slug: string
-  name: string
-  id: number
-  acfSupport: {
-    image: {
-      sourceUrl: string
-    }
-  }
-}
-
 interface TechnologyType {
   name: string
   acfDetail: {

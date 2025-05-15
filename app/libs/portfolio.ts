@@ -38,21 +38,25 @@ export const getLastProjectsBySupports = (
       id: slug,
     }
   )
+export const portfolioCategories = {
+  wordpress: {
+    title: 'WordPress',
+    slug: 'wordpress',
+    icon: 'creation-wordpress.webp',
+  },
+  'application-web': {
+    title: 'Application Web',
+    slug: 'application-web',
+    icon: 'developpement-application-web.webp',
+  },
+  prestashop: {
+    title: 'PrestaShop',
+    slug: 'prestashop',
+    icon: 'creation-prestashop.webp',
+  },
+}
 
-export const getPortfolioCategories = (): Promise<List<PortfolioCategory>> =>
-  fetcher(`query PortfolioCategories {
-  supports {
-    edges {
-      node {
-        slug
-        name
-        id
-        acfSupport {
-          image {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}`)
+
+export const getPortfolioCategories = async () => {
+  return Object.values(portfolioCategories)
+}
