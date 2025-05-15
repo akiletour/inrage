@@ -39,9 +39,13 @@ export const portfolioTools = {
     title: 'Figma',
     icon: 'figma.svg',
   },
-  reactjs: {
+  react: {
     title: 'ReactJS',
     icon: 'reactjs.svg',
+  },
+  nextjs: {
+    title: 'NextJS',
+    icon: 'nextjs.svg',
   },
   sketch: {
     title: 'Sketch',
@@ -54,6 +58,10 @@ export const portfolioTools = {
   sage9: {
     title: 'Sage 9',
     icon: 'sage.svg',
+  },
+  joomla: {
+    title: 'Joomla',
+    icon: 'joomla.svg',
   },
 }
 

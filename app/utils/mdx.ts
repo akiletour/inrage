@@ -143,8 +143,8 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
           portfolioCategories[
             content.frontmatter.category as keyof typeof portfolioCategories
           ],
-        // Include the date for sorting
-        sortValue: sort === 'date' ? frontmatter.date : undefined,
+        // Include the date or year for sorting
+        sortValue: sort === 'date' ? (frontmatter.date || frontmatter.year) : undefined,
       }
     })
   )
@@ -180,6 +180,10 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
       // Sort dates in descending order
       if (typeof a.sortValue === 'string' && typeof b.sortValue === 'string') {
         return b.sortValue.localeCompare(a.sortValue)
+      }
+      // Sort numbers in descending order
+      if (typeof a.sortValue === 'number' && typeof b.sortValue === 'number') {
+        return b.sortValue - a.sortValue
       }
       return 0
     })
