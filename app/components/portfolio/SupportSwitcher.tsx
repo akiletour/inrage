@@ -9,7 +9,7 @@ export default async function SupportSwitcher({
 }: {
   pathname: string
 }) {
-  const { data } = await getPortfolioCategories()
+  const categories = await getPortfolioCategories()
 
   return (
     <div className="grid grid-cols-4 gap-4 text-center my-6">
@@ -34,32 +34,25 @@ export default async function SupportSwitcher({
           </span>
         </span>
       </Link>
-      {data?.supports?.edges &&
-        data?.supports?.edges.map(({ node: support }) => (
-          <Link
-            key={support.id}
-            href={`${RouteLink.portfolio}/${support.slug}`}
-          >
+      {categories &&
+        categories.map(({ title, slug, icon }) => (
+          <Link key={title} href={`${RouteLink.portfolio}/${slug}`}>
             <div
               className={
-                pathname === `${RouteLink.portfolio}/${support.slug}`
+                pathname === `${RouteLink.portfolio}/${slug}`
                   ? 'text-orange'
                   : 'text-white'
               }
             >
-              {support?.acfSupport && (
-                <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
-                  <Image
-                    src={support.acfSupport.image.sourceUrl}
-                    alt={support.name}
-                    fill
-                    sizes="100vw"
-                  />
-                </div>
-              )}
-              <span className="mt-1 block text-sm md:text-lg">
-                {support.name}
-              </span>
+              <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
+                <Image
+                  src={`/images/portfolio/categories/${icon}`}
+                  alt={title}
+                  fill
+                  sizes="100vw"
+                />
+              </div>
+              <span className="mt-1 block text-sm md:text-lg">{title}</span>
             </div>
           </Link>
         ))}

@@ -2,10 +2,9 @@ import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { List, ProjectList } from '@type/graphql'
-import { fetcher } from '@util/index'
 
 import PortfolioGrid from './PortfolioGrid'
+import { getRelatedMdx } from '@util/mdx'
 
 export const metadata = {
   title: 'Portfolio des projets de création de site Internet',
@@ -16,39 +15,11 @@ export const metadata = {
   },
 }
 
-const getData = (): Promise<List<ProjectList>> =>
-  fetcher(`query PortfolioProjects {
-  projets(first: 1000, where: { orderby: { field: DATE, order: DESC } }) {
-    edges {
-      node {
-        id
-        title
-        slug
-        status
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        supports {
-          edges {
-            node {
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-}`)
-
 export default async function Page() {
-  const { data } = await getData()
-
-  if (!data.projets) {
-    return null
-  }
+  const data = await getRelatedMdx({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+  })
 
   return (
     <Layout title="Portfolio">
@@ -61,7 +32,7 @@ export default async function Page() {
         />
         <SupportSwitcher pathname="/portfolio" />
 
-        <PortfolioGrid projects={data.projets.edges} />
+        <PortfolioGrid projects={data} />
       </div>
     </Layout>
   )

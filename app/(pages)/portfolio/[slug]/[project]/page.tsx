@@ -1,131 +1,53 @@
+import React from 'react'
 import Image from 'next/image'
-import sanitize from 'sanitize-html'
-
-import PostBody from '@component/blog/PostBody'
 import ProjectItem from '@component/items/ProjectItem'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
-import {
-  getCanonicalUrl,
-  replaceBackendUrlContent,
-  RouteLink,
-} from '@lib/router'
-import { ProjectsSlugs, SingleProject } from '@type/graphql/portfolio'
-import { fetcher } from '@util/index'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { notFound } from 'next/navigation'
+import {
+  getAllMdxSlugs,
+  getMdx,
+  getRelatedMdx,
+  PortfolioMdxMetadata,
+} from '@util/mdx'
+import { portfolioCategories, portfolioTools } from '@lib/portfolio'
 
 type Props = {
   params: Promise<{
     project: string
+    slug: string
   }>
 }
-
-const getAllProjectsSlugs = (): Promise<ProjectsSlugs> =>
-  fetcher(`query projectSlugs {
-  projets(first: 100) {
-    edges {
-      node {
-        slug
-        supports {
-          edges {
-            node {
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-}`)
 
 export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
-  const { data } = await getAllProjectsSlugs()
+  const projects = await getAllMdxSlugs('portfolio')
 
-  return data.projets.edges.map(({ node }) => ({
-    slug: node.supports.edges[0]?.node.slug,
-    project: node.slug,
+  return projects.map((project) => ({
+    slug: project.slug,
+    project: project.project,
   }))
 }
 
-const getSingleProject = (slug: string): Promise<SingleProject> =>
-  fetcher(
-    `query ProjectBySlug($id: ID!) {
-  projet(id: $id, idType: SLUG) {
-    id
-    title
-    slug
-    content
-    featuredImage {
-      node {
-        sourceUrl
-      }
-    }
-    technologies {
-      edges {
-        node {
-          name
-          acfDetail {
-            image {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-    supports {
-      edges {
-        node {
-          name
-          slug
-        }
-      }
-    }
-    detail {
-      websiteLink
-      year
-      missions
-      excerpt
-    }
-  }
-  projets(where: { notIn: [$id] }, first: 1000) {
-    edges {
-      node {
-        id
-        title
-        slug
-        status
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        supports {
-          edges {
-            node {
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-}`,
-    { id: slug }
-  )
-
 export async function generateMetadata(props: Props) {
   const params = await props.params
-  const { data } = await getSingleProject(params.project)
+
+  const mdxContent = await getMdx<'portfolio'>('portfolio', params.project)
+
+  if (!mdxContent) {
+    return {}
+  }
+
+  const { metadata } = mdxContent
+
   return {
-    title: `${data.projet.title} - Portfolio`,
-    description: data.projet.detail.excerpt,
+    title: `${metadata.title} - Portfolio`,
+    description: metadata.excerpt ?? '',
     alternates: {
       canonical: getCanonicalUrl(
-        `${RouteLink.portfolio}/${data.projet.supports.edges[0]?.node.slug}/${data.projet.slug}`
+        `${RouteLink.portfolio}/${metadata.category}/${params.project}`
       ),
     },
   }
@@ -133,64 +55,68 @@ export async function generateMetadata(props: Props) {
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const {
-    data: { projet: data, projets: relatedRawProjects },
-  } = await getSingleProject(params.project)
 
-  if (!data) {
+  const mdxResult = await getMdx<'portfolio'>('portfolio', params.project)
+
+  if (!mdxResult) {
     return notFound()
   }
 
-  const relatedProjects = relatedRawProjects.edges
-    .filter((r) => {
-      if (r.node.supports.edges[0] && data.supports.edges[0]) {
-        return (
-          r.node.supports.edges[0].node.slug ===
-            data.supports.edges[0].node.slug && data.slug !== r.node.slug
-        )
-      }
-      return false
-    })
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 4)
+  const {
+    content,
+    metadata,
+  }: { content: React.ComponentType; metadata: PortfolioMdxMetadata } =
+    mdxResult
+
+  const category =
+    portfolioCategories[metadata.category as keyof typeof portfolioCategories]
+
+  const relatedProjects = await getRelatedMdx({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+    currentSlug: params.project,
+    limit: 4,
+    category: params.slug,
+    sort: 'random',
+  })
+
+  const MdxContent = content
 
   return (
     <Layout
       breadcrumbs={[
         { link: RouteLink.portfolio, title: 'Portfolio' },
         {
-          link: `${RouteLink.portfolio}/${data?.supports?.edges[0]?.node?.slug}`,
-          title: data.supports.edges[0]?.node.name ?? '',
+          link: `${RouteLink.portfolio}/${String(metadata.category)}`,
+          title: category.title || '',
         },
       ]}
-      title={data.title}
+      title={metadata.title}
     >
       <div className="container">
         <div className="flex items-center mb-10 flex-col md:flex-row">
           <div className="md:w-2/5 text-center md:text-right">
-            <div className="text-4xl text-white font-bold">{data.title}</div>
+            <div className="text-4xl text-white font-bold">
+              {metadata.title}
+            </div>
 
             <a
               className="block text-3xl"
-              href={data.detail.websiteLink}
+              href={metadata.website}
               target="_blank"
               rel="noreferrer nofollow"
             >
-              {data.detail.websiteLink.replace(/(^\w+:|^)\/\//, '')}
+              {metadata.website.replace(/(^\w+:|^)\/\//, '')}
             </a>
 
-            <div className="my-4 text-lg">
-              {sanitize(data.detail.excerpt, {
-                allowedTags: [],
-              })}
-            </div>
+            <div className="my-4 text-lg">{metadata.summary}</div>
 
             <div className="my-4">
               <div className="text-white text-xl font-light uppercase tracking-widest">
                 Date
               </div>
               <div className="text-white font-bold text-3xl">
-                {data.detail.year}
+                {metadata.year}
               </div>
             </div>
 
@@ -199,25 +125,32 @@ export default async function Page(props: Props) {
                 Technologies
               </div>
               <div className="text-white font-medium text-sm flex space-x-2 justify-center flex-wrap md:justify-end">
-                {data.technologies.edges.map((techno) => (
-                  <div
-                    key={techno.node.name}
-                    className="flex items-center flex-col w-[80px] text-center"
-                  >
-                    {techno.node.acfDetail?.image?.sourceUrl && (
+                {metadata.tools.map((techno) => {
+                  const tool =
+                    portfolioTools[techno as keyof typeof portfolioTools]
+
+                  if (!tool) {
+                    return null
+                  }
+
+                  return (
+                    <div
+                      key={tool.title}
+                      className="flex items-center flex-col w-[80px] text-center"
+                    >
                       <div className="w-6 h-6 relative">
                         <Image
-                          src={techno.node.acfDetail.image.sourceUrl}
-                          alt={techno.node.name}
+                          src={`/images/portfolio/tools/${tool.icon}`}
+                          alt={tool.title}
                           fill
                           sizes="100vw"
                         />
                       </div>
-                    )}
 
-                    <div className="mt-1">{techno.node.name}</div>
-                  </div>
-                ))}
+                      <div className="mt-1">{tool.title}</div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
             <div>
@@ -225,49 +158,50 @@ export default async function Page(props: Props) {
                 Missions
               </div>
               <div>
-                {data.detail.missions.split('<br />').map((mission) => (
+                {metadata.actions.map((mission: string) => (
                   <div key={mission}>{mission}</div>
                 ))}
               </div>
             </div>
           </div>
-          <div className="md:w-3/5 mt-4 md:mt-0 md:pl-4">
+          <div className="md:w-3/5 max-w-[650px] mt-4 md:mt-0 md:pl-4">
             <Image
-              src={data.featuredImage.node.sourceUrl}
-              width={640}
-              height={1136}
-              alt={data.title}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
+              src={`/images/portfolio/${metadata.image.large}`}
+              width={650}
+              priority
+              height={1150}
+              alt={metadata.title}
+              className="w-full h-auto max-w-none"
             />
           </div>
         </div>
 
-        {data.content && (
-          <div className="my-8">
-            <PostBody content={replaceBackendUrlContent(data?.content) || ''} />
+        {content && (
+          <div className="my-8 prose prose-lg prose-invert !max-w-5xl mx-auto">
+            <MdxContent />
           </div>
         )}
 
-        <SectionTitle
-          content={`Retrouvez des projets similaires développés avec ${data?.supports?.edges[0]?.node.name} qui pourraient correspondre à ${data.title}`}
-          title={data?.supports?.edges[0]?.node.name || ''}
-        />
+        {relatedProjects.length > 0 && (
+          <>
+            <SectionTitle
+              title={category.title}
+              content={`Retrouvez des projets similaires développés avec ${category.title} qui pourraient correspondre à ${metadata.title}`}
+            />
 
-        <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
-          {relatedProjects.length > 0 &&
-            relatedProjects.map(({ node }) => (
-              <ProjectItem
-                key={node.id}
-                image={node.featuredImage.node.sourceUrl}
-                title={node.title}
-                slug={node.slug}
-                support={node.supports?.edges[0]?.node}
-              />
-            ))}
-        </div>
+            <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
+              {relatedProjects.map(({ title, image, slug, support }) => (
+                <ProjectItem
+                  key={title}
+                  image={`/images/portfolio/${image}`}
+                  title={title}
+                  slug={slug}
+                  support={support}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </Layout>
   )
