@@ -63,6 +63,10 @@ export const portfolioTools = {
     title: 'Joomla',
     icon: 'joomla.svg',
   },
+  woocommerce: {
+    title: 'WooCommerce',
+    icon: 'woocommerce.svg',
+  },
 }
 
 export const getLastProjectsBySupports = async (slug: string) => {
