@@ -2,7 +2,7 @@
   "name": "inrage-react",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -12,6 +12,11 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.3.2",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/mdx": "^2.0.13",
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
     "autoprefixer": "^10.4.21",
@@ -19,7 +24,7 @@
     "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
     "moment": "^2.30.1",
-    "motion": "^12.10.5",
+    "motion": "^12.12.1",
     "next": "15.2.4",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.3",
@@ -28,10 +33,12 @@
     "raw-loader": "^4.0.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-hook-form": "^7.56.3",
+    "react-hook-form": "^7.56.4",
     "react-use": "^17.6.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.1.0",
     "request-ip": "^3.3.0",
-    "sanitize-html": "^2.16.0",
+    "sanitize-html": "^2.17.0",
     "sharp": "^0.32.6",
     "swr": "^2.3.3",
     "tailwindcss": "^3.4.17",
@@ -40,12 +47,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@types/node": "^18.19.100",
+    "@types/node": "^22.15.19",
     "@types/react": "19.0.10",
     "@types/request-ip": "^0.0.37",
     "@types/sanitize-html": "^2.16.0",
     "cypress": "^12.17.4",
-    "eslint": "^9.26.0",
+    "eslint": "^9.27.0",
     "eslint-config-next": "15.2.0",
     "eslint-config-prettier": "^10.1.5",
     "prettier": "^2.8.8"
@@ -53,7 +60,8 @@
   "pnpm": {
     "overrides": {
       "@types/react": "19.0.10",
-      "formidable": "3.5.2"
+      "formidable": "3.5.2",
+      "unist-util-mdx-define>estree-walker": "^2.0.2"
     }
   },
   "packageManager": "pnpm@10.3.0"

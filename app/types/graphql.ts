@@ -5,18 +5,12 @@ export type FeaturedImageNode = {
 }
 
 export interface ProjectList {
-  id: string
   title: string
   slug: string
-  status: 'publish' | 'draft' | 'private' | 'future'
-  featuredImage: FeaturedImageNode
-  supports: {
-    edges: Array<{
-      node: {
-        name: string
-        slug: string
-      }
-    }>
+  image: string
+  support: {
+    title: string
+    slug: string
   }
 }
 

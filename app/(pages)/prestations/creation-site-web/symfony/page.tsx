@@ -25,7 +25,7 @@ export const metadata = {
 }
 
 export default async function Symfony() {
-  const { data } = await getLastProjectsBySupports('application-web')
+  const projects = await getLastProjectsBySupports('application-web')
 
   return (
     <Layout
@@ -344,14 +344,14 @@ export default async function Symfony() {
           />
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {data.support.projets.edges.length > 0 &&
-              data.support.projets.edges.map(({ node }) => (
+            {projects.length > 0 &&
+              projects.map(({ title, image, slug, support }) => (
                 <ProjectItem
-                  key={node.id}
-                  image={node.featuredImage.node.sourceUrl}
-                  title={node.title}
-                  slug={node.slug}
-                  support={node?.supports?.edges[0]?.node}
+                  key={title}
+                  image={`/images/portfolio/${image}`}
+                  title={title}
+                  slug={slug}
+                  support={support}
                 />
               ))}
           </div>

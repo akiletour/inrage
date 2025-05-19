@@ -8,7 +8,8 @@ type Props = {
   title: string
   support?: {
     slug: string
-    name: string
+    title: string
+    icon: string
   }
   xl?: boolean
   isPrivate?: boolean
@@ -51,7 +52,7 @@ export default function ProjectItem({
         </div>
         {support && (
           <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">
-            {support.name}
+            {support.title}
           </div>
         )}
       </div>
