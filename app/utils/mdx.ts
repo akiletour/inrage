@@ -54,7 +54,7 @@ export async function getMdx<T extends 'blog' | 'portfolio'>(
   }
 }
 
-export async function getAllMdxSlugs(folder: string) {
+export async function getAllMdxSlugs(folder: string): Promise<Array<{ slug: string; project: string }>> {
   const watchDirectory = path.join(process.cwd(), 'app', 'content', folder)
 
   // Get all files in the directory
@@ -83,8 +83,8 @@ export async function getAllMdxSlugs(folder: string) {
     })
   )
 
-  // Filter out null entries
-  return result.filter(Boolean)
+  // Filter out null entries and explicitly type the return value
+  return result.filter((item): item is { slug: string; project: string } => item !== null)
 }
 
 export interface GetRelatedMdxParams {
