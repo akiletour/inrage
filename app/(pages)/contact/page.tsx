@@ -50,7 +50,7 @@ export default function Contact() {
           <div className="text-orange font-bold text-3xl mt-2">
             06 82 96 38 39
           </div>
-          <div className="text-sm">du lundi au samedi de 10h à 19h</div>
+          <div className="text-sm">du lundi au samedi de 09h à 18h</div>
         </div>
         <div className="flex-1">
           <ContactForm lg />
