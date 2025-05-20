@@ -15,8 +15,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         <Image
           src={src}
           alt={alt || ''}
-          width={Number(width) || 800}
-          height={Number(height) || 450}
+          width={Number(width) || 1024}
+          height={Number(height) || 768}
           {...rest}
         />
       )
