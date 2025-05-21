@@ -6,6 +6,7 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import PortfolioGrid from '../PortfolioGrid'
 import { getRelatedMdx } from '@util/mdx'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: Promise<{
@@ -38,11 +39,15 @@ export default async function Page(props: Props) {
     frontmatterKey: 'category',
     type: 'portfolio',
     currentSlug: undefined,
-    category: params.slug
+    category: params.slug,
   })
 
   const category =
     portfolioCategories[params.slug as keyof typeof portfolioCategories]
+
+  if (!category) {
+    return notFound()
+  }
 
   return (
     <Layout
