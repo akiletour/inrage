@@ -10,6 +10,7 @@ import {
 } from '@lib/router'
 import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog'
 import { fetcher } from '@util/index'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: Promise<{
@@ -92,6 +93,10 @@ export default async function Page(props: Props) {
   const {
     data: { post, posts },
   } = await getData(params.slug)
+
+  if (!post) {
+    return notFound()
+  }
 
   const shuffled = posts.edges
     .map((value) => ({ value, sort: Math.random() }))
