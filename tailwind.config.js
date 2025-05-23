@@ -27,6 +27,14 @@ module.exports = {
       },
     },
     extend: {
+      typography: () => ({
+        invert: {
+          css: {
+            '--tw-prose-invert-body': '#999',
+            '--tw-prose-invert-bold': 'var(--tw-prose-invert-body)',
+          },
+        },
+      }),
       boxShadow: {
         center:
           'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(230 126 34 / 60%)',
