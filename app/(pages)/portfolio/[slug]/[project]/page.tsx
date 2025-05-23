@@ -177,7 +177,7 @@ export default async function Page(props: Props) {
         </div>
 
         {content && (
-          <div className="my-8 prose prose-lg prose-invert !max-w-5xl mx-auto">
+          <div className="my-8 prose prose-lg !max-w-5xl mx-auto prose-invert">
             <MdxContent />
           </div>
         )}
