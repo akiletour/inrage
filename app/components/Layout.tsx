@@ -44,7 +44,6 @@ function Layout({
         exit="exit"
         layout
         variants={variants}
-        transition={{ type: 'linear' }}
       >
         <Fragment key={Array.isArray(title) ? title.join(',') : title}>
           {children}
