@@ -177,7 +177,7 @@ export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
   return sortedResults
 }
 
-function sortMdxBy<T extends 'blog' | 'portfolio'>(
+export function sortMdxBy<T extends 'blog' | 'portfolio'>(
   results: MdxListItem<T>[],
   sort: 'date' | 'random'
 ) {

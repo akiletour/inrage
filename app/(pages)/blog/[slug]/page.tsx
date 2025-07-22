@@ -8,9 +8,8 @@ import {
   replaceBackendUrlContent,
   RouteLink,
 } from '@lib/router'
-import { BlogPostsSlugs, SinglePostType } from '@type/graphql/blog'
-import { fetcher } from '@util/index'
 import { notFound } from 'next/navigation'
+import { getBlogItems, getSingleBlogItem } from '@lib/blog'
 
 type Props = {
   params: Promise<{
@@ -18,66 +17,27 @@ type Props = {
   }>
 }
 
-const getAllBlogPostsSlugs = (): Promise<BlogPostsSlugs> => {
-  return fetcher(
-    `query articlesSlug { posts(first: 100) { edges { node { slug } } } } `
-  )
+const getAllBlogPostsSlugs = async () => {
+  return await getBlogItems()
 }
 
 export async function generateStaticParams() {
-  const { data } = await getAllBlogPostsSlugs()
+  const data = await getAllBlogPostsSlugs()
 
-  return data.posts.edges.map(({ node }) => ({
-    slug: node.slug,
+  return data.map(({ slug }) => ({
+    slug,
   }))
 }
 
-const getData = (slug: string): Promise<SinglePostType> =>
-  fetcher(
-    `query getSingleArticle($id: ID!) {
-      post(id: $id, idType: SLUG) {
-        id
-        title
-        databaseId
-        slug
-        date
-        excerpt
-        content(format: RENDERED)
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        seo {
-          title
-          metaDesc
-          canonical
-        }
-      }
-      posts {
-        edges {
-          node {
-            title
-            slug
-            date
-            excerpt
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-          }
-        }
-      }
-  }`,
-    { id: slug }
-  )
+const getData = async (slug: string) => await getSingleBlogItem(slug)
 
 export async function generateMetadata(props: Props) {
   const params = await props.params
-  const {
-    data: { post },
-  } = await getData(params.slug)
+  const { post } = await getData(params.slug)
+
+  if (!post) {
+    return {}
+  }
 
   return {
     title: post.seo.title,
@@ -90,15 +50,13 @@ export async function generateMetadata(props: Props) {
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const {
-    data: { post, posts },
-  } = await getData(params.slug)
+  const { post, posts } = await getData(params.slug)
 
   if (!post) {
     return notFound()
   }
 
-  const shuffled = posts.edges
+  const shuffled = posts
     .map((value) => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
@@ -111,10 +69,18 @@ export default async function Page(props: Props) {
       title={post.title}
     >
       <div className="container">
-        <PostBody content={replaceBackendUrlContent(post.content)} />
+        {post.databaseId !== 0 ? (
+          <PostBody content={replaceBackendUrlContent(post.content)} />
+        ) : (
+          <div className="my-8 prose prose-lg prose-invert !max-w-5xl mx-auto">
+            <post.content />
+          </div>
+        )}
       </div>
 
-      <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
+      {post.databaseId !== 0 && (
+        <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
+      )}
 
       <div className="container">
         <SectionTitle
@@ -123,19 +89,17 @@ export default async function Page(props: Props) {
         />
 
         <div className="grid md:grid-cols-2 gap-4 mt-6">
-          {relatedPosts.map(
-            ({ node: { slug, featuredImage, title, date, excerpt } }) => (
-              <div key={slug}>
-                <ArticleItem
-                  slug={slug}
-                  featuredImage={featuredImage}
-                  title={title}
-                  date={date}
-                  excerpt={excerpt}
-                />
-              </div>
-            )
-          )}
+          {relatedPosts.map(({ slug, thumbnail, title, date, excerpt }) => (
+            <div key={slug}>
+              <ArticleItem
+                slug={slug}
+                featuredImage={thumbnail}
+                title={title}
+                date={date}
+                excerpt={excerpt}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </Layout>
