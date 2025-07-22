@@ -24,10 +24,9 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
 }
 
 export interface BlogMdxMetadata extends BaseMdxMetadata {
-  // Add blog-specific metadata properties when needed
-  date?: string
-  author?: string
-  tags?: string[]
+  date: string
+  thumbnail: string
+  excerpt: string
 }
 
 export type MdxMetadata<T extends 'blog' | 'portfolio'> = T extends 'blog'
