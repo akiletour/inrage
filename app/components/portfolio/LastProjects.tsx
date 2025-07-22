@@ -1,8 +1,8 @@
 import ProjectItem from '@component/items/ProjectItem'
-import { getRelatedMdx } from '@util/mdx'
+import { getAllMdxBy } from '@util/mdx'
 
 export default async function LastProjects() {
-  const projects = await getRelatedMdx({
+  const projects = await getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
     limit: 4,

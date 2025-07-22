@@ -5,7 +5,7 @@ import { portfolioCategories } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import PortfolioGrid from '../PortfolioGrid'
-import { getRelatedMdx } from '@util/mdx'
+import { getAllMdxBy } from '@util/mdx'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const data = await getRelatedMdx({
+  const data = await getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
     currentSlug: undefined,

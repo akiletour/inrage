@@ -1,4 +1,4 @@
-import { getRelatedMdx } from '@util/mdx'
+import { getAllMdxBy } from '@util/mdx'
 
 export const portfolioCategories = {
   wordpress: {
@@ -70,7 +70,7 @@ export const portfolioTools = {
 }
 
 export const getLastProjectsBySupports = async (slug: string) => {
-  return getRelatedMdx({
+  return getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
     limit: 4,

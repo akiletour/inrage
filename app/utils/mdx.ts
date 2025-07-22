@@ -39,7 +39,7 @@ export interface MdxResult<T extends 'blog' | 'portfolio'> {
   metadata: MdxMetadata<T>
 }
 
-export async function getMdx<T extends 'blog' | 'portfolio'>(
+export async function getSingleMdx<T extends 'blog' | 'portfolio'>(
   type: T,
   slug: string
 ): Promise<MdxResult<T> | null> {
@@ -54,7 +54,9 @@ export async function getMdx<T extends 'blog' | 'portfolio'>(
   }
 }
 
-export async function getAllMdxSlugs(folder: string): Promise<Array<{ slug: string; project: string }>> {
+export async function getAllMdxSlugs(
+  folder: string
+): Promise<Array<{ slug: string; project: string }>> {
   const watchDirectory = path.join(process.cwd(), 'app', 'content', folder)
 
   // Get all files in the directory
@@ -84,7 +86,9 @@ export async function getAllMdxSlugs(folder: string): Promise<Array<{ slug: stri
   )
 
   // Filter out null entries and explicitly type the return value
-  return result.filter((item): item is { slug: string; project: string } => item !== null)
+  return result.filter(
+    (item): item is { slug: string; project: string } => item !== null
+  )
 }
 
 export interface GetRelatedMdxParams {
@@ -96,7 +100,7 @@ export interface GetRelatedMdxParams {
   sort?: 'date' | 'random'
 }
 
-export async function getRelatedMdx(params: GetRelatedMdxParams) {
+export async function getAllMdxBy(params: GetRelatedMdxParams) {
   const {
     frontmatterKey,
     type,
@@ -144,7 +148,8 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
             content.frontmatter.category as keyof typeof portfolioCategories
           ],
         // Include the date or year for sorting
-        sortValue: sort === 'date' ? (frontmatter.date || frontmatter.year) : undefined,
+        sortValue:
+          sort === 'date' ? frontmatter.date || frontmatter.year : undefined,
       }
     })
   )
@@ -154,8 +159,13 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
     title: string
     image: string
     slug: string
-    support: typeof portfolioCategories[keyof typeof portfolioCategories]
-    sortValue: string | number | string[] | { thumbnail: string; large: string } | undefined
+    support: (typeof portfolioCategories)[keyof typeof portfolioCategories]
+    sortValue:
+      | string
+      | number
+      | string[]
+      | { thumbnail: string; large: string }
+      | undefined
   }>
 
   if (currentSlug) {

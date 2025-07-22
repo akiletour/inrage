@@ -7,8 +7,8 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { notFound } from 'next/navigation'
 import {
   getAllMdxSlugs,
-  getMdx,
-  getRelatedMdx,
+  getSingleMdx,
+  getAllMdxBy,
   PortfolioMdxMetadata,
 } from '@util/mdx'
 import { portfolioCategories, portfolioTools } from '@lib/portfolio'
@@ -34,7 +34,10 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props) {
   const params = await props.params
 
-  const mdxContent = await getMdx<'portfolio'>('portfolio', params.project)
+  const mdxContent = await getSingleMdx<'portfolio'>(
+    'portfolio',
+    params.project
+  )
 
   if (!mdxContent) {
     return {}
@@ -56,7 +59,7 @@ export async function generateMetadata(props: Props) {
 export default async function Page(props: Props) {
   const params = await props.params
 
-  const mdxResult = await getMdx<'portfolio'>('portfolio', params.project)
+  const mdxResult = await getSingleMdx<'portfolio'>('portfolio', params.project)
 
   if (!mdxResult) {
     return notFound()
@@ -71,7 +74,7 @@ export default async function Page(props: Props) {
   const category =
     portfolioCategories[metadata.category as keyof typeof portfolioCategories]
 
-  const relatedProjects = await getRelatedMdx({
+  const relatedProjects = await getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
     currentSlug: params.project,

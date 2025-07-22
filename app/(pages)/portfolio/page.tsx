@@ -4,7 +4,7 @@ import SectionTitle from '@component/SectionTitle'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import PortfolioGrid from './PortfolioGrid'
-import { getRelatedMdx } from '@util/mdx'
+import { getAllMdxBy } from '@util/mdx'
 
 export const metadata = {
   title: 'Portfolio des projets de création de site Internet',
@@ -16,7 +16,7 @@ export const metadata = {
 }
 
 export default async function Page() {
-  const data = await getRelatedMdx({
+  const data = await getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
   })

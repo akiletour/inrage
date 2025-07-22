@@ -5,7 +5,7 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { Sitemap as SitemapType } from '@type/graphql/sitemap-type'
 import { fetcher } from '@util/index'
 import { portfolioCategories } from '@lib/portfolio'
-import { getRelatedMdx } from '@util/mdx'
+import { getAllMdxBy } from '@util/mdx'
 
 const getSitemap = (): Promise<SitemapType> =>
   fetcher(`query sitemap {
@@ -32,7 +32,7 @@ export default async function Sitemap() {
   } = data
 
   const projectCategories = Object.values(portfolioCategories)
-  const projects = await getRelatedMdx({
+  const projects = await getAllMdxBy({
     frontmatterKey: 'category',
     type: 'portfolio',
   })
