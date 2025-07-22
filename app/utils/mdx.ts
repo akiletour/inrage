@@ -12,7 +12,7 @@ export interface BaseMdxMetadata {
 }
 
 export interface PortfolioMdxMetadata extends BaseMdxMetadata {
-  category: keyof typeof portfolioCategories // Restrict to valid keys of portfolioCategories
+  category: keyof typeof portfolioCategories
   tools: Array<keyof typeof portfolioTools>
   website: string
   year: number
@@ -24,10 +24,9 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
 }
 
 export interface BlogMdxMetadata extends BaseMdxMetadata {
-  // Add blog-specific metadata properties when needed
-  date?: string
-  author?: string
-  tags?: string[]
+  date: string
+  thumbnail: string
+  excerpt: string
 }
 
 export type MdxMetadata<T extends 'blog' | 'portfolio'> = T extends 'blog'
@@ -39,7 +38,14 @@ export interface MdxResult<T extends 'blog' | 'portfolio'> {
   metadata: MdxMetadata<T>
 }
 
-export async function getMdx<T extends 'blog' | 'portfolio'>(
+export interface MdxListItem<T extends 'blog' | 'portfolio'> {
+  title: string
+  slug: string
+  frontmatter: MdxMetadata<T>
+  sortValue: string | number
+}
+
+export async function getSingleMdx<T extends 'blog' | 'portfolio'>(
   type: T,
   slug: string
 ): Promise<MdxResult<T> | null> {
@@ -54,7 +60,9 @@ export async function getMdx<T extends 'blog' | 'portfolio'>(
   }
 }
 
-export async function getAllMdxSlugs(folder: string): Promise<Array<{ slug: string; project: string }>> {
+export async function getAllMdxSlugs(
+  folder: string
+): Promise<Array<{ slug: string; project: string }>> {
   const watchDirectory = path.join(process.cwd(), 'app', 'content', folder)
 
   // Get all files in the directory
@@ -84,25 +92,33 @@ export async function getAllMdxSlugs(folder: string): Promise<Array<{ slug: stri
   )
 
   // Filter out null entries and explicitly type the return value
-  return result.filter((item): item is { slug: string; project: string } => item !== null)
+  return result.filter(
+    (item): item is { slug: string; project: string } => item !== null
+  )
 }
 
-export interface GetRelatedMdxParams {
+export interface GetRelatedMdxParams<
+  T extends 'blog' | 'portfolio' = 'blog' | 'portfolio'
+> {
   frontmatterKey: string
-  type: string
+  type: T
   currentSlug?: string
   limit?: number
-  category?: string
+  filterValue?: string
+  filterKey?: keyof BlogMdxMetadata | keyof PortfolioMdxMetadata
   sort?: 'date' | 'random'
 }
 
-export async function getRelatedMdx(params: GetRelatedMdxParams) {
+export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
+  params: GetRelatedMdxParams<T>
+): Promise<MdxListItem<T>[]> {
   const {
     frontmatterKey,
     type,
     currentSlug,
     limit = -1,
-    category,
+    filterValue,
+    filterKey,
     sort = 'date',
   } = params
   const watchDirectory = path.join(process.cwd(), 'app', 'content', type)
@@ -116,78 +132,42 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
   // Extract category and project name from each file using dynamic import
   const result = await Promise.all(
     mdxFiles.map(async (file) => {
-      // Get the project name (filename without extension)
-      const project = file.replace(/\.mdx$/, '')
+      // Get the slug name (filename without extension)
+      const slug = file.replace(/\.mdx$/, '')
 
       // Import the MDX file to access frontmatter directly
-      const content = await import(`@/content/${type}/${project}.mdx`)
+      const content = await import(`@/content/${type}/${slug}.mdx`)
 
       // Access the category from frontmatter
-      const frontmatter = content.frontmatter as {
-        [key: string]:
-          | string
-          | number
-          | string[]
-          | { thumbnail: string; large: string }
-      }
-      if (!frontmatter || !frontmatter[frontmatterKey]) return null
+      const frontmatter = content.frontmatter as MdxMetadata<T>
 
-      // Filter by category if provided
-      if (category && frontmatter.category !== category) return null
+      if (!frontmatter || !(frontmatterKey in frontmatter)) return null
+
+      if (filterKey && filterValue) {
+        const key = filterKey as keyof typeof frontmatter
+        if (frontmatter[key] !== filterValue) return null
+      }
 
       return {
         title: content.frontmatter.title,
-        image: content.frontmatter.image.thumbnail,
-        slug: project,
-        support:
-          portfolioCategories[
-            content.frontmatter.category as keyof typeof portfolioCategories
-          ],
-        // Include the date or year for sorting
-        sortValue: sort === 'date' ? (frontmatter.date || frontmatter.year) : undefined,
+        slug,
+        sortValue: frontmatter[frontmatterKey as keyof typeof frontmatter],
+        frontmatter: content.frontmatter,
       }
     })
   )
 
   // Filter out null entries and exclude the current slug if provided
-  let filteredResults = result.filter(Boolean) as Array<{
-    title: string
-    image: string
-    slug: string
-    support: typeof portfolioCategories[keyof typeof portfolioCategories]
-    sortValue: string | number | string[] | { thumbnail: string; large: string } | undefined
-  }>
+  let filteredResults = result.filter(Boolean) as MdxListItem<T>[]
 
   if (currentSlug) {
     filteredResults = filteredResults.filter(
-      (item) => item.slug !== currentSlug
+      (item) => item?.slug !== currentSlug
     )
   }
 
   // Sort the results based on the sort parameter
-  let sortedResults
-
-  if (sort === 'random') {
-    // Randomize the results
-    sortedResults = [...filteredResults].sort(() => 0.5 - Math.random())
-  } else {
-    // Sort by date in descending order
-    sortedResults = [...filteredResults].sort((a, b) => {
-      // Handle null or undefined values
-      if (!a || !b) return 0
-      if (a.sortValue === undefined || b.sortValue === undefined) return 0
-
-      // Sort dates in descending order
-      if (typeof a.sortValue === 'string' && typeof b.sortValue === 'string') {
-        return b.sortValue.localeCompare(a.sortValue)
-      }
-      // Sort numbers in descending order
-      if (typeof a.sortValue === 'number' && typeof b.sortValue === 'number') {
-        return b.sortValue - a.sortValue
-      }
-      return 0
-    })
-  }
+  const sortedResults = sortMdxBy<T>(filteredResults, sort)
 
   if (limit !== -1) {
     // If limit is -1, return all results
@@ -195,4 +175,29 @@ export async function getRelatedMdx(params: GetRelatedMdxParams) {
   }
 
   return sortedResults
+}
+
+export function sortMdxBy<T extends 'blog' | 'portfolio'>(
+  results: MdxListItem<T>[],
+  sort: 'date' | 'random'
+) {
+  if (sort === 'random') {
+    return [...results].sort(() => 0.5 - Math.random())
+  }
+
+  return [...results].sort((a, b) => {
+    // Handle null or undefined values
+    if (!a || !b) return 0
+    if (a.sortValue === undefined || b.sortValue === undefined) return 0
+
+    // Sort dates in descending order
+    if (typeof a.sortValue === 'string' && typeof b.sortValue === 'string') {
+      return b.sortValue.localeCompare(a.sortValue)
+    }
+    // Sort numbers in descending order
+    if (typeof a.sortValue === 'number' && typeof b.sortValue === 'number') {
+      return b.sortValue - a.sortValue
+    }
+    return 0
+  })
 }

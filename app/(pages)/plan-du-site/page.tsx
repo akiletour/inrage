@@ -2,22 +2,8 @@ import Link from 'next/link'
 
 import Layout from '@component/Layout'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
-import { Sitemap as SitemapType } from '@type/graphql/sitemap-type'
-import { fetcher } from '@util/index'
-import { portfolioCategories } from '@lib/portfolio'
-import { getRelatedMdx } from '@util/mdx'
-
-const getSitemap = (): Promise<SitemapType> =>
-  fetcher(`query sitemap {
-  posts(first: 100) {
-    edges {
-      node {
-        title
-        uri
-      }
-    }
-  }
-}`)
+import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
+import { getBlogItems } from '@lib/blog'
 
 function LegalTitle({ children }: { children: string }) {
   return (
@@ -26,16 +12,10 @@ function LegalTitle({ children }: { children: string }) {
 }
 
 export default async function Sitemap() {
-  const data = await getSitemap()
-  const {
-    data: { posts },
-  } = data
+  const posts = await getBlogItems()
 
   const projectCategories = Object.values(portfolioCategories)
-  const projects = await getRelatedMdx({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-  })
+  const projects = await getPortfolioItems(-1)
 
   return (
     <Layout title="Plan du site">
@@ -131,9 +111,9 @@ export default async function Sitemap() {
             <LegalTitle>Blog</LegalTitle>
 
             <ul className="styled-list">
-              {posts.edges.map(({ node: { title, uri } }) => (
+              {posts.map(({ title, slug }) => (
                 <li key={title}>
-                  <Link href={uri}>{title}</Link>
+                  <Link href={`${RouteLink.blog}/${slug}`}>{title}</Link>
                 </li>
               ))}
             </ul>

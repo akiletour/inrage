@@ -7,7 +7,7 @@ export type FeaturedImageNode = {
 export interface ProjectList {
   title: string
   slug: string
-  image: string
+  thumbnail: string
   support: {
     title: string
     slug: string

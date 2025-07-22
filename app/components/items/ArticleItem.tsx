@@ -6,9 +6,16 @@ import ButtonLink from '@component/ButtonLink'
 import Link from '@component/NoScrollLink'
 import { RouteLink } from '@lib/router'
 import 'moment/locale/fr'
-import { ArticleList } from '@type/graphql'
 
 moment.locale('fr')
+
+interface ArticleItemProps {
+  featuredImage: string
+  title: string
+  excerpt: string
+  date: string
+  slug: string
+}
 
 export default function ArticleItem({
   featuredImage,
@@ -16,7 +23,7 @@ export default function ArticleItem({
   excerpt,
   date,
   slug,
-}: ArticleList) {
+}: ArticleItemProps) {
   const formattedDate = moment(date)
 
   return (
@@ -32,7 +39,7 @@ export default function ArticleItem({
       <Link href={`${RouteLink.blog}/${slug}`}>
         <span>
           <Image
-            src={featuredImage.node.sourceUrl}
+            src={featuredImage}
             width={595}
             height={265}
             alt={title}

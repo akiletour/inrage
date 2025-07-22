@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-dark text-gray;
+  @apply bg-gray-dark text-gray overflow-x-hidden;
 }
 
 .container {
@@ -72,4 +72,8 @@ body {
 
 .has-white-color {
   @apply text-white;
+}
+
+.container-full-size {
+  @apply relative left-1/2 ml-[-50vw] w-screen;
 }
