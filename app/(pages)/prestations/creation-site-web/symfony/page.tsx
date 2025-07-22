@@ -11,7 +11,7 @@ import SymfonyComponents from '@image/prestations/symfony-components.jpg'
 import SymfonyHero from '@image/prestations/symfony-hero.jpg'
 import TwigImage from '@image/prestations/twig.jpg'
 import SchemaMercure from '@image/schema-mercure.png'
-import { getLastProjectsBySupports } from '@lib/portfolio'
+import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
@@ -25,7 +25,7 @@ export const metadata = {
 }
 
 export default async function Symfony() {
-  const projects = await getLastProjectsBySupports('application-web')
+  const projects = await getPortfolioItems(4, 'application-web')
 
   return (
     <Layout
@@ -345,10 +345,10 @@ export default async function Symfony() {
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
             {projects.length > 0 &&
-              projects.map(({ title, image, slug, support }) => (
+              projects.map(({ title, thumbnail, slug, support }) => (
                 <ProjectItem
                   key={title}
-                  image={`/images/portfolio/${image}`}
+                  image={`/images/portfolio/${thumbnail}`}
                   title={title}
                   slug={slug}
                   support={support}

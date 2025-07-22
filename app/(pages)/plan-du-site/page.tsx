@@ -4,8 +4,7 @@ import Layout from '@component/Layout'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { Sitemap as SitemapType } from '@type/graphql/sitemap-type'
 import { fetcher } from '@util/index'
-import { portfolioCategories } from '@lib/portfolio'
-import { getAllMdxBy } from '@util/mdx'
+import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
 
 const getSitemap = (): Promise<SitemapType> =>
   fetcher(`query sitemap {
@@ -32,10 +31,7 @@ export default async function Sitemap() {
   } = data
 
   const projectCategories = Object.values(portfolioCategories)
-  const projects = await getAllMdxBy({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-  })
+  const projects = await getPortfolioItems(-1)
 
   return (
     <Layout title="Plan du site">

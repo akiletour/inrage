@@ -69,15 +69,33 @@ export const portfolioTools = {
   },
 }
 
-export const getLastProjectsBySupports = async (slug: string) => {
-  return getAllMdxBy({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-    limit: 4,
-    category: slug,
-  })
-}
-
 export const getPortfolioCategories = async () => {
   return Object.values(portfolioCategories)
+}
+
+export const getPortfolioItems = async (
+  limit: number = -1,
+  category?: string,
+  excludeSlug?: string,
+  sort: 'random' | 'date' = 'date'
+) => {
+  const items = await getAllMdxBy({
+    frontmatterKey: 'category',
+    type: 'portfolio',
+    limit,
+    filterValue: category,
+    filterKey: 'category',
+    currentSlug: excludeSlug,
+    sort,
+  })
+
+  return items.map(({ title, frontmatter, slug }) => ({
+    title,
+    slug,
+    support:
+      portfolioCategories[
+        frontmatter.category as keyof typeof portfolioCategories
+      ],
+    thumbnail: frontmatter.image?.thumbnail || '',
+  }))
 }
