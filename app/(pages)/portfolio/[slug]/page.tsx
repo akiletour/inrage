@@ -1,11 +1,10 @@
 import Layout from '@component/Layout'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
 import SectionTitle from '@component/SectionTitle'
-import { portfolioCategories } from '@lib/portfolio'
+import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import PortfolioGrid from '../PortfolioGrid'
-import { getRelatedMdx } from '@util/mdx'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -35,12 +34,7 @@ export async function generateStaticParams() {
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const data = await getRelatedMdx({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-    currentSlug: undefined,
-    category: params.slug,
-  })
+  const data = await getPortfolioItems(-1, params.slug)
 
   const category =
     portfolioCategories[params.slug as keyof typeof portfolioCategories]

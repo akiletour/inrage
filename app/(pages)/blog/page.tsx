@@ -1,8 +1,7 @@
 import ArticleItem from '@component/items/ArticleItem'
 import Layout from '@component/Layout'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { ArticleList, List } from '@type/graphql'
-import { fetcher } from '@util/index'
+import { getBlogItems } from '@lib/blog'
 
 export const metadata = {
   title: 'Liste des articles de développement - inRage',
@@ -13,43 +12,22 @@ export const metadata = {
   },
 }
 
-const allPosts = (): Promise<List<ArticleList>> =>
-  fetcher(`query posts {
-  posts(first: 200) {
-    edges {
-      node {
-        title
-        slug
-        date
-        excerpt
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-}`)
-
 export default async function BlogList() {
-  const { data } = await allPosts()
+  const data = await getBlogItems(-1)
   return (
     <Layout title="Blog sur le développement web">
       <div className="container mb-10">
         <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
-          {data?.posts?.edges.map(
-            ({ node: { title, slug, excerpt, date, featuredImage } }) => (
-              <ArticleItem
-                slug={slug}
-                key={slug}
-                featuredImage={featuredImage}
-                title={title}
-                excerpt={excerpt}
-                date={date}
-              />
-            )
-          )}
+          {data.map(({ title, slug, excerpt, date, thumbnail }) => (
+            <ArticleItem
+              slug={slug}
+              key={slug}
+              featuredImage={thumbnail}
+              title={title}
+              excerpt={excerpt}
+              date={date}
+            />
+          ))}
         </div>
       </div>
     </Layout>

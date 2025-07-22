@@ -16,7 +16,7 @@ import PageBuilderImage from '@image/page-builder.png'
 import ProtectionShield from '@image/protection-shield.png'
 import WebsitePrestashop from '@image/website-prestashop.png'
 import WebsiteWP from '@image/website-wp.png'
-import { getLastProjectsBySupports } from '@lib/portfolio'
+import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
@@ -29,7 +29,7 @@ export const metadata = {
 }
 
 export default async function PrestationWordPress() {
-  const projects = await getLastProjectsBySupports('wordpress')
+  const projects = await getPortfolioItems(4, 'wordpress')
 
   return (
     <Layout
@@ -449,10 +449,10 @@ export default async function PrestationWordPress() {
 
           <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
             {projects.length > 0 &&
-              projects.map(({ title, image, slug, support }) => (
+              projects.map(({ title, thumbnail, slug, support }) => (
                 <ProjectItem
                   key={title}
-                  image={`/images/portfolio/${image}`}
+                  image={`/images/portfolio/${thumbnail}`}
                   title={title}
                   slug={slug}
                   support={support}

@@ -1,20 +1,17 @@
 import ProjectItem from '@component/items/ProjectItem'
-import { getRelatedMdx } from '@util/mdx'
+import { getPortfolioItems } from '@lib/portfolio'
 
 export default async function LastProjects() {
-  const projects = await getRelatedMdx({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-    limit: 4,
-  })
+  const projects = await getPortfolioItems(4)
+
   return (
     <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
-      {projects.map(({ title, slug, image, support }) => (
+      {projects.map(({ title, slug, thumbnail, support }) => (
         <ProjectItem
           title={title}
           key={title}
           slug={slug}
-          image={`/images/portfolio/${image}`}
+          image={`/images/portfolio/${thumbnail}`}
           support={support}
         />
       ))}

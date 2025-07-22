@@ -5,13 +5,12 @@ import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { notFound } from 'next/navigation'
+import { getAllMdxSlugs, getSingleMdx, PortfolioMdxMetadata } from '@util/mdx'
 import {
-  getAllMdxSlugs,
-  getMdx,
-  getRelatedMdx,
-  PortfolioMdxMetadata,
-} from '@util/mdx'
-import { portfolioCategories, portfolioTools } from '@lib/portfolio'
+  getPortfolioItems,
+  portfolioCategories,
+  portfolioTools,
+} from '@lib/portfolio'
 
 type Props = {
   params: Promise<{
@@ -34,7 +33,10 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props) {
   const params = await props.params
 
-  const mdxContent = await getMdx<'portfolio'>('portfolio', params.project)
+  const mdxContent = await getSingleMdx<'portfolio'>(
+    'portfolio',
+    params.project
+  )
 
   if (!mdxContent) {
     return {}
@@ -56,7 +58,7 @@ export async function generateMetadata(props: Props) {
 export default async function Page(props: Props) {
   const params = await props.params
 
-  const mdxResult = await getMdx<'portfolio'>('portfolio', params.project)
+  const mdxResult = await getSingleMdx<'portfolio'>('portfolio', params.project)
 
   if (!mdxResult) {
     return notFound()
@@ -71,14 +73,12 @@ export default async function Page(props: Props) {
   const category =
     portfolioCategories[metadata.category as keyof typeof portfolioCategories]
 
-  const relatedProjects = await getRelatedMdx({
-    frontmatterKey: 'category',
-    type: 'portfolio',
-    currentSlug: params.project,
-    limit: 4,
-    category: params.slug,
-    sort: 'random',
-  })
+  const relatedProjects = await getPortfolioItems(
+    4,
+    params.slug,
+    params.project,
+    'random'
+  )
 
   const MdxContent = content
 
@@ -177,7 +177,7 @@ export default async function Page(props: Props) {
         </div>
 
         {content && (
-          <div className="my-8 prose prose-lg prose-invert !max-w-5xl mx-auto">
+          <div className="my-8 prose prose-lg !max-w-5xl mx-auto prose-invert">
             <MdxContent />
           </div>
         )}
@@ -190,10 +190,10 @@ export default async function Page(props: Props) {
             />
 
             <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
-              {relatedProjects.map(({ title, image, slug, support }) => (
+              {relatedProjects.map(({ title, thumbnail, slug, support }) => (
                 <ProjectItem
                   key={title}
-                  image={`/images/portfolio/${image}`}
+                  image={`/images/portfolio/${thumbnail}`}
                   title={title}
                   slug={slug}
                   support={support}

@@ -9,7 +9,7 @@ type Props = {
 export default async function PortfolioGrid({ projects }: Props) {
   return (
     <div className="grid grid-cols-2 gap-4 md:gap-0 md:grid-cols-3">
-      {projects.map(({ title, image, slug, support }) => {
+      {projects.map(({ title, thumbnail, slug, support }) => {
         const category =
           portfolioCategories[support.slug as keyof typeof portfolioCategories]
 
@@ -17,7 +17,7 @@ export default async function PortfolioGrid({ projects }: Props) {
           <ProjectItem
             xl
             key={title}
-            image={`/images/portfolio/${image}`}
+            image={`/images/portfolio/${thumbnail}`}
             title={title}
             slug={slug}
             support={category}
