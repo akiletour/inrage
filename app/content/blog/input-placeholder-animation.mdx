@@ -1,0 +1,317 @@
+---
+title: 'Animation Typewriter pour Placeholder : Donnez Vie à Vos Champs de Recherche'
+date: "2025-09-15"
+category: "WordPress"
+thumbnail: "/images/articles/input-placeholder-animation.jpg"
+excerpt: "Les interfaces utilisateur modernes se distinguent par leurs micro-interactions subtiles, mais efficaces. Aujourd'hui, nous allons créer une animation de placeholder qui simule une machine à écrire, transformant un simple champ de recherche en une expérience engageante pour vos utilisateurs."
+---
+
+import Image from 'next/image';
+
+<p className="text-3xl text-white mt-0">Un placeholder classique comme "Rechercher..." reste figé et n'inspire pas vraiment l'utilisateur. Comment suggérer de manière dynamique ce qu'il est possible de chercher ? Comment créer cette sensation de site "vivant" sans pour autant gêner l'expérience utilisateur ?</p>
+
+La réponse : une animation typewriter intelligente qui cycle entre différents termes de recherche, s'adapte aux interactions utilisateur et reste performante.
+
+<Image src="/images/articles/input-placeholder-anime.gif" alt="une animation typewriter intelligente qui cycle entre différents termes de recherche" width={800} height={161} className="rounded-lg mx-auto mb-4 w-full h-auto" />
+
+## L'Approche Technique
+
+Pour créer une animation placeholder vraiment efficace, nous devons aller au-delà du simple effet visuel. L'objectif est de développer un système intelligent qui comprend le contexte utilisateur, s'adapte aux interactions en temps réel, et maintient des performances optimales même sur des appareils moins puissants.
+
+Notre approche technique s'articule autour de trois fondements essentiels :
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-4">
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-12 h-12 mx-auto mb-4 text-orange" fill="currentColor" viewBox="0 0 576 512">
+      <path d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.4-23.4 105-105 23.4 23.4zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2z"/>
+    </svg>
+    <h3 className="text-lg font-bold text-white mb-0">Animation fluide</h3>
+    <p className="text-gray text-sm">Effet de frappe et d'effacement réaliste</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-12 h-12 mx-auto mb-4 text-orange" fill="currentColor" viewBox="0 0 512 512">
+      <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+    </svg>
+    <h3 className="text-lg font-bold text-white mb-0">Interaction intelligente</h3>
+    <p className="text-gray text-sm">Pause pendant la saisie utilisateur</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-12 h-12 mx-auto mb-4 text-orange" fill="currentColor" viewBox="0 0 512 512">
+      <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+    </svg>
+    <h3 className="text-lg font-bold text-white mb-0">Performance optimisée</h3>
+    <p className="text-gray text-sm">Gestion propre des timeouts et événements</p>
+  </div>
+</div>
+
+## Implémentation Complète
+
+### 1. Le Cœur de l'Animation TypeScript
+
+Créons notre moteur d'animation dans `placeholder-animation.ts` :
+
+```typescript
+interface PlaceholderAnimationOptions {
+  typingSpeed?: number;
+  deletingSpeed?: number;
+  pauseDuration?: number;
+}
+
+export function initPlaceholderAnimation(
+  element: HTMLInputElement,
+  terms: string[],
+  options: PlaceholderAnimationOptions = {}
+): void {
+  if (!terms || terms.length === 0) return;
+
+  const {
+    typingSpeed = 100,
+    deletingSpeed = 50,
+    pauseDuration = 1000
+  } = options;
+
+  let currentTermIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let animationId: ReturnType<typeof setTimeout> | null = null;
+  let isActive = true;
+
+  function animate(): void {
+    if (!isActive) return;
+
+    const currentTerm = terms[currentTermIndex];
+
+    if (!isDeleting) {
+      // Typing phase: add one character
+      element.placeholder = currentTerm.substring(0, currentCharIndex + 1);
+      currentCharIndex++;
+
+      if (currentCharIndex === currentTerm.length) {
+        // Word complete, pause then start deleting
+        animationId = setTimeout(() => {
+          isDeleting = true;
+          animate();
+        }, pauseDuration);
+        return;
+      }
+    } else {
+      // Deleting phase: remove one character
+      element.placeholder = currentTerm.substring(0, currentCharIndex);
+      currentCharIndex--;
+
+      if (currentCharIndex < 0) {
+        // Deletion complete, move to next term
+        isDeleting = false;
+        currentTermIndex = (currentTermIndex + 1) % terms.length;
+        currentCharIndex = 0;
+      }
+    }
+
+    const speed = isDeleting ? deletingSpeed : typingSpeed;
+    animationId = setTimeout(animate, speed);
+  }
+
+  // Stop animation on focus, clear placeholder
+  function stopAnimation(): void {
+    isActive = false;
+    if (animationId) {
+      clearTimeout(animationId);
+      animationId = null;
+    }
+    element.placeholder = '';
+  }
+
+  // Restart animation on blur if input is empty
+  function startAnimation(): void {
+    if (element.value === '') {
+      isActive = true;
+      currentTermIndex = 0;
+      currentCharIndex = 0;
+      isDeleting = false;
+      animate();
+    }
+  }
+
+  element.addEventListener('focus', stopAnimation);
+  element.addEventListener('blur', startAnimation);
+
+  animate();
+}
+```
+
+### 2. Auto-détection et Initialisation
+
+Pour garantir une intégration transparente dans vos projets existants, nous développons un système d'auto-détection qui scanne automatiquement le DOM à la recherche de formulaires configurés pour l'animation. Cette approche élimine la nécessité d'initialiser manuellement chaque champ de recherche et rend la solution facilement maintenable même sur des sites complexes avec de multiples formulaires.
+
+La fonction helper ci-dessous automatise entièrement le processus :
+
+```typescript
+export function initPlaceholderAnimations(): void {
+  const searchForms = document.querySelectorAll<HTMLFormElement>('[data-placeholder-terms]');
+
+  searchForms.forEach(form => {
+    const input = form.querySelector<HTMLInputElement>('input[type="search"]');
+    const termsData = form.getAttribute('data-placeholder-terms');
+
+    if (input && termsData) {
+      try {
+        const terms = JSON.parse(termsData);
+        if (Array.isArray(terms)) {
+          initPlaceholderAnimation(input, terms);
+        }
+      } catch (error) {
+        console.warn('Invalid placeholder terms data:', error);
+      }
+    }
+  });
+}
+```
+
+### 3. Intégration HTML Propre
+
+L'un des atouts majeurs de cette solution est sa simplicité d'intégration. Plutôt que d'imposer une structure HTML complexe ou des classes CSS spécifiques, nous utilisons une approche basée sur les attributs data, garantissant une compatibilité maximale avec n'importe quel framework ou CMS.
+
+Cette méthode respecte les standards web modernes et permet une séparation claire entre la logique JavaScript et le markup HTML. Voici comment l'implémenter dans vos templates :
+
+```html
+<form class="search-form" data-placeholder-terms="<?php echo json_encode(['produits', 'services', 'documentation', 'support']); ?>">
+  <input type="search"
+         name="s"
+         placeholder="Rechercher..."
+         class="search-input">
+  <button type="submit">Rechercher</button>
+</form>
+```
+
+### 4. Activation Globale
+
+Dans votre `app.ts` principal :
+
+```typescript
+import { initPlaceholderAnimations } from './lib/placeholder-animation';
+
+// Initialize animations when DOM is ready
+initPlaceholderAnimations();
+```
+
+## Les Détails qui Font la Différence
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+  <div className="p-3 border border-gray rounded-lg bg-gray-darker">
+    <h3 className="text-lg font-bold text-orange mb-2 flex items-center">
+      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 512 512">
+        <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+      </svg>
+      Timing Réaliste
+    </h3>
+    <ul className="space-y-1 text-sm">
+      <li><strong className="text-white">Frappe</strong> : 100ms par caractère (ni trop rapide, ni trop lent)</li>
+      <li><strong className="text-white">Effacement</strong> : 50ms par caractère (plus rapide, comme un vrai backspace)</li>
+      <li><strong className="text-white">Pause</strong> : 1000ms entre les mots (laisse le temps de lire)</li>
+    </ul>
+  </div>
+
+  <div className="p-3 border border-gray rounded-lg bg-gray-darker">
+    <h3 className="text-lg font-bold text-orange mb-2 flex items-center">
+      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 640 512">
+        <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2h61.4C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/>
+      </svg>
+      Interaction Intelligente
+    </h3>
+    <p className="text-sm mb-2">L'animation comprend quand l'utilisateur veut interagir :</p>
+    <ul className="space-y-1 text-sm">
+      <li><strong className="text-white">Focus</strong> : animation stop, placeholder disparaît</li>
+      <li><strong className="text-white">Blur sur champ vide</strong> : animation reprend depuis le début</li>
+      <li><strong className="text-white">Blur sur champ rempli</strong> : aucune animation (logique)</li>
+    </ul>
+  </div>
+
+  <div className="p-3 border border-gray rounded-lg bg-gray-darker">
+    <h3 className="text-lg font-bold text-orange mb-2 flex items-center">
+      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 512 512">
+        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+      </svg>
+      Performance Sans Compromis
+    </h3>
+    <p className="text-sm mb-2">L'optimisation technique garantit une exécution fluide :</p>
+    <ul className="space-y-1 text-sm">
+      <li><strong className="text-white">Nettoyage automatique</strong> des timeouts</li>
+      <li><strong className="text-white">Arrêt complet</strong> pendant les interactions</li>
+      <li><strong className="text-white">Aucune manipulation DOM</strong> inutile</li>
+    </ul>
+  </div>
+</div>
+
+## Personnalisation Avancée
+
+Adaptez l'animation à votre contexte :
+
+```typescript
+// Animation plus lente et contemplative
+initPlaceholderAnimation(input, terms, {
+  typingSpeed: 150,
+  deletingSpeed: 75,
+  pauseDuration: 2500
+});
+
+// Animation rapide et dynamique
+initPlaceholderAnimation(input, terms, {
+  typingSpeed: 60,
+  deletingSpeed: 30,
+  pauseDuration: 800
+});
+```
+
+## En Production
+
+Quelques bonnes pratiques pour le déploiement :
+
+1. **Termes pertinents** : Choisissez des mots qui reflètent vraiment votre contenu
+2. **Longueur raisonnable** : 3-5 termes suffisent pour éviter la lassitude
+3. **Responsive** : Testez sur mobile où le focus se comporte différemment
+4. **Performance** : L'animation se désactive automatiquement quand nécessaire
+5. **Contenu dynamique** : Dans le cas d'un site e-commerce, vous pourriez par exemple aller chercher les catégories ou les noms de produits directement depuis WooCommerce pour alimenter automatiquement la liste des termes suggérés :
+
+```php
+function get_search_placeholder_terms() {
+    $terms = [];
+
+    // Get popular product categories
+    $categories = get_terms([
+        'taxonomy' => 'product_cat',
+        'orderby' => 'count',
+        'order' => 'DESC',
+        'number' => 3,
+        'hide_empty' => true
+    ]);
+
+    foreach ($categories as $category) {
+        $terms[] = $category->name;
+    }
+
+    // Add featured products
+    $products = wc_get_products([
+        'limit' => 2,
+        'orderby' => 'popularity',
+        'status' => 'publish'
+    ]);
+
+    foreach ($products as $product) {
+        $terms[] = $product->get_name();
+    }
+
+    return array_slice($terms, 0, 5); // Limit to 5 terms
+}
+```
+
+## Conclusion
+
+Cette animation typewriter pour placeholder démontre qu'une micro-interaction bien pensée peut transformer radicalement l'expérience utilisateur. En alliant performance technique et design intelligent, nous créons une solution qui guide naturellement l'utilisateur tout en maintenant une fluidité d'interaction irréprochable.
+
+L'approche développée ici illustre parfaitement comment les détails techniques minutieux et l'attention portée à l'expérience utilisateur convergent pour créer des interfaces web modernes et engageantes. Une simple animation de placeholder devient ainsi un véritable outil de communication avec l'utilisateur, suggérant subtilement les possibilités offertes par votre site.
+
+---
+
+*Cet effet fonctionne particulièrement bien sur les sites e-commerce, portfolios et plateformes de contenu où guider la recherche utilisateur est crucial pour l'engagement.*
