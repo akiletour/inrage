@@ -107,7 +107,7 @@ export default function Footer() {
               <span className="button">Demandez un devis</span>
             </Link>
             <div className="my-2 text-3xl font-bold text-orange">
-              06 82 96 38 39
+              <a href="tel:0682963889">06 82 96 38 89</a>
             </div>
             <div className="text-center md:text-right text-sm">
               SIRET : 813 430 592 00010

@@ -1,3 +1,4 @@
+import { GoogleTagManager } from '@next/third-parties/google'
 import { ReactNode } from 'react'
 
 import Footer from '@layout/Footer'
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }
   return (
     <html lang="fr">
+      <GoogleTagManager gtmId={process.env.GTM_ID!} />
       <head />
       <body>
         <script

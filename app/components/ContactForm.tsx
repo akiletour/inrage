@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { useForm } from 'react-hook-form'
+import { sendGTMEvent } from '@next/third-parties/google'
 
 import Button from '@component/Button'
 import { useFormState } from '@hook/useFormState'
@@ -37,6 +38,13 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
       .then(() => {
         success()
         reset()
+
+        sendGTMEvent({
+          event: 'contact_form_submit',
+          form_location: window.location.pathname,
+          form_source: document.referrer || 'direct'
+        })
+
         fetch('/api/hello-slack', {
           method: 'POST',
           body: JSON.stringify(data),
