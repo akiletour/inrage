@@ -48,7 +48,7 @@ export default function Contact() {
           </p>
 
           <div className="text-orange font-bold text-3xl mt-2">
-            06 82 96 38 89
+            <a href="tel:06Je c82963889">06 82 96 38 89</a>
           </div>
           <div className="text-sm">du lundi au samedi de 09h à 18h</div>
         </div>
