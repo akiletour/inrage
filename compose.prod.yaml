@@ -7,6 +7,7 @@ services:
       args:
         NEXT_PUBLIC_FRONT_URL: ${NEXT_PUBLIC_FRONT_URL}
         WORDPRESS_API_URL: ${WORDPRESS_API_URL}
+        NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID}
     environment:
       WORDPRESS_API_URL: ${WORDPRESS_API_URL}
     healthcheck:
