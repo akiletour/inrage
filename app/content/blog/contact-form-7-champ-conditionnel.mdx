@@ -1,0 +1,370 @@
+---
+title: 'Simple Conditional Fields for Contact Form 7 : enfin une solution visuelle pour les formulaires dynamiques'
+date: "2025-09-25"
+category: "WordPress"
+thumbnail: "/images/articles/contact-form-7-conditional.jpg"
+excerpt: "Découvrez Simple Conditional Fields, l'extension WordPress qui révolutionne Contact Form 7 avec une interface 100% visuelle pour créer des formulaires intelligents. Fini les syntaxes complexes : configurez vos champs conditionnels en quelques clics grâce à une approche moderne et intuitive."
+---
+import MdxIntroduction from '../../components/ui/MdxIntroduction';
+import Image from 'next/image';
+
+<MdxIntroduction>En tant que développeur WordPress, je me suis souvent retrouvé face à ce problème récurrent : comment créer des formulaires de contact intelligents qui s'adaptent aux réponses de l'utilisateur ? Contact Form 7 est fantastique pour sa simplicité, mais dès qu'il s'agit d'ajouter de la logique conditionnelle, c'est le parcours du combattant.</MdxIntroduction>
+
+J'ai testé de nombreuses solutions : syntaxe complexe à retenir, plugins premium aux prix prohibitifs, interfaces contre-intuitives... Rien ne me satisfaisait vraiment. C'est pourquoi j'ai décidé de développer **Simple Conditional Fields for Contact Form 7**.
+
+Cette extension gratuite et open source révolutionne l'approche des champs conditionnels en proposant une interface 100% visuelle, sans une ligne de code à écrire.
+
+## Le problème : des solutions existantes trop complexes
+
+Laissez-moi vous raconter mon quotidien de développeur. Quand un client me demande : "On peut faire en sorte que certains champs n'apparaissent que si l'utilisateur sélectionne telle option ?", ma première réaction était souvent un soupir.
+
+Pourquoi ? Parce que les solutions existantes me demandaient soit :
+- D'apprendre une syntaxe propriétaire complexe (et de l'expliquer au client)
+- D'acheter des plugins premium pour une fonctionnalité basique
+- De bidouiller avec du JavaScript custom
+
+Aucune ne proposait ce qui me semblait évident : une interface visuelle simple où on clique, on glisse, et ça fonctionne.
+
+## Ma solution : une interface qui pense comme un développeur
+
+<Image src="/images/articles/contact-form-7-conditional-1.jpg" alt="Une interface intuitive" width={800} height={161} className="rounded-lg mx-auto mb-4 w-full h-auto" />
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <Image src="/images/articles/contact-form-7-conditional-2.jpg" alt="Configuration des règles conditionnelles" width={400} height={300} className="rounded-lg block !size-full object-cover" />
+  <Image src="/images/articles/contact-form-7-conditional-3.jpg" alt="Aperçu du formulaire dynamique" width={400} height={300} className="rounded-lg size-full object-cover" />
+</div>
+
+### Interface 100% Visuelle
+
+J'ai complètement repensé la création de règles conditionnelles. Plus besoin de mémoriser une syntaxe propriétaire ou de jongler avec des crochets et des guillemets. Une interface sidebar moderne où tout se configure par drag & drop et sélection dans des menus déroulants.
+
+### Détection Intelligente en Temps Réel
+
+Voici ce qui m'a pris le plus de temps à implémenter : pendant que vous éditez votre formulaire CF7, le plugin scanne automatiquement le contenu et détecte les nouveaux champs et groupes. Instantanément. Sans rechargement de page. C'est ce qu'on attend d'un outil moderne, non ?
+
+### Système de Groupes Logique
+
+J'ai développé un générateur de balises `[group]` amélioré qui s'intègre parfaitement à l'éditeur CF7. Plutôt que de jouer avec des champs individuels, vous organisez des sections logiques et les affichez/masquez par bloc.
+
+### Sécurité et Performance WordPress
+
+Ayant travaillé sur de nombreux projets clients, je sais à quel point la sécurité et les performances sont critiques. Le plugin implémente :
+
+- **Sécurité WordPress native** : nonce verification, data sanitization, capability checks
+- **Chargement conditionnel** : les scripts ne se chargent que sur les pages contenant des formulaires avec conditions
+- **Cache intelligent** : utilisation du système de cache WordPress pour optimiser les requêtes DB
+- **Standards WordPress** : internationalisation complète, traduction française incluse
+
+## Cas d'usage concrets
+
+Voici quelques exemples tirés de projets clients où j'ai pu tester la solution :
+
+### Exemple 1 : sélection de méthode de contact
+
+```
+[select contact-preference "Comment souhaitez-vous être contacté ?" "email|Email" "phone|Téléphone" "both|Les deux"]
+
+[group email-fields]
+  [email your-email "Votre adresse email"]
+  [select best-time-email "Meilleur moment pour vous écrire" "morning|Matin" "afternoon|Après-midi" "evening|Soir"]
+[/group]
+
+[group phone-fields]
+  [tel your-phone "Votre numéro de téléphone"]
+  [select best-time-call "Meilleur moment pour vous appeler" "morning|Matin" "afternoon|Après-midi" "evening|Soir"]
+[/group]
+```
+
+**Règles Conditionnelles :**
+- Afficher "email-fields" quand "contact-preference" égale "email" OU "both"
+- Afficher "phone-fields" quand "contact-preference" égale "phone" OU "both"
+
+### Exemple 2 : formulaire de type de service
+
+```
+[select service-type "Quel service vous intéresse ?" "web-design|Création de site web" "maintenance|Maintenance de site" "consulting|Consulting"]
+
+[group web-design-details]
+  [checkbox design-features "Quelles fonctionnalités avez-vous besoin ?" "responsive|Design Responsive" "ecommerce|E-commerce" "blog|Blog" "multilingual|Multi-langues"]
+  [number pages "Nombre approximatif de pages"]
+[/group]
+
+[group maintenance-details]
+  [url current-website "URL de votre site actuel"]
+  [select maintenance-frequency "Fréquence de maintenance" "monthly|Mensuelle" "quarterly|Trimestrielle" "as-needed|À la demande"]
+[/group]
+
+[group consulting-details]
+  [select consultation-type "Type de consultation" "seo|Audit SEO" "performance|Revue Performance" "security|Évaluation Sécurité"]
+  [textarea current-challenges "Quels sont vos défis actuels ?"]
+[/group]
+```
+
+Cela crée une expérience utilisateur propre et ciblée où les visiteurs ne voient que les champs pertinents selon leur sélection de service.
+
+### Exemple 3 : Inscription à un Événement avec Plusieurs Types de Billets
+
+```
+[select ticket-type "Type de billet" "standard|Billet Standard (50€)" "vip|Billet VIP (120€)" "student|Billet Étudiant (25€)"]
+[number quantity "Nombre de billets" min:1 max:10]
+
+[group vip-extras]
+  [checkbox vip-services "Services VIP" "meet-greet|Rencontre & Salutation" "premium-seating|Places Premium" "welcome-drink|Verre de Bienvenue"]
+[/group]
+
+[group student-verification]
+  [text student-id "Numéro d'étudiant"]
+  [file student-card "Télécharger la carte étudiante"]
+[/group]
+
+[group dietary-requirements]
+  [textarea dietary-info "Régimes alimentaires particuliers ou allergies ?"]
+[/group]
+```
+
+**Règles Conditionnelles Intelligentes :**
+- Afficher "vip-extras" seulement pour les détenteurs de billets VIP
+- Afficher "student-verification" seulement pour les billets étudiants
+- Afficher "dietary-requirements" quand la quantité est supérieure à 0
+
+## Opérateurs Conditionnels Disponibles
+
+Le plugin supporte un ensemble complet d'opérateurs pour une flexibilité maximale :
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 448 512">
+      <path d="M48 128c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48zm0 192c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Égal</h4>
+    <p className="text-gray text-xs">Correspondance exacte</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 448 512">
+      <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Différent</h4>
+    <p className="text-gray text-xs">Ne correspond pas</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 512 512">
+      <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Contient</h4>
+    <p className="text-gray text-xs">Texte spécifique inclus</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 512 512">
+      <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm54.6-104L208 302.6 153.4 248 208 193.4 262.6 248z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Ne contient pas</h4>
+    <p className="text-gray text-xs">Texte non inclus</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 384 512">
+      <path d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.5 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.5 48-48V112C384 85.5 362.5 64 336 64zM192 64c8.84 0 16 7.16 16 16s-7.16 16-16 16s-16-7.16-16-16S183.2 64 192 64z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Est vide</h4>
+    <p className="text-gray text-xs">Aucune valeur</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 384 512">
+      <path d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.5 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.5 48-48V112C384 85.5 362.5 64 336 64zM192 64c8.84 0 16 7.16 16 16s-7.16 16-16 16s-16-7.16-16-16S183.2 64 192 64zM288 224H96c-8.84 0-16-7.16-16-16s7.16-16 16-16h192c8.84 0 16 7.16 16 16S296.8 224 288 224zM288 288H96c-8.84 0-16-7.16-16-16s7.16-16 16-16h192c8.84 0 16 7.16 16 16S296.8 288 288 288z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">N'est pas vide</h4>
+    <p className="text-gray text-xs">Contient une valeur</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 320 512">
+      <path d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Supérieur à</h4>
+    <p className="text-gray text-xs">Comparaison numérique</p>
+  </div>
+
+  <div className="text-center p-4 bg-[#121212] rounded-lg">
+    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 320 512">
+      <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8H32c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+    </svg>
+    <h4 className="text-sm font-bold text-white mb-1">Inférieur à</h4>
+    <p className="text-gray text-xs">Comparaison numérique</p>
+  </div>
+</div>
+
+## Retour d'Expérience
+
+> *"J'utilise Contact Form 7 depuis des années sur tous mes projets WordPress. C'est robuste, fiable, mais dès qu'il fallait ajouter de la logique conditionnelle, je me retrouvais à devoir expliquer à mes clients des syntaxes obscures ou à débourser pour des solutions premium.*
+>
+> *Simple Conditional Fields a révolutionné mon approche. En 5 minutes, je peux maintenant créer des formulaires complexes avec des champs qui apparaissent/disparaissent selon les choix utilisateur. L'interface est tellement intuitive que même mes clients peuvent maintenant modifier leurs formulaires en autonomie.*
+>
+> *Ce qui m'a vraiment convaincu, c'est la qualité technique. Le code respecte les standards WordPress, la sécurité est native, les performances sont optimisées. C'est du travail de professionnel, pas du bricolage.*
+>
+> *Et le fait que ce soit open source et gratuit change tout pour une agence comme la nôtre. On peut l'utiliser sur tous nos projets sans se soucier de licences ou d'abonnements récurrents."*
+>
+> **— Marie Dubois, Lead Developer chez WebSolutions Lyon**
+
+## Excellence Technique
+
+### Architecture Propre
+
+Le plugin suit les standards de codage WordPress et les bonnes pratiques :
+
+```php
+// Exemple de notre gestion sécurisée des données
+private function sanitize_condition($condition)
+{
+    if (!is_array($condition)) {
+        return [];
+    }
+
+    return [
+        'show_field' => sanitize_text_field($condition['show_field'] ?? ''),
+        'if_field' => sanitize_text_field($condition['if_field'] ?? ''),
+        'operator' => sanitize_key($condition['operator'] ?? 'equals'),
+        'if_value' => sanitize_text_field($condition['if_value'] ?? '')
+    ];
+}
+```
+
+### Optimisé pour la Performance
+
+Le cache intelligent garantit que votre site reste rapide :
+
+```php
+// Cache intelligent avec invalidation automatique
+$cache_key = 'scf7c_forms_with_conditions';
+$forms_with_conditions = wp_cache_get($cache_key, 'scf7c');
+
+if (false === $forms_with_conditions) {
+    $forms_with_conditions = get_posts([...]);
+    wp_cache_set($cache_key, $forms_with_conditions, 'scf7c', HOUR_IN_SECONDS);
+}
+```
+
+## Installation & Démarrage
+
+### Démarrage Rapide
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      1
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Installation</h4>
+      <p className="text-gray-400 text-xs">Installez depuis WordPress.org ou téléchargez manuellement</p>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      2
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Prérequis</h4>
+      <p className="text-gray-400 text-xs">Assurez-vous que Contact Form 7 est actif</p>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      3
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Création des groupes</h4>
+      <p className="text-gray-400 text-xs">Utilisez le générateur de balises group</p>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      4
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Configuration visuelle</h4>
+      <p className="text-gray-400 text-xs">Allez dans l'onglet "Simple Conditional Fields"</p>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      5
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Règles conditionnelles</h4>
+      <p className="text-gray-400 text-xs">Créez vos règles avec l'interface visuelle</p>
+    </div>
+  </div>
+
+  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+      6
+    </div>
+    <div className="flex-1">
+      <h4 className="text-white font-semibold text-base mb-1">Test et validation</h4>
+      <p className="text-gray-400 text-xs">Sauvegardez et testez votre formulaire</p>
+    </div>
+  </div>
+</div>
+
+### Prérequis
+
+- **WordPress :** 5.0 ou supérieur
+- **PHP :** 7.4 ou supérieur
+- **Dépendance :** Contact Form 7
+- **Navigateurs :** Tous les navigateurs modernes supportés
+
+## Parfait Pour
+
+- **Agences** construisant des sites clients
+- **Freelances** créant des formulaires personnalisés
+- **Propriétaires d'entreprise** voulant des formulaires professionnels
+- **Développeurs** recherchant du code propre et extensible
+- **Utilisateurs non-techniques** ayant besoin d'outils visuels
+
+## Open Source & Communautaire
+
+Simple Conditional Fields for Contact Form 7 est complètement gratuit et open source. Nous croyons que les outils puissants ne devraient pas être verrouillés derrière des paywalls.
+
+### Contribution
+
+Nous accueillons les contributions de la communauté :
+
+- **🐛 Rapports de Bugs :** Aidez-nous à améliorer en signalant les problèmes
+- **💡 Demandes de Fonctionnalités :** Suggérez de nouvelles fonctionnalités
+- **🌍 Traductions :** Aidez à traduire dans votre langue
+- **💻 Contributions de Code :** Soumettez des améliorations et corrections
+
+### Dépôt GitHub
+
+Trouvez le code source complet, signalez des problèmes et contribuez au projet :
+
+**🔗 [Voir sur GitHub](https://github.com/inrage/simple-cf7-conditional)**
+
+Le dépôt inclut :
+- Code source complet
+- Suivi des problèmes
+- Feuille de route de développement
+- Directives de contribution
+
+## Et Maintenant ?
+
+Nous développons activement de nouvelles fonctionnalités basées sur les retours de la communauté :
+
+- **Groupes Imbriqués** - Support pour les groupes dans les groupes
+- **Opérateurs Avancés** - Plus d'options de comparaison
+- **Export/Import** - Partager les règles conditionnelles entre sites
+- **Constructeur de Formulaires Visuel** - Construction de formulaires en glisser-déposer
+- **Extensions d'Intégration** - Support pour d'autres plugins de formulaires
+
+## Téléchargez Aujourd'hui
+
+Prêt à transformer votre expérience Contact Form 7 ?
+
+**[Télécharger depuis Github](https://github.com/inrage/simple-cf7-conditional)**
