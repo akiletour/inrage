@@ -1,6 +1,6 @@
-import { ReactNode, useCallback, useState } from 'react'
-
 import Image from 'next/image'
+import { ReactNode, useCallback, useState } from 'react'
+import { sendGTMEvent } from '@next/third-parties/google'
 import { usePathname } from 'next/navigation'
 import { useWindowSize } from 'react-use'
 
@@ -315,7 +315,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
             />
             <Link href={RouteLink.contact}>
               <span
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  sendGTMEvent({ event: 'contact', position: 'header' })
+                  setOpen(false)
+                }}
                 className="mt-2 lg:mt-0 inline-flex py-1 px-2 bg-orange uppercase text-gray-darker font-medium"
               >
                 Contactez-moi
