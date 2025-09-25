@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }
   return (
     <html lang="fr">
-      <GoogleTagManager gtmId={process.env.GTM_ID!} />
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       <head />
       <body>
         <script
