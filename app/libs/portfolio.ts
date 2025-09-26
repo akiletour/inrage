@@ -80,7 +80,7 @@ export const getPortfolioItems = async (
   sort: 'random' | 'date' = 'date'
 ) => {
   const items = await getAllMdxBy({
-    frontmatterKey: 'category',
+    frontmatterKey: 'year',
     type: 'portfolio',
     limit,
     filterValue: category,
