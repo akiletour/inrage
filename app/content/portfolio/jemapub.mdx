@@ -1,0 +1,120 @@
+---
+title: Boutique WooCommerce Jemapub
+category: 'wordpress'
+website: https://www.jemapub.fr
+year: 2025
+summary: "Refonte complète d'une boutique e-commerce B2B spécialisée dans les objets publicitaires avec des fonctionnalités sur-mesure pour optimiser l'expérience utilisateur et la gestion administrative."
+excerpt: "Migration PrestaShop vers WooCommerce avec développement de fonctionnalités métier avancées : import automatisé de grilles tarifaires, recherche intelligente par référence et filtrage géographique des produits."
+actions:
+  - Migration complète PrestaShop vers WooCommerce
+  - Développement de fonctionnalités métier sur-mesure
+  - Architecture moderne avec Sage 11 et Tailwind CSS
+  - Optimisation des processus administratifs
+
+image:
+  large: jemapub.jpg
+  thumbnail: jemapub-sm.jpg
+tools:
+  - wordpress
+  - woocommerce
+  - sage11
+  - tailwindcss
+---
+
+## Contexte du projet
+
+**Jemapub** est une entreprise française spécialisée dans les objets publicitaires personnalisés, proposant plus de 10 000 références à destination des entreprises et collectivités. Face aux limitations de leur plateforme PrestaShop existante, ils souhaitaient migrer vers une solution plus flexible et moderne.
+
+### Objectifs du projet
+
+- **Simplifier la gestion quotidienne** avec des outils d'import automatisés
+- **Améliorer l'expérience utilisateur** avec une recherche et navigation optimisées
+- **Moderniser l'architecture technique** pour faciliter la maintenance et les évolutions
+- **Conserver le référencement acquis** lors de la migration
+
+## Approche technique
+
+### Stack technologique moderne
+
+Le projet s'appuie sur une architecture **Bedrock + Sage 11**, alliant les bonnes pratiques du développement moderne à l'écosystème WordPress :
+
+- **WordPress/WooCommerce** pour la robustesse e-commerce
+- **Sage 11** (framework Laravel/Acorn) pour l'organisation du code
+- **Vite + Tailwind CSS 4** pour un build optimisé et un design system cohérent
+- **ACF Composer** pour des blocs Gutenberg sur-mesure
+- **TypeScript** pour un code JavaScript maintenable
+
+### Fonctionnalités développées sur-mesure
+
+#### 1. Import automatisé des grilles tarifaires
+
+Développement d'un système d'import CSV intelligent directement dans l'interface d'administration :
+
+- **Détection automatique du format** (délimiteurs, encodage)
+- **Traitement des variations produits** WooCommerce
+- **Génération de tableaux de prix** intégrés aux fiches produits
+- **Gestion d'erreurs avancée** avec reporting détaillé
+
+*Impact business :* Réduction de 80% du temps de mise à jour des prix
+
+#### 2. Recherche intelligente par référence
+
+Extension du moteur de recherche WooCommerce pour inclure les références produits (SKU) :
+
+- **Recherche unifiée** titre, description et référence produit
+- **Redirection automatique** vers la fiche produit en cas de correspondance exacte
+- **Optimisation SEO** avec gestion des redirections 301
+
+*Impact UX :* Les clients trouvent instantanément leurs produits habituels
+
+#### 3. Filtrage géographique des produits
+
+Système de filtrage AJAX par pays d'origine des produits :
+
+- **47 pays référencés** avec interface cartographique
+- **Filtrage temps réel** sans rechargement de page
+- **Optimisation des requêtes** avec système de cache intelligent
+
+*Valeur ajoutée :* Aide à la conformité "Made in" et aux préférences d'achat local
+
+#### 4. Gestion avancée des nouveautés
+
+Système de pages dédiées aux nouveaux produits :
+
+- **URL rewriting personnalisé** (`/boutique/nouveautes/`)
+- **Période configurable** pour définir les "nouveautés"
+- **Compatible avec les filtres** et la pagination
+
+### Architecture et bonnes pratiques
+
+- **Service Providers** Laravel pour organiser les fonctionnalités métier
+- **View Composers** pour centraliser la logique des vues
+- **Blade templating** pour des templates maintenables
+- **Standards PSR-4** pour l'autoloading des classes
+- **Tests unitaires** pour assurer la qualité du code
+
+## Résultats obtenus
+
+### Performance technique
+- **Interface d'administration** simplifiée et intuitive
+- **Temps de traitement** réduit pour les tâches récurrentes
+- **Architecture évolutive** facilitant les futures développements
+
+### Impact business
+- **Migration transparente** sans perte de données ni de référencement
+- **Processus optimisés** pour l'équipe administrative
+- **Expérience utilisateur améliorée** pour les clients B2B
+
+## Expertise démontrée
+
+### Pour les agences web
+- **Maîtrise des architectures WordPress modernes** (Bedrock, Sage, Acorn)
+- **Développement sur-mesure** adapté aux besoins métier spécifiques
+- **Intégration WooCommerce avancée** avec fonctionnalités personnalisées
+- **Approche full-stack** front-end et back-end
+
+### Pour les clients finaux
+- **Compréhension des enjeux business** du e-commerce B2B
+- **Solutions pragmatiques** qui simplifient le quotidien
+- **Accompagnement technique** sur le long terme
+- **Respect des délais et budgets** avec une approche Agile
