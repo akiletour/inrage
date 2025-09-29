@@ -180,6 +180,16 @@ export default function NavPrimary({ isSticky = false }: Props) {
                         </span>
                       </Link>
                     </li>
+                    <li>
+                      <Link href={RouteLink.prestationReact}>
+                        <span
+                          onClick={() => setOpen(false)}
+                          className={n2TitleClassnames}
+                        >
+                          React & Next.js
+                        </span>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
                 <div className="ml-6">
@@ -277,12 +287,12 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/prestashop`}>
+                      <Link href={`${RouteLink.portfolio}/e-commerce`}>
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
                         >
-                          Projets Prestashop
+                          Projets E-commerce
                         </span>
                       </Link>
                     </li>
@@ -302,7 +312,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   <FeaturedProjectMenu
                     image={FeaturedProjectImage}
                     title="Parapharmacie moins chere"
-                    link={`${RouteLink.portfolio}/prestashop/parapharmacie-moins-chere`}
+                    link={`${RouteLink.portfolio}/e-commerce/parapharmacie-moins-chere`}
                   />
                 </div>
               </div>
