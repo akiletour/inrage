@@ -46,7 +46,7 @@ jobs:
           fi
           echo "NEXT_PUBLIC_GTM_ID=${{ secrets.GTM_ID }}" >> $GITHUB_ENV
       - name: Build Docker images
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
         with:
