@@ -14,7 +14,7 @@ import Layout from '@component/Layout'
 import LastProjects from '@component/portfolio/LastProjects'
 import PrestationsList from '@component/PrestationsList'
 import SectionTitle from '@component/SectionTitle'
-import ExpertiseJoomla from '@image/expertises/joomla.png'
+import ExpertiseReact from '@image/expertises/react.svg'
 import ExpertisePrestashop from '@image/expertises/prestashop.png'
 import ExpertiseSymfony from '@image/expertises/symfony.png'
 import ExpertiseWordPress from '@image/expertises/wordpress.png'
@@ -155,10 +155,10 @@ export default function Homepage() {
             image={ExpertisePrestashop}
           />
           <ExpertiseItem
-            title="Joomla"
-            excerpt="Joomla est un CMS puissant en terme de pérénité, modularité et de puissance dans la gestion de contenu et de l’ajout de vos développement spécifique."
-            link={RouteLink.portfolio}
-            image={ExpertiseJoomla}
+            title="React & Next.js"
+            excerpt="React et Next.js sont les technologies modernes de référence pour créer des applications web performantes, scalables et avec une excellente expérience utilisateur."
+            link={RouteLink.prestationReact}
+            image={ExpertiseReact}
           />
         </div>
       </div>
