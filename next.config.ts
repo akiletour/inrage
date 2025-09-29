@@ -15,6 +15,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/portfolio/prestashop',
+        destination: '/portfolio/e-commerce',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/prestashop/:slug*',
+        destination: '/portfolio/e-commerce/:slug*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 const withMDX = createMDX({
