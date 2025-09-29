@@ -19,9 +19,6 @@
 .DS_Store
 *.pem
 
-# Cypress
-cypress/videos
-cypress/screenshots
 
 # debug
 npm-debug.log*
