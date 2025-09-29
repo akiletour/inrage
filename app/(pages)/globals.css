@@ -1,6 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-white: #ffffff;
+  --color-red: #c0392b;
+  --color-gray-darker: #141414;
+  --color-gray-dark: #252525;
+  --color-gray: #999999;
+  --color-gray-light: #b3b3b3;
+  --color-orange: #e57e21;
+  --color-orange-dark: #8f4d11;
+
+  --shadow-center: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(230 126 34 / 60%);
+}
 
 body {
   @apply bg-gray-dark text-gray overflow-x-hidden;
@@ -11,11 +23,11 @@ body {
 }
 
 .button {
-  @apply h-5 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
+  @apply h-10 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-2 inline-flex font-medium;
 }
 
 .button-outline {
-  @apply h-5 border-2 border-orange text-center justify-center text-orange items-center px-2 inline-flex font-medium;
+  @apply h-10 border-2 border-orange text-center justify-center text-orange items-center px-2 inline-flex font-medium;
 }
 
 .parallax > use {
@@ -58,7 +70,6 @@ body {
 
 .styled-list li::before {
   @apply w-1 h-1 flex-none bg-gray-light mr-2 block absolute left-0 top-1;
-
   content: '';
 }
 
@@ -76,4 +87,19 @@ body {
 
 .container-full-size {
   @apply relative left-1/2 ml-[-50vw] w-screen;
+}
+
+@keyframes bouncex {
+  0%, 100% {
+    transform: translateX(-4px);
+    animation-timing-function: cubic-bezier(.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, .2, 1);
+  }
+}
+
+.animate-bouncex {
+  animation: bouncex 1s infinite;
 }
