@@ -11,10 +11,10 @@ export const portfolioCategories = {
     slug: 'application-web',
     icon: 'developpement-application-web.webp',
   },
-  prestashop: {
-    title: 'PrestaShop',
-    slug: 'prestashop',
-    icon: 'creation-prestashop.webp',
+  'e-commerce': {
+    title: 'E-commerce',
+    slug: 'e-commerce',
+    icon: 'creation-ecommerce.svg',
   },
 }
 
