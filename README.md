@@ -8,7 +8,7 @@
 <img alt="Portfolio inRage - Pascal GAULT" src="./public/images/inline-logo.png" />
 </p>
 
-Initially developed with WordPress, I decided to refactor the whole project with Next JS.
+Initially developed with WordPress, I decided to refactor the whole project with Next.js.
 
 To retrieve all projects (portfolio) and blog posts, I've used the WordPress API with [GraphQL](https://fr.wordpress.org/plugins/wp-graphql/).
 
@@ -21,6 +21,7 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 - `TypeScript`: v5
 - `NextJS`: v15.x
 - `Node`: v22+
+- `Tailwind CSS`: v4
 - `WordPress`: v6.7+
 - `Framer Motion`: for animations between page transitions
 - `Akismet`: to check spam in the contact form
@@ -28,18 +29,18 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 
 ## ⚡️ Installation
 
-Make sure to use newest version of Node JS (v22).
+Make sure to use a recent version of Node.js (>= v22).
 
 ```bash
-yarn
-yarn dev
+pnpm install
+pnpm dev
 ```
 
-You can now access to the project with : http://localhost:3000
+You can now access to the project with: http://localhost:3000
 
 ## 🔧 Configuration
 
-In order to correctly run this project, you must create an environment variables named `.env.local`.
+To correctly run this project, you must create an environment variable named `.env.local`.
 
 - `AKISMET_API_KEY`: Your Akismet API Key to check spam
 - `MJ_APIKEY_PUBLIC`: Your API Mailjet username
@@ -47,11 +48,11 @@ In order to correctly run this project, you must create an environment variables
 - `WORDPRESS_API_URL`: https://YOUR-WEBSITE/graphql
 - `WORDPRESS_AUTH_REFRESH_TOKEN`: If you need to access to your private and unpublished content
 - `WORDPRESS_PREVIEW_SECRET`: The token used by `/api/preview?secret=XXX`
-- `SLACK_WEBHOOK_URL`: If set, on each contact message, a slack webhook will be sent.
+- `SLACK_WEBHOOK_URL`: If set, on each contact message, a Slack Webhook will be sent.
 
 # 🔒️ WordPress Configuration
 
-in this part, we will configure the WordPress part to ensure the communication with Next JS
+in this part, we will configure the WordPress part to ensure the communication with Next.js
 
 ## WPGraphQL plugin
 
@@ -69,7 +70,7 @@ define('GRAPHQL_JWT_AUTH_SECRET_KEY', 'XXXXXXX');
 
 It's recommended that you use something like the WordPress Salt generator ([https://api.wordpress.org/secret-key/1.1/salt/](https://api.wordpress.org/secret-key/1.1/salt/)) to generate a Secret.
 
-You can install and activate the plugin like any WordPress plugin. Download the .zip from Github Release page of WPGraphql [JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication/releases) and add to your plugins directory, then activate.
+You can install and activate the plugin like any WordPress plugin. Download the .zip from GitHub Release page of WPGraphql [JWT Authentication](https://github.com/wp-graphql/wp-graphql-jwt-authentication/releases) and add to your plugins directory, then activate.
 
 Once installed, in the GraphQL IDE, run the following mutation :
 
