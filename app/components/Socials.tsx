@@ -5,7 +5,7 @@ import Twitter from './socials/Twitter'
 
 export default function Socials() {
   return (
-    <div className="grid grid-flow-col gap-2 items-center justify-start">
+    <div className="grid grid-flow-col gap-4 items-center justify-start">
       <a
         aria-label="Github inRage / Pascal GAULT"
         className="text-white transition hover:text-orange"

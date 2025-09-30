@@ -94,7 +94,7 @@ export default async function Page(props: Props) {
       title={metadata.title}
     >
       <div className="container">
-        <div className="flex items-center mb-10 flex-col md:flex-row">
+        <div className="flex items-center mb-20 flex-col md:flex-row">
           <div className="md:w-2/5 text-center md:text-right">
             <div className="text-4xl text-white font-bold">
               {metadata.title}
@@ -109,9 +109,9 @@ export default async function Page(props: Props) {
               {metadata.website.replace(/(^\w+:|^)\/\//, '')}
             </a>
 
-            <div className="my-4 text-lg">{metadata.summary}</div>
+            <div className="my-8 text-lg">{metadata.summary}</div>
 
-            <div className="my-4">
+            <div className="my-8">
               <div className="text-white text-xl font-light uppercase tracking-widest">
                 Date
               </div>
@@ -120,11 +120,11 @@ export default async function Page(props: Props) {
               </div>
             </div>
 
-            <div className="my-4">
-              <div className="text-white text-xl font-light uppercase tracking-widest mb-2">
+            <div className="my-8">
+              <div className="text-white text-xl font-light uppercase tracking-widest mb-4">
                 Technologies
               </div>
-              <div className="text-white font-medium text-sm flex space-x-2 justify-center flex-wrap md:justify-end">
+              <div className="text-white font-medium text-sm flex space-x-4 justify-center flex-wrap md:justify-end">
                 {metadata.tools.map((techno) => {
                   const tool =
                     portfolioTools[techno as keyof typeof portfolioTools]
@@ -138,7 +138,7 @@ export default async function Page(props: Props) {
                       key={tool.title}
                       className="flex items-center flex-col w-[80px] text-center"
                     >
-                      <div className="w-6 h-6 relative">
+                      <div className="w-12 h-12 relative">
                         <Image
                           src={`/images/portfolio/tools/${tool.icon}`}
                           alt={tool.title}
@@ -147,7 +147,7 @@ export default async function Page(props: Props) {
                         />
                       </div>
 
-                      <div className="mt-1">{tool.title}</div>
+                      <div className="mt-2">{tool.title}</div>
                     </div>
                   )
                 })}
@@ -164,7 +164,7 @@ export default async function Page(props: Props) {
               </div>
             </div>
           </div>
-          <div className="md:w-3/5 max-w-[650px] mt-4 md:mt-0 md:pl-4">
+          <div className="md:w-3/5 max-w-[650px] mt-8 md:mt-0 md:pl-8">
             <Image
               src={`/images/portfolio/${metadata.image.large}`}
               width={650}
@@ -177,7 +177,7 @@ export default async function Page(props: Props) {
         </div>
 
         {content && (
-          <div className="my-8 prose prose-lg !max-w-5xl mx-auto prose-invert">
+          <div className="my-16 prose prose-lg !max-w-5xl mx-auto prose-invert">
             <MdxContent />
           </div>
         )}
@@ -189,7 +189,7 @@ export default async function Page(props: Props) {
               content={`Retrouvez des projets similaires développés avec ${category.title} qui pourraient correspondre à ${metadata.title}`}
             />
 
-            <div className="grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-4">
+            <div className="grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4 mt-8">
               {relatedProjects.map(({ title, thumbnail, slug, support }) => (
                 <ProjectItem
                   key={title}

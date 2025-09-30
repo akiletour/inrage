@@ -17,13 +17,13 @@ export default function EcommerceExpertiseSection({
     <section className="relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray/30 to-transparent" />
 
-      <div className="pt-2">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 lg:mb-8 text-white tracking-tight">
+      <div className="pt-4">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-12 lg:mb-16 text-white tracking-tight">
           Expertise E-commerce à La Rochelle et en Charente-Maritime
         </h2>
 
-        <div className="prose prose-lg prose-invert max-w-none mb-8 lg:mb-12">
-          <p className="text-base sm:text-lg lg:text-xl text-gray-light leading-relaxed mb-6">
+        <div className="prose prose-lg prose-invert max-w-none mb-16 lg:mb-24">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-light leading-relaxed mb-12">
             <strong className="text-white">
               Développeur freelance spécialisé en e-commerce
             </strong>{' '}
@@ -39,14 +39,14 @@ export default function EcommerceExpertiseSection({
           </p>
         </div>
 
-        <div className="mb-8 lg:mb-12">
+        <div className="mb-16 lg:mb-24">
           <Link
             href={RouteLink.prestationPrestashop}
-            className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 border border-orange/50 rounded-lg text-sm md:text-base text-orange font-medium hover:border-orange hover:bg-orange/10 transition-all duration-300 group"
+            className="inline-flex items-center gap-4 px-6 py-4 md:px-8 md:py-4.5 border border-orange/50 rounded-lg text-sm md:text-base text-orange font-medium hover:border-orange hover:bg-orange/10 transition-all duration-300 group"
           >
             <span>Découvrez nos prestations PrestaShop complètes</span>
             <svg
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              className="w-8 h-8 transition-transform duration-300 group-hover:translate-x-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -61,8 +61,8 @@ export default function EcommerceExpertiseSection({
           </Link>
         </div>
 
-        <InfoCard className="mb-12 lg:mb-16">
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <InfoCard className="mb-24 lg:mb-32">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
             <FeatureList
               title="Technologies maîtrisées :"
               items={technologies.map((tech) =>

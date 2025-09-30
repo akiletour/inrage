@@ -27,8 +27,8 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
     <div className="relative h-auto w-full" ref={ref}>
       <NavPrimary isSticky={sticky} />
 
-      <div className="container text-center md:-mb-10 relative z-10">
-        <h1 className="text-5xl font-thin text-white mt-6">
+      <div className="container text-center md:-mb-20 relative z-10">
+        <h1 className="text-5xl font-thin text-white mt-12">
           {Array.isArray(pageTitle)
             ? pageTitle.map((ttl) => (
                 <span className="block" key={ttl}>
@@ -38,10 +38,10 @@ export default function HeaderTma({ pageTitle, excerpt }: Props) {
             : pageTitle}
         </h1>
 
-        <div className="max-w-xl w-full mx-auto text-white font-light mb-4 text-xl">
+        <div className="max-w-xl w-full mx-auto text-white font-light mb-8 text-xl">
           {Array.isArray(excerpt)
             ? excerpt.map((exc) => (
-                <span className="block mt-4" key={exc}>
+                <span className="block mt-8" key={exc}>
                   {exc}
                 </span>
               ))

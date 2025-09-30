@@ -5,7 +5,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -20,7 +20,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -35,7 +35,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -50,7 +50,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -65,7 +65,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -80,7 +80,7 @@ export default function ReactAdvantages() {
     {
       icon: (
         <svg
-          className="w-8 h-8 text-white"
+          className="w-16 h-16 text-white"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -95,7 +95,7 @@ export default function ReactAdvantages() {
   ]
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
       {advantages.map((advantage, index) => (
         <div
           key={index}

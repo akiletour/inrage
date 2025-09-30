@@ -24,7 +24,7 @@ export const metadata = {
 export default function AboutMe() {
   return (
     <Layout title="À propos de moi">
-      <div className="container mt-4 -mb-20">
+      <div className="container mt-8 -mb-40">
         <h2 className="text-white text-3xl">
           <span className="font-bold">
             PASCAL GAULT, DÉVELOPPEUR ET CRÉATEUR
@@ -33,25 +33,25 @@ export default function AboutMe() {
           <span className="font-light">FREELANCE BASÉ À LA ROCHELLE</span>
         </h2>
 
-        <p className="mt-2 text-xl text-gray-light">
+        <p className="mt-4 text-xl text-gray-light">
           Développeur Web depuis 15 ans dans les agences web à La Rochelle.
           Expert dans le développement et spécialisé sur Symfony, WordPress et
           Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web
           Freelance à La Rochelle.
         </p>
-        <p className="mt-1">
+        <p className="mt-2">
           Une de mes décisions les plus importantes et gratifiantes pour ma
           carrière. De ce fait, j’ai l’opportunité de travailler sur les
           différents aspects de la conception, de la stratégie, de la gestion et
           de la planification jusqu’à la production complète de ce projet.
         </p>
-        <p className="mt-1">
+        <p className="mt-2">
           Je suis également devenu plus intéressé par l’aspect commercial des
           projets, de plus en plus conscient de l’importance d’intégrer des
           décisions commerciales responsables pour atteindre les objectifs
           d’affaires.
         </p>
-        <p className="mt-1 mb-3">
+        <p className="mt-2 mb-6">
           Un projet, des questions ? N&apos;hésitez pas à me contacter pour en
           discuter !
         </p>
@@ -64,13 +64,13 @@ export default function AboutMe() {
       <Diagonal bgClass="fill-gray-darker" bgCorner="fill-gray-dark" />
 
       <div className="bg-gray-darker">
-        <div className="container lg:-mb-10">
+        <div className="container lg:-mb-20">
           <SectionTitle
             content="Voici la liste de mes expériences professionnelles que j'ai acquises au fil de mes années en tant que développeur, salarié et indépendant."
             title="Expériences"
           />
 
-          <div className="flex flex-col space-y-6 pt-6 pb-10">
+          <div className="flex flex-col space-y-12 pt-12 pb-20">
             <ExperienceItem
               logo={ExpMoonscoop}
               title="Développeur Joomla"
@@ -106,7 +106,7 @@ export default function AboutMe() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
@@ -117,18 +117,18 @@ export default function AboutMe() {
         />
       </div>
 
-      <div className="container mt-4 md:mt-0">
+      <div className="container mt-8 md:mt-0">
         <SectionTitle
           content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
           title="En savoir plus"
         />
 
-        <div className="flex items-center mt-3 md:mt-10">
+        <div className="flex items-center mt-6 md:mt-20">
           <div className="hidden md:block">
             <Character />
           </div>
-          <div className="md:pl-4">
-            <h3 className="text-white font-medium text-3xl mb-1">
+          <div className="md:pl-8">
+            <h3 className="text-white font-medium text-3xl mb-2">
               Pascal GAULT
             </h3>
             <p>
@@ -138,13 +138,13 @@ export default function AboutMe() {
               dans cette voie pour me professionnaliser dans la création
               numérique et en faire mon métier à La Rochelle.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               L’art et la technologie ont toujours été deux inspirations de ma
               vie quotidienne. Je viens d’un milieu artistique, qui a fusionné
               avec la technologie pour finir par évoluer dans le développement
               web.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               J&apos;ai passé plus de la moitié de ma vie à être guidé par la
               passion du développement. Cela semble un peu bizarre, non ?
               C&apos;est un vaste monde où tout va vite, avec de nouvelles
@@ -153,17 +153,17 @@ export default function AboutMe() {
               résoudre des problèmes de ma vie quotidienne.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Je vis actuellement dans une petite ville proche de La Rochelle,
               dans une super maison aux côtés de Christelle, ma femme, et de
               notre petite princesse Octavia ♥.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               Je continue à travailler et à apprendre tous les jours, à trouver
               de nouvelles technologies pour faire évoluer cette passion et
               pouvoir appliquer cela tous les jours dans mon travail.
             </p>
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+            <h3 className="text-white font-medium text-3xl mt-8 mb-2">
               Ce site
             </h3>
             <p>
@@ -173,14 +173,14 @@ export default function AboutMe() {
               et parfois même de faire des erreurs. Tout cela pour un seul
               objectif : continuer d’apprendre.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               J’espère que les gens qui visiteront mon portfolio l&apos;aimeront
               autant que j’ai apprécié de le développer. En espérant qu’ils
               trouveront de l’inspiration et, pourquoi pas, nous permettront de
               travailler ensemble.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Ce site est actuellement développé en ReactJS avec le formidable
               framework NextJS. Si vous voulez en savoir plus sur sa conception,
               le code source est{' '}
@@ -192,7 +192,7 @@ export default function AboutMe() {
               </a>
               .
             </p>
-            <h3 className="text-white font-medium text-3xl mt-4 mb-1">
+            <h3 className="text-white font-medium text-3xl mt-8 mb-2">
               Mes réseaux sociaux
             </h3>
             <Socials />

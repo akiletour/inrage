@@ -15,7 +15,7 @@ export default function EcommercePortfolioSection({
 }: EcommercePortfolioSectionProps) {
   return (
     <>
-      <div className="mb-8 lg:mb-12">
+      <div className="mb-16 lg:mb-24">
         <SectionTitle
           content={
             `Développeur freelance spécialisé PrestaShop et WooCommerce basé à La Rochelle. Découvrez ${projects.length} projets e-commerce réalisés pour des entreprises de Charente-Maritime : boutiques B2B, migrations, optimisations performance et développements sur mesure.`
@@ -24,8 +24,8 @@ export default function EcommercePortfolioSection({
         />
       </div>
 
-      <div className="space-y-6 lg:space-y-8 mb-20 lg:mb-24">
-        <Suspense fallback={<div className="animate-pulse bg-gray-dark h-12 rounded-lg" />}>
+      <div className="space-y-12 lg:space-y-16 mb-40 lg:mb-48">
+        <Suspense fallback={<div className="animate-pulse bg-gray-dark h-24 rounded-lg" />}>
           <SupportSwitcher pathname={`/portfolio/${categorySlug}`} />
         </Suspense>
 

@@ -72,7 +72,7 @@ export default async function Page(props: Props) {
         {post.databaseId !== 0 ? (
           <PostBody content={replaceBackendUrlContent(post.content)} />
         ) : (
-          <div className="my-8 prose prose-lg prose-invert !max-w-5xl mx-auto">
+          <div className="my-16 prose prose-lg prose-invert !max-w-5xl mx-auto">
             <post.content />
           </div>
         )}
@@ -88,7 +88,7 @@ export default async function Page(props: Props) {
           title="Articles reliés"
         />
 
-        <div className="grid md:grid-cols-2 gap-4 mt-6">
+        <div className="grid md:grid-cols-2 gap-8 mt-12">
           {relatedPosts.map(({ slug, thumbnail, title, date, excerpt }) => (
             <div key={slug}>
               <ArticleItem

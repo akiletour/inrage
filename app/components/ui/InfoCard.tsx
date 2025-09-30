@@ -18,7 +18,7 @@ export default function InfoCard({
   }[borderColor]
 
   return (
-    <div className={`bg-gray-dark/50 border-l-4 ${borderColorClass} p-6 lg:p-8 backdrop-blur-sm rounded-r-lg ${className}`}>
+    <div className={`bg-gray-dark/50 border-l-4 ${borderColorClass} p-12 lg:p-16 backdrop-blur-sm rounded-r-lg ${className}`}>
       {children}
     </div>
   )

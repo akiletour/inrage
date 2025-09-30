@@ -7,7 +7,7 @@ import PrestationItem from './items/PrestationItem'
 
 export default function PrestationsList() {
   return (
-    <div className="grid md:grid-cols-3 gap-6 md:gap-3 lg:gap-6">
+    <div className="grid md:grid-cols-3 gap-12 md:gap-6 lg:gap-12">
       <PrestationItem
         image={ImagePrestationBuildWebsite}
         title={['Conception / Refonte', 'de sites Internet']}

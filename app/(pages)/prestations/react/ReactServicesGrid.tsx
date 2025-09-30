@@ -220,37 +220,37 @@ function ServiceCard({
   ctaLink,
 }: ServiceCardProps) {
   return (
-    <div className="group bg-gray-dark rounded-xl p-6 hover:bg-gray-darker transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange/10 border border-transparent hover:border-orange/20 h-full flex flex-col">
-      <div className="flex items-center mb-6">
-        <div className="w-10 h-10 relative flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 text-orange">
+    <div className="group bg-gray-dark rounded-xl p-12 hover:bg-gray-darker transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-orange/10 border border-transparent hover:border-orange/20 h-full flex flex-col">
+      <div className="flex items-center mb-12">
+        <div className="w-20 h-20 relative flex-shrink-0 transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 text-orange">
           <div className="absolute inset-0 bg-orange/20 rounded-full"></div>
           <div className="absolute inset-0 bg-orange/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div
-            className="relative z-10 p-2 filter group-hover:brightness-110 transition-all duration-300"
+            className="relative z-10 p-4 filter group-hover:brightness-110 transition-all duration-300"
             title={imageAlt}
           >
             <ServiceIcon type={iconType} />
           </div>
         </div>
-        <h3 className="text-white text-xl font-bold ml-4 group-hover:text-orange transition-colors duration-300">
+        <h3 className="text-white text-xl font-bold ml-8 group-hover:text-orange transition-colors duration-300">
           {title}
         </h3>
       </div>
 
-      <p className="text-gray-light mb-6 leading-relaxed flex-1 group-hover:text-gray-light/90 transition-colors duration-300">
+      <p className="text-gray-light mb-12 leading-relaxed flex-1 group-hover:text-gray-light/90 transition-colors duration-300">
         {description}
       </p>
 
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-6 mb-12">
         {features.map((feature, index) => (
           <li
             key={index}
             className="flex items-start group/item"
             style={{ transitionDelay: `${index * 50}ms` }}
           >
-            <div className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0 relative">
+            <div className="w-10 h-10 mt-0.5 mr-6 flex-shrink-0 relative">
               <svg
-                className="w-5 h-5 text-orange transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300"
+                className="w-10 h-10 text-orange transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 style={{ transitionDelay: `${index * 50}ms` }}
@@ -267,7 +267,7 @@ function ServiceCard({
               ></div>
             </div>
             <span
-              className="text-sm text-gray-light group-hover:text-white transform group-hover:translate-x-1 transition-all duration-300"
+              className="text-sm text-gray-light group-hover:text-white transform group-hover:translate-x-2 transition-all duration-300"
               style={{ transitionDelay: `${index * 50}ms` }}
             >
               {feature}
@@ -279,10 +279,10 @@ function ServiceCard({
       {ctaText && ctaLink && (
         <div className="mt-auto">
           <Link href={ctaLink}>
-            <span className="button inline-flex items-center justify-center w-full px-6 py-3 bg-orange text-white font-semibold rounded-lg transform group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-orange/25 transition-all duration-300 hover:bg-orange-dark">
+            <span className="button inline-flex items-center justify-center w-full px-12 py-6 bg-orange text-white font-semibold rounded-lg transform group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-orange/25 transition-all duration-300 hover:bg-orange-dark">
               {ctaText}
               <svg
-                className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
+                className="w-8 h-8 ml-4 transform group-hover:translate-x-2 transition-transform duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -403,7 +403,7 @@ export default function ReactServicesGrid() {
   ]
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
       {services.map((service, index) => (
         <div
           key={index}

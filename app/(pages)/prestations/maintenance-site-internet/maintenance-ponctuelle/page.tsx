@@ -39,7 +39,7 @@ export default function TmaOnDemand() {
       <div className="container">
         <TextImage position="right" image={TmaOnDemandIntro}>
           <div className="text-left">
-            <h2 className="text-white uppercase text-3xl font-bold mb-3">
+            <h2 className="text-white uppercase text-3xl font-bold mb-6">
               <span className="block">
                 Vous avez besoin de moi pour une tâche,
               </span>
@@ -48,19 +48,19 @@ export default function TmaOnDemand() {
               </span>
             </h2>
 
-            <p className="mt-3 text-xl text-gray-light">
+            <p className="mt-6 text-xl text-gray-light">
               Que ce soit un site e-commerce ou vitrine, il peut que vous soyez
               confronté à des difficultés techniques dans la création ou la
               maintenance de votre site internet.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Je peux intervenir ponctuellement sur votre site sous forme
               d’heure de développement. Que ce soit pour l’intégration d’un
               nouveau bloc ou une fonctionnalité, le dépannage sur un module que
               vous venez d’installer ou le développement d’une partie de votre
               site.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               N’hésitez pas à me contacter pour que l’on en discute et que je
               puisse établir avec vous la marche à suivre pour vous dépanner le
               plus rapidement possible.
@@ -69,15 +69,15 @@ export default function TmaOnDemand() {
         </TextImage>
       </div>
 
-      <div className="bg-gray-darker mt-4 mb-4">
+      <div className="bg-gray-darker mt-8 mb-8">
         <Diagonal
           flipX
           flipY
-          className="h-8 md:h-16 lg:h-24"
+          className="h-16 md:h-32 lg:h-48"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="w-full max-w-3xl mx-auto text-center py-8 lg:py-0">
+        <div className="w-full max-w-3xl mx-auto text-center py-16 lg:py-0">
           <div>
             <h2 className="text-center text-white text-3xl">
               <span className="uppercase font-bold">
@@ -87,17 +87,17 @@ export default function TmaOnDemand() {
                 WordPress, Prestashop ou encore Woocommerce ?
               </span>
             </h2>
-            <p className="text-xl text-gray-light mt-3">
+            <p className="text-xl text-gray-light mt-6">
               Je comprends parfaitement que votre but est d’avoir une boutique
               en ligne performance et de générer des ventes, ou un bien un site
               vitrine fonctionnel, attractif avec une bonne conversion dessus.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               Mon but est de vous accompagner dans cette démarche en vous
               faisant gagner du temps pour corriger, améliorer voir même
               développer votre site WordPress ou Prestashop.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               Plus de 10 années dans le développement de solution comme
               WordPress ou Prestashop. Je suis là pour répondre à vos besoins et
               vous aider dans son développement.
@@ -106,13 +106,13 @@ export default function TmaOnDemand() {
         </div>
 
         <div className="container text-center">
-          <h3 className="mt-5 text-3xl font-bold text-white">
+          <h3 className="mt-10 text-3xl font-bold text-white">
             Les raisons de vouloir
             <br />
             commander un ticket d&apos;heure :
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8 relative z-10">
             <PrestationItem
               image={PrestationDesign}
               title={['Intégration', 'spécifique']}
@@ -121,7 +121,7 @@ export default function TmaOnDemand() {
               d&apos;une nouvelle fonctionnalité (dans la limite possible de
               l&apos;heure).
             </PrestationItem>
-            <div className="md:mt-6">
+            <div className="md:mt-12">
               <PrestationItem
                 image={PrestationWebDev}
                 title={["Réparation d'un", 'bug ou erreur']}
@@ -131,7 +131,7 @@ export default function TmaOnDemand() {
                 identification et analyse.
               </PrestationItem>
             </div>
-            <div className="md:mt-6">
+            <div className="md:mt-12">
               <PrestationItem
                 image={PrestationFormation}
                 title={['Conseil, question', 'ou analyse']}
@@ -152,7 +152,7 @@ export default function TmaOnDemand() {
           </div>
         </div>
         <Diagonal
-          className="h-8 md:h-16 lg:h-auto"
+          className="h-16 md:h-32 lg:h-auto"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />

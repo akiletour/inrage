@@ -27,9 +27,9 @@ Aucune ne proposait ce qui me semblait évident : une interface visuelle simple 
 
 ## Ma solution : une interface qui pense comme un développeur
 
-<Image src="/images/articles/contact-form-7-conditional-1.jpg" alt="Une interface intuitive" width={800} height={161} className="rounded-lg mx-auto mb-4 w-full h-auto" />
+<Image src="/images/articles/contact-form-7-conditional-1.jpg" alt="Une interface intuitive" width={800} height={161} className="rounded-lg mx-auto mb-8 w-full h-auto" />
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
   <Image src="/images/articles/contact-form-7-conditional-2.jpg" alt="Configuration des règles conditionnelles" width={400} height={300} className="rounded-lg block !size-full object-cover" />
   <Image src="/images/articles/contact-form-7-conditional-3.jpg" alt="Aperçu du formulaire dynamique" width={400} height={300} className="rounded-lg size-full object-cover" />
 </div>
@@ -131,68 +131,68 @@ Cela crée une expérience utilisateur propre et ciblée où les visiteurs ne vo
 
 Le plugin supporte un ensemble complet d'opérateurs pour une flexibilité maximale :
 
-<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 448 512">
+<div className="grid grid-cols-2 md:grid-cols-4 gap-8 my-12">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 448 512">
       <path d="M48 128c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48zm0 192c-17.7 0-32 14.3-32 32s14.3 32 32 32H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H48z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Égal</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Égal</h4>
     <p className="text-gray text-xs">Correspondance exacte</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 448 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 448 512">
       <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Différent</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Différent</h4>
     <p className="text-gray text-xs">Ne correspond pas</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 512 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 512 512">
       <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Contient</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Contient</h4>
     <p className="text-gray text-xs">Texte spécifique inclus</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 512 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 512 512">
       <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm54.6-104L208 302.6 153.4 248 208 193.4 262.6 248z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Ne contient pas</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Ne contient pas</h4>
     <p className="text-gray text-xs">Texte non inclus</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 384 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 384 512">
       <path d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.5 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.5 48-48V112C384 85.5 362.5 64 336 64zM192 64c8.84 0 16 7.16 16 16s-7.16 16-16 16s-16-7.16-16-16S183.2 64 192 64z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Est vide</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Est vide</h4>
     <p className="text-gray text-xs">Aucune valeur</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 384 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 384 512">
       <path d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.5 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.5 48-48V112C384 85.5 362.5 64 336 64zM192 64c8.84 0 16 7.16 16 16s-7.16 16-16 16s-16-7.16-16-16S183.2 64 192 64zM288 224H96c-8.84 0-16-7.16-16-16s7.16-16 16-16h192c8.84 0 16 7.16 16 16S296.8 224 288 224zM288 288H96c-8.84 0-16-7.16-16-16s7.16-16 16-16h192c8.84 0 16 7.16 16 16S296.8 288 288 288z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">N'est pas vide</h4>
+    <h4 className="text-sm font-bold text-white mb-2">N'est pas vide</h4>
     <p className="text-gray text-xs">Contient une valeur</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 320 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 320 512">
       <path d="M182.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8H288c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-128-128z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Supérieur à</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Supérieur à</h4>
     <p className="text-gray text-xs">Comparaison numérique</p>
   </div>
 
-  <div className="text-center p-4 bg-[#121212] rounded-lg">
-    <svg className="w-8 h-8 mx-auto mb-3 text-orange" fill="currentColor" viewBox="0 0 320 512">
+  <div className="text-center p-8 bg-[#121212] rounded-lg">
+    <svg className="w-16 h-16 mx-auto mb-6 text-orange" fill="currentColor" viewBox="0 0 320 512">
       <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8H32c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
     </svg>
-    <h4 className="text-sm font-bold text-white mb-1">Inférieur à</h4>
+    <h4 className="text-sm font-bold text-white mb-2">Inférieur à</h4>
     <p className="text-gray text-xs">Comparaison numérique</p>
   </div>
 </div>
@@ -251,63 +251,63 @@ if (false === $forms_with_conditions) {
 
 ### Démarrage Rapide
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       1
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Installation</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Installation</h4>
       <p className="text-gray-400 text-xs">Installez depuis WordPress.org ou téléchargez manuellement</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       2
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Prérequis</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Prérequis</h4>
       <p className="text-gray-400 text-xs">Assurez-vous que Contact Form 7 est actif</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       3
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Création des groupes</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Création des groupes</h4>
       <p className="text-gray-400 text-xs">Utilisez le générateur de balises group</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       4
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Configuration visuelle</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Configuration visuelle</h4>
       <p className="text-gray-400 text-xs">Allez dans l'onglet "Simple Conditional Fields"</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       5
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Règles conditionnelles</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Règles conditionnelles</h4>
       <p className="text-gray-400 text-xs">Créez vos règles avec l'interface visuelle</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-4 bg-[#121212] rounded-lg border border-orange">
-    <div className="w-8 h-8 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
+  <div className="flex items-center gap-6 p-8 bg-[#121212] rounded-lg border border-orange">
+    <div className="w-16 h-16 bg-orange text-[#121212] rounded-full flex items-center justify-center font-black text-2xl flex-shrink-0">
       6
     </div>
     <div className="flex-1">
-      <h4 className="text-white font-semibold text-base mb-1">Test et validation</h4>
+      <h4 className="text-white font-semibold text-base mb-2">Test et validation</h4>
       <p className="text-gray-400 text-xs">Sauvegardez et testez votre formulaire</p>
     </div>
   </div>

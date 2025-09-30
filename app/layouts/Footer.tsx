@@ -8,9 +8,9 @@ import Socials from '../components/Socials'
 
 export default function Footer() {
   return (
-    <div className="mt-5">
+    <div className="mt-10">
       <svg
-        className="relative w-full h-[15vh] max-h-20 -mb-1"
+        className="relative w-full h-[15vh] max-h-20 -mb-2"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 24 150 28"
         preserveAspectRatio="none"
@@ -40,7 +40,7 @@ export default function Footer() {
         </g>
       </svg>
 
-      <div className="bg-gray-darker pt-3 pb-6">
+      <div className="bg-gray-darker pt-6 pb-12">
         <div className="container flex flex-col sm:flex-row justify-between">
           <div>
             <div>
@@ -54,7 +54,7 @@ export default function Footer() {
                 }}
               />
             </div>
-            <div className="mt-1 grid grid-flow-col gap-1 text-sm text-orange justify-start">
+            <div className="mt-2 grid grid-flow-col gap-2 text-sm text-orange justify-start">
               <Link href={RouteLink.aboutMe}>
                 <span>A propos de moi</span>
               </Link>
@@ -71,16 +71,16 @@ export default function Footer() {
                 <span>Contactez-moi</span>
               </Link>
             </div>
-            <div className="my-2">
+            <div className="my-4">
               <Socials />
             </div>
             <div>© 2008-2021 - inRage SARL. Tous droits réservés.</div>
             <a
               href="https://github.com/akiletour/inrage"
-              className="text-white block md:flex mt-2 items-center"
+              className="text-white block md:flex mt-4 items-center"
             >
               Code open-source inrage.fr disponible sur{' '}
-              <span className="inline-block md:block md:ml-1">
+              <span className="inline-block md:block md:ml-2">
                 <Image
                   width={72}
                   height={16}
@@ -93,7 +93,7 @@ export default function Footer() {
                 />
               </span>
             </a>
-            <div className="mt-1 grid grid-flow-col gap-2 justify-start text-sm text-orange">
+            <div className="mt-2 grid grid-flow-col gap-4 justify-start text-sm text-orange">
               <Link href={RouteLink.legals}>
                 <span>Mentions légales</span>
               </Link>
@@ -102,11 +102,11 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="text-center sm:text-right flex sm:items-end flex-col pt-2">
+          <div className="text-center sm:text-right flex sm:items-end flex-col pt-4">
             <Link href={RouteLink.contact}>
               <span className="button">Demandez un devis</span>
             </Link>
-            <div className="my-2 text-3xl font-bold text-orange">
+            <div className="my-4 text-3xl font-bold text-orange">
               <a href="tel:0682963889">06 82 96 38 89</a>
             </div>
             <div className="text-center md:text-right text-sm">

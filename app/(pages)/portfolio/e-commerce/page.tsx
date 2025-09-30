@@ -59,7 +59,7 @@ export default async function Page(): Promise<ReactElement> {
           offerings={pageData.offerings}
         />
 
-        <div className="mt-8">
+        <div className="mt-16">
           <LocalAdvantagesCTA />
         </div>
       </div>

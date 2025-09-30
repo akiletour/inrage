@@ -22,8 +22,8 @@ export default function SectionTitle({
           ? title.map((ttl) => <span key={ttl?.toString()}>{ttl}</span>)
           : title}
       </h2>
-      <p className="mt-2 md:mt-0 text-gray-light flex-1 flex items-center">
-        <span className="hidden md:block w-[2px] h-[120px] mx-8 bg-gray flex-none -skew-x-[30deg]" />
+      <p className="mt-4 md:mt-0 text-gray-light flex-1 flex items-center">
+        <span className="hidden md:block w-[2px] h-[120px] mx-16 bg-gray flex-none -skew-x-[30deg]" />
         {content}
       </p>
     </div>
