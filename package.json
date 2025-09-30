@@ -20,7 +20,7 @@
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
     "autoprefixer": "^10.4.21",
-    "framer-motion": "^10.18.0",
+    "framer-motion": "^12.0.0",
     "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
     "gsap": "^3.13.0",
