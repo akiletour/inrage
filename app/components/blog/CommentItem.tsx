@@ -53,9 +53,9 @@ export default function CommentItem({
   }, [])
 
   return (
-    <div className={`${isChild ? 'ml-2 pl-2 border-l-2 border-orange' : ''}`}>
-      <div className="bg-gray-dark py-2 px-3 mt-4">
-        <div className="flex justify-between mb-2">
+    <div className={`${isChild ? 'ml-4 pl-4 border-l-2 border-orange' : ''}`}>
+      <div className="bg-gray-dark py-4 px-6 mt-8">
+        <div className="flex justify-between mb-4">
           <div className="text-xl font-medium text-white">
             {author.node.name}
           </div>
@@ -69,7 +69,7 @@ export default function CommentItem({
         />
 
         {isChild === false && (
-          <div className="mt-2">
+          <div className="mt-4">
             <ButtonLinkRaw
               as="button"
               type="button"

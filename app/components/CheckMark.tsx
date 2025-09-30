@@ -9,7 +9,7 @@ export default function CheckMark({ children }: Props) {
     <div className={'flex text-left items-center'}>
       <div className={'flex-none'}>
         <svg
-          className={'text-orange w-4 h-4 mr-1'}
+          className={'text-orange w-8 h-8 mr-2'}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
         >

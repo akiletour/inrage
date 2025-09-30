@@ -15,17 +15,17 @@ export default function Contact() {
   return (
     <Layout title="Contactez-moi">
       <div className="container flex flex-col sm:flex-row">
-        <div className="flex-none sm:w-[260px] text-center sm:text-right mb-6 sm:mb-0 sm:mr-8">
+        <div className="flex-none sm:w-[260px] text-center sm:text-right mb-12 sm:mb-0 sm:mr-16">
           <div className="text-orange font-bold text-4xl">
             inRage <span className="font-light">SARL</span>
           </div>
-          <p className="leading-6 text-lg text-gray-light mt-1">
+          <p className="leading-6 text-lg text-gray-light mt-2">
             Développeur et créateur
             <br />
             Freelance sur La Rochelle
           </p>
 
-          <p className="mt-5">
+          <p className="mt-10">
             Siret: 813 430 592 00010
             <br />
             NAF: 6201Z
@@ -35,7 +35,7 @@ export default function Contact() {
             La Rochelle 813 430 592
           </p>
 
-          <p className="mt-2 mb-4">
+          <p className="mt-4 mb-8">
             10 rue Jean Perrin
             <br />
             17000 LA ROCHELLE
@@ -47,7 +47,7 @@ export default function Contact() {
             N&apos;hésitez pas à me téléphoner pour discuter de votre projet
           </p>
 
-          <div className="text-orange font-bold text-3xl mt-2">
+          <div className="text-orange font-bold text-3xl mt-4">
             <a href="tel:06Je c82963889">06 82 96 38 89</a>
           </div>
           <div className="text-sm">du lundi au samedi de 09h à 18h</div>

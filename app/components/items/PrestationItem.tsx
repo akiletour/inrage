@@ -32,7 +32,7 @@ export default function PrestationItem({
         }}
       />
 
-      <h3 className="text-xl text-white font-medium mt-1 leading-7">
+      <h3 className="text-xl text-white font-medium mt-2 leading-7">
         {Array.isArray(title)
           ? title.map((ttl) => (
               <span key={ttl} className={'block'}>
@@ -42,7 +42,7 @@ export default function PrestationItem({
           : title}
       </h3>
 
-      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-1 mb-2">
+      <p className="text-base md:text-sm lg:text-base leading-5 lg:leading-5 mt-2 mb-4">
         {children}
       </p>
 

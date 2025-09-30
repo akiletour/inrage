@@ -31,7 +31,7 @@ export default function TextImage({
         position === 'left'
           ? 'md:flex-row'
           : 'md:flex-row-reverse md:text-right'
-      } flex flex-col md:items-center mt-6`}
+      } flex flex-col md:items-center mt-12`}
     >
       <div className="md:w-2/5">
         <Image
@@ -45,13 +45,13 @@ export default function TextImage({
         />
       </div>
       <div
-        className={`md:w-3/5 ${position === 'left' ? 'md:pl-4' : 'md:pr-4'}`}
+        className={`md:w-3/5 ${position === 'left' ? 'md:pl-8' : 'md:pr-8'}`}
       >
         {title && (
           <h3
             className={`${
               titlePosition ? `md:text-${titlePosition}` : `md:text-${position}`
-            } text-white text-2xl mt-2 md:mt-0 md:text-4xl font-bold mb-2 md:mb-3`}
+            } text-white text-2xl mt-4 md:mt-0 md:text-4xl font-bold mb-4 md:mb-6`}
           >
             {Array.isArray(title)
               ? title.map((ttl, index) => (

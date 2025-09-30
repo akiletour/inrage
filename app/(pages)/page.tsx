@@ -36,12 +36,12 @@ export default function Homepage() {
     <Layout>
       <div className="container">
         <SectionTitle
-          className="mt-3 md:mt-0"
+          className="mt-6 md:mt-0"
           title="A propos"
           content="Développeur Freelance créatif et innovant basé au coeur de La Rochelle et spécialisé dans la création de site internet. Depuis l'âge de 14 ans, je développe, compose et crée des projets web."
         />
 
-        <div className="my-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
+        <div className="my-8 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
           Je suis entouré d&apos;une équipe fondée de créatifs, designers et
           développeurs. Nous travaillons ensemble pour créer des choses
           inspirantes et engagées.
@@ -52,7 +52,7 @@ export default function Homepage() {
 
       <div className="relative">
         <Diagonal
-          className="-z-10 h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="-z-10 h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -68,9 +68,9 @@ export default function Homepage() {
             objectFit: 'cover',
           }}
         />
-        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
+        <div className="container relative z-10 py-10 xl:py-0 md:-my-20">
           <div className="md:w-1/2">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-6">
               Besoin d’une estimation de votre site
               <br className="hidden sm:block" />
               et/ou de sa maintenance
@@ -87,12 +87,12 @@ export default function Homepage() {
 
             <div className="flex flex-wrap flex-start">
               <Link href={RouteLink.contact}>
-                <span className="button mt-3 mr-2">
+                <span className="button mt-6 mr-4">
                   Demandez votre devis maintenant
                 </span>
               </Link>
               <Link href={RouteLink.prestationTma}>
-                <span className="button-outline mt-3">
+                <span className="button-outline mt-6">
                   Mes offres de maintenance
                 </span>
               </Link>
@@ -101,13 +101,13 @@ export default function Homepage() {
         </div>
         <Diagonal
           bgClass="fill-gray-darker"
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           bgCorner="fill-orange"
         />
       </div>
 
-      <div className="bg-gray-darker pt-8 md:pt-3">
-        <div className="container mb-10 lg:-mb-8 z-10 relative">
+      <div className="bg-gray-darker pt-16 md:pt-6">
+        <div className="container mb-20 lg:-mb-16 z-10 relative">
           <SectionTitle
             content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
             title="Projets"
@@ -120,7 +120,7 @@ export default function Homepage() {
         <Diagonal
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           cta={{
             icon: <MoreIcon />,
             title: ['Voir tous', 'les projets'],
@@ -135,7 +135,7 @@ export default function Homepage() {
           content="Je propose un large éventail de services axés sur les résultats pour les marques, en veillant à ce que leur présence en ligne reflète réellement leurs objectifs et leurs inspirations."
         />
 
-        <div className="my-4 grid md:grid-cols-2 gap-x-2 gap-y-6">
+        <div className="my-8 grid md:grid-cols-2 gap-x-4 gap-y-12">
           <ExpertiseItem
             title="WordPress"
             excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
@@ -166,7 +166,7 @@ export default function Homepage() {
       <Keypoints />
 
       <div className="bg-gray-darker">
-        <div className="container py-4">
+        <div className="container py-8">
           <SectionTitle
             content={
               "Passionné par les nouvelles technologies, j'adore partager mes compétences et mes découvertes avec des personnes qui ont cette même passion pour le web !"
@@ -180,7 +180,7 @@ export default function Homepage() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
@@ -191,7 +191,7 @@ export default function Homepage() {
         />
       </div>
 
-      <div className="container mt-8 md:mt-0">
+      <div className="container mt-16 md:mt-0">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serai ravi de vous répondre."

@@ -28,8 +28,8 @@ export default function ArticleItem({
 
   return (
     <div className="relative flex flex-col">
-      <div className="absolute top-1 w-6 text-center left-1 z-10 bg-white">
-        <div className="py-1 bg-orange font-medium text-gray-darker text-2xl">
+      <div className="absolute top-2 w-12 text-center left-2 z-10 bg-white">
+        <div className="py-2 bg-orange font-medium text-gray-darker text-2xl">
           {formattedDate.format('DD')}
         </div>
         <div className="text-gray-darker uppercase">
@@ -50,9 +50,9 @@ export default function ArticleItem({
           />
         </span>
       </Link>
-      <h3 className="text-white text-2xl font-medium mt-1">{title}</h3>
+      <h3 className="text-white text-2xl font-medium mt-2">{title}</h3>
       <div
-        className="mt-1 mb-2"
+        className="mt-2 mb-4"
         dangerouslySetInnerHTML={{
           __html: sanitize(excerpt, {
             allowedTags: ['p'],

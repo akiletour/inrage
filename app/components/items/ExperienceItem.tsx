@@ -30,7 +30,7 @@ export default function ExperienceItem({
       <div className="text-white text-2xl font-medium">{title}</div>
       <div className="uppercase text-white">{company}</div>
       <div>{year}</div>
-      <p className="mt-2 max-w-2xl leading-5">{excerpt}</p>
+      <p className="mt-4 max-w-2xl leading-5">{excerpt}</p>
     </div>
   )
 }

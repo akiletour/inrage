@@ -24,7 +24,7 @@ export const metadata = {
 export default function Prestations() {
   return (
     <Layout title="Prestations sous WordPress, Prestashop et Symfony">
-      <div className="flex relative container mt-6 lg:-mt-12">
+      <div className="flex relative container mt-12 lg:-mt-24">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
           <div className="w-[697px] h-[736px] relative">
             <Image
@@ -50,7 +50,7 @@ export default function Prestations() {
               </span>
             </h2>
 
-            <div className="text-gray-light text-xl mt-4">
+            <div className="text-gray-light text-xl mt-8">
               <p>
                 Je vous accompagne de A à Z dans la création de votre site
                 internet et vous propose la solution idéale pour répondre à vos
@@ -63,13 +63,13 @@ export default function Prestations() {
               </p>
             </div>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Je reste constamment à l&apos;affût des nouvelles technologies web
               et assure une veille graphique régulière afin de vous proposer les
               fonctionnalités les plus récentes et performantes, au sein d’un
               design élégant et percutant.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               Je suis en mesure d’intervenir sur tous types de projets
               (boutique, site vitrine, apps...) grâce à mon expertise sur des
               CMS variés, tels que Joomla, Prestashop ou encore Wordpress. Et
@@ -82,10 +82,10 @@ export default function Prestations() {
         </div>
       </div>
 
-      <div className="mt-10">
-        <div className="px-3">
+      <div className="mt-20">
+        <div className="px-6">
           <svg
-            className="block max-w-[1280px] w-full mx-auto h-auto -mb-[5.75%] lg:-mb-9"
+            className="block max-w-[1280px] w-full mx-auto h-auto -mb-[5.75%] lg:-mb-18"
             height="279"
             viewBox="0 0 1473 279"
             width="1473"
@@ -295,8 +295,8 @@ export default function Prestations() {
             </g>
           </svg>
         </div>
-        <div className="bg-gray-darker pt-16">
-          <div className="container mb-10 md:-mb-10">
+        <div className="bg-gray-darker pt-32">
+          <div className="container mb-20 md:-mb-20">
             <p className="text-gray-light text-xl">
               La réussite d’un projet web réside en grande partie dans son
               organisation et la méthodologie de travail employée. Pour ma part,
@@ -304,7 +304,7 @@ export default function Prestations() {
               agile.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Elle permet de segmenter un projet en différentes étapes clés afin
               de vous présenter de manière évolutive les avancements de la
               création de votre site. Cette méthode offre à mes clients une
@@ -313,7 +313,7 @@ export default function Prestations() {
               développées.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               En somme, cette méthodologie permet d’intégrer mon client dans le
               processus de création en le sollicitant à chaque étape de la
               construction de son outil web. Il s’assure ainsi au jour le jour
@@ -323,7 +323,7 @@ export default function Prestations() {
 
           <Diagonal
             bgClass="fill-gray-dark"
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
             bgCorner="fill-gray-darker"
             cta={{
               icon: <LeafHeartIcon />,
@@ -335,13 +335,13 @@ export default function Prestations() {
       </div>
 
       <div className="container">
-        <div className="mt-4 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
+        <div className="mt-8 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
           Je suis entouré d&apos;une équipe fondée de créatifs, designers et
           développeurs. Nous travaillons ensemble pour créer des choses
           inspirantes et engagées.
         </div>
 
-        <div className="text-center max-w-4xl mx-auto text-lg mt-4 mb-7">
+        <div className="text-center max-w-4xl mx-auto text-lg mt-8 mb-14">
           Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au
           fil des années des compétences diverses et complémentaires qui me
           permettent aujourd’hui de concevoir intégralement l’outil répondant le
@@ -350,13 +350,13 @@ export default function Prestations() {
 
         <PrestationsList />
 
-        <div className="mt-10">
+        <div className="mt-20">
           <SectionTitle
             title="Pourquoi moi ?"
             content="Consultez en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
             <PrestationItem
               image={PrestationDesign}
               title={['Identité visuelle &', 'Charte graphique']}

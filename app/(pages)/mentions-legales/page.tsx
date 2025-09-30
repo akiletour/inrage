@@ -10,7 +10,7 @@ export const metadata = {
 
 const LegalTitle = ({ children }: { children: string }) => {
   return (
-    <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>
+    <h2 className={'mt-12 mb-4 text-white font-bold text-3xl'}>{children}</h2>
   )
 }
 

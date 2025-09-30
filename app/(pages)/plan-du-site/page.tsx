@@ -7,7 +7,7 @@ import { getBlogItems } from '@lib/blog'
 
 function LegalTitle({ children }: { children: string }) {
   return (
-    <h2 className={'mt-6 mb-2 text-white font-bold text-3xl'}>{children}</h2>
+    <h2 className={'mt-12 mb-4 text-white font-bold text-3xl'}>{children}</h2>
   )
 }
 
@@ -96,7 +96,7 @@ export default async function Sitemap() {
               ))}
             </ul>
 
-            <ul className="styled-list mt-3">
+            <ul className="styled-list mt-6">
               {projects.map(({ title, slug, support }) => (
                 <li key={title}>
                   <Link href={`${RouteLink.portfolio}/${support.slug}/${slug}`}>

@@ -224,7 +224,7 @@ export default function PrestationReact() {
         ]}
         title="Développement React & Next.js"
       >
-        <div className="flex max-lg:flex-col relative container gap-8 *:flex-1">
+        <div className="flex max-lg:flex-col relative container gap-16 *:flex-1">
           <Image
             className="h-full! object-cover drop-shadow-2xl"
             src="/images/react-nextjs-development.webp"
@@ -238,8 +238,8 @@ export default function PrestationReact() {
             }}
           />
           <div className=" relative flex items-center">
-            <div className="space-y-6">
-              <div className="space-y-4">
+            <div className="space-y-12">
+              <div className="space-y-8">
                 <h1 className="font-bold text-white text-2xl md:text-4xl lg:text-5xl leading-tight animate-in slide-in-from-bottom-4 duration-700">
                   Développeur React freelance à
                   <span className="text-orange"> La Rochelle</span>
@@ -254,7 +254,7 @@ export default function PrestationReact() {
                 </div>
               </div>
 
-              <div className="space-y-4 text-gray-light/90 leading-relaxed animate-in slide-in-from-bottom-8 duration-700 delay-300">
+              <div className="space-y-8 text-gray-light/90 leading-relaxed animate-in slide-in-from-bottom-8 duration-700 delay-300">
                 <p>
                   Développeur React freelance à La Rochelle, je conçois et
                   développe des applications web modernes, réactives et
@@ -277,14 +277,14 @@ export default function PrestationReact() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-in slide-in-from-bottom-10 duration-700 delay-500">
+              <div className="flex flex-col sm:flex-row gap-8 pt-8 animate-in slide-in-from-bottom-10 duration-700 delay-500">
                 <a
                   href="#contact"
-                  className="button-primary group inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-orange hover:bg-orange-dark transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-orange/25"
+                  className="button-primary group inline-flex items-center justify-center px-12 py-6 rounded-lg font-semibold text-white bg-orange hover:bg-orange-dark transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-orange/25"
                 >
                   Démarrer mon projet
                   <svg
-                    className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
+                    className="w-10 h-10 ml-4 transform group-hover:translate-x-2 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -299,7 +299,7 @@ export default function PrestationReact() {
                 </a>
                 <a
                   href="#services"
-                  className="button-secondary inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-orange border-2 border-orange hover:bg-orange hover:text-white transition-all duration-300"
+                  className="button-secondary inline-flex items-center justify-center px-12 py-6 rounded-lg font-semibold text-orange border-2 border-orange hover:bg-orange hover:text-white transition-all duration-300"
                 >
                   Voir mes services
                 </a>
@@ -308,35 +308,35 @@ export default function PrestationReact() {
           </div>
         </div>
 
-        <div className="bg-gray-darker mt-10 relative overflow-hidden">
+        <div className="bg-gray-darker mt-20 relative overflow-hidden">
           <div className="absolute inset-0 bg-gray-darker/80"></div>
           <Diagonal
             flipX
             flipY
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
             bgClass="fill-gray-dark"
             bgCorner="fill-gray-darker"
           />
           <div className="container text-center relative z-10">
-            <div className="md:px-18 text-lg max-w-4xl mx-auto">
-              <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+            <div className="md:px-36 text-lg max-w-4xl mx-auto">
+              <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-16 leading-tight">
                 Développement React à La Rochelle
                 <br />
                 <span className="text-orange">au service de vos projets</span>
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-24">
                 <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-32 h-32 mx-auto mb-8 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                     <svg
-                      className="w-8 h-8 text-white"
+                      className="w-16 h-16 text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4zM12 18l2-8h-4l2 8z" />
                     </svg>
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                  <h3 className="text-white font-semibold text-lg mb-4">
                     Technologies modernes
                   </h3>
                   <p className="text-gray-light text-sm leading-relaxed">
@@ -347,16 +347,16 @@ export default function PrestationReact() {
                 </div>
 
                 <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-32 h-32 mx-auto mb-8 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                     <svg
-                      className="w-8 h-8 text-white"
+                      className="w-16 h-16 text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 2l3.5 6.5h7L17 14l2.5 7.5L12 18l-7.5 3.5L7 14 1.5 8.5h7L12 2zm0 2.8L9.5 9H4.2l3.3 3.7L6 19l6-3.2L18 19l-1.5-6.3L20.8 9h-5.3L12 4.8z" />
                     </svg>
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                  <h3 className="text-white font-semibold text-lg mb-4">
                     Approche component-driven
                   </h3>
                   <p className="text-gray-light text-sm leading-relaxed">
@@ -367,16 +367,16 @@ export default function PrestationReact() {
                 </div>
 
                 <div className="text-center group">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-32 h-32 mx-auto mb-8 bg-orange rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
                     <svg
-                      className="w-8 h-8 text-white"
+                      className="w-16 h-16 text-white"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                     </svg>
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                  <h3 className="text-white font-semibold text-lg mb-4">
                     Adaptabilité
                   </h3>
                   <p className="text-gray-light text-sm leading-relaxed">
@@ -389,14 +389,14 @@ export default function PrestationReact() {
           </div>
           <Diagonal
             bgClass="fill-gray-dark"
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
             bgCorner="fill-gray-darker"
           />
         </div>
 
         <div
           id="services"
-          className="container mt-4 md:mt-0 lg:-mb-10 relative z-10 scroll-mt-20"
+          className="container mt-8 md:mt-0 lg:-mb-20 relative z-10 scroll-mt-40"
         >
           <div className="animate-in slide-in-from-bottom-4 duration-700">
             <SectionTitle
@@ -409,14 +409,14 @@ export default function PrestationReact() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
           bgCorner="fill-orange"
           bgClass="fill-gray-darker"
         />
 
         <div className="bg-gray-darker relative overflow-hidden">
           <div className="absolute inset-0 bg-gray-darker/80"></div>
-          <div className="container mb-4 md:mb-0 relative z-10">
+          <div className="container mb-8 md:mb-0 relative z-10">
             <div className="animate-in slide-in-from-bottom-4 duration-700">
               <SectionTitle
                 content="Découvrez pourquoi React et Next.js sont les technologies de choix pour vos projets web modernes."
@@ -428,13 +428,13 @@ export default function PrestationReact() {
           </div>
 
           <Diagonal
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
             bgCorner="fill-orange"
             bgClass="fill-gray-dark"
           />
         </div>
 
-        <div className="container mt-4 md:mt-0">
+        <div className="container mt-8 md:mt-0">
           <div className="animate-in slide-in-from-bottom-4 duration-700">
             <SectionTitle
               content="Découvrez quelques exemples de réalisations React et Next.js que j'ai développées pour mes clients."
@@ -446,14 +446,14 @@ export default function PrestationReact() {
         </div>
 
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
           bgCorner="fill-orange"
           bgClass="fill-gray-darker"
         />
 
         <div
           id="contact"
-          className="bg-gray-darker relative overflow-hidden scroll-mt-20"
+          className="bg-gray-darker relative overflow-hidden scroll-mt-40"
         >
           <div className="absolute inset-0 bg-gray-darker/80"></div>
           <div className="container relative z-10">
@@ -470,7 +470,7 @@ export default function PrestationReact() {
           </div>
 
           <Diagonal
-            className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+            className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
             bgCorner="fill-orange"
             bgClass="fill-gray-dark"
           />
