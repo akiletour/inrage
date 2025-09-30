@@ -7,9 +7,14 @@ interface PortfolioGridProps {
   className?: string
 }
 
-export default function PortfolioGrid({ projects, className = '' }: PortfolioGridProps) {
+export default function PortfolioGrid({
+  projects,
+  className = '',
+}: PortfolioGridProps) {
   return (
-    <div className={`grid grid-cols-2 gap-8 md:gap-0 md:grid-cols-3 ${className}`}>
+    <div
+      className={`grid grid-cols-2 gap-8 md:gap-0 md:grid-cols-3 ${className}`}
+    >
       {projects.map(({ title, thumbnail, slug, support }) => {
         const category =
           portfolioCategories[support.slug as keyof typeof portfolioCategories]

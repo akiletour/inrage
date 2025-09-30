@@ -25,8 +25,14 @@ export default function ReactProjectShowcase({
       <div className="relative h-32 bg-orange/15 flex items-center justify-between px-12">
         <div className="flex space-x-4">
           <div className="w-6 h-6 bg-orange rounded-full animate-pulse"></div>
-          <div className="w-6 h-6 bg-orange-dark rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-          <div className="w-6 h-6 bg-orange rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+          <div
+            className="w-6 h-6 bg-orange-dark rounded-full animate-pulse"
+            style={{ animationDelay: '0.2s' }}
+          ></div>
+          <div
+            className="w-6 h-6 bg-orange rounded-full animate-pulse"
+            style={{ animationDelay: '0.4s' }}
+          ></div>
         </div>
         {codeIcon && githubUrl && (
           <a
@@ -47,7 +53,9 @@ export default function ReactProjectShowcase({
       </div>
 
       <div className="p-12">
-        <h3 className="text-xl font-semibold text-white mb-6 group-hover:text-orange transition-colors duration-300">{title}</h3>
+        <h3 className="text-xl font-semibold text-white mb-6 group-hover:text-orange transition-colors duration-300">
+          {title}
+        </h3>
 
         <p className="text-gray-light text-sm mb-8 leading-relaxed group-hover:text-gray-light/90 transition-colors duration-300">
           {description}
@@ -68,12 +76,21 @@ export default function ReactProjectShowcase({
         {metrics.length > 0 && (
           <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray/20 group-hover:border-orange/30 transition-colors duration-300">
             {metrics.map((metric, index) => (
-              <div key={index} className="text-center transform group-hover:scale-105 transition-all duration-300" style={{ transitionDelay: `${index * 100}ms` }}>
+              <div
+                key={index}
+                className="text-center transform group-hover:scale-105 transition-all duration-300"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
                 <div className="text-sm font-bold text-white group-hover:text-orange transition-colors duration-300 mb-2">
                   {metric.value}
                 </div>
-                <div className="text-xs text-gray-light group-hover:text-gray-light/90 transition-colors duration-300">{metric.label}</div>
-                <div className="w-full h-0.5 bg-orange/30 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transitionDelay: `${index * 100 + 150}ms` }}></div>
+                <div className="text-xs text-gray-light group-hover:text-gray-light/90 transition-colors duration-300">
+                  {metric.label}
+                </div>
+                <div
+                  className="w-full h-0.5 bg-orange/30 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ transitionDelay: `${index * 100 + 150}ms` }}
+                ></div>
               </div>
             ))}
           </div>

@@ -99,7 +99,7 @@ export async function getAllMdxSlugs(
 }
 
 export interface GetRelatedMdxParams<
-  T extends 'blog' | 'portfolio' = 'blog' | 'portfolio'
+  T extends 'blog' | 'portfolio' = 'blog' | 'portfolio',
 > {
   frontmatterKey: string
   type: T
@@ -148,20 +148,27 @@ export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
         const key = filterKey as keyof typeof frontmatter
         if (key === 'category') {
           const categories = (frontmatter as PortfolioMdxMetadata).categories
-          const primaryCategory = frontmatter[key] as keyof typeof portfolioCategories
+          const primaryCategory = frontmatter[
+            key
+          ] as keyof typeof portfolioCategories
 
-          if (categories && categories.includes(filterValue as keyof typeof portfolioCategories)) {
+          if (
+            categories &&
+            categories.includes(filterValue as keyof typeof portfolioCategories)
+          ) {
             return {
               title: content.frontmatter.title,
               slug,
-              sortValue: frontmatter[frontmatterKey as keyof typeof frontmatter],
+              sortValue:
+                frontmatter[frontmatterKey as keyof typeof frontmatter],
               frontmatter: content.frontmatter,
             }
           } else if (primaryCategory === filterValue) {
             return {
               title: content.frontmatter.title,
               slug,
-              sortValue: frontmatter[frontmatterKey as keyof typeof frontmatter],
+              sortValue:
+                frontmatter[frontmatterKey as keyof typeof frontmatter],
               frontmatter: content.frontmatter,
             }
           } else {
