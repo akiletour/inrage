@@ -150,22 +150,22 @@ export default function TmaWordPress() {
               </span>
             </h2>
 
-            <p className="mt-3 text-xl text-gray-light">
+            <p className="mt-6 text-xl text-gray-light">
               Avec plus de 150 clients en infogérance WordPress, nous avons mis
               en place plusieurs solutions pour nous assurer que votre site se
               comporte comme il le devrait.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Toutes les heures (configurable), nous inspectons chacune des
               pages de votre site pour y vérifier que tous les éléments sont à
               la bonne place et que le code source n’a pas été altéré.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Nos robots vérifient l’intégralité de vos fichiers et de la base
               de données pour prévenir un futur piratage.
             </p>
 
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Pour vous permettre d&apos;avoir un meilleur suivi ainsi
               qu&apos;une maintenance fiable, nos forfaits sont à engagement de
               12 mois. Si vous désirez une intervention ponctuelle sur votre
@@ -183,7 +183,7 @@ export default function TmaWordPress() {
 
       <div className="relative">
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -199,7 +199,7 @@ export default function TmaWordPress() {
             ]}
           />
 
-          <div className="flex flex-col space-y-4 mt-4">
+          <div className="flex flex-col space-y-8 mt-8">
             {entries.map(({ id, name, excerpt, values }) => (
               <TableLine
                 key={id}
@@ -210,7 +210,7 @@ export default function TmaWordPress() {
             ))}
           </div>
 
-          <div className="ml-4 mt-4">
+          <div className="ml-8 mt-8">
             <span className="text-orange font-bold text-4xl leading-5">*</span>{' '}
             Le nombre d&apos;heures est personnalisable selon vos besoins.
           </div>
@@ -223,7 +223,7 @@ export default function TmaWordPress() {
           sizes="100vw"
         />
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />

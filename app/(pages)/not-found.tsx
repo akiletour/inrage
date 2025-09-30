@@ -1039,11 +1039,11 @@ export default function Custom404() {
             </g>
           </svg>
         </div>
-        <div className="relative pt-[5rem] px-4 text-center max-[1300px]:text-right max-md:text-center">
-          <div className="text-4xl font-bold text-white mb-2 tracking-wider">
+        <div className="relative pt-[5rem] px-8 text-center max-[1300px]:text-right max-md:text-center">
+          <div className="text-4xl font-bold text-white mb-4 tracking-wider">
             Hello ?? Il y a quelqu&apos;un ?!?
           </div>
-          <p className="max-w-2xl max-lg:pl-[25rem] max-md:pl-0 mb-2">
+          <p className="max-w-2xl max-lg:pl-[25rem] max-md:pl-0 mb-4">
             Nous savons que c&apos;est inquiétant, mais la page que vous essayez
             de consulter n&apos;a pas été trouvée. Peut-être s&apos;agissait-il
             simplement d&apos;un mauvais{' '}

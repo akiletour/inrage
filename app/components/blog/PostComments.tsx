@@ -67,7 +67,7 @@ export default async function PostComments({
   return (
     <div className="bg-gray-darker">
       <Diagonal bgClass="fill-gray-dark" bgCorner="fill-orange" flipX flipY />
-      <div className="container relative z-10 -my-10">
+      <div className="container relative z-10 -my-20">
         <SectionTitle
           title="Commentaires"
           content={
@@ -76,7 +76,7 @@ export default async function PostComments({
         />
         {data?.comments?.edges &&
           data?.comments?.edges.map(({ node }) => (
-            <div className="mt-4" key={node.databaseId}>
+            <div className="mt-8" key={node.databaseId}>
               <CommentItem postId={postDatabaseId} {...node} />
             </div>
           ))}

@@ -34,7 +34,7 @@ export function ButtonLinkRaw({
       {children}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="ml-2 h-3 group-hover:animate-bouncex"
+        className="ml-4 h-6 group-hover:animate-bouncex"
         viewBox="0 0 448 512"
       >
         <path

@@ -51,7 +51,7 @@ export default function ProjectItem({
           {title}
         </div>
         {support && (
-          <div className="text-xs mt-1 sm:text-base md:text-sm lg:text-base uppercase">
+          <div className="text-xs mt-2 sm:text-base md:text-sm lg:text-base uppercase">
             {support.title}
           </div>
         )}

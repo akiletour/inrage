@@ -11,10 +11,10 @@ export const portfolioCategories = {
     slug: 'application-web',
     icon: 'developpement-application-web.webp',
   },
-  prestashop: {
-    title: 'PrestaShop',
-    slug: 'prestashop',
-    icon: 'creation-prestashop.webp',
+  'e-commerce': {
+    title: 'E-commerce',
+    slug: 'e-commerce',
+    icon: 'creation-ecommerce.svg',
   },
 }
 
@@ -80,7 +80,7 @@ export const getPortfolioItems = async (
   sort: 'random' | 'date' = 'date'
 ) => {
   const items = await getAllMdxBy({
-    frontmatterKey: 'category',
+    frontmatterKey: 'year',
     type: 'portfolio',
     limit,
     filterValue: category,

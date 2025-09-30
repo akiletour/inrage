@@ -42,7 +42,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         sendGTMEvent({
           event: 'contact_form_submit',
           form_location: window.location.pathname,
-          form_source: document.referrer || 'direct'
+          form_source: document.referrer || 'direct',
         })
 
         fetch('/api/hello-slack', {
@@ -56,8 +56,8 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
   }
 
   return (
-    <form className={!lg ? 'my-4' : ''} onSubmit={handleSubmit(onSubmit)}>
-      <div className={`grid gap-3 ${!lg && 'md:grid-cols-2'}`}>
+    <form className={!lg ? 'my-8' : ''} onSubmit={handleSubmit(onSubmit)}>
+      <div className={`grid gap-6 ${!lg && 'md:grid-cols-2'}`}>
         <div className="relative order-1">
           <input
             className={`input-field ${
@@ -68,7 +68,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('name', { required: true })}
           />
           {errors.name && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute text-red top-8 right-4 text-xs">
               Champ requis
             </span>
           )}
@@ -84,7 +84,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('email', { required: true })}
           />
           {errors.email && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute text-red top-8 right-4 text-xs">
               Champ requis
             </span>
           )}
@@ -100,7 +100,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('phone', { required: true })}
           />
           {errors.phone && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute text-red top-8 right-4 text-xs">
               Champ requis
             </span>
           )}
@@ -116,16 +116,16 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
             {...register('content', { required: true })}
           />
           {errors.content && (
-            <span className="absolute text-red bottom-full mb-1 right-0 text-xs">
+            <span className="absolute text-red bottom-full mb-2 right-0 text-xs">
               Champ requis
             </span>
           )}
         </div>
       </div>
 
-      <div className="mt-3 flex flex-col md:flex-row items-center justify-center md:justify-end">
+      <div className="mt-6 flex flex-col md:flex-row items-center justify-center md:justify-end">
         {state.success && (
-          <div className="md:mr-4 flex-1 text-center mb-2 md:mb-0 md:text-right text-[#27ae60]">
+          <div className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-[#27ae60]">
             <span className="font-bold underline">Merci !</span> Je vous
             répondrai très prochainement dès que j’aurai pris connaissance de
             votre message.
@@ -134,7 +134,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         <Button
           submit
           isLoading={state.loading}
-          className="button py-3 px-4 w-full md:w-auto"
+          className="button py-6 px-8 w-full md:w-auto"
         >
           Envoyer mon message
         </Button>

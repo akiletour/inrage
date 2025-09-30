@@ -13,6 +13,7 @@ export interface BaseMdxMetadata {
 
 export interface PortfolioMdxMetadata extends BaseMdxMetadata {
   category: keyof typeof portfolioCategories
+  categories?: Array<keyof typeof portfolioCategories>
   tools: Array<keyof typeof portfolioTools>
   website: string
   year: number
@@ -98,7 +99,7 @@ export async function getAllMdxSlugs(
 }
 
 export interface GetRelatedMdxParams<
-  T extends 'blog' | 'portfolio' = 'blog' | 'portfolio'
+  T extends 'blog' | 'portfolio' = 'blog' | 'portfolio',
 > {
   frontmatterKey: string
   type: T
@@ -145,7 +146,37 @@ export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
 
       if (filterKey && filterValue) {
         const key = filterKey as keyof typeof frontmatter
-        if (frontmatter[key] !== filterValue) return null
+        if (key === 'category') {
+          const categories = (frontmatter as PortfolioMdxMetadata).categories
+          const primaryCategory = frontmatter[
+            key
+          ] as keyof typeof portfolioCategories
+
+          if (
+            categories &&
+            categories.includes(filterValue as keyof typeof portfolioCategories)
+          ) {
+            return {
+              title: content.frontmatter.title,
+              slug,
+              sortValue:
+                frontmatter[frontmatterKey as keyof typeof frontmatter],
+              frontmatter: content.frontmatter,
+            }
+          } else if (primaryCategory === filterValue) {
+            return {
+              title: content.frontmatter.title,
+              slug,
+              sortValue:
+                frontmatter[frontmatterKey as keyof typeof frontmatter],
+              frontmatter: content.frontmatter,
+            }
+          } else {
+            return null
+          }
+        } else if (frontmatter[key] !== filterValue) {
+          return null
+        }
       }
 
       return {

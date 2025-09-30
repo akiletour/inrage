@@ -35,19 +35,19 @@ export default function WebsiteTMA() {
           image={TmaImage}
           title={["L'infogérance & maintenance TMA", "Qu'est-ce que c'est ?"]}
         >
-          <p className="mt-2 text-gray-light text-2xl">
+          <p className="mt-4 text-gray-light text-2xl">
             C’est d’être accompagné chaque jour dans le bon fonctionnement de
             son site WordPress.
           </p>
 
-          <p className="mt-2">
+          <p className="mt-4">
             Lors du développement de votre site, votre développeur a surement dû
             faire appel aux extensions disponibles à la communauté. Ces
             extensions requièrent une attention particulière pour corriger des
             dysfonctionnements (alias bugs) ou d’apporter de nouvelles
             fonctionnalités pour votre bien-être et doivent être mise à jours.
           </p>
-          <p className="mt-2">
+          <p className="mt-4">
             Avec plus de 90 000 sites piratés (en avril 2013), il est crucial de
             devoir apporter une solution de sauvegardes journalière de vos
             fichiers ainsi que de votre base de données et cela sur une
@@ -57,11 +57,11 @@ export default function WebsiteTMA() {
           </p>
         </TextImage>
 
-        <div className="mt-8 text-3xl text-white text-center">
+        <div className="mt-16 text-3xl text-white text-center">
           Les performances de votre site internet
           <br /> sont importantes pour le référencement de ce dernier.{' '}
         </div>
-        <div className="md:px-10 text-center mt-3 text-xl">
+        <div className="md:px-20 text-center mt-6 text-xl">
           Après une analyse approfondie, nous pouvons vous conseiller de
           plusieurs manières afin d’optimiser vos temps de chargement et la
           réduction des appels à la base de données pour y garantir une
@@ -70,14 +70,14 @@ export default function WebsiteTMA() {
       </div>
       <div className="bg-gray-darker">
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           flipX
           flipY
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
-        <div className="container relative z-10 py-5 xl:py-0 md:-my-10">
-          <div className="md:px-20 flex flex-col space-y-6 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
+        <div className="container relative z-10 py-10 xl:py-0 md:-my-20">
+          <div className="md:px-40 flex flex-col space-y-12 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
             <TmaItem
               title="Infogérance et maintenance TMA"
               subject="WordPress"
@@ -100,7 +100,7 @@ export default function WebsiteTMA() {
           </div>
         </div>
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />
@@ -113,7 +113,7 @@ export default function WebsiteTMA() {
         />
       </div>
 
-      <div className="flex flex-col lg:flex-row relative container mt-6">
+      <div className="flex flex-col lg:flex-row relative container mt-12">
         <div className="block overflow-hidden lg:absolute lg:right-[60%]">
           <div className="lg:w-[945px] lg:h-[666px] relative">
             <Image
@@ -135,24 +135,24 @@ export default function WebsiteTMA() {
             <h3 className="font-bold text-white text-2xl md:text-4xl">
               Une console d&apos;infogérance dédiée
             </h3>
-            <p className="mt-2">
+            <p className="mt-4">
               Nous vous mettons à disposition une interface entièrement pensée
               pour vos besoins et intégralement personnalisable à votre
               solution, que vous soyez sur Prestashop, WordPress ou une solution
               propriétaire.
             </p>
-            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
+            <h3 className="mt-8 font-bold text-white text-2xl md:text-4xl">
               Notification immédiate
             </h3>
-            <p className="mt-2">
+            <p className="mt-4">
               Dès que votre message est publié sur notre interface de console,
               nous recevons une notification. Un technicien prend effet de votre
               message et le règle directement.
             </p>
-            <h3 className="mt-4 font-bold text-white text-2xl md:text-4xl">
+            <h3 className="mt-8 font-bold text-white text-2xl md:text-4xl">
               Aucune fil d&apos;attente
             </h3>
-            <p className="mt-2">
+            <p className="mt-4">
               Chez inRage, il n&apos;y a pas de notion de file d&apos;attente,
               votre message sera toujours traité en priorité et un technicien
               prendra en charge votre ticket directement.

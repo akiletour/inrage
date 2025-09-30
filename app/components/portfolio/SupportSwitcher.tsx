@@ -12,7 +12,7 @@ export default async function SupportSwitcher({
   const categories = await getPortfolioCategories()
 
   return (
-    <div className="grid grid-cols-4 gap-4 text-center my-6">
+    <div className="grid grid-cols-4 gap-8 text-center my-12">
       <Link href={RouteLink.portfolio}>
         <span
           className={
@@ -21,7 +21,7 @@ export default async function SupportSwitcher({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 md:w-10 h-6 md:h-10 mx-auto"
+            className="w-12 md:w-20 h-12 md:h-20 mx-auto"
             viewBox="0 0 320 512"
           >
             <path
@@ -29,7 +29,7 @@ export default async function SupportSwitcher({
               d="M96 32H32C14.33 32 0 46.33 0 64v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32V64c0-17.67-14.33-32-32-32zm0 160H32c-17.67 0-32 14.33-32 32v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32v-64c0-17.67-14.33-32-32-32zm0 160H32c-17.67 0-32 14.33-32 32v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32v-64c0-17.67-14.33-32-32-32zM288 32h-64c-17.67 0-32 14.33-32 32v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32V64c0-17.67-14.33-32-32-32zm0 160h-64c-17.67 0-32 14.33-32 32v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32v-64c0-17.67-14.33-32-32-32zm0 160h-64c-17.67 0-32 14.33-32 32v64c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32v-64c0-17.67-14.33-32-32-32z"
             />
           </svg>
-          <span className="mt-1 block text-sm md:text-lg">
+          <span className="mt-2 block text-sm md:text-lg">
             Tous les projets
           </span>
         </span>
@@ -44,7 +44,7 @@ export default async function SupportSwitcher({
                   : 'text-white'
               }
             >
-              <div className="w-6 md:w-10 h-6 md:h-10 relative mx-auto">
+              <div className="w-12 md:w-20 h-12 md:h-20 relative mx-auto">
                 <Image
                   src={`/images/portfolio/categories/${icon}`}
                   alt={title}
@@ -52,7 +52,7 @@ export default async function SupportSwitcher({
                   sizes="100vw"
                 />
               </div>
-              <span className="mt-1 block text-sm md:text-lg">{title}</span>
+              <span className="mt-2 block text-sm md:text-lg">{title}</span>
             </div>
           </Link>
         ))}

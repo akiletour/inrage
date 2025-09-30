@@ -16,6 +16,9 @@ export const RouteLink = {
   get prestationSymfony() {
     return `${this.prestationWeb}/symfony`
   },
+  get prestationReact() {
+    return `${this.prestations}/react`
+  },
   get prestationTmaWordPress() {
     return `${this.prestationTma}/maintenance-wordpress`
   },

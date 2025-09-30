@@ -16,8 +16,8 @@ export default async function BlogList() {
   const data = await getBlogItems(-1)
   return (
     <Layout title="Blog sur le développement web">
-      <div className="container mb-10">
-        <div className="grid md:grid-cols-2 gap-4 -mb-8 mt-6">
+      <div className="container mb-20">
+        <div className="grid md:grid-cols-2 gap-8 -mb-16 mt-12">
           {data.map(({ title, slug, excerpt, date, thumbnail }) => (
             <ArticleItem
               slug={slug}

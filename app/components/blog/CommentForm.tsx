@@ -54,9 +54,9 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
       })
   }
   return (
-    <div className="mt-8">
+    <div className="mt-16">
       {parent && (
-        <p className="text-white font-medium mb-2">
+        <p className="text-white font-medium mb-4">
           Répondre au commentaire de{' '}
           <span className="underline">{parentAuthor}</span> :
         </p>
@@ -73,13 +73,13 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
             {...register('name', { required: true })}
           />
           {errors.name && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute text-red top-8 right-4 text-xs">
               Champ requis
             </span>
           )}
         </div>
 
-        <div className="relative mt-3">
+        <div className="relative mt-6">
           <input
             className={`input-field ${
               errors.email ? 'border-red' : 'border-gray'
@@ -89,13 +89,13 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
             {...register('email', { required: true })}
           />
           {errors.email && (
-            <span className="absolute text-red top-4 right-2 text-xs">
+            <span className="absolute text-red top-8 right-4 text-xs">
               Champ requis
             </span>
           )}
         </div>
 
-        <div className="relative mt-3">
+        <div className="relative mt-6">
           <textarea
             className={`input-field min-h-[200px] h-full ${
               errors.content ? 'border-red' : 'border-gray'
@@ -103,23 +103,23 @@ export default function CommentForm({ postId, parent, parentAuthor }: Props) {
             {...register('content', { required: true })}
           />
           {errors.content && (
-            <span className="absolute text-red top-2 mb-1 right-2 text-xs">
+            <span className="absolute text-red top-4 mb-2 right-4 text-xs">
               Champ requis
             </span>
           )}
         </div>
 
-        <div className="mt-2 flex items-center">
+        <div className="mt-4 flex items-center">
           <Button
             isLoading={state.loading}
             submit
-            className="button py-3 px-4 w-full md:w-auto"
+            className="button py-6 px-8 w-full md:w-auto"
           >
             Envoyer mon message
           </Button>
 
           {state.success && (
-            <p className="text-[#27ae60] font-medium ml-4">
+            <p className="text-[#27ae60] font-medium ml-8">
               Merci pour votre commentaire.
             </p>
           )}

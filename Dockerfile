@@ -1,7 +1,5 @@
-#syntax=docker/dockerfile:1.4
+#syntax=docker/dockerfile:1.18
 
-
-# Versions
 FROM node:22-alpine AS node_upstream
 
 

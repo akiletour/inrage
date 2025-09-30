@@ -109,17 +109,17 @@ export default function TmaPrestashop() {
               </span>
             </h2>
 
-            <p className="mt-3 text-xl text-gray-light">
+            <p className="mt-6 text-xl text-gray-light">
               Depuis des années j’administre et assiste les créateurs e-commerce
               dans ce vaste monde qui est Internet.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Chaque jour, des boutiques sont victimes de failles de sécurité ou
               d’attaques. J’ai appris et développé au fil des années des outils
               me permettant de surveiller, protéger et réparer ces failles et
               bloquer ces attaques.
             </p>
-            <p className="mt-3 text-gray-light">
+            <p className="mt-6 text-gray-light">
               Toutes les heures, mes outils inspectent chacune de vos pages pour
               en vérifier l’intégrité de son contenu. Tester les formulaires
               d’inscription, de connexion et panier.
@@ -130,7 +130,7 @@ export default function TmaPrestashop() {
 
       <div className="relative">
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -146,7 +146,7 @@ export default function TmaPrestashop() {
             ]}
           />
 
-          <div className="flex flex-col space-y-4 mt-4">
+          <div className="flex flex-col space-y-8 mt-8">
             {entries.map(({ id, name, excerpt, values }) => (
               <TableLine
                 key={id}
@@ -157,7 +157,7 @@ export default function TmaPrestashop() {
             ))}
           </div>
 
-          <div className="ml-4 mt-4">
+          <div className="ml-8 mt-8">
             <span className="text-orange font-bold text-4xl leading-5">*</span>{' '}
             Le nombre d&apos;heures est personnalisable selon vos besoins.
           </div>
@@ -170,7 +170,7 @@ export default function TmaPrestashop() {
           sizes="100vw"
         />
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
         />

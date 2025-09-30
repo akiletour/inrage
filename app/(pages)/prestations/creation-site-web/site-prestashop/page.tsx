@@ -53,41 +53,41 @@ export default async function PrestationPrestashop() {
             }}
           />
         </div>
-        <div className="md:w-3/5 text-lg md:pl-5 leading-6 pt-2">
+        <div className="md:w-3/5 text-lg md:pl-10 leading-6 pt-4">
           <h2 className="text-white text-xl md:text-3xl font-bold">
             Développeur Prestashop Freelance sur{' '}
             <br className="hidden md:block" />
             La Rochelle
           </h2>
-          <p className="mt-2">
+          <p className="mt-4">
             Prestashop est un CMS gratuit et opensource. Il est 100%
             administrable et son interface d’administration est claire et sobre.
           </p>
-          <p className="mt-2">
+          <p className="mt-4">
             A l’instar de Wordpress, Prestashop bénéficie d’une large
             communauté, très investie. Les plugins et thèmes disponibles pour ce
             CMS sont donc extrêmement nombreux. En somme, Prestashop est un CMS
             simple et fiable, c’est l’outil idéal pour la création de boutique
             e-commerce.
           </p>
-          <p className="mt-2">
+          <p className="mt-4">
             Pour ma part, je développe sur Prestashop depuis 2013 lors de la
             sortie de la version 1.4 du CMS.
           </p>
         </div>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="bg-gray-darker mt-8">
         <Diagonal
           flipX
           flipY
-          className="h-8 md:h-16 lg:h-24"
+          className="h-16 md:h-32 lg:h-48"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
-          <div className="md:px-18 text-lg">
-            <h2 className="text-3xl text-white font-bold mb-2">
+        <div className="container text-center py-16 lg:py-0">
+          <div className="md:px-36 text-lg">
+            <h2 className="text-3xl text-white font-bold mb-4">
               Pourquoi choisir Prestashop ?
             </h2>
 
@@ -112,7 +112,7 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-8 md:h-16 lg:h-24"
+          className="h-16 md:h-32 lg:h-48"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
@@ -132,7 +132,7 @@ export default async function PrestationPrestashop() {
             tous les terminaux (responsive design).
           </p>
 
-          <p className="mt-2">
+          <p className="mt-4">
             Je respecte scrupuleusement les bonnes pratiques dictées par
             Prestashop et sa communauté. C’est pourquoi je préfère développer
             intégralement un thème plutôt que d’en utiliser un existant. Ainsi,
@@ -157,7 +157,7 @@ export default async function PrestationPrestashop() {
             e-commerce.
           </p>
 
-          <p className="mt-2">
+          <p className="mt-4">
             Les modules développées par mes soins respectent les bonnes
             pratiques véhiculées par Prestashop et utilisent le système de
             “Hook” pour réaliser des actions sans modifier le coeur du CMS. Ces
@@ -167,15 +167,15 @@ export default async function PrestationPrestashop() {
         </TextImage>
       </div>
 
-      <div className="bg-gray-darker mt-4">
+      <div className="bg-gray-darker mt-8">
         <Diagonal
           flipX
           flipY
-          className="h-8 md:h-16 lg:h-24"
+          className="h-16 md:h-32 lg:h-48"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
-        <div className="container text-center py-8 lg:py-0">
+        <div className="container text-center py-16 lg:py-0">
           <div className="">
             <h2 className="text-center text-white text-3xl">
               Migration de Prestashop 1.6 vers 1.7
@@ -183,13 +183,13 @@ export default async function PrestationPrestashop() {
                 Un outil pour vous faciliter la vie
               </span>
             </h2>
-            <p className="text-xl text-gray-light mt-3">
+            <p className="text-xl text-gray-light mt-6">
               La dernière version de Prestashop (1.7.5) est très largement
               plébiscitée par la communauté pour ses performances et sa
               fiabilité. Notamment car elle est développée sur la base du
               framework Symfony.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               En 2019, de nombreuses sociétés ont fait part à leurs
               développeurs, de leur souhait de migrer leur boutique sur la
               nouvelle version de Prestashop. Afin de rendre cette migration
@@ -200,14 +200,14 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-8 md:h-16 lg:h-24"
+          className="h-16 md:h-32 lg:h-48"
           bgClass="fill-gray-dark"
           bgCorner="fill-gray-darker"
         />
       </div>
 
       <div className="container">
-        <h2 className="text-white text-3xl font-bold mb-4">
+        <h2 className="text-white text-3xl font-bold mb-8">
           L&apos;intégration de votre catalogue produit
         </h2>
         <p>
@@ -215,13 +215,13 @@ export default async function PrestationPrestashop() {
           boutique e-commerce Prestashop est parfois très compliqué à mettre en
           place lors de la création ou de la refonte.
         </p>
-        <p className="mt-2">
+        <p className="mt-4">
           Pour faciliter l&apos;intégration de vos catégories et produits dans
           votre catalogue, j&apos;ai développé des outils permettant
           d&apos;injecter facilement vos références dans Prestashop via une API,
           un tableau CSV ou XLS).
         </p>
-        <p className="mt-2">
+        <p className="mt-4">
           Ainsi, vous pouvez l&apos;alimenter en quelques clics et cela, tout au
           long de la vie de votre site e-commerce.
         </p>
@@ -229,7 +229,7 @@ export default async function PrestationPrestashop() {
 
       <div className="relative">
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="h-24 md:h-40 lg:h-[360px] -z-10"
           flipX
           flipY
           bgClass="fill-gray-dark"
@@ -245,9 +245,9 @@ export default async function PrestationPrestashop() {
             objectFit: 'cover',
           }}
         />
-        <div className="container flex items-center relative z-10 my-4 lg:-my-10">
+        <div className="container flex items-center relative z-10 my-8 lg:-my-20">
           <div className="md:w-2/3 text-gray-light text-sm">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-3">
+            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-6">
               Garanti et suivi <br className="hidden sm:block" />
               <span className="font-light">pendant 3 mois inclus</span>
             </h2>
@@ -258,22 +258,22 @@ export default async function PrestationPrestashop() {
               ou encore une panne du serveur sur lequel il est hébergé.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Pour remédier rapidement et efficacement à ce type de problème,
               j’ai développé une multitude d’outils pour inspecter et analyser
               votre site en temps réel et me prévenir si l’intégrité de votre
               site est altérée.
             </p>
 
-            <p className="mt-2">
+            <p className="mt-4">
               Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir
               rapidement pour le corriger et procéder si nécessaire à la mise à
               jour des modules obsolètes.
             </p>
-            <p className="mt-2">
+            <p className="mt-4">
               Ainsi, votre site internet est protégé en permanence.
             </p>
-            <div className="flex flex-wrap flex-start mt-4">
+            <div className="flex flex-wrap flex-start mt-8">
               <Link href={RouteLink.prestationTmaPrestashop}>
                 <span className="button">
                   Forfaits de maintenance Prestashop
@@ -293,20 +293,20 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-12 md:h-20 lg:h-[360px] -z-10"
+          className="h-24 md:h-40 lg:h-[360px] -z-10"
           bgClass="fill-gray-darker"
           bgCorner="fill-orange"
         />
       </div>
 
       <div className="bg-gray-darker">
-        <div className="container pb-8 lg:pb-0 lg:-mb-8 relative z-10">
+        <div className="container pb-16 lg:pb-0 lg:-mb-16 relative z-10">
           <SectionTitle
             title="Réalisations Prestashop"
             content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur Prestashop."
           />
 
-          <div className="mt-3 sm:mt-0 grid gap-2 sm:gap-0 grid-cols-2 md:grid-cols-4">
+          <div className="mt-6 sm:mt-0 grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4">
             {projects.length > 0 &&
               projects.map(({ title, thumbnail, slug, support }) => (
                 <ProjectItem
@@ -320,7 +320,7 @@ export default async function PrestationPrestashop() {
           </div>
         </div>
         <Diagonal
-          className="h-10 sm:h-16 md:h-25 lg:h-36 xl:h-45 -z-10"
+          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
@@ -330,7 +330,7 @@ export default async function PrestationPrestashop() {
           }}
         />
       </div>
-      <div className="container mt-4 md:mt-0">
+      <div className="container mt-8 md:mt-0">
         <SectionTitle
           content={
             "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
