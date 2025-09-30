@@ -21,16 +21,30 @@ export default function ReactSkillCard({
             {icon}
           </div>
         </div>
-        <h3 className="text-xl font-semibold text-white group-hover:text-orange transition-colors duration-300">{title}</h3>
+        <h3 className="text-xl font-semibold text-white group-hover:text-orange transition-colors duration-300">
+          {title}
+        </h3>
       </div>
 
-      <p className="text-gray-light mb-12 flex-1 leading-relaxed group-hover:text-gray-light/90 transition-colors duration-300">{description}</p>
+      <p className="text-gray-light mb-12 flex-1 leading-relaxed group-hover:text-gray-light/90 transition-colors duration-300">
+        {description}
+      </p>
 
       <ul className="space-y-6">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center text-sm text-gray-light group-hover:text-white transition-all duration-300" style={{ transitionDelay: `${index * 50}ms` }}>
-            <div className="w-4 h-4 bg-orange rounded-full mr-6 flex-shrink-0 transform group-hover:scale-125 group-hover:bg-orange-dark transition-all duration-300" style={{ transitionDelay: `${index * 50}ms` }} />
-            <span className="transform group-hover:translate-x-2 transition-transform duration-300" style={{ transitionDelay: `${index * 50}ms` }}>
+          <li
+            key={index}
+            className="flex items-center text-sm text-gray-light group-hover:text-white transition-all duration-300"
+            style={{ transitionDelay: `${index * 50}ms` }}
+          >
+            <div
+              className="w-4 h-4 bg-orange rounded-full mr-6 flex-shrink-0 transform group-hover:scale-125 group-hover:bg-orange-dark transition-all duration-300"
+              style={{ transitionDelay: `${index * 50}ms` }}
+            />
+            <span
+              className="transform group-hover:translate-x-2 transition-transform duration-300"
+              style={{ transitionDelay: `${index * 50}ms` }}
+            >
               {feature}
             </span>
           </li>

@@ -1,7 +1,5 @@
 import createMDX from '@next/mdx'
 import { NextConfig } from 'next'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -33,7 +31,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+    remarkPlugins: ['remark-frontmatter', 'remark-mdx-frontmatter'],
   },
 })
 

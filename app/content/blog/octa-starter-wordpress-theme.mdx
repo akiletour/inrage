@@ -1,22 +1,29 @@
 ---
 title: 'Octa : structure de thème WordPress ultra-moderne pour un développement rapide'
-date: "2025-07-21"
-category: "WordPress"
-thumbnail: "/images/articles/octa-wordpress.jpg"
-excerpt: "Octa est une structure de thème (starter theme) WordPress conçue pour les développeurs avancés en quête d’un workflow moderne. Présenté comme un thème WordPress « puissant » basé sur Laravel, Bedrock et Sage, Octa combine les outils du stack Roots (Bedrock, Sage 11, Acorn…) pour fournir un socle de développement complet."
+date: '2025-07-21'
+category: 'WordPress'
+thumbnail: '/images/articles/octa-wordpress.jpg'
+excerpt: 'Octa est une structure de thème (starter theme) WordPress conçue pour les développeurs avancés en quête d’un workflow moderne. Présenté comme un thème WordPress « puissant » basé sur Laravel, Bedrock et Sage, Octa combine les outils du stack Roots (Bedrock, Sage 11, Acorn…) pour fournir un socle de développement complet.'
 ---
-import Diagonal from '../../components/Diagonal';
-import Image from 'next/image';
-import Quote from '../../components/Quote';
+
+import Diagonal from '../../components/Diagonal'
+import Image from 'next/image'
+import Quote from '../../components/Quote'
 
 Octa est un **starter theme** WordPress pour développeurs avancés qui veulent un workflow propre, rapide et maintenable. Il assemble les briques Roots — **Bedrock**, **Sage 11** et **Acorn** — pour offrir une base complète : architecture Laravel‑like, tooling front (Vite + Tailwind), environnement reproductible.
 
-<Image src="/images/articles/octa-wp.webp" alt="Octa WordPress Theme" width={800} height={400} className="rounded-lg mx-auto mb-8 w-full h-auto" />
+<Image
+  src="/images/articles/octa-wp.webp"
+  alt="Octa WordPress Theme"
+  width={800}
+  height={400}
+  className="rounded-lg mx-auto mb-8 w-full h-auto"
+/>
 
 <div className="text-center italic">
-  🔗 Dépôt : **[https://github.com/inrage/octa](https://github.com/inrage/octa)**
+  🔗 Dépôt :
+  **[https://github.com/inrage/octa](https://github.com/inrage/octa)**
 </div>
-
 
 <div className="bg-gray-darker mt-8 container-full-size">
   <Diagonal
@@ -56,13 +63,13 @@ public/        ← racine web (WordPress)
 
 **Points forts :**
 
-* Fichiers de thème hors `public/` → sécurité & propreté.
-* Templates Blade sous `resources/views/` → arborescence “plate”.
-* Configuration centralisée (*configuration over code*) :
-  * `config/theme.php` (menus, sidebars, supports…)
-  * `config/post-types.php` (CPT & taxonomies)
-* **Routes personnalisées** pour des pages virtuelles.
-* Architecture *MVC‑like* améliorant lisibilité & maintenabilité.
+- Fichiers de thème hors `public/` → sécurité & propreté.
+- Templates Blade sous `resources/views/` → arborescence “plate”.
+- Configuration centralisée (_configuration over code_) :
+  - `config/theme.php` (menus, sidebars, supports…)
+  - `config/post-types.php` (CPT & taxonomies)
+- **Routes personnalisées** pour des pages virtuelles.
+- Architecture _MVC‑like_ améliorant lisibilité & maintenabilité.
 
 ---
 
@@ -79,23 +86,30 @@ docker compose up   # ou: wp server --port=8000
 
 **Atouts :**
 
-* Docker (WordPress + MySQL) → même stack pour toute l’équipe.
-* Alternative légère : `wp server`.
-* Config unique dans `.env.local` (approche 12‑factor) → passage dev/staging/prod trivial.
+- Docker (WordPress + MySQL) → même stack pour toute l’équipe.
+- Alternative légère : `wp server`.
+- Config unique dans `.env.local` (approche 12‑factor) → passage dev/staging/prod trivial.
 
 ---
 
 ## ⚡ Tooling front : Vite.js + Tailwind CSS
 
-<Image src="/images/articles/octa-stack.webp" priority alt="Octa WordPress Theme" width={800} height={400} className="rounded-lg size-auto mx-auto mb-8" />
+<Image
+  src="/images/articles/octa-stack.webp"
+  priority
+  alt="Octa WordPress Theme"
+  width={800}
+  height={400}
+  className="rounded-lg size-auto mx-auto mb-8"
+/>
 
 **Tailwind CSS** (utility‑first) prêt à l’emploi. Génération automatique d’un `theme.json` : couleurs/typos/tailles exposées à Gutenberg → cohérence éditeur/front.
 
 **Vite.js** pilote JS & CSS :
 
-* Démarrage instantané & HMR ultra‑rapide.
-* Builds optimisés (minification, versioning).
-* Intégration Laravel/Vite via Acorn (manifest, HMR) transparente.
+- Démarrage instantané & HMR ultra‑rapide.
+- Builds optimisés (minification, versioning).
+- Intégration Laravel/Vite via Acorn (manifest, HMR) transparente.
 
 Configuration flexible : libre de remplacer Tailwind ou d’ajouter vos frameworks.
 
@@ -105,17 +119,17 @@ Configuration flexible : libre de remplacer Tailwind ou d’ajouter vos framewor
 
 **Productivité :**
 
-* Setup projet en minutes.
-* Hot‑reload immédiat.
-* Blade (layouts, composants) → moins de duplication.
-* Outils inclus : **Extended CPTs**, **Safe SVG**, **Query Monitor**, **Acorn Prettify**, **Ignition**, **Blade Icons**…
+- Setup projet en minutes.
+- Hot‑reload immédiat.
+- Blade (layouts, composants) → moins de duplication.
+- Outils inclus : **Extended CPTs**, **Safe SVG**, **Query Monitor**, **Acorn Prettify**, **Ignition**, **Blade Icons**…
 
 **Performances front‑end :**
 
-* Tailwind purge les classes inutilisées → CSS minimal.
-* Vite : bundles JS optimisés + code splitting.
-* PHP 8.2+ & bonnes pratiques Laravel (cache vues, opcache…).
-* Outils de debug pour traquer les goulots d’étranglement.
+- Tailwind purge les classes inutilisées → CSS minimal.
+- Vite : bundles JS optimisés + code splitting.
+- PHP 8.2+ & bonnes pratiques Laravel (cache vues, opcache…).
+- Outils de debug pour traquer les goulots d’étranglement.
 
 ---
 
@@ -125,30 +139,51 @@ Pourquoi Octa plutôt que Sage seul ?
 
 <table>
   <tbody>
-  <tr>
-    <th><span>Sage seul</span></th>
-    <th><span>Octa</span></th>
-  </tr>
-  <tr>
-    <td><span>Juste le thème</span></td>
-    <td><span>Projet complet prêt à cloner</span></td>
-  </tr>
-  <tr>
-    <td><span>Bedrock/Acorn/Docker à intégrer soi‑même</span></td>
-    <td><span>Déjà assemblés</span></td>
-  </tr>
-  <tr>
-    <td><span>Peu d’exemples</span></td>
-    <td><span>Composants Blade, configs CPT, CI de base</span></td>
-  </tr>
-  <tr>
-    <td><span>Organisation à construire</span></td>
-    <td><span>Architecture Laravel‑like prête</span></td>
-  </tr>
+    <tr>
+      <th>
+        <span>Sage seul</span>
+      </th>
+      <th>
+        <span>Octa</span>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <span>Juste le thème</span>
+      </td>
+      <td>
+        <span>Projet complet prêt à cloner</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Bedrock/Acorn/Docker à intégrer soi‑même</span>
+      </td>
+      <td>
+        <span>Déjà assemblés</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Peu d’exemples</span>
+      </td>
+      <td>
+        <span>Composants Blade, configs CPT, CI de base</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Organisation à construire</span>
+      </td>
+      <td>
+        <span>Architecture Laravel‑like prête</span>
+      </td>
+    </tr>
   </tbody>
 </table>
 
 Octa est à Sage ce qu’une distribution clé‑en‑main est à un kernel : il assemble les pièces et supprime le temps de setup. Clonez‑le :
+
 ```bash
 git clone https://github.com/inrage/octa
 ```
@@ -159,10 +194,10 @@ git clone https://github.com/inrage/octa
 
 Octa modernise le développement WordPress :
 
-* Architecture Laravel.
-* Outillage front (Vite + Tailwind).
-* Environnement encapsulé (Bedrock + Docker).
-* Productivité & performances natives.
+- Architecture Laravel.
+- Outillage front (Vite + Tailwind).
+- Environnement encapsulé (Bedrock + Docker).
+- Productivité & performances natives.
 
 Si vous aimez Sage mais souhaitez un **tout‑en‑un** plus complet pour vos projets pro, Octa est un excellent point de départ. Essayez‑le et boostez votre prochain projet **WordPress** 🚀
 

@@ -42,7 +42,7 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         sendGTMEvent({
           event: 'contact_form_submit',
           form_location: window.location.pathname,
-          form_source: document.referrer || 'direct'
+          form_source: document.referrer || 'direct',
         })
 
         fetch('/api/hello-slack', {
