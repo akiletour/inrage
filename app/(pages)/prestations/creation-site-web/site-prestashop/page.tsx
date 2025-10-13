@@ -26,7 +26,7 @@ export const metadata = {
 }
 
 export default async function PrestationPrestashop() {
-  const projects = await getPortfolioItems(4, 'prestashop')
+  const projects = await getPortfolioItems(4, 'e-commerce')
 
   return (
     <Layout
@@ -324,7 +324,7 @@ export default async function PrestationPrestashop() {
           bgClass="fill-gray-dark"
           bgCorner="fill-orange"
           cta={{
-            href: `${RouteLink.portfolio}/prestashop`,
+            href: `${RouteLink.portfolio}/e-commerce`,
             title: ['voir les projets', 'Prestashop'],
             icon: <MoreIcon />,
           }}
