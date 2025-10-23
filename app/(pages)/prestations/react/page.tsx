@@ -318,9 +318,9 @@ export default function PrestationReact() {
             bgCorner="fill-gray-darker"
           />
           <div className="container text-center relative z-10">
-            <div className="md:px-36 text-lg max-w-4xl mx-auto">
+            <div className="md:px-36 text-lg max-w-6xl mx-auto">
               <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-16 leading-tight">
-                Développement React à La Rochelle
+                Développement React <br />à La Rochelle
                 <br />
                 <span className="text-orange">au service de vos projets</span>
               </h2>
