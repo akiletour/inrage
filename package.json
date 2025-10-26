@@ -15,7 +15,7 @@
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^15.5.6",
     "@next/third-parties": "^15.5.6",
-    "@sentry/nextjs": "^10",
+    "@sentry/nextjs": "^10.22.0",
     "@types/mdx": "^2.0.13",
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@tailwindcss/postcss": "^4.1.15",
+    "@tailwindcss/postcss": "^4.1.16",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^22.18.12",
     "@types/react": "19.2.2",
@@ -57,7 +57,7 @@
     "eslint-config-next": "15.5.6",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2",
-    "tailwindcss": "^4.1.15",
+    "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
   },
   "pnpm": {
