@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import * as Sentry from '@sentry/nextjs'
 
 import { isAkismetSpam } from '@util/akismet'
 import { Mailjet } from '@util/mailjet'
@@ -11,7 +12,6 @@ export async function POST(request: Request) {
       throw new Error('Missing parameters')
     }
 
-    // Check if the request is a spam
     const isSpam = await isAkismetSpam(request, name, email, content)
 
     if (isSpam) {
@@ -31,10 +31,23 @@ export async function POST(request: Request) {
       request.headers.get('referer') ?? ''
     )
 
-    mailjetApi.send()
+    await mailjetApi.send()
 
     return NextResponse.json({ success: true, message: 'Message sent' })
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error, {
+      tags: {
+        'api.route': 'contact-form',
+        'api.action': 'send-email',
+      },
+      contexts: {
+        contact_form: {
+          hasEmail: !!request,
+          referrer: request.headers.get('referer'),
+        },
+      },
+    })
+
     return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
       status: 400,
     })

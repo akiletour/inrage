@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    serverComponentsExternalPackages: [
+      '@opentelemetry/api',
+      '@opentelemetry/instrumentation',
+      '@opentelemetry/sdk-trace-base',
+      '@opentelemetry/sdk-trace-node',
+      '@opentelemetry/resources',
+      '@opentelemetry/semantic-conventions',
+    ],
+  },
   async redirects() {
     return [
       {
