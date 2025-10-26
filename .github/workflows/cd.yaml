@@ -41,14 +41,17 @@ jobs:
         run: |
           if [[ $GITHUB_REF_TYPE == "tag" ]]; then
             echo "NEXT_PUBLIC_FRONT_URL=$PUBLIC_FRONT_URL" >> $GITHUB_ENV
+            echo "NEXT_PUBLIC_SENTRY_RELEASE=${{ github.ref_name }}" >> $GITHUB_ENV
           else
             echo "NEXT_PUBLIC_FRONT_URL=$STAGING_PUBLIC_FRONT_URL" >> $GITHUB_ENV
+            echo "NEXT_PUBLIC_SENTRY_RELEASE=${{ github.sha }}" >> $GITHUB_ENV
           fi
           echo "NEXT_PUBLIC_GTM_ID=${{ secrets.GTM_ID }}" >> $GITHUB_ENV
       - name: Build Docker images
         uses: docker/bake-action@v6
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
+          NEXT_PUBLIC_SENTRY_RELEASE: ${{ env.NEXT_PUBLIC_SENTRY_RELEASE }}
         with:
           pull: true
           load: true
