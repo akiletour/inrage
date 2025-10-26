@@ -31,6 +31,27 @@ export async function generateStaticParams() {
 
 const getData = async (slug: string) => await getSingleBlogItem(slug)
 
+const hashString = (str: string): number => {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = (hash << 5) - hash + char
+    hash = hash & hash
+  }
+  return Math.abs(hash)
+}
+
+const seededShuffle = <T,>(array: T[], seed: string): T[] => {
+  const hash = hashString(seed)
+  return array
+    .map((value, index) => ({
+      value,
+      sort: Math.sin(hash + index) * 10000,
+    }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+}
+
 export async function generateMetadata(props: Props) {
   const params = await props.params
   const { post } = await getData(params.slug)
@@ -56,11 +77,7 @@ export default async function Page(props: Props) {
     return notFound()
   }
 
-  const shuffled = posts
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-
+  const shuffled = seededShuffle(posts, params.slug)
   const relatedPosts = shuffled.slice(0, 2)
 
   return (
