@@ -4,6 +4,7 @@ import React from 'react'
 
 import { useForm } from 'react-hook-form'
 import { sendGTMEvent } from '@next/third-parties/google'
+import * as Sentry from '@sentry/nextjs'
 
 import Button from '@component/Button'
 import { useFormState } from '@hook/useFormState'
@@ -15,6 +16,10 @@ type FormData = {
   phone: string
 }
 
+interface SpamError extends Error {
+  isSpam: boolean
+}
+
 export default function ContactForm({ lg = false }: { lg?: boolean }) {
   const {
     register,
@@ -22,9 +27,38 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
     formState: { errors },
     reset,
   } = useForm<FormData>()
-  const { state, submit, success } = useFormState()
+  const { state, submit, success, error: setError } = useFormState()
+
   const onSubmit = (data: FormData) => {
     submit()
+
+    const sendSlackNotification = (emailSuccess: boolean) => {
+      return fetch('/api/hello-slack', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...data,
+          emailSent: emailSuccess,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Slack API error: ${response.status}`)
+          }
+          return response
+        })
+        .catch((err) => {
+          Sentry.captureException(err, {
+            tags: {
+              component: 'ContactForm',
+              action: 'slack-notification',
+            },
+          })
+          throw err
+        })
+    }
 
     fetch('/api/hello', {
       method: 'POST',
@@ -34,7 +68,20 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         Accept: 'application/json',
       },
     })
-      .then((r) => r.json())
+      .then((r) => {
+        if (r.status === 422) {
+          setError(
+            'Votre message a été identifié comme spam. Veuillez réessayer.'
+          )
+          const spamError = new Error('Message marked as spam') as SpamError
+          spamError.isSpam = true
+          throw spamError
+        }
+        if (!r.ok) {
+          throw new Error(`HTTP error! status: ${r.status}`)
+        }
+        return r.json()
+      })
       .then(() => {
         success()
         reset()
@@ -45,13 +92,41 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
           form_source: document.referrer || 'direct',
         })
 
-        fetch('/api/hello-slack', {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
+        sendSlackNotification(true)
+      })
+      .catch((error) => {
+        if ((error as SpamError).isSpam) {
+          return
+        }
+
+        Sentry.captureException(error, {
+          tags: {
+            component: 'ContactForm',
+            action: 'submit',
+          },
+          contexts: {
+            form: {
+              location: window.location.pathname,
+            },
           },
         })
+
+        sendSlackNotification(false)
+          .then(() => {
+            success()
+            reset()
+
+            sendGTMEvent({
+              event: 'contact_form_submit',
+              form_location: window.location.pathname,
+              form_source: document.referrer || 'direct',
+            })
+          })
+          .catch(() => {
+            setError(
+              'Une erreur est survenue. Veuillez réessayer ultérieurement.'
+            )
+          })
       })
   }
 
@@ -127,8 +202,13 @@ export default function ContactForm({ lg = false }: { lg?: boolean }) {
         {state.success && (
           <div className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-[#27ae60]">
             <span className="font-bold underline">Merci !</span> Je vous
-            répondrai très prochainement dès que j’aurai pris connaissance de
-            votre message.
+            répondrai très prochainement dès que j&apos;aurai pris connaissance
+            de votre message.
+          </div>
+        )}
+        {state.error && (
+          <div className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-red-600">
+            <span className="font-bold">{state.error}</span>
           </div>
         )}
         <Button
