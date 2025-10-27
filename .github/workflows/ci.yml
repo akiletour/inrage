@@ -48,8 +48,8 @@ jobs:
       - name: Build Docker images
         uses: docker/bake-action@v6
         env:
-          WORDPRESS_API_URL: http://localhost
-          NEXT_PUBLIC_FRONT_URL: http://localhost
+          WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
+          NEXT_PUBLIC_FRONT_URL: http://localhost:3000
           NEXT_PUBLIC_GTM_ID: GTM-XXXXX
           NEXT_PUBLIC_SENTRY_RELEASE: ci-build
         with:
