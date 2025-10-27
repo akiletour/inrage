@@ -68,7 +68,7 @@
   "pnpm": {
     "overrides": {
       "@types/react": "19.2.2",
-      "formidable": "3.5.2",
+      "formidable": "3.5.4",
       "unist-util-mdx-define>estree-walker": "^2.0.2",
       "@types/react-dom": "19.2.2"
     }
