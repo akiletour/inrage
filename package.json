@@ -5,6 +5,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "postbuild": "next-sitemap",
+    "build:prod-test": "pnpm install --prod --frozen-lockfile && pnpm build",
     "lint": "eslint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "test": "jest --watch",
