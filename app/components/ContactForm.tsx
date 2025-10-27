@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import { useForm } from 'react-hook-form'
 import { sendGTMEvent } from '@next/third-parties/google'
 import * as Sentry from '@sentry/nextjs'
