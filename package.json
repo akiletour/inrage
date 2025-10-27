@@ -8,7 +8,7 @@
     "lint": "eslint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "test": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
