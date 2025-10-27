@@ -7,7 +7,8 @@
     "postbuild": "next-sitemap",
     "lint": "eslint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "prepare": "husky"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -45,6 +46,9 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.16",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^22.18.12",
@@ -55,6 +59,8 @@
     "eslint": "^9.38.0",
     "eslint-config-next": "16.0.0",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
@@ -70,5 +76,12 @@
   "packageManager": "pnpm@10.3.0",
   "volta": {
     "node": "24.10.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix --max-warnings=0 --no-warn-ignored",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": "prettier --write"
   }
 }
