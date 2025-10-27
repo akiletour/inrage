@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+env:
+  HUSKY: 0
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -34,3 +37,28 @@ jobs:
         run: pnpm lint
       - name: Type Check
         run: pnpm type-check
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker images
+        uses: docker/bake-action@v6
+        env:
+          WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
+          NEXT_PUBLIC_FRONT_URL: http://localhost:3000
+          NEXT_PUBLIC_GTM_ID: GTM-XXXXX
+          NEXT_PUBLIC_SENTRY_RELEASE: ci-build
+        with:
+          pull: true
+          load: false
+          files: |
+            compose.yaml
+            compose.prod.yaml
+          set: |
+            *.cache-from=type=gha,scope=${{ github.ref }}
+            *.cache-from=type=gha,scope=refs/heads/main
+            *.cache-to=type=gha,scope=${{ github.ref }},mode=max

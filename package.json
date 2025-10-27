@@ -2,13 +2,14 @@
   "name": "inrage-react",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "postbuild": "next-sitemap",
+    "build:prod-test": "pnpm install --frozen-lockfile && pnpm build",
     "lint": "eslint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "test": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
