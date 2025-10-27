@@ -18,18 +18,44 @@ Since the project part has ACF custom fields. I use a second [GraphQL extension]
 
 ## 📦 Stack
 
-- `TypeScript`: v5
-- `NextJS`: v15.x
-- `Node`: v22+
-- `Tailwind CSS`: v4
-- `WordPress`: v6.7+
-- `Framer Motion`: for animations between page transitions
-- `Akismet`: to check spam in the contact form
-- `GraphQL`: communication with the WordPress API
+### Core Technologies
+
+- `TypeScript`: v5.9+
+- `Next.js`: v16.0 (App Router)
+- `React`: v19.2
+- `Node.js`: v24+ (Volta)
+- `pnpm`: v10.3 (Package manager)
+
+### Styling & Animations
+
+- `Tailwind CSS`: v4.1+ with Typography plugin
+- `Framer Motion`: v12+ for page transitions and animations
+- `GSAP`: v3+ for advanced animations
+
+### Backend & Data
+
+- `WordPress`: v6.7+ (Headless CMS)
+- `GraphQL`: WPGraphQL for WordPress API communication
+- `WPGraphQL ACF`: For Advanced Custom Fields support
+- `SWR`: Client-side data fetching
+
+### Content & Forms
+
+- `MDX`: Blog posts with frontmatter support
+- `React Hook Form`: Form management
+- `Akismet`: Spam protection for contact form
+- `Mailjet`: Email service integration
+
+### DevOps & Monitoring
+
+- `Sentry`: Error tracking and performance monitoring
+- `Turbopack`: Build tool (dev & production)
+- `Jest`: Testing framework
+- `ESLint`: Next.js core + TypeScript + Prettier
 
 ## ⚡️ Installation
 
-Make sure to use a recent version of Node.js (>= v22).
+Make sure to use a recent version of Node.js (>= v24).
 
 ```bash
 pnpm install
@@ -37,6 +63,15 @@ pnpm dev
 ```
 
 You can now access to the project with: http://localhost:3000
+
+### Available Commands
+
+- `pnpm dev` - Start development server with Turbopack (http://localhost:3000)
+- `pnpm build` - Build production application with Turbopack
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint for code quality
+- `pnpm type-check` - TypeScript type checking
+- `pnpm test` - Run Jest tests in watch mode
 
 ## 🔧 Configuration
 
@@ -49,6 +84,46 @@ To correctly run this project, you must create an environment variable named `.e
 - `WORDPRESS_AUTH_REFRESH_TOKEN`: If you need to access to your private and unpublished content
 - `WORDPRESS_PREVIEW_SECRET`: The token used by `/api/preview?secret=XXX`
 - `SLACK_WEBHOOK_URL`: If set, on each contact message, a Slack Webhook will be sent.
+
+## 🏗️ Architecture
+
+### Project Structure
+
+```
+app/
+├── (pages)/          # Route groups for main pages
+├── components/       # Reusable React components
+├── types/            # TypeScript type definitions (including GraphQL types)
+├── libs/             # Utility libraries and API functions
+├── utils/            # Helper utilities
+├── hooks/            # Custom React hooks
+├── layouts/          # Layout components
+└── graphql/          # GraphQL queries and mutations
+```
+
+### Path Aliases
+
+The project uses TypeScript path aliases for cleaner imports:
+
+- `@/*` → `app/*`
+- `@component/*` → `app/components/*`
+- `@layout/*` → `app/layouts/*`
+- `@hook/*` → `app/hooks/*`
+- `@type/*` → `app/types/*`
+- `@lib/*` → `app/libs/*`
+- `@util/*` → `app/utils/*`
+- `@image/*` → `public/images/*`
+- `@graphql-query/*` → `app/graphql/*`
+
+### Key Features
+
+- **App Router**: Using Next.js 16 App Router architecture
+- **TypeScript Strict Mode**: Comprehensive type safety
+- **MDX Support**: Blog posts written in MDX with frontmatter
+- **Image Optimization**: Remote WordPress images served via i0.wp.com
+- **Preview Mode**: Draft content preview functionality
+- **Tailwind Custom Theme**: 8px increment spacing system with custom color palette
+- **Authentication**: JWT-based for accessing private WordPress content
 
 # 🔒️ WordPress Configuration
 

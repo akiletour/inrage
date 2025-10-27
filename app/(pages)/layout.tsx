@@ -31,22 +31,25 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const jsonLd = {
-    organizationType: 'Corporation',
-    id: 'https://www.inrage.fr/#corporation',
-    logo: 'https://i1.wp.com/www.inrage.fr/wp-content/uploads/2019/12/logo-inrage.png?fit=150%2C56&ssl=1',
+    '@context': 'https://schema.org',
+    '@type': 'Corporation',
+    '@id': 'https://www.inrage.fr/#corporation',
+    logo: 'https://static.inrage.fr/signature/logo-inrage-square200.png',
     legalName: 'inRage SARL',
     name: 'inRage',
     address: {
+      '@type': 'PostalAddress',
       streetAddress: '10 rue Jean Perrin',
       addressLocality: 'La Rochelle',
       addressRegion: 'Charente Maritime',
       postalCode: '17000',
       addressCountry: 'FR',
     },
-    contactPoints: [
+    contactPoint: [
       {
+        '@type': 'ContactPoint',
         telephone: '+33 (0)6 82 96 38 39',
-        contactType: 'Pascal GAULT',
+        contactType: 'customer service',
         areaServed: 'FR',
         availableLanguage: 'French',
       },
