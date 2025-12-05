@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.19
 
-FROM node:22-alpine AS node_upstream
+FROM node:24-alpine AS node_upstream
 
 
 # Base stage for dev and build
