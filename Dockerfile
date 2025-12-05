@@ -1,4 +1,4 @@
-#syntax=docker/dockerfile:1.19
+#syntax=docker/dockerfile:1.20
 
 FROM node:24-alpine AS node_upstream
 
