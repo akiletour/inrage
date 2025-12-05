@@ -80,7 +80,7 @@
   },
   "packageManager": "pnpm@10.3.0",
   "volta": {
-    "node": "23.11.1"
+    "node": "24.11.1"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
