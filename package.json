@@ -21,7 +21,6 @@
     "@types/mdx": "^2.0.13",
     "@types/prismjs": "^1.26.5",
     "akismet-api": "^6.0.0",
-    "framer-motion": "^12.23.25",
     "graphql": "^16.12.0",
     "graphql-tag": "^2.12.6",
     "gsap": "^3.13.0",
