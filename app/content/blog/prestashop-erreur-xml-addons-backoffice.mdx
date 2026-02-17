@@ -1,0 +1,96 @@
+---
+title: "PrestaShop : impossible de se connecter au back-office à cause d'une erreur XML Addons"
+date: '2026-02-17'
+category: 'PrestaShop'
+thumbnail: '/images/articles/prestashop-erreur-xml-addons.jpg'
+excerpt: "Votre back-office PrestaShop affiche des erreurs XML liées aux fichiers country_module_list.xml et must_have_module_list.xml ? Découvrez comment résoudre ce problème causé par la maintenance de la plateforme Addons en quelques minutes."
+---
+
+import Image from 'next/image'
+
+<p className="text-3xl text-white mt-0">
+  Ce matin, plusieurs clients nous ont contacté avec le même problème : leur
+  back-office PrestaShop était inaccessible. Un écran d'erreur XML bloquait
+  tout. Si vous êtes dans cette situation, la solution est rapide.
+</p>
+
+## Ce qui se passe
+
+En vous connectant à votre back-office PrestaShop, vous tombez sur ce type de message :
+
+```
+Il y a plusieurs erreurs.
+1. Erreur : StartTag: invalid element name dans le fichier country_module_list.xml.
+2. Erreur : Extra content at the end of the document dans le fichier country_module_list.xml.
+3. Erreur : StartTag: invalid element name dans le fichier must_have_module_list.xml.
+4. Erreur : Extra content at the end of the document dans le fichier must_have_module_list.xml.
+```
+
+Le front-office continue de tourner normalement, seul le back-office est bloqué. Le problème touche les versions **PrestaShop 1.7.6.x**.
+
+## Pourquoi ça arrive
+
+PrestaShop contacte régulièrement les serveurs **Addons** (addons.prestashop.com) pour récupérer des listes de modules recommandés. Ces réponses sont stockées en local dans des fichiers XML sous `config/xml/`.
+
+Le souci : quand les serveurs Addons sont en maintenance, ils renvoient une page HTML au lieu du XML attendu. PrestaShop écrase les fichiers locaux avec ce contenu invalide, puis tente de les parser au chargement du back-office. Le XML est corrompu, le parser plante, le back-office devient inaccessible.
+
+## Comment corriger
+
+### Restaurer les fichiers XML corrompus
+
+Connectez-vous en SSH à votre serveur. Les fichiers corrompus se trouvent dans `config/xml/`. Il faut remplacer leur contenu par du XML valide mais vide, en attendant que les serveurs Addons reviennent en ligne :
+
+```bash
+cd /chemin/vers/votre/prestashop
+for f in config/xml/*.xml; do
+  echo '<?xml version="1.0" encoding="UTF-8"?><modules></modules>' > "$f"
+done
+```
+
+Si vous n'avez que du FTP, ouvrez chaque fichier `.xml` du dossier `config/xml/` et remplacez son contenu par :
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<modules></modules>
+```
+
+### Désactiver la vérification Addons
+
+Tant que les serveurs Addons sont instables, il faut empêcher PrestaShop de les contacter. Dans `classes/Tools.php`, trouvez :
+
+```php
+protected static $is_addons_up = true;
+```
+
+Et passez la valeur à `false` :
+
+```php
+protected static $is_addons_up = false;
+```
+
+### Vider le cache
+
+```bash
+rm -rf var/cache/*
+```
+
+Sur les anciennes versions :
+
+```bash
+rm -rf cache/smarty/compile/*
+rm -rf cache/smarty/cache/*
+```
+
+Reconnectez-vous au back-office, tout devrait fonctionner.
+
+## Après la maintenance Addons
+
+Une fois la plateforme Addons revenue à la normale, remettez la variable à `true` dans `classes/Tools.php` :
+
+```php
+protected static $is_addons_up = true;
+```
+
+Les fichiers XML se régénéreront correctement. Cette variable ne contrôle que les suggestions de modules dans le back-office — la passer à `false` n'a aucun impact sur votre boutique ni sur vos modules installés.
+
+Ce genre de problème revient à chaque maintenance Addons. Maintenant vous savez quoi faire.
