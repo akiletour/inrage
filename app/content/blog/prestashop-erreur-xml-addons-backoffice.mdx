@@ -38,16 +38,16 @@ Le souci : quand les serveurs Addons sont en maintenance, ils renvoient une page
 
 ### Restaurer les fichiers XML corrompus
 
-Connectez-vous en SSH à votre serveur. Les fichiers corrompus se trouvent dans `config/xml/`. Il faut remplacer leur contenu par du XML valide mais vide, en attendant que les serveurs Addons reviennent en ligne :
+Connectez-vous en SSH à votre serveur. Trois fichiers sont concernés dans `config/xml/` : `default_country_modules_list.xml`, `modules_native_addons.xml` et `must_have_modules_list.xml`. Il faut remplacer leur contenu par du XML valide mais vide, en attendant que les serveurs Addons reviennent en ligne :
 
 ```bash
 cd /chemin/vers/votre/prestashop
-for f in config/xml/*.xml; do
-  echo '<?xml version="1.0" encoding="UTF-8"?><modules></modules>' > "$f"
-done
+echo '<?xml version="1.0" encoding="UTF-8"?><modules></modules>' > config/xml/default_country_modules_list.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><modules></modules>' > config/xml/modules_native_addons.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><modules></modules>' > config/xml/must_have_modules_list.xml
 ```
 
-Si vous n'avez que du FTP, ouvrez chaque fichier `.xml` du dossier `config/xml/` et remplacez son contenu par :
+Si vous n'avez que du FTP, ouvrez ces trois fichiers et remplacez leur contenu par :
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
