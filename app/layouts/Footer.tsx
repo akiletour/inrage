@@ -75,6 +75,16 @@ export default function Footer() {
               <Socials />
             </div>
             <div>© 2008-2021 - inRage SARL. Tous droits réservés.</div>
+            <div className="mt-2 text-sm">
+              Nous éditons aussi&nbsp;:{' '}
+              <a
+                href="https://invoicer.fr"
+                className="text-orange hover:underline"
+              >
+                Invoicer
+              </a>{' '}
+              — logiciel de facturation pour auto-entrepreneurs.
+            </div>
             <a
               href="https://github.com/akiletour/inrage"
               className="text-white block md:flex mt-4 items-center"
