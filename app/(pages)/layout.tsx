@@ -60,6 +60,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       'https://www.instagram.com/akiletour/',
       'https://www.linkedin.com/in/akiletour/',
       'https://twitter.com/akiletour',
+      'https://invoicer.fr',
+      'https://github.com/inrage',
+      'https://www.linkedin.com/company/invoicer-fr',
     ],
   }
   return (
