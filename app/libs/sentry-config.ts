@@ -30,6 +30,17 @@ export const getSentryBaseConfig = (): Sentry.BrowserOptions => ({
     'fetch failed',
     'Load failed',
     'AbortError',
+    'Failed to parse body as FormData',
+    'no boundary found in multipart body',
+    'Unexpected end of form',
+    'Body exceeded 1 MB limit',
+    'Malformed part header',
+    'Malformed content type',
+    "Cannot read properties of null (reading 'arrayBuffer')",
+    'Unexpected non-whitespace character after JSON',
+    /Unexpected token .* is not valid JSON/,
+    'Connection closed',
+    /Failed to load chunk \/_next\/static\/chunks\//,
   ],
 
   denyUrls: [
@@ -41,6 +52,34 @@ export const getSentryBaseConfig = (): Sentry.BrowserOptions => ({
 
   beforeSend(event, hint) {
     const error = hint.originalException
+
+    if (event.request?.headers) {
+      const headers = event.request.headers as Record<string, string>
+      const headerKeys = Object.keys(headers).map((k) => k.toLowerCase())
+      if (headerKeys.includes('x-middleware-subrequest')) {
+        return null
+      }
+      const ipSpoofingHeaders = [
+        'true-client-ip',
+        'x-azure-clientip',
+        'x-azure-socketip',
+        'x-client-ip',
+        'x-originating-ip',
+        'x-forwared',
+        'x-host',
+      ]
+      const spoofingCount = ipSpoofingHeaders.filter((h) =>
+        headerKeys.includes(h)
+      ).length
+      if (spoofingCount >= 3) {
+        return null
+      }
+    }
+
+    const url = event.request?.url || ''
+    if (/\/RSC\/[a-z0-9]{8,}\.txt$/i.test(url)) {
+      return null
+    }
 
     if (error && typeof error === 'object' && 'message' in error) {
       const message = String(error.message).toLowerCase()
