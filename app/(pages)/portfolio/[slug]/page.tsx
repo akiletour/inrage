@@ -19,6 +19,10 @@ export async function generateMetadata(props: Props) {
   const category =
     portfolioCategories[params.slug as keyof typeof portfolioCategories]
 
+  if (!category) {
+    return {}
+  }
+
   return {
     title: `${category.title} - Portfolio`,
     description: '',
