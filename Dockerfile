@@ -14,7 +14,7 @@ WORKDIR /srv/app
 
 RUN apk upgrade && \
   corepack enable && \
-  corepack prepare --activate pnpm@latest && \
+  corepack prepare --activate pnpm@10.3.0 && \
   pnpm config -g set store-dir /.pnpm-store
 
 # Next.js collects completely anonymous telemetry data about general usage.
