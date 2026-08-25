@@ -40,7 +40,6 @@ RUN pnpm fetch
 
 COPY --link . .
 
-ARG WORDPRESS_API_URL
 # https://nextjs.org/docs/app/building-your-application/configuring/environment-variables#bundling-environment-variables-for-the-browser
 ARG NEXT_PUBLIC_FRONT_URL
 ARG NEXT_PUBLIC_GTM_ID

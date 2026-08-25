@@ -11,7 +11,7 @@ import TableLine from '@component/tma/TableLine'
 import BgTma from '@image/bg-tma.jpeg'
 import LogoGrey from '@image/logo-grey-inline-white.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { EntriesType } from '@type/graphql/portfolio'
+import { EntriesType } from '@type/portfolio'
 
 export const metadata = {
   title: 'Maintenance site WordPress | Freelance - inRage',

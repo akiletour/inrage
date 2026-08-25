@@ -6,14 +6,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'i0.wp.com',
-      },
-    ],
-  },
   experimental: {
     serverComponentsExternalPackages: [
       '@opentelemetry/api',

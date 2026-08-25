@@ -39,11 +39,4 @@ export const getCanonicalUrl = (part: string = ''): string => {
   return `${process.env.NEXT_PUBLIC_FRONT_URL}${part}`
 }
 
-export const replaceBackendUrlContent = (content: string): string => {
-  return content.replace(
-    process.env.BACKEND_URL as string,
-    process.env.NEXT_PUBLIC_FRONT_URL as string
-  )
-}
-
 export default RouteLink

@@ -1,13 +1,7 @@
-import PostBody from '@component/blog/PostBody'
-import PostComments from '@component/blog/PostComments'
 import ArticleItem from '@component/items/ArticleItem'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
-import {
-  getCanonicalUrl,
-  replaceBackendUrlContent,
-  RouteLink,
-} from '@lib/router'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { notFound } from 'next/navigation'
 import { getBlogItems, getSingleBlogItem } from '@lib/blog'
 
@@ -17,12 +11,8 @@ type Props = {
   }>
 }
 
-const getAllBlogPostsSlugs = async () => {
-  return await getBlogItems()
-}
-
 export async function generateStaticParams() {
-  const data = await getAllBlogPostsSlugs()
+  const data = await getBlogItems()
 
   return data.map(({ slug }) => ({
     slug,
@@ -86,18 +76,10 @@ export default async function Page(props: Props) {
       title={post.title}
     >
       <div className="container">
-        {post.databaseId !== 0 ? (
-          <PostBody content={replaceBackendUrlContent(post.content)} />
-        ) : (
-          <div className="my-16 prose prose-lg prose-invert !max-w-5xl mx-auto">
-            <post.content />
-          </div>
-        )}
+        <div className="my-16 prose prose-lg prose-invert !max-w-5xl mx-auto">
+          <post.content />
+        </div>
       </div>
-
-      {post.databaseId !== 0 && (
-        <PostComments postDatabaseId={post.databaseId} identifier={post.id} />
-      )}
 
       <div className="container">
         <SectionTitle

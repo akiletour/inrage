@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import SectionTitle from '@component/SectionTitle'
 import PortfolioGrid from '@component/portfolio/PortfolioGrid'
 import SupportSwitcher from '@component/portfolio/SupportSwitcher'
-import { ProjectList } from '@type/graphql'
+import { ProjectList } from '@type/portfolio'
 
 interface EcommercePortfolioSectionProps {
   projects: ProjectList[]
