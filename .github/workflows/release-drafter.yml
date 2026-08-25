@@ -13,6 +13,6 @@ jobs:
       pull-requests: write
     steps:
       - id: release_info
-        uses: release-drafter/release-drafter@v6
+        uses: release-drafter/release-drafter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
