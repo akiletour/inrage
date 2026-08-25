@@ -33,7 +33,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(portfolioCategories).map(async (slug) => ({ slug }))
+  return Object.keys(portfolioCategories).map((slug) => ({ slug }))
 }
 
 export default async function Page(props: Props) {
