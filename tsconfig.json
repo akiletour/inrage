@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -36,37 +32,16 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql-queryc*": [
-        "app/graphql/*"
-      ],
-      "@layout/*": [
-        "app/layouts/*"
-      ],
-      "@hook/*": [
-        "app/hooks/*"
-      ],
-      "@type/*": [
-        "app/types/*"
-      ],
-      "@image/*": [
-        "public/images/*"
-      ],
-      "@lib/*": [
-        "app/libs/*"
-      ],
-      "@component/*": [
-        "app/components/*"
-      ],
-      "@util/*": [
-        "app/utils/*"
-      ],
-      "@/*": [
-        "app/*"
-      ]
+      "@layout/*": ["app/layouts/*"],
+      "@hook/*": ["app/hooks/*"],
+      "@type/*": ["app/types/*"],
+      "@image/*": ["public/images/*"],
+      "@lib/*": ["app/libs/*"],
+      "@component/*": ["app/components/*"],
+      "@util/*": ["app/utils/*"],
+      "@/*": ["app/*"]
     },
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"
@@ -82,7 +57,5 @@
     "next.config.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

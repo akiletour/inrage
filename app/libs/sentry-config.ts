@@ -207,24 +207,3 @@ export const captureApiError = (
     Sentry.captureException(error)
   })
 }
-
-export const captureGraphQLError = (
-  errors: unknown,
-  query: string,
-  variables?: Record<string, unknown>
-) => {
-  Sentry.withScope((scope) => {
-    scope.setTag('api.name', 'WordPress')
-    scope.setTag('api.type', 'graphql')
-
-    scope.setContext('graphql_details', {
-      query: query.substring(0, 200),
-      variables: variables,
-      errors: errors,
-    })
-
-    Sentry.captureException(
-      new Error('GraphQL Error: ' + JSON.stringify(errors))
-    )
-  })
-}
