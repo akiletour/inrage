@@ -28,8 +28,8 @@
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.6",
     "prop-types": "^15.8.1",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-hook-form": "^7.68.0",
     "react-use": "^17.6.0",
     "remark-frontmatter": "^5.0.0",
@@ -46,8 +46,8 @@
     "@tailwindcss/postcss": "^4.1.17",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24.10.1",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
     "@types/request-ip": "^0.0.41",
     "@types/sanitize-html": "^2.16.0",
     "eslint": "^9.39.1",
@@ -61,10 +61,10 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "19.2.7",
+      "@types/react": "19.2.18",
       "formidable": "3.5.4",
       "unist-util-mdx-define>estree-walker": "^2.0.2",
-      "@types/react-dom": "19.2.3"
+      "@types/react-dom": "19.2.5"
     },
     "onlyBuiltDependencies": [
       "@sentry/cli",
