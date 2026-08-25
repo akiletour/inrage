@@ -6,20 +6,30 @@ on:
     inputs:
       argocd-appname:
         type: string
-        description: ArgoCD application name
+        description: Staging ArgoCD application name
+        required: true
+      argocd-prod-appname:
+        type: string
+        description: Production ArgoCD application name
         required: true
     secrets:
       argocd-server:
-        description: ArgoCD server URI
+        description: Staging ArgoCD server URI
         required: true
       argocd-username:
-        description: ArgoCD deployer username
+        description: Staging ArgoCD deployer username
         required: true
       argocd-password:
-        description: ArgoCD deployer password
+        description: Staging ArgoCD deployer password
         required: true
-      webhook-url:
-        description: Production webhook URL
+      argocd-prod-server:
+        description: Production ArgoCD server URI
+        required: true
+      argocd-prod-username:
+        description: Production ArgoCD deployer username
+        required: true
+      argocd-prod-password:
+        description: Production ArgoCD deployer password
         required: true
 
 jobs:
@@ -39,7 +49,7 @@ jobs:
         with:
           version: 2.6.7
           command: app set argocd/${{ inputs.argocd-appname }}
-          options: --parameter pwa.branch=${{ github.sha }}
+          options: --parameter image.tag=${{ github.sha }}
   deploy:
     name: Production deployment
     runs-on: ubuntu-latest
@@ -47,6 +57,13 @@ jobs:
     environment:
       name: production
     steps:
-      - uses: inrage/webhook-action@v1
+      - uses: clowdhaus/argo-cd-action/@main
         with:
-          webhook_production: ${{ secrets.webhook-url }}
+          version: 2.6.7
+          command: login ${{ secrets.argocd-prod-server }}
+          options: --password ${{ secrets.argocd-prod-password }} --username ${{ secrets.argocd-prod-username }}
+      - uses: clowdhaus/argo-cd-action/@main
+        with:
+          version: 2.6.7
+          command: app set argocd/${{ inputs.argocd-prod-appname }}
+          options: --parameter image.tag=${{ github.sha }}
