@@ -23,6 +23,15 @@ body {
   @apply max-w-7xl mx-auto px-4 md:px-8;
 }
 
+.prose :where(code):not(:where(pre *))::before,
+.prose :where(code):not(:where(pre *))::after {
+  content: none;
+}
+
+.prose :where(code):not(:where(pre *)) {
+  @apply bg-gray-darker text-white font-normal rounded px-1.5 py-0.5 text-[0.8em];
+}
+
 .button {
   @apply h-10 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-4 inline-flex font-medium;
 }
