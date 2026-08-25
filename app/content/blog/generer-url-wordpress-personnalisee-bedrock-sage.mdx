@@ -1,0 +1,63 @@
+---
+title: 'Générer une URL personnalisée WordPress avec Bedrock et Sage'
+date: '2020-01-20'
+category: 'WordPress'
+thumbnail: '/images/articles/generer-url-wordpress-personnalisee-bedrock-sage.jpg'
+excerpt: 'Découvrez comment générer une URL personnalisée sur WordPress depuis notre thème en utilisant Bedrock et Sage développé par Sage grâce aux variables d''env.'
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+
+<MdxIntroduction>On va voir comment créer une URL WordPress personnalisée quand on utilise le moteur du thème Sage développé par Roots pour les besoins de notre thème et de son intégration.</MdxIntroduction>
+
+Je suis constamment en train de créer une page dans le backoffice de [WordPress](/portfolio) pour ajouter une entrée vers ma page `ui.blade.php` me permettant de voir tous les composants CSS, les animations etc…
+
+Il m’arrive fréquemment de laisser cette page quand je pousse le projet en préproduction ou en production. Je cherchais donc une solution pour avoir cette page uniquement quand je développe en local le projet.
+
+[Bedrock](https://roots.io/bedrock/) possède une formidable gestion des variables d’environnement. Je me suis donc basé sur ça pour générer une URL WordPress personnalisée pour afficher ma page `ui.blade.php` uniquement en local.
+
+![Section UI du site inrage.fr](/images/articles/generer-url-wordpress-personnalisee-bedrock-sage-1.png)
+
+Le code que vous trouverez ci-dessous est très rapide à ajouter sur chacun des projets qui utilisent Bedrock et [Sage](https://roots.io/sage/).
+
+```php
+/**
+ * Add an UI board for development only
+ */
+if (getenv('WP_ENV') === 'development') {
+    add_action(
+        'init',
+        function () {
+            $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH), '/');
+            if ($url_path === 'ui') {
+                $load = locate_template('views/ui.blade.php');
+                if ($load) {
+                    echo template($load);
+                    exit();
+                }
+            }
+        }
+    );
+}
+```
+
+Maintenant que l’on a généré l’URL personnalisée côté WordPress, on va devoir créer notre fichier côté thème. Le code ci-dessus requière le fichier `views/ui.blade.php`. On va créer notre fichier dans :
+
+```blade
+
+@extends('layouts.app')
+@section('content')
+
+  <h1>Planche UI</h1>
+
+@endsection
+```
+
+## Type d’environnement natif à WordPress
+
+Depuis la version 5.5, WordPress a introduit les types d’environnement directement dans le coeur de WordPress. J’ai écris un article pouvoir [comment gérer les types d’environnement sur WordPress](/blog/type-environnement-wordpress-5-5).
+
+Donc si vous n’êtes pas encore sur Bedrock, ça peut vous aider 😉 Je reprends l’exemple de cette article !
+
+Désormais, quand on est sur la version local du projet. Si on accède à `http://127.0.0.1:8000/ui` on voit bien la page.  
+Par contre, si on y accède depuis la version en préproduction ou production. On se voit rediriger vers la page 404.
