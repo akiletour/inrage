@@ -80,8 +80,11 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       argocd-appname: inrage-inr-dev
+      argocd-prod-appname: inrage-fr
     secrets:
       argocd-server: ${{ secrets.STAGING_ARGOCD_SERVER }}
       argocd-username: ${{ secrets.STAGING_ARGOCD_USERNAME }}
       argocd-password: ${{ secrets.STAGING_ARGOCD_PASSWORD }}
-      webhook-url: ${{ secrets.WEBHOOK_URL }}
+      argocd-prod-server: ${{ secrets.PROD_ARGOCD_SERVER }}
+      argocd-prod-username: ${{ secrets.PROD_ARGOCD_USERNAME }}
+      argocd-prod-password: ${{ secrets.PROD_ARGOCD_PASSWORD }}
