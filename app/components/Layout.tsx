@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Fragment, ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 
 import { motion } from 'motion/react'
 

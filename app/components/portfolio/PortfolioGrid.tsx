@@ -1,5 +1,5 @@
 import ProjectItem from '@component/items/ProjectItem'
-import { ProjectList } from '@type/graphql'
+import { ProjectList } from '@type/portfolio'
 import { portfolioCategories } from '@lib/portfolio'
 
 interface PortfolioGridProps {

@@ -1,6 +1,6 @@
-#syntax=docker/dockerfile:1.18
+#syntax=docker/dockerfile:1.20
 
-FROM node:22-alpine AS node_upstream
+FROM node:24-alpine AS node_upstream
 
 
 # Base stage for dev and build
@@ -13,9 +13,9 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /srv/app
 
 RUN apk upgrade && \
-    corepack enable && \
-	corepack prepare --activate pnpm@latest && \
-	pnpm config -g set store-dir /.pnpm-store
+  corepack enable && \
+  corepack prepare --activate pnpm@10.3.0 && \
+  pnpm config -g set store-dir /.pnpm-store
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -36,17 +36,17 @@ CMD ["sh", "-c", "pnpm install; pnpm dev"]
 FROM base AS builder
 
 COPY --link pnpm-lock.yaml ./
-RUN pnpm fetch --prod
+RUN pnpm fetch
 
 COPY --link . .
 
-ARG WORDPRESS_API_URL
 # https://nextjs.org/docs/app/building-your-application/configuring/environment-variables#bundling-environment-variables-for-the-browser
 ARG NEXT_PUBLIC_FRONT_URL
 ARG NEXT_PUBLIC_GTM_ID
+ARG NEXT_PUBLIC_SENTRY_RELEASE
 
-RUN	pnpm install --frozen-lockfile --offline --prod && \
-	pnpm run build
+RUN	pnpm install --frozen-lockfile --offline && \
+  pnpm run build
 
 
 # Production image, copy all the files and run next
@@ -59,13 +59,13 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs; \
-	adduser --system --uid 1001 nextjs
+  adduser --system --uid 1001 nextjs
 
 COPY --from=builder --link /srv/app/public ./public
 
 # Set the correct permission for prerender cache
 RUN mkdir .next; \
-	chown nextjs:nodejs .next
+  chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing

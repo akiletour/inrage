@@ -11,7 +11,7 @@ import {
   getEcommerceTechnologies,
   getEcommerceOfferings,
 } from '@util/seo-generators'
-import { ProjectList } from '@type/graphql'
+import { ProjectList } from '@type/portfolio'
 import { EcommerceTechnology, EcommerceService } from '@type/seo'
 
 export const metadata = generateEcommerceMetadata()

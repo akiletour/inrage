@@ -1,0 +1,66 @@
+---
+title: "Pourquoi on a construit Invoicer, un logiciel de facturation pensé pour les auto-entrepreneurs"
+date: '2026-04-27'
+category: 'SaaS'
+thumbnail: '/images/articles/invoicer-cover.jpg'
+excerpt: "Retour sur la genèse d'Invoicer, le SaaS de facturation que nous éditons chez inRage. Pourquoi un nouveau logiciel quand le marché en compte déjà des dizaines ? Parce qu'aucun ne réunissait URSSAF, encaissement par carte et rapprochement bancaire dans un seul outil au prix d'entrée."
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+
+<MdxIntroduction>En tant que développeur freelance, j'utilise un logiciel de facturation depuis plus de dix ans. À chaque fois que je devais déclarer mon URSSAF, encaisser un client par carte, ou rapprocher un virement avec une facture, je devais jongler entre trois outils différents. C'est cette friction quotidienne qui m'a poussé à construire Invoicer.</MdxIntroduction>
+
+[Invoicer](https://invoicer.fr) est notre réponse à un marché français de la facturation pour auto-entrepreneurs qui ne manque pas d'acteurs&nbsp;: Tiime, Indy, Abby, Henrri, Evoliz, Pennylane… La question légitime au moment de lancer un nouveau produit, c'est&nbsp;: pourquoi un de plus&nbsp;?
+
+La réponse tient en une observation toute simple. **Aucun de ces outils ne réunit, sur son plan d'entrée, les trois fonctionnalités qui structurent vraiment le quotidien d'un AE&nbsp;: la déclaration URSSAF, l'encaissement par carte bancaire, et le rapprochement avec sa banque.**
+
+## Le problème qu'on a voulu résoudre
+
+Prenez un auto-entrepreneur qui démarre. Chaque mois ou chaque trimestre, il doit&nbsp;:
+
+1. Calculer son chiffre d'affaires encaissé (et pas son CA facturé — c'est ce qui est encaissé qui compte pour l'URSSAF)
+2. Se connecter à son espace URSSAF, recopier le chiffre, valider
+3. Quand un client veut payer par carte, lui envoyer un autre lien (Stripe, Helloasso, PayPal…) — et espérer que l'encaissement remonte un jour dans son logiciel
+4. Vérifier sur sa banque que les virements sont bien arrivés, et marquer manuellement les factures comme payées
+
+Trois outils, trois étapes manuelles, trois sources de friction. Une enquête interne menée auprès de 30 indépendants début 2025 nous a confirmé un ressenti partagé : **4 à 6 heures par mois perdues** sur ces tâches administratives, dont la moitié uniquement à cause des allers-retours entre les outils.
+
+## La proposition de valeur d'Invoicer
+
+[Invoicer](https://invoicer.fr) part d'un parti pris assumé&nbsp;: ne pas faire de comptabilité complexe, mais optimiser **le flux quotidien** d'un auto-entrepreneur français. Concrètement, sur le plan Starter à 6&nbsp;€ HT/mois, vous avez nativement&nbsp;:
+
+- **Déclaration URSSAF automatique**. Le CA encaissé est calculé tout seul depuis vos factures payées. Les cotisations sont estimées avec les taux 2026 (BIC vente 12,3 %, BIC service 21,2 %, BNC général 25,6 %, CIPAV 23,2 %). L'ACRE est appliqué automatiquement si vous renseignez votre date de fin. Et un export CSV est prêt à coller dans votre espace URSSAF.
+
+- **Rapprochement bancaire automatique**. Invoicer se connecte à votre banque existante via [Bridge API](https://docs.bridgeapi.io), agrégateur agréé ACPR. Vous gardez votre compte BNP, Crédit Agricole, Qonto ou Shine, et les rapprochements se font tout seuls grâce à un moteur de suggestion qui analyse référence, montant et nom du client.
+
+À partir du plan Pro à 15&nbsp;€ HT/mois, on ajoute&nbsp;:
+
+- **Encaissement par carte bancaire natif** via Stripe Connect. Un lien à envoyer par email, SMS ou WhatsApp, votre client clique, paie, la facture passe en payée toute seule. Les virements arrivent sur votre compte sous 2 jours.
+
+- **Relances automatiques** d'impayés à 3 niveaux (rappel amical → relance → mise en demeure), avec PDF joint et templates personnalisables.
+
+## Pourquoi ce choix de stack technique
+
+Invoicer est un monorepo&nbsp;:
+
+- **Backend** Symfony 7.4 sur PHP 8.4 (FrankenPHP), Doctrine ORM avec multi-tenancy par filtre Doctrine, workflow Symfony pour modéliser le cycle de vie des documents (`draft → ready → due → send → paid`), authentification stateless via Lexik JWT et refresh token. Choisir Symfony plutôt qu'un framework plus récent type NestJS ou FastAPI, c'était assumer dix ans d'expérience sur la stack. Quand on construit un produit de facturation où la rigueur des données et les workflows métier sont critiques, on a besoin d'un framework mature qui n'oublie rien.
+
+- **Frontend** Next.js 16 (App Router) avec React 19, Tailwind CSS 4, shadcn/ui et NextAuth pour l'auth. Le frontend ne parle jamais directement au backend en clair&nbsp;: toutes les requêtes passent par des routes API Next.js qui injectent les tokens JWT côté serveur. Architecture sécurisée par design, pas par convention.
+
+- **Infrastructure** Docker Swarm derrière Traefik, déploiement par GitHub Actions CD (staging via ArgoCD, production via webhook), monitoring Sentry et Uptime-Kuma, hébergement entièrement en France.
+
+## Conformité réforme 2026
+
+La facturation électronique devient obligatoire en France à partir de septembre 2026. Invoicer est déjà prêt&nbsp;: chaque facture émise embarque un fichier XML Factur-X (profil Basic) directement dans le PDF, et l'interconnexion avec le Portail Public de Facturation se fait via la plateforme agréée Pennylane. Le jour de la bascule, vous n'avez rien à faire.
+
+## Et après&nbsp;?
+
+Le produit est en croissance, avec une roadmap structurée autour de trois axes&nbsp;: enrichissement du module URSSAF (V1 d'API tierce déclaration en cours), profondeur du rapprochement bancaire (transactions sortantes, multi-comptes), et ouverture progressive aux EI classiques et TPE qui partagent les mêmes besoins de fluidité.
+
+Pour suivre les nouveautés, consultez notre [changelog public sur GitHub](https://github.com/inrage/invoicer-changelog) qui mirror la section "Quoi de neuf" de l'application.
+
+Et si vous êtes auto-entrepreneur, vous pouvez tester [Invoicer gratuitement pendant 30 jours sans carte bancaire](https://invoicer.fr/register), ou consulter [le comparatif factuel avec Abby, Indy et Tiime](https://invoicer.fr/alternatives).
+
+---
+
+> _inRage est l'éditeur français d'Invoicer. Pour toute question presse ou partenariat, contactez Pascal Gault — pascal@inrage.fr._

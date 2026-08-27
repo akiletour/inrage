@@ -1,0 +1,65 @@
+---
+title: 'Invoicer'
+category: 'application-web'
+categories: ['application-web']
+website: 'https://invoicer.fr'
+year: 2026
+summary: "Création d'Invoicer, logiciel SaaS de facturation pour auto-entrepreneurs et indépendants français. Combine déclaration URSSAF automatique, encaissement par carte bancaire (Stripe Connect) et rapprochement bancaire (Bridge API) dans un seul outil dès 6 € HT/mois."
+excerpt: "Conception, développement et exploitation d'Invoicer, SaaS de facturation français pour auto-entrepreneurs. Stack Symfony 7.4 + Next.js 16 + React 19, intégrations Stripe Connect, Bridge API et Pennylane PDP pour la facturation électronique 2026. Hébergé en France, conforme RGPD."
+actions:
+  - Conception produit et UX (cible auto-entrepreneur français)
+  - Architecture monorepo Symfony 7.4 (PHP 8.4) + Next.js 16 (App Router) + React 19
+  - Intégration native Stripe Connect pour l'encaissement par carte bancaire
+  - Intégration Bridge API (agréé ACPR) pour le rapprochement bancaire automatique
+  - Module URSSAF auto-entrepreneur (calcul cotisations, ACRE, alertes franchise TVA)
+  - Conformité réforme facturation électronique 2026 (Factur-X + connexion PPF via Pennylane)
+  - Génération PDF haute qualité via Gotenberg
+  - Authentification stateless via Lexik JWT + refresh token
+  - Déploiement Docker Swarm + Traefik + ArgoCD (staging) + GitHub Actions CD
+
+image:
+  thumbnail: invoicer-sm.jpg
+  large: invoicer.jpg
+
+tools:
+  - symfony
+  - react
+  - typescript
+  - tailwind
+  - docker
+---
+
+## Invoicer — la facturation, enfin sereine
+
+[Invoicer](https://invoicer.fr) est un logiciel SaaS de facturation conçu spécifiquement pour les auto-entrepreneurs et indépendants français. Là où les outils existants segmentent les fonctionnalités essentielles sur des plans différents, Invoicer regroupe les trois piliers du quotidien d'un auto-entrepreneur dans un seul outil dès 6 € HT/mois&nbsp;:
+
+- **Déclaration URSSAF automatique** — calcul du chiffre d'affaires encaissé, estimation des cotisations avec les taux 2026, ACRE auto-appliqué, alertes franchise TVA et plafond micro
+- **Encaissement par carte bancaire natif** — via Stripe Connect, lien de paiement à partager par email, SMS ou WhatsApp, virements automatiques sous 2 jours
+- **Rapprochement bancaire automatique** — synchronisation avec la banque existante de l'utilisateur (BNP, Crédit Agricole, Qonto, Shine…) via Bridge API, agréé ACPR
+
+L'application est par ailleurs conforme à la **réforme française de la facturation électronique 2026**&nbsp;: format Factur-X (PDF + XML structuré) embarqué automatiquement dans chaque facture, et connexion au Portail Public de Facturation via la plateforme agréée Pennylane.
+
+## Architecture technique
+
+Invoicer repose sur une architecture monorepo&nbsp;:
+
+- **Backend** Symfony 7.4 (PHP 8.4) sur FrankenPHP, base de données MariaDB 11, Doctrine ORM avec multi-tenancy (filtre Doctrine `GroupFilter`), workflow Symfony pour le cycle de vie des documents (`draft → ready → due → send → paid`), authentification stateless Lexik JWT + refresh token
+- **Frontend** Next.js 16 (App Router) avec React 19, Tailwind CSS 4, shadcn/ui, NextAuth 5, SWR pour la gestion de cache côté client
+- **Infrastructure** Docker Swarm derrière Traefik, déploiement par GitHub Actions CD (staging via ArgoCD, production via webhook), monitoring Sentry et Uptime-Kuma, hébergement en France
+
+Le tout est livré en intégration continue avec PHPStan, PHP-CS-Fixer, Rector et PHPUnit côté backend, et ESLint, TypeScript strict et tests Jest côté frontend.
+
+## Pourquoi cette approche 3-en-1
+
+Un auto-entrepreneur perd en moyenne plusieurs heures par mois à jongler entre son logiciel de facturation, son espace URSSAF et sa banque. Cette friction est rarement traitée frontalement par les outils existants, qui sont soit généralistes (et imposent des fonctionnalités inutiles à un AE), soit spécialisés sur une seule étape (et obligent à utiliser plusieurs services).
+
+Invoicer fait le pari inverse&nbsp;: ne pas faire de comptabilité complexe, mais optimiser **le flux quotidien** d'un auto-entrepreneur français. Vous facturez, votre client paye par carte bancaire depuis le lien dans l'email, l'encaissement est rapproché automatiquement avec votre banque, et le chiffre d'affaires est télétransmis à l'URSSAF à la fréquence que vous avez choisie. Le tout sans que vous ayez à intervenir.
+
+## Quelques chiffres
+
+- **3 plans** seulement&nbsp;: Starter (6&nbsp;€), Pro (15&nbsp;€), Business (39&nbsp;€) HT par mois
+- **30 jours** d'essai gratuit, sans carte bancaire requise
+- **100&nbsp;%** des données hébergées en France et dans l'Union européenne
+- Conforme RGPD, support en français, équipe basée en France
+
+→ [Découvrir Invoicer sur invoicer.fr](https://invoicer.fr) ou consulter la [comparaison avec Abby, Indy et Tiime](https://invoicer.fr/alternatives).

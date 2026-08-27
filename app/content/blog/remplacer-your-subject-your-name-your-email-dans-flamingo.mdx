@@ -1,0 +1,48 @@
+---
+title: 'Remplacer [your-subject] [your-name] [your-email] dans Flamingo'
+date: '2019-10-02'
+category: 'WordPress'
+thumbnail: '/images/articles/remplacer-your-subject-your-name-your-email-dans-flamingo.jpg'
+excerpt: 'Modifier les variables de Flamingo : your-name, your-email et your-subject si vous utilisez vos propres variables dans vos formulaires Contact Form 7.'
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+
+<MdxIntroduction>Si vous utilisez Flamingo pour sauvegarder les e-mails envoyés par vos formulaires Contact Form, il se peut que vous n’utilisiez pas les champs par défaut \[your-subject\], \[your-name\] et \[your-email\]. Nous allons voir comment override ces champs pour utiliser les vôtres.</MdxIntroduction>
+
+[Chez inRage](/contact), nous utilisons par exemple les champs ci-dessous pour remplir nos différents formulaires :
+
+-   \[firstname\] : Prénom du contact
+-   \[lastname\] : Nom du contact
+-   \[subject\] : Sujet du mail
+-   \[mail\] : Adresse e-mail du contact
+
+Si l’on se rend dans « Messages entrants » de [Flamingo](https://fr.wordpress.org/plugins/flamingo/), nous pouvons voir que notre nouveau message a un rendu un peu bizarre, il ne récupère pas les champs que nous avons définis par défaut dans notre formulaire.
+
+Étant donné que Flamingo ne peut pas savoir quel champ va où, il va utiliser les champs fournis par défaut dans [Contact Form](https://fr.wordpress.org/plugins/contact-form-7/).
+
+![Liste des messages entrant Flamingo](/images/articles/remplacer-your-subject-your-name-your-email-dans-flamingo-1.png)
+
+## Comment définir l’email, le nom et le sujet dans Flamingo
+
+L’idée va être de définir des réglages supplémentaires au niveau de la création de notre formulaire.
+
+![Réglage additionnel de Contact Form 7](/images/articles/remplacer-your-subject-your-name-your-email-dans-flamingo-2.png)
+
+Pour définir ces variables, on va se rendre dans l’onglet « Réglages additionnels » au niveau de notre formulaire Contact Form.
+
+Nous allons ajouter les réglages ci-dessous pour associer nos 3 champs :
+
+```
+flamingo_email : "[mail]"
+flamingo_name : "[firstname] [lastname]"
+flamingo_subject : "[subject]
+```
+
+Vos prochains messages seront maintenant au bon format et seront affichés correctement dans Flamingo.
+
+![Champ personnalisé titre Contact form 7 / Flamingo](/images/articles/remplacer-your-subject-your-name-your-email-dans-flamingo-3.png)
+
+Je vous invite à regarder la [documentation officiel de Contact Form](https://contactform7.com/save-submitted-messages-with-flamingo/) pour savoir comment fonctionne les variables au niveau de Flamingo.
+
+Nous pouvons pour le moment modifier que les 3 variables, mais par la suite il y en aura surement plus.

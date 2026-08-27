@@ -26,13 +26,12 @@
     "allowJs": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@graphql-queryc*": ["app/graphql/*"],
       "@layout/*": ["app/layouts/*"],
       "@hook/*": ["app/hooks/*"],
       "@type/*": ["app/types/*"],
@@ -55,7 +54,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "next.config.ts"
+    "next.config.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
