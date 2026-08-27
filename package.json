@@ -63,7 +63,7 @@
     "overrides": {
       "@types/react": "19.2.18",
       "formidable": "3.5.4",
-      "unist-util-mdx-define>estree-walker": "^2.0.2",
+      "unist-util-mdx-define>estree-walker": "^3.0.0",
       "@types/react-dom": "19.2.5",
       "qs": ">=6.15.2",
       "form-data": ">=4.0.6",
