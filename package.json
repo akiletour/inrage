@@ -76,7 +76,7 @@
       "sharp"
     ]
   },
-  "packageManager": "pnpm@10.3.0",
+  "packageManager": "pnpm@11.25.0",
   "volta": {
     "node": "24.20.0"
   },
