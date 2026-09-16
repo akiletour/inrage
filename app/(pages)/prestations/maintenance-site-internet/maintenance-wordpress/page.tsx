@@ -16,7 +16,7 @@ import { EntriesType } from '@type/portfolio'
 export const metadata = {
   title: 'Maintenance site WordPress | Freelance - inRage',
   description:
-    'Développeur freelance, découvrez mon offre de maintenance WordPress sur mesure. Avec plus de 150 clients en infogérance WordPress, je suis expert dans la maintenance TMA WordPress.',
+    'Développeur freelance, découvrez mon offre de maintenance WordPress sur mesure. Plus de 150 clients en infogérance : mises à jour, sécurité et sauvegardes.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaWordPress),
   },

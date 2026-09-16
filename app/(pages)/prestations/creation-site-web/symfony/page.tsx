@@ -15,10 +15,9 @@ import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title:
-    'Développeur Freelance spécialisé dans la création de site avec Symfony',
+  title: 'Développeur Symfony freelance à La Rochelle - inRage',
   description:
-    'Développeur Freelance Symfony spécialisé dans la création de site et application avec le Framework PHP Symfony.',
+    'Développeur freelance Symfony à La Rochelle, spécialisé dans la création de sites et d’applications métier avec le framework PHP Symfony. Devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationSymfony),
   },

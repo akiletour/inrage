@@ -9,9 +9,9 @@ import TmaImage from '@image/tma.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Maintenance site web | Freelance maintenance site internet - inRage',
+  title: 'Maintenance de site internet | Freelance - inRage',
   description:
-    'Développeur freelance pour la maintenance de votre site web. Forfait infogérance de votre site WordPress et Prestashop clé en main, sans surcout. Une infogérance complète pour maintenir à jour votre site.',
+    'Développeur freelance pour la maintenance de votre site web : forfait infogérance WordPress et Prestashop clé en main, sans surcoût, mises à jour et sécurité.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },

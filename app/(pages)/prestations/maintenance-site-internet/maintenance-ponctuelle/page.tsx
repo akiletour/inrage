@@ -12,10 +12,9 @@ import PrestationSupport from '@image/prestations/support_technique_772424.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title:
-    'Développement, maintenance et intervention ponctuelle site web | Freelance - inRage',
+  title: 'Maintenance ponctuelle de site web | Freelance - inRage',
   description:
-    'Développeur freelance, je peux intervenir ponctuellement sur votre site sous forme d’heures de développement, que ce soit pour l’intégration d’un nouveau bloc ou une nouvelle fonctionnalité.',
+    'Développeur freelance, j’interviens ponctuellement sur votre site sous forme d’heures de développement : nouveau bloc, nouvelle fonctionnalité ou correctif.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
   },

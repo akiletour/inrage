@@ -15,9 +15,9 @@ import BuildWordPress from '@image/website-wp.png'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
-  title: 'Création de site internet | Freelance création de site web - inRage',
+  title: 'Création de site internet à La Rochelle | Freelance - inRage',
   description:
-    'Développeur et intégrateur freelance, spécialisé dans la création de sites internet sur WordPress, Prestashop et Symfony. Découvrez toutes mesprestations Web !',
+    'Développeur et intégrateur freelance à La Rochelle, spécialisé dans la création de sites internet WordPress, Prestashop, Symfony et React. Découvrez mes prestations.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWeb),
   },
@@ -68,13 +68,18 @@ export default function PrestationBuildWebsite() {
               Je réalise pour vous tout type d’applications web, du site vitrine
               à la boutique en ligne, en passant par les sites applicatifs
               spécifiques à vos attentes. Je suis spécialisé dans le
-              développement sur les CMS les plus plébiscités comme Joomla et
-              WordPress ainsi que la création de sites e-commerce avec
-              Prestashop.
+              développement sur WordPress, Symfony et React ainsi que dans la
+              création de sites e-commerce avec Prestashop.
             </p>
             <p className="mt-4">
-              Je vous propose également une solution d’hébergement professionnel
-              sur mesure, dimensionné pour le trafic de votre site.
+              Je vous propose également une{' '}
+              <Link href={RouteLink.prestationHosting}>
+                <span className="text-orange underline">
+                  solution d’hébergement infogéré
+                </span>
+              </Link>{' '}
+              sur mesure, supervisée 24h/24 et dimensionnée pour le trafic de
+              votre site.
             </p>
           </div>
         </div>

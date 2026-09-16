@@ -71,12 +71,11 @@ export default function Prestations() {
             </p>
             <p className="mt-4">
               Je suis en mesure d’intervenir sur tous types de projets
-              (boutique, site vitrine, apps...) grâce à mon expertise sur des
-              CMS variés, tels que Joomla, Prestashop ou encore Wordpress. Et
-              comme la création d’un site internet ne s’achève pas à sa mise en
-              ligne, j’assure le support technique de votre outil 7j/7 et vous
-              propose des offres de maintenance TMA pour le protéger tout au
-              long de l’année.
+              (boutique, site vitrine, apps...) grâce à mon expertise sur
+              WordPress, Prestashop, Symfony et React. Et comme la création d’un
+              site internet ne s’achève pas à sa mise en ligne, j’assure le
+              support technique de votre outil 7j/7 et vous propose des offres
+              de maintenance TMA pour le protéger tout au long de l’année.
             </p>
           </div>
         </div>
@@ -370,9 +369,9 @@ export default function Prestations() {
               image={PrestationWebDev}
               title={['Développement de', 'votre projet']}
             >
-              Expert dans son domaine et sur les CMS comme Joomla, Prestashop et
-              WordPress. inRage respectera précisément votre cahier des charges
-              pour développer les fonctionnalités de vos sites.
+              Expert dans son domaine et sur WordPress, Prestashop, Symfony et
+              React. inRage respectera précisément votre cahier des charges pour
+              développer les fonctionnalités de vos sites.
             </PrestationItem>
             <PrestationItem
               image={PrestationFormation}

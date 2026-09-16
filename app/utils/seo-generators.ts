@@ -40,8 +40,7 @@ const ECOMMERCE_OFFERINGS: EcommerceService[] = [
 
 export function generateEcommerceMetadata(): PortfolioPageMetadata {
   return {
-    title:
-      'Portfolio E-commerce La Rochelle | Réalisations PrestaShop & WooCommerce',
+    title: 'Portfolio e-commerce La Rochelle | PrestaShop & WooCommerce',
     description:
       'Portfolio e-commerce : 7 réalisations PrestaShop et WooCommerce à La Rochelle. Boutiques B2B, migrations, optimisations. Développeur freelance Charente-Maritime.',
     keywords:
@@ -89,8 +88,8 @@ export function generateEcommerceJsonLd(): JsonLdCollectionPage {
     mainEntity: {
       '@type': 'Person',
       '@id': getCanonicalUrl('/#person'),
-      name: 'Pierre Gault',
-      jobTitle: 'Développeur Web Freelance',
+      name: 'Pascal Gault',
+      jobTitle: 'Développeur web freelance',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'La Rochelle',

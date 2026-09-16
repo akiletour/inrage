@@ -16,8 +16,7 @@ import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title:
-    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+  title: 'Création de site Prestashop | Développeur freelance - inRage',
   description:
     'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
   alternates: {

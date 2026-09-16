@@ -32,7 +32,21 @@ export default async function Sitemap() {
                 <Link href={RouteLink.aboutMe}>A propos de moi</Link>
               </li>
               <li>
+                <Link href={RouteLink.developpeurLaRochelle}>
+                  Développeur web freelance à La Rochelle
+                </Link>
+              </li>
+              <li>
+                <Link href={RouteLink.portfolio}>Portfolio</Link>
+              </li>
+              <li>
+                <Link href={RouteLink.blog}>Blog</Link>
+              </li>
+              <li>
                 <Link href={RouteLink.contact}>Contactez-moi</Link>
+              </li>
+              <li>
+                <Link href={RouteLink.legals}>Mentions légales</Link>
               </li>
             </ul>
 
@@ -57,6 +71,11 @@ export default async function Sitemap() {
                       <li>
                         <Link href={RouteLink.prestationSymfony}>Symfony</Link>
                       </li>
+                      <li>
+                        <Link href={RouteLink.prestationReact}>
+                          React & Next.js
+                        </Link>
+                      </li>
                     </ul>
                   </li>
                   <li>
@@ -80,6 +99,11 @@ export default async function Sitemap() {
                         </Link>
                       </li>
                     </ul>
+                  </li>
+                  <li>
+                    <Link href={RouteLink.prestationHosting}>
+                      Hébergement de site internet
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -125,7 +149,9 @@ export default async function Sitemap() {
 }
 
 export const metadata = {
-  title: 'Plan du site',
+  title: 'Plan du site - inRage',
+  description:
+    'Plan du site inrage.fr : prestations, portfolio, articles de blog et pages de Pascal Gault, développeur web freelance à La Rochelle.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.sitemap),
   },
