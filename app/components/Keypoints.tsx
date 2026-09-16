@@ -21,30 +21,30 @@ export default function Keypoints() {
       <Image
         className="-z-10"
         src="/images/yohann-tilotti_bloody-sky.jpeg"
-        alt="Yohann Tilotti - Bloody Sky"
+        alt=""
         fill
         sizes="100vw"
       />
       <div className="container grid grid-cols-2 md:grid-cols-4 gap-y-8 py-8">
         <KeypointItem
-          icon={<CupIcon className="h-6 md:h-10" />}
-          value="2356"
-          label="tasses à café"
+          icon={<AchieveIcon className="h-6 md:h-10" />}
+          value="Depuis 2008"
+          label="développeur web à La Rochelle"
         />
         <KeypointItem
           icon={<ThumbIcon className="h-6 md:h-10" />}
-          value="352"
-          label="projets"
-        />
-        <KeypointItem
-          icon={<AchieveIcon className="h-6 md:h-10" />}
-          value="15 années"
-          label="d'expérience"
+          value="150+"
+          label="sites sous maintenance"
         />
         <KeypointItem
           icon={<LeafHeartIcon className="h-6 md:h-10" />}
-          value="150+"
-          label="idées à développer"
+          value="5,0 / 5"
+          label="note moyenne sur Google"
+        />
+        <KeypointItem
+          icon={<CupIcon className="h-6 md:h-10" />}
+          value="24 h"
+          label="pour recevoir votre devis"
         />
       </div>
       <Diagonal

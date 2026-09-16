@@ -10,42 +10,37 @@ export default function PrestationsList() {
     <div className="grid md:grid-cols-3 gap-12 md:gap-6 lg:gap-12">
       <PrestationItem
         image={ImagePrestationBuildWebsite}
-        title={['Conception / Refonte', 'de sites Internet']}
+        title={['Création et refonte', 'de sites internet']}
         link={RouteLink.prestationWeb}
-        linkText="Découvrez mes prestations"
+        linkText="Découvrir mes prestations"
       >
-        Sites vitrines, associatifs, e-commerce ou dédiés. Je vous accompagne
-        dès la genèse de votre projet pour vous proposer des solutions
-        puissantes et performantes et répondre le plus efficacement aux enjeux
-        de votre activité. Je suis expert dans la création de sites sur les CMS
-        Joomla, WordPress et Prestashop.
+        Sites vitrines, associatifs, e-commerce ou applications métier. Je vous
+        accompagne dès la genèse de votre projet pour vous proposer des
+        solutions performantes, sur WordPress, Prestashop, Symfony ou React.
       </PrestationItem>
 
       <PrestationItem
         image={ImagePrestationTma}
-        title={['Maintenance &', 'Infogérance']}
+        title={['Maintenance', 'et infogérance']}
         link={RouteLink.prestationTma}
         linkText="Mes offres de maintenance"
+        secondary
       >
-        La maintenance d’un site internet s’avère complexe lorsqu’on ne dispose
-        pas du bagage technique nécessaire, voire du temps de s’en occuper. Pour
-        ces tâches délicates et chronophages, je vous propose de prendre le
-        relais et d’assurer pour vous la gestion de vos sauvegardes, ainsi que
-        la maintenance et la sécurité de votre serveur dans sa globalité.
+        Mises à jour, sauvegardes, sécurité et surveillance de votre site
+        WordPress ou Prestashop. Je prends le relais sur ces tâches techniques
+        et chronophages pour que vous restiez concentré sur votre activité.
       </PrestationItem>
 
       <PrestationItem
         image={ImagePrestationHosting}
-        title={['Hébergement optimisé &', 'ultra rapide']}
-        link={RouteLink.contact}
-        linkText="Me contacter"
+        title={['Hébergement infogéré', 'et supervisé']}
+        link={RouteLink.prestationHosting}
+        linkText="Découvrir l’hébergement"
+        secondary
       >
-        Lorsque vous souhaitez mettre en ligne un site, il est nécessaire de
-        choisir une offre d’hébergement parmis une foule d’offres et de
-        prestataires. Nos offres d’hébergement sont transparentes et sans frais
-        cachés. Un expert de notre partenaire Dutiko analyse votre projet ainsi
-        que votre demande pour vous proposer l’offre idéale pour la nature de
-        votre site web.
+        Votre site hébergé en France sur une infrastructure que j’administre
+        moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés
+        et protection contre les attaques, avec un seul interlocuteur.
       </PrestationItem>
     </div>
   )

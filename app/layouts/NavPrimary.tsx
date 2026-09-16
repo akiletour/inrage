@@ -190,6 +190,16 @@ export default function NavPrimary({ isSticky = false }: Props) {
                         </span>
                       </Link>
                     </li>
+                    <li>
+                      <Link href={RouteLink.developpeurLaRochelle}>
+                        <span
+                          onClick={() => setOpen(false)}
+                          className={n2TitleClassnames}
+                        >
+                          Développeur web La Rochelle
+                        </span>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
                 <div className="ml-12">
@@ -229,6 +239,16 @@ export default function NavPrimary({ isSticky = false }: Props) {
                           className={n2TitleClassnames}
                         >
                           Maintenance ponctuelle
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href={RouteLink.prestationHosting}>
+                        <span
+                          onClick={() => setOpen(false)}
+                          className={n2TitleClassnames}
+                        >
+                          Hébergement web
                         </span>
                       </Link>
                     </li>
@@ -297,7 +317,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/application-web/`}>
+                      <Link href={`${RouteLink.portfolio}/application-web`}>
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
