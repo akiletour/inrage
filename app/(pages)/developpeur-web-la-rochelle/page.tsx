@@ -414,6 +414,18 @@ export default async function DeveloppeurWebLaRochelle() {
                 </span>
               </Link>
             </p>
+            <p className="mt-2 text-sm">
+              Profil également référencé sur{' '}
+              <a
+                href="https://www.jeveuxunfreelance.fr"
+                className="text-orange underline"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                jeveuxunfreelance.fr
+              </a>
+              , annuaire des freelances de La Rochelle.
+            </p>
           </div>
           <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
             {FAQ.map((item) => (
