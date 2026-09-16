@@ -6,7 +6,7 @@ import { getBlogItems } from '@lib/blog'
 export const metadata = {
   title: 'Liste des articles de développement - inRage',
   description:
-    'Passionné par les nouvelles technologies, J&#039;adore partager mes compétences et mes découvertes avec des personnes qui ont cette même passion pour le web !',
+    "Blog de Pascal Gault, développeur web freelance à La Rochelle : astuces WordPress, Prestashop, Symfony et React, retours d'expérience et découvertes techniques.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.blog),
   },

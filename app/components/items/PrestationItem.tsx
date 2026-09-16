@@ -10,6 +10,7 @@ type Props = {
   image: string | StaticImageData
   link?: string
   linkText?: string
+  secondary?: boolean
 }
 
 export default function PrestationItem({
@@ -18,6 +19,7 @@ export default function PrestationItem({
   children,
   link = '',
   linkText = '',
+  secondary = false,
 }: Props) {
   return (
     <div className="text-center h-full flex flex-col items-center">
@@ -49,7 +51,9 @@ export default function PrestationItem({
       {link !== '' && (
         <div className="mt-auto">
           <Link href={link}>
-            <span className="button">{linkText}</span>
+            <span className={secondary ? 'button-outline' : 'button'}>
+              {linkText}
+            </span>
           </Link>
         </div>
       )}

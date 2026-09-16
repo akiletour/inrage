@@ -13,9 +13,9 @@ import ExpMoonscoop from '@image/experiences/moonscoop.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Pascal GAULT - Développeur et intégrateur Freelance à La Rochelle',
+  title: 'Pascal Gault, développeur web freelance à La Rochelle',
   description:
-    "15 ans d&#039;expertise dans la création de site Internet sous Joomla, WordPress, Prestashop et Symfony. Avec une très bonne maitrise de l'intégration web",
+    'Développeur web freelance à La Rochelle depuis 2008 : WordPress, Prestashop, Symfony et React. Mon parcours en agence, mes expériences et ma façon de travailler.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.aboutMe),
   },
@@ -34,10 +34,17 @@ export default function AboutMe() {
         </h2>
 
         <p className="mt-4 text-xl text-gray-light">
-          Développeur Web depuis 15 ans dans les agences web à La Rochelle.
-          Expert dans le développement et spécialisé sur Symfony, WordPress et
-          Prestashop. Je travaille aujourd&apos;hui en tant que Développeur Web
-          Freelance à La Rochelle.
+          Développeur web depuis 2008 dans les agences de La Rochelle, en
+          Charente-Maritime. Expert dans le développement et spécialisé sur
+          Symfony, WordPress, Prestashop et React. Je travaille aujourd&apos;hui
+          en tant que{' '}
+          <Link href={RouteLink.developpeurLaRochelle}>
+            <span className="text-orange underline">
+              développeur web freelance à La Rochelle
+            </span>
+          </Link>
+          , pour des clients locaux comme pour des entreprises de toute la
+          France.
         </p>
         <p className="mt-2">
           Une de mes décisions les plus importantes et gratifiantes pour ma

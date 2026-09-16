@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import LastArticles from '@component/blog/LastArticles'
+import ButtonLink from '@component/ButtonLink'
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
 import LeafHeartIcon from '@component/icons/LeafHeartIcon'
@@ -22,10 +23,9 @@ import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jp
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title:
-    'Développeur Freelance, Pascal GAULT - La Rochelle WordPress et Prestashop',
+  title: 'Développeur web freelance à La Rochelle - Pascal Gault',
   description:
-    'Pascal GAULT, Intégrateur web et développeur Freelance à La Rochelle spécialisé dans la création de sites internet WordPress, Joomla, Symfony et Prestashop.',
+    'Pascal Gault, développeur web freelance à La Rochelle : création de sites WordPress, Prestashop, Symfony et React, maintenance et hébergement. Devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(),
   },
@@ -37,14 +37,20 @@ export default function Homepage() {
       <div className="container">
         <SectionTitle
           className="mt-6 md:mt-0"
-          title="A propos"
-          content="Développeur Freelance créatif et innovant basé au coeur de La Rochelle et spécialisé dans la création de site internet. Depuis l'âge de 14 ans, je développe, compose et crée des projets web."
+          title={['Développeur web', 'à La Rochelle']}
+          content="Développeur freelance créatif et innovant basé au cœur de La Rochelle, en Charente-Maritime, et spécialisé dans la création de sites internet. Depuis l'âge de 14 ans, je développe, compose et crée des projets web pour des entreprises de La Rochelle, de Nouvelle-Aquitaine et de toute la France."
         />
 
-        <div className="my-8 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white">
-          Je suis entouré d&apos;une équipe fondée de créatifs, designers et
-          développeurs. Nous travaillons ensemble pour créer des choses
-          inspirantes et engagées.
+        <div className="my-8 mx-auto text-xl sm:text-2xl max-w-4xl font-medium text-center text-white text-balance">
+          Je m&apos;appuie sur des collectifs de freelances rochelais, créatifs,
+          designers et développeurs, pour mener des projets inspirants et
+          engagés.
+        </div>
+
+        <div className="mb-12 flex justify-center">
+          <ButtonLink href={RouteLink.developpeurLaRochelle}>
+            Mon activité de développeur web à La Rochelle
+          </ButtonLink>
         </div>
 
         <PrestationsList />
@@ -61,7 +67,7 @@ export default function Homepage() {
         <Image
           className="-z-10 opacity-30 md:opacity-100"
           src={ImageDiscoverTma}
-          alt="Prestation de maintenance TMA"
+          alt="Site e-commerce Soleil Productions affiché sur tablette"
           fill
           sizes="100vw"
           style={{
@@ -76,13 +82,13 @@ export default function Homepage() {
               et/ou de sa maintenance
             </h2>
             <p>
-              Simple et en toute transparence, n’hésitez pas à me demander une
-              estimation gratuite pour la création de votre site web ou de la
-              maintenance applicative.
+              Simple et en toute transparence : demandez-moi une estimation
+              gratuite pour la création de votre site web ou sa maintenance, que
+              vous soyez à La Rochelle ou ailleurs en France.
             </p>
             <p>
-              Vous recevrez dans la journée votre devis et nous pourrons prendre
-              contact pour définir ensemble les tâches.
+              Vous recevez votre devis dans la journée et nous définissons
+              ensemble les tâches à réaliser.
             </p>
 
             <div className="flex flex-wrap flex-start">
@@ -109,8 +115,8 @@ export default function Homepage() {
       <div className="bg-gray-darker pt-16 md:pt-6">
         <div className="container mb-20 lg:-mb-16 z-10 relative">
           <SectionTitle
-            content="Consultez mes dernières créations, atteignant tous, l’esthétique du détail et de la fonctionnalité qui me démarque du reste en tant que développeur Freelance."
-            title="Projets"
+            content="Mes dernières créations pour des clients de La Rochelle et de toute la France : l’esthétique du détail et la fonctionnalité qui me démarquent en tant que développeur freelance."
+            title={['Dernières', 'réalisations']}
           />
 
           <Suspense fallback={<p>Loading</p>}>
@@ -131,32 +137,32 @@ export default function Homepage() {
 
       <div className="container">
         <SectionTitle
-          title="Expertises"
-          content="Je propose un large éventail de services axés sur les résultats pour les marques, en veillant à ce que leur présence en ligne reflète réellement leurs objectifs et leurs inspirations."
+          title={['Expertises', 'techniques']}
+          content="Quatre technologies maîtrisées depuis des années pour répondre à chaque type de projet, du site vitrine à l’application métier, pour les entreprises de La Rochelle comme d’ailleurs."
         />
 
         <div className="my-8 grid md:grid-cols-2 gap-x-4 gap-y-12">
           <ExpertiseItem
-            title="WordPress"
-            excerpt="WordPress est le plus populaire des CMS en ce moment, il vous permet d’administrer facilement votre site et de personnaliser intégralement le frontoffice."
+            title="Création de site WordPress"
+            excerpt="Le CMS le plus répandu, avec un thème sur mesure : vous administrez vos contenus en autonomie sur un site rapide et pensé pour le référencement."
             link={RouteLink.prestationWordPress}
             image={ExpertiseWordPress}
           />
           <ExpertiseItem
-            title="Symfony"
-            excerpt="Symfony est un framework PHP qui nous permet d’accélèrer le développement de sites ou d’applications grace à sa méthodologie et architecture évolutive."
+            title="Développement Symfony"
+            excerpt="Le framework PHP de référence pour les extranets, outils de gestion et plateformes sur mesure, avec une architecture robuste et évolutive."
             link={RouteLink.prestationSymfony}
             image={ExpertiseSymfony}
           />
           <ExpertiseItem
-            title="Prestashop"
-            excerpt="Prestashop est un CMS très puissant pour les sites de commerce électronique (e-commerce) avec plus de 5 000 modules et thèmes."
+            title="Boutique Prestashop"
+            excerpt="Création de boutiques en ligne, développement de modules, migrations et intégrations ERP pour vendre efficacement, en B2B comme en B2C."
             link={RouteLink.prestationPrestashop}
             image={ExpertisePrestashop}
           />
           <ExpertiseItem
-            title="React & Next.js"
-            excerpt="React et Next.js sont les technologies modernes de référence pour créer des applications web performantes, scalables et avec une excellente expérience utilisateur."
+            title="Applications React et Next.js"
+            excerpt="Les technologies modernes de référence pour des applications web performantes, scalables et agréables à utiliser."
             link={RouteLink.prestationReact}
             image={ExpertiseReact}
           />
@@ -171,7 +177,7 @@ export default function Homepage() {
             content={
               "Passionné par les nouvelles technologies, j'adore partager mes compétences et mes découvertes avec des personnes qui ont cette même passion pour le web !"
             }
-            title="Articles"
+            title={['Derniers', 'articles']}
           />
 
           <Suspense fallback={<p>Loading</p>}>
@@ -194,7 +200,7 @@ export default function Homepage() {
       <div className="container mt-16 md:mt-0">
         <SectionTitle
           content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire ci-dessous, je serai ravi de vous répondre."
+            'Un projet web à La Rochelle, en Charente-Maritime ou ailleurs ? Contactez-moi en remplissant le formulaire ci-dessous, je vous réponds dans la journée.'
           }
           title="Contact"
         />

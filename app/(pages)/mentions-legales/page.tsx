@@ -3,6 +3,8 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
   title: 'Mentions légales - inRage',
+  description:
+    'Mentions légales du site inrage.fr, édité par inRage SARL, Pascal Gault, développeur web freelance à La Rochelle.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.legals),
   },
@@ -24,11 +26,11 @@ export default function Legals() {
           <br />
           Société : inRage SARL
           <br />
-          Adresse : 10 rue Jean Perrin 17000 LA ROCHELLE
+          Adresse : 10-14 rue Jean Perrin 17000 LA ROCHELLE
           <br />
           Courriel : contact(at)inrage.fr
           <br />
-          Tél : +33 (0)6 82 96 38 39
+          Tél : +33 (0)6 82 96 38 89
           <br />
         </p>
 

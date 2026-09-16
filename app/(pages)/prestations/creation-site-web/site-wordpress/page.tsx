@@ -22,7 +22,7 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 export const metadata = {
   title: 'Création de site WordPress | Freelance Wordpress - inRage',
   description:
-    'Développeur Freelance à La Rochelle, spécialisé dans la création et le développement de site WordPress. ACF, Contact Form et Roots Sage. Contactez-moi pour votre création ou refonte de site Wordpress.',
+    'Développeur freelance à La Rochelle, spécialisé dans la création et la refonte de sites WordPress : ACF, Contact Form 7, Roots Sage. Contactez-moi pour votre projet.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },

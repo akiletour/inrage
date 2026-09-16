@@ -13,10 +13,9 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { EntriesType } from '@type/portfolio'
 
 export const metadata = {
-  title:
-    'Création de site e-commerce Prestashop | Freelance Prestashop - inRage',
+  title: 'Maintenance Prestashop | Freelance TMA e-commerce - inRage',
   description:
-    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+    'Développeur freelance, découvrez mon offre de maintenance et sécurité Prestashop : mises à jour, sauvegardes, surveillance et corrections pour votre boutique.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },

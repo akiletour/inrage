@@ -5,7 +5,7 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',
   description:
-    'Vous avez une idée de projet web et vous souhaitez me consulter pour que l’on puisse y réfléchir ensemble ? N&#039;hésitez pas à me contact au 06 82 96 38 89.',
+    'Un projet web à La Rochelle ? Développeur freelance, je vous réponds dans la journée. Contactez-moi par formulaire ou au 06 82 96 38 89 pour un devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.contact),
   },
@@ -36,7 +36,7 @@ export default function Contact() {
           </p>
 
           <p className="mt-4 mb-8">
-            10 rue Jean Perrin
+            10-14 rue Jean Perrin
             <br />
             17000 LA ROCHELLE
           </p>
@@ -48,7 +48,7 @@ export default function Contact() {
           </p>
 
           <div className="text-orange font-bold text-3xl mt-4">
-            <a href="tel:06Je c82963889">06 82 96 38 89</a>
+            <a href="tel:0682963889">06 82 96 38 89</a>
           </div>
           <div className="text-sm">du lundi au samedi de 09h à 18h</div>
         </div>

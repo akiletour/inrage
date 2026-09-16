@@ -7,6 +7,7 @@ import Diagonal from '@component/Diagonal'
 import Link from '@component/NoScrollLink'
 import useSticky from '@hook/useSticky'
 import NavPrimary from '@layout/NavPrimary'
+import { RouteLink } from '@lib/router'
 import { HeaderType, PageExcerptType, PageTitleType } from '@type/header'
 
 const DynamicHeaderTma = dynamic(() => import('@layout/HeaderTma'))
@@ -58,24 +59,34 @@ export default function Header({
           </div>
         </div>
       ) : (
-        <h1 className="container text-center flex flex-col items-center text-white mt-14 mb-12 md:mb-0">
+        <div className="container text-center flex flex-col items-center text-white mt-14 mb-12 md:mb-0">
           <span className="text-orange text-6xl md:text-8xl font-thin">
             inRage
           </span>
           <span className="text-3xl md:text-5xl mt-4">Pascal GAULT</span>
-          <span className="text-xl md:text-2xl mt-4">
-            Développeur Freelance spécialisé dans
+          <h1 className="text-xl md:text-2xl mt-4 font-normal">
+            Développeur web freelance à La Rochelle
             <br />
-            la création de sites web
-          </span>
-        </h1>
+            spécialisé dans la création de sites internet
+          </h1>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link href={RouteLink.contact}>
+              <span className="button">Demander un devis gratuit</span>
+            </Link>
+            <Link href={RouteLink.developpeurLaRochelle}>
+              <span className="button-outline bg-gray-darker/40">
+                Mon activité à La Rochelle
+              </span>
+            </Link>
+          </div>
+        </div>
       )}
 
       <Image
         priority
         className="-z-10"
         src="/images/iledere-pont.jpeg"
-        alt="Pont de l'ile de ré"
+        alt="Pont de l'île de Ré, près de La Rochelle"
         fill
         sizes="100vw"
       />

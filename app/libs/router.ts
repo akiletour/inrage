@@ -1,5 +1,6 @@
 export const RouteLink = {
   aboutMe: '/a-propos-de-moi',
+  developpeurLaRochelle: '/developpeur-web-la-rochelle',
   prestations: '/prestations',
   get prestationWeb() {
     return `${this.prestations}/creation-site-web`
@@ -28,6 +29,9 @@ export const RouteLink = {
   get prestationTmaOnDemand() {
     return `${this.prestationTma}/maintenance-ponctuelle`
   },
+  get prestationHosting() {
+    return `${this.prestations}/hebergement-site-internet`
+  },
   portfolio: '/portfolio',
   contact: '/contact',
   blog: '/blog',
@@ -35,8 +39,11 @@ export const RouteLink = {
   sitemap: '/plan-du-site',
 }
 
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_FRONT_URL || 'https://www.inrage.fr'
+
 export const getCanonicalUrl = (part: string = ''): string => {
-  return `${process.env.NEXT_PUBLIC_FRONT_URL}${part}`
+  return `${SITE_URL}${part}`
 }
 
 export default RouteLink

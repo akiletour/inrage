@@ -10,9 +10,9 @@ import ReactProjectsShowcase from './ReactProjectsShowcase'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 export const metadata = {
-  title: 'Développeur React Freelance La Rochelle | Expert Next.js - inRage',
+  title: 'Développeur React freelance à La Rochelle | Next.js - inRage',
   description:
-    "Développeur React freelance expert à La Rochelle. Création d'applications Next.js modernes et performantes. Spécialisé TypeScript, SSR, e-commerce. Devis gratuit.",
+    "Développeur React freelance expert à La Rochelle. Création d'applications Next.js modernes et performantes. Spécialisé TypeScript, SSR et e-commerce.",
   keywords: [
     'développeur react freelance la rochelle',
     'expert nextjs la rochelle',
@@ -70,6 +70,7 @@ export default function PrestationReact() {
       "Service de développement d'applications web modernes avec React, Next.js et TypeScript par un développeur freelance expert basé à La Rochelle",
     provider: {
       '@type': 'Person',
+      '@id': getCanonicalUrl('/#person'),
       name: 'Pascal Gault',
       jobTitle: 'Développeur React Freelance',
       address: {
@@ -89,9 +90,7 @@ export default function PrestationReact() {
     category: "Développement d'applications",
     offers: {
       '@type': 'Offer',
-      description: "Développement d'applications React et Next.js",
-      price: 'Sur devis',
-      priceCurrency: 'EUR',
+      description: "Développement d'applications React et Next.js sur devis",
       availability: 'https://schema.org/InStock',
     },
     areaServed: {
@@ -240,10 +239,10 @@ export default function PrestationReact() {
           <div className=" relative flex items-center">
             <div className="space-y-12">
               <div className="space-y-8">
-                <h1 className="font-bold text-white text-2xl md:text-4xl lg:text-5xl leading-tight animate-in slide-in-from-bottom-4 duration-700">
+                <h2 className="font-bold text-white text-2xl md:text-4xl lg:text-5xl leading-tight animate-in slide-in-from-bottom-4 duration-700">
                   Développeur React freelance à
                   <span className="text-orange"> La Rochelle</span>
-                </h1>
+                </h2>
 
                 <div className="text-gray-light font-medium text-lg md:text-xl leading-relaxed animate-in slide-in-from-bottom-6 duration-700 delay-150">
                   <p>
