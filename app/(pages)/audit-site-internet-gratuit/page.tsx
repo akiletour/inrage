@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import Character from '@/components/Character'
 import Diagonal from '@component/Diagonal'
 import { getPortfolioItems } from '@lib/portfolio'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
@@ -93,31 +94,46 @@ export default async function AuditGratuit() {
 
   return (
     <div>
-      <header className="container flex items-center justify-between py-5">
-        <Link href="/" aria-label="inRage, retour à l’accueil">
-          <Image
-            src="/logo.svg"
-            width={140}
-            height={48}
-            alt="inRage"
-            priority
-          />
-        </Link>
-        <a
-          href={PHONE_HREF}
-          className="min-h-11 inline-flex items-center text-white font-medium tabular-nums whitespace-nowrap transition-colors duration-150 hover:text-orange"
-        >
-          {PHONE_DISPLAY}
-        </a>
-      </header>
+      <div className="relative isolate">
+        <Image
+          src="/images/iledere-pont.jpeg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-linear-to-r from-gray-dark via-gray-dark/90 to-gray-dark/55"
+        />
 
-      <AuditHero />
+        <header className="container flex items-center justify-between py-5">
+          <Link href="/" aria-label="inRage, retour à l’accueil">
+            <Image
+              src="/logo.svg"
+              width={140}
+              height={48}
+              alt="inRage"
+              priority
+            />
+          </Link>
+          <a
+            href={PHONE_HREF}
+            className="min-h-11 inline-flex items-center text-white font-medium tabular-nums whitespace-nowrap transition-colors duration-150 hover:text-orange"
+          >
+            {PHONE_DISPLAY}
+          </a>
+        </header>
 
-      <Diagonal
-        className="h-16 sm:h-24 lg:h-40"
-        bgClass="fill-gray-darker"
-        bgCorner="fill-orange"
-      />
+        <AuditHero />
+
+        <Diagonal
+          className="h-16 sm:h-24 lg:h-40"
+          bgClass="fill-gray-darker"
+          bgCorner="fill-orange"
+        />
+      </div>
 
       <section className="bg-gray-darker pb-20">
         <div className="container">
@@ -125,14 +141,25 @@ export default async function AuditGratuit() {
             Ce que <span className="font-bold">je regarde</span>
           </h2>
           <dl className="mt-10 grid gap-x-16 md:grid-cols-2 border-t border-[#2f2f2f]">
-            {CHECKS.map((check) => (
-              <div key={check.title} className="py-6 border-b border-[#2f2f2f]">
-                <dt className="text-white font-medium text-lg">
-                  {check.title}
-                </dt>
-                <dd className="mt-2 text-gray-light max-w-[52ch]">
-                  {check.text}
-                </dd>
+            {CHECKS.map((check, index) => (
+              <div
+                key={check.title}
+                className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-4 py-7 border-b border-[#2f2f2f]"
+              >
+                <span
+                  aria-hidden="true"
+                  className="text-orange font-thin text-5xl leading-none tabular-nums"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <dt className="text-white font-medium text-lg">
+                    {check.title}
+                  </dt>
+                  <dd className="mt-2 text-gray-light max-w-[52ch]">
+                    {check.text}
+                  </dd>
+                </div>
               </div>
             ))}
           </dl>
@@ -155,6 +182,12 @@ export default async function AuditGratuit() {
               comme pour les Éditions Delcourt. Ce sont les mêmes vérifications
               que je fais pour eux chaque mois.
             </p>
+            <div
+              aria-hidden="true"
+              className="hidden lg:block mt-10 h-[420px] overflow-hidden select-none pointer-events-none"
+            >
+              <Character />
+            </div>
           </div>
 
           <ul className="grid gap-5 grid-cols-2">
@@ -215,14 +248,39 @@ export default async function AuditGratuit() {
         </div>
       </section>
 
-      <section className="container py-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-white text-2xl sm:text-3xl font-light text-balance">
-          Votre site mérite <span className="font-bold">un second regard</span>.
-        </p>
-        <a href="#audit-form" className="button h-auto! py-4 px-6 self-start">
-          Demander mon audit
-        </a>
-      </section>
+      <div className="relative isolate overflow-hidden">
+        <Image
+          src="/images/iledere-pont.jpeg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="-z-20 object-cover object-bottom"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gray-dark/60"
+        />
+        <Diagonal
+          className="h-16 sm:h-24 lg:h-40"
+          flipX
+          flipY
+          bgClass="fill-gray-darker"
+          bgCorner="fill-orange"
+        />
+        <section className="container pt-10 pb-24 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <p className="text-white text-3xl sm:text-5xl font-light text-balance leading-tight">
+            Votre site mérite
+            <br />
+            <span className="font-bold">un second regard</span>.
+          </p>
+          <a
+            href="#audit-form"
+            className="button h-auto! py-4 px-6 self-start sm:self-auto active:scale-[0.96] transition-[scale,background-color,color] duration-150"
+          >
+            Demander mon audit
+          </a>
+        </section>
+      </div>
     </div>
   )
 }

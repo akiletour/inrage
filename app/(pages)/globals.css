@@ -119,3 +119,14 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+.audit-intro [data-reveal] {
+  animation: audit-reveal 350ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audit-intro [data-reveal] {
+    animation: none;
+  }
+}

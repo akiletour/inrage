@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { CSSProperties, useEffect, useLayoutEffect, useRef } from 'react'
 
 const RADIUS = 26
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
@@ -31,6 +31,24 @@ const EXAMPLE_FINDINGS = [
     text: 'Certificat HTTPS valide jusqu’en mars',
   },
 ]
+
+let introDecision: boolean | null = null
+
+function shouldPlayIntro() {
+  if (introDecision !== null) {
+    return introDecision
+  }
+  let seen = false
+  try {
+    seen = window.sessionStorage.getItem(INTRO_KEY) === '1'
+    window.sessionStorage.setItem(INTRO_KEY, '1')
+  } catch {
+    seen = false
+  }
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  introDecision = !seen && !reduced
+  return introDecision
+}
 
 function toneFor(value: number) {
   if (value < 50) {
@@ -64,18 +82,7 @@ function ExampleScores() {
       )
     }
 
-    const reduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches
-    let seen = false
-    try {
-      seen = window.sessionStorage.getItem(INTRO_KEY) === '1'
-      window.sessionStorage.setItem(INTRO_KEY, '1')
-    } catch {
-      seen = false
-    }
-
-    if (reduced || seen) {
+    if (!shouldPlayIntro()) {
       EXAMPLE_SCORES.forEach((_, index) => paint(index, 1))
       return
     }
@@ -188,11 +195,24 @@ type Props = {
 
 export default function AuditPreview({ website, runKey }: Props) {
   const isExample = website === null
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    if (!shouldPlayIntro()) {
+      rootRef.current?.classList.remove('audit-intro')
+    }
+    return () => {
+      window.setTimeout(() => {
+        introDecision = null
+      }, 0)
+    }
+  }, [])
 
   return (
     <div
+      ref={rootRef}
       aria-hidden="true"
-      className="select-none pointer-events-none rounded-lg bg-gray-darker shadow-[0_0_0_1px_rgba(255,255,255,0.09)]"
+      className="audit-intro select-none pointer-events-none rounded-lg bg-gray-darker shadow-[0_0_0_1px_rgba(255,255,255,0.09),0_24px_48px_rgba(0,0,0,0.45)]"
     >
       <div className="flex items-baseline justify-between gap-4 px-5 pt-5 pb-4 border-b border-[#2f2f2f]">
         <div className="min-w-0">
@@ -212,9 +232,17 @@ export default function AuditPreview({ website, runKey }: Props) {
 
       <div className="relative mt-5 overflow-hidden border-t border-[#2f2f2f]">
         <ul className="divide-y divide-[#2f2f2f] text-sm">
-          {EXAMPLE_FINDINGS.map((finding) => (
+          {EXAMPLE_FINDINGS.map((finding, index) => (
             <li
               key={finding.text}
+              data-reveal={isExample ? '' : undefined}
+              style={
+                isExample
+                  ? ({
+                      '--reveal-delay': `${1500 + index * 220}ms`,
+                    } as CSSProperties)
+                  : undefined
+              }
               className="flex items-center gap-3 px-5 py-3 min-h-11"
             >
               <span
