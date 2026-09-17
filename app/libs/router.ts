@@ -1,6 +1,7 @@
 export const RouteLink = {
   aboutMe: '/a-propos-de-moi',
   developpeurLaRochelle: '/developpeur-web-la-rochelle',
+  auditGratuit: '/audit-site-internet-gratuit',
   prestations: '/prestations',
   get prestationWeb() {
     return `${this.prestations}/creation-site-web`
