@@ -99,3 +99,23 @@ body {
 .container-full-size {
   @apply relative left-1/2 ml-[-50vw] w-screen;
 }
+
+@keyframes audit-scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes audit-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

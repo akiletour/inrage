@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { useForm } from 'react-hook-form'
 import { sendGTMEvent } from '@next/third-parties/google'
 import * as Sentry from '@sentry/nextjs'
@@ -18,6 +20,14 @@ type FormData = {
 type Props = {
   lg?: boolean
   variant?: 'contact' | 'audit'
+  onAnalyze?: (website: string) => void
+}
+
+export function formatWebsite(value: string) {
+  return value
+    .trim()
+    .replace(/^https?:\/\//i, '')
+    .replace(/\/+$/, '')
 }
 
 interface SpamError extends Error {
@@ -46,13 +56,18 @@ function buildPayload(data: FormData, variant: Props['variant']) {
 export default function ContactForm({
   lg = false,
   variant = 'contact',
+  onAnalyze,
 }: Props) {
   const isAudit = variant === 'audit'
+  const [step, setStep] = useState<1 | 2>(1)
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    trigger,
+    getValues,
+    setFocus,
   } = useForm<FormData>()
   const { state, submit, success, error: setError } = useFormState()
 
@@ -161,10 +176,32 @@ export default function ContactForm({
   }
 
   if (isAudit) {
+    const analyze = async () => {
+      const valid = await trigger('website')
+      if (!valid) {
+        return
+      }
+      onAnalyze?.(formatWebsite(getValues('website') ?? ''))
+      if (step === 1) {
+        setStep(2)
+        requestAnimationFrame(() => setFocus('name'))
+      }
+    }
+
     return (
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="grid gap-4">
-          <div className="relative">
+      <form
+        noValidate
+        onSubmit={
+          step === 1
+            ? (event) => {
+                event.preventDefault()
+                analyze()
+              }
+            : handleSubmit(onSubmit)
+        }
+      >
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="relative flex-1">
             <label htmlFor="audit-website" className="sr-only">
               Adresse de votre site
             </label>
@@ -185,101 +222,129 @@ export default function ContactForm({
               </span>
             )}
           </div>
-          <div className="relative">
-            <label htmlFor="audit-name" className="sr-only">
-              Prénom et nom
-            </label>
-            <input
-              id="audit-name"
-              className={`input-field ${
-                errors.name ? 'border-red' : 'border-gray'
-              }`}
-              placeholder="Prénom NOM"
-              type="text"
-              autoComplete="name"
-              {...register('name', { required: true })}
-            />
-            {errors.name && (
-              <span className="absolute text-red top-8 right-4 text-xs">
-                Champ requis
-              </span>
+          {step === 1 && (
+            <button
+              type="button"
+              onClick={analyze}
+              className="button h-auto! min-h-[74px] px-6 whitespace-nowrap active:scale-[0.96] transition-[scale,background-color,color] duration-150"
+            >
+              Analyser mon site
+            </button>
+          )}
+        </div>
+
+        <div
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none ${
+            step === 2
+              ? 'grid-rows-[1fr] opacity-100'
+              : 'grid-rows-[0fr] opacity-0'
+          }`}
+          inert={step === 1}
+        >
+          <div className="overflow-hidden">
+            <p className="mt-5 mb-3 text-sm text-gray-light">
+              Parfait. Où dois-je vous envoyer le rapport ?
+            </p>
+            <div className="grid gap-3">
+              <div className="relative">
+                <label htmlFor="audit-name" className="sr-only">
+                  Prénom et nom
+                </label>
+                <input
+                  id="audit-name"
+                  className={`input-field ${
+                    errors.name ? 'border-red' : 'border-gray'
+                  }`}
+                  placeholder="Prénom NOM"
+                  type="text"
+                  autoComplete="name"
+                  {...register('name', { required: step === 2 })}
+                />
+                {errors.name && (
+                  <span className="absolute text-red top-8 right-4 text-xs">
+                    Champ requis
+                  </span>
+                )}
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="relative">
+                  <label htmlFor="audit-email" className="sr-only">
+                    Adresse e-mail
+                  </label>
+                  <input
+                    id="audit-email"
+                    className={`input-field ${
+                      errors.email ? 'border-red' : 'border-gray'
+                    }`}
+                    placeholder="Votre adresse e-mail"
+                    type="email"
+                    autoComplete="email"
+                    {...register('email', { required: step === 2 })}
+                  />
+                  {errors.email && (
+                    <span className="absolute text-red top-8 right-4 text-xs">
+                      Champ requis
+                    </span>
+                  )}
+                </div>
+                <div className="relative">
+                  <label htmlFor="audit-phone" className="sr-only">
+                    Numéro de téléphone
+                  </label>
+                  <input
+                    id="audit-phone"
+                    className={`input-field ${
+                      errors.phone ? 'border-red' : 'border-gray'
+                    }`}
+                    placeholder="Numéro de téléphone"
+                    type="tel"
+                    autoComplete="tel"
+                    {...register('phone', { required: step === 2 })}
+                  />
+                  {errors.phone && (
+                    <span className="absolute text-red top-8 right-4 text-xs">
+                      Champ requis
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="audit-content" className="sr-only">
+                  Ce que vous aimeriez améliorer
+                </label>
+                <textarea
+                  id="audit-content"
+                  className="input-field min-h-[96px] border-gray"
+                  placeholder="Ce que vous aimeriez améliorer (facultatif)"
+                  {...register('content')}
+                />
+              </div>
+            </div>
+
+            {state.success && (
+              <p className="mt-4 text-[#27ae60]" role="status">
+                <span className="font-bold">Merci !</span> Votre demande est
+                bien reçue. Je vous recontacte sous 24 heures pour caler
+                l&apos;audit.
+              </p>
             )}
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="relative">
-              <label htmlFor="audit-email" className="sr-only">
-                Adresse e-mail
-              </label>
-              <input
-                id="audit-email"
-                className={`input-field ${
-                  errors.email ? 'border-red' : 'border-gray'
-                }`}
-                placeholder="Votre adresse e-mail"
-                type="email"
-                autoComplete="email"
-                {...register('email', { required: true })}
-              />
-              {errors.email && (
-                <span className="absolute text-red top-8 right-4 text-xs">
-                  Champ requis
-                </span>
-              )}
-            </div>
-            <div className="relative">
-              <label htmlFor="audit-phone" className="sr-only">
-                Numéro de téléphone
-              </label>
-              <input
-                id="audit-phone"
-                className={`input-field ${
-                  errors.phone ? 'border-red' : 'border-gray'
-                }`}
-                placeholder="Numéro de téléphone"
-                type="tel"
-                autoComplete="tel"
-                {...register('phone', { required: true })}
-              />
-              {errors.phone && (
-                <span className="absolute text-red top-8 right-4 text-xs">
-                  Champ requis
-                </span>
-              )}
-            </div>
-          </div>
-          <div>
-            <label htmlFor="audit-content" className="sr-only">
-              Ce que vous aimeriez améliorer
-            </label>
-            <textarea
-              id="audit-content"
-              className="input-field min-h-[120px] border-gray"
-              placeholder="Ce que vous aimeriez améliorer (facultatif)"
-              {...register('content')}
-            />
+            {state.error && (
+              <p className="mt-4 text-red-600 font-bold" role="alert">
+                {state.error}
+              </p>
+            )}
+
+            <Button
+              submit
+              isLoading={state.loading}
+              className="button mt-5 py-6 px-8 w-full"
+            >
+              Recevoir mon audit gratuit
+            </Button>
           </div>
         </div>
 
-        {state.success && (
-          <p className="mt-4 text-[#27ae60]" role="status">
-            <span className="font-bold">Merci !</span> Votre demande est bien
-            reçue. Je vous recontacte sous 24 heures pour caler l&apos;audit.
-          </p>
-        )}
-        {state.error && (
-          <p className="mt-4 text-red-600 font-bold" role="alert">
-            {state.error}
-          </p>
-        )}
-
-        <Button
-          submit
-          isLoading={state.loading}
-          className="button mt-6 py-6 px-8 w-full"
-        >
-          Recevoir mon audit gratuit
-        </Button>
-        <p className="mt-3 text-xs text-gray text-center">
+        <p className="mt-3 text-xs text-gray">
           Gratuit et sans engagement. Aucun accès à votre site n&apos;est
           nécessaire.
         </p>
