@@ -248,7 +248,7 @@ export default async function AuditGratuit() {
         </div>
       </section>
 
-      <div className="relative isolate overflow-hidden">
+      <div className="relative isolate overflow-hidden -mb-[calc(2.5rem+min(15vh,5rem))] pb-[min(15vh,5rem)]">
         <Image
           src="/images/iledere-pont.jpeg"
           alt=""
@@ -267,7 +267,7 @@ export default async function AuditGratuit() {
           bgClass="fill-gray-darker"
           bgCorner="fill-orange"
         />
-        <section className="container pt-10 pb-24 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+        <section className="container pt-10 pb-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <p className="text-white text-3xl sm:text-5xl font-light text-balance leading-tight">
             Votre site mérite
             <br />
