@@ -345,8 +345,7 @@ export default function ContactForm({
         </div>
 
         <p className="mt-3 text-xs text-gray">
-          Gratuit et sans engagement. Aucun accès à votre site n&apos;est
-          nécessaire.
+          Aucun accès à votre site n&apos;est nécessaire.
         </p>
       </form>
     )
