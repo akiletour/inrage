@@ -1,0 +1,217 @@
+---
+title: 'Quadria'
+category: 'wordpress'
+website: 'https://www.quadria.eu'
+year: 2026
+summary: 'Refonte du site de Quadria, fabricant d’équipements de collecte des déchets. Un catalogue pour les particuliers et les collectivités, développé sur WordPress avec Octa, notre base de thème open source.'
+excerpt: 'Refonte du site WordPress de Quadria par inRage avec Octa : parcours particuliers et collectivités, catalogue produits et fiches détaillées sur mesure.'
+actions:
+  - Refonte du site WordPress avec Octa
+  - Intégration responsive sur mesure
+  - Parcours particuliers et collectivités
+  - Menus de navigation personnalisés
+  - Catalogue et fiches produits WooCommerce
+  - Formulaires conditionnels avec Contact Form 7
+  - Blocs éditoriaux personnalisés
+image:
+  thumbnail: quadria-sm.jpg
+  large: quadria.jpg
+tools:
+  - wordpress
+  - woocommerce
+---
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
+
+<div className="not-prose text-base leading-relaxed text-gray-light md:text-lg [&_h2]:text-balance [&_h3]:text-balance [&_p]:text-pretty [&_p+p]:mt-5 [&_a]:underline-offset-4 [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4 [&_a:focus-visible]:outline-orange">
+  <section className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="quadria-contexte">
+    <h2 id="quadria-contexte" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+      {'Un même catalogue pour les habitants et les collectivités.'}
+    </h2>
+    <div>
+
+Chez Quadria, on trouve aussi bien un composteur pour son jardin que des colonnes de tri pour toute une commune. Un habitant veut savoir quel composteur installer et comment s’en servir. Une collectivité a besoin de volumes, de dimensions et d’options de personnalisation pour préparer son projet.
+
+Le projet a démarré en 2025, avec une mise en ligne en 2026. Nous avons travaillé l’accès au catalogue et le contenu des fiches produits pour répondre à ces différents usages.
+
+    </div>
+
+  </section>
+
+  <section className="mt-16 md:mt-24" aria-labelledby="quadria-catalogue">
+    <div className="max-w-2xl">
+      <h2 id="quadria-catalogue" className="text-3xl font-medium leading-tight text-white">
+        {'Trouver son équipement dès l’accueil.'}
+      </h2>
+      <div className="mt-6">
+
+Le visiteur choisit son profil, puis ce qu’il souhaite installer. Les entrées « Particulier » et « Collectivité / Pro. » restent aussi accessibles dans l’en-tête du site.
+
+      </div>
+    </div>
+    <figure className="mt-8 md:mt-10">
+      <picture>
+        <source
+          media="(max-width: 639px)"
+          srcSet="/images/portfolio/quadria-selecteur-mobile.webp"
+          width={600}
+          height={420}
+        />
+        <Image
+          src="/images/portfolio/quadria-selecteur.webp"
+          alt="Le sélecteur de l’accueil Quadria avec les champs Vous êtes et Vous souhaitez installer, suivis du bouton Découvrir nos solutions."
+          width={1600}
+          height={400}
+          sizes="(max-width: 1024px) 100vw, 1024px"
+          className="h-auto w-full"
+        />
+      </picture>
+      <figcaption className="mt-5 grid gap-4 md:grid-cols-[1fr_2fr] md:gap-12">
+        <span className="text-sm">{'Le sélecteur de produits sur quadria.eu.'}</span>
+        <span className="text-base leading-relaxed">
+          {'L’accueil relaie également les services locaux, notamment les composteurs proposés par Bordeaux Métropole et la collecte des déchets verts à Pessac.'}
+        </span>
+      </figcaption>
+    </figure>
+
+  </section>
+
+  <section className="mt-16 md:mt-24" aria-labelledby="quadria-menus">
+    <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <h2 id="quadria-menus" className="text-3xl font-medium leading-tight text-white">
+        {'Des menus plus complexes qu’ils n’en ont l’air.'}
+      </h2>
+      <div>
+
+Le menu « Produits » rassemble les points d’apport volontaire, les bacs et les équipements de gestion des biodéchets. Chaque famille a ses visuels et ses liens. Il fallait organiser cet ensemble sur grand écran et prévoir une navigation utilisable au toucher sur mobile.
+
+Nous avons développé des sous-menus composés de blocs WordPress, que les équipes peuvent modifier dans l’éditeur. Cela permet de faire évoluer les groupes de produits et leurs liens en conservant la structure du menu. Sur mobile, l’ouverture et la fermeture du panneau tiennent compte de la position de l’en-tête pendant le défilement.
+
+      </div>
+    </div>
+    <figure className="mt-8 md:mt-10">
+      <Image
+        src="/images/portfolio/quadria-menu.webp"
+        alt="Le menu Produits de Quadria déployé sur ordinateur, avec ses groupes de produits, ses visuels et ses liens organisés en colonnes."
+        width={1800}
+        height={551}
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className="h-auto w-full"
+      />
+      <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-sm">
+        <span>{'Le menu « Produits », composé dans WordPress.'}</span>
+        <a href="/images/portfolio/quadria-menu.webp" className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+          {'Voir le menu en grand'}
+        </a>
+      </figcaption>
+    </figure>
+
+  </section>
+
+  <section className="mt-16 grid items-center gap-8 md:mt-24 lg:grid-cols-[1.45fr_1fr] lg:gap-12" aria-labelledby="quadria-fiches">
+    <figure>
+      <Image
+        src="/images/portfolio/quadria-compostys.webp"
+        alt="La fiche Compostys réalisée pour Quadria : le composteur dans un jardin, sa présentation et la demande de devis."
+        width={1600}
+        height={800}
+        sizes="(max-width: 1023px) 100vw, 580px"
+        className="h-auto w-full"
+      />
+      <figcaption className="mt-3 text-sm">
+        {'L’ouverture de la fiche Compostys®, sur le site en production.'}
+      </figcaption>
+    </figure>
+    <div>
+      <h2 id="quadria-fiches" className="text-3xl font-medium leading-tight text-white">
+        {'Voir le produit en usage, puis consulter les détails.'}
+      </h2>
+      <div className="mt-6">
+
+Sur Compostys®, on découvre d’abord le composteur dans un jardin. La présentation de la gamme et la demande de devis sont placées à côté de cette image.
+
+Les tableaux de dimensions, les étapes de montage et les documents à télécharger viennent ensuite. Un menu de sections permet de rejoindre directement l’information recherchée, sans quitter la fiche.
+
+      </div>
+    </div>
+
+  </section>
+
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="quadria-formulaires">
+    <h2 id="quadria-formulaires" className="text-3xl font-medium leading-tight text-white">
+      {'Des champs qui s’adaptent aux réponses.'}
+    </h2>
+    <div>
+
+Pour les formulaires, nous avons utilisé Contact Form 7 avec **Simple Conditional Fields for Contact Form 7**, une extension que nous avons développée chez inRage.
+
+Elle permet d’afficher ou de masquer des groupes de champs en fonction des réponses du visiteur. Certaines questions peuvent ainsi être réservées à un type de demande, plutôt que de présenter tous les champs à tout le monde. Les règles d’affichage se configurent visuellement dans WordPress.
+
+      <Link href={`${RouteLink.blog}/contact-form-7-champ-conditionnel`} className="mt-5 inline-flex min-h-11 items-center text-base text-orange underline hover:text-white">
+        {'Lire notre article sur les champs conditionnels de Contact Form 7'}
+      </Link>
+    </div>
+
+  </section>
+
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="quadria-administration">
+    <div>
+      <h2 id="quadria-administration" className="text-3xl font-medium leading-tight text-white">
+        {'Et quand une gamme évolue ?'}
+      </h2>
+      <p className="mt-5 max-w-[28ch] text-xl leading-relaxed text-white">
+        {'Les équipes retrouvent les mêmes rubriques dans WordPress.'}
+      </p>
+    </div>
+    <div>
+
+Les fiches produits ont leur pendant dans l’administration. Les équipes peuvent renseigner les caractéristiques, ajouter une option ou remplacer une notice dans les champs prévus pour cela. Nous avons développé cette structure dans WooCommerce.
+
+Pour les autres pages, nous avons créé des blocs WordPress dédiés aux produits, aux références clients et aux actualités. Les équipes composent leur contenu avec ces éléments, dont nous avons défini le rendu.
+
+    </div>
+
+  </section>
+
+  <section className="mt-16 bg-gray-darker p-6 md:mt-24 md:p-12" aria-labelledby="quadria-octa">
+    <p className="text-sm tracking-widest uppercase text-orange">{'Une création inRage'}</p>
+    <div className="mt-8 grid gap-8 md:grid-cols-[0.8fr_1.5fr] md:gap-12">
+      <div>
+        <p className="text-6xl font-medium leading-none text-white md:text-7xl">{'Octa'}</p>
+        <p className="max-w-[24ch] text-base">{'Notre base WordPress, publiée en open source.'}</p>
+      </div>
+      <div>
+        <h2 id="quadria-octa" className="text-2xl font-medium leading-tight text-white md:text-3xl">
+          {'La refonte de Quadria repose sur Octa.'}
+        </h2>
+        <div className="mt-6">
+
+Nous développons **Octa** chez inRage et son code est disponible en open source. Il nous sert de point de départ pour les projets WordPress. Sur Quadria, nous l’avons utilisé pour réaliser l’interface et les blocs propres au site.
+
+Pour les curieux, Octa assemble Bedrock, Sage et Acorn, avec Vite et Tailwind CSS côté interface. Les éléments partagés, comme les cartes produits, sont développés une fois puis réutilisés dans les pages.
+
+        </div>
+        <div className="mt-6 flex flex-col items-start gap-2 text-base">
+          <Link href={`${RouteLink.blog}/octa-starter-wordpress-theme`} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+            {'Lire notre article sur Octa'}
+          </Link>
+          <a href="https://github.com/inrage/octa" className="inline-flex min-h-11 items-center text-gray-light underline hover:text-white">
+            {'Consulter le code sur GitHub'}
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-2 text-base md:mt-16">
+    <Link href={RouteLink.prestationWordPress} className="inline-flex min-h-11 items-center text-white underline hover:text-orange">
+      {'Notre savoir-faire WordPress'}
+    </Link>
+    <Link href={RouteLink.contact} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+      {'Parlons de votre refonte'}
+    </Link>
+  </div>
+</div>
