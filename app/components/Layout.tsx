@@ -11,6 +11,7 @@ type Props = {
   title?: string | string[]
   excerpt?: string | string[]
   tmaLayout?: boolean
+  meta?: ReactNode
   breadcrumbs?: Array<{
     link: string
     title: string
@@ -28,6 +29,7 @@ function Layout({
   title = '',
   excerpt = '',
   tmaLayout = false,
+  meta,
   breadcrumbs = [],
 }: Props): ReactNode {
   return (
@@ -35,6 +37,7 @@ function Layout({
       <Header
         pageTitle={title}
         pageExcerpt={excerpt}
+        pageMeta={meta}
         headerType={tmaLayout === true ? 'tma' : 'default'}
         breadcrumb={breadcrumbs}
       />

@@ -32,11 +32,14 @@
     "react-dom": "19.3.0",
     "react-hook-form": "^7.88.0",
     "react-use": "^17.6.1",
+    "rehype-pretty-code": "0.14.1",
     "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "request-ip": "^3.3.0",
     "sanitize-html": "^2.17.7",
     "sharp": "^0.35.4",
+    "shiki": "3.2.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {

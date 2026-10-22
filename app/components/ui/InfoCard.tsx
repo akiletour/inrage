@@ -19,7 +19,7 @@ export default function InfoCard({
 
   return (
     <div
-      className={`bg-gray-dark/50 border-l-4 ${borderColorClass} p-12 lg:p-16 backdrop-blur-sm rounded-r-lg ${className}`}
+      className={`border-l-4 bg-gray-darker/60 ${borderColorClass} rounded-r-xl px-6 py-5 md:px-8 md:py-6 [&>:first-child]:mt-0 [&>:last-child]:mb-0 ${className}`}
     >
       {children}
     </div>

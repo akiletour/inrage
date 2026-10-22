@@ -56,7 +56,7 @@ export default function Timeline({ caption, items }: TimelineProps) {
     .join(' ')
 
   return (
-    <figure className="not-prose my-14">
+    <figure className="not-prose article-wide my-14">
       <div className="hidden lg:block">
         <div className="grid" style={{ gridTemplateColumns: template }}>
           {columns.map((column, index) => (
