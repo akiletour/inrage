@@ -10,8 +10,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
     img: (props) => {
-      const { src, alt, width, height, ...rest } = props
-      return (
+      const { src, alt, width, height, title, ...rest } = props
+      const image = (
         <Image
           src={src}
           alt={alt || ''}
@@ -19,6 +19,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           height={Number(height) || 768}
           {...rest}
         />
+      )
+
+      if (!title) {
+        return image
+      }
+
+      return (
+        <>
+          {image}
+          <span className="article-caption">{title}</span>
+        </>
       )
     },
     ...components,

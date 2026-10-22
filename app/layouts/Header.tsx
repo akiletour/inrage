@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -20,11 +20,13 @@ interface Props {
   }>
   headerType?: HeaderType
   pageExcerpt?: PageExcerptType
+  pageMeta?: ReactNode
 }
 
 export default function Header({
   pageTitle = '',
   pageExcerpt = '',
+  pageMeta,
   breadcrumb = [],
   headerType = 'default',
 }: Props) {
@@ -36,7 +38,34 @@ export default function Header({
   return (
     <div className="relative h-auto w-full" ref={ref}>
       <NavPrimary isSticky={sticky} />
-      {pageTitle ? (
+      {pageTitle && pageMeta ? (
+        <div className="container relative z-10 mt-8 pb-6 md:mt-14 md:pb-8">
+          <div className="mx-auto max-w-[44rem] lg:max-w-[64rem]">
+            <nav
+              aria-label="Fil d’Ariane"
+              className="hidden gap-2 text-sm text-white/70 sm:flex"
+            >
+              <Link href="/">
+                <span className="hover:text-white">Accueil</span>
+              </Link>
+              {breadcrumb.map((bc) => (
+                <Fragment key={bc.link}>
+                  <span aria-hidden>/</span>
+                  <Link href={bc.link}>
+                    <span className="hover:text-white">{bc.title}</span>
+                  </Link>
+                </Fragment>
+              ))}
+            </nav>
+            <h1 className="mt-4 text-3xl leading-[1.15] font-bold tracking-tight text-balance text-white md:text-[2.75rem] lg:text-[3.25rem] lg:text-pretty">
+              {pageTitle}
+            </h1>
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 text-sm text-white/80">
+              {pageMeta}
+            </div>
+          </div>
+        </div>
+      ) : pageTitle ? (
         <div className="container z-10 relative mt-6 md:mt-16 md:-mb-16">
           <h1 className="font-bold max-w-4xl tracking-wider text-2xl sm:text-4xl text-white">
             {pageTitle}
@@ -90,12 +119,21 @@ export default function Header({
         fill
         sizes="100vw"
       />
-      <Diagonal
-        preserveRatio
-        bgCorner="fill-orange"
-        bgClass="fill-gray-dark"
-        className="h-auto w-full"
-      />
+      {pageTitle && pageMeta ? (
+        <Diagonal
+          stretch
+          bgCorner="fill-orange"
+          bgClass="fill-gray-dark"
+          className="h-20 w-full md:h-28"
+        />
+      ) : (
+        <Diagonal
+          preserveRatio
+          bgCorner="fill-orange"
+          bgClass="fill-gray-dark"
+          className="h-auto w-full"
+        />
+      )}
     </div>
   )
 }

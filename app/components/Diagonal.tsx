@@ -9,6 +9,7 @@ type Props = {
   bgClass?: string
   bgCorner?: string
   preserveRatio?: boolean
+  stretch?: boolean
   cta?: {
     icon: ReactNode
     href: string
@@ -23,6 +24,7 @@ export default function Diagonal({
   bgClass = '',
   bgCorner = '',
   preserveRatio = false,
+  stretch = false,
   cta,
 }: Props) {
   const classeNames = [`${className} w-full block`]
@@ -40,11 +42,14 @@ export default function Diagonal({
       <svg
         className={classeNames.join(' ')}
         height="361"
-        preserveAspectRatio={preserveRatio ? 'xMinYMin meet' : 'xMidYMax slice'}
+        preserveAspectRatio={
+          stretch ? 'none' : preserveRatio ? 'xMinYMin meet' : 'xMidYMax slice'
+        }
         viewBox="0 0 1920 361"
+        overflow="visible"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path className={bgClass} d="M1349 234L1920 0v361H0z" fill="#000" />
+        <path className={bgClass} d="M1349 234L1920 0v363H0v-2z" fill="#000" />
         <path className={bgCorner} d="M1445 197.5L1920 4v249z" fill="#BE4C4C" />
       </svg>
 
