@@ -1,0 +1,170 @@
+---
+title: 'Faille de sécurité PHP : récit d’une crise jour et nuit'
+date: '2026-10-23'
+category: 'Serveur'
+thumbnail: '/images/articles/faille-securite-php-octobre-2026.jpg'
+excerpt: 'Une faille PHP sous embargo apprise en pleine nuit, des images serveur à reconstruire et une nuit entière pour corriger le parc. Récit.'
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+import InfoCard from '../../components/ui/InfoCard'
+import Timeline from '../../components/ui/Timeline'
+import StackCompare from '../../components/ui/StackCompare'
+
+<MdxIntroduction>Nuit du 20 au 21 octobre. La nouvelle tombe : une faille de sécurité PHP sérieuse, sur toutes les branches. Les détails sont sous embargo. On ne sait pas comment elle s’exploite, ni si quelqu’un s’en sert déjà. On sait seulement qu’elle touche le langage qui fait tourner la plupart de nos sites.</MdxIntroduction>
+
+La nuit est courte. Le mercredi matin, on attaque, avec une sensation désagréable que je n’avais pas ressentie depuis longtemps : se protéger contre un ennemi qu’on ne voit pas, sans savoir où il va frapper.
+
+<Timeline
+  caption="Du 20 au 22 octobre. Points orange : notre équipe. Points gris : l’image Docker officielle."
+  items={[
+    {
+      time: 'Nuit du 20 au 21',
+      title: 'L’alerte tombe',
+      description: 'Toutes les branches. Détails sous embargo.',
+    },
+    {
+      time: 'Mercredi matin',
+      title: 'Patient zéro, images reconstruites',
+      description: 'Migration en 8.4, puis Debian + Sury.',
+    },
+    {
+      time: '15h44',
+      title: 'Pull request officielle ouverte',
+      description: '540 commentaires.',
+      tone: 'external',
+    },
+    {
+      time: '16h16 → 16h19',
+      title: 'Verrouillée, puis fusionnée',
+      description: 'Correctif validé, pas encore publié.',
+      tone: 'external',
+      gap: { value: '+4 h', label: 'd’attente avant Docker Hub' },
+    },
+    {
+      time: 'Vers 20h30',
+      title: 'Premiers sites patchés',
+      description: 'Dont le patient zéro, en 8.4.27.',
+      highlight: true,
+    },
+    {
+      time: 'Nuit du 21 au 22',
+      title: 'Le reste du parc',
+      description: '35 images en 48 h, sans casse.',
+    },
+  ]}
+/>
+
+## Une faille de sécurité PHP, et on avance à l’aveugle
+
+Deux vulnérabilités, **CVE-2026-109618** et **CVE-2026-109619**, résumées en trois mots anglais : _state corruption via bailout_. Quand PHP interrompt brutalement un script (le « bailout »), il peut laisser une partie de sa mémoire interne dans un état incohérent. Un attaquant capable de provoquer cette situation peut s’en servir pour aller plus loin.
+
+Ça, c’est ce qu’on sait aujourd’hui. Le matin du 21, les avis de sécurité GHSA sont encore sous embargo. Pas de scénario d’attaque, pas de liste de fonctions à surveiller, aucun moyen de savoir si nos sites ont déjà été visés. Impossible de poser une règle de pare-feu sur quelque chose qu’on ne connaît pas. Une seule réponse possible : mettre à jour PHP partout, le plus vite possible.
+
+Toutes les branches sont touchées. Le correctif est disponible dès le 21, et les releases officielles sortent le 22 : 8.2.35, 8.3.36, 8.4.27 et 8.5.12 (avis GHSA-w8hw-w9fx-j79w et GHSA-6wmf-4rv5-p3rp, détaillés dans le [changelog de PHP 8](https://www.php.net/ChangeLog-8.php#8.3.36)).
+
+La vraie ligne de partage, c’est le support. Les branches 8.2 à 8.5 reçoivent ce correctif officiel. Les versions inférieures à 8.2 sont en fin de vie, et PHP ne publie plus rien pour elles (voir la [page des versions supportées](https://www.php.net/supported-versions.php)). Des sites en PHP 7.4, il en reste beaucoup. Chez nous aussi.
+
+## Le vrai chantier : reconstruire toute la chaîne d’infrastructure
+
+Nos sites tournent dans des conteneurs, construits à partir d’images Docker maison et déployés avec des charts Helm. Il ne s’agissait donc pas de mettre à jour quelques sites, mais de reconstruire toute la chaîne : les images, les charts Helm, puis l’ensemble de notre parc.
+
+Au total, 35 images reconstruites en 48 heures, couvrant neuf versions de PHP, de la 5.6 à la 8.4 : WordPress (avec ou sans Redis), PHP, PrestaShop et FrankenPHP.
+
+### Sans rien casser pour ceux qui utilisent nos images
+
+Nos images Docker sont publiques, et nous ne sommes pas les seuls à nous en servir : elles cumulent près de 50 000 téléchargements. Leurs sources sont sur GitHub : [docker-php](https://github.com/inrage/docker-php), [docker-wordpress](https://github.com/inrage/docker-wordpress) et [docker-prestashop](https://github.com/inrage/docker-prestashop). Une reconstruction en urgence ne nous autorisait donc aucun changement cassant : mêmes tags, même comportement, seul le PHP change en dessous.
+
+Aller vite et être rigoureux en même temps, c’est rarement compatible. Là, on n’avait pas le choix. Chaque image devait être corrigée et rester interchangeable avec la précédente, pour quelqu’un qui ne lirait jamais notre changelog.
+
+### PHP 7.4 et 8.0 en fin de vie : les correctifs de sécurité rétroportés
+
+Le plus gros morceau, c’était l’image PHP legacy, celle qui fait tourner nos sites en 7.4 et en 8.0. Elle reposait sur l’image Docker officielle de PHP, qui ne reçoit plus aucun correctif pour les branches en fin de vie. La mettre à jour ne servait à rien : la base elle-même ne serait jamais corrigée.
+
+<StackCompare
+  caption="Une image Docker est un empilement de couches. On a remplacé celle du bas : pour ceux qui utilisent nos images, tout le reste est identique."
+  stacks={[
+    {
+      label: 'Avant',
+      layers: [
+        { label: 'Les sites', tone: 'same' },
+        { label: 'Nos images legacy', detail: 'mêmes tags', tone: 'same' },
+        { label: 'Image officielle PHP 7.4 / 8.0', detail: 'plus de correctif', tone: 'blocked' },
+      ],
+    },
+    {
+      label: 'Après',
+      layers: [
+        { label: 'Les sites', tone: 'same' },
+        { label: 'Nos images legacy', detail: 'mêmes tags', tone: 'same' },
+        { label: 'Debian + paquets Sury', detail: 'correctif rétroporté', tone: 'new' },
+      ],
+    },
+  ]}
+/>
+
+Il a fallu la refaire entièrement, sur une base Debian, avec les paquets d’Ondřej Surý. Il maintient depuis des années les paquets PHP pour Debian et Ubuntu, et son [dépôt](https://packages.sury.org/php/) fournit encore les anciennes branches. Surtout, il y rétroporte les correctifs de sécurité : il reprend le correctif d’une branche maintenue et l’adapte aux versions plus anciennes. Pour cette faille, le changelog Debian des paquets `php7.4 1:7.4.33-31` et `php8.0 1:8.0.30-25` l’indique en toutes lettres : _Backported from 8.2.35_.
+
+C’est ce chantier qui a occupé l’essentiel de la journée. À côté, les montées de version prévues sont presque passées au second plan.
+
+Un piège au passage, qui trompe beaucoup de monde : un PHP corrigé par rétroportage affiche toujours **7.4.33** ou **8.0.30**. Le numéro de version ne bouge pas, seule la révision du paquet change (le `-31` de `7.4.33-31`). Un scanner de sécurité qui lit la version annoncée par le serveur conclut donc que le site est vulnérable. C’est un faux positif : pour le lever, il faut la révision exacte du paquet et la ligne du changelog correspondante.
+
+### 540 commentaires en 32 minutes
+
+Pour les sites en PHP 8.3 et 8.4, le chemin semblait plus simple : attendre les versions corrigées dans l’image Docker officielle, puis reconstruire nos images dessus. Sauf que cette attente, on ne la maîtrisait pas.
+
+Le 21 octobre à 15h44, la [pull request de mise à jour de l’image Docker officielle de PHP](https://github.com/docker-library/php/pull/1694) est ouverte : _[security] Update to 8.5.12, 8.4.27, 8.3.36, 8.2.35_. En 32 minutes, elle reçoit plus de 500 commentaires, 540 au total, de développeurs du monde entier qui attendent le même correctif que nous. À 16h16, un mainteneur verrouille la discussion avec le motif GitHub _too heated_. À 16h19, la pull request est fusionnée.
+
+![La pull request #1694 de l’image Docker officielle de PHP, fusionnée puis verrouillée comme « too heated » après plus de 500 commentaires](/images/articles/faille-php-pull-request-docker-1694.png)
+
+Le correctif est validé, mais pas encore utilisable : il faut attendre plus de 4 heures avant que les nouvelles images soient disponibles sur Docker Hub.
+
+C’est le moment où l’on mesure ce que veut dire dépendre d’une chaîne qu’on ne contrôle pas. Les mainteneurs ont fait leur travail vite et bien, mais leur calendrier n’est pas le nôtre. Avoir déjà reconstruit nos images legacy sur Debian et les paquets de Sury, sans attendre l’image officielle, prenait tout son sens. Dès que les images officielles sont arrivées, on a reconstruit les nôtres dessus, et les premiers sites patchés sont partis en production vers 20h30. Pour le reste du parc, on a enchaîné toute la nuit.
+
+## Mise à jour PHP 8.4 : le patient zéro
+
+Retour au mercredi matin. À ce moment-là, on ne sait pas encore que les vieilles branches auront droit à un rétroportage. Pour nous, protéger un site en PHP 7.4 veut dire une seule chose : le monter de version.
+
+Le premier à passer sur le billard, c’est le WordPress d’un concessionnaire automobile multimarque. Il sert de patient zéro, celui sur lequel on éprouve la démarche avant de l’appliquer au reste du parc. Sa migration de 7.4 vers 8.4 existait déjà, préparée sur une branche de la refonte en cours et prévue pour plus tard. On l’a extraite et passée en urgence, en revivant au passage les mêmes galères que la première fois : compatibilité, recette, déploiement.
+
+Soyons clairs : la 8.4.26 qu’on installait ce jour-là était elle aussi vulnérable. La migration ne protégeait pas le site à elle seule. Elle le mettait sur une branche maintenue, la seule garantie de recevoir le correctif officiel.
+
+Entre 7.4 et 8.4, il y a une version majeure et quatre mineures. Assez pour qu’une fonction dépréciée ou un plugin pas à jour fasse tomber une page. Je n’allais pas le découvrir en production. On a restauré la base de prod en local, fait tourner le site sous PHP 8.4, puis recetté 28 pages publiques et 10 écrans d’administration. Zéro erreur fatale.
+
+C’est seulement ensuite qu’on s’est aperçu qu’Ondřej Surý avait rétroporté le correctif pour 7.4 et 8.0. Excellente nouvelle pour le reste du parc, et petite ironie pour notre patient zéro : il aurait pu attendre. Il ne s’en plaint pas. Il tourne très bien en PHP 8.4, et sa migration est derrière lui.
+
+Le « on repatchera derrière » a eu lieu le soir même : vers 20h30, le site passait en PHP 8.4.27, la version corrigée.
+
+### L’imprévu : un déploiement qui en fait plus que prévu
+
+Le déploiement de ce WordPress ne s’est pas contenté de mettre à jour le site. Il a redéployé toute la stack du projet, et au passage, le service de cache a pris une version plus récente que celle qui tournait jusque-là.
+
+Résultat : environ 2 minutes de perturbation au total, le temps de comprendre et de corriger à chaud. Rien de dramatique, mais ce n’était pas prévu, et je préfère que le client l’apprenne par moi. La leçon, on la connaissait en théorie : épingler toutes les versions, y compris celles des services qu’on juge secondaires, et garder une configuration d’infrastructure qui décrit exactement ce qui tourne.
+
+<InfoCard>
+
+### En bref : que faire si votre site est en PHP < 8.2
+
+- Identifiez la version exacte de PHP de votre site. « PHP 7 » ne suffit pas.
+- En 7.4, 8.0 ou 8.1, votre branche ne reçoit plus de correctif officiel. Demandez à votre hébergeur s’il utilise des paquets avec correctifs rétroportés, comme ceux d’Ondřej Surý.
+- Si votre site tourne dans un conteneur basé sur l’image Docker officielle de PHP, une branche en fin de vie n’y sera plus jamais corrigée. Nos images ([PHP](https://github.com/inrage/docker-php), [WordPress](https://github.com/inrage/docker-wordpress), [PrestaShop](https://github.com/inrage/docker-prestashop)), reconstruites sur Debian et les paquets de Sury, couvrent ces branches.
+- Sur un paquet rétroporté, c’est la révision du paquet qui fait foi, pas le numéro de version : méfiez-vous des scanners qui ne lisent que la bannière.
+- Planifiez une montée vers une branche maintenue (8.3 ou 8.4), avec une recette sur une copie du site.
+
+</InfoCard>
+
+## Ce que la crise nous a appris
+
+Avec le recul, la leçon nous a appris beaucoup plus que la faille elle-même.
+
+La faille, on l’a traitée en 48 heures. Ce qu’elle a révélé nous a occupés plus longtemps : on découvrait qu’une image devait être reconstruite au moment où la crise éclatait. Depuis, notre système de surveillance des images est beaucoup plus robuste. Il détecte de lui-même qu’une image doit être reconstruite, sans attendre qu’une faille tombe pour s’en apercevoir.
+
+Une image construite sur une base qui ne reçoit plus de correctifs, c’est une dette invisible tant que tout va bien. Le jour où une faille tombe, elle se paie d’un coup. Et le rétroportage, qui nous a sortis de l’urgence, ne remplace pas une montée de version : rien ne garantit que la prochaine faille sera rétroportée.
+
+Derrière la ligne « mise à jour de sécurité » d’un rapport de maintenance, il y a eu cette fois une alerte reçue en pleine nuit, une journée à avancer sans savoir ce qu’on affrontait, une nuit entière de déploiements, des images et des charts Helm reconstruits sans rien casser pour personne, et un accroc assumé. C’est ce que j’entends par infogérance d’un site web.
+
+## Votre site tourne encore en PHP 7.4 ? Parlons-en
+
+Si vous ne savez pas quelle version de PHP fait tourner votre site, ou si vous savez qu’elle est en fin de vie, on peut commencer par un [audit gratuit de votre site](/audit-site-internet-gratuit). Pour la suite, la [maintenance WordPress](/prestations/maintenance-site-internet/maintenance-wordpress) couvre exactement ce type de veille et d’intervention.
+
+Je suis [développeur web à La Rochelle](/developpeur-web-la-rochelle) et je travaille avec des clients partout en France. Pour en discuter directement, [écrivez-moi](/contact).
