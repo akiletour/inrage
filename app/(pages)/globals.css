@@ -32,6 +32,45 @@ body {
   @apply bg-gray-darker text-white font-normal rounded px-1.5 py-0.5 text-[0.8em];
 }
 
+.article {
+  --tw-prose-invert-body: var(--color-gray-light);
+  --tw-prose-invert-headings: var(--color-white);
+  --tw-prose-invert-bold: var(--color-white);
+  --tw-prose-invert-links: var(--color-white);
+  --tw-prose-invert-quotes: var(--color-white);
+  --tw-prose-invert-quote-borders: var(--color-orange);
+  --tw-prose-invert-bullets: #666666;
+  --tw-prose-invert-counters: var(--color-gray);
+  line-height: 1.8;
+}
+
+.article > * {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.article > :is(figure, pre, .not-prose, p:has(> img)) {
+  max-width: none;
+}
+
+.article :where(h2) {
+  margin-top: 2.4em;
+  text-wrap: balance;
+}
+
+.article :where(h3) {
+  margin-top: 2em;
+  text-wrap: balance;
+}
+
+.article :where(p, li) {
+  text-wrap: pretty;
+}
+
+.article :where(a):not(:where(.not-prose *)) {
+  @apply underline decoration-orange/60 decoration-1 underline-offset-4 transition-colors hover:decoration-orange;
+}
+
 .button {
   @apply h-10 bg-orange hover:bg-orange-dark hover:text-white transition-all text-gray-darker text-center justify-center items-center px-4 inline-flex font-medium;
 }

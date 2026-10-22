@@ -76,7 +76,7 @@ export default async function Page(props: Props) {
       title={post.title}
     >
       <div className="container">
-        <div className="my-16 prose prose-lg prose-invert !max-w-5xl mx-auto">
+        <div className="article my-16 prose prose-lg prose-invert !max-w-5xl mx-auto">
           <post.content />
         </div>
       </div>
