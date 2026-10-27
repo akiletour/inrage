@@ -1,6 +1,7 @@
 import CheckMark from '@component/CheckMark'
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
 import MoreIcon from '@component/icons/MoreIcon'
 import ProjectItem from '@component/items/ProjectItem'
 import Layout from '@component/Layout'
@@ -15,13 +16,31 @@ import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Développeur Symfony freelance à La Rochelle - inRage',
+  title: 'Développeur Symfony freelance : applications métier | inRage',
   description:
-    'Développeur freelance Symfony à La Rochelle, spécialisé dans la création de sites et d’applications métier avec le framework PHP Symfony. Devis gratuit.',
+    'Prestataire Symfony freelance à La Rochelle : applications métier, extranets, API et consoles d’administration sur mesure, reprise et montée de version d’applications existantes. Devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationSymfony),
   },
 }
+
+const FAQ: FaqItem[] = [
+  {
+    question: 'Symfony ou WordPress pour mon projet ?',
+    answer:
+      'WordPress quand le cœur du projet est du contenu que vous publiez vous-même. Symfony quand le cœur est un processus métier : gestion de commandes, extranet client, outil interne, API reliée à d’autres logiciels. Les deux peuvent cohabiter, par exemple un site WordPress adossé à une application Symfony.',
+  },
+  {
+    question: 'Pouvez-vous reprendre une application Symfony existante ?',
+    answer:
+      'Oui. Je commence par un audit du code, des dépendances et de la version de Symfony, puis je propose une montée de version vers une LTS maintenue avant toute évolution fonctionnelle. Les applications en Symfony 3 ou 4 sont les cas les plus fréquents.',
+  },
+  {
+    question: 'Combien de temps dure le développement d’une application ?',
+    answer:
+      'Un premier périmètre utilisable est livré en quelques semaines, puis l’application évolue par lots, chacun testé sur pré-production avant sa mise en ligne. Le découpage est défini avec vous au démarrage, à partir d’un cahier des charges ou d’un atelier.',
+  },
+]
 
 export default async function Symfony() {
   const projects = await getPortfolioItems(4, 'application-web')
@@ -31,14 +50,14 @@ export default async function Symfony() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: 'Prestations',
         },
         {
           link: RouteLink.prestationWeb,
           title: 'Création de site internet',
         },
       ]}
-      title="Symfony"
+      title="Développement Symfony : applications et outils métier"
     >
       <div className="container">
         <TextImage
@@ -74,9 +93,10 @@ export default async function Symfony() {
             .
           </p>
           <p className={'mt-4'}>
-            La longévité de Symfony me permet d&apos;avoir une expertise pointue
-            et de pouvoir estimer et réaliser des besoins métiers spécifique et
-            divers.
+            Je développe avec Symfony depuis 2012, pour des outils internes, des
+            extranets et des API reliées à des sites WordPress ou Prestashop.
+            Cette expérience me permet d&apos;estimer et de réaliser des besoins
+            métier précis, de La Rochelle ou à distance.
           </p>
         </TextImage>
       </div>
@@ -171,7 +191,7 @@ export default async function Symfony() {
         <div className="relative z-10">
           <SectionTitle
             title={'Mon choix Numéro 1'}
-            content="Je préconise très souvent l'utilisation de Symfony pour diverse application ou console d'administration."
+            content="Je préconise Symfony pour les applications métier et les consoles d'administration qui doivent durer."
           />
 
           <TextImage
@@ -199,8 +219,8 @@ export default async function Symfony() {
               >
                 Mercure
               </a>
-              , un outil permet de faire communiquer plusieurs systèmes en temps
-              réel comme le ferait node.
+              , un outil qui permet de faire communiquer plusieurs systèmes en
+              temps réel, comme le ferait Node.
             </p>
 
             <p className={'mt-4'}>
@@ -214,8 +234,8 @@ export default async function Symfony() {
               Prestashop et console Symfony.
             </p>
             <p className={'mt-4'}>
-              Mon client appui sur un bouton pour demander la mise à jour de ses
-              produits sur l&apos;administration de Prestashop, on envoi
+              Mon client appuie sur un bouton pour demander la mise à jour de
+              ses produits dans l&apos;administration de Prestashop, on envoie
               l&apos;information à la console Symfony. Et Mercure récupère en
               temps réel la progression de cette tâche et l&apos;affiche sur le
               backoffice Prestashop de mon client.
@@ -276,9 +296,9 @@ export default async function Symfony() {
                   qui sont aussi utilisable en dehors de Symfony.
                 </p>
                 <p className="mt-4">
-                  Grace à leur documentation et leur API, je peux développer
-                  rapidement des fonctionnalités sans perdre de temps à
-                  re-développer des méthodes disponible dans ces composants.
+                  Grâce à leur documentation et à leur API, je développe
+                  rapidement des fonctionnalités sans redévelopper des méthodes
+                  disponibles dans ces composants.
                 </p>
 
                 <a
@@ -298,7 +318,7 @@ export default async function Symfony() {
               position="right"
               titlePosition="left"
               title={[
-                'Créer des interface de commandes',
+                'Créer des interfaces de commandes',
                 'Avec Symfony Console',
               ]}
               duoTone
@@ -366,6 +386,11 @@ export default async function Symfony() {
           }}
         />
       </div>
+
+      <FaqSection
+        intro="Ce que me demandent les entreprises avant de lancer ou de reprendre une application Symfony."
+        items={FAQ}
+      />
 
       <div className="container mt-20">
         <SectionTitle

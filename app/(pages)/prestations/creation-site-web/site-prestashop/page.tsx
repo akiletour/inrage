@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
 import MoreIcon from '@component/icons/MoreIcon'
 import ProjectItem from '@component/items/ProjectItem'
 import Layout from '@component/Layout'
@@ -16,13 +17,31 @@ import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Création de site Prestashop | Développeur freelance - inRage',
+  title: 'Freelance Prestashop : création de boutique en ligne | inRage',
   description:
-    'Développeur web freelance, découvrez mes services de développement et création de site Prestashop sur-mesure avec développement de modules, de thèmes.',
+    'Développeur Prestashop freelance depuis 2013 : création de boutique en ligne, thème sur mesure, modules, import de catalogue, migration vers Prestashop 8 et maintenance. Basé à La Rochelle.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
 }
+
+const FAQ: FaqItem[] = [
+  {
+    question: 'Prestashop ou WooCommerce pour ma boutique ?',
+    answer:
+      'Prestashop pour un catalogue structuré, des déclinaisons nombreuses, du B2B avec des tarifs par client ou une liaison avec un ERP. WooCommerce quand la boutique accompagne un site éditorial WordPress et que le catalogue reste simple. Je développe sur les deux, le choix se fait sur votre catalogue et vos outils, pas sur une préférence.',
+  },
+  {
+    question: 'Pouvez-vous reprendre ma boutique Prestashop existante ?',
+    answer:
+      'Oui, qu’elle ait été créée par une agence, un freelance ou vous-même. Je commence par un état des lieux de la version, des modules et du thème, puis je propose soit une remise à niveau, soit une migration vers Prestashop 8 en conservant le catalogue, les clients et les commandes.',
+  },
+  {
+    question: 'Comment mon catalogue est-il intégré ?',
+    answer:
+      'Par import depuis un fichier CSV ou Excel, ou par une liaison avec votre logiciel de gestion via une API. Les outils d’import que j’ai développés sont réutilisables tout au long de la vie de la boutique pour les mises à jour de stock et de prix.',
+  },
+]
 
 export default async function PrestationPrestashop() {
   const projects = await getPortfolioItems(4, 'e-commerce')
@@ -32,14 +51,14 @@ export default async function PrestationPrestashop() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: 'Prestations',
         },
         {
           link: RouteLink.prestationWeb,
           title: 'Création de site internet',
         },
       ]}
-      title="Création de site Prestashop"
+      title="Création de boutique Prestashop"
     >
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
@@ -54,24 +73,30 @@ export default async function PrestationPrestashop() {
         </div>
         <div className="md:w-3/5 text-lg md:pl-10 leading-6 pt-4">
           <h2 className="text-white text-xl md:text-3xl font-bold">
-            Développeur Prestashop Freelance sur{' '}
-            <br className="hidden md:block" />
+            Développeur Prestashop freelance <br className="hidden md:block" />à
             La Rochelle
           </h2>
           <p className="mt-4">
-            Prestashop est un CMS gratuit et opensource. Il est 100%
-            administrable et son interface d’administration est claire et sobre.
+            Je développe des boutiques Prestashop depuis 2013, de la version 1.5
+            à Prestashop 8, pour des e-commerçants B2C et B2B : thème sur
+            mesure, modules spécifiques, import de catalogue, liaison avec un
+            ERP ou un logiciel de caisse.
           </p>
           <p className="mt-4">
-            A l’instar de Wordpress, Prestashop bénéficie d’une large
-            communauté, très investie. Les plugins et thèmes disponibles pour ce
-            CMS sont donc extrêmement nombreux. En somme, Prestashop est un CMS
-            simple et fiable, c’est l’outil idéal pour la création de boutique
-            e-commerce.
+            Prestashop est open source et entièrement administrable : vous gérez
+            vous-même le catalogue, les stocks, les promotions et les commandes.
+            Son catalogue de modules couvre la plupart des besoins, et ce qu’il
+            ne couvre pas, je le développe.
           </p>
           <p className="mt-4">
-            Pour ma part, je développe sur Prestashop depuis 2013 lors de la
-            sortie de la version 1.4 du CMS.
+            Une fois la boutique en ligne, la{' '}
+            <Link href={RouteLink.prestationTmaPrestashop}>
+              <span className="text-orange underline">
+                maintenance Prestashop
+              </span>
+            </Link>{' '}
+            prend le relais : mises à jour, sécurité, sauvegardes et
+            surveillance du tunnel d’achat.
           </p>
         </div>
       </div>
@@ -157,11 +182,10 @@ export default async function PrestationPrestashop() {
           </p>
 
           <p className="mt-4">
-            Les modules développées par mes soins respectent les bonnes
-            pratiques véhiculées par Prestashop et utilisent le système de
-            “Hook” pour réaliser des actions sans modifier le coeur du CMS. Ces
-            modules sont réplicables sur l’ensemble des sites développés sous
-            Prestashop.
+            Les modules développés par mes soins respectent les bonnes pratiques
+            véhiculées par Prestashop et utilisent le système de “Hook” pour
+            réaliser des actions sans modifier le coeur du CMS. Ces modules sont
+            réplicables sur l’ensemble des sites développés sous Prestashop.
           </p>
         </TextImage>
       </div>
@@ -177,24 +201,20 @@ export default async function PrestationPrestashop() {
         <div className="container text-center py-16 lg:py-0">
           <div className="">
             <h2 className="text-center text-white text-3xl">
-              Migration de Prestashop 1.6 vers 1.7
-              <span className="block text-xl">
-                Un outil pour vous faciliter la vie
-              </span>
+              Migration vers Prestashop 8
+              <span className="block text-xl">Sans recréer votre boutique</span>
             </h2>
             <p className="text-xl text-gray-light mt-6">
-              La dernière version de Prestashop (1.7.5) est très largement
-              plébiscitée par la communauté pour ses performances et sa
-              fiabilité. Notamment car elle est développée sur la base du
-              framework Symfony.
+              Les boutiques encore en 1.6 ou 1.7 ne reçoivent plus de correctifs
+              de sécurité, et leurs modules cessent un à un d’être maintenus.
             </p>
             <p className="mt-4">
-              En 2019, de nombreuses sociétés ont fait part à leurs
-              développeurs, de leur souhait de migrer leur boutique sur la
-              nouvelle version de Prestashop. Afin de rendre cette migration
-              plus simple et plus rapide, j’ai créé un outil dédié me permettant
-              de réaliser cette migration et ainsi d’éviter la création d’un
-              nouveau site.
+              En 2019, j’ai créé un outil de migration pour passer les boutiques
+              de la 1.6 à la 1.7 sans repartir de zéro. La même démarche
+              s’applique aujourd’hui au passage vers Prestashop 8 : catalogue,
+              clients et commandes sont repris, le thème et les modules sont
+              réécrits ou remplacés, et la bascule se fait sur pré-production
+              avant la mise en ligne.
             </p>
           </div>
         </div>
@@ -210,15 +230,15 @@ export default async function PrestationPrestashop() {
           L&apos;intégration de votre catalogue produit
         </h2>
         <p>
-          L&apos;intégration de votre catalogue produit au sein de votre
-          boutique e-commerce Prestashop est parfois très compliqué à mettre en
-          place lors de la création ou de la refonte.
+          L&apos;intégration de votre catalogue produit dans votre boutique
+          Prestashop est souvent l&apos;étape la plus longue d&apos;une création
+          ou d&apos;une refonte.
         </p>
         <p className="mt-4">
           Pour faciliter l&apos;intégration de vos catégories et produits dans
           votre catalogue, j&apos;ai développé des outils permettant
-          d&apos;injecter facilement vos références dans Prestashop via une API,
-          un tableau CSV ou XLS).
+          d&apos;injecter vos références dans Prestashop depuis une API, un
+          fichier CSV ou Excel.
         </p>
         <p className="mt-4">
           Ainsi, vous pouvez l&apos;alimenter en quelques clics et cela, tout au
@@ -329,6 +349,11 @@ export default async function PrestationPrestashop() {
           }}
         />
       </div>
+      <FaqSection
+        intro="Ce que me demandent les e-commerçants avant de lancer ou de reprendre leur boutique Prestashop."
+        items={FAQ}
+      />
+
       <div className="container mt-8 md:mt-0">
         <SectionTitle
           content={

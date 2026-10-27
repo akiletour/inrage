@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
 import TextImage from '@component/TextImage'
@@ -13,9 +14,9 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { EntriesType } from '@type/portfolio'
 
 export const metadata = {
-  title: 'Maintenance Prestashop | Freelance TMA e-commerce - inRage',
+  title: 'Maintenance Prestashop par un freelance | Contrat TMA - inRage',
   description:
-    'Développeur freelance, découvrez mon offre de maintenance et sécurité Prestashop : mises à jour, sauvegardes, surveillance et corrections pour votre boutique.',
+    'Contrat de maintenance Prestashop par un développeur freelance : mises à jour, sécurité, sauvegardes, surveillance du tunnel d’achat et heures de développement. Dès 39 € HT par mois.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },
@@ -86,13 +87,37 @@ const entries: EntriesType = [
   },
 ]
 
+const FAQ: FaqItem[] = [
+  {
+    question: 'Quelles versions de Prestashop prenez-vous en charge ?',
+    answer:
+      'Les boutiques de Prestashop 1.6 à 8. Pour une version ancienne, la prise en charge commence par un audit des modules et du thème, puis par un plan de migration vers une version maintenue, sur pré-production, avant toute bascule.',
+  },
+  {
+    question: 'Que surveillez-vous exactement sur ma boutique ?',
+    answer:
+      'Toutes les heures, un robot parcourt les pages clés et teste les formulaires d’inscription, de connexion et le panier. Les fichiers et la base de données sont contrôlés pour détecter une modification non prévue. En cas d’anomalie, je suis prévenu avant vos clients.',
+  },
+  {
+    question: 'Les mises à jour de modules tiers sont-elles comprises ?',
+    answer:
+      'Oui. Les modules du marketplace Prestashop et de vos éditeurs sont mis à jour dans le cadre du forfait, après test sur pré-production. Si une mise à jour demande une adaptation du thème ou d’un module sur mesure, elle est prise sur les heures de développement incluses.',
+  },
+  {
+    question:
+      'Ma boutique a été développée par une autre agence, est-ce un problème ?',
+    answer:
+      'Non, c’est le cas de la plupart des boutiques que je reprends. La prise en charge commence par un état des lieux : accès, hébergement, modules, sauvegardes, puis une remise à niveau complète avant la surveillance au quotidien.',
+  },
+]
+
 export default function TmaPrestashop() {
   return (
     <Layout
-      title={['Maintenance et sécurité', 'e-commerce Prestashop']}
+      title={['Maintenance et sécurité', 'de votre boutique Prestashop']}
       excerpt={[
-        'Une boutique performante et sécurisé est la clé de la sérénité. Que vous vendiez 10 produits ou 5 000, la maintenance de votre boutique e-commerce Prestashop est cruciale pour son bon déroulement.',
-        "Prestashop est l'un des plus puissant CMS pour le e-commerce et donc très vulnérable aux personnes malveillantes.",
+        'Que vous vendiez dix produits ou cinq mille, une boutique Prestashop doit rester à jour, sauvegardée et surveillée pour continuer à encaisser.',
+        'Un développeur freelance qui connaît votre boutique, un délai d’intervention garanti, et des sauvegardes en France.',
       ]}
       tmaLayout
     >
@@ -109,19 +134,21 @@ export default function TmaPrestashop() {
             </h2>
 
             <p className="mt-6 text-xl text-gray-light">
-              Depuis des années j’administre et assiste les créateurs e-commerce
-              dans ce vaste monde qui est Internet.
+              J’administre des boutiques Prestashop depuis la version 1.6, pour
+              des e-commerçants B2C et B2B de La Rochelle et de toute la France.
             </p>
             <p className="mt-6 text-gray-light">
-              Chaque jour, des boutiques sont victimes de failles de sécurité ou
-              d’attaques. J’ai appris et développé au fil des années des outils
-              me permettant de surveiller, protéger et réparer ces failles et
-              bloquer ces attaques.
+              Une boutique en ligne est exposée en permanence : modules
+              obsolètes, failles publiées, tentatives d’injection dans les
+              formulaires. J’ai développé au fil des années des outils qui
+              surveillent, protègent et réparent, et qui bloquent les attaques
+              les plus courantes avant qu’elles n’atteignent la boutique.
             </p>
             <p className="mt-6 text-gray-light">
-              Toutes les heures, mes outils inspectent chacune de vos pages pour
-              en vérifier l’intégrité de son contenu. Tester les formulaires
-              d’inscription, de connexion et panier.
+              Toutes les heures, ces outils parcourent vos pages, vérifient que
+              leur contenu n’a pas été altéré et testent les formulaires
+              d’inscription, de connexion et le panier. Si quelque chose casse,
+              je le sais avant vos clients.
             </p>
           </div>
         </TextImage>
@@ -174,6 +201,11 @@ export default function TmaPrestashop() {
           bgCorner="fill-orange"
         />
       </div>
+
+      <FaqSection
+        intro="Ce que me demandent les e-commerçants avant de confier la maintenance de leur boutique Prestashop."
+        items={FAQ}
+      />
 
       <div className="container" id="contact">
         <SectionTitle

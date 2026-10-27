@@ -13,9 +13,9 @@ import PrestationSupport from '@image/prestations/support_technique_772424.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Prestations sous WordPress, Prestashop et Symfony - inRage',
+  title: 'Prestations : création de site, maintenance, hébergement | inRage',
   description:
-    "Développeur freelance spécialisé dans la création de sites internet WordPress, Prestashop et Symfony. 15 ans d'expertise dans le développement web.",
+    'Les prestations de Pascal Gault, développeur freelance à La Rochelle : création de sites WordPress, Prestashop, Symfony et React, maintenance, hébergement en France. Devis sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestations),
   },
@@ -23,7 +23,7 @@ export const metadata = {
 
 export default function Prestations() {
   return (
-    <Layout title="Prestations sous WordPress, Prestashop et Symfony">
+    <Layout title="Prestations web à La Rochelle : création, maintenance, hébergement">
       <div className="flex relative container mt-12 lg:-mt-24">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
           <div className="w-[697px] h-[736px] relative">
@@ -64,18 +64,15 @@ export default function Prestations() {
             </div>
 
             <p className="mt-4">
-              Je reste constamment à l&apos;affût des nouvelles technologies web
-              et assure une veille graphique régulière afin de vous proposer les
-              fonctionnalités les plus récentes et performantes, au sein d’un
-              design élégant et percutant.
+              Site vitrine, boutique en ligne, application métier : je développe
+              sur WordPress, Prestashop, Symfony et React, selon ce que vous
+              devez administrer vous-même et ce qui doit évoluer plus tard.
             </p>
             <p className="mt-4">
-              Je suis en mesure d’intervenir sur tous types de projets
-              (boutique, site vitrine, apps...) grâce à mon expertise sur
-              WordPress, Prestashop, Symfony et React. Et comme la création d’un
-              site internet ne s’achève pas à sa mise en ligne, j’assure le
-              support technique de votre outil 7j/7 et vous propose des offres
-              de maintenance TMA pour le protéger tout au long de l’année.
+              La mise en ligne n’est pas la fin du projet. Je propose la
+              maintenance de votre site, avec un délai d’intervention garanti,
+              et son hébergement sur une infrastructure située en France que
+              j’administre. Plus de 150 sites sont suivis de cette façon.
             </p>
           </div>
         </div>
@@ -341,10 +338,10 @@ export default function Prestations() {
         </div>
 
         <div className="text-center max-w-4xl mx-auto text-lg mt-8 mb-14">
-          Fort d’une expérience de 15 ans dans le domaine du web, j’ai acquis au
-          fil des années des compétences diverses et complémentaires qui me
-          permettent aujourd’hui de concevoir intégralement l’outil répondant le
-          plus précisément à vos attentes.
+          Développeur web depuis 2008, en agence puis en freelance à La
+          Rochelle, je conçois, développe, héberge et maintiens les sites que je
+          livre. Un seul interlocuteur, de la maquette à la mise en ligne, et
+          après.
         </div>
 
         <PrestationsList />
@@ -385,9 +382,8 @@ export default function Prestations() {
               image={PrestationSupport}
               title={['Support technique', '7j/7']}
             >
-              Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
-              sur votre site Internet. Nous sommes disponibles 7j/7 si un
-              problème technique survient sur votre site web.
+              Je n’attends pas le lundi matin pour intervenir sur votre site. Si
+              un problème technique survient, je suis joignable 7j/7.
             </PrestationItem>
           </div>
         </div>

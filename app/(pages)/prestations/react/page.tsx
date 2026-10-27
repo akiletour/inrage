@@ -218,7 +218,7 @@ export default function PrestationReact() {
         breadcrumbs={[
           {
             link: RouteLink.prestations,
-            title: 'Prestations sous WordPress, Prestashop et Symfony',
+            title: 'Prestations',
           },
         ]}
         title="Développement React & Next.js"
@@ -246,33 +246,31 @@ export default function PrestationReact() {
 
                 <div className="text-gray-light font-medium text-lg md:text-xl leading-relaxed animate-in slide-in-from-bottom-6 duration-700 delay-150">
                   <p>
-                    Expert React et Next.js freelance basé à La Rochelle,
-                    spécialisé dans la création d&apos;applications web
-                    performantes avec React, Next.js et TypeScript.
+                    Je conçois des applications web avec React, Next.js et
+                    TypeScript, depuis La Rochelle, pour des entreprises de
+                    toute la France.
                   </p>
                 </div>
               </div>
 
               <div className="space-y-8 text-gray-light/90 leading-relaxed animate-in slide-in-from-bottom-8 duration-700 delay-300">
                 <p>
-                  Développeur React freelance à La Rochelle, je conçois et
-                  développe des applications web modernes, réactives et
-                  scalables en utilisant l&apos;écosystème React. De
-                  l&apos;application single-page au site e-commerce complexe, en
-                  passant par les dashboards et les plateformes SaaS pour
-                  entreprises françaises.
+                  Application single-page, site e-commerce, tableau de bord,
+                  plateforme SaaS ou outil interne : je développe le front en
+                  React et Next.js, et je le relie à vos API REST ou GraphQL,
+                  qu&apos;elles existent déjà ou que je les construise avec
+                  Symfony.
                 </p>
                 <p>
-                  Mon expertise en tant que développeur React freelance La
-                  Rochelle couvre React, Next.js, TypeScript, ainsi que
-                  l&apos;intégration d&apos;APIs REST et GraphQL pour créer des
-                  expériences utilisateur fluides et performantes adaptées au
-                  marché français.
+                  Ce site en est un exemple : il est développé avec Next.js, son
+                  code est public, et Invoicer, le logiciel de facturation que
+                  nous éditons, repose sur la même base.
                 </p>
                 <p>
-                  Je vous accompagne dans la modernisation de vos outils
-                  existants ou la création de nouvelles applications avec les
-                  technologies les plus récentes de l&apos;écosystème React.
+                  Je reprends aussi des applications existantes pour les
+                  moderniser : migration vers Next.js, passage à TypeScript,
+                  amélioration des performances et du référencement grâce au
+                  rendu côté serveur.
                 </p>
               </div>
 

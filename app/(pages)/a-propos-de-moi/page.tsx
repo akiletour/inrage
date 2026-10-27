@@ -47,16 +47,16 @@ export default function AboutMe() {
           France.
         </p>
         <p className="mt-2">
-          Une de mes décisions les plus importantes et gratifiantes pour ma
-          carrière. De ce fait, j’ai l’opportunité de travailler sur les
-          différents aspects de la conception, de la stratégie, de la gestion et
-          de la planification jusqu’à la production complète de ce projet.
+          Passer en freelance m’a permis de suivre un projet de bout en bout :
+          cadrage, conception, développement, hébergement, puis maintenance. Je
+          m’appuie sur un collectif de freelances rochelais, graphiste,
+          webmarketing et développeurs, quand un projet le demande.
         </p>
         <p className="mt-2">
-          Je suis également devenu plus intéressé par l’aspect commercial des
-          projets, de plus en plus conscient de l’importance d’intégrer des
-          décisions commerciales responsables pour atteindre les objectifs
-          d’affaires.
+          Avec le temps, je me suis autant intéressé à ce que le site doit
+          produire pour votre activité qu’à la façon de le construire. Un site
+          réussi est un site qui apporte des contacts ou des ventes, et qui
+          reste simple à faire vivre.
         </p>
         <p className="mt-2 mb-6">
           Un projet, des questions ? N&apos;hésitez pas à me contacter pour en

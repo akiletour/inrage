@@ -53,12 +53,7 @@ export default async function Page(props: Props) {
       title={category.title}
     >
       <div className="container">
-        <SectionTitle
-          content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          }
-          title={category.title}
-        />
+        <SectionTitle content={category.intro} title={category.title} />
         <SupportSwitcher pathname={`/portfolio/${category.slug}`} />
 
         <PortfolioGrid projects={data} />
