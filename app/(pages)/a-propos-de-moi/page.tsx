@@ -9,6 +9,7 @@ import Socials from '@component/Socials'
 import ExpCOS from '@image/experiences/comonscreen.png'
 import ExpKamelab from '@image/experiences/kamelab.png'
 import ExpMoonscoop from '@image/experiences/moonscoop.png'
+import ExpPhenix from '@image/experiences/phenix-studio.svg'
 import ExpInrage from '@image/inline-logo.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -79,11 +80,19 @@ export default function AboutMe() {
 
           <div className="flex flex-col space-y-12 pt-12 pb-20">
             <ExperienceItem
+              logo={ExpPhenix}
+              title="Membre du collectif Phénix Studio"
+              company="Phénix Studio, La Rochelle"
+              year="Aujourd'hui"
+              excerpt="Un collectif de trois développeurs freelances, avec Matthieu et Ludovic. inRage porte les projets et la relation client, et nous nous répartissons le développement selon les compétences de chacun : WordPress, Prestashop, Symfony, React."
+            />
+
+            <ExperienceItem
               logo={ExpInrage}
               title="Développeur web freelance, fondateur d'inRage"
               company="inRage, La Rochelle"
               year="Depuis 2011, à temps plein depuis 2019"
-              excerpt="Création de sites WordPress, boutiques Prestashop, applications Symfony et React, hébergement et maintenance. inRage a commencé le soir et le week-end, en parallèle de mon poste en agence, avant de devenir mon activité principale. Depuis 2017, j'y développe aussi Invoicer, notre logiciel de facturation. Aujourd'hui, je travaille au sein du collectif Phénix Studio avec Matthieu et Ludovic : inRage porte les projets et je leur confie une partie du développement."
+              excerpt="Création de sites WordPress, boutiques Prestashop, applications Symfony et React, hébergement et maintenance. inRage a commencé le soir et le week-end, en parallèle de mon poste en agence, avant de devenir mon activité principale. Depuis 2017, j'y développe aussi Invoicer, notre logiciel de facturation."
             />
 
             <ExperienceItem

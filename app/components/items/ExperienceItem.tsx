@@ -21,6 +21,7 @@ export default function ExperienceItem({
         <Image
           src={logo}
           alt={company}
+          className="max-h-40 w-auto"
           style={{
             maxWidth: '100%',
             height: 'auto',
