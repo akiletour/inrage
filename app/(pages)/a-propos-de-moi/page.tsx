@@ -8,8 +8,8 @@ import SectionTitle from '@component/SectionTitle'
 import Socials from '@component/Socials'
 import ExpCOS from '@image/experiences/comonscreen.png'
 import ExpKamelab from '@image/experiences/kamelab.png'
-import ExpMegami from '@image/experiences/megami-productions.png'
 import ExpMoonscoop from '@image/experiences/moonscoop.png'
+import ExpInrage from '@image/inline-logo.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
@@ -73,41 +73,41 @@ export default function AboutMe() {
       <div className="bg-gray-darker">
         <div className="container lg:-mb-20">
           <SectionTitle
-            content="Voici la liste de mes expériences professionnelles que j'ai acquises au fil de mes années en tant que développeur, salarié et indépendant."
+            content="Dix-huit ans de développement web à La Rochelle, en agence puis en freelance."
             title="Expériences"
           />
 
           <div className="flex flex-col space-y-12 pt-12 pb-20">
             <ExperienceItem
-              logo={ExpMoonscoop}
-              title="Développeur Joomla"
-              company="Moonscoop Digital Media, La Rochelle, France"
-              year="2008 - 4 ans"
-              excerpt="Membre d'une équipe de 3 développeurs frontend et backend. Développement de sites clients basé principalement sur le CMS Joomla et PHP."
-            />
-
-            <ExperienceItem
-              logo={ExpMegami}
-              title="Développeur Joomla, WordPress et administrateur système"
-              company="Megami Production, La Rochelle, France"
-              year="2012 - 7 ans"
-              excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
-            />
-
-            <ExperienceItem
-              logo={ExpCOS}
-              title="Développeur Symfony, WordPress et Prestashop"
-              company="Com' On Screen, Paris, France"
-              year="2012 - 7 ans"
-              excerpt="Responsable de toute la partie Web et réseau de la société. Développeur et Intégrateur. Gestion et maintenance de l'architecture des serveurs AWS, Debian, Docker."
+              logo={ExpInrage}
+              title="Développeur web freelance, fondateur d'inRage"
+              company="inRage, La Rochelle"
+              year="Depuis 2011, à temps plein depuis 2019"
+              excerpt="Création de sites WordPress, boutiques Prestashop, applications Symfony et React, hébergement et maintenance. inRage a commencé le soir et le week-end, en parallèle de mon poste en agence, avant de devenir mon activité principale. Depuis 2017, j'y développe aussi Invoicer, notre logiciel de facturation. Aujourd'hui, je travaille au sein du collectif Phénix Studio avec Matthieu et Ludovic : inRage porte les projets et je leur confie une partie du développement."
             />
 
             <ExperienceItem
               logo={ExpKamelab}
-              title="Développeur Symfony, WordPress, Prestashop et DevOps"
-              company="Kamélab, La Rochelle, France"
-              year="Depuis 2018"
-              excerpt="Responsable technique; développeur, DevOps et co-gérant de la société Kamélab aux côtés de notre spécialiste webmarketing Johann Hébert et de notre graphiste Romain Ouvrard."
+              title="Co-gérant et responsable technique"
+              company="Kamélab, La Rochelle"
+              year="2018 - 2022"
+              excerpt="SAS créée avec Johann Hébert, consultant webmarketing, et Romain Ouvrard, graphiste. Développement, DevOps et direction technique des projets de l'agence jusqu'à sa fermeture en 2022."
+            />
+
+            <ExperienceItem
+              logo={ExpCOS}
+              title="Lead développeur fullstack"
+              company="Com'On Screen, La Rochelle"
+              year="2012 - 2019"
+              excerpt="Responsable de toute la partie web et réseau de la société : développement Symfony, WordPress et Prestashop, intégration, gestion et maintenance de l'infrastructure serveur (AWS, Debian, Docker)."
+            />
+
+            <ExperienceItem
+              logo={ExpMoonscoop}
+              title="Développeur web"
+              company="Moonscoop Digital Media, La Rochelle"
+              year="2008 - 2012"
+              excerpt="Membre d'une équipe de trois développeurs front et back. Développement de sites clients sur Joomla et Zencart, gestion de bases de données MySQL."
             />
           </div>
         </div>

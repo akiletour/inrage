@@ -5,6 +5,7 @@ import Diagonal from '@component/Diagonal'
 import FaqSection, { FaqItem } from '@component/FaqSection'
 import Layout from '@component/Layout'
 import Link from '@component/NoScrollLink'
+import References from '@component/References'
 import SectionTitle from '@component/SectionTitle'
 import TextImage from '@component/TextImage'
 import DevOps from '@image/devops.png'
@@ -429,6 +430,8 @@ export default function PrestationBuildWebsite() {
           bgClass="fill-gray-dark"
         />
       </div>
+
+      <References />
 
       <FaqSection
         intro="Les questions que me posent les entreprises de La Rochelle et de Charente-Maritime avant de lancer la création de leur site."

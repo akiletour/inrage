@@ -14,6 +14,7 @@ import Keypoints from '@component/Keypoints'
 import Layout from '@component/Layout'
 import LastProjects from '@component/portfolio/LastProjects'
 import PrestationsList from '@component/PrestationsList'
+import References from '@component/References'
 import SectionTitle from '@component/SectionTitle'
 import ExpertiseReact from '@image/expertises/react.svg'
 import ExpertisePrestashop from '@image/expertises/prestashop.png'
@@ -170,6 +171,8 @@ export default function Homepage() {
       </div>
 
       <Keypoints />
+
+      <References />
 
       <div className="bg-gray-darker">
         <div className="container py-8">

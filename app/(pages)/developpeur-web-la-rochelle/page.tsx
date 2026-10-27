@@ -5,6 +5,7 @@ import Character from '@/components/Character'
 import ButtonLink from '@component/ButtonLink'
 import ContactForm from '@component/ContactForm'
 import ProjectItem from '@component/items/ProjectItem'
+import References from '@component/References'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
 import ExpertisePrestashop from '@image/expertises/prestashop.png'
@@ -321,7 +322,9 @@ export default async function DeveloppeurWebLaRochelle() {
         </ul>
       </section>
 
-      <section className="bg-gray-darker mt-16 py-16">
+      <References />
+
+      <section className="bg-gray-darker py-16">
         <div className="container">
           <SectionTitle
             title={['Mes prestations', 'à La Rochelle']}
