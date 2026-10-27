@@ -19,7 +19,7 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 export const metadata = {
   title: 'Freelance Prestashop : création de boutique en ligne | inRage',
   description:
-    'Développeur Prestashop freelance depuis 2013 : création de boutique en ligne, thème sur mesure, modules, import de catalogue, migration vers Prestashop 8 et maintenance. Basé à La Rochelle.',
+    'Développeur Prestashop freelance depuis 2013 : création de boutique en ligne, thème sur mesure, modules, import de catalogue, migration vers Prestashop 9 et maintenance. Basé à La Rochelle.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
@@ -34,7 +34,7 @@ const FAQ: FaqItem[] = [
   {
     question: 'Pouvez-vous reprendre ma boutique Prestashop existante ?',
     answer:
-      'Oui, qu’elle ait été créée par une agence, un freelance ou vous-même. Je commence par un état des lieux de la version, des modules et du thème, puis je propose soit une remise à niveau, soit une migration vers Prestashop 8 en conservant le catalogue, les clients et les commandes.',
+      'Oui, qu’elle ait été créée par une agence, un freelance ou vous-même. Je commence par un état des lieux de la version, des modules et du thème, puis je propose soit une remise à niveau, soit une migration vers Prestashop 9 en conservant le catalogue, les clients et les commandes.',
   },
   {
     question: 'Comment mon catalogue est-il intégré ?',
@@ -78,7 +78,7 @@ export default async function PrestationPrestashop() {
           </h2>
           <p className="mt-4">
             Je développe des boutiques Prestashop depuis 2013, de la version 1.5
-            à Prestashop 8, pour des e-commerçants B2C et B2B : thème sur
+            à Prestashop 9.2, pour des e-commerçants B2C et B2B : thème sur
             mesure, modules spécifiques, import de catalogue, liaison avec un
             ERP ou un logiciel de caisse.
           </p>
@@ -201,7 +201,7 @@ export default async function PrestationPrestashop() {
         <div className="container text-center py-16 lg:py-0">
           <div className="">
             <h2 className="text-center text-white text-3xl">
-              Migration vers Prestashop 8
+              Migration vers Prestashop 9
               <span className="block text-xl">Sans recréer votre boutique</span>
             </h2>
             <p className="text-xl text-gray-light mt-6">
