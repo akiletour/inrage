@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
 import Layout from '@component/Layout'
 import Link from '@component/NoScrollLink'
 import SectionTitle from '@component/SectionTitle'
@@ -23,6 +24,29 @@ export const metadata = {
   },
 }
 
+const FAQ: FaqItem[] = [
+  {
+    question: 'Combien de temps faut-il pour créer un site internet ?',
+    answer:
+      'Un site vitrine WordPress demande généralement quelques semaines entre le premier échange et la mise en ligne, une boutique Prestashop ou WooCommerce un à trois mois selon le catalogue et les intégrations. Le planning est fixé au démarrage, et vous suivez l’avancement sur un serveur de pré-production.',
+  },
+  {
+    question: 'WordPress, Prestashop ou sur mesure : comment choisir ?',
+    answer:
+      'WordPress pour un site vitrine ou éditorial, WooCommerce ou Prestashop pour une boutique, Symfony ou React pour un outil métier ou une application. Le choix se fait lors du premier rendez-vous, selon ce que vous devez administrer vous-même et ce qui doit évoluer plus tard.',
+  },
+  {
+    question: 'Qui rédige les textes et fournit les photos ?',
+    answer:
+      'Vous connaissez votre activité mieux que personne : les contenus viennent de vous, et je vous indique ce dont chaque page a besoin. Si vous manquez de temps, je travaille avec des rédacteurs, graphistes et photographes de La Rochelle.',
+  },
+  {
+    question: 'Que se passe-t-il après la mise en ligne ?',
+    answer:
+      'Le site est garanti et suivi pendant trois mois. Ensuite, vous pouvez le confier à un forfait de maintenance qui couvre les mises à jour, la sécurité et les sauvegardes, et l’héberger sur une infrastructure située en France que j’administre.',
+  },
+]
+
 export default function PrestationBuildWebsite() {
   return (
     <Layout
@@ -32,7 +56,7 @@ export default function PrestationBuildWebsite() {
           title: 'Prestations sous WordPress, Prestashop et Symfony',
         },
       ]}
-      title="Création de site internet"
+      title="Création de site internet à La Rochelle"
     >
       <div className="flex relative container mt-12 lg:-mt-24">
         <div className="hidden lg:block overflow-hidden absolute lg:right-[60%]">
@@ -192,8 +216,8 @@ export default function PrestationBuildWebsite() {
           title={['Développement site', 'avec Symfony']}
         >
           <p>
-            Wordpress est un CMS simple et rapide d’accès, c’est mon CMS de
-            prédilection !
+            Pour un outil métier, un extranet ou une application web, je
+            développe avec Symfony.
           </p>
           <p className="mt-4">
             Symfony a su s&apos;imposer comme référence dans les frameworks PHP
@@ -213,6 +237,108 @@ export default function PrestationBuildWebsite() {
             </span>
           </Link>
         </TextImage>
+
+        <section
+          id="refonte"
+          className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16 scroll-mt-24"
+          aria-labelledby="refonte-title"
+        >
+          <div>
+            <h2
+              id="refonte-title"
+              className="text-3xl font-medium leading-tight text-white text-balance"
+            >
+              Refonte de site internet à La Rochelle
+            </h2>
+            <p className="mt-6 text-gray-light">
+              Le cas le plus fréquent : un site WordPress créé il y a six ou
+              huit ans, lent sur mobile, impossible à mettre à jour sans casser
+              une page, et que plus personne n’ose toucher.
+            </p>
+          </div>
+          <div className="text-gray-light">
+            <p>
+              Une refonte ne repart pas de zéro. Je commence par lister ce qui
+              fonctionne : les pages qui apportent des visites, les contenus à
+              garder, les outils reliés au site. Les adresses des pages sont
+              conservées ou redirigées une par une pour ne pas perdre le
+              référencement acquis.
+            </p>
+            <p className="mt-4">
+              Le nouveau site est construit à côté, sur pré-production, puis
+              bascule en une fois. Pour{' '}
+              <Link href={`${RouteLink.portfolio}/wordpress/quadria`}>
+                <span className="text-orange underline">Quadria</span>
+              </Link>
+              , le catalogue produits et ses fiches ont été repris de cette
+              façon. Pour le{' '}
+              <Link
+                href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+              >
+                <span className="text-orange underline">
+                  Camping La Mouette Rieuse
+                </span>
+              </Link>
+              , la refonte du site a accompagné celle de l’identité visuelle.
+            </p>
+            <p className="mt-4">
+              Vous ne savez pas si votre site mérite une refonte ou une simple
+              remise à niveau ? Commencez par un{' '}
+              <Link href={RouteLink.auditGratuit}>
+                <span className="text-orange underline">
+                  audit gratuit de votre site
+                </span>
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16"
+          aria-labelledby="prix-title"
+        >
+          <div>
+            <h2
+              id="prix-title"
+              className="text-3xl font-medium leading-tight text-white text-balance"
+            >
+              Combien coûte un site internet à La Rochelle ?
+            </h2>
+            <p className="mt-6 text-gray-light">
+              Vous recevez un devis détaillé sous 24 h après notre échange,
+              poste par poste, sans abonnement caché ni licence à renouveler.
+            </p>
+          </div>
+          <div className="text-gray-light">
+            <p>Ce qui fait varier le prix d’un site :</p>
+            <ul className="styled-list mt-4">
+              <li>
+                Le nombre de gabarits de pages à concevoir et à intégrer, bien
+                plus que le nombre de pages.
+              </li>
+              <li>
+                Le design : maquettes réalisées avec vous, ou fournies par votre
+                graphiste.
+              </li>
+              <li>
+                Les fonctionnalités : formulaires, prise de rendez-vous,
+                boutique, espace client, liaison avec un logiciel existant.
+              </li>
+              <li>
+                Les contenus : reprise d’un site existant, rédaction, photos,
+                traduction.
+              </li>
+            </ul>
+            <p className="mt-4">
+              Un site vitrine WordPress et une boutique en ligne ne se situent
+              pas dans la même fourchette, et un outil sur mesure se chiffre sur
+              un cahier des charges. Décrivez votre projet dans le formulaire en
+              bas de page, ou appelez-moi : la première discussion est gratuite
+              et sans engagement.
+            </p>
+          </div>
+        </section>
       </div>
 
       <Diagonal
@@ -303,6 +429,11 @@ export default function PrestationBuildWebsite() {
           bgClass="fill-gray-dark"
         />
       </div>
+
+      <FaqSection
+        intro="Les questions que me posent les entreprises de La Rochelle et de Charente-Maritime avant de lancer la création de leur site."
+        items={FAQ}
+      />
 
       <div className="container mt-8 md:mt-0">
         <SectionTitle
