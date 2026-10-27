@@ -91,7 +91,7 @@ const FAQ: FaqItem[] = [
   {
     question: 'Quelles versions de Prestashop prenez-vous en charge ?',
     answer:
-      'Les boutiques de Prestashop 1.6 à 8. Pour une version ancienne, la prise en charge commence par un audit des modules et du thème, puis par un plan de migration vers une version maintenue, sur pré-production, avant toute bascule.',
+      'Les boutiques de Prestashop 1.6 à 9.2. Pour une version ancienne, la prise en charge commence par un audit des modules et du thème, puis par un plan de migration vers une version maintenue, sur pré-production, avant toute bascule.',
   },
   {
     question: 'Que surveillez-vous exactement sur ma boutique ?',

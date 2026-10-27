@@ -349,7 +349,7 @@ export default function Prestations() {
         <div className="mt-20">
           <SectionTitle
             title="Pourquoi moi ?"
-            content="Consultez en détail les prestations que nous mettrons en place pour vos projets web tout au long de sa création."
+            content="Ce que je prends en charge sur un projet web, de la conception au suivi après la mise en ligne."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
@@ -357,26 +357,25 @@ export default function Prestations() {
               image={PrestationDesign}
               title={['Identité visuelle &', 'Charte graphique']}
             >
-              Conscients et engagés, nous sommes à l’affût des nouvelles
-              technologies web, nous assurons des veilles graphiques et
-              techniques nous permettant de vous proposer des fonctionnalités au
-              goût du jours.
+              Maquettes, logo et charte graphique sont conçus avec le graphiste
+              du collectif, puis intégrés par mes soins. Un seul interlocuteur
+              du premier croquis à la mise en ligne.
             </PrestationItem>
             <PrestationItem
               image={PrestationWebDev}
               title={['Développement de', 'votre projet']}
             >
-              Expert dans son domaine et sur WordPress, Prestashop, Symfony et
-              React. inRage respectera précisément votre cahier des charges pour
-              développer les fonctionnalités de vos sites.
+              Je développe sur WordPress, Prestashop, Symfony et React, en
+              suivant votre cahier des charges, et je vous montre l’avancement
+              sur un serveur de pré-production.
             </PrestationItem>
             <PrestationItem
               image={PrestationFormation}
               title={['Formation offerte', 'lors de la création']}
             >
-              À la fin de la création de votre projet, nous offrons une
-              formation complète à l’utilisation de vos nouveaux outils web.
-              Vous offrant une administration optimale de votre site.
+              À la mise en ligne, je vous forme à l’administration de votre site
+              pour que vous soyez autonome sur les contenus, les produits et les
+              mises à jour courantes.
             </PrestationItem>
             <PrestationItem
               image={PrestationSupport}

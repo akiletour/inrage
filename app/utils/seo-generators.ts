@@ -25,7 +25,7 @@ const ECOMMERCE_SERVICES: EcommerceService[] = [
 ]
 
 const ECOMMERCE_TECHNOLOGIES: EcommerceTechnology[] = [
-  { name: 'PrestaShop', versions: 'versions 1.6 à 8.x' },
+  { name: 'PrestaShop', versions: 'versions 1.6 à 9.2' },
   { name: 'WooCommerce & WordPress' },
   { name: 'Migrations e-commerce' },
   { name: 'Intégrations ERP et API' },

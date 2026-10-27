@@ -205,13 +205,14 @@ export default async function PrestationPrestashop() {
               <span className="block text-xl">Sans recréer votre boutique</span>
             </h2>
             <p className="text-xl text-gray-light mt-6">
-              Les boutiques encore en 1.6 ou 1.7 ne reçoivent plus de correctifs
-              de sécurité, et leurs modules cessent un à un d’être maintenus.
+              Les boutiques encore en 1.6, 1.7 ou 8 ne reçoivent plus de
+              correctifs de sécurité, et leurs modules cessent un à un d’être
+              maintenus.
             </p>
             <p className="mt-4">
               En 2019, j’ai créé un outil de migration pour passer les boutiques
               de la 1.6 à la 1.7 sans repartir de zéro. La même démarche
-              s’applique aujourd’hui au passage vers Prestashop 8 : catalogue,
+              s’applique aujourd’hui au passage vers Prestashop 9 : catalogue,
               clients et commandes sont repris, le thème et les modules sont
               réécrits ou remplacés, et la bascule se fait sur pré-production
               avant la mise en ligne.
