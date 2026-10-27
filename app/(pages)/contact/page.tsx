@@ -53,6 +53,18 @@ export default function Contact() {
           <div className="text-sm">du lundi au samedi de 09h à 18h</div>
         </div>
         <div className="flex-1">
+          <p className="text-xl text-gray-light">
+            Un site à créer, une boutique à reprendre, un site en panne ou une
+            question sur la maintenance : décrivez votre besoin en quelques
+            lignes, je vous réponds dans la journée.
+          </p>
+          <p className="mt-4 mb-10">
+            Pour aller plus vite, indiquez l&apos;adresse de votre site
+            s&apos;il existe, la technologie si vous la connaissez (WordPress,
+            Prestashop, autre) et le délai souhaité. Je reçois à La Rochelle et
+            je me déplace en Charente-Maritime, mais la plupart des projets se
+            mènent à distance.
+          </p>
           <ContactForm lg />
         </div>
       </div>

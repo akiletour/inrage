@@ -12,9 +12,9 @@ import PrestationSupport from '@image/prestations/support_technique_772424.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Maintenance ponctuelle de site web | Freelance - inRage',
+  title: 'Dépannage et maintenance ponctuelle de site web | inRage',
   description:
-    'Développeur freelance, j’interviens ponctuellement sur votre site sous forme d’heures de développement : nouveau bloc, nouvelle fonctionnalité ou correctif.',
+    'Dépannage de site internet à La Rochelle et à distance : intervention à l’heure sur WordPress, WooCommerce ou Prestashop pour corriger un bug, débloquer une mise à jour ou ajouter une fonctionnalité.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
   },
@@ -26,14 +26,14 @@ export default function TmaOnDemand() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: 'Prestations',
         },
         {
           link: RouteLink.prestationTma,
-          title: 'Maintenance de site web',
+          title: 'Maintenance de site internet',
         },
       ]}
-      title="Maintenance ponctuelle"
+      title="Dépannage et maintenance ponctuelle de site internet"
     >
       <div className="container">
         <TextImage position="right" image={TmaOnDemandIntro}>
@@ -48,21 +48,22 @@ export default function TmaOnDemand() {
             </h2>
 
             <p className="mt-6 text-xl text-gray-light">
-              Que ce soit un site e-commerce ou vitrine, il peut que vous soyez
-              confronté à des difficultés techniques dans la création ou la
-              maintenance de votre site internet.
+              Site vitrine ou boutique en ligne, il arrive qu’une mise à jour
+              bloque, qu’un module refuse de fonctionner ou qu’une page
+              disparaisse sans que personne ne sache pourquoi.
             </p>
             <p className="mt-6 text-gray-light">
-              Je peux intervenir ponctuellement sur votre site sous forme
-              d’heure de développement. Que ce soit pour l’intégration d’un
-              nouveau bloc ou une fonctionnalité, le dépannage sur un module que
-              vous venez d’installer ou le développement d’une partie de votre
-              site.
+              J’interviens à l’heure, sans contrat, sur votre site WordPress,
+              WooCommerce ou Prestashop : correction d’un bug, intégration d’un
+              nouveau bloc ou d’une fonctionnalité, dépannage d’un module que
+              vous venez d’installer, remise en route après une mise à jour
+              ratée.
             </p>
             <p className="mt-6 text-gray-light">
-              N’hésitez pas à me contacter pour que l’on en discute et que je
-              puisse établir avec vous la marche à suivre pour vous dépanner le
-              plus rapidement possible.
+              Décrivez le problème dans le formulaire en bas de page, avec
+              l’adresse du site et ce que vous avez déjà tenté. Je vous réponds
+              avec un diagnostic et le temps estimé avant d’intervenir. Je suis
+              à La Rochelle, l’intervention se fait à distance.
             </p>
           </div>
         </TextImage>
@@ -87,19 +88,20 @@ export default function TmaOnDemand() {
               </span>
             </h2>
             <p className="text-xl text-gray-light mt-6">
-              Je comprends parfaitement que votre but est d’avoir une boutique
-              en ligne performance et de générer des ventes, ou un bien un site
-              vitrine fonctionnel, attractif avec une bonne conversion dessus.
+              Votre objectif est une boutique qui vend ou un site vitrine qui
+              apporte des contacts, pas de passer vos soirées dans
+              l’administration de WordPress.
             </p>
             <p className="mt-4">
-              Mon but est de vous accompagner dans cette démarche en vous
-              faisant gagner du temps pour corriger, améliorer voir même
-              développer votre site WordPress ou Prestashop.
+              Une heure de développement règle souvent ce qui vous bloque depuis
+              des semaines : un formulaire qui n’envoie plus, un module de
+              paiement à reconfigurer, un bloc à ajouter sur la page d’accueil.
             </p>
             <p className="mt-4">
-              Plus de 10 années dans le développement de solution comme
-              WordPress ou Prestashop. Je suis là pour répondre à vos besoins et
-              vous aider dans son développement.
+              Je développe sur WordPress et Prestashop depuis 2008, et je
+              maintiens plus de 150 sites. Si le problème révèle un besoin plus
+              large, je vous propose un forfait de maintenance, jamais
+              l’inverse.
             </p>
           </div>
         </div>
@@ -144,9 +146,8 @@ export default function TmaOnDemand() {
               image={PrestationSupport}
               title={['Support technique', '7j/7']}
             >
-              Chez inRage, Nous n’attendons pas le Lundi matin pour intervenir
-              sur votre site Internet. Nous sommes disponibles 7j/7 si un
-              problème technique survient sur votre site web.
+              Je n’attends pas le lundi matin pour intervenir sur votre site. Si
+              un problème technique survient, je suis joignable 7j/7.
             </PrestationItem>
           </div>
         </div>

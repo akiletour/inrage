@@ -16,7 +16,7 @@ export const getSingleBlogItem = async (slug: string) => {
       thumbnail: item.metadata.thumbnail,
       content: item.content,
       seo: {
-        title: item.metadata.title,
+        title: item.metadata.seoTitle ?? item.metadata.title,
         metaDesc: item.metadata.excerpt,
       },
     },

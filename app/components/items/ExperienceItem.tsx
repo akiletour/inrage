@@ -6,6 +6,7 @@ type Props = {
   company: string
   year: string
   excerpt: string
+  logoClassName?: string
 }
 
 export default function ExperienceItem({
@@ -14,6 +15,7 @@ export default function ExperienceItem({
   company,
   year,
   excerpt,
+  logoClassName = 'max-h-40',
 }: Props) {
   return (
     <div className="grid md:grid-cols-[250px_1fr] items-start justify-start">
@@ -21,6 +23,7 @@ export default function ExperienceItem({
         <Image
           src={logo}
           alt={company}
+          className={`${logoClassName} w-auto`}
           style={{
             maxWidth: '100%',
             height: 'auto',

@@ -20,9 +20,9 @@ import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Création de site WordPress | Freelance Wordpress - inRage',
+  title: 'Création de site WordPress à La Rochelle | inRage',
   description:
-    'Développeur freelance à La Rochelle, spécialisé dans la création et la refonte de sites WordPress : ACF, Contact Form 7, Roots Sage. Contactez-moi pour votre projet.',
+    'Développeur WordPress freelance à La Rochelle : création et refonte de sites WordPress sur mesure avec Sage, Gutenberg, ACF et WooCommerce. Devis sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },
@@ -43,7 +43,7 @@ export default async function PrestationWordPress() {
           title: 'Création de site internet',
         },
       ]}
-      title="Création de site WordPress"
+      title="Création de site WordPress à La Rochelle"
     >
       <div className="container flex items-center">
         <div className="md:w-2/5 hidden md:block">
@@ -58,32 +58,76 @@ export default async function PrestationWordPress() {
         </div>
         <div className="md:w-3/5 text-lg md:pl-10 leading-6 pt-4">
           <h2 className="text-white text-xl md:text-3xl font-bold">
-            Développeur WordPress Freelance sur{' '}
-            <br className="hidden md:block" />
+            Développeur WordPress freelance <br className="hidden md:block" />à
             La Rochelle
           </h2>
           <p className="mt-4">
-            Développeur freelance, je me spécialise avant tout sur la création
-            de site Wordpress. En effet, le développement wordpress est mon
-            domaine de prédilection, et ce, pour plusieurs raisons :
+            Je développe des sites WordPress depuis 2008, depuis La Rochelle,
+            pour des commerces, des cabinets, des associations et des PME de
+            Charente-Maritime comme de toute la France. Chaque site repose sur
+            un thème développé pour le projet, pas sur un thème du commerce
+            adapté à la hâte.
+          </p>
+          <p className="mt-4">
+            Vous l’administrez ensuite vous-même : l’interface est épurée et
+            adaptée à votre usage, et vous pouvez me confier la{' '}
+            <Link href={RouteLink.prestationTmaWordPress}>
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                maintenance WordPress
+              </span>
+            </Link>{' '}
+            une fois le site en ligne.
           </p>
           <ul className="styled-list mt-4">
-            <li>Wordpress est un CMS gratuit et opensource.</li>
             <li>
-              Il est 100% administrable et son interface d’administration est
-              claire, fiable et sobre.
+              Site vitrine, site éditorial ou boutique WooCommerce, en mobile
+              first.
             </li>
             <li>
-              De plus, cette inter ace est entièrement personnalisable afin de
-              l’adapter à l’usage du client.
+              Thème sur mesure avec Sage, blocs Gutenberg et champs ACF définis
+              avec vous.
             </li>
             <li>
-              Wordpress bénéficie d’une large communauté, il est le CMS le plus
-              utilisé au monde soit 30% des sites en ligne à ce jour. Sa
-              communauté est également très investie, les plugins et thèmes
-              disponibles pour ce CMS sont extrêmement nombreux.
+              Refonte de votre site WordPress existant, avec reprise des
+              contenus et du référencement acquis.
+            </li>
+            <li>
+              Hébergement en France, surveillance et sauvegardes pris en charge.
             </li>
           </ul>
+          <p className="mt-4">
+            Quelques réalisations près de chez vous :{' '}
+            <Link
+              href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+            >
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                Camping La Mouette Rieuse
+              </span>
+            </Link>
+            ,{' '}
+            <Link
+              href={`${RouteLink.portfolio}/wordpress/graphiste-romain-ouvrard`}
+            >
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                Romain Ouvrard
+              </span>
+            </Link>
+            ,{' '}
+            <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                Laboratoire Biosalines
+              </span>
+            </Link>{' '}
+            et{' '}
+            <Link
+              href={`${RouteLink.portfolio}/wordpress/santeenvironnement-nouvelleaquitaine`}
+            >
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                Santé Environnement Nouvelle-Aquitaine
+              </span>
+            </Link>
+            .
+          </p>
         </div>
       </div>
 

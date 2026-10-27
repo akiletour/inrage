@@ -5,16 +5,22 @@ export const portfolioCategories = {
     title: 'WordPress',
     slug: 'wordpress',
     icon: 'creation-wordpress.webp',
+    intro:
+      'Sites vitrines, portfolios et boutiques WooCommerce développés sur WordPress avec un thème sur mesure, pour des entreprises de La Rochelle, de Charente-Maritime et de toute la France. Chaque fiche décrit le contexte du projet, ce qui a été développé et les outils utilisés.',
   },
   'application-web': {
     title: 'Application Web',
     slug: 'application-web',
     icon: 'developpement-application-web.webp',
+    intro:
+      'Applications métier, extranets, outils internes et plateformes développés avec Symfony, React et Next.js. Des projets où le site est un outil de travail : gestion de catalogue, logistique, facturation, suivi d’activité.',
   },
   'e-commerce': {
     title: 'E-commerce',
     slug: 'e-commerce',
     icon: 'creation-ecommerce.svg',
+    intro:
+      'Boutiques en ligne Prestashop et WooCommerce, B2C et B2B : création, refonte, migration, import de catalogue et liaison avec les outils de gestion. Les fiches détaillent les intégrations réalisées et les contraintes de chaque catalogue.',
   },
 }
 

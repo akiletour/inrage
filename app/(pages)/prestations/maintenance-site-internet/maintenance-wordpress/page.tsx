@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import ContactForm from '@component/ContactForm'
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
 import Layout from '@component/Layout'
 import NoScrollLink from '@component/NoScrollLink'
 import SectionTitle from '@component/SectionTitle'
@@ -14,9 +15,9 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { EntriesType } from '@type/portfolio'
 
 export const metadata = {
-  title: 'Maintenance site WordPress | Freelance - inRage',
+  title: 'Maintenance WordPress à La Rochelle | Freelance - inRage',
   description:
-    'Développeur freelance, découvrez mon offre de maintenance WordPress sur mesure. Plus de 150 clients en infogérance : mises à jour, sécurité et sauvegardes.',
+    'Maintenance, support et dépannage WordPress à La Rochelle par un développeur freelance. Plus de 150 sites en infogérance : mises à jour, sécurité, sauvegardes, intervention garantie.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaWordPress),
   },
@@ -128,16 +129,75 @@ const entries: EntriesType = [
   },
 ]
 
+const FAQ: FaqItem[] = [
+  {
+    question:
+      'Mon site WordPress a été développé par quelqu’un d’autre, pouvez-vous le reprendre ?',
+    answer:
+      'Oui, c’est le cas de la majorité des sites que je maintiens. La prise en charge commence par un audit du thème, des extensions et de l’hébergement, puis par une mise à jour complète sur un environnement de pré-production avant toute modification en ligne.',
+  },
+  {
+    question: 'Que se passe-t-il si mon site est piraté ou tombe en panne ?',
+    answer:
+      'Vous déclarez l’incident dans la console et j’interviens dans le délai garanti par votre forfait, de 6 h à 2 h. Le site est restauré depuis la sauvegarde la plus récente, la faille est identifiée et corrigée, puis vous recevez un compte rendu.',
+  },
+  {
+    question: 'Intervenez-vous sur place à La Rochelle ?',
+    answer:
+      'La maintenance se fait à distance, mais je reçois au 10-14 rue Jean Perrin à La Rochelle et je me déplace dans vos locaux sur l’agglomération et la Charente-Maritime pour la prise en charge, une formation ou un point annuel.',
+  },
+  {
+    question: 'Faut-il un engagement ?',
+    answer:
+      'Les forfaits sont engagés sur 12 mois, ce qui permet de planifier les mises à jour majeures et la montée de version PHP. Pour une correction isolée sans contrat, la maintenance ponctuelle est facturée à l’heure.',
+  },
+]
+
+const SERVICE_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${getCanonicalUrl(RouteLink.prestationTmaWordPress)}#service`,
+  name: 'Maintenance et support WordPress à La Rochelle',
+  serviceType: 'Maintenance de site WordPress',
+  url: getCanonicalUrl(RouteLink.prestationTmaWordPress),
+  provider: { '@id': getCanonicalUrl('/#business') },
+  areaServed: [
+    { '@type': 'City', name: 'La Rochelle' },
+    { '@type': 'AdministrativeArea', name: 'Charente-Maritime' },
+    { '@type': 'Country', name: 'France' },
+  ],
+  offers: [
+    { name: 'Tranquilité', price: '39', priceCurrency: 'EUR' },
+    { name: 'Standard', price: '55', priceCurrency: 'EUR' },
+    { name: 'Sérénité', price: '75', priceCurrency: 'EUR' },
+  ].map((offer) => ({
+    '@type': 'Offer',
+    name: `Forfait ${offer.name}`,
+    price: offer.price,
+    priceCurrency: offer.priceCurrency,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: offer.price,
+      priceCurrency: offer.priceCurrency,
+      unitText: 'mois HT',
+    },
+  })),
+}
+
 export default function TmaWordPress() {
   return (
     <Layout
-      title={['Infogérance & Maintenance TMA', 'WordPress']}
+      title={['Maintenance et support WordPress', 'à La Rochelle']}
       excerpt={[
-        'La sécurité de WordPress est un sujet critique et crucial pour tout administrateur de sites soucieux de préserver son site…',
-        'WordPress est LA plus grosse plateforme connue à ce jour avec près de 30% des sites mondiaux qui utilise WordPress.',
+        'Mises à jour, sécurité, sauvegardes et dépannage de votre site WordPress, par un développeur freelance installé à La Rochelle.',
+        'Plus de 150 sites sont sous infogérance inRage, en Charente-Maritime et dans toute la France.',
       ]}
       tmaLayout={true}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }}
+      />
       <div className="container">
         <TextImage position="right" image={LogoGrey}>
           <div className="text-left">
@@ -179,6 +239,85 @@ export default function TmaWordPress() {
             </p>
           </div>
         </TextImage>
+
+        <section
+          className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16"
+          aria-labelledby="support-wordpress"
+        >
+          <div>
+            <h2
+              id="support-wordpress"
+              className="text-3xl font-medium leading-tight text-white text-balance"
+            >
+              Support et dépannage WordPress à La Rochelle
+            </h2>
+            <p className="mt-6 text-gray-light">
+              La plupart des sites que je reprends ont été créés par une autre
+              agence ou un autre freelance, parfois il y a dix ans. Ils arrivent
+              avec un thème plus mis à jour, une version de PHP dépassée et des
+              extensions abandonnées.
+            </p>
+            <p className="mt-4 text-gray-light">
+              Je commence par un audit sur pré-production, je remets le site à
+              niveau, puis je le surveille. Vous avez un seul interlocuteur,
+              joignable, qui connaît votre site, et que vous pouvez rencontrer à
+              La Rochelle.
+            </p>
+            <p className="mt-6">
+              <NoScrollLink href={RouteLink.developpeurLaRochelle}>
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                  Mon activité de développeur à La Rochelle
+                </span>
+              </NoScrollLink>
+            </p>
+          </div>
+          <div>
+            <p className="text-white text-xl font-medium">
+              Les demandes qui arrivent le plus souvent
+            </p>
+            <ul className="styled-list mt-4 text-gray-light">
+              <li>
+                Une mise à jour de WordPress ou d’une extension a cassé une
+                page, un formulaire ou le paiement.
+              </li>
+              <li>
+                Le site affiche une page blanche, une erreur 500 ou un avis de
+                sécurité de l’hébergeur.
+              </li>
+              <li>
+                Le site a été piraté : redirections, spam, contenus injectés,
+                blocage par Google.
+              </li>
+              <li>
+                Le site est lent, le cache n’est pas configuré, les images ne
+                sont pas optimisées.
+              </li>
+              <li>
+                L’hébergeur impose une montée de version PHP et le thème ne la
+                supporte pas.
+              </li>
+              <li>
+                Personne ne sait plus où sont les accès, les sauvegardes ni le
+                nom de domaine.
+              </li>
+            </ul>
+            <p className="mt-6 text-gray-light">
+              Pour une intervention isolée sans contrat, voyez la{' '}
+              <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                  maintenance ponctuelle
+                </span>
+              </NoScrollLink>
+              . Si l’hébergement est en cause, je peux aussi{' '}
+              <NoScrollLink href={RouteLink.prestationHosting}>
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                  héberger votre site en France
+                </span>
+              </NoScrollLink>
+              .
+            </p>
+          </div>
+        </section>
       </div>
 
       <div className="relative">
@@ -228,6 +367,11 @@ export default function TmaWordPress() {
           bgCorner="fill-orange"
         />
       </div>
+
+      <FaqSection
+        intro="Ce que me demandent les entreprises de La Rochelle et de Charente-Maritime avant de confier la maintenance de leur site WordPress."
+        items={FAQ}
+      />
 
       <div className="container" id="contact">
         <SectionTitle

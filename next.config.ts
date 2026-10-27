@@ -14,6 +14,19 @@ const nextConfig: NextConfig = {
     '@opentelemetry/resources',
     '@opentelemetry/semantic-conventions',
   ],
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000',
+          },
+        ],
+      },
+    ]
+  },
   async redirects() {
     return [
       {

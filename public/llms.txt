@@ -1,0 +1,18 @@
+# inRage
+
+> inRage est le site de Pascal Gault, développeur web freelance à La Rochelle (Charente-Maritime). Création de sites WordPress, boutiques Prestashop et WooCommerce, applications Symfony, React et Next.js, maintenance et hébergement en France.
+
+## Pages principales
+
+- [Accueil](https://www.inrage.fr/): présentation des prestations et dernières réalisations
+- [Développeur web à La Rochelle](https://www.inrage.fr/developpeur-web-la-rochelle): activité locale, chiffres clés et FAQ
+- [Prestations](https://www.inrage.fr/prestations): création de site, maintenance, hébergement
+- [Portfolio](https://www.inrage.fr/portfolio): études de cas WordPress, e-commerce et applications web
+- [Blog](https://www.inrage.fr/blog): articles techniques WordPress, PrestaShop, Symfony et React
+- [À propos](https://www.inrage.fr/a-propos-de-moi): parcours de Pascal Gault
+- [Contact](https://www.inrage.fr/contact): demande de devis
+
+## Ressources
+
+- [Plan du site](https://www.inrage.fr/plan-du-site)
+- [Sitemap XML](https://www.inrage.fr/sitemap.xml)

@@ -14,6 +14,7 @@ import Keypoints from '@component/Keypoints'
 import Layout from '@component/Layout'
 import LastProjects from '@component/portfolio/LastProjects'
 import PrestationsList from '@component/PrestationsList'
+import References from '@component/References'
 import SectionTitle from '@component/SectionTitle'
 import ExpertiseReact from '@image/expertises/react.svg'
 import ExpertisePrestashop from '@image/expertises/prestashop.png'
@@ -23,9 +24,9 @@ import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jp
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Développeur web freelance à La Rochelle - Pascal Gault',
+  title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
   description:
-    'Pascal Gault, développeur web freelance à La Rochelle : création de sites WordPress, Prestashop, Symfony et React, maintenance et hébergement. Devis gratuit.',
+    'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement en France. Devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(),
   },
@@ -170,6 +171,8 @@ export default function Homepage() {
       </div>
 
       <Keypoints />
+
+      <References band />
 
       <div className="bg-gray-darker">
         <div className="container py-8">

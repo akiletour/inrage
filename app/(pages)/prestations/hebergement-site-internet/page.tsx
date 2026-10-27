@@ -542,11 +542,11 @@ export default function PrestationHebergement() {
           <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
             {FAQ.map((item) => (
               <details key={item.question} className="group py-5">
-                <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden">
-                  <span>{item.question}</span>
+                <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
+                  <span className="text-balance">{item.question}</span>
                   <span
                     aria-hidden="true"
-                    className="flex-none mt-1 text-orange text-2xl leading-none transition-transform duration-150 group-open:rotate-45"
+                    className="flex-none mt-1 text-orange text-2xl leading-none transition-transform duration-150 motion-reduce:transition-none group-open:rotate-45"
                   >
                     +
                   </span>

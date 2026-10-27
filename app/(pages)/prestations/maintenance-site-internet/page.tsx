@@ -1,6 +1,8 @@
 import Image from 'next/image'
 
 import Diagonal from '@component/Diagonal'
+import FaqSection, { FaqItem } from '@component/FaqSection'
+import Link from '@component/NoScrollLink'
 import TmaItem from '@component/items/TmaItem'
 import Layout from '@component/Layout'
 import SectionTitle from '@component/SectionTitle'
@@ -9,13 +11,33 @@ import TmaImage from '@image/tma.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Maintenance de site internet | Freelance - inRage',
+  title: 'Maintenance de site internet à La Rochelle | inRage',
   description:
-    'Développeur freelance pour la maintenance de votre site web : forfait infogérance WordPress et Prestashop clé en main, sans surcoût, mises à jour et sécurité.',
+    'Maintenance de site internet à La Rochelle : forfaits d’infogérance WordPress et Prestashop, dépannage ponctuel, mises à jour, sécurité et sauvegardes. Plus de 150 sites suivis.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },
 }
+
+const FAQ: FaqItem[] = [
+  {
+    question:
+      'Forfait de maintenance ou intervention ponctuelle : que choisir ?',
+    answer:
+      'Le forfait convient à un site qui doit rester en ligne sans interruption : mises à jour planifiées, sauvegardes quotidiennes, surveillance et délai d’intervention garanti. L’intervention ponctuelle, facturée à l’heure, répond à un besoin isolé : corriger un bug, ajouter un bloc, débloquer une mise à jour.',
+  },
+  {
+    question:
+      'Mon site n’est ni sous WordPress ni sous Prestashop, pouvez-vous le maintenir ?',
+    answer:
+      'Oui pour WooCommerce, Symfony et les sites développés sur mesure que j’ai réalisés ou audités. Pour une autre plateforme, un premier échange permet de vérifier ce que je peux prendre en charge, et je vous oriente si ce n’est pas le cas.',
+  },
+  {
+    question: 'Où sont stockées les sauvegardes ?',
+    answer:
+      'Sur des serveurs situés en France, distincts de l’hébergement de votre site. Une sauvegarde conservée au même endroit que le site ne sert à rien le jour où le serveur tombe ou est compromis.',
+  },
+]
 
 export default function WebsiteTMA() {
   return (
@@ -23,10 +45,10 @@ export default function WebsiteTMA() {
       breadcrumbs={[
         {
           link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
+          title: 'Prestations',
         },
       ]}
-      title="Maintenance de site web"
+      title="Maintenance de site internet à La Rochelle"
     >
       <div className="container">
         <TextImage
@@ -36,24 +58,29 @@ export default function WebsiteTMA() {
           title={["L'infogérance & maintenance TMA", "Qu'est-ce que c'est ?"]}
         >
           <p className="mt-4 text-gray-light text-2xl">
-            C’est d’être accompagné chaque jour dans le bon fonctionnement de
-            son site WordPress.
+            Un site en ligne vieillit chaque jour : WordPress, Prestashop, le
+            thème, les extensions et la version de PHP évoluent sans lui.
           </p>
 
           <p className="mt-4">
-            Lors du développement de votre site, votre développeur a surement dû
-            faire appel aux extensions disponibles à la communauté. Ces
-            extensions requièrent une attention particulière pour corriger des
-            dysfonctionnements (alias bugs) ou d’apporter de nouvelles
-            fonctionnalités pour votre bien-être et doivent être mise à jours.
+            Une extension plus mise à jour est la porte d’entrée la plus
+            courante d’un piratage, et une mise à jour faite sans précaution
+            peut casser une page ou le paiement. La maintenance consiste à
+            appliquer ces mises à jour sur un environnement de test, à vérifier
+            le site, puis à les passer en production.
           </p>
           <p className="mt-4">
-            Avec plus de 90 000 sites piratés (en avril 2013), il est crucial de
-            devoir apporter une solution de sauvegardes journalière de vos
-            fichiers ainsi que de votre base de données et cela sur une
-            plateforme entièrement sécurisée. Beaucoup de personnes font encore
-            l’erreur de sauvegarder leur site au même endroit où ils sont
-            hébergés.
+            Plus de 150 sites sont aujourd’hui sous infogérance inRage, à La
+            Rochelle, en Charente-Maritime et partout en France. Les sauvegardes
+            quotidiennes sont stockées sur des serveurs situés en France,
+            distincts de votre hébergement. Pour un besoin isolé sans contrat,
+            voyez la{' '}
+            <Link href={RouteLink.prestationTmaOnDemand}>
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                maintenance ponctuelle
+              </span>
+            </Link>
+            .
           </p>
         </TextImage>
 
@@ -82,7 +109,7 @@ export default function WebsiteTMA() {
               title="Infogérance et maintenance TMA"
               subject="WordPress"
               position="right"
-              excerpt="Forfait infogérance de votre site WordPress clé en main, sans surcout. Une infogérance complète pour maintenir à jours votre site et prévenir de toutes failles de sécurité liées aux extensions."
+              excerpt="Forfait d’infogérance WordPress sans surcoût : mises à jour, sécurité, sauvegardes et surveillance pour garder votre site à jour et prévenir les failles liées aux extensions."
               cta={{
                 link: RouteLink.prestationTmaWordPress,
                 text: 'Découvrez les offres WordPress',
@@ -160,6 +187,11 @@ export default function WebsiteTMA() {
           </div>
         </div>
       </div>
+
+      <FaqSection
+        intro="Ce que me demandent les entreprises avant de confier la maintenance de leur site."
+        items={FAQ}
+      />
     </Layout>
   )
 }

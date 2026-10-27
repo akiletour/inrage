@@ -1,5 +1,6 @@
 ---
 title: 'Types d’environnements sous WordPress 5.5'
+seoTitle: 'WordPress 5.5 : définir le type d’environnement'
 date: '2020-08-15'
 category: 'WordPress'
 thumbnail: '/images/articles/type-environnement-wordpress-5-5.jpg'
@@ -48,7 +49,7 @@ switch ( wp_get_environment_type() ) {
 
 ## Définir un type d’environnement
 
-Il y a [deux façons](https://core.trac.wordpress.org/browser/trunk/src/wp-includes/load.php?rev=48662#L157) de définir l’environnement dans WordPress 5.5. Soit par les variables d’environnement PHP `WP_ENVIRONMENT_TYPE` soit par les constants de WordPress (`define()`).
+Il y a [deux façons](https://github.com/WordPress/WordPress/blob/5.5/wp-includes/load.php) de définir l’environnement dans WordPress 5.5. Soit par les variables d’environnement PHP `WP_ENVIRONMENT_TYPE` soit par les constants de WordPress (`define()`).
 
 Peu importe la méthode que vous utilisez ci-dessus. Si celle-ci n’est pas dans la liste des types d’environnement autorisés, la valeur `production` sera utilisée.
 
