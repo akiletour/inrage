@@ -41,9 +41,12 @@ export default function FaqSection({ intro, items }: Props) {
       />
       <section className="container py-12 lg:py-0" aria-labelledby="faq-title">
         <SectionTitle title={['Questions', 'fréquentes']} content={intro} />
-        <div className="mt-10 lg:ml-[calc(390px+8rem)] divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
+        <div className="mt-12 grid gap-x-12 lg:grid-cols-2 border-t border-[#2f2f2f]">
           {items.map((item) => (
-            <details key={item.question} className="group py-5">
+            <details
+              key={item.question}
+              className="group py-5 border-b border-[#2f2f2f]"
+            >
               <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
                 <span className="text-balance">{item.question}</span>
                 <span
