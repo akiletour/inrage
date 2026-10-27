@@ -81,6 +81,7 @@ export default function AboutMe() {
           <div className="flex flex-col space-y-12 pt-12 pb-20">
             <ExperienceItem
               logo={ExpPhenix}
+              logoClassName="max-h-24"
               title="Membre du collectif Phénix Studio"
               company="Phénix Studio, La Rochelle"
               year="Aujourd'hui"
