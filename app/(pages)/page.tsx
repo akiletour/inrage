@@ -170,9 +170,9 @@ export default function Homepage() {
         </div>
       </div>
 
-      <References band />
-
       <Keypoints />
+
+      <References band />
 
       <div className="bg-gray-darker">
         <div className="container py-8">

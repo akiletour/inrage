@@ -1,4 +1,3 @@
-import Diagonal from '@component/Diagonal'
 import Link from '@component/NoScrollLink'
 import SectionTitle from '@component/SectionTitle'
 import { RouteLink } from '@lib/router'
@@ -150,27 +149,15 @@ function Content() {
 export default function References({ band = false }: Props) {
   if (!band) {
     return (
-      <div className="py-8">
+      <div className="py-16">
         <Content />
       </div>
     )
   }
 
   return (
-    <div className="bg-gray-darker">
-      <Diagonal
-        flipX
-        flipY
-        className="h-16 md:h-32 lg:h-48"
-        bgClass="fill-gray-dark"
-        bgCorner="fill-gray-darker"
-      />
+    <div className="bg-gray-darker pt-12 pb-16">
       <Content />
-      <Diagonal
-        className="h-16 md:h-32 lg:h-48"
-        bgClass="fill-gray-dark"
-        bgCorner="fill-gray-darker"
-      />
     </div>
   )
 }
