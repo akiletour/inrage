@@ -43,6 +43,31 @@ const GROUPS: Group[] = [
     ],
   },
   {
+    label: 'E-commerce et applications',
+    items: [
+      {
+        name: 'Guédelon',
+        text: 'Boutique WooCommerce multilingue, migrée depuis PrestaShop',
+        href: `${RouteLink.portfolio}/wordpress/boutique-guedelon`,
+      },
+      {
+        name: 'Quadria',
+        text: 'Catalogue d’équipements de collecte des déchets',
+        href: `${RouteLink.portfolio}/wordpress/quadria`,
+      },
+      {
+        name: 'VMZinc',
+        text: 'Site produits pour les plateformes internationales',
+        href: `${RouteLink.portfolio}/application-web/vmzinc`,
+      },
+      {
+        name: 'Éditions Delcourt',
+        text: 'Multisite éditorial avec Soleil Productions',
+        href: `${RouteLink.portfolio}/application-web/editions-delcourt`,
+      },
+    ],
+  },
+  {
     label: 'À La Rochelle et en Charente-Maritime',
     items: [
       {
@@ -102,13 +127,13 @@ function Content() {
         title={['Ils me font', 'confiance']}
         content="Des groupes nationaux et des entreprises de La Rochelle, suivis pour la plupart depuis plusieurs années."
       />
-      <div className="mt-10 lg:ml-[calc(390px+8rem)] grid gap-10 sm:grid-cols-2">
+      <div className="mt-12 grid gap-x-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         {GROUPS.map((group) => (
           <div key={group.label}>
-            <div className="text-xs uppercase tracking-widest text-orange">
+            <div className="text-xs uppercase tracking-widest text-orange border-b border-[#2f2f2f] pb-3">
               {group.label}
             </div>
-            <ul className="mt-3 space-y-1">
+            <ul className="mt-4 space-y-2">
               {group.items.map((item) => (
                 <li key={item.name}>
                   <Item item={item} />
