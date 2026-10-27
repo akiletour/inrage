@@ -188,12 +188,10 @@ export default function WebsiteTMA() {
         </div>
       </div>
 
-      <div className="mt-16">
-        <FaqSection
-          intro="Ce que me demandent les entreprises avant de confier la maintenance de leur site."
-          items={FAQ}
-        />
-      </div>
+      <FaqSection
+        intro="Ce que me demandent les entreprises avant de confier la maintenance de leur site."
+        items={FAQ}
+      />
     </Layout>
   )
 }
