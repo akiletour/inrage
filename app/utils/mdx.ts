@@ -25,6 +25,7 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
 }
 
 export interface BlogMdxMetadata extends BaseMdxMetadata {
+  seoTitle?: string
   date: string
   category?: string
   thumbnail: string
