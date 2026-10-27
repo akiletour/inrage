@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import Diagonal from '@component/Diagonal'
+import SectionTitle from '@component/SectionTitle'
 
 export type FaqItem = {
   question: string
@@ -6,10 +7,8 @@ export type FaqItem = {
 }
 
 type Props = {
-  title?: string
   intro: string
   items: FaqItem[]
-  aside?: ReactNode
 }
 
 export function buildFaqJsonLd(items: FaqItem[]) {
@@ -24,29 +23,25 @@ export function buildFaqJsonLd(items: FaqItem[]) {
   }
 }
 
-export default function FaqSection({
-  title = 'Questions fréquentes',
-  intro,
-  items,
-  aside,
-}: Props) {
+export default function FaqSection({ intro, items }: Props) {
   return (
-    <section className="bg-gray-darker py-16">
+    <div className="bg-gray-darker mt-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(buildFaqJsonLd(items)),
         }}
       />
-      <div className="container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <div>
-          <h2 className="text-white text-3xl font-bold text-balance">
-            {title}
-          </h2>
-          <p className="mt-4 text-gray-light">{intro}</p>
-          {aside}
-        </div>
-        <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
+      <Diagonal
+        flipX
+        flipY
+        className="h-16 md:h-32 lg:h-48"
+        bgClass="fill-gray-dark"
+        bgCorner="fill-gray-darker"
+      />
+      <section className="container py-12 lg:py-0" aria-labelledby="faq-title">
+        <SectionTitle title={['Questions', 'fréquentes']} content={intro} />
+        <div className="mt-10 lg:ml-[calc(390px+8rem)] divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
           {items.map((item) => (
             <details key={item.question} className="group py-5">
               <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
@@ -64,7 +59,12 @@ export default function FaqSection({
             </details>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+      <Diagonal
+        className="h-16 md:h-32 lg:h-48"
+        bgClass="fill-gray-dark"
+        bgCorner="fill-gray-darker"
+      />
+    </div>
   )
 }
