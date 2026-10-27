@@ -23,9 +23,9 @@ import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jp
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Création de site internet à La Rochelle | inRage, Pascal Gault',
+  title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
   description:
-    'inRage, création de sites internet à La Rochelle par Pascal Gault, développeur freelance : WordPress, Prestashop, Symfony et React, maintenance et hébergement. Devis gratuit.',
+    'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement en France. Devis gratuit.',
   alternates: {
     canonical: getCanonicalUrl(),
   },
