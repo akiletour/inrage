@@ -99,7 +99,7 @@ export default function PrestationBuildWebsite() {
             <p className="mt-4">
               Je vous propose également une{' '}
               <Link href={RouteLink.prestationHosting}>
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   solution d’hébergement infogéré
                 </span>
               </Link>{' '}
@@ -269,14 +269,16 @@ export default function PrestationBuildWebsite() {
               Le nouveau site est construit à côté, sur pré-production, puis
               bascule en une fois. Pour{' '}
               <Link href={`${RouteLink.portfolio}/wordpress/quadria`}>
-                <span className="text-orange underline">Quadria</span>
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                  Quadria
+                </span>
               </Link>
               , le catalogue produits et ses fiches ont été repris de cette
               façon. Pour le{' '}
               <Link
                 href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
               >
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   Camping La Mouette Rieuse
                 </span>
               </Link>
@@ -286,7 +288,7 @@ export default function PrestationBuildWebsite() {
               Vous ne savez pas si votre site mérite une refonte ou une simple
               remise à niveau ? Commencez par un{' '}
               <Link href={RouteLink.auditGratuit}>
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   audit gratuit de votre site
                 </span>
               </Link>

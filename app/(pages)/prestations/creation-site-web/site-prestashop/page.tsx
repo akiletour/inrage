@@ -91,7 +91,7 @@ export default async function PrestationPrestashop() {
           <p className="mt-4">
             Une fois la boutique en ligne, la{' '}
             <Link href={RouteLink.prestationTmaPrestashop}>
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 maintenance Prestashop
               </span>
             </Link>{' '}

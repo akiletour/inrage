@@ -87,19 +87,28 @@ export default function References() {
               </div>
               <ul className="mt-4 divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
                 {group.items.map((item) => (
-                  <li key={item.name} className="py-3">
+                  <li key={item.name}>
                     {item.href ? (
                       <Link href={item.href}>
-                        <span className="text-white text-lg font-medium hover:text-orange">
-                          {item.name}
+                        <span className="block py-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
+                          <span className="block text-white text-lg font-medium transition-colors duration-150 hover:text-orange">
+                            {item.name}
+                          </span>
+                          <span className="block text-sm text-gray-light">
+                            {item.text}
+                          </span>
                         </span>
                       </Link>
                     ) : (
-                      <span className="text-white text-lg font-medium">
-                        {item.name}
+                      <span className="block py-3">
+                        <span className="block text-white text-lg font-medium">
+                          {item.name}
+                        </span>
+                        <span className="block text-sm text-gray-light">
+                          {item.text}
+                        </span>
                       </span>
                     )}
-                    <div className="text-sm text-gray-light">{item.text}</div>
                   </li>
                 ))}
               </ul>

@@ -265,7 +265,7 @@ export default function TmaWordPress() {
             </p>
             <p className="mt-6">
               <NoScrollLink href={RouteLink.developpeurLaRochelle}>
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   Mon activité de développeur à La Rochelle
                 </span>
               </NoScrollLink>
@@ -304,13 +304,13 @@ export default function TmaWordPress() {
             <p className="mt-6 text-gray-light">
               Pour une intervention isolée sans contrat, voyez la{' '}
               <NoScrollLink href={RouteLink.prestationTmaOnDemand}>
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   maintenance ponctuelle
                 </span>
               </NoScrollLink>
               . Si l’hébergement est en cause, je peux aussi{' '}
               <NoScrollLink href={RouteLink.prestationHosting}>
-                <span className="text-orange underline">
+                <span className="text-orange underline transition-colors duration-150 hover:text-white">
                   héberger votre site en France
                 </span>
               </NoScrollLink>

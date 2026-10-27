@@ -76,7 +76,7 @@ export default function WebsiteTMA() {
             distincts de votre hébergement. Pour un besoin isolé sans contrat,
             voyez la{' '}
             <Link href={RouteLink.prestationTmaOnDemand}>
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 maintenance ponctuelle
               </span>
             </Link>

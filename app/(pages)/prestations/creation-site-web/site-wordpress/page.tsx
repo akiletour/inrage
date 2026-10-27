@@ -72,7 +72,7 @@ export default async function PrestationWordPress() {
             Vous l’administrez ensuite vous-même : l’interface est épurée et
             adaptée à votre usage, et vous pouvez me confier la{' '}
             <Link href={RouteLink.prestationTmaWordPress}>
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 maintenance WordPress
               </span>
             </Link>{' '}
@@ -100,7 +100,7 @@ export default async function PrestationWordPress() {
             <Link
               href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
             >
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 Camping La Mouette Rieuse
               </span>
             </Link>
@@ -108,11 +108,13 @@ export default async function PrestationWordPress() {
             <Link
               href={`${RouteLink.portfolio}/wordpress/graphiste-romain-ouvrard`}
             >
-              <span className="text-orange underline">Romain Ouvrard</span>
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
+                Romain Ouvrard
+              </span>
             </Link>
             ,{' '}
             <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 Laboratoire Biosalines
               </span>
             </Link>{' '}
@@ -120,7 +122,7 @@ export default async function PrestationWordPress() {
             <Link
               href={`${RouteLink.portfolio}/wordpress/santeenvironnement-nouvelleaquitaine`}
             >
-              <span className="text-orange underline">
+              <span className="text-orange underline transition-colors duration-150 hover:text-white">
                 Santé Environnement Nouvelle-Aquitaine
               </span>
             </Link>

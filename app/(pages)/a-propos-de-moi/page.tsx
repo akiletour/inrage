@@ -39,7 +39,7 @@ export default function AboutMe() {
           Symfony, WordPress, Prestashop et React. Je travaille aujourd&apos;hui
           en tant que{' '}
           <Link href={RouteLink.developpeurLaRochelle}>
-            <span className="text-orange underline">
+            <span className="text-orange underline transition-colors duration-150 hover:text-white">
               développeur web freelance à La Rochelle
             </span>
           </Link>
@@ -192,7 +192,7 @@ export default function AboutMe() {
               framework NextJS. Si vous voulez en savoir plus sur sa conception,
               le code source est{' '}
               <a
-                className="text-orange underline"
+                className="text-orange underline transition-colors duration-150 hover:text-white"
                 href="https://github.com/akiletour/inrage"
               >
                 disponible sur GitHub
