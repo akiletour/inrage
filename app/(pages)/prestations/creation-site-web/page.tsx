@@ -1,6 +1,5 @@
 import '@component/home/home.css'
 
-import Image from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
@@ -18,6 +17,7 @@ import {
   PRICES,
   STEPS,
 } from '@component/prestations/creation-data'
+import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -147,48 +147,10 @@ function Hero() {
   )
 }
 
-async function LocalProjects() {
+export default async function PrestationBuildWebsite() {
   const items = await getPortfolioItems()
-  const projects = LOCAL_PROJECTS.map((local) => {
-    const item = items.find((candidate) => candidate.slug === local.slug)
-    return item ? { ...item, note: local.note } : null
-  }).filter((project) => project !== null)
+  const projects = pickProjects(items, LOCAL_PROJECTS)
 
-  return (
-    <ul className="mt-14 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 md:gap-x-8">
-      {projects.map((project, i) => (
-        <li key={project.slug}>
-          <Reveal i={i}>
-            <Link
-              href={`${RouteLink.portfolio}/${project.support ? `${project.support.slug}/` : ''}${project.slug}`}
-              className="home-card group block"
-            >
-              <span className="home-shot block overflow-hidden rounded-xl">
-                <Image
-                  src={`/images/portfolio/${project.thumbnail}`}
-                  alt=""
-                  width={257}
-                  height={400}
-                  className="h-auto w-full"
-                  sizes="(min-width: 768px) 33vw, 50vw"
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                />
-              </span>
-              <span className="home-card-title mt-4 block text-lg font-medium text-white">
-                {project.title}
-              </span>
-              <span className="mt-1 block text-sm leading-6 text-(--home-muted)">
-                {project.note}
-              </span>
-            </Link>
-          </Reveal>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-export default function PrestationBuildWebsite() {
   return (
     <div className="home">
       <Layout hero={<Hero />}>
@@ -228,7 +190,7 @@ export default function PrestationBuildWebsite() {
             <SectionHeading text="Des sites conçus pour des entreprises de La Rochelle, de l’Île de Ré et de Nouvelle-Aquitaine, que vous pouvez visiter aujourd’hui.">
               Des sites créés ici
             </SectionHeading>
-            <LocalProjects />
+            <ProjectGrid projects={projects} />
             <div className="mt-12 flex justify-center">
               <Link
                 href={`${RouteLink.portfolio}/wordpress`}

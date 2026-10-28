@@ -18,6 +18,7 @@ import {
   WOOCOMMERCE_PROJECTS,
 } from '@component/prestations/wordpress-data'
 import { getBlogItems } from '@lib/blog'
+import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -155,56 +156,6 @@ function Hero() {
   )
 }
 
-type Project = Awaited<ReturnType<typeof getPortfolioItems>>[number]
-
-function ProjectGrid({
-  projects,
-}: {
-  projects: Array<Project & { note: string }>
-}) {
-  return (
-    <ul className="mt-14 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 md:gap-x-8">
-      {projects.map((project, i) => (
-        <li key={project.slug}>
-          <Reveal i={i}>
-            <Link
-              href={`${RouteLink.portfolio}/${project.support ? `${project.support.slug}/` : ''}${project.slug}`}
-              className="home-card group block"
-            >
-              <span className="home-shot block overflow-hidden rounded-xl">
-                <Image
-                  src={`/images/portfolio/${project.thumbnail}`}
-                  alt=""
-                  width={257}
-                  height={400}
-                  className="h-auto w-full"
-                  sizes="(min-width: 768px) 33vw, 50vw"
-                  loading={i < 3 ? 'eager' : 'lazy'}
-                />
-              </span>
-              <span className="home-card-title mt-4 block text-lg font-medium text-white">
-                {project.title}
-              </span>
-              <span className="mt-1 block text-sm leading-6 text-(--home-muted)">
-                {project.note}
-              </span>
-            </Link>
-          </Reveal>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-function pick(items: Project[], wanted: Array<{ slug: string; note: string }>) {
-  return wanted
-    .map((local) => {
-      const item = items.find((candidate) => candidate.slug === local.slug)
-      return item ? { ...item, note: local.note } : null
-    })
-    .filter((project) => project !== null)
-}
-
 async function WordPressArticles() {
   const items = await getBlogItems()
   const articles = ARTICLE_SLUGS.map((slug) =>
@@ -242,8 +193,8 @@ async function WordPressArticles() {
 
 export default async function PrestationWordPress() {
   const items = await getPortfolioItems(-1, 'wordpress')
-  const projects = pick(items, LOCAL_PROJECTS)
-  const shops = pick(items, WOOCOMMERCE_PROJECTS)
+  const projects = pickProjects(items, LOCAL_PROJECTS)
+  const shops = pickProjects(items, WOOCOMMERCE_PROJECTS)
 
   return (
     <div className="home">

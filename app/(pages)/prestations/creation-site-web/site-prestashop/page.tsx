@@ -1,370 +1,414 @@
+import '@component/home/home.css'
+
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
-import Diagonal from '@component/Diagonal'
-import FaqSection, { FaqItem } from '@component/FaqSection'
-import MoreIcon from '@component/icons/MoreIcon'
-import ProjectItem from '@component/items/ProjectItem'
+import Glass from '@component/home/Glass'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import Link from '@component/NoScrollLink'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import ImageBackgroundTma from '@image/bg-tma.jpeg'
-import ProtectionShield from '@image/protection-shield.png'
-import WebsitePrestashop from '@image/website-prestashop.png'
-import WebsiteWP from '@image/website-wp.png'
+import {
+  ARTICLE_SLUGS,
+  CHOICE,
+  FAQ,
+  PRICES,
+  PROJECTS,
+  SERVICES,
+  STEPS,
+} from '@component/prestations/prestashop-data'
+import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
+import { getBlogItems } from '@lib/blog'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Freelance Prestashop : création de boutique en ligne | inRage',
+  title: 'Freelance Prestashop : boutique, modules, migration | inRage',
   description:
-    'Développeur Prestashop freelance depuis 2013 : création de boutique en ligne, thème sur mesure, modules, import de catalogue, migration vers Prestashop 9 et maintenance. Basé à La Rochelle.',
+    'Développeur Prestashop freelance depuis 2013, de la 1.5 à Prestashop 9 : création de boutique sur mesure, modules, connecteurs ERP et marketplaces, import de catalogue, migration et maintenance. Basé à La Rochelle, toute la France.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },
 }
 
-const FAQ: FaqItem[] = [
-  {
-    question: 'Prestashop ou WooCommerce pour ma boutique ?',
-    answer:
-      'Prestashop pour un catalogue structuré, des déclinaisons nombreuses, du B2B avec des tarifs par client ou une liaison avec un ERP. WooCommerce quand la boutique accompagne un site éditorial WordPress et que le catalogue reste simple. Je développe sur les deux, le choix se fait sur votre catalogue et vos outils, pas sur une préférence.',
-  },
-  {
-    question: 'Pouvez-vous reprendre ma boutique Prestashop existante ?',
-    answer:
-      'Oui, qu’elle ait été créée par une agence, un freelance ou vous-même. Je commence par un état des lieux de la version, des modules et du thème, puis je propose soit une remise à niveau, soit une migration vers Prestashop 9 en conservant le catalogue, les clients et les commandes.',
-  },
-  {
-    question: 'Comment mon catalogue est-il intégré ?',
-    answer:
-      'Par import depuis un fichier CSV ou Excel, ou par une liaison avec votre logiciel de gestion via une API. Les outils d’import que j’ai développés sont réutilisables tout au long de la vie de la boutique pour les mises à jour de stock et de prix.',
-  },
-]
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Accueil',
+          item: getCanonicalUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Prestations',
+          item: getCanonicalUrl(RouteLink.prestations),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Création de site internet',
+          item: getCanonicalUrl(RouteLink.prestationWeb),
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Boutique Prestashop',
+          item: getCanonicalUrl(RouteLink.prestationPrestashop),
+        },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Développement Prestashop freelance',
+      serviceType: 'Création de boutique Prestashop',
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: { '@type': 'Country', name: 'France' },
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Boutique Prestashop sur mesure',
+          priceCurrency: 'EUR',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: 5000,
+            priceCurrency: 'EUR',
+          },
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+}
 
-export default async function PrestationPrestashop() {
-  const projects = await getPortfolioItems(4, 'e-commerce')
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
+
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
+      <div className="home-beam top-[65%] left-[50%]" data-i="3" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Freelance Prestashop&nbsp;: développeur expert depuis 2013
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Je développe des boutiques Prestashop depuis la version 1.5
+              jusqu’à Prestashop 9, pour des e-commerçants B2C et B2B et pour
+              les agences qui me confient leur technique. Thème sur mesure,
+              modules, connecteurs ERP et marketplaces, import de catalogue,
+              migration et maintenance. Basé à La Rochelle, je travaille avec
+              des boutiques dans toute la France.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href={RouteLink.contact}
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Parler de votre boutique
+              </Link>
+              <Link
+                href={RouteLink.prestationTmaPrestashop}
+                className="home-btn-ghost home-glassy"
+              >
+                Maintenance Prestashop
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+async function PrestashopArticles() {
+  const items = await getBlogItems()
+  const articles = ARTICLE_SLUGS.map((slug) =>
+    items.find((item) => item.slug === slug)
+  ).filter((item) => item !== undefined)
 
   return (
-    <Layout
-      breadcrumbs={[
-        {
-          link: RouteLink.prestations,
-          title: 'Prestations',
-        },
-        {
-          link: RouteLink.prestationWeb,
-          title: 'Création de site internet',
-        },
-      ]}
-      title="Création de boutique Prestashop"
-    >
-      <div className="container flex items-center">
-        <div className="md:w-2/5 hidden md:block">
-          <Image
-            src={WebsitePrestashop}
-            alt="Développeur Prestashop Freelance sur La Rochelle"
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </div>
-        <div className="md:w-3/5 text-lg md:pl-10 leading-6 pt-4">
-          <h2 className="text-white text-xl md:text-3xl font-bold">
-            Développeur Prestashop freelance <br className="hidden md:block" />à
-            La Rochelle
-          </h2>
-          <p className="mt-4">
-            Je développe des boutiques Prestashop depuis 2013, de la version 1.5
-            à Prestashop 9.2, pour des e-commerçants B2C et B2B : thème sur
-            mesure, modules spécifiques, import de catalogue, liaison avec un
-            ERP ou un logiciel de caisse.
-          </p>
-          <p className="mt-4">
-            Prestashop est open source et entièrement administrable : vous gérez
-            vous-même le catalogue, les stocks, les promotions et les commandes.
-            Son catalogue de modules couvre la plupart des besoins, et ce qu’il
-            ne couvre pas, je le développe.
-          </p>
-          <p className="mt-4">
-            Une fois la boutique en ligne, la{' '}
-            <Link href={RouteLink.prestationTmaPrestashop}>
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                maintenance Prestashop
+    <ul className="mt-14 grid gap-4 md:grid-cols-2">
+      {articles.map((article, i) => (
+        <li key={article.slug}>
+          <Reveal i={i} className="h-full">
+            <Link
+              href={`${RouteLink.blog}/${article.slug}`}
+              className="home-card home-article home-glass grid h-full grid-cols-[112px_1fr] items-center gap-5 p-4 sm:grid-cols-[150px_1fr]"
+            >
+              <span className="home-article-media relative block aspect-[2.15/1] overflow-hidden rounded-lg">
+                <Image
+                  src={article.thumbnail}
+                  alt=""
+                  fill
+                  sizes="150px"
+                  className="home-article-img object-cover"
+                />
               </span>
-            </Link>{' '}
-            prend le relais : mises à jour, sécurité, sauvegardes et
-            surveillance du tunnel d’achat.
-          </p>
-        </div>
-      </div>
+              <span className="home-card-title line-clamp-3 text-base leading-snug font-medium text-white sm:text-lg">
+                {article.title}
+              </span>
+            </Link>
+          </Reveal>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-      <div className="bg-gray-darker mt-8">
-        <Diagonal
-          flipX
-          flipY
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
+export default async function PrestationPrestashop() {
+  const items = await getPortfolioItems(-1, 'e-commerce')
+  const projects = pickProjects(items, PROJECTS)
+
+  return (
+    <div className="home">
+      <Layout hero={<Hero />}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div className="container text-center py-16 lg:py-0">
-          <div className="md:px-36 text-lg">
-            <h2 className="text-3xl text-white font-bold mb-4">
-              Pourquoi choisir Prestashop ?
-            </h2>
 
-            <p>
-              Prestashop est le CMS de référence pour la création de boutique en
-              ligne et plus largement pour le e-commerce. Il permet à mes
-              clients d’être entièrement autonomes dans la gestion des contenus
-              de leur site, de gérer leur catalogue, d’ajouter des produits ou
-              encore de créer des opérations commerciales.
-            </p>
-            <p>
-              Depuis la refonte du CMS sous Symfony (version 1.7), les
-              possibilités de Prestashop ont été élargies notamment en termes de
-              personnalisation du backoffice. Le recours à Symfony a également
-              permis d’améliorer les performances des sites développés sous
-              Prestashop.
-            </p>
-            <p>
-              Prestashop est la garantie pour mes clients de disposer d’une
-              boutique en ligne fiable, sécurisée et performante.
-            </p>
+        <section className="container py-16 md:py-24">
+          <SectionHeading text="Prestashop est un outil de vente avant d’être un site. Ce que je fais dessus tient en six métiers, et chacun a déjà servi sur de vraies boutiques.">
+            Ce que je fais sur Prestashop
+          </SectionHeading>
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {SERVICES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[280px_1fr]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                    {item.title}
+                  </h3>
+                  <div>
+                    <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                    {item.href && (
+                      <p className="mt-4">
+                        <Link href={item.href} className={linkClass}>
+                          {item.hrefText}
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
-        </div>
-        <Diagonal
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
+        </section>
 
-      <div className="container">
-        <TextImage
-          title={['Développement et intégration', 'de thèmes Prestashop']}
-          image={WebsiteWP}
-        >
-          <p>
-            Pour chaque projet, nous élaborons ensemble le design de votre site
-            e-commerce puis je développe le thème prestashop dans le respect de
-            vos choix graphiques et fonctionnels. Cette étape est cruciale car
-            elle définit ce que les visiteurs pourront visualiser sur votre
-            boutique. Tous les thèmes que je développe sont consultables sur
-            tous les terminaux (responsive design).
-          </p>
-
-          <p className="mt-4">
-            Je respecte scrupuleusement les bonnes pratiques dictées par
-            Prestashop et sa communauté. C’est pourquoi je préfère développer
-            intégralement un thème plutôt que d’en utiliser un existant. Ainsi,
-            les sites que je développe sont plus rapides à l’affichage, plus
-            fiables et plus pérennes dans le temps.
-          </p>
-        </TextImage>
-
-        <TextImage
-          position="right"
-          title={['Développement', 'de modules Prestashop']}
-          image={WebsitePrestashop}
-        >
-          <p>
-            Comme pour le CMS Wordpress, la communauté Prestashop est importante
-            et particulièrement investie. De fait, le catalogue de ses modules
-            existants est très complet. Pourtant, selon vos besoins ou les
-            enjeux de votre activité, il peut être nécessaire de développer
-            entièrement une fonctionnalité ou un module. Pour chaque besoin, il
-            existe une solution technique, ainsi je suis en mesure de développer
-            pour vous la fonctionnalité qui convient à votre boutique
-            e-commerce.
-          </p>
-
-          <p className="mt-4">
-            Les modules développés par mes soins respectent les bonnes pratiques
-            véhiculées par Prestashop et utilisent le système de “Hook” pour
-            réaliser des actions sans modifier le coeur du CMS. Ces modules sont
-            réplicables sur l’ensemble des sites développés sous Prestashop.
-          </p>
-        </TextImage>
-      </div>
-
-      <div className="bg-gray-darker mt-8">
-        <Diagonal
-          flipX
-          flipY
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-        <div className="container text-center py-16 lg:py-0">
-          <div className="">
-            <h2 className="text-center text-white text-3xl">
-              Migration vers Prestashop 9
-              <span className="block text-xl">Sans recréer votre boutique</span>
-            </h2>
-            <p className="text-xl text-gray-light mt-6">
-              Les boutiques encore en 1.6, 1.7 ou 8 ne reçoivent plus de
-              correctifs de sécurité, et leurs modules cessent un à un d’être
-              maintenus.
-            </p>
-            <p className="mt-4">
-              En 2019, j’ai créé un outil de migration pour passer les boutiques
-              de la 1.6 à la 1.7 sans repartir de zéro. La même démarche
-              s’applique aujourd’hui au passage vers Prestashop 9 : catalogue,
-              clients et commandes sont repris, le thème et les modules sont
-              réécrits ou remplacés, et la bascule se fait sur pré-production
-              avant la mise en ligne.
-            </p>
-          </div>
-        </div>
-        <Diagonal
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
-
-      <div className="container">
-        <h2 className="text-white text-3xl font-bold mb-8">
-          L&apos;intégration de votre catalogue produit
-        </h2>
-        <p>
-          L&apos;intégration de votre catalogue produit dans votre boutique
-          Prestashop est souvent l&apos;étape la plus longue d&apos;une création
-          ou d&apos;une refonte.
-        </p>
-        <p className="mt-4">
-          Pour faciliter l&apos;intégration de vos catégories et produits dans
-          votre catalogue, j&apos;ai développé des outils permettant
-          d&apos;injecter vos références dans Prestashop depuis une API, un
-          fichier CSV ou Excel.
-        </p>
-        <p className="mt-4">
-          Ainsi, vous pouvez l&apos;alimenter en quelques clics et cela, tout au
-          long de la vie de votre site e-commerce.
-        </p>
-      </div>
-
-      <div className="relative">
-        <Diagonal
-          className="h-24 md:h-40 lg:h-[360px] -z-10"
-          flipX
-          flipY
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-        <Image
-          className="-z-10 opacity-30 md:opacity-100"
-          src={ImageBackgroundTma}
-          alt="Prestation de maintenance TMA"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'cover',
-          }}
-        />
-        <div className="container flex items-center relative z-10 my-8 lg:-my-20">
-          <div className="md:w-2/3 text-gray-light text-sm">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-6">
-              Garanti et suivi <br className="hidden sm:block" />
-              <span className="font-light">pendant 3 mois inclus</span>
-            </h2>
-            <p>
-              Lorsque votre site est en ligne, il peut être sujet à de nombreux
-              problèmes tels des extensions obsolètes qui peuvent créer des
-              failles et laisser le champ libre à des utilisateurs malveillants,
-              ou encore une panne du serveur sur lequel il est hébergé.
-            </p>
-
-            <p className="mt-4">
-              Pour remédier rapidement et efficacement à ce type de problème,
-              j’ai développé une multitude d’outils pour inspecter et analyser
-              votre site en temps réel et me prévenir si l’intégrité de votre
-              site est altérée.
-            </p>
-
-            <p className="mt-4">
-              Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir
-              rapidement pour le corriger et procéder si nécessaire à la mise à
-              jour des modules obsolètes.
-            </p>
-            <p className="mt-4">
-              Ainsi, votre site internet est protégé en permanence.
-            </p>
-            <div className="flex flex-wrap flex-start mt-8">
-              <Link href={RouteLink.prestationTmaPrestashop}>
-                <span className="button">
-                  Forfaits de maintenance Prestashop
-                </span>
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Trois boutiques Prestashop développées et suivies depuis des années, avec des connecteurs métier que vous ne verrez pas en vitrine mais qui font tourner l’activité.">
+              Boutiques Prestashop réalisées
+            </SectionHeading>
+            <ProjectGrid projects={projects} />
+            <div className="mt-12 flex justify-center">
+              <Link
+                href={`${RouteLink.portfolio}/e-commerce`}
+                className="home-btn-ghost home-glassy"
+              >
+                Toutes les réalisations e-commerce
               </Link>
             </div>
           </div>
-          <div className="hidden md:w-1/3 md:flex justify-center">
-            <Image
-              src={ProtectionShield}
-              alt={'Forfaits de maintenance Prestashop'}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
+        </section>
+
+        <section className="container py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Prestashop ou WooCommerce
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                La question arrive à chaque premier appel. La réponse dépend de
+                votre catalogue et de vos outils, pas d’une préférence.
+              </p>
+            </Reveal>
+            <Reveal i={1}>
+              <ul className="home-list space-y-4 leading-7 text-white/85">
+                {CHOICE.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="mt-6">
+                <Link
+                  href={RouteLink.prestationWordPress}
+                  className={linkClass}
+                >
+                  Voir la création de site WordPress et WooCommerce
+                </Link>
+              </p>
+            </Reveal>
           </div>
-        </div>
-        <Diagonal
-          className="h-24 md:h-40 lg:h-[360px] -z-10"
-          bgClass="fill-gray-darker"
-          bgCorner="fill-orange"
-        />
-      </div>
+        </section>
 
-      <div className="bg-gray-darker">
-        <div className="container pb-16 lg:pb-0 lg:-mb-16 relative z-10">
-          <SectionTitle
-            title="Réalisations Prestashop"
-            content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur Prestashop."
-          />
-
-          <div className="mt-6 sm:mt-0 grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {projects.length > 0 &&
-              projects.map(({ title, thumbnail, slug, support }) => (
-                <ProjectItem
-                  key={title}
-                  image={`/images/portfolio/${thumbnail}`}
-                  title={title}
-                  slug={slug}
-                  support={support}
-                />
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Une boutique se teste avec de vraies commandes avant d’ouvrir. Voici comment un projet Prestashop se déroule chez inRage.">
+              Comment se construit votre boutique
+            </SectionHeading>
+            <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+              {STEPS.map((step, i) => (
+                <li key={step.title} className="home-timeline-item">
+                  <Reveal i={i}>
+                    <h3 className="text-xl font-medium text-white md:text-2xl">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                      {step.text}
+                    </p>
+                  </Reveal>
+                </li>
               ))}
+            </ol>
           </div>
-        </div>
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-          cta={{
-            href: `${RouteLink.portfolio}/e-commerce`,
-            title: ['voir les projets', 'Prestashop'],
-            icon: <MoreIcon />,
-          }}
-        />
-      </div>
-      <FaqSection
-        intro="Ce que me demandent les e-commerçants avant de lancer ou de reprendre leur boutique Prestashop."
-        items={FAQ}
-      />
+        </section>
 
-      <div className="container mt-8 md:mt-0">
-        <SectionTitle
-          content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          }
-          title="Contact"
-        />
+        <section id="prix" className="container scroll-mt-28 py-20 md:py-28">
+          <SectionHeading text="Des ordres de grandeur annoncés, un devis détaillé poste par poste sous 24 heures. Prestashop est open source : aucune licence, la boutique vous appartient.">
+            Combien coûte une boutique Prestashop
+          </SectionHeading>
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {PRICES.map((offer, i) => (
+              <Reveal key={offer.name} i={i} className="h-full">
+                <Glass className="flex h-full flex-col p-7">
+                  <h3 className="text-xl font-medium text-white">
+                    {offer.name}
+                  </h3>
+                  <p className="home-num mt-3 text-3xl font-semibold text-white">
+                    {offer.price}
+                  </p>
+                  <p className="mt-4 text-sm leading-6 text-(--home-muted)">
+                    {offer.text}
+                  </p>
+                  {offer.href && (
+                    <p className="mt-auto pt-5">
+                      <Link href={offer.href} className={linkClass}>
+                        Les forfaits de maintenance
+                      </Link>
+                    </p>
+                  )}
+                </Glass>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-        <ContactForm />
-      </div>
-    </Layout>
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Pour les agences&nbsp;: sous-traitance Prestashop
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Une partie de mes boutiques Prestashop sont développées pour des
+                agences, en marque blanche.
+              </p>
+            </Reveal>
+            <Reveal i={1}>
+              <ul className="home-list space-y-4 leading-7 text-white/85">
+                <li>
+                  Thème développé à partir de vos maquettes, dans votre dépôt
+                  Git et vos environnements si vous en avez.
+                </li>
+                <li>
+                  Modules, connecteurs ERP et migrations vers Prestashop 9 en
+                  renfort de vos équipes, sur une mission ou dans la durée.
+                </li>
+                <li>
+                  Maintenance et hébergement des boutiques livrées, avec un
+                  interlocuteur technique joignable pour vos chefs de projet.
+                </li>
+                <li>
+                  Vos clients ne voient que vous. Je reste en retrait, mais je
+                  réponds vite.
+                </li>
+              </ul>
+              <p className="mt-6">
+                <Link href={RouteLink.contact} className={linkClass}>
+                  Parler d’un partenariat
+                </Link>
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="container py-20 md:py-28">
+          <SectionHeading text="Deux articles tirés de problèmes rencontrés sur de vraies boutiques, et comment je les ai résolus.">
+            Ce que j’écris sur Prestashop
+          </SectionHeading>
+          <PrestashopArticles />
+        </section>
+
+        <section
+          id="faq"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+        >
+          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Questions fréquentes sur Prestashop
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Ce que me demandent les e-commerçants et les agences avant de
+                lancer ou de reprendre une boutique Prestashop.
+              </p>
+            </Reveal>
+            <div className="divide-y divide-white/10">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.question} i={i}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                      {item.question}
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
+                      {item.answer}
+                    </p>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="container pt-16 pb-10 md:pt-24">
+          <SectionHeading text="Décrivez votre boutique : catalogue, outils à relier, version actuelle si elle existe. Je vous réponds dans la journée.">
+            Parler de votre boutique
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </section>
+      </Layout>
+    </div>
   )
 }
