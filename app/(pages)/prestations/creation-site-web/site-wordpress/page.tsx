@@ -1,528 +1,488 @@
+import '@component/home/home.css'
+
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
-import Diagonal from '@component/Diagonal'
-import MoreIcon from '@component/icons/MoreIcon'
-import ProjectItem from '@component/items/ProjectItem'
+import Glass from '@component/home/Glass'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import Link from '@component/NoScrollLink'
-import Quote from '@component/Quote'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import AcfImage from '@image/acf.png'
-import ImageBackgroundTma from '@image/bg-tma.jpeg'
-import WordpressSage from '@image/developpement-theme-sage.jpeg'
-import PageBuilderImage from '@image/page-builder.png'
-import ProtectionShield from '@image/protection-shield.png'
-import WebsitePrestashop from '@image/website-prestashop.png'
-import WebsiteWP from '@image/website-wp.png'
+import {
+  ARTICLE_SLUGS,
+  FAQ,
+  LOCAL_PROJECTS,
+  METHOD,
+  PRICES,
+  PRINCIPLES,
+  WOOCOMMERCE_PROJECTS,
+} from '@component/prestations/wordpress-data'
+import { getBlogItems } from '@lib/blog'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Création de site WordPress à La Rochelle | inRage',
+  title: 'Création de site WordPress à La Rochelle | Freelance inRage',
   description:
-    'Développeur WordPress freelance à La Rochelle : création et refonte de sites WordPress sur mesure avec Sage, Gutenberg, ACF et WooCommerce. Devis sous 24 h.',
+    'Développeur WordPress freelance à La Rochelle depuis 2008 : site vitrine sur mesure de 2 000 à 3 000 €, thème Octa, blocs Gutenberg, WooCommerce, hébergement en France. Devis sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },
 }
 
-export default async function PrestationWordPress() {
-  const projects = await getPortfolioItems(4, 'wordpress')
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Accueil',
+          item: getCanonicalUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Prestations',
+          item: getCanonicalUrl(RouteLink.prestations),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Création de site internet',
+          item: getCanonicalUrl(RouteLink.prestationWeb),
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Site WordPress',
+          item: getCanonicalUrl(RouteLink.prestationWordPress),
+        },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Création de site WordPress à La Rochelle',
+      serviceType: 'Création de site WordPress',
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: [
+        { '@type': 'City', name: 'La Rochelle' },
+        { '@type': 'AdministrativeArea', name: 'Charente-Maritime' },
+        { '@type': 'Country', name: 'France' },
+      ],
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Site vitrine WordPress sur mesure',
+          priceCurrency: 'EUR',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: 2000,
+            maxPrice: 3000,
+            priceCurrency: 'EUR',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Boutique WooCommerce',
+          priceCurrency: 'EUR',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: 5000,
+            priceCurrency: 'EUR',
+          },
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+}
+
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
+
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
+      <div className="home-beam top-[65%] left-[50%]" data-i="3" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Création de site WordPress à La Rochelle
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Développeur WordPress freelance, sur le CMS depuis sa version 3 en
+              2010, je conçois des sites vitrines et des boutiques WooCommerce
+              pour les commerces, cabinets, associations et PME de La Rochelle,
+              de Charente-Maritime et de toute la France. Un thème écrit pour
+              vous, jamais acheté, une administration que vous maîtrisez, un
+              hébergement en France, et la même personne des spécifications à la
+              maintenance.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href={RouteLink.contact}
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Demander un devis
+              </Link>
+              <Link
+                href={`${RouteLink.portfolio}/wordpress`}
+                className="home-btn-ghost home-glassy"
+              >
+                Voir mes sites WordPress
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+type Project = Awaited<ReturnType<typeof getPortfolioItems>>[number]
+
+function ProjectGrid({
+  projects,
+}: {
+  projects: Array<Project & { note: string }>
+}) {
+  return (
+    <ul className="mt-14 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 md:gap-x-8">
+      {projects.map((project, i) => (
+        <li key={project.slug}>
+          <Reveal i={i}>
+            <Link
+              href={`${RouteLink.portfolio}/${project.support ? `${project.support.slug}/` : ''}${project.slug}`}
+              className="home-card group block"
+            >
+              <span className="home-shot block overflow-hidden rounded-xl">
+                <Image
+                  src={`/images/portfolio/${project.thumbnail}`}
+                  alt=""
+                  width={257}
+                  height={400}
+                  className="h-auto w-full"
+                  sizes="(min-width: 768px) 33vw, 50vw"
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                />
+              </span>
+              <span className="home-card-title mt-4 block text-lg font-medium text-white">
+                {project.title}
+              </span>
+              <span className="mt-1 block text-sm leading-6 text-(--home-muted)">
+                {project.note}
+              </span>
+            </Link>
+          </Reveal>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function pick(items: Project[], wanted: Array<{ slug: string; note: string }>) {
+  return wanted
+    .map((local) => {
+      const item = items.find((candidate) => candidate.slug === local.slug)
+      return item ? { ...item, note: local.note } : null
+    })
+    .filter((project) => project !== null)
+}
+
+async function WordPressArticles() {
+  const items = await getBlogItems()
+  const articles = ARTICLE_SLUGS.map((slug) =>
+    items.find((item) => item.slug === slug)
+  ).filter((item) => item !== undefined)
 
   return (
-    <Layout
-      breadcrumbs={[
-        {
-          link: RouteLink.prestations,
-          title: 'Prestations sous WordPress, Prestashop et Symfony',
-        },
-        {
-          link: RouteLink.prestationWeb,
-          title: 'Création de site internet',
-        },
-      ]}
-      title="Création de site WordPress à La Rochelle"
-    >
-      <div className="container flex items-center">
-        <div className="md:w-2/5 hidden md:block">
-          <Image
-            src={WebsiteWP}
-            alt="Développeur WordPress Freelance sur La Rochelle"
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </div>
-        <div className="md:w-3/5 text-lg md:pl-10 leading-6 pt-4">
-          <h2 className="text-white text-xl md:text-3xl font-bold">
-            Développeur WordPress freelance <br className="hidden md:block" />à
-            La Rochelle
-          </h2>
-          <p className="mt-4">
-            Je développe des sites WordPress depuis 2008, depuis La Rochelle,
-            pour des commerces, des cabinets, des associations et des PME de
-            Charente-Maritime comme de toute la France. Chaque site repose sur
-            un thème développé pour le projet, pas sur un thème du commerce
-            adapté à la hâte.
-          </p>
-          <p className="mt-4">
-            Vous l’administrez ensuite vous-même : l’interface est épurée et
-            adaptée à votre usage, et vous pouvez me confier la{' '}
-            <Link href={RouteLink.prestationTmaWordPress}>
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                maintenance WordPress
-              </span>
-            </Link>{' '}
-            une fois le site en ligne.
-          </p>
-          <ul className="styled-list mt-4">
-            <li>
-              Site vitrine, site éditorial ou boutique WooCommerce, en mobile
-              first.
-            </li>
-            <li>
-              Thème sur mesure avec Sage, blocs Gutenberg et champs ACF définis
-              avec vous.
-            </li>
-            <li>
-              Refonte de votre site WordPress existant, avec reprise des
-              contenus et du référencement acquis.
-            </li>
-            <li>
-              Hébergement en France, surveillance et sauvegardes pris en charge.
-            </li>
-          </ul>
-          <p className="mt-4">
-            Quelques réalisations près de chez vous :{' '}
+    <ul className="mt-14 grid gap-4 md:grid-cols-2">
+      {articles.map((article, i) => (
+        <li key={article.slug}>
+          <Reveal i={i} className="h-full">
             <Link
-              href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+              href={`${RouteLink.blog}/${article.slug}`}
+              className="home-card home-article home-glass grid h-full grid-cols-[112px_1fr] items-center gap-5 p-4 sm:grid-cols-[150px_1fr]"
             >
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                Camping La Mouette Rieuse
+              <span className="home-article-media relative block aspect-[2.15/1] overflow-hidden rounded-lg">
+                <Image
+                  src={article.thumbnail}
+                  alt=""
+                  fill
+                  sizes="150px"
+                  className="home-article-img object-cover"
+                />
+              </span>
+              <span className="home-card-title line-clamp-3 text-base leading-snug font-medium text-white sm:text-lg">
+                {article.title}
               </span>
             </Link>
-            ,{' '}
-            <Link
-              href={`${RouteLink.portfolio}/wordpress/graphiste-romain-ouvrard`}
-            >
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                Romain Ouvrard
-              </span>
-            </Link>
-            ,{' '}
-            <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                Laboratoire Biosalines
-              </span>
-            </Link>{' '}
-            et{' '}
-            <Link
-              href={`${RouteLink.portfolio}/wordpress/santeenvironnement-nouvelleaquitaine`}
-            >
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                Santé Environnement Nouvelle-Aquitaine
-              </span>
-            </Link>
-            .
-          </p>
-        </div>
-      </div>
+          </Reveal>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-      <div className="bg-gray-darker mt-8">
-        <Diagonal
-          flipX
-          flipY
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
+export default async function PrestationWordPress() {
+  const items = await getPortfolioItems(-1, 'wordpress')
+  const projects = pick(items, LOCAL_PROJECTS)
+  const shops = pick(items, WOOCOMMERCE_PROJECTS)
+
+  return (
+    <div className="home">
+      <Layout hero={<Hero />}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div className="container text-center py-16 lg:py-0">
-          <div className="md:px-36 text-lg">
-            <Quote message="WordPress est un CMS simple et fiables, plébiscité autant par les développeurs que par leurs clients" />
+
+        <section className="container py-16 md:py-24">
+          <SectionHeading text="WordPress fait tourner quatre sites sur dix dans le monde, et la plupart se ressemblent parce qu’ils partent du même thème acheté. Voici ce qui distingue un site WordPress que je développe.">
+            Un site WordPress inRage, concrètement
+          </SectionHeading>
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {PRINCIPLES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[280px_1fr]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                    {item.title}
+                  </h3>
+                  <div>
+                    <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                    {item.href && (
+                      <p className="mt-4">
+                        <Link href={item.href} className={linkClass}>
+                          {item.hrefText}
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
-        </div>
-        <Diagonal
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
+        </section>
 
-      <div className="container mt-8 md:mt-0">
-        <SectionTitle
-          title={['Backoffice sur-mesure', 'orienté utilisateur']}
-          content="Sur Wordpress, pour faciliter la prise en main de mes clients et leur permettre d’ajouter du contenu en toute autonomie, il est possible de personnaliser intégralement l’espace d’administration d’un site."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-8">
-          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
-            <div className="flex-none lg:mr-4 h-36 flex items-center">
-              <Image
-                src={PageBuilderImage}
-                alt="Construction de page avec Gutenberg"
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                }}
-              />
-            </div>
-            <div>
-              <h3 className="text-white mb-2 font-medium text-xl">Gutenberg</h3>
-              <p>
-                Depuis la version 5.5, WordPress propose un formidable outil
-                Gutenberg pour vous permettre de construire vos pages
-                dynamiquement. Je peux mettre en place toute la construction des
-                blocs Gutenberg pour vous permettre d&apos;avoir la main à 100%
-                sur votre site.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row justify-start lg:items-center">
-            <div className="flex-none mr-4 flex h-36 items-center">
-              <Image
-                src={AcfImage}
-                alt="Construction de page avec Advanced Custom Fields"
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                }}
-              />
-            </div>
-            <div>
-              <h3 className="text-white mb-2 font-medium text-xl">
-                Champs personnalisés ACF
-              </h3>
-              <p>
-                Les Advanced Custom Fields (ACF) permettent de simplifier
-                l’intégration de contenus sur les pages d’un site. Les ACF sont
-                des blocs définis en amont avec le client, ils présentent des
-                champs précis qui une fois remplis par l’administrateur
-                apparaissent sous la forme de contenus structurés sur les pages
-                du site.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="text-center mt-16">
-          <p className="text-xl text-gray-light">
-            Les ACF ou Advanced Custom Fields permettent à l’administrateur d’un
-            site, d&apos;interagir avec l&apos;ensemble des contenus des sites
-            que je développe. Ils se matérialisent par des champs à remplir sur
-            le backoffice et sont transformés automatiquement en contenus
-            structurés et mis en page en frontoffice.
-          </p>
-
-          <p className="mt-8">
-            Les pages comportant des ACF nécessitent dans un premier temps
-            d’adapter le thème afin d’afficher les contenus tout en respectant
-            la charte graphique imposées.
-            <br />
-            L’administrateur du site est alors entièrement autonome dans l’ajout
-            des contenus.
-          </p>
-
-          <p>
-            Cette méthode est évolutive, il est donc aisé d’ajouter des ACF sur
-            les pages souhaitées lorsque cela devient nécessaire.
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-gray-darker mt-8">
-        <Diagonal
-          flipX
-          flipY
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-        <div className="container text-center py-16 lg:py-0">
-          <div className="">
-            <h2 className="text-center text-white text-3xl">
-              Déploiement continu
-              <span className="block text-xl">Réactivité, rapidité</span>
-            </h2>
-            <p className="text-xl text-gray-light mt-6">
-              Le déploiement continu permet à mes clients de rester au coeur de
-              leur projet de création de site. Grâce à cette méthode, ils sont
-              en mesure de consulter à tout moment, les différentes évolutions
-              ou modifications apportés à leur site.
-            </p>
-            <p className="mt-4">
-              En phase de développement, lorsqu&apos;une fonctionnalité est
-              réalisée, elle est déployée sur mon outil de versioning Git, puis
-              mon serveur d’intégration continue (Gitlab CI) déploie
-              automatiquement la fonctionnalité sur mon serveur de
-              préproduction. Ainsi, les modifications sont visibles par mon
-              client, 5 minutes après son intégration.
-            </p>
-
-            <p className="mt-4">
-              Cette environnement de préproduction est protégé par un
-              identifiant et un mot de passe, il n’est accessible qu’au client
-              et n’est pas indexé sur les moteurs de recherche. Ainsi, le client
-              peut valider une à une les différentes modifications à distance et
-              il m’est possible de réagir rapidement si une fonctionnalité
-              venait à dysfonctionner.
-            </p>
-
-            <p className="mt-4">
-              Le site est alors mis en production seulement lorsque mon client
-              est pleinement satisfait du résultat.
-            </p>
-          </div>
-        </div>
-        <Diagonal
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
-      <div className="container">
-        <TextImage
-          position="right"
-          title={['Développement', "d'extensions sur-mesure"]}
-          image={WebsiteWP}
-        >
-          <p>
-            Si la communauté Wordpress est colossale, le catalogue de ses
-            extensions existantes l’est tout autant. Pourtant, selon vos besoins
-            ou les enjeux de votre activité, il peut être nécessaire de
-            développer entièrement une fonctionnalité ou une extension. Pour
-            chaque besoin, il existe une solution technique, ainsi je suis en
-            mesure de développer pour vous la fonctionnalité qui vous convient.
-            <br />
-            Les extensions (plugins) développées par mes soins respectent les
-            bonnes pratiques véhiculées par Wordpress et sont à même d’évoluer
-            au gré des mises à jour du coeur de Wordpress. Si vous disposez de
-            plusieurs sites sous Wordpress, il est aisé de migrer les extensions
-            d’un site à l’autre.
-          </p>
-
-          <p className="mt-4">
-            Selon les besoins de votre activité, je vous conseille les
-            extensions idéales pour vous simplifier le quotidien.
-          </p>
-        </TextImage>
-
-        <TextImage
-          title={[
-            'Développement et intégration',
-            'de thème WordPress sur-mesure',
-          ]}
-          image={WebsitePrestashop}
-        >
-          <p>
-            Pour chaque projet, nous élaborons ensemble le design de votre site
-            puis je développe le thème inhérent à vos choix graphiques et
-            fonctionnels. Cette étape est cruciale car elle définit ce que les
-            visiteurs pourront visualiser sur votre site. Tous les thèmes que je
-            développe répondent systématiquement à différents besoins :
-          </p>
-
-          <ul className="styled-list">
-            <li>
-              Le responsive design, pour permettre à votre site d’être consulté
-              quelque soit le support (mobile, desktop…)
-            </li>
-            <li>
-              L’usage des dernières technologies, telles que SASS pour
-              structurer les feuilles de style CSS, Webpack pour structurer les
-              modules javaScript ou encore ACF pour structurer les contenus d’un
-              site.
-            </li>
-            <li>
-              La compilation des feuilles de style CSS et modules JS afin de
-              limiter le poids d’un site et en accélérer l’affichage.
-            </li>
-            <li>
-              Ainsi que la gestion du format des images pour un affichage plus
-              rapide des pages.
-            </li>
-          </ul>
-
-          <p className="mt-4">
-            Je respecte scrupuleusement les bonnes pratiques dictées par
-            Wordpress et sa communauté. C’est pourquoi je préfère développer
-            intégralement un thème plutôt que d’en utiliser un existant. Ce qui
-            rend les sites que je développe, plus rapides à l’affichage, plus
-            fiables et plus pérennes dans le temps.
-          </p>
-        </TextImage>
-
-        <TextImage
-          image={WordpressSage}
-          title={[
-            'Développement et création',
-            'de thème WordPress Sage 9 et 10',
-          ]}
-        >
-          <p>
-            Depuis 2017, j&apos;ai commencé le développement de mes thèmes avec
-            le support de Sage 8 (par roots).
-          </p>
-          <p className="mt-4">
-            En 2019, j&apos;ai migré vers Sage 9 avec la prise en charge du
-            moteur de template blade, l&apos;intégration stricte de Webpack et
-            Eslint.
-          </p>
-          <p className="mt-4">
-            J&apos;ai eu l&apos;occasion de développer des thèmes pour
-            WooCommerce et Sage comme le{' '}
-            <Link href={`${RouteLink.portfolio}/wordpress/biosalines`}>
-              <span className="text-orange">projet Biosalines.</span>
-            </Link>
-          </p>
-
-          <p className="mt-4">
-            Au fil des années, j&apos;ai pu mettre pas mal de solution en place
-            :
-          </p>
-
-          <ul className="styled-list">
-            <li>
-              Création d&apos;un système complexe de block Gutenberg avec Sage
-              et ACF avec chargement automatique, CSS dédié et preview image,
-            </li>
-            <li>
-              Des utilitaires pour retirer Gutenberg sur certaine page en
-              fonction des controlleurs et des pages en cours,
-            </li>
-            <li>
-              Chargement automatique des champs ACF grace à Sage et
-              <a
-                className="text-orange ml-2"
-                href="https://github.com/wordplate/extended-acf"
-                rel="noreferrer"
-                target="_blank"
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Dix-sept sites WordPress sont présentés dans le portfolio. En voici six, de La Rochelle à la Nouvelle-Aquitaine, que vous pouvez visiter.">
+              Des sites WordPress que vous pouvez visiter
+            </SectionHeading>
+            <ProjectGrid projects={projects} />
+            <div className="mt-12 flex justify-center">
+              <Link
+                href={`${RouteLink.portfolio}/wordpress`}
+                className="home-btn-ghost home-glassy"
               >
-                Wordplate ACF
-              </a>
-            </li>
-            <li>
-              Une stack qui auto-install une stack WordPress avec Sage et ses
-              extensions tiers,
-            </li>
-            <li>Un système de gestion de CSS par page pour Sage.</li>
-          </ul>
-        </TextImage>
-      </div>
-
-      <div className="relative">
-        <Diagonal
-          className="h-24 md:h-40 lg:h-[360px] -z-10"
-          flipX
-          flipY
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-        <Image
-          className="-z-10 opacity-30 md:opacity-100"
-          src={ImageBackgroundTma}
-          alt="Prestation de maintenance TMA"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'cover',
-          }}
-        />
-        <div className="container flex items-center relative z-10 my-8 lg:-my-20">
-          <div className="md:w-2/3 text-gray-light text-sm">
-            <h2 className="text-2xl sm:text-3xl text-white font-medium mb-6">
-              Garanti et suivi <br className="hidden sm:block" />
-              <span className="font-light">pendant 3 mois inclus</span>
-            </h2>
-            <p>
-              Lorsque votre site est en ligne, il peut être sujet à de nombreux
-              problèmes tels des extensions obsolètes qui peuvent créer des
-              failles et laisser le champ libre à des utilisateurs malveillants,
-              ou encore une panne du serveur sur lequel il est hébergé.
-            </p>
-
-            <p className="mt-4">
-              Pour remédier rapidement et efficacement à ce type de problème,
-              j’ai développé une multitude d’outils pour inspecter et analyser
-              votre site en temps réel et me prévenir si l’intégrité de votre
-              site est altérée.
-            </p>
-
-            <p className="mt-4">
-              Lorsqu’un problème m’est notifié, je suis en mesure d’intervenir
-              rapidement pour le corriger et procéder si nécessaire à la mise à
-              jour des modules obsolètes.
-            </p>
-            <p className="mt-4">
-              Ainsi, votre site internet est protégé en permanence.
-            </p>
-            <div className="flex flex-wrap flex-start mt-8">
-              <Link href={RouteLink.prestationTmaWordPress}>
-                <span className="button">
-                  Forfaits de maintenance WordPress
-                </span>
+                Les 17 réalisations WordPress
               </Link>
             </div>
           </div>
-          <div className="hidden md:w-1/3 md:flex justify-center">
-            <Image
-              src={ProtectionShield}
-              alt={'Garanti et suivi de maintenance WordPress'}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
-          </div>
-        </div>
-        <Diagonal
-          className="h-24 md:h-40 lg:h-[360px] -z-10"
-          bgClass="fill-gray-darker"
-          bgCorner="fill-orange"
-        />
-      </div>
+        </section>
 
-      <div className="bg-gray-darker">
-        <div className="container py-20 lg:py-0 lg:-mb-16 relative z-10">
-          <SectionTitle
-            title="Réalisations WordPress"
-            content="Retrouvez ci-dessous quelques projets auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance."
-          />
+        <section className="container py-20 md:py-28">
+          <SectionHeading text="WooCommerce transforme WordPress en boutique, avec le même éditeur pour vos pages et vos produits. C’est le bon choix quand la vente accompagne un site de contenu, avec un catalogue de quelques dizaines à quelques centaines de références.">
+            Boutique WooCommerce
+          </SectionHeading>
+          <ProjectGrid projects={shops} />
+          <Reveal className="mx-auto mt-12 max-w-3xl">
+            <p className="leading-7 text-(--home-muted)">
+              J’ai migré Guédelon et Jemapub de Prestashop vers WooCommerce,
+              avec reprise des produits, des clients et des adresses de pages.
+              Pour un catalogue lourd ou du B2B, je vous orienterai vers{' '}
+              <Link href={RouteLink.prestationPrestashop} className={linkClass}>
+                Prestashop
+              </Link>
+              .
+            </p>
+          </Reveal>
+        </section>
 
-          <div className="mt-6 sm:mt-0 grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {projects.length > 0 &&
-              projects.map(({ title, thumbnail, slug, support }) => (
-                <ProjectItem
-                  key={title}
-                  image={`/images/portfolio/${thumbnail}`}
-                  title={title}
-                  slug={slug}
-                  support={support}
-                />
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="La méthode compte autant que l’outil. Voici comment un site WordPress se construit chez inRage, du premier échange à la mise en ligne.">
+              Comment je construis votre site WordPress
+            </SectionHeading>
+            <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+              {METHOD.map((step, i) => (
+                <li key={step.title} className="home-timeline-item">
+                  <Reveal i={i}>
+                    <h3 className="text-xl font-medium text-white md:text-2xl">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                      {step.text}
+                    </p>
+                  </Reveal>
+                </li>
               ))}
+            </ol>
           </div>
-        </div>
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-          cta={{
-            href: `${RouteLink.portfolio}/wordpress`,
-            title: ['voir les projets', 'WordPress'],
-            icon: <MoreIcon />,
-          }}
-        />
-      </div>
-      <div className="container mt-8 md:mt-0">
-        <SectionTitle
-          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          title="Contact"
-        />
+        </section>
 
-        <ContactForm />
-      </div>
-    </Layout>
+        <section className="container py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Refonte ou migration vers WordPress
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Un site Wix ou Joomla qui plafonne, un WordPress de 2016 lent et
+                impossible à mettre à jour, une boutique Prestashop trop lourde
+                pour vingt produits : les trois cas que je rencontre le plus.
+              </p>
+            </Reveal>
+            <Reveal i={1}>
+              <div className="space-y-4 leading-7 text-white/85">
+                <p>
+                  Je commence par un audit gratuit de l’existant : ce qui
+                  apporte des visites, ce qui doit être gardé, ce qui est relié
+                  au site. Les contenus sont repris, les adresses des pages
+                  conservées ou redirigées une par une, et le nouveau site se
+                  construit à côté avant de basculer en une fois.
+                </p>
+                <p>
+                  Pour{' '}
+                  <Link
+                    href={`${RouteLink.portfolio}/wordpress/quadria`}
+                    className={linkClass}
+                  >
+                    Quadria
+                  </Link>
+                  , le catalogue de l’ancien site a été entièrement repris dans
+                  des fiches produits sur mesure. Pour le{' '}
+                  <Link
+                    href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+                    className={linkClass}
+                  >
+                    Camping La Mouette Rieuse
+                  </Link>
+                  , la refonte a accompagné celle de l’identité visuelle.
+                </p>
+                <p>
+                  <Link href={RouteLink.auditGratuit} className={linkClass}>
+                    Faire auditer mon site actuel
+                  </Link>
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section
+          id="prix"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+        >
+          <div className="container">
+            <SectionHeading text="Des fourchettes annoncées, un devis détaillé poste par poste sous 24 heures. Le site vous appartient, sans abonnement ni licence de constructeur de pages.">
+              Combien coûte un site WordPress à La Rochelle
+            </SectionHeading>
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {PRICES.map((offer, i) => (
+                <Reveal key={offer.name} i={i} className="h-full">
+                  <Glass className="flex h-full flex-col p-7">
+                    <h3 className="text-xl font-medium text-white">
+                      {offer.name}
+                    </h3>
+                    <p className="home-num mt-3 text-3xl font-semibold text-white">
+                      {offer.price}
+                    </p>
+                    <p className="mt-4 text-sm leading-6 text-(--home-muted)">
+                      {offer.text}
+                    </p>
+                    {offer.href && (
+                      <p className="mt-auto pt-5">
+                        <Link href={offer.href} className={linkClass}>
+                          Les forfaits de maintenance
+                        </Link>
+                      </p>
+                    )}
+                  </Glass>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="container py-20 md:py-28">
+          <SectionHeading text="Je publie depuis 2019 ce que j’apprends sur WordPress : thème, blocs, formulaires, maintenance. Ces articles sont lus par d’autres développeurs, ils vous diront comment je travaille.">
+            Ce que j’écris sur WordPress
+          </SectionHeading>
+          <WordPressArticles />
+          <div className="mt-12 flex justify-center">
+            <Link href={RouteLink.blog} className="home-btn-ghost home-glassy">
+              Tous les articles
+            </Link>
+          </div>
+        </section>
+
+        <section
+          id="faq"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+        >
+          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Questions fréquentes sur WordPress
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Prix, délais, lenteur, sécurité, autonomie : ce qu’on me demande
+                avant de lancer un site WordPress.
+              </p>
+            </Reveal>
+            <div className="divide-y divide-white/10">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.question} i={i}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                      {item.question}
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
+                      {item.answer}
+                    </p>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="container pt-16 pb-10 md:pt-24">
+          <SectionHeading text="Décrivez votre activité et ce que le site doit produire. Je vous réponds dans la journée avec les bonnes questions et une première estimation.">
+            Demander un devis WordPress
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </section>
+      </Layout>
+    </div>
   )
 }
