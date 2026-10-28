@@ -4,7 +4,8 @@ import ExpCOS from '@image/experiences/comonscreen.png'
 import ExpKamelab from '@image/experiences/kamelab.png'
 import ExpMoonscoop from '@image/experiences/moonscoop.png'
 import ExpPhenix from '@image/experiences/phenix-studio.svg'
-import ExpInrage from '@image/inline-logo.png'
+import ExpInrage from '@image/experiences/inrage-atom.svg'
+import ExpInvoicer from '@image/experiences/invoicer.svg'
 import { RouteLink } from '@lib/router'
 
 export const GOOGLE_PLACE_URL =
@@ -25,7 +26,7 @@ export const TIMELINE = [
     company: 'inRage, La Rochelle',
     text: 'Création de sites WordPress, boutiques Prestashop, applications Symfony et React, hébergement et maintenance. L’activité démarrée le soir et le week-end en 2011 devient mon métier à plein temps.',
     logo: ExpInrage as StaticImageData,
-    logoClassName: 'h-10',
+    logoClassName: 'h-16',
   },
   {
     year: '2018',
@@ -40,6 +41,8 @@ export const TIMELINE = [
     title: 'Naissance d’Invoicer',
     company: 'inRage',
     text: 'Le logiciel de facturation que j’utilise pour inRage devient un produit à part entière, pensé pour les auto-entrepreneurs.',
+    logo: ExpInvoicer as StaticImageData,
+    logoClassName: 'h-14',
   },
   {
     year: '2012',
