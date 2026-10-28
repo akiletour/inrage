@@ -94,6 +94,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
               src="/logo.svg"
               width="150"
               height="56"
+              priority
               alt="Pascal GAULT, développeur Freelance sur La Rochelle"
               style={{
                 maxWidth: '100%',

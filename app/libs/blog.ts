@@ -44,5 +44,6 @@ export const getBlogItems = async (
     thumbnail: item.frontmatter.thumbnail,
     excerpt: item.frontmatter.excerpt,
     date: item.frontmatter.date,
+    category: item.frontmatter.category,
   }))
 }

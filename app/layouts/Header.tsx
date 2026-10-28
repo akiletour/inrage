@@ -21,6 +21,7 @@ interface Props {
   headerType?: HeaderType
   pageExcerpt?: PageExcerptType
   pageMeta?: ReactNode
+  hero?: ReactNode
 }
 
 export default function Header({
@@ -29,10 +30,20 @@ export default function Header({
   pageMeta,
   breadcrumb = [],
   headerType = 'default',
+  hero,
 }: Props) {
   const [ref, sticky] = useSticky<HTMLDivElement>()
   if (headerType === 'tma') {
     return <DynamicHeaderTma pageTitle={pageTitle} excerpt={pageExcerpt} />
+  }
+
+  if (hero) {
+    return (
+      <div className="relative h-auto w-full" ref={ref}>
+        <NavPrimary isSticky={sticky} />
+        {hero}
+      </div>
+    )
   }
 
   return (
