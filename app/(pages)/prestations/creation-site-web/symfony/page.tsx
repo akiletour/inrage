@@ -1,405 +1,405 @@
-import CheckMark from '@component/CheckMark'
+import '@component/home/home.css'
+
+import Image from 'next/image'
+import Link from 'next/link'
+
 import ContactForm from '@component/ContactForm'
-import Diagonal from '@component/Diagonal'
-import FaqSection, { FaqItem } from '@component/FaqSection'
-import MoreIcon from '@component/icons/MoreIcon'
-import ProjectItem from '@component/items/ProjectItem'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import BusStation from '@image/prestations/bus-station.png'
-import SymfonyComponents from '@image/prestations/symfony-components.jpg'
-import SymfonyHero from '@image/prestations/symfony-hero.jpg'
-import TwigImage from '@image/prestations/twig.jpg'
-import SchemaMercure from '@image/schema-mercure.png'
-import { getPortfolioItems } from '@lib/portfolio'
+import { CASES, FAQ, STACK, STEPS } from '@component/prestations/symfony-data'
+import ImageInvoicer from '@image/articles/invoicer-cover.jpg'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
-  title: 'Développeur Symfony freelance : applications métier | inRage',
+  title: 'Développeur Symfony : application métier sur mesure | inRage',
   description:
-    'Prestataire Symfony freelance à La Rochelle : applications métier, extranets, API et consoles d’administration sur mesure, reprise et montée de version d’applications existantes. Devis gratuit.',
+    'Développeur Symfony freelance depuis 2012 : extranets, outils internes, API avec API Platform, logiciels SaaS, reprise et montée de version. Basé à La Rochelle, à distance partout en France, en direct ou pour les agences.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationSymfony),
   },
 }
 
-const FAQ: FaqItem[] = [
-  {
-    question: 'Symfony ou WordPress pour mon projet ?',
-    answer:
-      'WordPress quand le cœur du projet est du contenu que vous publiez vous-même. Symfony quand le cœur est un processus métier : gestion de commandes, extranet client, outil interne, API reliée à d’autres logiciels. Les deux peuvent cohabiter, par exemple un site WordPress adossé à une application Symfony.',
-  },
-  {
-    question: 'Pouvez-vous reprendre une application Symfony existante ?',
-    answer:
-      'Oui. Je commence par un audit du code, des dépendances et de la version de Symfony, puis je propose une montée de version vers une LTS maintenue avant toute évolution fonctionnelle. Les applications en Symfony 3 ou 4 sont les cas les plus fréquents.',
-  },
-  {
-    question: 'Combien de temps dure le développement d’une application ?',
-    answer:
-      'Un premier périmètre utilisable est livré en quelques semaines, puis l’application évolue par lots, chacun testé sur pré-production avant sa mise en ligne. Le découpage est défini avec vous au démarrage, à partir d’un cahier des charges ou d’un atelier.',
-  },
-]
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Accueil',
+          item: getCanonicalUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Prestations',
+          item: getCanonicalUrl(RouteLink.prestations),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Création de site internet',
+          item: getCanonicalUrl(RouteLink.prestationWeb),
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Développement Symfony',
+          item: getCanonicalUrl(RouteLink.prestationSymfony),
+        },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Développement Symfony sur mesure',
+      serviceType: 'Développement d’application métier',
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: { '@type': 'Country', name: 'France' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+}
 
-export default async function Symfony() {
-  const projects = await getPortfolioItems(4, 'application-web')
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
+function Hero() {
   return (
-    <Layout
-      breadcrumbs={[
-        {
-          link: RouteLink.prestations,
-          title: 'Prestations',
-        },
-        {
-          link: RouteLink.prestationWeb,
-          title: 'Création de site internet',
-        },
-      ]}
-      title="Développement Symfony : applications et outils métier"
-    >
-      <div className="container">
-        <TextImage
-          title={['Pourquoi utiliser Symfony ?', 'Une architecture solide']}
-          duoTone
-          image={SymfonyHero}
-        >
-          <p className={'text-xl text-gray-light'}>
-            Symfony a su s&apos;imposer comme référence dans les frameworks PHP
-            et me permet de construire des applications sur-mesure.
-          </p>
-          <p className={'mt-4'}>
-            La grande communauté qui s&apos;est construite autour de cet outil
-            rend possible des utilisations très variées : de la plateforme
-            e-commerce en passant par{' '}
-            <a
-              href={'https://sylius.com/fr/'}
-              target={'_blank'}
-              rel="noreferrer"
-              className={'text-orange'}
-            >
-              Sylius
-            </a>{' '}
-            à la réalisation d&apos;une API avec{' '}
-            <a
-              href={'https://api-platform.com/'}
-              target={'_blank'}
-              rel="noreferrer"
-              className={'text-orange'}
-            >
-              API Platform
-            </a>
-            .
-          </p>
-          <p className={'mt-4'}>
-            Je développe avec Symfony depuis 2012, pour des outils internes, des
-            extranets et des API reliées à des sites WordPress ou Prestashop.
-            Cette expérience me permet d&apos;estimer et de réaliser des besoins
-            métier précis, de La Rochelle ou à distance.
-          </p>
-        </TextImage>
-      </div>
-
-      <div className="bg-gray-darker mt-20">
-        <Diagonal
-          flipX
-          flipY
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-        <div className="container">
-          <div className="lg:px-36 text-lg">
-            <h2 className="text-white text-center text-4xl font-bold mb-12">
-              Les plus grandes forces
-              <br />
-              de Symfony
-            </h2>
-
-            <div className="lg:flex lg:space-x-12 lg:justify-between">
-              <div className="lg:w-1/2 text-center">
-                <h3 className="mb-4 text-white inline-flex items-center mt-4 text-xl">
-                  <span className="mr-4 flex-none text-gray-darker font-black text-2xl w-8 h-8 bg-gray rounded-full flex justify-center items-center">
-                    1
-                  </span>
-                  <span className={'font-bold'}>Performance</span>
-                </h3>
-                <p>
-                  Rapidité, flexibilité, composants réutilisables et stabilité
-                  sont les atouts de Symfony. Toutes les applications
-                  développées avec ce framework assurent de bonnes pratiques de
-                  développement avec un code structuré
-                </p>
-              </div>
-
-              <div className="lg:w-1/2 text-center">
-                <h3 className="mb-4 text-white inline-flex items-center mt-4 text-xl">
-                  <span className="mr-4 flex-none text-gray-darker font-black text-2xl w-8 h-8 bg-gray rounded-full flex justify-center items-center">
-                    2
-                  </span>
-                  <span className={'font-bold'}>Interopérabilité</span>
-                </h3>
-                <p>
-                  Une application développée avec Symfony sera facilement
-                  interfacée avec le reste du système d’information. Afin de
-                  pouvoir créer une application qui correspondent aux besoins,
-                  il est possible d’associer d’autres briques logicielles
-                </p>
-              </div>
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
+      <div className="home-beam top-[65%] left-[50%]" data-i="3" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Développeur Symfony freelance&nbsp;: applications métier sur
+              mesure
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Quand le besoin est un processus et pas une plaquette, je
+              développe avec Symfony depuis 2012 : extranets, outils internes,
+              API, logiciels en ligne. Je spécifie, je développe, j’héberge et
+              je maintiens, pour des entreprises de La Rochelle, des groupes
+              nationaux et les agences qui ont besoin d’un renfort Symfony.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href={RouteLink.contact}
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Décrire votre besoin
+              </Link>
+              <Link
+                href={`${RouteLink.portfolio}/application-web/invoicer`}
+                className="home-btn-ghost home-glassy"
+              >
+                Voir Invoicer, application Symfony
+              </Link>
             </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
 
-            <div className="mt-20">
-              <ul className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+export default function Symfony() {
+  return (
+    <div className="home">
+      <Layout hero={<Hero />}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+        <section className="container py-16 md:py-24">
+          <SectionHeading text="Un CMS publie des pages. Une application exécute votre métier. Voici les cinq situations où Symfony est le bon outil, et ce que je livre dans chacune.">
+            Quand Symfony plutôt qu’un CMS
+          </SectionHeading>
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {CASES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[280px_1fr]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                    {item.title}
+                  </h3>
+                  <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Le meilleur argument pour une application Symfony, c’est une application Symfony qui tourne. Celle-ci est la mienne.">
+              Invoicer, une application Symfony que j’exploite moi-même
+            </SectionHeading>
+            <Reveal className="mx-auto mt-14 max-w-5xl">
+              <a
+                href="https://invoicer.fr"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="home-card home-article home-glass grid overflow-hidden md:grid-cols-[1.1fr_1fr]"
+              >
+                <span className="home-article-media relative block aspect-[2.15/1] md:aspect-auto md:min-h-[320px]">
+                  <Image
+                    src={ImageInvoicer}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="home-article-img object-cover"
+                  />
+                </span>
+                <span className="block p-7 md:p-9">
+                  <span className="home-card-title block text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                    Invoicer, facturation pour auto-entrepreneurs
+                  </span>
+                  <span className="mt-4 block leading-7 text-(--home-muted)">
+                    Symfony 7.4 derrière un front Next.js 16. Déclaration URSSAF
+                    automatique, encaissement par carte avec Stripe Connect,
+                    rapprochement bancaire avec Bridge, facturation électronique
+                    2026 via Pennylane. Abonnements, factures, rôles, et des
+                    utilisateurs qui comptent dessus tous les jours. Hébergé en
+                    France, édité par inRage depuis 2017.
+                  </span>
+                  <span className="mt-5 block font-medium text-white">
+                    invoicer.fr
+                  </span>
+                </span>
+              </a>
+            </Reveal>
+            <Reveal i={1} className="mx-auto mt-10 max-w-3xl">
+              <p className="leading-7 text-(--home-muted)">
+                Les autres applications que je développe appartiennent à leurs
+                clients et ne se visitent pas : une console Symfony qui pilote
+                la mise à jour du catalogue d’une boutique Prestashop et affiche
+                la progression en temps réel avec Mercure, des connecteurs entre
+                ERP et sites marchands, des outils internes. Je les décris de
+                vive voix, exemples à l’appui, quand nous parlons de votre
+                projet.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="container py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Comment je construis une application Symfony
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Des choix techniques faits pour qu’une application tienne des
+                années et qu’un autre développeur puisse la reprendre.
+              </p>
+            </Reveal>
+            <Reveal i={1}>
+              <ul className="home-list space-y-4 leading-7 text-white/85">
+                {STACK.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="container pb-20 md:pb-28">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Symfony, mon terrain de jeu
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+            </Reveal>
+            <Reveal i={1}>
+              <div className="space-y-4 leading-7 text-white/85">
+                <p>
+                  Symfony n’est pas seulement l’outil que je facture. C’est
+                  celui avec lequel je construis mes projets personnels, dans
+                  tous les sens : un outil pour tester une idée, une réécriture
+                  pour mesurer ce qu’une nouvelle version apporte, un service
+                  interne pour mon propre parc de sites. Invoicer est né comme
+                  ça.
+                </p>
+                <p>
+                  Ces projets me servent à essayer les nouveautés de chaque
+                  version avant de les proposer à un client, à comparer des
+                  façons d’écrire la même chose et à garder un œil sur
+                  l’écosystème qui gravite autour du framework : API Platform,
+                  Mercure, les composants, les outils de qualité de code. Quand
+                  une fonctionnalité arrive dans votre application, je l’ai déjà
+                  utilisée ailleurs.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Une application métier ne se livre pas en une fois. Elle se construit par lots, avec vous aux commandes dès le premier.">
+              Comment se déroule un projet Symfony
+            </SectionHeading>
+            <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+              {STEPS.map((step, i) => (
+                <li key={step.title} className="home-timeline-item">
+                  <Reveal i={i}>
+                    <h3 className="text-xl font-medium text-white md:text-2xl">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                      {step.text}
+                    </p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="container py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Freelance ou agence Symfony
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                La question se pose pour toute application qui doit durer. Ma
+                réponse, et ce que je propose aux agences.
+              </p>
+            </Reveal>
+            <Reveal i={1}>
+              <div className="space-y-4 leading-7 text-white/85">
+                <p>
+                  Avec moi, la personne qui a compris votre métier en atelier
+                  est celle qui écrit le code, le déploie et le maintient. Pas
+                  de chef de projet entre nous, pas de développeur qui change en
+                  cours de route. Ludovic Boussion dessine les interfaces quand
+                  elles le méritent, et un partenaire prend le référencement
+                  quand il y en a.
+                </p>
+                <p>
+                  Pour les agences, j’interviens en renfort Symfony, en marque
+                  blanche : API, back-office, connecteurs, montée de version
+                  d’une application que personne n’ose plus toucher. Dans vos
+                  outils, avec vos méthodes, sur une mission ou dans la durée.
+                </p>
+                <p>
+                  <Link href={RouteLink.contact} className={linkClass}>
+                    Parler d’un projet ou d’un renfort
+                  </Link>
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Et si le besoin est ailleurs
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+            </Reveal>
+            <Reveal i={1}>
+              <ul className="home-list space-y-4 leading-7 text-white/85">
                 <li>
-                  <CheckMark>Communauté très active</CheckMark>
+                  Votre projet est d’abord un site avec des contenus à publier :{' '}
+                  <Link
+                    href={RouteLink.prestationWordPress}
+                    className={linkClass}
+                  >
+                    création de site WordPress
+                  </Link>
+                  .
                 </li>
                 <li>
-                  <CheckMark>Solution connue et éprouvée</CheckMark>
+                  Votre projet est une boutique avec un catalogue :{' '}
+                  <Link
+                    href={RouteLink.prestationPrestashop}
+                    className={linkClass}
+                  >
+                    boutique Prestashop ou WooCommerce
+                  </Link>
+                  .
                 </li>
                 <li>
-                  <CheckMark>
-                    Mises à jour de sécurité continue sur les LTS
-                  </CheckMark>
-                </li>
-                <li>
-                  <CheckMark>
-                    S&apos;adapte à tous les besoins grâce à la flexibilité du
-                    framework
-                  </CheckMark>
-                </li>
-                <li>
-                  <CheckMark>
-                    Interopérabilité (respect des standards)
-                  </CheckMark>
-                </li>
-                <li>
-                  <CheckMark>Transparent, open source, gratuit</CheckMark>
+                  Votre projet est une interface riche ou une application mobile
+                  :{' '}
+                  <Link href={RouteLink.prestationReact} className={linkClass}>
+                    React, Next.js et React Native
+                  </Link>
+                  , souvent branchés sur une API Symfony.
                 </li>
               </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="faq" className="container scroll-mt-28 py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Questions fréquentes sur Symfony
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Ce que me demandent les entreprises et les agences avant de
+                lancer ou de reprendre une application Symfony.
+              </p>
+            </Reveal>
+            <div className="divide-y divide-white/10">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.question} i={i}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                      {item.question}
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
+                      {item.answer}
+                    </p>
+                  </details>
+                </Reveal>
+              ))}
             </div>
           </div>
-        </div>
-        <Diagonal
-          className="h-24 md:h-40 lg:h-[360px] -z-10"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
+        </section>
 
-      <div className="container lg:-mb-20">
-        <div className="relative z-10">
-          <SectionTitle
-            title={'Mon choix Numéro 1'}
-            content="Je préconise Symfony pour les applications métier et les consoles d'administration qui doivent durer."
-          />
-
-          <TextImage
-            title={[
-              'Communication en temps réel',
-              'même sur PHP, grace à Mercure',
-            ]}
-            duoTone
-            image={SchemaMercure}
-          >
-            <p>
-              Même si PHP est un langage de programmation très puissant, il
-              n&apos;est pas du tout adapté aux besoins d&apos;échange en
-              direct.
-            </p>
-
-            <p className={'mt-4'}>
-              Mais Kévin Dunglas a fait un travail fantastique avec la création
-              de{' '}
-              <a
-                className="text-orange"
-                href="https://mercure.rocks/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Mercure
-              </a>
-              , un outil qui permet de faire communiquer plusieurs systèmes en
-              temps réel, comme le ferait Node.
-            </p>
-
-            <p className={'mt-4'}>
-              Depuis les premières Alpha, je suis tombé amoureux de la façon de
-              faire de Mercure avec son Bundle de Symfony. Je l&apos;utilise au
-              quotidien et principalement avec React et NextJS.
-            </p>
-
-            <p className={'mt-4'}>
-              Par exemple, j&apos;ai dû mettre en place Mercure entre le CMS
-              Prestashop et console Symfony.
-            </p>
-            <p className={'mt-4'}>
-              Mon client appuie sur un bouton pour demander la mise à jour de
-              ses produits dans l&apos;administration de Prestashop, on envoie
-              l&apos;information à la console Symfony. Et Mercure récupère en
-              temps réel la progression de cette tâche et l&apos;affiche sur le
-              backoffice Prestashop de mon client.
-            </p>
-          </TextImage>
-
-          <div className="mt-16">
-            <TextImage
-              title={[
-                'Moteur de template Twig',
-                'Flexible, rapide et sécurisé !',
-              ]}
-              duoTone
-              position="right"
-              titlePosition="left"
-              image={TwigImage}
-            >
-              <div className="text-left">
-                <p>
-                  Twig est MON moteur de template de choix ! Je suis
-                  littéralement tombé amoureux de Twig, j&apos;essaye de
-                  l&apos;intégrer partout et tout le temps !
-                </p>
-                <p className="mt-4">
-                  Il compile les modèles en un simple code PHP optimisé. La
-                  surcharge par rapport au code PHP normal a été réduite au
-                  strict minimum.
-                </p>
-
-                <p className="mt-4">
-                  Il dispose d&apos;un mode &quot;sandbox&quot; pour évaluer le
-                  code des modèles non fiables. Cela permet à Twig d&apos;être
-                  utilisé comme un langage de modèles pour des applications où
-                  les utilisateurs peuvent modifier la conception des modèles.
-                </p>
-
-                <p className="mt-4">
-                  Il est alimenté par un lexer et un analyseur syntaxique
-                  flexibles. Cela permet au développeur de définir ses propres
-                  balises et filtres personnalisés, et de créer son propre DSL.
-                </p>
-              </div>
-            </TextImage>
-          </div>
-
-          <div className="mt-16">
-            <TextImage
-              title={[
-                'Une multitude de composants',
-                'Symfony disponible pour tous mes besoins',
-              ]}
-              duoTone
-              image={SymfonyComponents}
-            >
-              <div className="text-left">
-                <p>
-                  La grande force de Symfony est la disponibilité de composants
-                  qui sont aussi utilisable en dehors de Symfony.
-                </p>
-                <p className="mt-4">
-                  Grâce à leur documentation et à leur API, je développe
-                  rapidement des fonctionnalités sans redévelopper des méthodes
-                  disponibles dans ces composants.
-                </p>
-
-                <a
-                  href="https://symfony.com/components"
-                  target={'_blank'}
-                  rel="noreferrer"
-                  className="button mt-6"
-                >
-                  Liste des composants Symfony
-                </a>
-              </div>
-            </TextImage>
-          </div>
-
-          <div className="mt-16">
-            <TextImage
-              position="right"
-              titlePosition="left"
-              title={[
-                'Créer des interfaces de commandes',
-                'Avec Symfony Console',
-              ]}
-              duoTone
-              image={BusStation}
-            >
-              <div className="text-left">
-                <p>
-                  Depuis des années, j&apos;utilise le composant{' '}
-                  <a
-                    className="text-orange"
-                    href="https://symfony.com/doc/current/components/console.html"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Symfony Console
-                  </a>{' '}
-                  pour me permettre de créer des interfaces visuelles en ligne
-                  de commande.
-                </p>
-                <p className="mt-4">
-                  Cela me permet par exemple de créer des interfaces en posant
-                  des questions et me permettre de créer la structure d&apos;un
-                  projet de A à Z
-                </p>
-              </div>
-            </TextImage>
-          </div>
-        </div>
-      </div>
-
-      <Diagonal
-        className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
-        bgCorner={'fill-orange'}
-        bgClass={'fill-gray-darker'}
-      />
-
-      <div className="bg-gray-darker">
-        <div className="container pb-20 lg:pb-0 lg:-mb-16 relative z-10">
-          <SectionTitle
-            title={['Réalisations', 'Symfony']}
-            content="Retrouvez ci-dessous quelques projets Symfony auxquels j'ai eu l'occasion de collaborer dessus en tant que développeur freelance sur le framework Symfony."
-          />
-
-          <div className="mt-6 sm:mt-0 grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4">
-            {projects.length > 0 &&
-              projects.map(({ title, thumbnail, slug, support }) => (
-                <ProjectItem
-                  key={title}
-                  image={`/images/portfolio/${thumbnail}`}
-                  title={title}
-                  slug={slug}
-                  support={support}
-                />
-              ))}
-          </div>
-        </div>
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90 -z-10"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-          cta={{
-            href: `${RouteLink.portfolio}/application-web`,
-            title: ['voir les projets', 'Symfony'],
-            icon: <MoreIcon />,
-          }}
-        />
-      </div>
-
-      <FaqSection
-        intro="Ce que me demandent les entreprises avant de lancer ou de reprendre une application Symfony."
-        items={FAQ}
-      />
-
-      <div className="container mt-20">
-        <SectionTitle
-          content="Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          title="Contact"
-        />
-
-        <ContactForm />
-      </div>
-    </Layout>
+        <section className="container pt-6 pb-10 md:pt-10">
+          <SectionHeading text="Décrivez le processus que l’application doit prendre en charge, les outils déjà en place et qui l’utilisera. Je vous réponds dans la journée.">
+            Décrire votre besoin
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </section>
+      </Layout>
+    </div>
   )
 }
