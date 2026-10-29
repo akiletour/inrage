@@ -17,6 +17,7 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
   tools: Array<keyof typeof portfolioTools>
   website: string
   year: number
+  date?: string
   actions: string[]
   image: {
     thumbnail: string
@@ -112,6 +113,17 @@ export interface GetRelatedMdxParams<
   sort?: 'date' | 'random'
 }
 
+function sortValueOf<T extends 'blog' | 'portfolio'>(
+  frontmatter: MdxMetadata<T>,
+  key: string
+) {
+  if (key === 'year' && 'year' in frontmatter) {
+    const month = (frontmatter as PortfolioMdxMetadata).date?.slice(5, 7)
+    return `${frontmatter.year}-${month ?? '00'}`
+  }
+  return frontmatter[key as keyof typeof frontmatter]
+}
+
 export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
   params: GetRelatedMdxParams<T>
 ): Promise<MdxListItem<T>[]> {
@@ -161,16 +173,14 @@ export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
             return {
               title: content.frontmatter.title,
               slug,
-              sortValue:
-                frontmatter[frontmatterKey as keyof typeof frontmatter],
+              sortValue: sortValueOf<T>(frontmatter, frontmatterKey),
               frontmatter: content.frontmatter,
             }
           } else if (primaryCategory === filterValue) {
             return {
               title: content.frontmatter.title,
               slug,
-              sortValue:
-                frontmatter[frontmatterKey as keyof typeof frontmatter],
+              sortValue: sortValueOf<T>(frontmatter, frontmatterKey),
               frontmatter: content.frontmatter,
             }
           } else {
@@ -184,7 +194,7 @@ export async function getAllMdxBy<T extends 'blog' | 'portfolio'>(
       return {
         title: content.frontmatter.title,
         slug,
-        sortValue: frontmatter[frontmatterKey as keyof typeof frontmatter],
+        sortValue: sortValueOf<T>(frontmatter, frontmatterKey),
         frontmatter: content.frontmatter,
       }
     })

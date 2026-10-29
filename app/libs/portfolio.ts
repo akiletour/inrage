@@ -190,6 +190,14 @@ export const getPortfolioItems = cache(
           `${slug}.mdx: year "${frontmatter.year}" is not a number`
         )
       }
+      if (
+        frontmatter.date &&
+        !/^\d{4}-(0[1-9]|1[0-2])$/.test(frontmatter.date)
+      ) {
+        throw new Error(
+          `${slug}.mdx: date "${frontmatter.date}" must be YYYY-MM`
+        )
+      }
       return {
         title,
         slug,

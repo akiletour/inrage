@@ -26,8 +26,14 @@ export const metadata = {
 }
 
 export default async function Homepage() {
-  const items = await getPortfolioItems(4)
-  const projects = items.map(({ title, slug, thumbnail, support }) => ({
+  const items = await getPortfolioItems()
+  const recentYears = [...new Set(items.map((item) => item.year))]
+    .sort((a, b) => b - a)
+    .slice(0, 2)
+  const latest = items.filter((item) => recentYears.includes(item.year))
+  const projects = (
+    latest.length < 4 ? items.slice(0, 4) : latest.slice(0, 8)
+  ).map(({ title, slug, thumbnail, support }) => ({
     title,
     slug,
     thumbnail,
