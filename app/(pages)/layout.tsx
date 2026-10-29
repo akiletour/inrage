@@ -33,8 +33,8 @@ export async function generateMetadata() {
       images: [
         {
           url: getCanonicalUrl('/images/screenshot.png'),
-          width: 1200,
-          height: 900,
+          width: 1220,
+          height: 630,
           alt: 'inRage - Pascal Gault, développeur web freelance à La Rochelle',
           type: 'image/png',
         },
