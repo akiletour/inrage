@@ -8,7 +8,11 @@ import Layout from '@component/Layout'
 import ListingGrid from '@component/portfolio/ListingGrid'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 const PAGE_TITLE = 'Développeur web freelance à La Rochelle'
 
@@ -232,7 +236,7 @@ export default async function DeveloppeurWebLaRochelle() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">
@@ -268,12 +272,7 @@ export default async function DeveloppeurWebLaRochelle() {
           <SectionHeading text="Camping, laboratoire, graphiste, industriel, portail régional : des sites réalisés pour des clients de La Rochelle, de l’Île de Ré et de Nouvelle-Aquitaine, aux côtés de structures nationales comme les Éditions Delcourt, l’Institut Imagine ou VMZinc.">
             Des clients à La Rochelle
           </SectionHeading>
-          <ListingGrid
-            projects={projects}
-            meta={(p) => p.note}
-            eager={3}
-            className="mt-14"
-          />
+          <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
               href={RouteLink.portfolio}

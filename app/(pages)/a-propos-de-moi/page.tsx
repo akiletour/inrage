@@ -18,7 +18,7 @@ import Socials from '@component/Socials'
 import ImageInvoicer from '@image/articles/invoicer-cover.jpg'
 import ImageOcta from '@image/articles/octa-wordpress.jpg'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Pascal Gault, développeur web freelance à La Rochelle',
@@ -111,7 +111,7 @@ export default function AboutMe() {
     <Layout hero={<AboutHero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">

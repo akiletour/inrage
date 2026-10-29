@@ -9,7 +9,7 @@ import ArticleCards from '@component/prestations/ArticleCards'
 import { blogCategoryByName, getBlogItems, getSingleBlogItem } from '@lib/blog'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { formatDate } from '@util/date'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 type Props = {
   params: Promise<{
@@ -125,132 +125,128 @@ export default async function Page(props: Props) {
     : RouteLink.blog
 
   return (
-    <>
-      <ReadingProgress target="article" />
-      <Layout
-        hero={
-          <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-12 md:pb-16">
-            <div className="home-beam top-[30%] -left-[20%]" aria-hidden />
-            <div className="container pt-6 md:pt-12">
-              <div className="max-w-4xl">
-                <Reveal>
-                  <p className="home-num flex flex-wrap gap-x-3 text-sm text-(--home-muted)">
-                    {post.category && (
-                      <Link
-                        href={categoryHref}
-                        className="transition-colors hover:text-white"
-                      >
-                        {post.category}
-                      </Link>
-                    )}
-                    <span aria-hidden>·</span>
-                    <time dateTime={post.date}>{formatDate(post.date)}</time>
-                    <span aria-hidden>·</span>
-                    <span>{post.readingMinutes} min de lecture</span>
-                  </p>
-                  <h1 className="mt-4 text-3xl font-bold tracking-tight text-balance text-white md:text-5xl lg:text-6xl">
-                    {post.title}
-                  </h1>
-                </Reveal>
-                <Reveal i={1}>
-                  <p className="mt-6 text-base text-(--home-muted)">
-                    Par{' '}
+    <Layout
+      hero={
+        <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-12 md:pb-16">
+          <div className="home-beam top-[30%] -left-[20%]" aria-hidden />
+          <div className="container pt-6 md:pt-12">
+            <div className="max-w-4xl">
+              <Reveal>
+                <p className="home-num flex flex-wrap gap-x-3 text-sm text-(--home-muted)">
+                  {post.category && (
                     <Link
-                      href={RouteLink.aboutMe}
-                      rel="author"
-                      className="home-link"
+                      href={categoryHref}
+                      className="transition-colors hover:text-white"
                     >
-                      {AUTHOR_NAME}
+                      {post.category}
                     </Link>
-                    , développeur freelance à La Rochelle.
-                  </p>
-                </Reveal>
-              </div>
+                  )}
+                  <span aria-hidden>·</span>
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <span aria-hidden>·</span>
+                  <span>{post.readingMinutes} min de lecture</span>
+                </p>
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-balance text-white md:text-5xl lg:text-6xl">
+                  {post.title}
+                </h1>
+              </Reveal>
+              <Reveal i={1}>
+                <p className="mt-6 text-base text-(--home-muted)">
+                  Par{' '}
+                  <Link
+                    href={RouteLink.aboutMe}
+                    rel="author"
+                    className="home-link"
+                  >
+                    {AUTHOR_NAME}
+                  </Link>
+                  , développeur freelance à La Rochelle.
+                </p>
+              </Reveal>
             </div>
-          </section>
-        }
-      >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildJsonLd(post)),
-          }}
-        />
-
-        <div className="container pt-4 pb-16 md:pb-24 lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[260px_minmax(0,1fr)]">
-          {post.headings.length > 1 && (
-            <aside className="mb-12 lg:mb-0">
-              <nav
-                aria-label="Sommaire de l’article"
-                className="lg:sticky lg:top-28"
-              >
-                <p className="text-sm font-medium text-white">
-                  Dans cet article
-                </p>
-                <ol className="mt-4 space-y-2 border-l border-white/10">
-                  {post.headings.map((heading) => (
-                    <li key={heading.id}>
-                      <a
-                        href={`#${heading.id}`}
-                        className="-ml-px block border-l border-transparent pl-4 text-sm leading-6 text-(--home-muted) transition-colors hover:border-(--home-orange) hover:text-white"
-                      >
-                        {heading.text}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            </aside>
-          )}
-          <article
-            id="article"
-            className={`article prose prose-lg prose-invert max-w-none ${post.headings.length > 1 ? '' : 'lg:col-span-2'}`}
-          >
-            <post.content />
-          </article>
-        </div>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                {step.title}
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-            </Reveal>
-            <Reveal i={1}>
-              <div className="space-y-4 leading-7 text-white/85">
-                <p>{step.text}</p>
-                <p className="flex flex-wrap gap-x-6 gap-y-2">
-                  <Link href={step.href} className="home-link">
-                    {step.label}
-                  </Link>
-                  <Link href={RouteLink.contact} className="home-link">
-                    Me contacter
-                  </Link>
-                </p>
-              </div>
-            </Reveal>
           </div>
         </section>
+      }
+    >
+      <ReadingProgress target="article" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildJsonLd(post)),
+        }}
+      />
 
-        {post.category && (
-          <section className="container py-20 md:py-28">
-            <SectionHeading>À lire ensuite</SectionHeading>
-            <ArticleCards
-              category={post.category}
-              limit={4}
-              exclude={post.slug}
-            />
-            <div className="mt-12 flex justify-center">
-              <Link href={categoryHref} className="home-btn-ghost home-glassy">
-                Tous les articles {post.category}
-              </Link>
-            </div>
-          </section>
+      <div className="container pt-4 pb-16 md:pb-24 lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[260px_minmax(0,1fr)]">
+        {post.headings.length > 1 && (
+          <aside className="mb-12 lg:mb-0">
+            <nav
+              aria-label="Sommaire de l’article"
+              className="lg:sticky lg:top-28"
+            >
+              <p className="text-sm font-medium text-white">Dans cet article</p>
+              <ol className="mt-4 space-y-2 border-l border-white/10">
+                {post.headings.map((heading) => (
+                  <li key={heading.id}>
+                    <a
+                      href={`#${heading.id}`}
+                      className="-ml-px block border-l border-transparent pl-4 text-sm leading-6 text-(--home-muted) transition-colors hover:border-(--home-orange) hover:text-white"
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </aside>
         )}
-      </Layout>
-    </>
+        <article
+          id="article"
+          className={`article prose prose-lg prose-invert max-w-none ${post.headings.length > 1 ? '' : 'lg:col-span-2'}`}
+        >
+          <post.content />
+        </article>
+      </div>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              {step.title}
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <Reveal i={1}>
+            <div className="space-y-4 leading-7 text-white/85">
+              <p>{step.text}</p>
+              <p className="flex flex-wrap gap-x-6 gap-y-2">
+                <Link href={step.href} className="home-link">
+                  {step.label}
+                </Link>
+                <Link href={RouteLink.contact} className="home-link">
+                  Me contacter
+                </Link>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {post.category && (
+        <section className="container py-20 md:py-28">
+          <SectionHeading>À lire ensuite</SectionHeading>
+          <ArticleCards
+            category={post.category}
+            limit={4}
+            exclude={post.slug}
+          />
+          <div className="mt-12 flex justify-center">
+            <Link href={categoryHref} className="home-btn-ghost home-glassy">
+              Tous les articles {post.category}
+            </Link>
+          </div>
+        </section>
+      )}
+    </Layout>
   )
 }

@@ -6,6 +6,7 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import './globals.css'
 import '@component/home/home.css'
+import { serializeJsonLd } from '@util/seo-generators'
 
 export async function generateMetadata() {
   return {
@@ -153,7 +154,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
         <div>{children}</div>
         <Footer />

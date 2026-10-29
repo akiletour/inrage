@@ -11,7 +11,7 @@ import {
   portfolioTools,
 } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 import { getAllMdxSlugs, getSingleMdx } from '@util/mdx'
 
 type Props = {
@@ -68,6 +68,10 @@ export default async function Page(props: Props) {
 
   const { content: Content, metadata } = mdxResult
 
+  if (metadata.category !== params.slug) {
+    return notFound()
+  }
+
   const category =
     portfolioCategories[metadata.category as keyof typeof portfolioCategories]
   const prestation = category.prestation
@@ -120,7 +124,7 @@ export default async function Page(props: Props) {
           <div className="home-beam top-[15%] -left-[20%]" aria-hidden />
           <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
           <div className="container grid items-start gap-12 pt-6 md:pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-            <div className="lg:sticky lg:top-28">
+            <div className="lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
               <Reveal>
                 <p className="home-num text-sm text-(--home-muted)">
                   <Link
@@ -223,7 +227,7 @@ export default async function Page(props: Props) {
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-8 md:py-16">

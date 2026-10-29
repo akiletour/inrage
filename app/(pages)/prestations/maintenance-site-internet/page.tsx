@@ -15,7 +15,11 @@ import {
   STAKES,
 } from '@component/prestations/maintenance-data'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Maintenance de site internet à La Rochelle | inRage',
@@ -133,7 +137,7 @@ export default function WebsiteTMA() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">

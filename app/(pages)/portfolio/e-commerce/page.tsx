@@ -11,6 +11,7 @@ import {
   generateEcommerceMetadata,
   getEcommerceOfferings,
   getEcommerceTechnologies,
+  serializeJsonLd,
 } from '@util/seo-generators'
 
 export const metadata = generateEcommerceMetadata()
@@ -52,7 +53,7 @@ export default async function Page() {
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container pt-4 pb-20 md:pb-28">

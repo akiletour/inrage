@@ -9,7 +9,7 @@ import ListingGrid from '@component/portfolio/ListingGrid'
 import { ARCHIVE_BEFORE, FEATURED } from '@component/portfolio/listing-data'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Portfolio : sites, boutiques et applications réalisés | inRage',
@@ -28,7 +28,9 @@ export default async function Page() {
     (item) => item.year >= ARCHIVE_BEFORE && !featuredSlugs.has(item.slug)
   )
   const archives = items.filter((item) => item.year < ARCHIVE_BEFORE)
-  const firstYear = Math.min(...items.map((item) => item.year))
+  const firstYear = items.length
+    ? Math.min(...items.map((item) => item.year))
+    : new Date().getFullYear()
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -82,7 +84,7 @@ export default async function Page() {
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container pt-4 pb-16 md:pb-24">

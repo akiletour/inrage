@@ -3,6 +3,30 @@ import path from 'node:path'
 
 export type Heading = { id: string; text: string }
 
+const WORDS_PER_MINUTE = 200
+
+const ENTITIES: Record<string, string> = {
+  nbsp: ' ',
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+}
+
+export function decodeEntities(text: string) {
+  return text.replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (match, entity: string) => {
+    if (entity[0] === '#') {
+      const code =
+        entity[1]?.toLowerCase() === 'x'
+          ? parseInt(entity.slice(2), 16)
+          : parseInt(entity.slice(1), 10)
+      return Number.isFinite(code) ? String.fromCodePoint(code) : match
+    }
+    return ENTITIES[entity.toLowerCase()] ?? match
+  })
+}
+
 export function slugifyHeading(text: string) {
   return text
     .normalize('NFD')
@@ -31,16 +55,18 @@ const sources = new Map<string, string>()
 function readMdxSource(type: 'blog' | 'portfolio', slug: string) {
   const key = `${type}/${slug}`
   const cached = sources.get(key)
-  if (cached !== undefined) return cached
-  const file = path.join(process.cwd(), 'app', 'content', type, `${slug}.mdx`)
-  let source = ''
-  try {
-    source = fs.readFileSync(file, 'utf8')
-  } catch {
-    source = ''
+  if (cached !== undefined && process.env.NODE_ENV !== 'development') {
+    return cached
   }
-  sources.set(key, source)
-  return source
+  const file = path.join(process.cwd(), 'app', 'content', type, `${slug}.mdx`)
+  try {
+    const source = fs.readFileSync(file, 'utf8')
+    sources.set(key, source)
+    return source
+  } catch (error) {
+    console.warn(`headings: unable to read ${file}`, error)
+    return ''
+  }
 }
 
 function stripSource(source: string) {
@@ -59,11 +85,12 @@ export function getMdxHeadings(type: 'blog' | 'portfolio', slug: string) {
     .replace(/```[\s\S]*?```/g, '')
   const headings: Heading[] = []
   for (const match of source.matchAll(/^##\s+(.+?)\s*$/gm)) {
-    const text = (match[1] ?? '')
-      .replace(/\*\*/g, '')
-      .replace(/`/g, '')
-      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-      .trim()
+    const text = decodeEntities(
+      (match[1] ?? '')
+        .replace(/\*\*/g, '')
+        .replace(/`/g, '')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    ).trim()
     if (text) {
       headings.push({ id: slugifyHeading(text), text })
     }
@@ -75,5 +102,5 @@ export function getMdxReadingMinutes(type: 'blog' | 'portfolio', slug: string) {
   const words = stripSource(readMdxSource(type, slug))
     .split(/\s+/)
     .filter(Boolean).length
-  return Math.max(1, Math.round(words / 200))
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE))
 }

@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,17 +5,15 @@ import Reveal from '@component/home/Reveal'
 import { PortfolioProject } from '@lib/portfolio'
 import { RouteLink } from '@lib/router'
 
-export default function ListingGrid<T extends PortfolioProject>({
+export default function ListingGrid({
   projects,
   muted = false,
   eager = 0,
-  meta,
   className = '',
 }: {
-  projects: T[]
+  projects: Array<PortfolioProject & { note?: string }>
   muted?: boolean
   eager?: number
-  meta?: (project: T) => ReactNode
   className?: string
 }) {
   return (
@@ -57,8 +53,8 @@ export default function ListingGrid<T extends PortfolioProject>({
                 {project.title}
               </span>
               <span className="home-num mt-1 block text-sm leading-6 text-(--home-muted)">
-                {meta ? meta(project) : project.year}
-                {!meta && !muted && ` · ${project.support.title}`}
+                {project.note ?? project.year}
+                {!project.note && !muted && ` · ${project.support.title}`}
               </span>
             </Link>
           </Reveal>

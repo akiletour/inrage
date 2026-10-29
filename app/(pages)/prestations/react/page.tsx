@@ -17,7 +17,11 @@ import ImageInvoicer from '@image/articles/invoicer-cover.jpg'
 import ImagePicking from '@image/portfolio/outil-de-picking-dentrepot-1.png'
 import ImageSite from '@image/screenshot.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Développeur React, Next.js et React Native freelance | inRage',
@@ -140,7 +144,7 @@ export default function PrestationReact() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">

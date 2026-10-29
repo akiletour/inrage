@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Layout from '@component/Layout'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
-import { getBlogItems } from '@lib/blog'
+import { BLOG_CATEGORIES, getBlogItems } from '@lib/blog'
 
 function LegalTitle({ children }: { children: string }) {
   return (
@@ -13,6 +13,9 @@ function LegalTitle({ children }: { children: string }) {
 
 export default async function Sitemap() {
   const posts = await getBlogItems()
+  const blogCategories = BLOG_CATEGORIES.filter((category) =>
+    posts.some((post) => post.category === category.name)
+  )
 
   const projectCategories = Object.values(portfolioCategories)
   const projects = await getPortfolioItems(-1)
@@ -135,6 +138,14 @@ export default async function Sitemap() {
             <LegalTitle>Blog</LegalTitle>
 
             <ul className="styled-list">
+              {blogCategories.map(({ name, slug }) => (
+                <li key={slug}>
+                  <Link href={RouteLink.blogCategory(slug)}>{name}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <ul className="styled-list mt-6">
               {posts.map(({ title, slug }) => (
                 <li key={title}>
                   <Link href={`${RouteLink.blog}/${slug}`}>{title}</Link>

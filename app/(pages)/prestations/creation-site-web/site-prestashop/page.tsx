@@ -18,7 +18,11 @@ import {
 import ListingGrid from '@component/portfolio/ListingGrid'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Freelance Prestashop : boutique, modules, migration | inRage',
@@ -118,7 +122,7 @@ export default async function PrestationPrestashop() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">
@@ -154,12 +158,7 @@ export default async function PrestationPrestashop() {
           <SectionHeading text="Trois boutiques Prestashop développées et suivies depuis des années, avec des connecteurs métier que vous ne verrez pas en vitrine mais qui font tourner l’activité.">
             Boutiques Prestashop réalisées
           </SectionHeading>
-          <ListingGrid
-            projects={projects}
-            meta={(p) => p.note}
-            eager={3}
-            className="mt-14"
-          />
+          <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
               href={`${RouteLink.portfolio}/e-commerce`}

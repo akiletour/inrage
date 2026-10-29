@@ -178,6 +178,10 @@ export function breadcrumbJsonLd(
   }
 }
 
+export function serializeJsonLd(data: unknown) {
+  return JSON.stringify(data).replace(/</g, '\\u003c')
+}
+
 export type FaqItem = { question: string; answer: string }
 
 export function faqJsonLd(items: FaqItem[]) {

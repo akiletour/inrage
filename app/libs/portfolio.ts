@@ -158,8 +158,12 @@ export const portfolioTools = {
   },
 }
 
-export const getPortfolioCategories = async () => {
-  return Object.values(portfolioCategories)
+function categoryOf(slug: string, key: string) {
+  const category = portfolioCategories[key as keyof typeof portfolioCategories]
+  if (!category) {
+    throw new Error(`${slug}.mdx: unknown portfolio category "${key}"`)
+  }
+  return category
 }
 
 export const getPortfolioItems = cache(
@@ -179,25 +183,32 @@ export const getPortfolioItems = cache(
       sort,
     })
 
-    return items.map(({ title, frontmatter, slug }) => ({
-      title,
-      slug,
-      support:
-        portfolioCategories[
-          frontmatter.category as keyof typeof portfolioCategories
-        ],
-      thumbnail: frontmatter.image?.thumbnail || '',
-      large: frontmatter.image?.large || '',
-      year: Number(frontmatter.year),
-      excerpt: frontmatter.excerpt || '',
-      website: frontmatter.website || '',
-      categories: (frontmatter.categories ?? [frontmatter.category]).map(
-        (key) => portfolioCategories[key]
-      ),
-      tools: (frontmatter.tools ?? [])
-        .map((key) => portfolioTools[key as keyof typeof portfolioTools]?.title)
-        .filter((tool) => tool !== undefined),
-    }))
+    return items.map(({ title, frontmatter, slug }) => {
+      const year = Number(frontmatter.year)
+      if (!Number.isFinite(year)) {
+        throw new Error(
+          `${slug}.mdx: year "${frontmatter.year}" is not a number`
+        )
+      }
+      return {
+        title,
+        slug,
+        support: categoryOf(slug, frontmatter.category),
+        thumbnail: frontmatter.image?.thumbnail || '',
+        large: frontmatter.image?.large || '',
+        year,
+        excerpt: frontmatter.excerpt || '',
+        website: frontmatter.website || '',
+        categories: (frontmatter.categories ?? [frontmatter.category]).map(
+          (key) => categoryOf(slug, key)
+        ),
+        tools: (frontmatter.tools ?? [])
+          .map(
+            (key) => portfolioTools[key as keyof typeof portfolioTools]?.title
+          )
+          .filter((tool) => tool !== undefined),
+      }
+    })
   }
 )
 
@@ -209,10 +220,13 @@ export function pickProjects<T extends { slug: string }>(
   items: PortfolioProject[],
   wanted: T[]
 ) {
-  return wanted
-    .map((entry) => {
-      const item = items.find((candidate) => candidate.slug === entry.slug)
-      return item ? { ...item, ...entry } : null
-    })
-    .filter((project) => project !== null)
+  return wanted.map((entry) => {
+    const item = items.find((candidate) => candidate.slug === entry.slug)
+    if (!item) {
+      throw new Error(
+        `pickProjects: no portfolio project with slug "${entry.slug}"`
+      )
+    }
+    return { ...item, ...entry }
+  })
 }

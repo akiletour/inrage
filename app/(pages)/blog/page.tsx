@@ -1,7 +1,7 @@
 import BlogListing from '@component/blog/BlogListing'
 import { getBlogItems } from '@lib/blog'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Blog WordPress, Prestashop et serveurs | inRage',
@@ -42,7 +42,7 @@ export default async function BlogList() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <BlogListing />
     </>

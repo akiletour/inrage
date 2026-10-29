@@ -9,7 +9,11 @@ import Layout from '@component/Layout'
 import { CASES, FAQ, STACK, STEPS } from '@component/prestations/symfony-data'
 import ImageInvoicer from '@image/articles/invoicer-cover.jpg'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Développeur Symfony : application métier sur mesure | inRage',
@@ -94,7 +98,7 @@ export default function Symfony() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">

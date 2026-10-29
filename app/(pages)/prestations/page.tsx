@@ -20,7 +20,11 @@ import ImagePrestationBuildWebsite from '@image/prestations/creation-site-intern
 import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png'
 import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Prestations web à La Rochelle : sites, maintenance, DevOps | inRage',
@@ -122,7 +126,7 @@ export default function Prestations() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section id="creation" className="container scroll-mt-28 py-16 md:py-24">

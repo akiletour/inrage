@@ -1,13 +1,11 @@
 import Link from 'next/link'
 
-import { getPortfolioCategories, getPortfolioItems } from '@lib/portfolio'
+import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
 import { RouteLink } from '@lib/router'
 
 export default async function CategoryNav({ current }: { current?: string }) {
-  const [items, categories] = await Promise.all([
-    getPortfolioItems(),
-    getPortfolioCategories(),
-  ])
+  const items = await getPortfolioItems()
+  const categories = Object.values(portfolioCategories)
 
   const entries = [
     {

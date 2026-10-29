@@ -5,7 +5,7 @@ import ContactForm from '@component/ContactForm'
 import Reveal from '@component/home/Reveal'
 import Layout from '@component/Layout'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',
@@ -60,7 +60,7 @@ export default function Contact() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container pt-4 pb-16 md:pb-24">

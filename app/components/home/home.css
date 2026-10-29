@@ -45,7 +45,8 @@ body:has(.home) {
   transition-delay: calc(var(--i, 0) * var(--home-stagger));
 }
 
-.home-reveal[data-in] {
+.home-reveal[data-in],
+.home-reveal:focus-within {
   opacity: 1;
   transform: none;
 }
@@ -326,26 +327,33 @@ body:has(.home) {
 }
 
 .home-dots {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.16) 1px,
-    transparent 1.6px
-  );
-  background-size: 28px 28px;
+  overflow: hidden;
   -webkit-mask-image: radial-gradient(
     ellipse at center,
     black 20%,
     transparent 72%
   );
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 72%);
+}
+
+.home-dots::before {
+  content: '';
+  position: absolute;
+  inset: -28px 0 0 -28px;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.16) 1px,
+    transparent 1.6px
+  );
+  background-size: 28px 28px;
   animation: home-dots calc(var(--home-drift) * 2) linear infinite;
 }
 
 @keyframes home-dots {
   from {
-    background-position: 0 0;
+    translate: 0 0;
   }
   to {
-    background-position: 28px 28px;
+    translate: 28px 28px;
   }
 }
 
@@ -513,15 +521,28 @@ body:has(.home) {
   opacity: 0.6;
 }
 
+.home-flame::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 55% 60%,
+    oklch(0.72 0.19 45 / 0.45),
+    oklch(0.72 0.19 45 / 0.12) 45%,
+    transparent 70%
+  );
+}
+
 .home-flame {
-  filter: drop-shadow(0 0 50px oklch(0.72 0.19 45 / 0.5));
+  isolation: isolate;
 }
 
 .home-flame-petal {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  will-change: transform, opacity;
 }
 
 .home-flame-wrap {
@@ -657,13 +678,14 @@ body:has(.home) {
   .home-oblique-line::after,
   .home-btn-shine::after,
   .home-float,
-  .home-dots,
+  .home-dots::before,
   .home-marquee-track {
     animation: none;
   }
 
   .home-tilt,
-  .home-glass {
+  .home-glass,
+  .home-glass:hover {
     transition: none;
     transform: none;
   }

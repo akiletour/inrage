@@ -22,9 +22,9 @@ export default async function BlogListing({
     : items
   const featured = active ? undefined : list[0]
   const rest = active ? list : list.slice(1)
-  const firstYear = Math.min(
-    ...items.map((item) => new Date(item.date).getFullYear())
-  )
+  const firstYear = items.length
+    ? Math.min(...items.map((item) => new Date(item.date).getFullYear()))
+    : new Date().getFullYear()
 
   return (
     <Layout

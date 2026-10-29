@@ -16,9 +16,9 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
   const root = useRef<HTMLDivElement>(null)
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
       const el = root.current
-      if (!el) return
+      if (!el || !contextSafe) return
       const petals = BIRTH_ORDER.map((i) =>
         el.querySelector<HTMLElement>(`[data-petal="${i}"]`)!
       )
@@ -31,8 +31,8 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
       const section = el.closest<HTMLElement>('section') ?? el
       const texts = gsap.utils.toArray<HTMLElement>('[data-hero-text]', section)
 
-      const breathe = () => {
-        petals.forEach((petal, i) => {
+      const breathe = contextSafe(() => {
+        const tweens = petals.map((petal, i) =>
           gsap.to(petal, {
             opacity: 0.93 + i * 0.01,
             yPercent: -(0.4 + i * 0.15),
@@ -42,15 +42,26 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
             repeat: -1,
             delay: gsap.utils.random(0, 0.6),
           })
+        )
+        tweens.push(
+          gsap.to(stage, {
+            rotate: 0.4,
+            duration: 7,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+          })
+        )
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          onToggle: (self) =>
+            tweens.forEach((tween) =>
+              self.isActive ? tween.play() : tween.pause()
+            ),
         })
-        gsap.to(stage, {
-          rotate: 0.4,
-          duration: 7,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-        })
-      }
+      })
 
       const convertOnScroll = () => {
         gsap.set(ghosts, { opacity: 0 })

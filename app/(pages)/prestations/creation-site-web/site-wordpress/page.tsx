@@ -18,7 +18,11 @@ import {
 import ListingGrid from '@component/portfolio/ListingGrid'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Création de site WordPress à La Rochelle | Freelance inRage',
@@ -135,7 +139,7 @@ export default async function PrestationWordPress() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">
@@ -171,12 +175,7 @@ export default async function PrestationWordPress() {
           <SectionHeading text="Dix-sept sites WordPress sont présentés dans le portfolio. En voici six, de La Rochelle à la Nouvelle-Aquitaine, que vous pouvez visiter.">
             Des sites WordPress que vous pouvez visiter
           </SectionHeading>
-          <ListingGrid
-            projects={projects}
-            meta={(p) => p.note}
-            eager={3}
-            className="mt-14"
-          />
+          <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
               href={`${RouteLink.portfolio}/wordpress`}
@@ -192,12 +191,7 @@ export default async function PrestationWordPress() {
         <SectionHeading text="WooCommerce transforme WordPress en boutique, avec le même éditeur pour vos pages et vos produits. C’est le bon choix quand la vente accompagne un site de contenu, avec un catalogue de quelques dizaines à quelques centaines de références.">
           Boutique WooCommerce
         </SectionHeading>
-        <ListingGrid
-          projects={shops}
-          meta={(p) => p.note}
-          eager={3}
-          className="mt-14"
-        />
+        <ListingGrid projects={shops} eager={3} className="mt-14" />
         <Reveal className="mx-auto mt-12 max-w-3xl">
           <p className="leading-7 text-(--home-muted)">
             J’ai migré Guédelon et Jemapub de Prestashop vers WooCommerce, avec

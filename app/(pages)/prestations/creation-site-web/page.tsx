@@ -19,7 +19,11 @@ import {
 import ListingGrid from '@component/portfolio/ListingGrid'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Création de site internet à La Rochelle | Freelance - inRage',
@@ -129,7 +133,7 @@ export default async function PrestationBuildWebsite() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">
@@ -163,12 +167,7 @@ export default async function PrestationBuildWebsite() {
           <SectionHeading text="Des sites conçus pour des entreprises de La Rochelle, de l’Île de Ré et de Nouvelle-Aquitaine, que vous pouvez visiter aujourd’hui.">
             Des sites créés ici
           </SectionHeading>
-          <ListingGrid
-            projects={projects}
-            meta={(p) => p.note}
-            eager={3}
-            className="mt-14"
-          />
+          <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
               href={`${RouteLink.portfolio}/wordpress`}

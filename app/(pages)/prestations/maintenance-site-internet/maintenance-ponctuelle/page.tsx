@@ -7,7 +7,11 @@ import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
 import { CASES, FAQ } from '@component/prestations/maintenance-ponctuelle-data'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Dépannage et maintenance ponctuelle de site web | inRage',
@@ -92,7 +96,7 @@ export default function TmaOnDemand() {
     <Layout hero={<Hero />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container py-16 md:py-24">

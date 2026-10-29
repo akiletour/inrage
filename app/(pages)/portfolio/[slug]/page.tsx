@@ -9,7 +9,7 @@ import ListingGrid from '@component/portfolio/ListingGrid'
 import { ARCHIVE_BEFORE } from '@component/portfolio/listing-data'
 import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 type Props = {
   params: Promise<{
@@ -110,7 +110,7 @@ export default async function Page(props: Props) {
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <section className="container pt-4 pb-20 md:pb-28">

@@ -1,16 +1,27 @@
 import { notFound } from 'next/navigation'
 
 import BlogListing from '@component/blog/BlogListing'
-import { BLOG_CATEGORIES, blogCategoryBySlug } from '@lib/blog'
+import { BLOG_CATEGORIES, blogCategoryBySlug, getBlogItems } from '@lib/blog'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { breadcrumbJsonLd } from '@util/seo-generators'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 type Props = {
   params: Promise<{ slug: string }>
 }
 
+async function hasArticles(name: string) {
+  const items = await getBlogItems(1, 'date', undefined, name)
+  return items.length > 0
+}
+
 export async function generateStaticParams() {
-  return BLOG_CATEGORIES.map((category) => ({ slug: category.slug }))
+  const params = []
+  for (const category of BLOG_CATEGORIES) {
+    if (await hasArticles(category.name)) {
+      params.push({ slug: category.slug })
+    }
+  }
+  return params
 }
 
 export async function generateMetadata(props: Props) {
@@ -31,7 +42,7 @@ export async function generateMetadata(props: Props) {
 export default async function BlogCategoryPage(props: Props) {
   const { slug } = await props.params
   const category = blogCategoryBySlug(slug)
-  if (!category) {
+  if (!category || !(await hasArticles(category.name))) {
     return notFound()
   }
 
@@ -52,7 +63,7 @@ export default async function BlogCategoryPage(props: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <BlogListing active={category} />
     </>

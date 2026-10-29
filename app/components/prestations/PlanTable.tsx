@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import Glass from '@component/home/Glass'
 import Reveal from '@component/home/Reveal'
 
@@ -18,7 +20,12 @@ function Value({ value }: { value: string | boolean }) {
   }
   return (
     <span className="home-num font-medium text-white">
-      {value.replace('|', ' ')}
+      {value.split('|').map((part, i) => (
+        <Fragment key={part}>
+          {i > 0 && <br />}
+          {part}
+        </Fragment>
+      ))}
     </span>
   )
 }

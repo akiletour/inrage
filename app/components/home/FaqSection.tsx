@@ -35,11 +35,11 @@ export default function FaqSection({
           {items.map((item, i) => (
             <Reveal key={item.question} i={i}>
               <details className="group py-5">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-sm text-lg font-medium text-white outline-offset-4 focus-visible:outline-2 focus-visible:outline-white/70 [&::-webkit-details-marker]:hidden">
                   {item.question}
                   <span
                     aria-hidden
-                    className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                    className="mt-1 shrink-0 text-(--home-muted) group-open:rotate-45 motion-safe:transition-transform"
                   >
                     +
                   </span>
