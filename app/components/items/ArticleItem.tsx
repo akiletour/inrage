@@ -44,7 +44,7 @@ export default function ArticleItem({
             height={265}
             alt={title}
             style={{
-              maxWidth: '100%',
+              width: '100%',
               height: 'auto',
             }}
           />

@@ -237,6 +237,18 @@ export default function TmaWordPress() {
               </NoScrollLink>
               .
             </p>
+            <p className="mt-6 text-gray-light">
+              Vous comparez plusieurs offres ? Notre{' '}
+              <NoScrollLink
+                href={`${RouteLink.blog}/choisir-prestataire-maintenance-tma-wordpress`}
+              >
+                <span className="underline text-orange">
+                  guide pour choisir un prestataire TMA WordPress
+                </span>
+              </NoScrollLink>{' '}
+              liste les questions à poser avant de signer, chez nous comme
+              ailleurs.
+            </p>
           </div>
         </TextImage>
 
