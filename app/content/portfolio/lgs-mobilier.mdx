@@ -1,0 +1,157 @@
+---
+title: LGS Mobilier
+category: 'e-commerce'
+categories: ['e-commerce']
+website: https://www.lgs-mobilier.fr
+year: 2026
+summary: "LGS Mobilier fabrique des établis industriels à Gradignan, près de Bordeaux, et les vend en ligne depuis 2014. J'ai migré la boutique de Prestashop 1.6 vers Prestashop 9 sans perdre une URL ni un prix, puis développé le Tarifeur, un outil de gestion des prix et des écotaxes sur toutes les déclinaisons, pour remplacer Store Commander qui n'existe plus en version 9."
+excerpt: "Migration de la boutique LGS Mobilier de Prestashop 1.6 vers Prestashop 9 : thème Hummingbird sur mesure, reprise des commandes et des clients, correction des écotaxes, URL conservées, et un outil d'édition en masse des prix développé pour remplacer Store Commander."
+actions:
+  - Migration des données de Prestashop 1.6.1.17 vers 9.1.5
+  - Thème enfant Hummingbird aux couleurs de LGS
+  - Reprise des URL produit de l'ancien site, sans 404
+  - Correction des écotaxes sur toutes les déclinaisons
+  - Tarifeur, outil d'édition en masse des prix et écotaxes
+  - Intégration du configurateur d'établis et des fiches sur mesure
+  - Consent Mode v2 et cache de pages
+  - Hébergement sur l'infrastructure inRage, en France
+
+image:
+  thumbnail: lgs-mobilier-sm.jpg
+  large: lgs-mobilier.jpg
+tools:
+  - prestashop
+  - wordpress
+---
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
+
+<div className="article-wide not-prose text-base leading-relaxed text-gray-light md:text-lg [&_h2]:text-balance [&_p]:text-pretty [&_p+p]:mt-5 [&_a]:underline-offset-4">
+  <section className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="lgs-contexte">
+    <h2 id="lgs-contexte" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+      {'Douze ans de commandes à ne pas perdre.'}
+    </h2>
+    <div>
+
+LGS Mobilier conçoit et fabrique des établis d'atelier, des postes informatiques et du mobilier technique dans son usine de Gradignan, en Gironde. La boutique en ligne tournait sur Prestashop 1.6 depuis 2014, avec 564 commandes, 898 clients et un catalogue de 112 produits déclinés en 1 793 références selon la dimension, le plateau et le coloris RAL.
+
+Prestashop 1.6 n'est plus maintenu, le PHP qui le faisait tourner non plus. Plutôt qu'une refonte qui repart de zéro, j'ai proposé une migration complète vers Prestashop 9 : les mêmes produits, les mêmes clients, les mêmes adresses, et des URL identiques pour que Google ne s'aperçoive de rien.
+
+    </div>
+
+  </section>
+
+  <section className="mt-16 md:mt-24" aria-labelledby="lgs-migration">
+    <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <h2 id="lgs-migration" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+        {'Une migration, pas une refonte.'}
+      </h2>
+      <div>
+
+Les données sont passées par Migration Pro, en forçant les identifiants pour que chaque produit, chaque statut de commande et chaque groupe client garde son numéro. Le premier essai en mode automatique avait écrasé les statuts : j'ai restauré et recommencé avec une correspondance détaillée, ligne par ligne. L'outil n'a récupéré que 183 images produit sur 434, le reste était dans l'ancien format de stockage de la 1.6, je l'ai repris à la main avec les 33 vignettes de catégorie.
+
+Le thème est un thème enfant de Hummingbird, le thème moderne de Prestashop, recoloré aux couleurs de LGS et compilé avec un simple script Node et Sass. La page catégorie a été redessinée avec les sous-catégories en vignettes et un menu latéral qui suit le menu principal, et 134 chaînes ont été traduites pour que le site soit entièrement en français.
+
+      </div>
+    </div>
+    <figure className="mt-8 md:mt-10">
+      <Image
+        src="/images/portfolio/lgs-mobilier-categorie.jpg"
+        alt="La page Établis d'atelier professionnel sur lgs-mobilier.fr : menu latéral des catégories à gauche, sous-catégories en vignettes avec texte et lien « découvrir la gamme » à droite."
+        width={1600}
+        height={1000}
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className="h-auto w-full rounded-lg"
+      />
+      <figcaption className="mt-3 text-sm">{'La page catégorie redessinée : les sous-catégories en vignettes, le menu latéral piloté par le menu principal.'}</figcaption>
+    </figure>
+
+  </section>
+
+  <section className="mt-16 grid items-center gap-8 md:mt-24 lg:grid-cols-[1.2fr_1fr] lg:gap-12" aria-labelledby="lgs-ecotaxe">
+    <div>
+      <h2 id="lgs-ecotaxe" className="text-3xl font-medium leading-tight text-white">
+        {'L’écotaxe comptée deux fois.'}
+      </h2>
+      <div className="mt-6">
+
+Chaque établi porte une écotaxe. Prestashop 1.6 l'ignorait dans le calcul du prix des déclinaisons, un bug corrigé seulement en 1.7.7, si bien que les prix migrés l'incluaient déjà et que la version 9 l'ajoutait une seconde fois. Un établi affiché 473 € sur l'ancien site en affichait 479 sur le nouveau.
+
+J'ai écrit un script qui simule d'abord, puis corrige en une transaction, avec une référence témoin pour ne jamais tourner deux fois. Il a retiré l'écotaxe de 1 530 déclinaisons et de 3 produits, et j'ai comparé les 1 818 prix publics avec l'ancienne production : tous identiques.
+
+Les URL ont suivi le même principe. L'ancien site plaçait la catégorie devant le produit, ce que Prestashop 9 ne fait plus. Sans rien faire, toutes les fiches indexées tombaient en 404. J'ai recréé la route produit à l'identique, avec une redirection 301 vers l'adresse canonique, puis testé les 139 URL de l'ancien sitemap et les 73 liens de l'ancienne page d'accueil. Aucune erreur.
+
+      </div>
+    </div>
+    <figure>
+      <Image
+        src="/images/portfolio/lgs-mobilier-produit.jpg"
+        alt="Fiche d'un établi d'atelier à hauteur réglable : prix de 473,26 € HT dont 6,26 € HT d'écotaxe, choix de la couleur parmi cinq RAL, de la dimension et du plateau."
+        width={1600}
+        height={1000}
+        sizes="(max-width: 1023px) 100vw, 520px"
+        className="h-auto w-full rounded-lg"
+      />
+      <figcaption className="mt-3 text-sm">{'Une fiche produit : le prix HT, l’écotaxe détaillée, la couleur, la dimension et le plateau.'}</figcaption>
+    </figure>
+
+  </section>
+
+  <section className="mt-16 md:mt-24" aria-labelledby="lgs-tarifeur">
+    <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <h2 id="lgs-tarifeur" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+        {'Le Tarifeur, à la place de Store Commander.'}
+      </h2>
+      <div>
+
+LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander, un module qui s'arrête à Prestashop 8. Éditer 1 793 déclinaisons une par une dans le back-office de Prestashop 9 n'était pas envisageable.
+
+J'ai donc développé le Tarifeur, un module Symfony intégré au back-office, sous Catalogue. Trois panneaux : les catégories, les produits avec leur fourchette de prix, et la grille des déclinaisons avec le poids, le prix HT, l'écotaxe et le prix public calculé. Les déclinaisons se groupent par dimension ou par n'importe quel attribut, d'un glisser d'en-tête, et chaque groupe se replie avec sa fourchette de prix.
+
+L'édition se fait au clavier comme dans un tableur : flèches, Entrée, frappe directe, Ctrl+Z. Une colonne entière se colle depuis Excel. « Modifier le groupe » applique une hausse ou une baisse en pourcentage ou en euros sur une sélection, avec arrondi à l'euro et aperçu avant validation. Un garde-fou repère les prix qui semblent encore contenir l'écotaxe et propose de la retirer.
+
+L'enregistrement part en un seul lot, dans une transaction, avec des verrous posés dans un ordre fixe. Chaque valeur emporte l'ancienne : si quelqu'un a modifié le prix entre-temps, la ligne est refusée plutôt qu'écrasée. Chaque lot est journalisé par employé, et l'historique permet de remettre les anciens prix d'un clic. Le cache de pages est purgé dans la foulée.
+
+      </div>
+    </div>
+    <figure className="mt-8 md:mt-10">
+      <Image
+        src="/images/portfolio/lgs-mobilier-tarifeur.jpg"
+        alt="Le Tarifeur dans le back-office Prestashop : arbre des catégories, liste des produits avec fourchettes de prix, et grille des 40 déclinaisons d'un établi informatique groupées par dimension, avec référence, plateau, coloris RAL, poids, prix HT et écotaxe."
+        width={1600}
+        height={1104}
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className="h-auto w-full rounded-lg"
+      />
+      <figcaption className="mt-3 text-sm">{'Le Tarifeur : 40 déclinaisons d’un établi informatique groupées par dimension, prix et écotaxe éditables au clavier.'}</figcaption>
+    </figure>
+
+  </section>
+
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="lgs-autour">
+    <h2 id="lgs-autour" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+      {'Ce qui tourne autour de la boutique.'}
+    </h2>
+    <div>
+
+Le configurateur d'établis en 3D et les 19 fiches de mobilier sur mesure vivent dans un WordPress historique. Les fiches s'ouvraient avec une copie figée de l'en-tête de l'ancien site, aux liens morts. Elles s'affichent désormais dans la mise en page de la boutique, sous leur propre adresse, avec un cache et des redirections 301 depuis les anciennes URL. Le WordPress a été isolé dans son propre conteneur.
+
+J'ai aussi développé une fenêtre de rappel immédiat avec choix du créneau, le bandeau « Besoin d'un établi sur mesure ? » de l'accueil, et branché Google Tag Manager avec le Consent Mode v2 déclaré avant tout chargement. Le bandeau cookies a dû être repensé : le cache de pages servait à tout le monde le bandeau du premier visiteur, le choix se décide maintenant côté navigateur.
+
+La boutique est hébergée sur l'infrastructure inRage, en France, et déployée par un script qui refuse de partir si le dépôt n'est pas propre. Le site a basculé le 22 octobre 2026, après environ six mois de travail.
+
+<p className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+  <Link href={RouteLink.prestationPrestashop} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+    {'Créer ou migrer une boutique Prestashop'}
+  </Link>
+  <Link href={RouteLink.prestationTmaPrestashop} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+    {'Maintenance Prestashop'}
+  </Link>
+</p>
+
+    </div>
+
+  </section>
+</div>
