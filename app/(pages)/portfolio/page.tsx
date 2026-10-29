@@ -6,8 +6,8 @@ import Layout from '@component/Layout'
 import CategoryNav from '@component/portfolio/CategoryNav'
 import FeaturedCases from '@component/portfolio/FeaturedCases'
 import ListingGrid from '@component/portfolio/ListingGrid'
-import { ARCHIVE_BEFORE, FEATURED } from '@component/portfolio/listing-data'
-import { getPortfolioItems, pickProjects } from '@lib/portfolio'
+import { ARCHIVE_BEFORE } from '@component/portfolio/listing-data'
+import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
@@ -22,7 +22,9 @@ export const metadata = {
 
 export default async function Page() {
   const items = await getPortfolioItems()
-  const featured = pickProjects(items, FEATURED)
+  const featured = items
+    .slice(0, 4)
+    .map((project) => ({ ...project, note: project.highlight }))
   const featuredSlugs = new Set(featured.map((project) => project.slug))
   const recent = items.filter(
     (item) => item.year >= ARCHIVE_BEFORE && !featuredSlugs.has(item.slug)

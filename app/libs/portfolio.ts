@@ -190,6 +190,14 @@ export const getPortfolioItems = cache(
           `${slug}.mdx: year "${frontmatter.year}" is not a number`
         )
       }
+      if (
+        frontmatter.date &&
+        !/^\d{4}-(0[1-9]|1[0-2])$/.test(frontmatter.date)
+      ) {
+        throw new Error(
+          `${slug}.mdx: date "${frontmatter.date}" must be YYYY-MM`
+        )
+      }
       return {
         title,
         slug,
@@ -198,6 +206,10 @@ export const getPortfolioItems = cache(
         large: frontmatter.image?.large || '',
         year,
         excerpt: frontmatter.excerpt || '',
+        highlight:
+          frontmatter.highlight ??
+          frontmatter.summary.split(/(?<=[.!?])\s/)[0] ??
+          frontmatter.summary,
         website: frontmatter.website || '',
         categories: (frontmatter.categories ?? [frontmatter.category]).map(
           (key) => categoryOf(slug, key)

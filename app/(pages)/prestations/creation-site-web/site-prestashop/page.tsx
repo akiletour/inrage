@@ -11,12 +11,11 @@ import {
   CHOICE,
   FAQ,
   PRICES,
-  PROJECTS,
   SERVICES,
   STEPS,
 } from '@component/prestations/prestashop-data'
 import ListingGrid from '@component/portfolio/ListingGrid'
-import { getPortfolioItems, pickProjects } from '@lib/portfolio'
+import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import {
   breadcrumbJsonLd,
@@ -116,7 +115,10 @@ function Hero() {
 
 export default async function PrestationPrestashop() {
   const items = await getPortfolioItems(-1, 'e-commerce')
-  const projects = pickProjects(items, PROJECTS)
+  const projects = items
+    .filter((item) => item.tools.includes('PrestaShop'))
+    .slice(0, 4)
+    .map((item) => ({ ...item, note: item.highlight }))
 
   return (
     <Layout hero={<Hero />}>
