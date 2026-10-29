@@ -35,7 +35,7 @@ import { RouteLink } from '@lib/router'
     </h2>
     <div>
 
-LGS Mobilier conçoit et fabrique des établis d'atelier, des postes informatiques et du mobilier technique dans son usine de Gradignan, en Gironde. La boutique en ligne tournait sur Prestashop 1.6 depuis 2014, avec 564 commandes, 898 clients et un catalogue de 112 produits déclinés en 1 793 références selon la dimension, le plateau et le coloris RAL.
+LGS Mobilier conçoit et fabrique des établis d'atelier, des postes informatiques et du mobilier technique dans son usine de Gradignan, en Gironde. La boutique en ligne tournait sur Prestashop 1.6 depuis 2014, avec 566 commandes, 900 clients et un catalogue de 112 produits déclinés en 1 793 références selon la dimension, le plateau et le coloris RAL.
 
 Prestashop 1.6 n'est plus maintenu, le PHP qui le faisait tourner non plus. Plutôt qu'une refonte qui repart de zéro, j'ai proposé une migration complète vers Prestashop 9 : les mêmes produits, les mêmes clients, les mêmes adresses, et des URL identiques pour que Google ne s'aperçoive de rien.
 
@@ -77,7 +77,7 @@ Le thème est un thème enfant de Hummingbird, le thème moderne de Prestashop, 
       </h2>
       <div className="mt-6">
 
-Chaque établi porte une écotaxe. Prestashop 1.6 l'ignorait dans le calcul du prix des déclinaisons, un bug corrigé seulement en 1.7.7, si bien que les prix migrés l'incluaient déjà et que la version 9 l'ajoutait une seconde fois. Un établi affiché 473 € sur l'ancien site en affichait 479 sur le nouveau.
+Chaque établi porte une écotaxe. Prestashop 1.6 l'ignorait dans le calcul du prix des déclinaisons, un bug corrigé seulement en 1.7.7, si bien que les prix migrés l'incluaient déjà et que la version 9 l'ajoutait une seconde fois. Un établi affiché 534 € sur l'ancien site en affichait davantage sur le nouveau, et 81 déclinaisons se retrouvaient même avec un prix net négatif.
 
 J'ai écrit un script qui simule d'abord, puis corrige en une transaction, avec une référence témoin pour ne jamais tourner deux fois. Il a retiré l'écotaxe de 1 530 déclinaisons et de 3 produits, et j'ai comparé les 1 818 prix publics avec l'ancienne production : tous identiques.
 
@@ -106,9 +106,9 @@ Les URL ont suivi le même principe. L'ancien site plaçait la catégorie devant
       </h2>
       <div>
 
-LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander, un module qui s'arrête à Prestashop 8. Éditer 1 793 déclinaisons une par une dans le back-office de Prestashop 9 n'était pas envisageable.
+LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander, acheté en licence à vie en 2018. Le module s'arrête à Prestashop 8 et la version 9 n'existe qu'en abonnement mensuel, pour un outil dont LGS n'utilisait qu'une fonction : l'édition en masse des prix de déclinaisons. Revenir en Prestashop 8 ne faisait que repousser le problème, éditer 1 793 déclinaisons une par une n'était pas envisageable.
 
-J'ai donc développé le Tarifeur, un module Symfony intégré au back-office, sous Catalogue. Trois panneaux : les catégories, les produits avec leur fourchette de prix, et la grille des déclinaisons avec le poids, le prix HT, l'écotaxe et le prix public calculé. Les déclinaisons se groupent par dimension ou par n'importe quel attribut, d'un glisser d'en-tête, et chaque groupe se replie avec sa fourchette de prix.
+J'ai donc développé le Tarifeur, maquette interactive le matin, module livré et validé en préprod le soir même, un module Symfony intégré au back-office, sous Catalogue. Trois panneaux : les catégories, les produits avec leur fourchette de prix, et la grille des déclinaisons avec le poids, le prix HT, l'écotaxe et le prix public calculé. Les déclinaisons se groupent par dimension ou par n'importe quel attribut, d'un glisser d'en-tête, et chaque groupe se replie avec sa fourchette de prix.
 
 L'édition se fait au clavier comme dans un tableur : flèches, Entrée, frappe directe, Ctrl+Z. Une colonne entière se colle depuis Excel. « Modifier le groupe » applique une hausse ou une baisse en pourcentage ou en euros sur une sélection, avec arrondi à l'euro et aperçu avant validation. Un garde-fou repère les prix qui semblent encore contenir l'écotaxe et propose de la retirer.
 
