@@ -713,3 +713,45 @@ body:has(.home) {
     animation: none;
   }
 }
+
+.home-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: oklch(0.14 0.01 55);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 40px 90px -40px oklch(0.7 0.19 var(--home-glow-h) / 0.55),
+    0 24px 48px -24px rgba(0, 0, 0, 0.7);
+}
+
+.home-frame-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding-inline: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-frame-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.home-frame-bar span:first-child {
+  background: var(--home-orange);
+}
+
+.home-frame-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
