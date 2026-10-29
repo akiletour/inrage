@@ -42,6 +42,7 @@ export default function CTASection({
         >
           <span>{primaryCTA.label}</span>
           <svg
+            aria-hidden
             className="ml-4 w-8 h-8 lg:w-10 lg:h-10 group-hover:translate-x-2 transition-transform duration-300"
             fill="none"
             stroke="currentColor"

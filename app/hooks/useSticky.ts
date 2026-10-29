@@ -1,34 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
 
-/**
- * Returns a ref, and a stateful value bound to the ref
- */
 export default function useSticky<T extends HTMLElement>() {
   const stickyRef = useRef<T>(null)
   const [sticky, setSticky] = useState(false)
 
   useEffect(() => {
-    // Observe when ref enters or leaves sticky state
-    function observe() {
+    let frame = 0
+    const observe = () => {
+      frame = 0
       if (!stickyRef.current) return
-      const stickyActive = stickyRef.current.getBoundingClientRect().bottom <= 0
-
-      if (stickyActive && !sticky) setSticky(true)
-      else if (!stickyActive && sticky) setSticky(false)
+      setSticky(stickyRef.current.getBoundingClientRect().bottom <= 0)
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(observe)
     }
     observe()
-
-    // Bind events
-    document.addEventListener('scroll', observe)
-    window.addEventListener('resize', observe)
-    window.addEventListener('orientationchange', observe)
+    document.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    window.addEventListener('orientationchange', schedule)
 
     return () => {
-      document.removeEventListener('scroll', observe)
-      window.removeEventListener('resize', observe)
-      window.removeEventListener('orientationchange', observe)
+      document.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+      window.removeEventListener('orientationchange', schedule)
+      if (frame) cancelAnimationFrame(frame)
     }
-  }, [sticky])
+  }, [])
 
   return [stickyRef, sticky] as const
 }

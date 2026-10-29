@@ -1,8 +1,4 @@
-'use client'
-
-import { Fragment, ReactNode } from 'react'
-
-import { motion } from 'motion/react'
+import { ReactNode } from 'react'
 
 import Header from '@layout/Header'
 
@@ -16,12 +12,6 @@ type Props = {
   }>
 }
 
-const variants = {
-  hidden: { opacity: 0, x: -100, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: -100 },
-}
-
 function Layout({
   children,
   title = '',
@@ -31,15 +21,9 @@ function Layout({
   return (
     <div className={hero ? 'home' : undefined}>
       <Header pageTitle={title} hero={hero} breadcrumb={breadcrumbs} />
-      <motion.div
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        layout
-        variants={variants}
-      >
-        <Fragment key={title}>{children}</Fragment>
-      </motion.div>
+      <div key={title} className="page-enter">
+        {children}
+      </div>
     </div>
   )
 }

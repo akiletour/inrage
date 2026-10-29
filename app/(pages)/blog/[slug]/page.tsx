@@ -124,6 +124,9 @@ export default async function Page(props: Props) {
   const categoryHref = category
     ? RouteLink.blogCategory(category.slug)
     : RouteLink.blog
+  const related = post.category
+    ? await getBlogItems(4, 'date', post.slug, post.category)
+    : []
 
   return (
     <Layout
@@ -216,7 +219,7 @@ export default async function Page(props: Props) {
         </div>
       </section>
 
-      {post.category && (
+      {related.length > 0 && post.category && (
         <section className="container py-20 md:py-28">
           <SectionHeading>À lire ensuite</SectionHeading>
           <ArticleCards

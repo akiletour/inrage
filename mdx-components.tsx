@@ -10,6 +10,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h2>
     ),
+    table: (props) => (
+      <div className="overflow-x-auto">
+        <table {...props} />
+      </div>
+    ),
     pre: (props) => (
       <pre
         className="overflow-x-auto py-4 rounded-md bg-muted my-4 [&_[data-line]]:px-4"

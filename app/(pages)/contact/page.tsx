@@ -133,7 +133,7 @@ export default function Contact() {
                 </p>
               </div>
             </div>
-            <p className="home-num mt-10 text-xs leading-5 text-white/40">
+            <p className="home-num mt-10 text-xs leading-5 text-white/60">
               Siret 813 430 592 00010, NAF 6201Z, RCS La Rochelle 813 430 592
             </p>
           </Reveal>

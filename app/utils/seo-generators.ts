@@ -43,25 +43,17 @@ export function generateEcommerceMetadata(): PortfolioPageMetadata {
   return {
     title: 'Portfolio e-commerce La Rochelle | PrestaShop & WooCommerce',
     description:
-      'Portfolio e-commerce : 7 réalisations PrestaShop et WooCommerce à La Rochelle. Boutiques B2B, migrations, optimisations. Développeur freelance Charente-Maritime.',
+      'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle. Boutiques B2B, migrations, optimisations. Développeur freelance Charente-Maritime.',
     keywords:
       'portfolio e-commerce La Rochelle, réalisations prestashop woocommerce, projets boutique en ligne charente-maritime, développeur e-commerce la rochelle',
     openGraph: {
       title:
         'Portfolio E-commerce La Rochelle | Réalisations PrestaShop & WooCommerce',
       description:
-        'Portfolio e-commerce : 7 réalisations PrestaShop et WooCommerce à La Rochelle. Boutiques B2B, migrations, optimisations par développeur freelance.',
+        'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle. Boutiques B2B, migrations, optimisations par développeur freelance.',
       url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
       type: 'website',
       locale: 'fr_FR',
-      images: [
-        {
-          url: getCanonicalUrl('/images/portfolio/e-commerce-og.jpg'),
-          width: 1200,
-          height: 630,
-          alt: 'Portfolio E-commerce - Réalisations PrestaShop & WooCommerce La Rochelle',
-        },
-      ],
     },
     alternates: {
       canonical: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
@@ -84,7 +76,7 @@ export function generateEcommerceJsonLd(): JsonLdCollectionPage {
     '@type': 'CollectionPage',
     name: 'Portfolio E-commerce - Réalisations PrestaShop & WooCommerce La Rochelle',
     description:
-      'Portfolio e-commerce présentant 7 réalisations de boutiques PrestaShop et WooCommerce développées à La Rochelle et en Charente-Maritime.',
+      'Portfolio e-commerce présentant les boutiques PrestaShop et WooCommerce développées à La Rochelle et en Charente-Maritime.',
     url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
     mainEntity: {
       '@type': 'Person',

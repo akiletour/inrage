@@ -50,7 +50,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
               <a
                 href={`#${heading.id}`}
                 aria-current={isActive ? 'location' : undefined}
-                className={`-ml-px block border-l pl-4 text-sm leading-6 transition-colors ${
+                className={`-ml-px block border-l py-1.5 pl-4 text-sm leading-6 transition-colors ${
                   isActive
                     ? 'border-(--home-orange) text-white'
                     : 'border-transparent text-(--home-muted) hover:border-(--home-orange) hover:text-white'

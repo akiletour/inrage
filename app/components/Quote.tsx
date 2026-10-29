@@ -6,6 +6,7 @@ export default function Quote({ message }: Props) {
     <div className="lg:px-36 text-center italic text-2xl md:text-4xl text-white font-light md:font-thin">
       <div className="relative">
         <svg
+          aria-hidden
           className="absolute -left-3 -top-4 fill-orange opacity-50"
           height="80"
           xmlns="http://www.w3.org/2000/svg"

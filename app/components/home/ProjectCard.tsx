@@ -1,6 +1,6 @@
 'use client'
 
-import { MouseEvent } from 'react'
+import { PointerEvent } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,7 +9,8 @@ import { RouteLink } from '@lib/router'
 
 import { HomeProject } from './data'
 
-function tilt(e: MouseEvent<HTMLElement>) {
+function tilt(e: PointerEvent<HTMLElement>) {
+  if (e.pointerType !== 'mouse') return
   const r = e.currentTarget.getBoundingClientRect()
   const x = (e.clientX - r.left) / r.width
   const y = (e.clientY - r.top) / r.height
@@ -17,7 +18,7 @@ function tilt(e: MouseEvent<HTMLElement>) {
   e.currentTarget.style.setProperty('--rx', `${(0.5 - y) * 10}deg`)
 }
 
-function untilt(e: MouseEvent<HTMLElement>) {
+function untilt(e: PointerEvent<HTMLElement>) {
   e.currentTarget.style.setProperty('--ry', '0deg')
   e.currentTarget.style.setProperty('--rx', '0deg')
 }
@@ -27,8 +28,8 @@ export default function ProjectCard({ project }: { project: HomeProject }) {
     <Link
       href={RouteLink.portfolioProject(project.support.slug, project.slug)}
       className="home-tilt home-card group block"
-      onMouseMove={tilt}
-      onMouseLeave={untilt}
+      onPointerMove={tilt}
+      onPointerLeave={untilt}
     >
       <div className="home-shot overflow-hidden rounded-xl">
         <Image

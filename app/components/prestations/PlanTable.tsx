@@ -15,7 +15,7 @@ function Value({ value }: { value: string | boolean }) {
     return value ? (
       <span className="font-medium text-white">Inclus</span>
     ) : (
-      <span className="text-white/30">Non</span>
+      <span className="text-white/60">Non</span>
     )
   }
   return (

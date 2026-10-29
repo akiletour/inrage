@@ -8,7 +8,7 @@ export default function Socials() {
     <div className="grid grid-flow-col gap-4 items-center justify-start">
       <a
         aria-label="Github inRage / Pascal GAULT"
-        className="text-white transition hover:text-orange"
+        className="-m-2 p-2 text-white transition-colors hover:text-orange"
         href="https://github.com/Akiletour"
         target="_blank"
         rel="noreferrer noopener"
@@ -17,7 +17,7 @@ export default function Socials() {
       </a>
       <a
         aria-label="Twitter Pascal GAULT"
-        className="text-white transition hover:text-orange"
+        className="-m-2 p-2 text-white transition-colors hover:text-orange"
         href="https://twitter.com/akiletour"
         target="_blank"
         rel="noreferrer noopener"
@@ -26,7 +26,7 @@ export default function Socials() {
       </a>
       <a
         aria-label="LinkedIn Pascal GAULT"
-        className="text-white transition hover:text-orange"
+        className="-m-2 p-2 text-white transition-colors hover:text-orange"
         href="https://www.linkedin.com/in/akiletour/"
         target="_blank"
         rel="noreferrer noopener"
@@ -35,7 +35,7 @@ export default function Socials() {
       </a>
       <a
         aria-label="Malt Pascal GAULT"
-        className="text-white transition hover:text-orange"
+        className="-m-2 p-2 text-white transition-colors hover:text-orange"
         href="https://www.malt.fr/profile/pascalgault"
         target="_blank"
         rel="noreferrer noopener"

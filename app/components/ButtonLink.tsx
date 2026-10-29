@@ -29,10 +29,11 @@ export function ButtonLinkRaw({
   return (
     <Tag
       {...props}
-      className="group hover:text-orange transition-all text-white font-medium flex items-center"
+      className="group hover:text-orange transition-colors text-white font-medium flex items-center"
     >
       {children}
       <svg
+        aria-hidden
         xmlns="http://www.w3.org/2000/svg"
         className="ml-4 h-6 group-hover:animate-bouncex"
         viewBox="0 0 448 512"

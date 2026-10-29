@@ -1,4 +1,5 @@
 import { GoogleTagManager } from '@next/third-parties/google'
+import type { Viewport } from 'next'
 import { ReactNode } from 'react'
 
 import Footer from '@layout/Footer'
@@ -8,13 +9,24 @@ import './globals.css'
 import '@component/home/home.css'
 import { serializeJsonLd } from '@util/seo-generators'
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+  colorScheme: 'dark',
+  themeColor: '#141414',
+}
+
 export async function generateMetadata() {
   return {
     metadataBase: new URL(getCanonicalUrl()),
+    title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
+    description:
+      'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement en France.',
     openGraph: {
       locale: 'fr_FR',
       type: 'website',
-      url: getCanonicalUrl(),
       siteName: 'inRage',
       images: [
         {
@@ -156,7 +168,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
-        <div>{children}</div>
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange focus:px-4 focus:py-2 focus:text-gray-darker"
+        >
+          Aller au contenu
+        </a>
+        <main id="contenu">{children}</main>
         <Footer />
       </body>
     </html>

@@ -64,7 +64,7 @@ export interface PortfolioPageMetadata {
     url: string
     type: 'website'
     locale: 'fr_FR'
-    images: Array<{
+    images?: Array<{
       url: string
       width: number
       height: number

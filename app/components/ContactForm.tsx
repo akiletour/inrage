@@ -63,7 +63,7 @@ export default function ContactForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
     trigger,
     getValues,
@@ -114,7 +114,7 @@ export default function ContactForm({
       .then((r) => {
         if (r.status === 422) {
           setError(
-            'Votre message a été identifié comme spam. Veuillez réessayer.'
+            'Votre message a été identifié comme spam. Reformulez-le sans lien, ou appelez-moi au 06 82 96 38 89.'
           )
           const spamError = new Error('Message marked as spam') as SpamError
           spamError.isSpam = true
@@ -169,7 +169,7 @@ export default function ContactForm({
           })
           .catch(() => {
             setError(
-              'Une erreur est survenue. Veuillez réessayer ultérieurement.'
+              'L’envoi a échoué. Réessayez dans un instant ou appelez-moi au 06 82 96 38 89.'
             )
           })
       })
@@ -217,7 +217,7 @@ export default function ContactForm({
               {...register('website', { required: true })}
             />
             {errors.website && (
-              <span className="absolute text-red top-8 right-4 text-xs">
+              <span className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs">
                 Champ requis
               </span>
             )}
@@ -261,7 +261,7 @@ export default function ContactForm({
                   {...register('name', { required: step === 2 })}
                 />
                 {errors.name && (
-                  <span className="absolute text-red top-8 right-4 text-xs">
+                  <span className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs">
                     Champ requis
                   </span>
                 )}
@@ -279,10 +279,13 @@ export default function ContactForm({
                     placeholder="Votre adresse e-mail"
                     type="email"
                     autoComplete="email"
-                    {...register('email', { required: step === 2 })}
+                    {...register('email', {
+                      required: step === 2,
+                      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    })}
                   />
                   {errors.email && (
-                    <span className="absolute text-red top-8 right-4 text-xs">
+                    <span className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs">
                       Champ requis
                     </span>
                   )}
@@ -302,7 +305,7 @@ export default function ContactForm({
                     {...register('phone', { required: step === 2 })}
                   />
                   {errors.phone && (
-                    <span className="absolute text-red top-8 right-4 text-xs">
+                    <span className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs">
                       Champ requis
                     </span>
                   )}
@@ -329,14 +332,14 @@ export default function ContactForm({
               </p>
             )}
             {state.error && (
-              <p className="mt-4 text-red-600 font-bold" role="alert">
+              <p className="mt-4 text-red-300 font-bold" role="alert">
                 {state.error}
               </p>
             )}
 
             <Button
               submit
-              isLoading={state.loading}
+              isLoading={state.loading || isSubmitting}
               className="button mt-5 py-6 px-8 w-full"
             >
               Recevoir mon audit gratuit
@@ -355,48 +358,84 @@ export default function ContactForm({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 md:grid-cols-2">
         <div className={`relative order-1 ${stacked ? 'md:col-span-2' : ''}`}>
+          <label htmlFor="contact-name" className="sr-only">
+            Nom
+          </label>
           <input
+            id="contact-name"
             className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
             }`}
             placeholder="Prénom NOM"
             type="text"
+            autoComplete="name"
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
             {...register('name', { required: true })}
           />
           {errors.name && (
-            <span className="absolute text-red top-8 right-4 text-xs">
+            <span
+              id="contact-name-error"
+              className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs"
+            >
               Champ requis
             </span>
           )}
         </div>
 
         <div className="relative order-3">
+          <label htmlFor="contact-email" className="sr-only">
+            Adresse e-mail
+          </label>
           <input
+            id="contact-email"
             className={`input-field ${
               errors.email ? 'border-red' : 'border-gray'
             }`}
             placeholder="Votre adresse e-mail"
             type="email"
-            {...register('email', { required: true })}
+            autoComplete="email"
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? 'contact-email-error' : undefined}
+            {...register('email', {
+              required: 'Champ requis',
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Adresse e-mail invalide',
+              },
+            })}
           />
           {errors.email && (
-            <span className="absolute text-red top-8 right-4 text-xs">
-              Champ requis
+            <span
+              id="contact-email-error"
+              className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs"
+            >
+              {errors.email.message}
             </span>
           )}
         </div>
 
         <div className="relative order-4">
+          <label htmlFor="contact-phone" className="sr-only">
+            Téléphone
+          </label>
           <input
+            id="contact-phone"
             className={`input-field ${
               errors.phone ? 'border-red' : 'border-gray'
             }`}
             placeholder="Numéro de téléphone"
             type="tel"
+            autoComplete="tel"
+            aria-invalid={errors.phone ? true : undefined}
+            aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
             {...register('phone', { required: true })}
           />
           {errors.phone && (
-            <span className="absolute text-red top-8 right-4 text-xs">
+            <span
+              id="contact-phone-error"
+              className="pointer-events-none absolute text-red-300 top-8 right-4 text-xs"
+            >
               Champ requis
             </span>
           )}
@@ -404,15 +443,26 @@ export default function ContactForm({
         <div
           className={`order-10 relative ${stacked ? 'md:col-span-2' : 'md:row-span-3 md:order-2'}`}
         >
+          <label htmlFor="contact-content" className="sr-only">
+            Message
+          </label>
           <textarea
+            id="contact-content"
             className={`input-field min-h-[200px] h-full ${
               errors.content ? 'border-red' : 'border-gray'
             }`}
             placeholder="Laissez-moi un petit message"
+            aria-invalid={errors.content ? true : undefined}
+            aria-describedby={
+              errors.content ? 'contact-content-error' : undefined
+            }
             {...register('content', { required: true })}
           />
           {errors.content && (
-            <span className="absolute text-red bottom-full mb-2 right-0 text-xs">
+            <span
+              id="contact-content-error"
+              className="pointer-events-none absolute text-red-300 bottom-full mb-2 right-0 text-xs"
+            >
               Champ requis
             </span>
           )}
@@ -421,20 +471,26 @@ export default function ContactForm({
 
       <div className="mt-6 flex flex-col md:flex-row items-center justify-center md:justify-end">
         {state.success && (
-          <div className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-[#27ae60]">
+          <div
+            role="status"
+            className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-[#27ae60]"
+          >
             <span className="font-bold underline">Merci !</span> Je vous
             répondrai très prochainement dès que j&apos;aurai pris connaissance
             de votre message.
           </div>
         )}
         {state.error && (
-          <div className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-red-600">
+          <div
+            role="alert"
+            className="md:mr-8 flex-1 text-center mb-4 md:mb-0 md:text-right text-red-300"
+          >
             <span className="font-bold">{state.error}</span>
           </div>
         )}
         <Button
           submit
-          isLoading={state.loading}
+          isLoading={state.loading || isSubmitting}
           className="button py-6 px-8 w-full md:w-auto"
         >
           Envoyer mon message

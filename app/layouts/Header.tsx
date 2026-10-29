@@ -1,3 +1,5 @@
+'use client'
+
 import { Fragment, ReactNode } from 'react'
 
 import Image from 'next/image'
@@ -39,7 +41,10 @@ export default function Header({
         <h1 className="font-bold max-w-4xl tracking-wider text-2xl sm:text-4xl text-white">
           {pageTitle}
         </h1>
-        <div className="hidden sm:grid mt-4 uppercase text-xs grid-flow-col gap-2 justify-start text-white opacity-80">
+        <nav
+          aria-label="Fil d’Ariane"
+          className="hidden sm:grid mt-4 uppercase text-xs grid-flow-col gap-2 justify-start text-white opacity-80"
+        >
           <Link href="/">
             <span className="underline">Accueil</span>
           </Link>
@@ -52,8 +57,10 @@ export default function Header({
             </Fragment>
           ))}
           <span>/</span>
-          <span className="font-medium">{pageTitle}</span>
-        </div>
+          <span className="font-medium" aria-current="page">
+            {pageTitle}
+          </span>
+        </nav>
       </div>
 
       <Image

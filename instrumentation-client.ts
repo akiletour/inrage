@@ -15,10 +15,6 @@ Sentry.init({
     Sentry.browserTracingIntegration({
       enableInp: true,
     }),
-    Sentry.feedbackIntegration({
-      colorScheme: 'light',
-      autoInject: false,
-    }),
   ],
 
   replaysSessionSampleRate: IS_PRODUCTION ? 0.1 : 0,

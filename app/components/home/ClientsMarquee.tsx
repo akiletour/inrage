@@ -2,7 +2,7 @@ import { CLIENTS } from './data'
 
 export default function ClientsMarquee() {
   return (
-    <div className="home-marquee mt-12" aria-label="Clients">
+    <div className="home-marquee mt-12">
       <div className="home-marquee-track">
         {[...CLIENTS, ...CLIENTS].map((client, i) => (
           <span

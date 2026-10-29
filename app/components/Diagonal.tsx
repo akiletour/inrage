@@ -40,6 +40,7 @@ export default function Diagonal({
   return (
     <div className="relative">
       <svg
+        aria-hidden
         className={classeNames.join(' ')}
         height="361"
         preserveAspectRatio={
