@@ -45,7 +45,7 @@ export async function generateMetadata(props: Props) {
   }
   const { post } = result
 
-  const url = getCanonicalUrl(`${RouteLink.blog}/${post.slug}`)
+  const url = getCanonicalUrl(RouteLink.blogPost(post.slug))
 
   return {
     title: post.seo.title,
@@ -76,7 +76,7 @@ export async function generateMetadata(props: Props) {
 }
 
 const buildJsonLd = (post: Post) => {
-  const url = getCanonicalUrl(`${RouteLink.blog}/${post.slug}`)
+  const url = getCanonicalUrl(RouteLink.blogPost(post.slug))
 
   return {
     '@context': 'https://schema.org',

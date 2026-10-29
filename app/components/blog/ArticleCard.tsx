@@ -17,7 +17,7 @@ export default function ArticleCard({
   i?: number
   featured?: boolean
 }) {
-  const href = `${RouteLink.blog}/${article.slug}`
+  const href = RouteLink.blogPost(article.slug)
 
   if (featured) {
     return (
@@ -33,7 +33,7 @@ export default function ArticleCard({
               width={1190}
               height={530}
               className="h-auto w-full"
-              sizes="(min-width: 768px) 60vw, 100vw"
+              sizes="(min-width: 1280px) 690px, (min-width: 768px) 60vw, 100vw"
               priority
             />
           </span>

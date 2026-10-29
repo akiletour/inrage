@@ -15,7 +15,7 @@ export default async function LatestArticles() {
     <div className="mt-14 grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:gap-8">
       <Reveal>
         <Link
-          href={`${RouteLink.blog}/${featured.slug}`}
+          href={RouteLink.blogPost(featured.slug)}
           className="home-card home-article home-glass flex h-full flex-col"
         >
           <div className="home-article-media relative aspect-[2.15/1] overflow-hidden">
@@ -23,7 +23,7 @@ export default async function LatestArticles() {
               src={featured.thumbnail}
               alt=""
               fill
-              sizes="(min-width: 1024px) 55vw, 100vw"
+              sizes="(min-width: 1280px) 700px, (min-width: 1024px) 55vw, 100vw"
               className="home-article-img object-cover"
             />
             <span className="home-chip absolute top-4 left-4">
@@ -53,7 +53,7 @@ export default async function LatestArticles() {
         {others.map((article, i) => (
           <Reveal key={article.slug} i={i + 1} className="grow">
             <Link
-              href={`${RouteLink.blog}/${article.slug}`}
+              href={RouteLink.blogPost(article.slug)}
               className="home-card home-article home-glass grid h-full grid-cols-[112px_1fr] items-center gap-5 p-4 sm:grid-cols-[150px_1fr]"
             >
               <div className="home-article-media relative aspect-[2.15/1] overflow-hidden rounded-lg">

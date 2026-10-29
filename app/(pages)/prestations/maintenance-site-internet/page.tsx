@@ -156,7 +156,9 @@ export default function WebsiteTMA() {
               En octobre 2026, une faille PHP sous embargo a été corrigée sur
               tout le parc en une nuit.{' '}
               <Link
-                href={`${RouteLink.blog}/faille-securite-php-octobre-2026-recit`}
+                href={RouteLink.blogPost(
+                  'faille-securite-php-octobre-2026-recit'
+                )}
                 className="home-link"
               >
                 Le récit de cette nuit

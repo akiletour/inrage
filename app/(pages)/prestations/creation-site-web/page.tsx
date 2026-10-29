@@ -170,7 +170,7 @@ export default async function PrestationBuildWebsite() {
           <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
-              href={`${RouteLink.portfolio}/wordpress`}
+              href={RouteLink.portfolioCategory('wordpress')}
               className="home-btn-ghost home-glassy"
             >
               Voir toutes les réalisations WordPress
@@ -239,7 +239,7 @@ export default async function PrestationBuildWebsite() {
                 Le nouveau site est construit à côté, sur pré-production, puis
                 bascule en une fois. Pour{' '}
                 <Link
-                  href={`${RouteLink.portfolio}/wordpress/quadria`}
+                  href={RouteLink.portfolioProject('wordpress', 'quadria')}
                   className="home-link"
                 >
                   Quadria
@@ -247,7 +247,10 @@ export default async function PrestationBuildWebsite() {
                 , le catalogue produits et ses fiches ont été repris de cette
                 façon. Pour le{' '}
                 <Link
-                  href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+                  href={RouteLink.portfolioProject(
+                    'wordpress',
+                    'camping-la-mouette-rieuse'
+                  )}
                   className="home-link"
                 >
                   Camping La Mouette Rieuse

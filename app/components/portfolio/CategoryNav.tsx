@@ -14,7 +14,7 @@ export default async function CategoryNav({ current }: { current?: string }) {
       count: items.length,
     },
     ...categories.map((category) => ({
-      href: `${RouteLink.portfolio}/${category.slug}`,
+      href: RouteLink.portfolioCategory(category.slug),
       label: category.title,
       count: items.filter((item) =>
         item.categories.some((entry) => entry.slug === category.slug)

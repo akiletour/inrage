@@ -12,7 +12,7 @@ export const SERVICES = [
   {
     title: 'Connecteurs ERP, caisse et marketplaces',
     text: 'J’ai relié Prestashop au logiciel de gestion LGPI d’une parapharmacie de 16 000 références, aux ERP Sollo et MVS d’un distributeur, et aux API de marketplaces pour une boutique multiboutique B2B et B2C. Stocks, prix, commandes et clients circulent dans les deux sens sans ressaisie.',
-    href: `${RouteLink.portfolio}/e-commerce/parapharmacie-moins-chere`,
+    href: RouteLink.portfolioProject('e-commerce', 'parapharmacie-moins-chere'),
     hrefText: 'Voir le projet Parapharmacie Moins Chère',
   },
   {

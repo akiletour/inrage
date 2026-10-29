@@ -22,7 +22,7 @@ export default async function ArticleCards({
         <li key={article.slug}>
           <Reveal i={i} className="h-full">
             <Link
-              href={`${RouteLink.blog}/${article.slug}`}
+              href={RouteLink.blogPost(article.slug)}
               className="home-card home-article home-glass grid h-full grid-cols-[112px_1fr] items-center gap-5 p-4 sm:grid-cols-[150px_1fr]"
             >
               <span className="home-article-media relative block aspect-[2.15/1] overflow-hidden rounded-lg">

@@ -80,7 +80,7 @@ function Hero() {
                 Décrire votre besoin
               </Link>
               <Link
-                href={`${RouteLink.portfolio}/application-web/invoicer`}
+                href={RouteLink.portfolioProject('application-web', 'invoicer')}
                 className="home-btn-ghost home-glassy"
               >
                 Voir Invoicer, application Symfony

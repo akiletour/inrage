@@ -32,8 +32,8 @@ export default function FeaturedCases({
                   width={649}
                   height={1149}
                   className="h-auto w-full"
-                  sizes="(min-width: 768px) 20vw, 38vw"
-                  loading="eager"
+                  sizes="(min-width: 1280px) 230px, (min-width: 768px) 20vw, 38vw"
+                  priority={i === 0}
                 />
               </span>
               <span className="block pt-1">

@@ -161,7 +161,7 @@ export default async function PrestationPrestashop() {
           <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
-              href={`${RouteLink.portfolio}/e-commerce`}
+              href={RouteLink.portfolioCategory('e-commerce')}
               className="home-btn-ghost home-glassy"
             >
               Toutes les réalisations e-commerce

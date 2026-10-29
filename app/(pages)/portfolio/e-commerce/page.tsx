@@ -44,7 +44,7 @@ export default async function Page() {
             </Reveal>
             <Reveal i={2} className="mt-10">
               <CategoryNav
-                current={`${RouteLink.portfolio}/${category.slug}`}
+                current={RouteLink.portfolioCategory(category.slug)}
               />
             </Reveal>
           </div>

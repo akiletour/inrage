@@ -118,7 +118,7 @@ export default async function Sitemap() {
             <ul className="styled-list">
               {projectCategories.map(({ title, slug }) => (
                 <li key={title}>
-                  <Link href={`${RouteLink.portfolio}/${slug}`}>{title}</Link>
+                  <Link href={RouteLink.portfolioCategory(slug)}>{title}</Link>
                 </li>
               ))}
             </ul>
@@ -126,7 +126,7 @@ export default async function Sitemap() {
             <ul className="styled-list mt-6">
               {projects.map(({ title, slug, support }) => (
                 <li key={title}>
-                  <Link href={`${RouteLink.portfolio}/${support.slug}/${slug}`}>
+                  <Link href={RouteLink.portfolioProject(support.slug, slug)}>
                     {title}
                   </Link>
                 </li>
@@ -148,7 +148,7 @@ export default async function Sitemap() {
             <ul className="styled-list mt-6">
               {posts.map(({ title, slug }) => (
                 <li key={title}>
-                  <Link href={`${RouteLink.blog}/${slug}`}>{title}</Link>
+                  <Link href={RouteLink.blogPost(slug)}>{title}</Link>
                 </li>
               ))}
             </ul>

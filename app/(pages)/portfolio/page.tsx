@@ -47,7 +47,7 @@ export default async function Page() {
           '@type': 'CreativeWork',
           name: item.title,
           url: getCanonicalUrl(
-            `${RouteLink.portfolio}/${item.support.slug}/${item.slug}`
+            RouteLink.portfolioProject(item.support.slug, item.slug)
           ),
           dateCreated: String(item.year),
         })),

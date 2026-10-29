@@ -61,7 +61,7 @@ export const BACKSTAGE = [
   {
     title: 'Sécurité',
     text: 'CrowdSec filtre les adresses malveillantes signalées par des milliers de serveurs dans le monde. Quand une attaque passe ce premier niveau, j’ai les outils pour l’analyser et comprendre ce qui s’est passé plutôt que de remettre une sauvegarde en croisant les doigts. Chaque image Docker est scannée avec Trivy avant d’être déployée. En octobre 2026, une faille PHP sous embargo a été corrigée sur tout le parc en une nuit.',
-    href: `${RouteLink.blog}/faille-securite-php-octobre-2026-recit`,
+    href: RouteLink.blogPost('faille-securite-php-octobre-2026-recit'),
     hrefText: 'Lire le récit de cette nuit',
   },
   {

@@ -117,7 +117,7 @@ function Hero() {
                 Demander un devis
               </Link>
               <Link
-                href={`${RouteLink.portfolio}/wordpress`}
+                href={RouteLink.portfolioCategory('wordpress')}
                 className="home-btn-ghost home-glassy"
               >
                 Voir mes sites WordPress
@@ -178,7 +178,7 @@ export default async function PrestationWordPress() {
           <ListingGrid projects={projects} eager={3} className="mt-14" />
           <div className="mt-12 flex justify-center">
             <Link
-              href={`${RouteLink.portfolio}/wordpress`}
+              href={RouteLink.portfolioCategory('wordpress')}
               className="home-btn-ghost home-glassy"
             >
               Les 17 réalisations WordPress
@@ -253,7 +253,7 @@ export default async function PrestationWordPress() {
               <p>
                 Pour{' '}
                 <Link
-                  href={`${RouteLink.portfolio}/wordpress/quadria`}
+                  href={RouteLink.portfolioProject('wordpress', 'quadria')}
                   className="home-link"
                 >
                   Quadria
@@ -261,7 +261,10 @@ export default async function PrestationWordPress() {
                 , le catalogue de l’ancien site a été entièrement repris dans
                 des fiches produits sur mesure. Pour le{' '}
                 <Link
-                  href={`${RouteLink.portfolio}/wordpress/camping-la-mouette-rieuse`}
+                  href={RouteLink.portfolioProject(
+                    'wordpress',
+                    'camping-la-mouette-rieuse'
+                  )}
                   className="home-link"
                 >
                   Camping La Mouette Rieuse

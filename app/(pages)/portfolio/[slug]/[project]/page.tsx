@@ -51,7 +51,7 @@ export async function generateMetadata(props: Props) {
     description: metadata.excerpt ?? '',
     alternates: {
       canonical: getCanonicalUrl(
-        `${RouteLink.portfolio}/${metadata.category}/${params.project}`
+        RouteLink.portfolioProject(metadata.category, params.project)
       ),
     },
   }
@@ -90,7 +90,7 @@ export default async function Page(props: Props) {
   )
 
   const pageUrl = getCanonicalUrl(
-    `${RouteLink.portfolio}/${metadata.category}/${params.project}`
+    RouteLink.portfolioProject(metadata.category, params.project)
   )
 
   const jsonLd = {
@@ -100,7 +100,7 @@ export default async function Page(props: Props) {
         { name: 'Portfolio', item: getCanonicalUrl(RouteLink.portfolio) },
         {
           name: category.title,
-          item: getCanonicalUrl(`${RouteLink.portfolio}/${category.slug}`),
+          item: getCanonicalUrl(RouteLink.portfolioCategory(category.slug)),
         },
         { name: metadata.title, item: pageUrl },
       ]),
@@ -128,7 +128,7 @@ export default async function Page(props: Props) {
               <Reveal>
                 <p className="home-num text-sm text-(--home-muted)">
                   <Link
-                    href={`${RouteLink.portfolio}/${category.slug}`}
+                    href={RouteLink.portfolioCategory(category.slug)}
                     className="transition-colors hover:text-white"
                   >
                     {category.title}
@@ -216,7 +216,7 @@ export default async function Page(props: Props) {
                   width={649}
                   height={1149}
                   priority
-                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  sizes="(min-width: 1280px) 550px, (min-width: 1024px) 45vw, 100vw"
                   className="home-frame-shot"
                 />
               </div>
@@ -279,7 +279,7 @@ export default async function Page(props: Props) {
           </div>
           <p className="mt-10">
             <Link
-              href={`${RouteLink.portfolio}/${category.slug}`}
+              href={RouteLink.portfolioCategory(category.slug)}
               className="home-btn-ghost home-glassy"
             >
               Tous les projets {category.title}

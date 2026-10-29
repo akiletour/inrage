@@ -31,7 +31,7 @@ export default async function BlogList() {
         blogPost: items.map((item) => ({
           '@type': 'BlogPosting',
           headline: item.title,
-          url: getCanonicalUrl(`${RouteLink.blog}/${item.slug}`),
+          url: getCanonicalUrl(RouteLink.blogPost(item.slug)),
           datePublished: item.date,
         })),
       },

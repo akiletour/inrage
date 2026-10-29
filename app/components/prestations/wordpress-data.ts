@@ -4,13 +4,13 @@ export const PRINCIPLES = [
   {
     title: 'Toujours sur mesure, jamais un thème acheté',
     text: 'Pas de thème du commerce, pas de Divi, pas d’Elementor, pas de constructeur de pages. Chaque site part d’Octa, ma base de thème publique sur GitHub, et reçoit un thème écrit pour votre maquette. Le résultat ressemble à votre entreprise, pas au modèle de dix mille autres sites, et il n’embarque pas trois mégaoctets de scripts qui ne servent à rien.',
-    href: `${RouteLink.blog}/octa-starter-wordpress-theme`,
+    href: RouteLink.blogPost('octa-starter-wordpress-theme'),
     hrefText: 'Lire la présentation d’Octa',
   },
   {
     title: 'Des blocs Gutenberg natifs, à votre image',
     text: 'Je m’appuie sur l’éditeur de blocs de WordPress, celui qui est maintenu par le cœur du CMS, pas sur une surcouche. Vos blocs sont définis avec vous au cadrage : une bannière, une grille de services, un témoignage, une carte. Chacun respecte la charte, vous ne pouvez pas casser la mise en page, et le site reste compatible avec les prochaines versions de WordPress.',
-    href: `${RouteLink.blog}/creation-blocs-gutenberg-wordpress-sage-9`,
+    href: RouteLink.blogPost('creation-blocs-gutenberg-wordpress-sage-9'),
     hrefText: 'Voir comment je construis un bloc',
   },
   {

@@ -298,7 +298,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   </Link>
                   <ul className="list-disc pl-4 marker:text-orange-dark">
                     <li>
-                      <Link href={`${RouteLink.portfolio}/wordpress`}>
+                      <Link href={RouteLink.portfolioCategory('wordpress')}>
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
@@ -308,7 +308,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/e-commerce`}>
+                      <Link href={RouteLink.portfolioCategory('e-commerce')}>
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
@@ -318,7 +318,9 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/application-web`}>
+                      <Link
+                        href={RouteLink.portfolioCategory('application-web')}
+                      >
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
@@ -333,7 +335,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   <FeaturedProjectMenu
                     image={FeaturedProjectImage}
                     title="Parapharmacie moins chere"
-                    link={`${RouteLink.portfolio}/e-commerce/parapharmacie-moins-chere`}
+                    link={RouteLink.portfolioProject(
+                      'e-commerce',
+                      'parapharmacie-moins-chere'
+                    )}
                   />
                 </div>
               </div>

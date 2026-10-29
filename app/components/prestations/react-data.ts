@@ -32,13 +32,16 @@ export const PROOFS = [
     title: 'Invoicer',
     text: 'Logiciel de facturation pour auto-entrepreneurs : Next.js 16 et React 19 côté interface, Symfony 7.4 côté API. Stripe Connect, Bridge, Pennylane. Des abonnés qui l’utilisent tous les jours depuis 2017.',
     image: 'invoicer',
-    href: `${RouteLink.portfolio}/application-web/invoicer`,
+    href: RouteLink.portfolioProject('application-web', 'invoicer'),
   },
   {
     title: 'Outil de picking d’entrepôt',
     text: 'Application mobile en React et Redux pour les préparateurs de commandes de Parapharmacie Moins Chère : plan de l’entrepôt, emplacements des produits, expéditions, base de données temps réel.',
     image: 'picking',
-    href: `${RouteLink.portfolio}/application-web/outil-de-picking-dentrepot`,
+    href: RouteLink.portfolioProject(
+      'application-web',
+      'outil-de-picking-dentrepot'
+    ),
   },
   {
     title: 'Ce site',

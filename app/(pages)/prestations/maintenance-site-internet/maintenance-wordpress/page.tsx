@@ -163,7 +163,9 @@ export default function TmaWordPress() {
           <p className="leading-7 text-(--home-muted)">
             Vous comparez plusieurs offres ? J’ai écrit un{' '}
             <Link
-              href={`${RouteLink.blog}/choisir-prestataire-maintenance-tma-wordpress`}
+              href={RouteLink.blogPost(
+                'choisir-prestataire-maintenance-tma-wordpress'
+              )}
               className="home-link"
             >
               guide pour choisir un prestataire TMA WordPress

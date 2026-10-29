@@ -31,7 +31,7 @@ export async function generateMetadata(props: Props) {
     title: `${category.title} - Portfolio de Pascal Gault, développeur freelance`,
     description: `Réalisations ${category.title} : sites et applications développés par Pascal Gault, développeur web freelance à La Rochelle, pour des clients locaux et nationaux.`,
     alternates: {
-      canonical: getCanonicalUrl(`${RouteLink.portfolio}/${category.slug}`),
+      canonical: getCanonicalUrl(RouteLink.portfolioCategory(category.slug)),
     },
   }
 }
@@ -56,7 +56,7 @@ export default async function Page(props: Props) {
     archives.length > 0
       ? items.filter((item) => item.year >= ARCHIVE_BEFORE)
       : items
-  const pageUrl = getCanonicalUrl(`${RouteLink.portfolio}/${category.slug}`)
+  const pageUrl = getCanonicalUrl(RouteLink.portfolioCategory(category.slug))
   const content = 'content' in category ? category.content : undefined
 
   const jsonLd = {
@@ -75,7 +75,7 @@ export default async function Page(props: Props) {
           '@type': 'CreativeWork',
           name: item.title,
           url: getCanonicalUrl(
-            `${RouteLink.portfolio}/${item.support.slug}/${item.slug}`
+            RouteLink.portfolioProject(item.support.slug, item.slug)
           ),
           dateCreated: String(item.year),
         })),
@@ -101,7 +101,7 @@ export default async function Page(props: Props) {
             </Reveal>
             <Reveal i={2} className="mt-10">
               <CategoryNav
-                current={`${RouteLink.portfolio}/${category.slug}`}
+                current={RouteLink.portfolioCategory(category.slug)}
               />
             </Reveal>
           </div>

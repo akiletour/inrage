@@ -77,7 +77,7 @@ export const TEAM = [
     name: 'Johann Hébert',
     role: 'Consultant webmarketing',
     text: 'Stratégie de contenu et acquisition, mon associé du temps de Kamélab.',
-    href: `${RouteLink.portfolio}/wordpress/webmarketing-johann-hebert`,
+    href: RouteLink.portfolioProject('wordpress', 'webmarketing-johann-hebert'),
   },
 ]
 

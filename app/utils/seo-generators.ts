@@ -51,7 +51,7 @@ export function generateEcommerceMetadata(): PortfolioPageMetadata {
         'Portfolio E-commerce La Rochelle | Réalisations PrestaShop & WooCommerce',
       description:
         'Portfolio e-commerce : 7 réalisations PrestaShop et WooCommerce à La Rochelle. Boutiques B2B, migrations, optimisations par développeur freelance.',
-      url: getCanonicalUrl(`${RouteLink.portfolio}/e-commerce`),
+      url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
       type: 'website',
       locale: 'fr_FR',
       images: [
@@ -64,7 +64,7 @@ export function generateEcommerceMetadata(): PortfolioPageMetadata {
       ],
     },
     alternates: {
-      canonical: getCanonicalUrl(`${RouteLink.portfolio}/e-commerce`),
+      canonical: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
     },
     robots: {
       index: true,
@@ -85,7 +85,7 @@ export function generateEcommerceJsonLd(): JsonLdCollectionPage {
     name: 'Portfolio E-commerce - Réalisations PrestaShop & WooCommerce La Rochelle',
     description:
       'Portfolio e-commerce présentant 7 réalisations de boutiques PrestaShop et WooCommerce développées à La Rochelle et en Charente-Maritime.',
-    url: getCanonicalUrl(`${RouteLink.portfolio}/e-commerce`),
+    url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
     mainEntity: {
       '@type': 'Person',
       '@id': getCanonicalUrl('/#person'),
@@ -146,7 +146,7 @@ export function generateEcommerceJsonLd(): JsonLdCollectionPage {
           '@type': 'ListItem',
           position: 3,
           name: 'E-commerce',
-          item: getCanonicalUrl(`${RouteLink.portfolio}/e-commerce`),
+          item: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
         },
       ],
     },
