@@ -3,8 +3,8 @@ title: 'Quadria'
 category: 'wordpress'
 website: 'https://www.quadria.eu'
 year: 2026
-summary: 'Refonte du site de Quadria, fabricant d’équipements de collecte des déchets. Un catalogue pour les particuliers et les collectivités, développé sur WordPress avec Octa, notre base de thème open source.'
-excerpt: 'Refonte du site WordPress de Quadria par inRage avec Octa : parcours particuliers et collectivités, catalogue produits et fiches détaillées sur mesure.'
+summary: 'Refonte du site de Quadria, fabricant d’équipements de collecte des déchets. Un catalogue pour les particuliers et les collectivités, développé sur WordPress avec Octa, ma base de thème open source.'
+excerpt: 'Refonte du site WordPress de Quadria avec Octa : parcours particuliers et collectivités, catalogue produits et fiches détaillées sur mesure.'
 actions:
   - Refonte du site WordPress avec Octa
   - Intégration responsive sur mesure
@@ -34,7 +34,7 @@ import { RouteLink } from '@lib/router'
 
 Chez Quadria, on trouve aussi bien un composteur pour son jardin que des colonnes de tri pour toute une commune. Un habitant veut savoir quel composteur installer et comment s’en servir. Une collectivité a besoin de volumes, de dimensions et d’options de personnalisation pour préparer son projet.
 
-Le projet a démarré en 2025, avec une mise en ligne en 2026. Nous avons travaillé l’accès au catalogue et le contenu des fiches produits pour répondre à ces différents usages.
+Le projet a démarré en 2025, avec une mise en ligne en 2026. J’ai travaillé l’accès au catalogue et le contenu des fiches produits pour répondre à ces différents usages.
 
     </div>
 
@@ -87,7 +87,7 @@ Le visiteur choisit son profil, puis ce qu’il souhaite installer. Les entrées
 
 Le menu « Produits » rassemble les points d’apport volontaire, les bacs et les équipements de gestion des biodéchets. Chaque famille a ses visuels et ses liens. Il fallait organiser cet ensemble sur grand écran et prévoir une navigation utilisable au toucher sur mobile.
 
-Nous avons développé des sous-menus composés de blocs WordPress, que les équipes peuvent modifier dans l’éditeur. Cela permet de faire évoluer les groupes de produits et leurs liens en conservant la structure du menu. Sur mobile, l’ouverture et la fermeture du panneau tiennent compte de la position de l’en-tête pendant le défilement.
+J’ai développé des sous-menus composés de blocs WordPress, que les équipes peuvent modifier dans l’éditeur. Cela permet de faire évoluer les groupes de produits et leurs liens en conservant la structure du menu. Sur mobile, l’ouverture et la fermeture du panneau tiennent compte de la position de l’en-tête pendant le défilement.
 
       </div>
     </div>
@@ -145,12 +145,12 @@ Les tableaux de dimensions, les étapes de montage et les documents à télécha
     </h2>
     <div>
 
-Pour les formulaires, nous avons utilisé Contact Form 7 avec **Simple Conditional Fields for Contact Form 7**, une extension que nous avons développée chez inRage.
+Pour les formulaires, j’ai utilisé Contact Form 7 avec **Simple Conditional Fields for Contact Form 7**, une extension que j’ai développée chez inRage.
 
 Elle permet d’afficher ou de masquer des groupes de champs en fonction des réponses du visiteur. Certaines questions peuvent ainsi être réservées à un type de demande, plutôt que de présenter tous les champs à tout le monde. Les règles d’affichage se configurent visuellement dans WordPress.
 
       <Link href={`${RouteLink.blog}/contact-form-7-champ-conditionnel`} className="mt-5 inline-flex min-h-11 items-center text-base text-orange underline hover:text-white">
-        {'Lire notre article sur les champs conditionnels de Contact Form 7'}
+        {'Lire l’article sur les champs conditionnels de Contact Form 7'}
       </Link>
     </div>
 
@@ -167,9 +167,9 @@ Elle permet d’afficher ou de masquer des groupes de champs en fonction des ré
     </div>
     <div>
 
-Les fiches produits ont leur pendant dans l’administration. Les équipes peuvent renseigner les caractéristiques, ajouter une option ou remplacer une notice dans les champs prévus pour cela. Nous avons développé cette structure dans WooCommerce.
+Les fiches produits ont leur pendant dans l’administration. Les équipes peuvent renseigner les caractéristiques, ajouter une option ou remplacer une notice dans les champs prévus pour cela. J’ai développé cette structure dans WooCommerce.
 
-Pour les autres pages, nous avons créé des blocs WordPress dédiés aux produits, aux références clients et aux actualités. Les équipes composent leur contenu avec ces éléments, dont nous avons défini le rendu.
+Pour les autres pages, j’ai créé des blocs WordPress dédiés aux produits, aux références clients et aux actualités. Les équipes composent leur contenu avec ces éléments, dont j’ai défini le rendu.
 
     </div>
 
@@ -180,7 +180,7 @@ Pour les autres pages, nous avons créé des blocs WordPress dédiés aux produi
     <div className="mt-8 grid gap-8 md:grid-cols-[0.8fr_1.5fr] md:gap-12">
       <div>
         <p className="text-6xl font-medium leading-none text-white md:text-7xl">{'Octa'}</p>
-        <p className="max-w-[24ch] text-base">{'Notre base WordPress, publiée en open source.'}</p>
+        <p className="max-w-[24ch] text-base">{'Ma base WordPress, publiée en open source.'}</p>
       </div>
       <div>
         <h2 id="quadria-octa" className="text-2xl font-medium leading-tight text-white md:text-3xl">
@@ -188,14 +188,14 @@ Pour les autres pages, nous avons créé des blocs WordPress dédiés aux produi
         </h2>
         <div className="mt-6">
 
-Nous développons **Octa** chez inRage et son code est disponible en open source. Il nous sert de point de départ pour les projets WordPress. Sur Quadria, nous l’avons utilisé pour réaliser l’interface et les blocs propres au site.
+Je développe **Octa** chez inRage et son code est disponible en open source. Il me sert de point de départ pour les projets WordPress. Sur Quadria, je l’ai utilisé pour réaliser l’interface et les blocs propres au site.
 
 Pour les curieux, Octa assemble Bedrock, Sage et Acorn, avec Vite et Tailwind CSS côté interface. Les éléments partagés, comme les cartes produits, sont développés une fois puis réutilisés dans les pages.
 
         </div>
         <div className="mt-6 flex flex-col items-start gap-2 text-base">
           <Link href={`${RouteLink.blog}/octa-starter-wordpress-theme`} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
-            {'Lire notre article sur Octa'}
+            {'Lire l’article sur Octa'}
           </Link>
           <a href="https://github.com/inrage/octa" className="inline-flex min-h-11 items-center text-gray-light underline hover:text-white">
             {'Consulter le code sur GitHub'}
@@ -208,7 +208,7 @@ Pour les curieux, Octa assemble Bedrock, Sage et Acorn, avec Vite et Tailwind CS
 
   <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-2 text-base md:mt-16">
     <Link href={RouteLink.prestationWordPress} className="inline-flex min-h-11 items-center text-white underline hover:text-orange">
-      {'Notre savoir-faire WordPress'}
+      {'Mon savoir-faire WordPress'}
     </Link>
     <Link href={RouteLink.contact} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
       {'Parlons de votre refonte'}

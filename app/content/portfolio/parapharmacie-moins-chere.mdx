@@ -3,14 +3,14 @@ title: Parapharmacie Moins Chère
 category: 'e-commerce'
 website: 'https://www.parapharmaciemoinschere.com'
 year: 2017
-summary: 'Avec plus de 16 000 références, La Parapharmacie le Marché désirait un site de e-commerce robuste et simple d’utilisation. En plus de leur outil de gestion de picking, nous avons développé leur site de e-commerce avec la plateforme Prestashop. Nous avons créé un connecteur entre leur gestionnaire de stock LGPI et le site Prestashop.'
-excerpt: "Développement d'un site e-commerce PrestaShop pour La Parapharmacie le Marché avec plus de 16 000 références. Création d'un design system, intégration des maquettes Sketch, et développement d'une API connectant leur ERP LGPI à PrestaShop et aux marketplaces."
+summary: "La Parapharmacie le Marché vendait en ligne plus de 16 000 références. J'ai développé sa boutique Prestashop à partir d'un design system dessiné sur Sketch, puis le connecteur entre son logiciel de gestion LGPI, la boutique et les places de marché, et enfin l'outil de picking de son entrepôt."
+excerpt: "Boutique Prestashop de 16 000 références pour la Parapharmacie le Marché : thème sur mesure, connecteur avec le logiciel de gestion LGPI, publication sur Amazon et Cdiscount, outil de picking d'entrepôt."
 actions:
-  - Création d'un design system avec Sketch
-  - Création du thème Prestashop
-  - Intégration des maquettes Sketch
-  - Connexion aux marketplace (Amazon, cdiscount, ...)
-  - Création d'une API entre leur ERP LGPI et Prestashop
+  - Design system et maquettes sur Sketch
+  - Thème Prestashop sur mesure
+  - Connecteur entre le logiciel de gestion LGPI et Prestashop
+  - Publication du catalogue sur Amazon et Cdiscount
+  - Outil de picking pour l'entrepôt, en React
 
 image:
   thumbnail: parapharmaciemoinschere-sm.jpg
@@ -19,3 +19,15 @@ tools:
   - sketch
   - prestashop
 ---
+
+## 16 000 références qui vivent dans un logiciel de pharmacie
+
+La Parapharmacie le Marché est une parapharmacie physique qui a voulu vendre en ligne à prix bas. Son catalogue, ses stocks et ses prix vivent dans LGPI, le logiciel de gestion des officines. La boutique ne pouvait pas en être une copie à la main : j'ai écrit un connecteur qui lit LGPI et met Prestashop à jour, produits, prix et stocks, puis qui publie le même catalogue sur Amazon et Cdiscount. Une référence créée en pharmacie se retrouve en ligne sans ressaisie.
+
+## Un thème dessiné avant d'être codé
+
+Les maquettes ont été construites sur Sketch à partir d'un design system, boutons, cartes produits, filtres, pour tenir la cohérence sur des milliers de fiches. Le thème Prestashop a été développé sur mesure à partir de ces composants.
+
+## Et derrière la boutique, l'entrepôt
+
+Les commandes du site sont préparées dans un entrepôt où les équipes cherchaient les produits à vue. J'ai passé plus d'un mois sur place pour développer avec elles un [outil de picking](/portfolio/application-web/outil-de-picking-dentrepot) en React : plan du dépôt, emplacement des produits, suivi des expéditions. C'est le projet jumeau de cette boutique.
