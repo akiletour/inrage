@@ -1,11 +1,22 @@
+import '@component/home/home.css'
+
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import SupportSwitcher from '@component/portfolio/SupportSwitcher'
-import SectionTitle from '@component/SectionTitle'
+import CategoryNav from '@component/portfolio/CategoryNav'
+import ListingGrid from '@component/portfolio/ListingGrid'
+import {
+  ARCHIVE_BEFORE,
+  CATEGORY_CONTENT,
+} from '@component/portfolio/listing-data'
 import { getPortfolioItems, portfolioCategories } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
-import PortfolioGrid from '../PortfolioGrid'
-import { notFound } from 'next/navigation'
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
 type Props = {
   params: Promise<{
@@ -38,8 +49,6 @@ export async function generateStaticParams() {
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const data = await getPortfolioItems(-1, params.slug)
-
   const category =
     portfolioCategories[params.slug as keyof typeof portfolioCategories]
 
@@ -47,17 +56,166 @@ export default async function Page(props: Props) {
     return notFound()
   }
 
-  return (
-    <Layout
-      breadcrumbs={[{ link: RouteLink.portfolio, title: 'Portfolio' }]}
-      title={category.title}
-    >
-      <div className="container">
-        <SectionTitle content={category.intro} title={category.title} />
-        <SupportSwitcher pathname={`/portfolio/${category.slug}`} />
+  const items = await getPortfolioItems(-1, params.slug)
+  const old = items.filter((item) => item.year < ARCHIVE_BEFORE)
+  const archives = old.length >= 3 ? old : []
+  const recent =
+    archives.length > 0
+      ? items.filter((item) => item.year >= ARCHIVE_BEFORE)
+      : items
+  const pageUrl = getCanonicalUrl(`${RouteLink.portfolio}/${category.slug}`)
+  const content = CATEGORY_CONTENT[category.slug]
 
-        <PortfolioGrid projects={data} />
-      </div>
-    </Layout>
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Accueil',
+            item: getCanonicalUrl(),
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Portfolio',
+            item: getCanonicalUrl(RouteLink.portfolio),
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: category.title,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        '@type': 'CollectionPage',
+        url: pageUrl,
+        name: `Portfolio ${category.title}`,
+        about: { '@id': getCanonicalUrl('/#business') },
+        hasPart: items.map((item) => ({
+          '@type': 'CreativeWork',
+          name: item.title,
+          url: getCanonicalUrl(
+            `${RouteLink.portfolio}/${item.support.slug}/${item.slug}`
+          ),
+          dateCreated: String(item.year),
+        })),
+      },
+    ],
+  }
+
+  return (
+    <div className="home">
+      <Layout
+        hero={
+          <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-16 md:pb-20">
+            <div className="home-beam top-[30%] -left-[20%]" aria-hidden />
+            <div className="container pt-6 md:pt-12">
+              <Reveal>
+                <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+                  {category.title}
+                </h1>
+              </Reveal>
+              <Reveal i={1}>
+                <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+                  {category.intro}
+                </p>
+              </Reveal>
+              <Reveal i={2} className="mt-10">
+                <CategoryNav
+                  current={`${RouteLink.portfolio}/${category.slug}`}
+                />
+              </Reveal>
+            </div>
+          </section>
+        }
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+
+        <section className="container pt-4 pb-20 md:pb-28">
+          <ListingGrid projects={recent} eager={3} />
+        </section>
+
+        {content && (
+          <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+            <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+            <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+              <Reveal>
+                <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                  {content.expertise.title}
+                </h2>
+                <span className="home-rule mt-5" aria-hidden />
+              </Reveal>
+              <Reveal i={1}>
+                <div className="space-y-4 leading-7 text-white/85">
+                  {content.expertise.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  <p className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
+                    {content.links.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={linkClass}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {content && (
+          <section className="container py-20 md:py-28">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+              <Reveal>
+                <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                  {content.local.title}
+                </h2>
+                <span className="home-rule mt-5" aria-hidden />
+              </Reveal>
+              <Reveal i={1}>
+                <div className="space-y-4 leading-7 text-white/85">
+                  {content.local.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  <p>
+                    <Link href={RouteLink.contact} className={linkClass}>
+                      Parler de votre projet
+                    </Link>
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {archives.length > 0 && (
+          <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+            <div className="container">
+              <SectionHeading
+                text={`Les projets ${category.title} d’avant ${ARCHIVE_BEFORE}. Certains ont été refaits depuis par d’autres, les fiches racontent ce qui a été fait à l’époque.`}
+              >
+                Archives
+              </SectionHeading>
+              <div className="mt-14">
+                <ListingGrid projects={archives} muted />
+              </div>
+            </div>
+          </section>
+        )}
+      </Layout>
+    </div>
   )
 }

@@ -9,7 +9,7 @@ export const portfolioCategories = {
       'Sites vitrines, portfolios et boutiques WooCommerce développés sur WordPress avec un thème sur mesure, pour des entreprises de La Rochelle, de Charente-Maritime et de toute la France. Chaque fiche décrit le contexte du projet, ce qui a été développé et les outils utilisés.',
   },
   'application-web': {
-    title: 'Application Web',
+    title: 'Applications et plateformes',
     slug: 'application-web',
     icon: 'developpement-application-web.webp',
     intro:
@@ -103,5 +103,15 @@ export const getPortfolioItems = async (
         frontmatter.category as keyof typeof portfolioCategories
       ],
     thumbnail: frontmatter.image?.thumbnail || '',
+    large: frontmatter.image?.large || '',
+    year: Number(frontmatter.year),
+    excerpt: frontmatter.excerpt || '',
+    website: frontmatter.website || '',
+    categories: (frontmatter.categories ?? [frontmatter.category]).map(
+      (key) => portfolioCategories[key]
+    ),
+    tools: (frontmatter.tools ?? [])
+      .map((key) => portfolioTools[key as keyof typeof portfolioTools]?.title)
+      .filter((tool) => tool !== undefined),
   }))
 }
