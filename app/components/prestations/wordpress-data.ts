@@ -35,48 +35,6 @@ export const PRINCIPLES = [
   },
 ]
 
-export const LOCAL_PROJECTS = [
-  {
-    slug: 'quadria',
-    note: 'Refonte 2026 sur Octa : catalogue produits, fiches détaillées et parcours par public.',
-  },
-  {
-    slug: 'santeenvironnement-nouvelleaquitaine',
-    note: 'Portail éditorial pour la Nouvelle-Aquitaine : filtres, agenda, cartographie.',
-  },
-  {
-    slug: 'camping-la-mouette-rieuse',
-    note: 'La Rochelle. Identité visuelle et site vitrine refaits ensemble.',
-  },
-  {
-    slug: 'effy-proschool',
-    note: 'Site de formation pour une entité d’Emil Frey France.',
-  },
-  {
-    slug: 'ashler-manson',
-    note: 'Site vitrine sur mesure, blocs Gutenberg dédiés.',
-  },
-  {
-    slug: 'graphiste-romain-ouvrard',
-    note: 'La Rochelle. Portfolio de graphiste, thème Gutenberg sur mesure.',
-  },
-]
-
-export const WOOCOMMERCE_PROJECTS = [
-  {
-    slug: 'biosalines',
-    note: 'Île de Ré. Cosmétiques, boutique WooCommerce sur Sage.',
-  },
-  {
-    slug: 'boutique-guedelon',
-    note: 'Migration de Prestashop vers WooCommerce, boutique multilingue.',
-  },
-  {
-    slug: 'jemapub',
-    note: 'Import automatique des grilles tarifaires, recherche par référence.',
-  },
-]
-
 export const METHOD = [
   {
     title: 'Cadrage et arborescence',

@@ -9,14 +9,12 @@ import Layout from '@component/Layout'
 import ArticleCards from '@component/prestations/ArticleCards'
 import {
   FAQ,
-  LOCAL_PROJECTS,
   METHOD,
   PRICES,
   PRINCIPLES,
-  WOOCOMMERCE_PROJECTS,
 } from '@component/prestations/wordpress-data'
 import ListingGrid from '@component/portfolio/ListingGrid'
-import { getPortfolioItems, pickProjects } from '@lib/portfolio'
+import { getPortfolioItems, PortfolioProject } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import {
   breadcrumbJsonLd,
@@ -132,8 +130,17 @@ function Hero() {
 
 export default async function PrestationWordPress() {
   const items = await getPortfolioItems(-1, 'wordpress')
-  const projects = pickProjects(items, LOCAL_PROJECTS)
-  const shops = pickProjects(items, WOOCOMMERCE_PROJECTS)
+  const isShop = (item: PortfolioProject) =>
+    item.categories.some((category) => category.slug === 'e-commerce')
+  const withNote = (item: PortfolioProject) => ({
+    ...item,
+    note: item.highlight,
+  })
+  const projects = items
+    .filter((item) => !isShop(item))
+    .slice(0, 6)
+    .map(withNote)
+  const shops = items.filter(isShop).slice(0, 3).map(withNote)
 
   return (
     <Layout hero={<Hero />}>
