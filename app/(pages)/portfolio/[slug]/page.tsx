@@ -28,7 +28,7 @@ export async function generateMetadata(props: Props) {
   }
 
   return {
-    title: `${category.title} - Portfolio de Pascal Gault, développeur freelance`,
+    title: `${category.title} | Portfolio inRage, Pascal Gault`,
     description: `Réalisations ${category.title} : sites et applications développés par Pascal Gault, développeur web freelance à La Rochelle, pour des clients locaux et nationaux.`,
     alternates: {
       canonical: getCanonicalUrl(RouteLink.portfolioCategory(category.slug)),

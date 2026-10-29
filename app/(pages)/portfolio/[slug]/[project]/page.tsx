@@ -149,7 +149,7 @@ export default async function Page(props: Props) {
                   <a
                     href={metadata.website}
                     target="_blank"
-                    rel="noreferrer nofollow"
+                    rel="noopener"
                     className="home-btn home-btn-shine home-btn-glow"
                   >
                     Voir {website}
