@@ -1,0 +1,97 @@
+---
+title: 'Store Commander ne passe pas Prestashop 9 : on a construit l’outil'
+seoTitle: 'Store Commander et Prestashop 9 : que faire | inRage'
+date: '2026-10-29'
+category: 'PrestaShop'
+thumbnail: '/images/articles/store-commander-prestashop-9-tarifeur.jpg'
+excerpt: 'Store Commander s’arrête à Prestashop 8. Pour une boutique migrée de la 1.6 vers la 9, on a remplacé la seule fonction utilisée, l’édition en masse des prix de déclinaisons, par un outil sur mesure. Récit et choix techniques.'
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+import InfoCard from '../../components/ui/InfoCard'
+import Figure from '../../components/ui/Figure'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
+
+<MdxIntroduction>Une boutique Prestashop 1.6 qui migre vers la 9 : les produits passent, les clients passent, les commandes passent. Puis le marchand ouvre le module qu’il utilise tous les jours pour réviser ses tarifs, et il n’existe plus.</MdxIntroduction>
+
+C’est arrivé cet automne sur la migration de [LGS Mobilier](/portfolio/e-commerce/lgs-mobilier), un fabricant d’établis industriels dont chaque produit se décline en dizaines de références selon la dimension, le plateau et le coloris. Voici comment on a tranché, et ce que Prestashop 9 impose quand on décide de toucher aux prix soi-même.
+
+## Un module arrêté à Prestashop 8
+
+Store Commander est un back-office alternatif pour Prestashop : une grille façon tableur pour éditer produits, déclinaisons, stocks et prix en masse. Beaucoup de boutiques 1.6 et 1.7 en dépendent, souvent avec une licence achetée une fois pour toutes il y a des années.
+
+La version installée chez LGS se déclare compatible jusqu’à Prestashop 8. Pour la 9, l’éditeur propose une autre offre, sous forme d’abonnement. Ce n’est pas un scandale, c’est le cycle de vie normal d’un logiciel qui doit suivre une plateforme qui change. Mais pour le marchand qui migre, le constat est brutal : l’outil qui tenait son quotidien n’est plus dans le périmètre.
+
+Toutes les boutiques encore en 1.6 vont rencontrer ce genre de surprise en passant à la 9. Le cœur migre bien, avec les bons outils. Ce sont les modules qui décident de la difficulté réelle.
+
+## Trois options sur la table
+
+On a fait une réunion dédiée, partage d’écran du client sur son ancien back-office pour voir exactement ce qu’il faisait avec Store Commander. Le verdict a été rapide : il ouvrait un produit, groupait ses déclinaisons par dimension, et appliquait une hausse ou un nouveau prix à tout un groupe, parfois en collant une colonne depuis Excel. Rien d’autre. Une fonction sur les dizaines que propose le module.
+
+Les trois options :
+
+- **Prendre l’abonnement.** Le plus simple à court terme, mais une dépendance mensuelle pour une fonction, et une licence achetée une fois qui devient caduque.
+- **Rester en Prestashop 8.** Store Commander y fonctionne encore. Mais la 8 a une fin de vie, et on aurait repoussé exactement le même problème de deux ou trois ans, en ajoutant une migration de plus.
+- **Développer ce qui est réellement utilisé.** Un outil fermé, dans le back-office de la 9, qui fait une chose : éditer les prix et les écotaxes des déclinaisons en masse. Pas de stock, pas de descriptions, pas de multiboutique.
+
+L’effort de la troisième option a été jugé comparable à celui d’un retour en arrière. On est partis là-dessus.
+
+## Une maquette le matin, un module le soir
+
+J’ai commencé par une maquette HTML interactive, avec des données d’exemple, que le client a pu manipuler : trois panneaux, les catégories, les produits, la grille des déclinaisons. On a validé ensemble les gestes qui comptaient, le groupement par dimension, l’édition au clavier, le collage d’une colonne, l’historique. Puis j’ai développé le module dans la journée et il tournait en préprod le soir.
+
+Ce rythme n’a rien d’héroïque. Il tient à un périmètre fermé, à des données déjà connues, puisqu’on venait de passer quinze jours dedans pour la migration, et au fait qu’un outil interne n’a pas besoin de design : il a besoin d’être rapide et de ne jamais écrire une bêtise en base.
+
+<Figure
+  src="/images/portfolio/lgs-mobilier-tarifeur.jpg"
+  alt="Le Tarifeur dans le back-office Prestashop 9 : catégories, produits, et la grille des déclinaisons d’un établi groupées par dimension avec prix HT et écotaxe."
+  width={1600}
+  height={1000}
+  caption="Le Tarifeur en préprod : un module Symfony dans le back-office, sous Catalogue. Les 90 déclinaisons d’un établi, groupées par dimension."
+/>
+
+## Ce que Prestashop 9 impose quand on touche aux prix
+
+C’est la partie qui mérite d’être écrite, parce qu’elle ne se voit pas dans la grille.
+
+**Le prix d’une déclinaison n’est pas un prix.** Prestashop stocke un prix de base sur le produit et, sur chaque déclinaison, un écart par rapport à ce prix. L’outil affiche et saisit un prix final, parce que c’est ce que le marchand a en tête, puis recalcule l’écart avant d’écrire. Sinon on casse la cohérence de tout le produit.
+
+**L’écotaxe se joue par déclinaison.** Prestashop 1.6 ignorait l’écotaxe des déclinaisons dans son calcul de prix, un bug corrigé en 1.7.7. Les prix historiques du client l’incluaient donc déjà, et la 9 l’ajoutait une seconde fois après l’import. Il a fallu un script de correction avant même de parler d’outil, et le Tarifeur garde un garde-fou : il repère un prix qui semble encore contenir l’écotaxe et propose de la retirer, et il refuse une écotaxe à zéro sur une déclinaison quand le produit en porte une.
+
+**Rien ne s’affiche tant que les caches ne sont pas purgés.** Après l’écriture, il faut vider le cache de prix de Prestashop, déclencher les hooks de mise à jour produit pour que les autres modules suivent, et purger le cache de pages si la boutique en a un. Oublier l’un des trois, et le marchand voit son ancien prix pendant des heures.
+
+**Les surcharges des autres modules sont sur votre chemin.** Un module d’optimisation installé sur la boutique surchargeait la classe des liens avec une constante qui n’existe plus en Prestashop 9. Résultat : une erreur 500 dans mon propre module, qui ne faisait qu’afficher une image. On construit les chemins d’images à la main et on avance.
+
+**Deux personnes peuvent éditer en même temps.** Chaque valeur envoyée au serveur emporte l’ancienne valeur. Si la base a changé entre-temps, la ligne est refusée plutôt qu’écrasée. L’enregistrement part en un seul lot, dans une transaction, avec des verrous posés dans un ordre fixe pour ne jamais bloquer une autre transaction, et un plafond de modifications par lot. Chaque lot est journalisé par employé, et l’historique permet de remettre les anciens prix d’un clic.
+
+<Figure
+  src="/images/portfolio/lgs-mobilier-tarifeur-groupe.jpg"
+  alt="La fenêtre Modifier le groupe : prix HT ou écotaxe, fixer, augmenter ou baisser, en pourcentage ou en euros, arrondi à l’euro, aperçu des déclinaisons concernées."
+  width={1600}
+  height={1000}
+  caption="Modifier un groupe entier : une hausse de 3 % sur une dimension, avec l’aperçu des déclinaisons touchées avant d’appliquer."
+/>
+
+## Ce que ça change côté marchand
+
+La grille se pilote au clavier comme un tableur : flèches, Entrée, frappe directe d’un chiffre, Ctrl+Z pour annuler. Une colonne se colle depuis Excel, tabulations et retours à la ligne compris, en lisant aussi bien `1 031,50` que `1031.50`. Le groupement se fait sur n’importe quel attribut en glissant un en-tête, et chaque groupe se replie avec sa fourchette de prix. Rien n’est écrit tant qu’on n’a pas cliqué sur Enregistrer, et tout ce qui a été écrit peut être défait.
+
+<InfoCard>
+**Faut-il toujours développer ?** Non. Si une boutique utilise Store Commander pour les stocks, les descriptions, les images et les prix, l’abonnement est le bon choix : refaire tout ça coûterait bien plus cher. La question à se poser est simple : quelle part du module est réellement utilisée, et pour combien de temps ? À 5 % des fonctions sur un besoin qui va durer dix ans, l’outil sur mesure gagne.
+</InfoCard>
+
+## Et après
+
+Le Tarifeur est conçu comme un outil de back-office extensible, pas comme un module de prix. Le poids, les références fournisseur ou les stocks pourraient rejoindre la grille avec le même socle : même lecture du catalogue, même écriture par lot, même historique. On verra si le besoin vient.
+
+Si votre boutique est encore en Prestashop 1.6 ou 1.7 et qu’un module tient votre quotidien, c’est le premier point à vérifier avant de planifier la migration, bien avant le thème. Je peux regarder avec vous ce que vos modules deviennent en version 9, et ce qu’il faudrait reconstruire.
+
+<p className="not-prose mt-10 flex flex-wrap gap-x-6 gap-y-2">
+  <Link href={RouteLink.prestationPrestashop} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+    {'Créer ou migrer une boutique Prestashop'}
+  </Link>
+  <Link href="/portfolio/e-commerce/lgs-mobilier" className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+    {'La fiche du projet LGS Mobilier'}
+  </Link>
+</p>
