@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { sendGTMEvent } from '@next/third-parties/google'
-import * as Sentry from '@sentry/nextjs'
+import { captureException } from '@lib/sentry-client'
 
 import Button from '@component/Button'
 import { useFormState } from '@hook/useFormState'
@@ -93,7 +93,7 @@ export default function ContactForm({
           return response
         })
         .catch((err) => {
-          Sentry.captureException(err, {
+          captureException(err, {
             tags: {
               component: 'ContactForm',
               action: 'slack-notification',
@@ -143,7 +143,7 @@ export default function ContactForm({
           return
         }
 
-        Sentry.captureException(error, {
+        captureException(error, {
           tags: {
             component: 'ContactForm',
             action: 'submit',

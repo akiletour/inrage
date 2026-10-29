@@ -1,9 +1,9 @@
-import { GoogleTagManager } from '@next/third-parties/google'
 import type { Viewport } from 'next'
 import { ReactNode } from 'react'
 
 import ConsentDefaults from '@component/consent/ConsentDefaults'
 import CookieConsent from '@component/consent/CookieConsent'
+import DeferredTagManager from '@component/consent/DeferredTagManager'
 import Footer from '@layout/Footer'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -166,7 +166,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <ConsentDefaults />
       </head>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+      <DeferredTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       <body>
         <script
           type="application/ld+json"

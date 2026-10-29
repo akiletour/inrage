@@ -1,25 +1,15 @@
-import * as Sentry from '@sentry/nextjs'
-import { getSentryBaseConfig } from '@lib/sentry-config'
+import { captureRouterTransitionStart, loadSentry } from '@lib/sentry-client'
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const whenIdle = (callback: () => void) => {
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(callback, { timeout: 5000 })
+  } else {
+    window.setTimeout(callback, 3000)
+  }
+}
 
-Sentry.init({
-  ...getSentryBaseConfig(),
-
-  integrations: [
-    Sentry.replayIntegration({
-      maskAllText: true,
-      blockAllMedia: true,
-      maskAllInputs: true,
-    }),
-    Sentry.browserTracingIntegration({
-      enableInp: true,
-    }),
-  ],
-
-  replaysSessionSampleRate: IS_PRODUCTION ? 0.1 : 0,
-
-  replaysOnErrorSampleRate: IS_PRODUCTION ? 1.0 : 0,
+whenIdle(() => {
+  void loadSentry()
 })
 
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
+export const onRouterTransitionStart = captureRouterTransitionStart
