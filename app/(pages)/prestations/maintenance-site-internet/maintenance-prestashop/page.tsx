@@ -316,7 +316,7 @@ export default function TmaPrestashop() {
 
         <section
           id="contact"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) pt-24 pb-10 md:pt-32"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
         >
           <div className="container">
             <SectionHeading text="Indiquez l’adresse de votre boutique, sa version de Prestashop et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
