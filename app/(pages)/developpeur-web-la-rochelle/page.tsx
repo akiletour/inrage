@@ -1,133 +1,102 @@
-import Image, { StaticImageData } from 'next/image'
+import '@component/home/home.css'
+
 import Link from 'next/link'
 
-import Character from '@/components/Character'
-import ButtonLink from '@component/ButtonLink'
 import ContactForm from '@component/ContactForm'
-import ProjectItem from '@component/items/ProjectItem'
-import References from '@component/References'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import SectionTitle from '@component/SectionTitle'
-import ExpertisePrestashop from '@image/expertises/prestashop.png'
-import ExpertiseReact from '@image/expertises/react.svg'
-import ExpertiseSymfony from '@image/expertises/symfony.png'
-import ExpertiseWordPress from '@image/expertises/wordpress.png'
-import PrestationHosting from '@image/prestations/hebergement-optimise-rapide.png'
-import PrestationTma from '@image/prestations/infogerance-tma-maintenance.png'
+import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
 import { getPortfolioItems } from '@lib/portfolio'
-import { RouteLink, getCanonicalUrl } from '@lib/router'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 const PAGE_TITLE = 'Développeur web freelance à La Rochelle'
 
 export const metadata = {
   title: 'Développeur web freelance à La Rochelle | Pascal Gault',
   description:
-    'Développeur web freelance à La Rochelle depuis 2008 : sites WordPress, boutiques Prestashop, applications React et Symfony, maintenance. Devis gratuit sous 24h.',
+    'Développeur web freelance à La Rochelle depuis 2008 : sites WordPress, boutiques Prestashop, applications React et Symfony, maintenance et hébergement en France. Devis gratuit sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.developpeurLaRochelle),
   },
-  openGraph: {
-    title: 'Développeur web freelance à La Rochelle | Pascal Gault',
-    description:
-      'Création de sites WordPress, boutiques Prestashop, applications React et Symfony, maintenance. Développeur indépendant basé à La Rochelle, en Charente-Maritime.',
-    url: getCanonicalUrl(RouteLink.developpeurLaRochelle),
-    siteName: 'inRage',
-    locale: 'fr_FR',
-    type: 'website',
+}
+
+const LOCAL_PROJECTS = [
+  {
+    slug: 'camping-la-mouette-rieuse',
+    note: 'La Rochelle. Identité visuelle et site WordPress du camping.',
   },
-}
-
-const LOCAL_PROJECT_SLUGS = [
-  'camping-la-mouette-rieuse',
-  'graphiste-romain-ouvrard',
-  'kamelab',
-  'santeenvironnement-nouvelleaquitaine',
+  {
+    slug: 'quadria',
+    note: 'Refonte 2026 du site et du catalogue produits sur WordPress.',
+  },
+  {
+    slug: 'biosalines',
+    note: 'Île de Ré. Boutique WooCommerce d’un laboratoire de cosmétiques.',
+  },
+  {
+    slug: 'graphiste-romain-ouvrard',
+    note: 'La Rochelle. Portfolio d’un graphiste, thème Gutenberg sur mesure.',
+  },
+  {
+    slug: 'santeenvironnement-nouvelleaquitaine',
+    note: 'Portail régional d’information en santé environnementale.',
+  },
+  {
+    slug: 'kamelab',
+    note: 'La Rochelle. Site de l’agence de communication Kamélab.',
+  },
 ]
 
-const KEY_FIGURES = [
-  { value: '2008', label: 'Développeur web à La Rochelle depuis' },
-  { value: '150+', label: 'Sites WordPress et Prestashop en maintenance' },
-  { value: '5,0', label: 'Note moyenne des avis Google' },
-  { value: '24 h', label: 'Pour recevoir votre devis détaillé' },
-]
-
-type Service = {
-  title: string
-  text: string
-  href?: string
-  image: StaticImageData
-}
-
-const SERVICES: Service[] = [
+const SERVICES = [
   {
     title: 'Site vitrine WordPress',
-    text: 'Thèmes sur mesure avec Sage, ACF et blocs Gutenberg. Vous administrez vos contenus en autonomie sur un site rapide, sécurisé et pensé pour le référencement local.',
+    text: 'Thème sur mesure, blocs Gutenberg définis avec vous, aucun thème acheté. Vous administrez vos contenus en autonomie sur un site rapide et pensé pour les recherches locales.',
     href: RouteLink.prestationWordPress,
-    image: ExpertiseWordPress,
   },
   {
     title: 'Boutique Prestashop et WooCommerce',
-    text: 'Création de boutiques, développement de modules, migrations et connexion à votre ERP ou vos transporteurs, de Prestashop 1.6 aux versions actuelles.',
+    text: 'Création de boutiques, modules, migrations et connexion à votre ERP, votre logiciel de caisse ou vos transporteurs, de Prestashop 1.6 à Prestashop 9.',
     href: RouteLink.prestationPrestashop,
-    image: ExpertisePrestashop,
   },
   {
-    title: 'Applications React et Next.js',
-    text: 'Interfaces modernes, outils internes et sites à fort trafic développés en TypeScript, performants et maintenables.',
+    title: 'Applications React, Next.js et React Native',
+    text: 'Tableaux de bord, logiciels en ligne, sites qui chargent instantanément, applications iOS et Android à partir d’une seule base de code.',
     href: RouteLink.prestationReact,
-    image: ExpertiseReact,
   },
   {
     title: 'Applications métier Symfony',
-    text: 'Extranet, outil de gestion, API ou plateforme sur mesure : des applications robustes, comme l’outil de picking d’entrepôt ou le logiciel Invoicer.',
+    text: 'Extranet, outil de gestion, API ou logiciel sur mesure, comme Invoicer, le logiciel de facturation que j’édite depuis La Rochelle.',
     href: RouteLink.prestationSymfony,
-    image: ExpertiseSymfony,
   },
   {
     title: 'Maintenance et infogérance',
-    text: 'Mises à jour, sécurité, sauvegardes, surveillance et corrections. Vous vous concentrez sur votre activité, je m’occupe de la technique.',
+    text: 'Mises à jour testées, sécurité, sauvegardes, surveillance et corrections. Plus de 150 sites sont suivis chaque semaine.',
     href: RouteLink.prestationTma,
-    image: PrestationTma,
   },
   {
-    title: 'Hébergement infogéré',
-    text: 'Votre site tourne en France sur une infrastructure que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés et protection contre les attaques.',
+    title: 'Hébergement en France',
+    text: 'Votre site tourne sur des serveurs français que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés, protection CrowdSec.',
     href: RouteLink.prestationHosting,
-    image: PrestationHosting,
   },
 ]
 
 const STEPS = [
   {
     title: 'Échange et cadrage',
-    text: 'Nous discutons de votre activité, de vos objectifs et de vos contraintes, à La Rochelle ou en visio. Je vous remets un devis détaillé sous 24 heures.',
+    text: 'Nous parlons de votre activité, de vos objectifs et de vos contraintes, à La Rochelle ou en visio. Le devis détaillé arrive sous 24 heures.',
   },
   {
     title: 'Conception',
-    text: 'Arborescence, maquettes et choix techniques sont validés ensemble avant la première ligne de code, avec des designers et consultants webmarketing freelances rochelais si besoin.',
+    text: 'Arborescence, maquettes avec Ludovic Boussion, graphiste UI/UX, et choix techniques validés avant la première ligne de code.',
   },
   {
     title: 'Développement',
-    text: 'Intégration sur mesure, performance, accessibilité et référencement naturel sont intégrés dès le développement. Vous suivez l’avancement en préproduction.',
+    text: 'Performance, accessibilité et référencement intégrés dès le développement. Vous suivez l’avancement sur une pré-production protégée.',
   },
   {
     title: 'Mise en ligne et suivi',
-    text: 'Déploiement, formation à l’administration de votre site, puis maintenance et hébergement si vous le souhaitez. Je reste votre interlocuteur unique.',
-  },
-]
-
-const REASONS = [
-  {
-    title: 'Un contact direct',
-    text: 'Pas de chef de projet ni de sous-traitance : vous échangez avec celui qui développe, à La Rochelle, par téléphone ou autour d’un café.',
-  },
-  {
-    title: 'Quinze ans de terrain',
-    text: 'Des centaines de projets livrés depuis 2008, en agence puis en indépendant, pour des TPE, des PME, des collectivités et des grands comptes.',
-  },
-  {
-    title: 'Un réseau local',
-    text: 'Graphistes, webdesigners, rédacteurs et consultants SEO : je m’appuie sur des collectifs de freelances rochelais pour couvrir l’ensemble de votre projet.',
+    text: 'Déploiement, formation à l’administration de votre site, puis maintenance et hébergement si vous le souhaitez. Je reste votre seul interlocuteur.',
   },
 ]
 
@@ -135,48 +104,52 @@ const FAQ = [
   {
     question: 'Travaillez-vous uniquement avec des clients de La Rochelle ?',
     answer:
-      'Non. Je suis basé à La Rochelle, rue Jean Perrin, et je rencontre volontiers mes clients de La Rochelle, de l’agglomération et de Charente-Maritime sur place. Je travaille aussi à distance avec des entreprises de toute la France, comme les Éditions Delcourt, l’Institut Imagine ou VMZinc.',
+      'Non. Je suis basé à La Rochelle, rue Jean Perrin, et je rencontre volontiers mes clients de La Rochelle, de l’agglomération et de Charente-Maritime sur place. Je travaille aussi à distance avec des entreprises de toute la France, comme les Éditions Delcourt, l’Institut Imagine ou VMZinc, et avec des agences en marque blanche.',
   },
   {
     question: 'Quelles technologies utilisez-vous ?',
     answer:
-      'WordPress (thèmes sur mesure avec Sage, ACF et Gutenberg), Prestashop et WooCommerce pour l’e-commerce, Symfony pour les applications métier, React et Next.js pour les interfaces modernes. Côté serveur : Debian, Docker, Kubernetes et AWS.',
+      'WordPress avec des thèmes sur mesure et des blocs Gutenberg, Prestashop et WooCommerce pour l’e-commerce, Symfony pour les applications métier, React, Next.js et React Native pour les interfaces web et mobiles. Côté serveur : Debian, Docker, Kubernetes, avec une supervision et des sauvegardes que j’administre moi-même.',
   },
   {
     question: 'Combien coûte la création d’un site internet à La Rochelle ?',
     answer:
-      'Chaque projet est chiffré sur devis, gratuitement et sous 24 heures, après un échange sur vos besoins. Un site vitrine WordPress, une boutique Prestashop ou une application React n’ont pas le même périmètre ni le même budget. Le devis détaille chaque poste pour que vous sachiez exactement ce que vous payez.',
+      'Un site vitrine WordPress se situe entre 2 000 et 3 000 €, une boutique en ligne démarre à 5 000 €, une application sur mesure se chiffre sur devis. Le devis est gratuit, détaillé poste par poste et envoyé sous 24 heures après notre échange.',
   },
   {
     question: 'Quels sont les délais pour un site vitrine ou une boutique ?',
     answer:
-      'Un site vitrine WordPress se réalise généralement en quelques semaines, une boutique Prestashop ou WooCommerce en un à trois mois selon le catalogue et les intégrations. Le planning est fixé ensemble au démarrage et respecté.',
+      'Un site vitrine WordPress se réalise généralement en quelques semaines, une boutique Prestashop ou WooCommerce en un à trois mois selon le catalogue et les intégrations. Le planning est fixé ensemble au démarrage.',
   },
   {
     question: 'Assurez-vous la maintenance après la mise en ligne ?',
     answer:
-      'Oui. Je propose des forfaits d’infogérance WordPress et Prestashop qui couvrent les mises à jour, la sécurité, les sauvegardes et la surveillance. Plus de 150 sites sont aujourd’hui sous maintenance. Des interventions ponctuelles à l’heure sont aussi possibles.',
+      'Oui. Trois mois de garantie, puis des forfaits de maintenance WordPress et Prestashop qui couvrent les mises à jour, la sécurité, les sauvegardes et la surveillance. Plus de 150 sites sont aujourd’hui sous maintenance. Des interventions ponctuelles à l’heure sont aussi possibles.',
+  },
+  {
+    question:
+      'Faites-vous aussi du webmastering, du référencement, du graphisme ?',
+    answer:
+      'Les mises à jour de contenus et les petites évolutions font partie de la maintenance. Pour le graphisme, Ludovic Boussion, graphiste UI/UX du collectif, dessine les maquettes. Pour le référencement suivi et les campagnes Google Ads, un partenaire spécialisé intervient, intégré au devis. Vous gardez un seul interlocuteur.',
   },
   {
     question: 'Peut-on se rencontrer à La Rochelle ?',
     answer:
-      'Bien sûr. Je reçois au 10-14 rue Jean Perrin à La Rochelle, du lundi au samedi de 9h à 18h, et je me déplace dans vos locaux sur La Rochelle, Périgny, Aytré, Lagord, Puilboreau, Châtelaillon et le reste de la Charente-Maritime.',
+      'Bien sûr. Je reçois au 10-14 rue Jean Perrin à La Rochelle, du lundi au samedi de 9h à 18h, et je me déplace dans vos locaux à La Rochelle, Périgny, Aytré, Lagord, Puilboreau, Châtelaillon et dans le reste de la Charente-Maritime.',
   },
 ]
 
-function buildJsonLd() {
-  const pageUrl = getCanonicalUrl(RouteLink.developpeurLaRochelle)
-
-  return [
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': `${pageUrl}#service`,
+      '@id': `${getCanonicalUrl(RouteLink.developpeurLaRochelle)}#service`,
       name: 'Développement web freelance à La Rochelle',
       serviceType: 'Développement web',
       description:
-        'Création de sites internet WordPress, boutiques Prestashop et WooCommerce, applications React, Next.js et Symfony, maintenance et infogérance, par un développeur freelance basé à La Rochelle.',
-      url: pageUrl,
+        'Création de sites internet WordPress, boutiques Prestashop et WooCommerce, applications React, Next.js et Symfony, maintenance et hébergement, par un développeur freelance basé à La Rochelle.',
+      url: getCanonicalUrl(RouteLink.developpeurLaRochelle),
       provider: { '@id': getCanonicalUrl('/#business') },
       areaServed: [
         { '@type': 'City', name: 'La Rochelle' },
@@ -187,20 +160,17 @@ function buildJsonLd() {
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Prestations de développement web',
-        itemListElement: SERVICES.filter((service) => service.href).map(
-          (service) => ({
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: service.title,
-              url: getCanonicalUrl(service.href),
-            },
-          })
-        ),
+        itemListElement: SERVICES.map((service) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: service.title,
+            url: getCanonicalUrl(service.href),
+          },
+        })),
       },
     },
     {
-      '@context': 'https://schema.org',
       '@type': 'FAQPage',
       mainEntity: FAQ.map((item) => ({
         '@type': 'Question',
@@ -209,7 +179,6 @@ function buildJsonLd() {
       })),
     },
     {
-      '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
         {
@@ -222,261 +191,229 @@ function buildJsonLd() {
           '@type': 'ListItem',
           position: 2,
           name: PAGE_TITLE,
-          item: pageUrl,
+          item: getCanonicalUrl(RouteLink.developpeurLaRochelle),
         },
       ],
     },
-  ]
+  ],
 }
 
-function ServiceCard({ title, text, href, image }: Service) {
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
+
+function Hero() {
   return (
-    <li className="flex flex-col gap-4 p-6 bg-gray-dark border border-[#2f2f2f] rounded-lg transition-colors duration-150 hover:border-orange/60">
-      <div className="relative w-14 h-14">
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes="56px"
-          className="object-contain"
-        />
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
+      <div className="home-beam top-[65%] left-[50%]" data-i="3" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              {PAGE_TITLE}
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Je suis Pascal Gault, développeur et intégrateur web indépendant,
+              installé à La Rochelle depuis 2008. Je conçois, développe, héberge
+              et maintiens les sites et applications des commerces, cabinets,
+              associations, PME et agences de La Rochelle, de Charente-Maritime
+              et de toute la France. Vous parlez directement à la personne qui
+              code votre site.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href={RouteLink.contact}
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Demander un devis
+              </Link>
+              <Link
+                href={RouteLink.aboutMe}
+                className="home-btn-ghost home-glassy"
+              >
+                Qui je suis
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </div>
-      <h3 className="text-white font-medium text-xl text-balance">{title}</h3>
-      <p className="text-sm text-gray-light flex-1">{text}</p>
-      {href && <ButtonLink href={href}>En savoir plus</ButtonLink>}
-    </li>
+    </section>
   )
 }
 
 export default async function DeveloppeurWebLaRochelle() {
-  const jsonLd = buildJsonLd()
-  const allProjects = await getPortfolioItems(-1)
-  const localProjects = LOCAL_PROJECT_SLUGS.map((slug) =>
-    allProjects.find((project) => project.slug === slug)
-  ).filter((project) => project !== undefined)
+  const items = await getPortfolioItems()
+  const projects = pickProjects(items, LOCAL_PROJECTS)
 
   return (
-    <Layout title={PAGE_TITLE}>
-      {jsonLd.map((schema) => (
+    <div className="home">
+      <Layout hero={<Hero />}>
         <script
-          key={schema['@type']}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      ))}
 
-      <section className="container mt-8 grid gap-12 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-start">
-        <div className="max-w-2xl">
-          <h2 className="text-white text-3xl text-balance">
-            <span className="font-bold">
-              PASCAL GAULT, DÉVELOPPEUR INDÉPENDANT
-            </span>
-            <br />
-            <span className="font-light">
-              INSTALLÉ À LA ROCHELLE DEPUIS 2008
-            </span>
-          </h2>
-          <p className="mt-6 text-xl text-gray-light">
-            Vous cherchez un développeur web à La Rochelle pour créer, refondre
-            ou maintenir votre site internet ? Je suis Pascal Gault, développeur
-            et intégrateur freelance, fondateur de inRage. Depuis plus de quinze
-            ans, j’accompagne les entreprises, commerces, associations et
-            agences de La Rochelle et de Charente-Maritime.
-          </p>
-          <p className="mt-4">
-            Mon parcours a commencé dans les agences web rochelaises, chez
-            Moonscoop puis Megami Production, avant de créer inRage en 2011.
-            Être un freelance local ne m’empêche pas de travailler avec Paris ou
-            Bordeaux : cela me permet surtout de vous rencontrer facilement, de
-            comprendre votre marché et de rester joignable. Mon bureau est au
-            10-14 rue Jean Perrin, et je me déplace dans toute l’agglomération,
-            de Périgny à Châtelaillon-Plage.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href={RouteLink.contact}>
-              <span className="button">Demander un devis gratuit</span>
-            </Link>
-            <a href="#realisations" className="button-outline">
-              Voir mes réalisations
-            </a>
-          </div>
-        </div>
-        <div
-          className="hidden md:flex justify-center self-start max-h-[420px] overflow-hidden"
-          aria-hidden="true"
-        >
-          <Character />
-        </div>
-      </section>
-
-      <section className="container mt-16">
-        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-8 border-y border-[#2f2f2f]">
-          {KEY_FIGURES.map((figure) => (
-            <li key={figure.value}>
-              <div className="text-orange font-bold text-4xl tabular-nums">
-                {figure.value}
-              </div>
-              <div className="mt-1 text-sm text-gray-light">{figure.label}</div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <References />
-
-      <section className="bg-gray-darker py-16">
-        <div className="container">
-          <SectionTitle
-            title={['Mes prestations', 'à La Rochelle']}
-            content="Un interlocuteur unique pour concevoir, développer, héberger et maintenir votre site internet ou votre application web, quel que soit votre secteur d’activité."
-          />
-          <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((service) => (
-              <ServiceCard key={service.title} {...service} />
+        <section className="container py-16 md:py-24">
+          <SectionHeading text="Un interlocuteur unique pour concevoir, développer, héberger et maintenir votre site internet ou votre application, quel que soit votre secteur.">
+            Mes prestations à La Rochelle
+          </SectionHeading>
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {SERVICES.map((service, i) => (
+              <Reveal key={service.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-8 md:grid-cols-[280px_1fr]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                    {service.title}
+                  </h3>
+                  <div>
+                    <p className="leading-7 text-(--home-muted)">
+                      {service.text}
+                    </p>
+                    <p className="mt-3">
+                      <Link href={service.href} className={linkClass}>
+                        En savoir plus
+                      </Link>
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
-          </ul>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section id="realisations" className="container py-16 scroll-mt-24">
-        <SectionTitle
-          title={['Des clients', 'à La Rochelle']}
-          content="Camping, graphiste, agence de communication ou portail régional : quelques projets réalisés pour des clients de La Rochelle et de Nouvelle-Aquitaine, aux côtés de structures nationales comme les Éditions Delcourt, l’Institut Imagine ou VMZinc."
-        />
-        <div className="mt-10 grid gap-4 sm:gap-0 grid-cols-2 md:grid-cols-4">
-          {localProjects.map((project) => (
-            <ProjectItem
-              key={project.slug}
-              title={project.title}
-              slug={project.slug}
-              image={`/images/portfolio/${project.thumbnail}`}
-              support={project.support}
-            />
-          ))}
-        </div>
-        <div className="mt-8">
-          <ButtonLink href={RouteLink.portfolio}>
-            Voir tout le portfolio
-          </ButtonLink>
-        </div>
-      </section>
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+          <div className="container">
+            <SectionHeading text="Camping, laboratoire, graphiste, industriel, portail régional : des sites réalisés pour des clients de La Rochelle, de l’Île de Ré et de Nouvelle-Aquitaine, aux côtés de structures nationales comme les Éditions Delcourt, l’Institut Imagine ou VMZinc.">
+              Des clients à La Rochelle
+            </SectionHeading>
+            <ProjectGrid projects={projects} />
+            <div className="mt-12 flex justify-center">
+              <Link
+                href={RouteLink.portfolio}
+                className="home-btn-ghost home-glassy"
+              >
+                Voir tout le portfolio
+              </Link>
+            </div>
+          </div>
+        </section>
 
-      <section className="bg-gray-darker py-16">
-        <div className="container">
-          <SectionTitle
-            title={['Comment se déroule', 'un projet']}
-            content="Une méthode simple et transparente, du premier échange à la mise en ligne, avec un seul interlocuteur du début à la fin."
-          />
-          <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((step, index) => (
-              <li key={step.title} className="pt-6 border-t-2 border-orange/60">
-                <div className="text-orange font-bold text-3xl tabular-nums">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                <h3 className="text-white font-medium text-xl mt-2">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm text-gray-light">{step.text}</p>
+        <section className="container py-20 md:py-28">
+          <SectionHeading text="Du premier échange à la mise en ligne, avec un seul interlocuteur du début à la fin.">
+            Comment se déroule un projet
+          </SectionHeading>
+          <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+            {STEPS.map((step, i) => (
+              <li key={step.title} className="home-timeline-item">
+                <Reveal i={i}>
+                  <h3 className="text-xl font-medium text-white md:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                    {step.text}
+                  </p>
+                </Reveal>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
+        </section>
 
-      <section className="container py-16">
-        <SectionTitle
-          title={['Pourquoi un freelance', 'à La Rochelle']}
-          content="Choisir un développeur indépendant local, c’est parler directement à la personne qui code votre site, sans intermédiaire."
-        />
-        <div className="mt-12 grid gap-10 md:grid-cols-3">
-          {REASONS.map((reason) => (
-            <div key={reason.title}>
-              <h3 className="text-orange font-semibold text-lg">
-                {reason.title}
-              </h3>
-              <p className="mt-3 text-gray-light">{reason.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-gray-darker py-16">
-        <div className="container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Questions fréquentes
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Les questions que me posent le plus souvent les entreprises de La
-              Rochelle avant de démarrer un projet web.
-            </p>
-            <p className="mt-6">
-              <Link href={RouteLink.aboutMe}>
-                <span className="text-orange underline">
-                  Découvrir mon parcours
-                </span>
-              </Link>
-            </p>
-            <p className="mt-2 text-sm">
-              Profil également référencé sur{' '}
-              <a
-                href="https://www.jeveuxunfreelance.fr"
-                className="text-orange underline"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                jeveuxunfreelance.fr
-              </a>
-              , annuaire des freelances de La Rochelle.
-            </p>
-          </div>
-          <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
-            {FAQ.map((item) => (
-              <details key={item.question} className="group py-5">
-                <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
-                  <span className="text-balance">{item.question}</span>
-                  <span
-                    aria-hidden="true"
-                    className="flex-none mt-1 text-orange text-2xl leading-none transition-transform duration-150 motion-reduce:transition-none group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 pr-10 text-gray-light max-w-[65ch]">
-                  {item.answer}
+        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+          <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Pourquoi un freelance à La Rochelle
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+            </Reveal>
+            <Reveal i={1}>
+              <div className="space-y-4 leading-7 text-white/85">
+                <p>
+                  Pas de chef de projet ni de sous-traitant entre nous : vous
+                  échangez avec celui qui développe, par téléphone, en visio ou
+                  autour d’un café rue Jean Perrin. Les décisions se prennent
+                  vite et rien ne se perd en route.
                 </p>
-              </details>
-            ))}
+                <p>
+                  Dix-huit ans de terrain, en agence rochelaise puis en
+                  indépendant, pour des TPE, des PME, des collectivités et des
+                  grands comptes. Plus de 150 sites sont suivis aujourd’hui
+                  depuis La Rochelle, hébergés en France sur des serveurs que
+                  j’administre.
+                </p>
+                <p>
+                  Et je ne suis pas seul : Ludovic Boussion pour le design,
+                  Matthieu Verdier pour le conseil, un partenaire pour le
+                  référencement. Vous avez l’étendue d’une agence web à La
+                  Rochelle avec un seul interlocuteur.{' '}
+                  <Link href={RouteLink.aboutMe} className={linkClass}>
+                    Découvrir mon parcours
+                  </Link>
+                  . Profil également référencé sur{' '}
+                  <a
+                    href="https://www.jeveuxunfreelance.fr"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={linkClass}
+                  >
+                    jeveuxunfreelance.fr
+                  </a>
+                  , annuaire des freelances de La Rochelle.
+                </p>
+              </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="container py-16" id="contact">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Parlons de votre projet web à La Rochelle
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Décrivez-moi votre besoin, je vous réponds dans la journée avec un
-              devis détaillé. Vous préférez le téléphone ? Je suis joignable du
-              lundi au samedi, de 9h à 18h.
-            </p>
-            <a
-              href="tel:0682963889"
-              className="mt-6 inline-block text-3xl font-bold text-orange whitespace-nowrap tabular-nums transition-colors duration-150 hover:text-orange-dark"
-            >
-              06 82 96 38 89
-            </a>
-            <address className="mt-4 not-italic text-sm text-gray-light">
-              inRage, 10-14 rue Jean Perrin
-              <br />
-              17000 La Rochelle
-            </address>
+        <section id="faq" className="container scroll-mt-28 py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Questions fréquentes
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Les questions que me posent le plus souvent les entreprises de
+                La Rochelle avant de démarrer un projet web.
+              </p>
+            </Reveal>
+            <div className="divide-y divide-white/10">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.question} i={i}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                      {item.question}
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
+                      {item.answer}
+                    </p>
+                  </details>
+                </Reveal>
+              ))}
+            </div>
           </div>
-          <ContactForm lg />
-        </div>
-      </section>
-    </Layout>
+        </section>
+
+        <section className="container pt-6 pb-10 md:pt-10">
+          <SectionHeading text="Décrivez-moi votre besoin, je vous réponds dans la journée avec un devis détaillé. Par téléphone, je suis joignable du lundi au samedi, de 9h à 18h, au 06 82 96 38 89. inRage, 10-14 rue Jean Perrin, 17000 La Rochelle.">
+            Parlons de votre projet web à La Rochelle
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </section>
+      </Layout>
+    </div>
   )
 }
