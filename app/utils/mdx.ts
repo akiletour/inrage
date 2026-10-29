@@ -18,6 +18,7 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
   website: string
   year: number
   date?: string
+  highlight?: string
   actions: string[]
   image: {
     thumbnail: string

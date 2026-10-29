@@ -206,6 +206,10 @@ export const getPortfolioItems = cache(
         large: frontmatter.image?.large || '',
         year,
         excerpt: frontmatter.excerpt || '',
+        highlight:
+          frontmatter.highlight ??
+          frontmatter.summary.split(/(?<=[.!?])\s/)[0] ??
+          frontmatter.summary,
         website: frontmatter.website || '',
         categories: (frontmatter.categories ?? [frontmatter.category]).map(
           (key) => categoryOf(slug, key)
