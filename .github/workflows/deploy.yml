@@ -40,12 +40,12 @@ jobs:
     environment:
       name: staging
     steps:
-      - uses: clowdhaus/argo-cd-action/@main
+      - uses: clowdhaus/argo-cd-action@v4.2.0
         with:
           version: 2.6.7
           command: login ${{ secrets.argocd-server }}
           options: --password ${{ secrets.argocd-password }} --username ${{ secrets.argocd-username }}
-      - uses: clowdhaus/argo-cd-action/@main
+      - uses: clowdhaus/argo-cd-action@v4.2.0
         with:
           version: 2.6.7
           command: app set argocd/${{ inputs.argocd-appname }}
@@ -57,12 +57,12 @@ jobs:
     environment:
       name: production
     steps:
-      - uses: clowdhaus/argo-cd-action/@main
+      - uses: clowdhaus/argo-cd-action@v4.2.0
         with:
           version: 2.6.7
           command: login ${{ secrets.argocd-prod-server }}
           options: --password ${{ secrets.argocd-prod-password }} --username ${{ secrets.argocd-prod-username }}
-      - uses: clowdhaus/argo-cd-action/@main
+      - uses: clowdhaus/argo-cd-action@v4.2.0
         with:
           version: 2.6.7
           command: app set argocd/${{ inputs.argocd-prod-appname }}
