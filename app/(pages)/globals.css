@@ -204,8 +204,9 @@ body {
 }
 
 .article :where(p:has(> img) img) {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  margin-inline: auto;
   margin-block: 0;
   border-radius: 0.75rem;
   outline: 1px solid rgb(255 255 255 / 6%);

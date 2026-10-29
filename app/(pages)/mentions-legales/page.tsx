@@ -82,17 +82,18 @@ export default function Legals() {
 
         <p>
           Le site <span className="underline">inrage.fr</span> est hébergé sur
-          l&apos;infrastructure de Vercel Inc.
+          les serveurs d’inRage, installés dans une baie du centre de données
+          OVHcloud de Gravelines (Nord, France).
         </p>
-        <p>San Francisco Bay Area, West Coast, Western US</p>
+        <p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France</p>
         <p>
           <a
             className="text-orange"
-            href="https://vercel.com/"
+            href="https://www.ovhcloud.com/fr/"
             target={'_blank'}
             rel="noreferrer"
           >
-            www.vercel.com
+            www.ovhcloud.com
           </a>
         </p>
       </div>
