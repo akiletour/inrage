@@ -353,8 +353,8 @@ export default function ContactForm({
 
   return (
     <form className={!lg ? 'my-8' : ''} onSubmit={handleSubmit(onSubmit)}>
-      <div className={`grid gap-6 ${!lg && 'md:grid-cols-2'}`}>
-        <div className="relative order-1">
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className={`relative order-1 ${lg ? 'md:col-span-2' : ''}`}>
           <input
             className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
@@ -402,7 +402,7 @@ export default function ContactForm({
           )}
         </div>
         <div
-          className={`md:row-span-3 order-10 ${!lg && 'md:order-2'} relative`}
+          className={`order-10 relative ${lg ? 'md:col-span-2' : 'md:row-span-3 md:order-2'}`}
         >
           <textarea
             className={`input-field min-h-[200px] h-full ${
