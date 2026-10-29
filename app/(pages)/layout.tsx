@@ -148,7 +148,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       <head />
       <body>

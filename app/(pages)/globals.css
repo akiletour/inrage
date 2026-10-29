@@ -15,8 +15,22 @@
     inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(230 126 34 / 60%);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   @apply bg-gray-dark text-gray overflow-x-hidden;
+}
+
+[id] {
+  scroll-margin-top: 7rem;
 }
 
 .container {

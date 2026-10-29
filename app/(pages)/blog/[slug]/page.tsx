@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import ReadingProgress from '@component/blog/ReadingProgress'
+import TableOfContents from '@component/blog/TableOfContents'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
@@ -179,24 +180,7 @@ export default async function Page(props: Props) {
       <div className="container pt-4 pb-16 md:pb-24 lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[260px_minmax(0,1fr)]">
         {post.headings.length > 1 && (
           <aside className="mb-12 lg:mb-0">
-            <nav
-              aria-label="Sommaire de l’article"
-              className="lg:sticky lg:top-28"
-            >
-              <p className="text-sm font-medium text-white">Dans cet article</p>
-              <ol className="mt-4 space-y-2 border-l border-white/10">
-                {post.headings.map((heading) => (
-                  <li key={heading.id}>
-                    <a
-                      href={`#${heading.id}`}
-                      className="-ml-px block border-l border-transparent pl-4 text-sm leading-6 text-(--home-muted) transition-colors hover:border-(--home-orange) hover:text-white"
-                    >
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <TableOfContents headings={post.headings} />
           </aside>
         )}
         <article
