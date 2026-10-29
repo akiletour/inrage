@@ -94,11 +94,6 @@ export const PRICES = [
   },
 ]
 
-export const ARTICLE_SLUGS = [
-  'prestashop-erreur-xml-addons-backoffice',
-  'comment-ajouter-nouveau-champ-produit-prestashop',
-]
-
 export const FAQ = [
   {
     question: 'Prestashop ou WooCommerce pour ma boutique ?',

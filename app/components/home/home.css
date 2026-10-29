@@ -675,3 +675,41 @@ body:has(.home) {
     display: none;
   }
 }
+
+.home-pulse {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--home-orange);
+}
+
+.home-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--home-orange);
+  opacity: 0;
+  animation: home-pulse 2.4s ease-out infinite;
+}
+
+@keyframes home-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-pulse::after {
+    animation: none;
+  }
+}

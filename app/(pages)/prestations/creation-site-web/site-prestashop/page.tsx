@@ -1,6 +1,5 @@
 import '@component/home/home.css'
 
-import Image from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
@@ -8,8 +7,8 @@ import Glass from '@component/home/Glass'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
+import ArticleCards from '@component/prestations/ArticleCards'
 import {
-  ARTICLE_SLUGS,
   CHOICE,
   FAQ,
   PRICES,
@@ -18,7 +17,6 @@ import {
   STEPS,
 } from '@component/prestations/prestashop-data'
 import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
-import { getBlogItems } from '@lib/blog'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -137,41 +135,6 @@ function Hero() {
         </div>
       </div>
     </section>
-  )
-}
-
-async function PrestashopArticles() {
-  const items = await getBlogItems()
-  const articles = ARTICLE_SLUGS.map((slug) =>
-    items.find((item) => item.slug === slug)
-  ).filter((item) => item !== undefined)
-
-  return (
-    <ul className="mt-14 grid gap-4 md:grid-cols-2">
-      {articles.map((article, i) => (
-        <li key={article.slug}>
-          <Reveal i={i} className="h-full">
-            <Link
-              href={`${RouteLink.blog}/${article.slug}`}
-              className="home-card home-article home-glass grid h-full grid-cols-[112px_1fr] items-center gap-5 p-4 sm:grid-cols-[150px_1fr]"
-            >
-              <span className="home-article-media relative block aspect-[2.15/1] overflow-hidden rounded-lg">
-                <Image
-                  src={article.thumbnail}
-                  alt=""
-                  fill
-                  sizes="150px"
-                  className="home-article-img object-cover"
-                />
-              </span>
-              <span className="home-card-title line-clamp-3 text-base leading-snug font-medium text-white sm:text-lg">
-                {article.title}
-              </span>
-            </Link>
-          </Reveal>
-        </li>
-      ))}
-    </ul>
   )
 }
 
@@ -359,7 +322,7 @@ export default async function PrestationPrestashop() {
           <SectionHeading text="Deux articles tirés de problèmes rencontrés sur de vraies boutiques, et comment je les ai résolus.">
             Ce que j’écris sur Prestashop
           </SectionHeading>
-          <PrestashopArticles />
+          <ArticleCards category="PrestaShop" limit={2} />
         </section>
 
         <section

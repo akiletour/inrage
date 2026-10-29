@@ -119,15 +119,6 @@ export const PRICES = [
   },
 ]
 
-export const ARTICLE_SLUGS = [
-  'octa-starter-wordpress-theme',
-  'creation-blocs-gutenberg-wordpress-sage-9',
-  'activer-le-mode-maintenance-de-wordpress-sans-plugin',
-  'champ-acf-en-fonction-de-la-profondeur-du-menu-dans-wordpress',
-  'contact-form-7-champ-conditionnel',
-  'generer-url-wordpress-personnalisee-bedrock-sage',
-]
-
 export const FAQ = [
   {
     question: 'Combien coûte un site WordPress à La Rochelle ?',

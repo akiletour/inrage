@@ -1,14 +1,12 @@
+import '@component/home/home.css'
+
+import Link from 'next/link'
+
 import ContactForm from '@component/ContactForm'
-import Diagonal from '@component/Diagonal'
-import PrestationItem from '@component/items/PrestationItem'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import TmaOnDemandIntro from '@image/character_back_build.png'
-import PrestationDesign from '@image/prestations/charte_graphique.png'
-import PrestationWebDev from '@image/prestations/developpement_site_web.png'
-import PrestationFormation from '@image/prestations/formation_offerte.png'
-import PrestationSupport from '@image/prestations/support_technique_772424.png'
+import { CASES, FAQ } from '@component/prestations/maintenance-ponctuelle-data'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 export const metadata = {
@@ -20,154 +18,248 @@ export const metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Accueil',
+          item: getCanonicalUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Prestations',
+          item: getCanonicalUrl(RouteLink.prestations),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Maintenance de site internet',
+          item: getCanonicalUrl(RouteLink.prestationTma),
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Maintenance ponctuelle',
+          item: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
+        },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'Dépannage et maintenance ponctuelle de site internet',
+      serviceType: 'Dépannage de site internet',
+      url: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: [
+        { '@type': 'City', name: 'La Rochelle' },
+        { '@type': 'AdministrativeArea', name: 'Charente-Maritime' },
+        { '@type': 'Country', name: 'France' },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ],
+}
+
+const linkClass =
+  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
+
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-20 md:pb-28">
+      <div
+        className="home-orb top-[-30%] left-1/2 -translate-x-1/2"
+        aria-hidden
+      />
+      <div className="container flex flex-col items-center pt-6 text-center md:pt-12">
+        <Reveal>
+          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+            Dépannage et maintenance ponctuelle de site internet
+          </h1>
+        </Reveal>
+        <Reveal i={1}>
+          <p className="mx-auto mt-6 max-w-[52ch] text-lg leading-8 text-(--home-muted)">
+            Une mise à jour qui bloque, un module qui refuse de fonctionner, une
+            page qui disparaît : j’interviens à l’heure, sans contrat, sur votre
+            site WordPress, WooCommerce ou Prestashop. À La Rochelle, et à
+            distance partout en France.
+          </p>
+        </Reveal>
+        <Reveal i={2}>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="#contact"
+              className="home-btn home-btn-shine home-btn-glow"
+            >
+              Décrire mon problème
+            </Link>
+            <a href="tel:+33682963889" className="home-btn-ghost home-glassy">
+              06 82 96 38 89
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 export default function TmaOnDemand() {
   return (
-    <Layout
-      breadcrumbs={[
-        {
-          link: RouteLink.prestations,
-          title: 'Prestations',
-        },
-        {
-          link: RouteLink.prestationTma,
-          title: 'Maintenance de site internet',
-        },
-      ]}
-      title="Dépannage et maintenance ponctuelle de site internet"
-    >
-      <div className="container">
-        <TextImage position="right" image={TmaOnDemandIntro}>
-          <div className="text-left">
-            <h2 className="text-white uppercase text-3xl font-bold mb-6">
-              <span className="block">
-                Vous avez besoin de moi pour une tâche,
-              </span>
-              <span className="block text-2xl font-light">
-                Ou vous êtes bloqué avec votre site ?
-              </span>
-            </h2>
-
-            <p className="mt-6 text-xl text-gray-light">
-              Site vitrine ou boutique en ligne, il arrive qu’une mise à jour
-              bloque, qu’un module refuse de fonctionner ou qu’une page
-              disparaisse sans que personne ne sache pourquoi.
-            </p>
-            <p className="mt-6 text-gray-light">
-              J’interviens à l’heure, sans contrat, sur votre site WordPress,
-              WooCommerce ou Prestashop : correction d’un bug, intégration d’un
-              nouveau bloc ou d’une fonctionnalité, dépannage d’un module que
-              vous venez d’installer, remise en route après une mise à jour
-              ratée.
-            </p>
-            <p className="mt-6 text-gray-light">
-              Décrivez le problème dans le formulaire en bas de page, avec
-              l’adresse du site et ce que vous avez déjà tenté. Je vous réponds
-              avec un diagnostic et le temps estimé avant d’intervenir. Je suis
-              à La Rochelle, l’intervention se fait à distance.
-            </p>
-          </div>
-        </TextImage>
-      </div>
-
-      <div className="bg-gray-darker mt-8 mb-8">
-        <Diagonal
-          flipX
-          flipY
-          className="h-16 md:h-32 lg:h-48"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
+    <div className="home">
+      <Layout hero={<Hero />}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <div className="w-full max-w-3xl mx-auto text-center py-16 lg:py-0">
-          <div>
-            <h2 className="text-center text-white text-3xl">
-              <span className="uppercase font-bold">
-                Pourquoi faire appel à un support
-              </span>
-              <span className="block uppercase text-xl">
-                WordPress, Prestashop ou encore Woocommerce ?
-              </span>
-            </h2>
-            <p className="text-xl text-gray-light mt-6">
-              Votre objectif est une boutique qui vend ou un site vitrine qui
-              apporte des contacts, pas de passer vos soirées dans
-              l’administration de WordPress.
-            </p>
-            <p className="mt-4">
-              Une heure de développement règle souvent ce qui vous bloque depuis
-              des semaines : un formulaire qui n’envoie plus, un module de
-              paiement à reconfigurer, un bloc à ajouter sur la page d’accueil.
-            </p>
-            <p className="mt-4">
-              Je développe sur WordPress et Prestashop depuis 2008, et je
-              maintiens plus de 150 sites. Si le problème révèle un besoin plus
-              large, je vous propose un forfait de maintenance, jamais
-              l’inverse.
-            </p>
+
+        <section className="container py-16 md:py-24">
+          <SectionHeading text="Une heure de développement règle souvent ce qui bloque depuis des semaines. Voici ce qui m’arrive le plus souvent par ce formulaire.">
+            Ce qu’une intervention ponctuelle règle
+          </SectionHeading>
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {CASES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-8 md:grid-cols-[280px_1fr]">
+                  <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
           </div>
-        </div>
+        </section>
 
-        <div className="container text-center">
-          <h3 className="mt-10 text-3xl font-bold text-white">
-            Les raisons de vouloir
-            <br />
-            commander un ticket d&apos;heure :
-          </h3>
+        <section
+          id="contact"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+        >
+          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.4fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Décrivez le problème
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <div className="mt-5 max-w-[44ch] space-y-4 leading-7 text-(--home-muted)">
+                <p>
+                  Indiquez l’adresse du site, sa plateforme, ce qui ne
+                  fonctionne plus et ce que vous avez déjà tenté. Une capture
+                  d’écran du message d’erreur aide.
+                </p>
+                <p>
+                  Je vous réponds dans la journée avec un diagnostic et le temps
+                  estimé. Vous validez, j’interviens à distance, et vous recevez
+                  un compte rendu de ce qui a été fait.
+                </p>
+                <p>
+                  Je développe sur WordPress et Prestashop depuis 2008 et je
+                  maintiens plus de 150 sites. Si le problème révèle un besoin
+                  plus large, je vous propose un{' '}
+                  <Link href={RouteLink.prestationTma} className={linkClass}>
+                    forfait de maintenance
+                  </Link>
+                  , jamais l’inverse.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal i={1}>
+              <ContactForm />
+            </Reveal>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8 relative z-10">
-            <PrestationItem
-              image={PrestationDesign}
-              title={['Intégration', 'spécifique']}
-            >
-              Intégration spécifique sur votre site Prestashop ou WordPress
-              d&apos;une nouvelle fonctionnalité (dans la limite possible de
-              l&apos;heure).
-            </PrestationItem>
-            <div className="md:mt-12">
-              <PrestationItem
-                image={PrestationWebDev}
-                title={["Réparation d'un", 'bug ou erreur']}
-              >
-                Identification et correction d&apos;une erreur ou un bug sur
-                votre site dans l&apos;immédiat ou par devis après
-                identification et analyse.
-              </PrestationItem>
+        <section className="container py-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Quand un forfait vaut mieux qu’un dépannage
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+            </Reveal>
+            <Reveal i={1}>
+              <div className="space-y-4 leading-7 text-white/85">
+                <p>
+                  Un dépannage remet le site en route. Il ne le met pas à jour
+                  chaque semaine, ne le sauvegarde pas chaque jour et ne
+                  surveille pas que le formulaire ou le panier fonctionnent
+                  encore à trois heures du matin. Si vous m’appelez une deuxième
+                  fois dans l’année pour le même site, le forfait revient moins
+                  cher et vous évite la panne suivante.
+                </p>
+                <p>
+                  Les forfaits{' '}
+                  <Link
+                    href={RouteLink.prestationTmaWordPress}
+                    className={linkClass}
+                  >
+                    WordPress
+                  </Link>{' '}
+                  et{' '}
+                  <Link
+                    href={RouteLink.prestationTmaPrestashop}
+                    className={linkClass}
+                  >
+                    Prestashop
+                  </Link>{' '}
+                  démarrent à 39 € HT par mois, avec des heures de développement
+                  incluses et un délai d’intervention garanti.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section
+          id="faq"
+          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+        >
+          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Questions fréquentes sur le dépannage
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+                Prix, délai, accès nécessaires : ce qu’on me demande avant une
+                intervention.
+              </p>
+            </Reveal>
+            <div className="divide-y divide-white/10">
+              {FAQ.map((item, i) => (
+                <Reveal key={item.question} i={i}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
+                      {item.question}
+                      <span
+                        aria-hidden
+                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
+                      {item.answer}
+                    </p>
+                  </details>
+                </Reveal>
+              ))}
             </div>
-            <div className="md:mt-12">
-              <PrestationItem
-                image={PrestationFormation}
-                title={['Conseil, question', 'ou analyse']}
-              >
-                Besoin d&apos;un réglage particulier dans votre administration ?
-                D&apos;un conseil technique ou d&apos;une analyse d&apos;un code
-                ? Je suis là !
-              </PrestationItem>
-            </div>
-            <PrestationItem
-              image={PrestationSupport}
-              title={['Support technique', '7j/7']}
-            >
-              Je n’attends pas le lundi matin pour intervenir sur votre site. Si
-              un problème technique survient, je suis joignable 7j/7.
-            </PrestationItem>
           </div>
-        </div>
-        <Diagonal
-          className="h-16 md:h-32 lg:h-auto"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-gray-darker"
-        />
-      </div>
-
-      <div className="container">
-        <SectionTitle
-          content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          }
-          title="Contact"
-        />
-
-        <ContactForm />
-      </div>
-    </Layout>
+        </section>
+      </Layout>
+    </div>
   )
 }
