@@ -108,13 +108,15 @@ Les URL ont suivi le même principe. L'ancien site plaçait la catégorie devant
       </h2>
       <div>
 
-LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander. Le module s'arrête à Prestashop 8 et n'existe pour la version 9 qu'en abonnement, pour un outil dont LGS n'utilisait qu'une fonction : l'édition en masse des prix de déclinaisons. Revenir en Prestashop 8 ne faisait que repousser le problème, éditer près de 1 800 déclinaisons une par une n'était pas envisageable.
+LGS révise ses tarifs par gamme et par dimension, sur près de 1 800 déclinaisons. Sur la 1.6, le client passait par Store Commander, qui s'arrête à Prestashop 8. Plutôt qu'un abonnement pour une seule fonction ou un retour en arrière, j'ai développé le Tarifeur : un module Symfony dans le back-office, trois panneaux, une grille des déclinaisons groupées par dimension, l'édition au clavier comme dans un tableur, le collage d'une colonne depuis Excel, la modification d'un groupe entier en pourcentage ou en euros, et un historique qui permet de remettre les anciens prix d'un clic.
 
-J'ai donc développé le Tarifeur, maquette interactive le matin, module livré et validé en préprod le soir même, un module Symfony intégré au back-office, sous Catalogue. Trois panneaux : les catégories, les produits avec leur fourchette de prix, et la grille des déclinaisons avec le poids, le prix HT, l'écotaxe et le prix public calculé. Les déclinaisons se groupent par dimension ou par n'importe quel attribut, d'un glisser d'en-tête, et chaque groupe se replie avec sa fourchette de prix.
+Maquette interactive le matin, module validé en préprod le soir même. Les choix techniques, l'écotaxe comptée deux fois, les caches, les écritures concurrentes, et la question « faut-il toujours développer ? » sont racontés dans l'article qui accompagne ce projet.
 
-L'édition se fait au clavier comme dans un tableur : flèches, Entrée, frappe directe, Ctrl+Z. Une colonne entière se colle depuis Excel. « Modifier le groupe » applique une hausse ou une baisse en pourcentage ou en euros sur une sélection, avec arrondi à l'euro et aperçu avant validation. Un garde-fou repère les prix qui semblent encore contenir l'écotaxe et propose de la retirer.
-
-L'enregistrement part en un seul lot, dans une transaction, avec des verrous posés dans un ordre fixe. Chaque valeur emporte l'ancienne : si quelqu'un a modifié le prix entre-temps, la ligne est refusée plutôt qu'écrasée. Chaque lot est journalisé par employé, et l'historique permet de remettre les anciens prix d'un clic. Le cache de pages est purgé dans la foulée.
+<p className="mt-6">
+  <Link href={RouteLink.blogPost('store-commander-prestashop-9-tarifeur-sur-mesure')} className="inline-flex min-h-11 items-center gap-2 text-lg text-orange underline underline-offset-4 hover:text-white">
+    {'Lire l’article : Store Commander ne passe pas Prestashop 9, on a construit l’outil'}
+  </Link>
+</p>
 
       </div>
     </div>
@@ -128,17 +130,6 @@ L'enregistrement part en un seul lot, dans une transaction, avec des verrous pos
         className="h-auto w-full rounded-lg"
       />
       <figcaption className="mt-3 text-sm">{'Le Tarifeur en préprod : les 90 déclinaisons d’un établi groupées par dimension, prix et écotaxe éditables au clavier.'}</figcaption>
-    </figure>
-    <figure className="mt-8 md:mt-10">
-      <Image
-        src="/images/portfolio/lgs-mobilier-tarifeur-groupe.jpg"
-        alt="La fenêtre Modifier le groupe du Tarifeur : prix HT ou écotaxe, fixer, augmenter ou baisser, en pourcentage ou en euros, arrondi à l’euro, liste des déclinaisons concernées et bouton Appliquer à 10 déclinaisons."
-        width={1600}
-        height={1000}
-        sizes="(max-width: 1024px) 100vw, 1024px"
-        className="h-auto w-full rounded-lg"
-      />
-      <figcaption className="mt-3 text-sm">{'« Modifier le groupe » : une hausse de 3 % sur une dimension entière, avec aperçu avant d’appliquer.'}</figcaption>
     </figure>
 
   </section>
