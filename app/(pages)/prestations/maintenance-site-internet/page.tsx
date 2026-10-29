@@ -24,7 +24,7 @@ import {
 export const metadata = {
   title: 'Maintenance de site internet à La Rochelle | inRage',
   description:
-    'Maintenance, TMA et infogérance de site internet à La Rochelle : forfaits WordPress et Prestashop dès 39 € HT par mois, dépannage à l’heure, sauvegardes en France. Plus de 150 sites suivis.',
+    'Maintenance et TMA de site internet à La Rochelle : forfaits WordPress et Prestashop dès 39 € HT par mois, dépannage à l’heure, sauvegardes en France.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },

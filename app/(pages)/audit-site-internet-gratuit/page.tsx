@@ -11,7 +11,7 @@ import AuditHero from './AuditHero'
 export const metadata = {
   title: 'Audit gratuit de votre site internet - inRage',
   description:
-    'Pascal Gault, développeur web à La Rochelle, passe votre site en revue (vitesse, sécurité, référencement) et vous présente ses recommandations en trente minutes. Gratuit.',
+    'Audit gratuit de votre site par Pascal Gault, développeur web à La Rochelle : vitesse, sécurité, référencement, et ses recommandations en trente minutes.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.auditGratuit),
   },

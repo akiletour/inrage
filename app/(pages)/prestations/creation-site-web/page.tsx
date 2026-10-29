@@ -28,7 +28,7 @@ import {
 export const metadata = {
   title: 'Création de site internet à La Rochelle | Freelance - inRage',
   description:
-    'Création de site internet à La Rochelle : site vitrine WordPress de 2 000 à 3 000 €, boutique en ligne à partir de 5 000 €, sur mesure Symfony et React. Devis sous 24 h.',
+    'Création de site internet à La Rochelle : vitrine WordPress de 2 000 à 3 000 €, boutique à partir de 5 000 €, sur mesure Symfony et React. Devis sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWeb),
   },

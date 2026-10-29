@@ -18,7 +18,7 @@ import {
 export const metadata = {
   title: 'Développeur Symfony : application métier sur mesure | inRage',
   description:
-    'Développeur Symfony freelance depuis 2012 : extranets, outils internes, API avec API Platform, logiciels SaaS, reprise et montée de version. Basé à La Rochelle, à distance partout en France, en direct ou pour les agences.',
+    'Développeur Symfony freelance à La Rochelle depuis 2012 : extranets, outils internes, API Platform, SaaS, reprise et montée de version, partout en France.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationSymfony),
   },

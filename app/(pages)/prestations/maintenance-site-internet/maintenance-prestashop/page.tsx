@@ -25,7 +25,7 @@ import {
 export const metadata = {
   title: 'Maintenance Prestashop par un freelance | Contrat TMA - inRage',
   description:
-    'Contrat de maintenance Prestashop par un développeur freelance : mises à jour, sécurité, sauvegardes, surveillance du tunnel d’achat et heures de développement. Dès 39 € HT par mois.',
+    'Contrat de maintenance Prestashop par un développeur freelance : mises à jour, sécurité, sauvegardes, surveillance du tunnel d’achat. Dès 39 € HT par mois.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },

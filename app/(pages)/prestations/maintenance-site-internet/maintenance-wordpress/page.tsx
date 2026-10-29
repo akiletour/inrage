@@ -24,7 +24,7 @@ import {
 export const metadata = {
   title: 'Maintenance WordPress à La Rochelle | Freelance - inRage',
   description:
-    'Maintenance, support et dépannage WordPress à La Rochelle par un développeur freelance. Plus de 150 sites en infogérance : mises à jour, sécurité, sauvegardes, intervention garantie.',
+    'Maintenance et dépannage WordPress à La Rochelle par un développeur freelance : mises à jour, sécurité, sauvegardes, plus de 150 sites en infogérance.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaWordPress),
   },

@@ -29,7 +29,7 @@ import {
 export const metadata = {
   title: 'Prestations web à La Rochelle : sites, maintenance, DevOps | inRage',
   description:
-    'Création de sites WordPress, Prestashop, Symfony et React, maintenance, hébergement en France, DevOps, sécurité, React Native et tracking GA4. Pascal Gault, développeur freelance à La Rochelle, en direct ou pour les agences.',
+    'Création de sites WordPress, Prestashop, Symfony et React, maintenance et hébergement en France par Pascal Gault, développeur freelance à La Rochelle.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestations),
   },

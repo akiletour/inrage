@@ -16,7 +16,7 @@ import {
 export const metadata = {
   title: 'Dépannage et maintenance ponctuelle de site web | inRage',
   description:
-    'Dépannage de site internet à La Rochelle et à distance : intervention à l’heure sur WordPress, WooCommerce ou Prestashop pour corriger un bug, débloquer une mise à jour ou ajouter une fonctionnalité.',
+    'Dépannage de site internet à La Rochelle et à distance : intervention à l’heure sur WordPress, WooCommerce ou Prestashop, sans engagement.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
   },

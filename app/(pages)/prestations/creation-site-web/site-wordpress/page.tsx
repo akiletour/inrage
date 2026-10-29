@@ -27,7 +27,7 @@ import {
 export const metadata = {
   title: 'Création de site WordPress à La Rochelle | Freelance inRage',
   description:
-    'Développeur WordPress freelance à La Rochelle depuis 2008 : site vitrine sur mesure de 2 000 à 3 000 €, thème Octa, blocs Gutenberg, WooCommerce, hébergement en France. Devis sous 24 h.',
+    'Développeur WordPress freelance à La Rochelle depuis 2008 : site vitrine sur mesure de 2 000 à 3 000 €, thème Octa, WooCommerce, hébergement en France.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationWordPress),
   },

@@ -14,7 +14,7 @@ import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 export const metadata = {
   title: 'Portfolio : sites, boutiques et applications réalisés | inRage',
   description:
-    'Les sites WordPress, boutiques Prestashop et WooCommerce et applications Symfony et React développés par Pascal Gault, développeur freelance à La Rochelle, depuis 2014.',
+    'Sites WordPress, boutiques Prestashop et WooCommerce, applications Symfony et React développés par Pascal Gault, freelance à La Rochelle, depuis 2014.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.portfolio),
   },

@@ -25,7 +25,7 @@ const STATUS_URL = 'https://status.inrage.fr'
 export const metadata = {
   title: 'Hébergement web infogéré et souverain en France - inRage',
   description:
-    'Hébergement infogéré en France, administré par inRage : supervision chaque minute, sauvegardes quotidiennes, grappe de serveurs, CrowdSec. WordPress, Prestashop, React, Symfony.',
+    'Hébergement infogéré en France par inRage : supervision chaque minute, sauvegardes quotidiennes, CrowdSec. WordPress, Prestashop, React, Symfony.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationHosting),
   },

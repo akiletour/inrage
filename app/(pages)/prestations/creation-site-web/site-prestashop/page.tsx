@@ -27,7 +27,7 @@ import {
 export const metadata = {
   title: 'Freelance Prestashop : boutique, modules, migration | inRage',
   description:
-    'Développeur Prestashop freelance depuis 2013, de la 1.5 à Prestashop 9 : création de boutique sur mesure, modules, connecteurs ERP et marketplaces, import de catalogue, migration et maintenance. Basé à La Rochelle, toute la France.',
+    'Développeur Prestashop freelance à La Rochelle depuis 2013 : création de boutique sur mesure, modules, connecteurs ERP, migration et maintenance.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationPrestashop),
   },

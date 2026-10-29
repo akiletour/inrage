@@ -78,6 +78,19 @@ export default function Legals() {
           ce site.
         </p>
 
+        <div id="cookies" className="scroll-mt-28">
+          <LegalTitle>Cookies et mesure d’audience</LegalTitle>
+        </div>
+        <p>
+          Ce site utilise Google Tag Manager et Google Analytics 4 pour mesurer
+          son audience. Ces outils ne déposent de cookies qu’après votre accord,
+          donné dans le bandeau affiché à la première visite. Sans accord, seuls
+          des signaux anonymes, sans cookie ni identifiant, sont envoyés à
+          Google (mode consentement). Votre choix est conservé treize mois sur
+          votre navigateur et peut être modifié à tout moment depuis le lien «
+          Gérer les cookies » en pied de page.
+        </p>
+
         <LegalTitle>Hébergement</LegalTitle>
 
         <p>

@@ -5,6 +5,7 @@ import { RouteLink } from '@lib/router'
 
 import LogoWhite from '../../public/logo-white.svg'
 import Socials from '../components/Socials'
+import ConsentLink from '@component/consent/ConsentLink'
 
 const PRESTATION_LINKS = [
   {
@@ -57,6 +58,11 @@ function FooterLinks({
           </Link>
         </li>
       ))}
+      {links.some((link) => link.href === RouteLink.sitemap) && (
+        <li>
+          <ConsentLink />
+        </li>
+      )}
     </ul>
   )
 }

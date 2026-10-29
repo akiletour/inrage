@@ -26,7 +26,7 @@ import {
 export const metadata = {
   title: 'Développeur React, Next.js et React Native freelance | inRage',
   description:
-    'Applications web et mobiles sur mesure avec React, Next.js et React Native : tableaux de bord, SaaS, sites rapides et référencés, applications iOS et Android. Développeur freelance à La Rochelle, en direct ou pour les agences.',
+    'Développeur React, Next.js et React Native freelance à La Rochelle : applications web et mobiles, tableaux de bord, SaaS, en direct ou pour les agences.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationReact),
   },

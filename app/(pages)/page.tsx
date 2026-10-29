@@ -19,7 +19,7 @@ import { getCanonicalUrl, RouteLink } from '@lib/router'
 export const metadata = {
   title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
   description:
-    'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement en France. Devis gratuit.',
+    'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement.',
   alternates: {
     canonical: getCanonicalUrl(),
   },

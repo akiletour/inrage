@@ -23,7 +23,7 @@ import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 export const metadata = {
   title: 'Pascal Gault, développeur web freelance à La Rochelle',
   description:
-    'Développeur web freelance à La Rochelle depuis 2008 : WordPress, Prestashop, Symfony et React. Mon parcours en agence, mes expériences et ma façon de travailler.',
+    'Développeur web freelance à La Rochelle depuis 2008 : WordPress, Prestashop, Symfony et React. Mon parcours en agence et ma façon de travailler.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.aboutMe),
   },

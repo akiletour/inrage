@@ -43,14 +43,14 @@ export function generateEcommerceMetadata(): PortfolioPageMetadata {
   return {
     title: 'Portfolio e-commerce La Rochelle | PrestaShop & WooCommerce',
     description:
-      'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle. Boutiques B2B, migrations, optimisations. Développeur freelance Charente-Maritime.',
+      'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle, B2B, migrations, optimisations, par un développeur freelance.',
     keywords:
       'portfolio e-commerce La Rochelle, réalisations prestashop woocommerce, projets boutique en ligne charente-maritime, développeur e-commerce la rochelle',
     openGraph: {
       title:
         'Portfolio E-commerce La Rochelle | Réalisations PrestaShop & WooCommerce',
       description:
-        'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle. Boutiques B2B, migrations, optimisations par développeur freelance.',
+        'Portfolio e-commerce : boutiques PrestaShop et WooCommerce développées à La Rochelle, B2B, migrations, optimisations, par un développeur freelance.',
       url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
       type: 'website',
       locale: 'fr_FR',

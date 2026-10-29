@@ -19,7 +19,7 @@ const PAGE_TITLE = 'Développeur web freelance à La Rochelle'
 export const metadata = {
   title: 'Développeur web freelance à La Rochelle | Pascal Gault',
   description:
-    'Développeur web freelance à La Rochelle depuis 2008 : sites WordPress, boutiques Prestashop, applications React et Symfony, maintenance et hébergement en France. Devis gratuit sous 24 h.',
+    'Développeur web freelance à La Rochelle depuis 2008 : sites WordPress, boutiques Prestashop, applications React et Symfony. Devis gratuit sous 24 h.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.developpeurLaRochelle),
   },
@@ -152,7 +152,7 @@ const jsonLd = {
       name: 'Développement web freelance à La Rochelle',
       serviceType: 'Développement web',
       description:
-        'Création de sites internet WordPress, boutiques Prestashop et WooCommerce, applications React, Next.js et Symfony, maintenance et hébergement, par un développeur freelance basé à La Rochelle.',
+        'Sites WordPress, boutiques Prestashop et WooCommerce, applications React et Symfony, maintenance et hébergement par un développeur freelance à La Rochelle.',
       url: getCanonicalUrl(RouteLink.developpeurLaRochelle),
       provider: { '@id': getCanonicalUrl('/#business') },
       areaServed: [

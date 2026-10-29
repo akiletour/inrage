@@ -2,6 +2,8 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import type { Viewport } from 'next'
 import { ReactNode } from 'react'
 
+import ConsentDefaults from '@component/consent/ConsentDefaults'
+import CookieConsent from '@component/consent/CookieConsent'
 import Footer from '@layout/Footer'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -23,7 +25,7 @@ export async function generateMetadata() {
     metadataBase: new URL(getCanonicalUrl()),
     title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
     description:
-      'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement en France.',
+      'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement.',
     openGraph: {
       locale: 'fr_FR',
       type: 'website',
@@ -161,8 +163,10 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" data-scroll-behavior="smooth">
+      <head>
+        <ConsentDefaults />
+      </head>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
-      <head />
       <body>
         <script
           type="application/ld+json"
@@ -176,6 +180,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <main id="contenu">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   )
