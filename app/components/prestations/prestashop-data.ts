@@ -31,21 +31,6 @@ export const SERVICES = [
   },
 ]
 
-export const PROJECTS = [
-  {
-    slug: 'parapharmacie-moins-chere',
-    note: '16 000 références, connecteur LGPI et marketplaces, outil de picking. Client depuis 2017.',
-  },
-  {
-    slug: 'moloo',
-    note: 'Multiboutique B2B et B2C, outils de gestion des commandes, API marketplaces.',
-  },
-  {
-    slug: 'esc-distribution',
-    note: 'Refonte de l’accueil et des fiches produits, connecteurs ERP Sollo et MVS.',
-  },
-]
-
 export const CHOICE = [
   'Prestashop quand le catalogue est volumineux, avec beaucoup de déclinaisons, des tarifs par client ou par groupe, du B2B, un ERP ou un logiciel de caisse à relier.',
   'WooCommerce quand la boutique accompagne un site de contenu WordPress et que le catalogue reste simple à gérer.',
