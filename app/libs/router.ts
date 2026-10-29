@@ -6,6 +6,18 @@ export const RouteLink = {
   get prestationWeb() {
     return `${this.prestations}/creation-site-web`
   },
+  blogCategory(slug: string) {
+    return `${this.blog}/categorie/${slug}`
+  },
+  blogPost(slug: string) {
+    return `${this.blog}/${slug}`
+  },
+  portfolioCategory(slug: string) {
+    return `${this.portfolio}/${slug}`
+  },
+  portfolioProject(support: string, slug: string) {
+    return `${this.portfolio}/${support}/${slug}`
+  },
   get prestationTma() {
     return `${this.prestations}/maintenance-site-internet`
   },

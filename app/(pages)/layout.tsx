@@ -1,24 +1,40 @@
 import { GoogleTagManager } from '@next/third-parties/google'
+import type { Viewport } from 'next'
 import { ReactNode } from 'react'
 
+import ConsentDefaults from '@component/consent/ConsentDefaults'
+import CookieConsent from '@component/consent/CookieConsent'
 import Footer from '@layout/Footer'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import './globals.css'
+import '@component/home/home.css'
+import { serializeJsonLd } from '@util/seo-generators'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+  colorScheme: 'dark',
+  themeColor: '#141414',
+}
 
 export async function generateMetadata() {
   return {
     metadataBase: new URL(getCanonicalUrl()),
+    title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
+    description:
+      'Pascal Gault, développeur freelance à La Rochelle : sites WordPress, boutiques Prestashop, applications Symfony et React, maintenance et hébergement.',
     openGraph: {
       locale: 'fr_FR',
       type: 'website',
-      url: getCanonicalUrl(),
       siteName: 'inRage',
       images: [
         {
           url: getCanonicalUrl('/images/screenshot.png'),
-          width: 1200,
-          height: 900,
+          width: 1220,
+          height: 630,
           alt: 'inRage - Pascal Gault, développeur web freelance à La Rochelle',
           type: 'image/png',
         },
@@ -146,16 +162,25 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
+      <head>
+        <ConsentDefaults />
+      </head>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
-      <head />
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
-        <div>{children}</div>
+        <a
+          href="#contenu"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange focus:px-4 focus:py-2 focus:text-gray-darker"
+        >
+          Aller au contenu
+        </a>
+        <main id="contenu">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   )

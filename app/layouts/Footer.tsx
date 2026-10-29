@@ -5,6 +5,7 @@ import { RouteLink } from '@lib/router'
 
 import LogoWhite from '../../public/logo-white.svg'
 import Socials from '../components/Socials'
+import ConsentLink from '@component/consent/ConsentLink'
 
 const PRESTATION_LINKS = [
   {
@@ -50,13 +51,18 @@ function FooterLinks({
     <ul className="flex flex-col gap-2 text-sm">
       {links.map((link) => (
         <li key={link.href}>
-          <Link href={link.href}>
+          <Link href={link.href} className="inline-block py-1">
             <span className="text-gray-light transition-colors hover:text-orange">
               {link.label}
             </span>
           </Link>
         </li>
       ))}
+      {links.some((link) => link.href === RouteLink.sitemap) && (
+        <li>
+          <ConsentLink />
+        </li>
+      )}
     </ul>
   )
 }
@@ -65,6 +71,7 @@ export default function Footer() {
   return (
     <footer className="mt-10">
       <svg
+        aria-hidden
         className="relative w-full h-[15vh] max-h-20 -mb-2"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 24 150 28"
@@ -78,7 +85,12 @@ export default function Footer() {
           />
         </defs>
         <g className="parallax">
-          <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(20,20,20,0.7" />
+          <use
+            xlinkHref="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(20,20,20,0.7)"
+          />
           <use
             xlinkHref="#gentle-wave"
             x="48"

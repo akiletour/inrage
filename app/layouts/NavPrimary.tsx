@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { ReactNode, useCallback, useState } from 'react'
 import { sendGTMEvent } from '@next/third-parties/google'
@@ -29,9 +31,8 @@ function LinkItem({
   if (children) {
     return (
       <div className="group">
-        <Link href={href}>
+        <Link href={href} onClick={() => closePrimaryNav()}>
           <span
-            onClick={() => closePrimaryNav()}
             className={`uppercase block text-lg pt-4 lg:py-4 group-hover:text-orange ${
               isActive ? 'text-orange' : 'text-white'
             }`}
@@ -39,8 +40,8 @@ function LinkItem({
             {title}
           </span>
         </Link>
-        <div className="block lg:hidden group-hover:block lg:absolute w-full lg:w-[800px] lg:right-0 lg:top-full lg:pt-4">
-          <div className="lg:border-t-4 lg:bg-gray-darker lg:border-orange lg:bg-opacity-90 lg:p-4">
+        <div className="block lg:hidden group-hover:block group-focus-within:block lg:absolute w-full lg:w-[800px] lg:right-0 lg:top-full lg:pt-4">
+          <div className="lg:border-t-4 lg:bg-gray-darker/90 lg:border-orange lg:p-4">
             {children}
           </div>
         </div>
@@ -48,9 +49,8 @@ function LinkItem({
     )
   }
   return (
-    <Link href={href}>
+    <Link href={href} onClick={() => closePrimaryNav()}>
       <span
-        onClick={() => closePrimaryNav()}
         className={`block pt-4 lg:pt-0 uppercase text-lg ${
           isActive ? 'text-orange' : 'text-white hover:text-orange'
         }`}
@@ -73,7 +73,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
   const n1TitleClassnames =
     'uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-2'
   const n2TitleClassnames =
-    'text-white font-medium text-orange text-sm leading-4 hover:text-orange-dark'
+    'block py-2 lg:py-1 font-medium text-orange text-sm leading-4 hover:text-white'
 
   const toggleNavPrimary = useCallback(() => {
     setOpen((r) => !r)
@@ -84,7 +84,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
       <div
         className={`sticky-menu ${
           isSticky
-            ? 'fixed top-0 left-0 right-0 bg-gray-darker transition-all'
+            ? 'fixed top-0 left-0 right-0 bg-gray-darker pt-[env(safe-area-inset-top)] transition-colors'
             : ''
         }`}
       >
@@ -94,6 +94,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
               src="/logo.svg"
               width="150"
               height="56"
+              priority
               alt="Pascal GAULT, développeur Freelance sur La Rochelle"
               style={{
                 maxWidth: '100%',
@@ -105,9 +106,13 @@ export default function NavPrimary({ isSticky = false }: Props) {
           <button
             onClick={toggleNavPrimary}
             type="button"
+            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={isOpen}
+            aria-controls="nav-menu"
             className="burger-menu block lg:hidden bg-orange text-white p-2 rounded-md"
           >
             <svg
+              aria-hidden
               className="w-8 h-8"
               viewBox="0 0 18 18"
               xmlns="http://www.w3.org/2000/svg"
@@ -121,9 +126,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
           </button>
 
           <div
+            id="nav-menu"
             className={`nav-menu ${
               width < 1025 && isOpen
-                ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-4 text-center flex-col absolute top-full left-0 w-full'
+                ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-4 text-center flex-col absolute top-full left-0 w-full max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain'
                 : 'hidden relative space-x-6'
             } lg:flex items-center`}
           >
@@ -141,61 +147,53 @@ export default function NavPrimary({ isSticky = false }: Props) {
             >
               <div className="flex justify-evenly lg:justify-start">
                 <div>
-                  <Link href={RouteLink.prestationWeb}>
-                    <span
-                      onClick={() => setOpen(false)}
-                      className={n1TitleClassnames}
-                    >
-                      Création de site
-                    </span>
+                  <Link
+                    href={RouteLink.prestationWeb}
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className={n1TitleClassnames}>Création de site</span>
                   </Link>
                   <ul className="lg:list-disc lg:pl-4 marker:text-orange-dark">
                     <li>
-                      <Link href={RouteLink.prestationWordPress}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
-                          WordPress
-                        </span>
+                      <Link
+                        href={RouteLink.prestationWordPress}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>WordPress</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationPrestashop}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
-                          Prestashop
-                        </span>
+                      <Link
+                        href={RouteLink.prestationPrestashop}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>Prestashop</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationSymfony}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
-                          Symfony
-                        </span>
+                      <Link
+                        href={RouteLink.prestationSymfony}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>Symfony</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationReact}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.prestationReact}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           React & Next.js
                         </span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.developpeurLaRochelle}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.developpeurLaRochelle}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           Développeur web La Rochelle
                         </span>
                       </Link>
@@ -203,51 +201,47 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   </ul>
                 </div>
                 <div className="ml-12">
-                  <Link href={RouteLink.prestationTma}>
-                    <span
-                      onClick={() => setOpen(false)}
-                      className={n1TitleClassnames}
-                    >
+                  <Link
+                    href={RouteLink.prestationTma}
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className={n1TitleClassnames}>
                       Maintenance de site
                     </span>
                   </Link>
                   <ul className="lg:list-disc lg:pl-4 marker:text-orange-dark">
                     <li>
-                      <Link href={RouteLink.prestationTmaWordPress}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
-                          WordPress
-                        </span>
+                      <Link
+                        href={RouteLink.prestationTmaWordPress}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>WordPress</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationTmaPrestashop}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
-                          Prestashop
-                        </span>
+                      <Link
+                        href={RouteLink.prestationTmaPrestashop}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>Prestashop</span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationTmaOnDemand}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.prestationTmaOnDemand}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           Maintenance ponctuelle
                         </span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={RouteLink.prestationHosting}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.prestationHosting}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           Hébergement web
                         </span>
                       </Link>
@@ -272,7 +266,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                       src={ExpertWordPress}
                       width={150}
                       height={150}
-                      alt="Expert développeur Prestashop"
+                      alt="Expert développeur WordPress"
                       style={{
                         maxWidth: '100%',
                         height: 'auto',
@@ -297,27 +291,29 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   </Link>
                   <ul className="list-disc pl-4 marker:text-orange-dark">
                     <li>
-                      <Link href={`${RouteLink.portfolio}/wordpress`}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.portfolioCategory('wordpress')}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           Projets WordPress
                         </span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/e-commerce`}>
-                        <span
-                          onClick={() => setOpen(false)}
-                          className={n2TitleClassnames}
-                        >
+                      <Link
+                        href={RouteLink.portfolioCategory('e-commerce')}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className={n2TitleClassnames}>
                           Projets E-commerce
                         </span>
                       </Link>
                     </li>
                     <li>
-                      <Link href={`${RouteLink.portfolio}/application-web`}>
+                      <Link
+                        href={RouteLink.portfolioCategory('application-web')}
+                      >
                         <span
                           onClick={() => setOpen(false)}
                           className={n2TitleClassnames}
@@ -332,7 +328,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
                   <FeaturedProjectMenu
                     image={FeaturedProjectImage}
                     title="Parapharmacie moins chere"
-                    link={`${RouteLink.portfolio}/e-commerce/parapharmacie-moins-chere`}
+                    link={RouteLink.portfolioProject(
+                      'e-commerce',
+                      'parapharmacie-moins-chere'
+                    )}
                   />
                 </div>
               </div>
@@ -343,28 +342,33 @@ export default function NavPrimary({ isSticky = false }: Props) {
               href={RouteLink.blog}
               title="Blog"
             />
-            <Link href={RouteLink.contact}>
-              <span
-                onClick={() => {
-                  sendGTMEvent({ event: 'contact', position: 'header' })
-                  setOpen(false)
-                }}
-                className="mt-4 lg:mt-0 inline-flex py-2 px-4 bg-orange uppercase text-gray-darker font-medium"
-              >
+            <Link
+              href={RouteLink.contact}
+              onClick={() => {
+                sendGTMEvent({ event: 'contact', position: 'header' })
+                setOpen(false)
+              }}
+            >
+              <span className="mt-4 lg:mt-0 inline-flex py-2 px-4 bg-orange uppercase text-gray-darker font-medium">
                 Contactez-moi
               </span>
             </Link>
 
-            <div className="block lg:hidden text-3xl text-orange font-bold pt-4">
+            <a
+              href="tel:0682963889"
+              className="block lg:hidden text-3xl text-orange font-bold pt-4"
+            >
               06 82 96 38 89
-            </div>
+            </a>
             <button
               type="button"
+              aria-label="Fermer le menu"
               className="block lg:hidden w-full"
               onClick={toggleNavPrimary}
             >
               <div className="bg-gray-darker -mt-2">
                 <svg
+                  aria-hidden
                   className="translate translate-y-[30px] block w-full h-auto"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 415 76"

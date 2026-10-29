@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
 import { useGSAP } from '@gsap/react'
-import Button from '@component/Button'
 import NoScrollLink from '@component/NoScrollLink'
 import NavPrimary from '@layout/NavPrimary'
 
@@ -30,7 +29,9 @@ export default function Custom404() {
   const yetiSVG = useRef(null)
 
   useGSAP(() => {
-    // Fonctions de changement d'état
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
     function goDark() {
       gsap.set('#light', { visibility: 'hidden' })
 
@@ -78,7 +79,6 @@ export default function Custom404() {
       )
       .to('#chin', { duration: 0.1, y: 1.5 }, 0)
 
-    // Timeline principale du yéti
     const yetiTL = gsap.timeline({
       paused: true,
       repeat: -1,
@@ -185,7 +185,10 @@ export default function Custom404() {
       .to(['#armL', '#flashlightFront'], { duration: 0.075, x: 7 }, 11.8)
       .to(['#armL', '#flashlightFront'], { duration: 0.075, x: 0 }, 11.875)
 
-    // Initialisation
+    if (reduceMotion) {
+      goLight()
+      return
+    }
     goDark()
     yetiTL.play()
   }, [])
@@ -200,7 +203,7 @@ export default function Custom404() {
             id="yetiSVG"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 600 470"
-            className="w-[600] h-[470px] overflow-hidden absolute left-0 top-0"
+            className="w-[600px] h-[470px] overflow-hidden absolute left-0 top-0"
           >
             <linearGradient
               id="flashlightGrad"
@@ -928,7 +931,7 @@ export default function Custom404() {
             id="lightSVG"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 600 470"
-            className="w-[600] h-[470px] overflow-visible absolute left-0 top-0"
+            className="w-[600px] h-[470px] overflow-visible absolute left-0 top-0"
           >
             <filter id="white-glow">
               <feFlood
@@ -1040,9 +1043,9 @@ export default function Custom404() {
           </svg>
         </div>
         <div className="relative pt-[5rem] px-8 text-center max-[1300px]:text-right max-md:text-center">
-          <div className="text-4xl font-bold text-white mb-4 tracking-wider">
-            Hello ?? Il y a quelqu&apos;un ?!?
-          </div>
+          <h1 className="text-4xl font-bold text-white mb-4 tracking-wider">
+            Hello ?? Il y a quelqu’un ?!?
+          </h1>
           <p className="max-w-2xl max-lg:pl-[25rem] max-md:pl-0 mb-4">
             Nous savons que c&apos;est inquiétant, mais la page que vous essayez
             de consulter n&apos;a pas été trouvée. Peut-être s&apos;agissait-il
@@ -1050,8 +1053,8 @@ export default function Custom404() {
             <span className="line-through">lien</span> rêve ?
           </p>
 
-          <NoScrollLink href="/" passHref>
-            <Button>Retour à la page d&apos;accueil</Button>
+          <NoScrollLink href="/">
+            <span className="button px-6">Retour à la page d’accueil</span>
           </NoScrollLink>
         </div>
       </div>

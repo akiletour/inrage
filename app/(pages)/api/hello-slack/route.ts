@@ -112,9 +112,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, message: 'Message sent' })
   } catch (error) {
-    if (
-      !(error instanceof Error && error.message === 'Slack webhook failed')
-    ) {
+    if (!(error instanceof Error && error.message === 'Slack webhook failed')) {
       Sentry.captureException(error, {
         tags: {
           'api.name': 'Slack',

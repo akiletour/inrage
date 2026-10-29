@@ -1,35 +1,50 @@
-import ArticleItem from '@component/items/ArticleItem'
-import Layout from '@component/Layout'
-import { getCanonicalUrl, RouteLink } from '@lib/router'
+import BlogListing from '@component/blog/BlogListing'
 import { getBlogItems } from '@lib/blog'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
-  title: 'Liste des articles de développement - inRage',
+  title: 'Blog WordPress, Prestashop et serveurs | inRage',
   description:
-    "Blog de Pascal Gault, développeur web freelance à La Rochelle : astuces WordPress, Prestashop, Symfony et React, retours d'expérience et découvertes techniques.",
+    "Tutoriels et retours d'expérience de Pascal Gault, développeur freelance à La Rochelle : WordPress, Contact Form 7, Prestashop, serveurs, et ce que j'apprends en maintenant 150 sites.",
   alternates: {
     canonical: getCanonicalUrl(RouteLink.blog),
   },
 }
 
 export default async function BlogList() {
-  const data = await getBlogItems(-1)
+  const items = await getBlogItems()
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      breadcrumbJsonLd([
+        { name: 'Blog', item: getCanonicalUrl(RouteLink.blog) },
+      ]),
+      {
+        '@type': 'Blog',
+        '@id': `${getCanonicalUrl(RouteLink.blog)}#blog`,
+        url: getCanonicalUrl(RouteLink.blog),
+        name: 'Blog inRage',
+        author: { '@id': getCanonicalUrl('/#person') },
+        publisher: { '@id': getCanonicalUrl('/#business') },
+        blogPost: items.map((item) => ({
+          '@type': 'BlogPosting',
+          headline: item.title,
+          url: getCanonicalUrl(RouteLink.blogPost(item.slug)),
+          datePublished: item.date,
+        })),
+      },
+    ],
+  }
+
   return (
-    <Layout title="Blog sur le développement web">
-      <div className="container mb-20">
-        <div className="grid md:grid-cols-2 gap-8 -mb-16 mt-12">
-          {data.map(({ title, slug, excerpt, date, thumbnail }) => (
-            <ArticleItem
-              slug={slug}
-              key={slug}
-              featuredImage={thumbnail}
-              title={title}
-              excerpt={excerpt}
-              date={date}
-            />
-          ))}
-        </div>
-      </div>
-    </Layout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+      <BlogListing />
+    </>
   )
 }

@@ -3,6 +3,8 @@
 import * as Sentry from '@sentry/nextjs'
 import { useEffect } from 'react'
 
+import Link from 'next/link'
+
 export default function Error({
   error,
   reset,
@@ -15,18 +17,23 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-svh items-center justify-center px-4">
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Une erreur est survenue</h1>
-        <p className="mb-8 text-gray-600">
-          Nous nous excusons pour la gêne occasionnée.
+        <h1 className="mb-4 text-4xl font-bold text-white">
+          Une erreur est survenue
+        </h1>
+        <p className="mb-8 text-gray">
+          La page n’a pas pu s’afficher. Vous pouvez réessayer, revenir à
+          l’accueil ou m’appeler au 06 82 96 38 89.
         </p>
-        <button
-          onClick={() => reset()}
-          className="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
-        >
-          Réessayer
-        </button>
+        <div className="flex flex-wrap justify-center gap-4">
+          <button onClick={() => reset()} className="button px-6">
+            Réessayer
+          </button>
+          <Link href="/" className="button-outline">
+            Retour à l’accueil
+          </Link>
+        </div>
       </div>
     </div>
   )

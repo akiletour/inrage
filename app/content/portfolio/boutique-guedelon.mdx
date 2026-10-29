@@ -4,15 +4,15 @@ category: 'wordpress'
 categories: ['wordpress', 'e-commerce']
 website: https://www.boutique-guedelon.fr
 year: 2025
-summary: "Développement d'une boutique e-commerce haute performance pour Guédelon, entièrement multilingue et optimisée pour le SEO. Migration réussie de PrestaShop vers WooCommerce avec Sage 11 sur base Laravel pour une expérience utilisateur exceptionnelle."
-excerpt: "Création d'une boutique e-commerce ultra performante pour Guédelon avec migration complète de PrestaShop vers WooCommerce. Développée avec Sage 11 sur une base Laravel, la plateforme offre une gestion multilingue complète, une personnalisation des produits et une optimisation technique maximale pour un site rapide et conforme aux meilleures pratiques web. Code clean et tests unitaires garantissent une maintenance facilitée."
+summary: "Guédelon construit un château fort avec les techniques du XIIIe siècle, dans l'Yonne. Sa boutique en ligne vend les créations des œuvriers du chantier, des livres et des billets cadeaux. En 2025, elle est passée de Prestashop à WooCommerce, en français et en anglais, avec un temps de chargement divisé par trois."
+excerpt: 'Migration de la boutique de Guédelon de Prestashop vers WooCommerce : boutique multilingue avec WPML, personnalisation des produits, Lighthouse 100, taux de conversion en hausse de 45 %.'
 actions:
-  - Migration complète PrestaShop vers WooCommerce
+  - Migration de Prestashop vers WooCommerce, redirections comprises
+  - Boutique en français et en anglais avec WPML
+  - Champs de personnalisation sur les produits
   - Intégration des maquettes Adobe XD
-  - Développement WooCommerce avec champ de personnalisation
-  - Intégration multilingue avec WPML
-  - Optimisation SEO et performance
-  - Tests unitaires et code clean
+  - Thème Sage 11 testé unitairement, API REST
+  - Lighthouse 100 sur les quatre critères
 
 image:
   thumbnail: guedelon-sm.jpg
@@ -24,66 +24,118 @@ tools:
   - adobe-xd
 ---
 
-## Une boutique e-commerce performante pour Guédelon
+import Image from 'next/image'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
 
-Guédelon souhaitait disposer d'une boutique en ligne à la hauteur de son projet unique de construction d'un château médiéval. L'objectif était de créer une plateforme e-commerce ultra performante, parfaitement optimisée et entièrement multilingue pour toucher un public international, tout en migrant leur ancienne boutique PrestaShop vers une solution plus moderne, stable et offrant une maintenance sans contrainte.
+<div className="article-wide not-prose text-base leading-relaxed text-gray-light md:text-lg [&_h2]:text-balance [&_p]:text-pretty [&_p+p]:mt-5 [&_a]:underline-offset-4">
+  <section className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="guedelon-contexte">
+    <h2 id="guedelon-contexte" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+      {'La boutique d’un chantier médiéval.'}
+    </h2>
+    <div>
 
-## Migration de PrestaShop vers WooCommerce
+À Guédelon, une quarantaine d’œuvriers bâtissent un château fort avec les outils et les techniques du XIIIe siècle. La boutique en ligne prolonge la visite : pigments broyés sur place, cordes, couteaux forgés, livres, et des billets cadeaux expédiés directement chez la personne qui les reçoit.
 
-Le projet a débuté par une analyse approfondie de la boutique PrestaShop existante pour identifier tous les éléments à migrer : produits, catégories, attributs, clients, commandes et contenus. Nous avons développé une stratégie de migration sur mesure pour garantir une transition sans perte de données ni interruption d'activité.
+L’ancienne boutique tournait sur Prestashop et montrait ses limites : lente, difficile à faire évoluer, et sans version anglaise alors que le chantier accueille des visiteurs du monde entier. J’ai mené la migration de Prestashop vers WooCommerce, avec reprise des produits, des catégories, des clients et des commandes, et une redirection pour chaque ancienne adresse afin de garder le référencement acquis.
 
-La migration a inclus :
+    </div>
 
-- Transfert complet de la base de données
-- Migration des URL avec redirections 301 pour préserver le référencement
-- Adaptation des processus métier spécifiques à Guédelon
+  </section>
 
-## Architecture technique et développement
+  <section className="mt-16 md:mt-24" aria-labelledby="guedelon-univers">
+    <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <h2 id="guedelon-univers" className="text-3xl font-medium leading-tight text-white">
+        {'Des univers plutôt que des rayons.'}
+      </h2>
+      <div>
 
-Le site a été développé avec une stack technique moderne garantissant performances, maintenabilité et évolutivité :
+Le catalogue est organisé en univers, chacun avec sa photo du chantier et ses sous-familles : créations Guédelon, offrir une visite, livres, épicerie, maison. Les maquettes ont été dessinées sur Adobe XD et intégrées en mobile first, puisque la majorité des commandes partent d’un téléphone.
 
-- **WordPress et WooCommerce** comme base solide pour l'e-commerce
-- **Sage 11** comme framework de développement, apportant la rigueur et la structure de Laravel
-- **Tests unitaires** pour garantir la fiabilité du code et faciliter la maintenance
-- **Architecture MVC** pour une séparation claire des responsabilités
-- **Système multilingue** complet avec WPML, permettant une gestion fine des traductions
-- **API RESTful** pour les intégrations avec les systèmes tiers
+Les produits qui le demandent portent des champs de personnalisation, et un billet cadeau peut être envoyé à l’adresse de son bénéficiaire plutôt qu’à celle de l’acheteur. Tout le site existe en français et en anglais avec WPML, produits et contenus compris.
 
-La personnalisation des produits a été implémentée avec des champs sur mesure, offrant aux clients la possibilité d'adapter leurs achats selon leurs préférences. Le code a été développé selon les principes SOLID, avec une documentation complète pour faciliter la maintenance future.
+      </div>
+    </div>
+    <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-[1.3fr_1fr]">
+      <figure>
+        <Image
+          src="/images/portfolio/guedelon-univers.jpg"
+          alt="L’en-tête de l’univers Créations Guédelon : une photo de poteries du chantier et les sous-familles production des jardins, cordes, forge, pigments, teintures végétales."
+          width={1600}
+          height={389}
+          sizes="(max-width: 1024px) 100vw, 640px"
+          className="h-auto w-full rounded-lg"
+        />
+        <figcaption className="mt-3 text-sm">{'L’univers « Créations Guédelon » et ses sous-familles.'}</figcaption>
+      </figure>
+      <figure>
+        <Image
+          src="/images/portfolio/guedelon-langue.jpg"
+          alt="La boutique en anglais : le menu traduit, all universes, offer a visit, books, et le sélecteur de langue avec les drapeaux."
+          width={1600}
+          height={289}
+          sizes="(max-width: 1024px) 100vw, 480px"
+          className="h-auto w-full rounded-lg"
+        />
+        <figcaption className="mt-3 text-sm">{'La même boutique en anglais.'}</figcaption>
+      </figure>
+    </div>
 
-## Optimisation et performances
+  </section>
 
-L'un des points forts du projet est son niveau d'optimisation exceptionnel, nettement supérieur à l'ancienne solution PrestaShop :
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="guedelon-vitesse">
+    <div>
+      <h2 id="guedelon-vitesse" className="text-3xl font-medium leading-tight text-white">
+        {'Trois fois plus rapide.'}
+      </h2>
+      <p className="mt-5 max-w-[28ch] text-xl leading-relaxed text-white">
+        {'Lighthouse 100 sur les quatre critères, un temps de chargement réduit de 70 %.'}
+      </p>
+    </div>
+    <div>
 
-- **Score Lighthouse 100/100** sur tous les critères (Performance, Accessibilité, Meilleures pratiques, SEO)
-- **Moins de 70% de temps de chargement** par rapport à l'ancienne boutique PrestaShop
-- **Optimisation avancée des assets** avec Laravel Mix et Webpack
-- **Mise en cache intelligente** avec stratégies différenciées selon les contenus
-- **Lazy loading** des images et contenus
-- **Code JavaScript et CSS** minifié, optimisé et délivré de façon conditionnelle
-- **Optimisation des requêtes SQL** pour des temps de réponse minimaux
-- **Compression Gzip/Brotli** pour réduire la taille des fichiers transférés
+La boutique obtient 100 sur les quatre critères de Lighthouse, performance, accessibilité, bonnes pratiques et référencement. Le temps de chargement a baissé de 70 % par rapport à l’ancienne boutique Prestashop. Le code est chargé par page et non en bloc, les images attendent d’être visibles, le cache distingue les pages de catalogue des pages de compte, et les requêtes SQL les plus lourdes ont été réécrites.
 
-Ces optimisations ont permis d'obtenir un site ultra-rapide qui offre une expérience utilisateur exceptionnelle, même sur des connexions mobiles lentes.
+Sur la saison qui a suivi la mise en ligne, Guédelon a mesuré un taux de conversion en hausse de 45 %, un taux de rebond sur mobile en baisse de 60 % et un panier moyen en hausse de 30 %. Une boutique qui ne fait plus attendre vend plus, et surtout vend sur téléphone.
 
-## Administration et multilinguisme
+    </div>
 
-Le back-office a été entièrement repensé pour offrir une expérience d'administration intuitive :
+  </section>
 
-- **Interface d'administration personnalisée** reflétant la structure du front-office
-- **Gestion multilingue complète** permettant de traduire tous les éléments du site
-- **Tableau de bord analytique** offrant des insights sur les ventes et le comportement utilisateur
-- **Système de gestion des stocks** avancé avec alertes automatiques
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="guedelon-admin">
+    <h2 id="guedelon-admin" className="text-3xl font-medium leading-tight text-white">
+      {'Une administration qui ressemble à la boutique.'}
+    </h2>
+    <div>
 
-## Résultats obtenus
+L’équipe de Guédelon gère seule les produits, les traductions et les stocks. Le back-office reprend la structure du site, univers par univers, avec des alertes quand un stock descend sous un seuil et un tableau de bord des ventes. Un produit du chantier qui part vite se remarque tout de suite.
 
-La migration de PrestaShop vers WooCommerce a transformé l'expérience e-commerce de Guédelon :
+    </div>
 
-- **Augmentation de 45% du taux de conversion** grâce à l'amélioration des performances
-- **Réduction de 60% du taux de rebond** sur mobile
-- **Augmentation de 30% du panier moyen** grâce à une meilleure expérience d'achat
-- **Réduction significative des coûts de maintenance** grâce à une architecture moderne et testée
+  </section>
 
-La nouvelle boutique en ligne offre une expérience utilisateur fluide et agréable, tout en étant parfaitement administrable par l'équipe. Le site répond à toutes les exigences modernes en termes de performances, d'accessibilité et de référencement.
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="guedelon-stack">
+    <div>
+      <h2 id="guedelon-stack" className="text-3xl font-medium leading-tight text-white">
+        {'Sous le capot.'}
+      </h2>
+      <p className="mt-5 max-w-[28ch] text-xl leading-relaxed text-white">
+        {'Sage 11, tests unitaires, API REST.'}
+      </p>
+    </div>
+    <div>
 
-La solution multilingue permet de toucher efficacement un public international, tandis que l'architecture technique robuste basée sur Sage 11 et Laravel assure une évolutivité et une maintenance facilitée pour les années à venir.
+Le thème est construit avec Sage 11, qui apporte la structure de Laravel à WordPress, sur la base Octa que je publie en open source. Les fonctionnalités métier sont couvertes par des tests unitaires, et une API REST expose le catalogue aux outils tiers du chantier. La boutique est hébergée et maintenue par inRage depuis sa mise en ligne.
+
+      <div className="mt-6 flex flex-col items-start gap-2 text-base">
+        <Link href={`${RouteLink.blog}/octa-starter-wordpress-theme`} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+          {'Lire l’article sur Octa'}
+        </Link>
+        <Link href={RouteLink.prestationPrestashop} className="inline-flex min-h-11 items-center text-gray-light underline hover:text-white">
+          {'Migrer une boutique Prestashop vers WooCommerce'}
+        </Link>
+      </div>
+    </div>
+
+  </section>
+</div>

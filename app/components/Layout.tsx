@@ -1,57 +1,29 @@
-'use client'
-
-import { Fragment, ReactNode } from 'react'
-
-import { motion } from 'motion/react'
+import { ReactNode } from 'react'
 
 import Header from '@layout/Header'
 
 type Props = {
   children: ReactNode
-  title?: string | string[]
-  excerpt?: string | string[]
-  tmaLayout?: boolean
-  meta?: ReactNode
+  title?: string
+  hero?: ReactNode
   breadcrumbs?: Array<{
     link: string
     title: string
   }>
 }
 
-const variants = {
-  hidden: { opacity: 0, x: -100, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: -100 },
-}
-
 function Layout({
   children,
   title = '',
-  excerpt = '',
-  tmaLayout = false,
-  meta,
+  hero,
   breadcrumbs = [],
 }: Props): ReactNode {
   return (
-    <div>
-      <Header
-        pageTitle={title}
-        pageExcerpt={excerpt}
-        pageMeta={meta}
-        headerType={tmaLayout === true ? 'tma' : 'default'}
-        breadcrumb={breadcrumbs}
-      />
-      <motion.div
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        layout
-        variants={variants}
-      >
-        <Fragment key={Array.isArray(title) ? title.join(',') : title}>
-          {children}
-        </Fragment>
-      </motion.div>
+    <div className={hero ? 'home' : undefined}>
+      <Header pageTitle={title} hero={hero} breadcrumb={breadcrumbs} />
+      <div key={title} className="page-enter">
+        {children}
+      </div>
     </div>
   )
 }

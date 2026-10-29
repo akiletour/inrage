@@ -1,584 +1,334 @@
-import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
 import FranceMap from '@component/FranceMap'
+import Glass from '@component/home/Glass'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
-import ExpertisePrestashop from '@image/expertises/prestashop.png'
-import ExpertiseReact from '@image/expertises/react.svg'
-import ExpertiseSymfony from '@image/expertises/symfony.png'
-import ExpertiseWordPress from '@image/expertises/wordpress.png'
-import { RouteLink, getCanonicalUrl } from '@lib/router'
+import {
+  COMPARISON,
+  FAQ,
+  PATH,
+  PLEDGES,
+} from '@component/prestations/hebergement-data'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
-const PAGE_TITLE = 'Hébergement de site internet infogéré'
 const STATUS_URL = 'https://status.inrage.fr'
 
 export const metadata = {
-  title: 'Hébergement web souverain et infogéré en France - inRage',
+  title: 'Hébergement web infogéré et souverain en France - inRage',
   description:
-    'Hébergement en France géré par inRage : supervision 24h/24, sauvegardes quotidiennes, serveurs redondants et protection contre les attaques. WordPress, Prestashop, React.',
+    'Hébergement infogéré en France par inRage : supervision chaque minute, sauvegardes quotidiennes, CrowdSec. WordPress, Prestashop, React, Symfony.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationHosting),
   },
-  openGraph: {
-    title: 'Hébergement web souverain et infogéré en France - inRage',
-    description:
-      'Votre site hébergé en France et surveillé par celui qui le développe : supervision 24h/24, sauvegardes, redondance et sécurité, sans jargon.',
-    url: getCanonicalUrl(RouteLink.prestationHosting),
-    siteName: 'inRage',
-    locale: 'fr_FR',
-    type: 'website',
-  },
 }
 
-const PLEDGES = [
-  {
-    title: 'Aucune donnée ne quitte le pays',
-    text: 'Fichiers, base de données, sauvegardes, journaux : tout est stocké sur des serveurs situés en France. Pas de copie chez un géant américain, pas de transfert vers un sous-traitant hors d’Europe.',
-  },
-  {
-    title: 'Aucune dépendance à un hyperscaler',
-    text: 'L’infrastructure est administrée par inRage, pas louée sur une plateforme dont les conditions changent chaque année. Vous savez où sont vos données et qui y a accès.',
-  },
-  {
-    title: 'Un humain, à La Rochelle',
-    text: 'Pas de ticket dans une file d’attente. Celui qui répond au téléphone est celui qui a construit votre site et qui surveille ses serveurs, jour et nuit.',
-  },
-]
-
-const JOURNEY = [
-  {
-    title: 'Votre visiteur',
-    text: 'Il tape votre adresse ou clique sur un lien.',
-  },
-  {
-    title: 'Le bouclier',
-    text: 'Un pare-feu et un bouclier collaboratif filtrent les robots et les adresses malveillantes signalées par des milliers de serveurs dans le monde. Une attaque est bloquée avant d’atteindre votre site.',
-  },
-  {
-    title: 'Les serveurs',
-    text: 'Votre site tourne sur plusieurs machines qui se relaient automatiquement. Si l’une tombe, les autres prennent la suite sans coupure visible.',
-  },
-  {
-    title: 'Le coffre',
-    text: 'Chaque nuit, une copie complète de vos fichiers et de votre base de données est déposée sur un espace séparé. On restaure en quelques minutes si besoin.',
-  },
-]
-
-const DAY = [
-  {
-    time: 'En continu',
-    title: 'Supervision',
-    text: 'Chaque minute, un robot vérifie que votre site répond correctement. À la moindre anomalie, je reçois une alerte, souvent avant que vous ne remarquiez quoi que ce soit.',
-  },
-  {
-    time: 'À chaque visite',
-    title: 'Filtrage',
-    text: 'Le bouclier laisse passer vos visiteurs et bloque les robots indésirables et les tentatives d’intrusion.',
-  },
-  {
-    time: 'Chaque nuit',
-    title: 'Sauvegarde',
-    text: 'Fichiers et base de données sont copiés sur un espace séparé, en France, et conservés plusieurs semaines.',
-  },
-  {
-    time: 'Chaque semaine',
-    title: 'Mises à jour',
-    text: 'Système, PHP et base de données sont maintenus à jour et sécurisés, sans interruption pour vos visiteurs.',
-  },
-  {
-    time: 'Avant chaque évolution',
-    title: 'Espace de test',
-    text: 'Un environnement de préproduction permet d’essayer une nouveauté ou une mise à jour avant de la publier sur le site réel.',
-  },
-]
-
-const COMPARISON = [
-  {
-    criteria: 'Interlocuteur',
-    generic: 'Un support par tickets, séparé de votre développeur',
-    inrage: 'La même personne développe, héberge et maintient votre site',
-  },
-  {
-    criteria: 'Supervision',
-    generic: 'À votre charge, ou en option',
-    inrage: 'Incluse, 24h/24, avec intervention en cas d’alerte',
-  },
-  {
-    criteria: 'Sauvegardes',
-    generic: 'Souvent en option, restauration payante',
-    inrage: 'Chaque nuit, conservées à part, restauration comprise',
-  },
-  {
-    criteria: 'Panne matérielle',
-    generic: 'Site indisponible le temps de la réparation',
-    inrage: 'Un autre serveur prend le relais automatiquement',
-  },
-  {
-    criteria: 'Sécurité',
-    generic: 'Pare-feu de base',
-    inrage: 'Pare-feu, bouclier collaboratif et filtrage des robots',
-  },
-  {
-    criteria: 'Localisation des données',
-    generic: 'Variable, parfois hors d’Europe',
-    inrage: 'France uniquement, aucune donnée à l’étranger',
-  },
-  {
-    criteria: 'Réglages',
-    generic: 'Configuration générique',
-    inrage: 'Serveurs réglés pour WordPress, Prestashop, React et Symfony',
-  },
-]
-
-type Stack = {
-  title: string
-  href: string
-  image: StaticImageData
-}
-
-const STACKS: Stack[] = [
-  {
-    title: 'WordPress',
-    href: RouteLink.prestationWordPress,
-    image: ExpertiseWordPress,
-  },
-  {
-    title: 'Prestashop',
-    href: RouteLink.prestationPrestashop,
-    image: ExpertisePrestashop,
-  },
-  {
-    title: 'React & Next.js',
-    href: RouteLink.prestationReact,
-    image: ExpertiseReact,
-  },
-  {
-    title: 'Symfony',
-    href: RouteLink.prestationSymfony,
-    image: ExpertiseSymfony,
-  },
-]
-
-const STEPS = [
-  {
-    title: 'Audit de l’existant',
-    text: 'Le point sur votre site, son trafic et votre hébergeur actuel.',
-  },
-  {
-    title: 'Migration sans coupure',
-    text: 'Transfert complet du site, des e-mails et du nom de domaine, sans interruption visible.',
-  },
-  {
-    title: 'Mise en service',
-    text: 'Supervision active dès la première minute, point régulier et interlocuteur joignable.',
-  },
-]
-
-const FAQ = [
-  {
-    question: 'Où sont hébergées mes données ?',
-    answer:
-      'En France, uniquement. Les serveurs qui font tourner votre site, ceux qui conservent vos sauvegardes et les outils de supervision sont tous situés sur le territoire français. Aucune donnée n’est transférée à l’étranger, ce qui facilite votre conformité au RGPD.',
-  },
-  {
-    question: 'Puis-je garder mon nom de domaine ?',
-    answer:
-      'Oui. Votre nom de domaine reste à votre nom et vous en restez propriétaire. Je m’occupe seulement de le faire pointer vers la nouvelle infrastructure, et je peux le gérer pour vous si vous le souhaitez.',
-  },
-  {
-    question: 'Que se passe-t-il si mon site est attaqué ?',
-    answer:
-      'La plupart des attaques sont bloquées avant d’atteindre votre site grâce au bouclier collaboratif et au pare-feu. Si une tentative passe malgré tout, je suis alerté, j’interviens et, au pire, je restaure la sauvegarde de la veille. Vous êtes informé à chaque étape.',
-  },
-  {
-    question: 'Combien coûte l’hébergement ?',
-    answer:
-      'Le tarif dépend de la taille de votre site, de son trafic et de vos besoins. Il est établi sur devis, gratuitement et sous 24 heures, et il est souvent couplé à un forfait de maintenance pour couvrir aussi les mises à jour de votre site.',
-  },
-  {
-    question: 'Hébergez-vous uniquement les sites que vous avez créés ?',
-    answer:
-      'Non. J’héberge aussi des sites WordPress, Prestashop, React ou Symfony développés par d’autres, après un audit rapide pour vérifier qu’ils sont sains et compatibles.',
-  },
-  {
-    question: 'Puis-je changer d’hébergeur plus tard ?',
-    answer:
-      'Bien sûr. Vous restez propriétaire de votre site, de vos données et de votre nom de domaine. Si vous partez, je vous remets une copie complète et je facilite la transition.',
-  },
-]
-
-function buildJsonLd() {
-  const pageUrl = getCanonicalUrl(RouteLink.prestationHosting)
-
-  return [
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Hébergement de site internet',
+        item: getCanonicalUrl(RouteLink.prestationHosting),
+      },
+    ]),
     {
-      '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': `${pageUrl}#service`,
+      '@id': `${getCanonicalUrl(RouteLink.prestationHosting)}#service`,
       name: 'Hébergement de site internet infogéré',
-      serviceType: 'Hébergement web',
-      description:
-        'Hébergement infogéré en France pour sites WordPress, Prestashop, React et Symfony : supervision 24h/24, sauvegardes quotidiennes, serveurs redondants, protection contre les attaques. Aucune donnée transférée hors de France.',
-      url: pageUrl,
+      serviceType: 'Hébergement web infogéré',
+      url: getCanonicalUrl(RouteLink.prestationHosting),
       provider: { '@id': getCanonicalUrl('/#business') },
       areaServed: { '@type': 'Country', name: 'France' },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Hébergement infogéré',
-        itemListElement: DAY.map((item) => ({
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: item.title },
-        })),
-      },
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
-      })),
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: getCanonicalUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Prestations',
-          item: getCanonicalUrl(RouteLink.prestations),
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: PAGE_TITLE,
-          item: pageUrl,
-        },
-      ],
-    },
-  ]
+    faqJsonLd(FAQ),
+  ],
+}
+
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[20%] -left-[20%]" aria-hidden />
+      <div className="home-orb top-[-10%] right-[-10%]" aria-hidden />
+      <div className="container grid items-center gap-12 pt-6 md:pt-12 lg:grid-cols-[1.3fr_0.7fr] lg:gap-20">
+        <div>
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Hébergement web infogéré, en France
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[56ch] text-lg leading-8 text-(--home-muted)">
+              Vos données ne quittent pas la France. Votre site WordPress,
+              Prestashop, React ou Symfony tourne sur une infrastructure que
+              j’administre moi-même, surveillée chaque minute, sauvegardée
+              chaque nuit, protégée par CrowdSec, et suivie par la personne qui
+              l’a développé.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="#contact"
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Demander un devis
+              </Link>
+              <a
+                href={STATUS_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="home-btn-ghost home-glassy"
+              >
+                État de l’infrastructure
+              </a>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal i={2} className="hidden lg:block">
+          <FranceMap className="mx-auto w-full max-w-xs" />
+        </Reveal>
+      </div>
+    </section>
+  )
 }
 
 export default function PrestationHebergement() {
-  const jsonLd = buildJsonLd()
-
   return (
-    <Layout
-      title={PAGE_TITLE}
-      breadcrumbs={[{ link: RouteLink.prestations, title: 'Prestations' }]}
-    >
-      {jsonLd.map((schema) => (
-        <script
-          key={schema['@type']}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
 
-      <section className="container mt-8">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-center">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-orange">
-              Hébergement souverain
-            </p>
-            <h2 className="mt-4 text-white font-bold text-balance leading-[1.05] tracking-tight text-4xl sm:text-5xl lg:text-6xl">
-              Vos données ne quittent pas la France.
+      <section className="container py-16 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.4fr] lg:gap-20">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Trois engagements, sans petite ligne
             </h2>
-            <p className="mt-6 max-w-[60ch] text-xl text-gray-light text-pretty">
-              Votre site WordPress, Prestashop, React ou Symfony, hébergé et
-              surveillé par celui qui l’a développé, sur une infrastructure
-              française administrée par inRage. Aucune exception, aucune petite
-              ligne.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href={RouteLink.contact}>
-                <span className="button">Demander un devis gratuit</span>
-              </Link>
-              <a href="#engagements" className="button-outline">
-                Nos trois engagements
-              </a>
-            </div>
-          </div>
-          <div className="hidden lg:flex justify-center">
-            <FranceMap className="w-full max-w-sm" />
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <div className="divide-y divide-white/10">
+            {PLEDGES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="py-8 first:pt-0">
+                  <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-(--home-muted)">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
-
-        <ol
-          id="engagements"
-          className="mt-16 grid gap-0 md:grid-cols-3 border-t border-[#2f2f2f] scroll-mt-24"
-        >
-          {PLEDGES.map((pledge, index) => (
-            <li
-              key={pledge.title}
-              className="pt-8 pb-4 md:pr-10 md:border-r md:border-[#2f2f2f] md:last:border-r-0 md:last:pr-0 md:[&:not(:first-child)]:pl-10"
-            >
-              <div className="text-orange font-bold text-4xl tabular-nums">
-                {String(index + 1).padStart(2, '0')}
-              </div>
-              <h3 className="mt-3 text-white font-medium text-xl text-balance">
-                {pledge.title}
-              </h3>
-              <p className="mt-3 text-gray-light text-pretty">{pledge.text}</p>
-            </li>
-          ))}
-        </ol>
       </section>
 
-      <section className="bg-gray-darker mt-16 py-16">
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
         <div className="container">
-          <h2 className="text-white text-3xl font-bold text-balance">
+          <SectionHeading text="Entre votre visiteur et votre site, trois couches que vous ne voyez jamais et qui font la différence le jour où quelque chose se passe mal.">
             Le chemin d’une visite sur votre site
-          </h2>
-          <p className="mt-4 max-w-2xl text-gray-light">
-            Entre votre visiteur et votre site, quatre étapes que vous ne voyez
-            jamais et qui font toute la différence le jour où quelque chose se
-            passe mal.
-          </p>
-
-          <div className="mt-12 rounded-lg border border-orange/50 px-4 pt-3 pb-6 md:px-6 md:pb-8">
-            <div className="text-xs uppercase tracking-widest text-orange">
-              Supervision 24h/24, 7j/7
-            </div>
-            <ol className="mt-6 grid gap-6 md:grid-cols-4">
-              {JOURNEY.map((step, index) => (
-                <li key={step.title} className="relative flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="flex-none w-9 h-9 rounded-full bg-orange text-gray-darker font-bold flex items-center justify-center tabular-nums">
-                      {index + 1}
-                    </span>
-                    {index < JOURNEY.length - 1 && (
-                      <span
-                        aria-hidden="true"
-                        className="hidden md:block flex-1 h-px bg-[#3a3a3a]"
-                      />
-                    )}
-                  </div>
-                  <h3 className="text-white font-medium text-lg">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-gray-light">{step.text}</p>
+          </SectionHeading>
+          <div className="relative mt-14">
+            <div
+              className="absolute top-7 right-[16%] left-[16%] hidden h-px bg-white/15 lg:block"
+              aria-hidden
+            />
+            <ol className="grid gap-6 lg:grid-cols-3">
+              {PATH.map((node, i) => (
+                <li key={node.title}>
+                  <Reveal i={i} className="h-full">
+                    <Glass className="flex h-full flex-col p-7">
+                      <span className="flex items-center gap-3">
+                        <span className="home-pulse" aria-hidden />
+                        <span className="text-sm text-(--home-muted)">
+                          {node.tools}
+                        </span>
+                      </span>
+                      <h3 className="mt-4 text-2xl font-semibold tracking-tight text-white">
+                        {node.title}
+                      </h3>
+                      <p className="mt-3 leading-7 text-(--home-muted)">
+                        {node.text}
+                      </p>
+                    </Glass>
+                  </Reveal>
                 </li>
               ))}
             </ol>
           </div>
-        </div>
-      </section>
-
-      <section className="container py-16">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Une journée type de votre hébergement
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Ce qui se passe pendant que vous vous occupez de votre activité.
+          <Reveal className="mx-auto mt-12 max-w-3xl text-center">
+            <p className="leading-7 text-(--home-muted)">
+              En octobre 2026, une faille PHP sous embargo a été corrigée sur
+              tout le parc en une nuit.{' '}
+              <Link
+                href={RouteLink.blogPost(
+                  'faille-securite-php-octobre-2026-recit'
+                )}
+                className="home-link"
+              >
+                Le récit de cette nuit
+              </Link>
+              .
             </p>
-          </div>
-          <ol className="relative border-l border-[#2f2f2f] pl-8 space-y-10">
-            {DAY.map((item) => (
-              <li key={item.title} className="relative">
-                <span
-                  aria-hidden="true"
-                  className="absolute -left-[37px] top-1.5 w-4 h-4 rounded-full border-2 border-orange bg-gray-dark"
-                />
-                <div className="text-xs uppercase tracking-widest text-orange">
-                  {item.time}
-                </div>
-                <h3 className="mt-1 text-white font-medium text-xl">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-gray-light max-w-[65ch]">{item.text}</p>
-              </li>
-            ))}
-          </ol>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-gray-darker py-16">
-        <div className="container">
-          <h2 className="text-white text-3xl font-bold text-balance">
-            Hébergement classique ou hébergement inRage
-          </h2>
-          <p className="mt-4 max-w-2xl text-gray-light">
-            Un hébergeur généraliste loue de l’espace. inRage prend la
-            responsabilité de votre site de bout en bout.
-          </p>
-          <div className="mt-10 overflow-x-auto">
-            <table className="w-full min-w-[640px] border-collapse text-sm">
-              <thead>
-                <tr className="text-left text-xs uppercase tracking-widest text-gray">
-                  <th scope="col" className="py-3 pr-4 font-medium">
-                    Critère
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="Un hébergeur généraliste loue de l’espace. Ici, la responsabilité du site est prise de bout en bout, et voici ce que cela change concrètement.">
+          Hébergement classique ou hébergement inRage
+        </SectionHeading>
+        <Reveal className="mt-14 hidden md:block">
+          <table className="w-full border-collapse text-left">
+            <thead>
+              <tr className="border-b border-white/10">
+                <th
+                  scope="col"
+                  className="w-[22%] pb-5 text-sm font-medium text-(--home-muted)"
+                >
+                  Critère
+                </th>
+                <th
+                  scope="col"
+                  className="w-[36%] pb-5 pr-6 text-sm font-medium text-(--home-muted)"
+                >
+                  Hébergement classique
+                </th>
+                <th
+                  scope="col"
+                  className="pb-5 text-sm font-medium text-(--home-orange-text)"
+                >
+                  Hébergement inRage
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/10">
+              {COMPARISON.map((row) => (
+                <tr key={row.criteria}>
+                  <th
+                    scope="row"
+                    className="py-5 pr-6 align-top text-lg font-medium text-white"
+                  >
+                    {row.criteria}
                   </th>
-                  <th scope="col" className="py-3 pr-4 font-medium">
-                    Hébergement classique
-                  </th>
-                  <th scope="col" className="py-3 font-medium text-orange">
-                    Hébergement inRage
-                  </th>
+                  <td className="py-5 pr-6 align-top leading-7 text-white/50">
+                    {row.generic}
+                  </td>
+                  <td className="py-5 align-top leading-7 text-white/85">
+                    {row.inrage}
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
-                {COMPARISON.map((row) => (
-                  <tr key={row.criteria}>
-                    <th
-                      scope="row"
-                      className="py-4 pr-4 align-top text-left font-medium text-white"
-                    >
-                      {row.criteria}
-                    </th>
-                    <td className="py-4 pr-4 align-top text-gray">
-                      {row.generic}
-                    </td>
-                    <td className="py-4 align-top text-gray-light">
-                      {row.inrage}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
+        </Reveal>
+        <div className="mt-12 divide-y divide-white/10 md:hidden">
+          {COMPARISON.map((row, i) => (
+            <Reveal key={row.criteria} i={i}>
+              <div className="py-5">
+                <h3 className="text-lg font-medium text-white">
+                  {row.criteria}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-white/50">
+                  Classique : {row.generic}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-white/85">
+                  inRage : {row.inrage}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
-      <section className="container py-16">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Réglé pour vos technologies
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Pas d’offre générique : chaque site est installé avec la
-              configuration que son outil demande pour être rapide et stable.
-            </p>
-            <ul className="mt-8 grid grid-cols-2 gap-4">
-              {STACKS.map((stack) => (
-                <li key={stack.title}>
-                  <Link href={stack.href}>
-                    <span className="flex items-center gap-4 rounded-lg border border-[#2f2f2f] px-4 py-3 transition-colors duration-150 hover:border-orange/60">
-                      <span className="relative w-10 h-10 flex-none">
-                        <Image
-                          src={stack.image}
-                          alt=""
-                          fill
-                          sizes="40px"
-                          className="object-contain"
-                        />
-                      </span>
-                      <span className="text-white font-medium">
-                        {stack.title}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
               Changer d’hébergeur sans coupure
             </h2>
-            <p className="mt-4 text-gray-light">
-              Je prends en charge l’intégralité du transfert pour que vos
-              visiteurs ne voient rien.
-            </p>
-            <ol className="mt-8 space-y-6">
-              {STEPS.map((step, index) => (
-                <li key={step.title} className="flex gap-4">
-                  <span className="flex-none text-orange font-bold text-2xl tabular-nums">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="text-white font-medium text-lg">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-light">{step.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <Reveal i={1}>
+            <div className="space-y-4 leading-7 text-white/85">
+              <p>
+                Tout commence par un point sur votre site, son trafic et votre
+                hébergeur actuel. Je copie ensuite le site, la base de données
+                et les e-mails sur l’infrastructure, je le vérifie en
+                pré-production, puis je fais pointer le nom de domaine, qui
+                reste à votre nom. Vos visiteurs ne voient rien.
+              </p>
+              <p>
+                Chaque site est installé avec la configuration que son outil
+                demande :{' '}
+                <Link
+                  href={RouteLink.prestationWordPress}
+                  className="home-link"
+                >
+                  WordPress
+                </Link>
+                ,{' '}
+                <Link
+                  href={RouteLink.prestationPrestashop}
+                  className="home-link"
+                >
+                  Prestashop
+                </Link>
+                ,{' '}
+                <Link href={RouteLink.prestationReact} className="home-link">
+                  React et Next.js
+                </Link>{' '}
+                ou{' '}
+                <Link href={RouteLink.prestationSymfony} className="home-link">
+                  Symfony
+                </Link>
+                . La supervision est active dès la première minute.
+              </p>
+              <p>
+                L’hébergement couvre le serveur. Les mises à jour du site
+                lui-même, de ses extensions et de ses modules relèvent des{' '}
+                <Link href={RouteLink.prestationTma} className="home-link">
+                  forfaits de maintenance
+                </Link>
+                , que la plupart des clients combinent avec l’hébergement.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-gray-darker py-16">
-        <div className="container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Questions fréquentes
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Ce que me demandent le plus souvent les clients avant de confier
-              l’hébergement de leur site.
-            </p>
-            <p className="mt-6">
-              <a
-                href={STATUS_URL}
-                className="text-orange underline"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                Voir l’état de l’infrastructure en temps réel
-              </a>
-            </p>
-            <p className="mt-2">
-              <Link href={RouteLink.prestationTma}>
-                <span className="text-orange underline">
-                  Voir aussi mes offres de maintenance
-                </span>
-              </Link>
-            </p>
-          </div>
-          <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
-            {FAQ.map((item) => (
-              <details key={item.question} className="group py-5">
-                <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80 rounded-sm">
-                  <span className="text-balance">{item.question}</span>
-                  <span
-                    aria-hidden="true"
-                    className="flex-none mt-1 text-orange text-2xl leading-none transition-transform duration-150 motion-reduce:transition-none group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 pr-10 text-gray-light max-w-[65ch]">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection
+        title="Questions fréquentes sur l’hébergement"
+        intro="Ce que me demandent les clients avant de confier l’hébergement de leur site."
+        items={FAQ}
+        tone="plain"
+      />
 
-      <section className="container py-16" id="contact">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div>
-            <h2 className="text-white text-3xl font-bold text-balance">
-              Confiez-moi l’hébergement de votre site
-            </h2>
-            <p className="mt-4 text-gray-light">
-              Décrivez-moi votre site et votre hébergement actuel, je vous
-              réponds dans la journée avec une proposition claire. Vous préférez
-              le téléphone ? Je suis joignable du lundi au samedi, de 9h à 18h.
-            </p>
-            <a
-              href="tel:0682963889"
-              className="mt-6 inline-block text-3xl font-bold text-orange whitespace-nowrap tabular-nums transition-colors duration-150 hover:text-orange-dark"
-            >
-              06 82 96 38 89
-            </a>
-          </div>
-          <ContactForm lg />
+      <section
+        id="contact"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="container">
+          <SectionHeading text="Décrivez votre site et votre hébergement actuel. Je vous réponds dans la journée avec une proposition claire, ou au 06 82 96 38 89 du lundi au samedi, de 9 h à 18 h.">
+            Confier l’hébergement de votre site
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
     </Layout>

@@ -1,6 +1,11 @@
+import Link from 'next/link'
+
+import { GOOGLE_PLACE_URL } from '@component/about/data'
 import ContactForm from '@component/ContactForm'
+import Reveal from '@component/home/Reveal'
 import Layout from '@component/Layout'
-import { RouteLink, getCanonicalUrl } from '@lib/router'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Un projet web ? Parlons-en - Contactez-moi - Pascal GAULT',
@@ -11,63 +16,129 @@ export const metadata = {
   },
 }
 
-export default function Contact() {
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    breadcrumbJsonLd([
+      { name: 'Contact', item: getCanonicalUrl(RouteLink.contact) },
+    ]),
+    {
+      '@type': 'ContactPage',
+      url: getCanonicalUrl(RouteLink.contact),
+      name: 'Contactez-moi',
+      about: { '@id': getCanonicalUrl('/#business') },
+    },
+  ],
+}
+
+function Hero() {
   return (
-    <Layout title="Contactez-moi">
-      <div className="container flex flex-col sm:flex-row">
-        <div className="flex-none sm:w-[260px] text-center sm:text-right mb-12 sm:mb-0 sm:mr-16">
-          <div className="text-orange font-bold text-4xl">
-            inRage <span className="font-light">SARL</span>
-          </div>
-          <p className="leading-6 text-lg text-gray-light mt-2">
-            Développeur et créateur
-            <br />
-            Freelance sur La Rochelle
-          </p>
-
-          <p className="mt-10">
-            Siret: 813 430 592 00010
-            <br />
-            NAF: 6201Z
-            <br />
-            Immatriculé au RCS :
-            <br />
-            La Rochelle 813 430 592
-          </p>
-
-          <p className="mt-4 mb-8">
-            10-14 rue Jean Perrin
-            <br />
-            17000 LA ROCHELLE
-          </p>
-
-          <p className="leading-5">
-            Vous n&apos;êtes pas fan des e-mails ?
-            <br />
-            N&apos;hésitez pas à me téléphoner pour discuter de votre projet
-          </p>
-
-          <div className="text-orange font-bold text-3xl mt-4">
-            <a href="tel:0682963889">06 82 96 38 89</a>
-          </div>
-          <div className="text-sm">du lundi au samedi de 09h à 18h</div>
-        </div>
-        <div className="flex-1">
-          <p className="text-xl text-gray-light">
-            Un site à créer, une boutique à reprendre, un site en panne ou une
-            question sur la maintenance : décrivez votre besoin en quelques
-            lignes, je vous réponds dans la journée.
-          </p>
-          <p className="mt-4 mb-10">
-            Pour aller plus vite, indiquez l&apos;adresse de votre site
-            s&apos;il existe, la technologie si vous la connaissez (WordPress,
-            Prestashop, autre) et le délai souhaité. Je reçois à La Rochelle et
-            je me déplace en Charente-Maritime, mais la plupart des projets se
-            mènent à distance.
-          </p>
-          <ContactForm lg />
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-16 md:pb-20">
+      <div className="home-beam top-[30%] -left-[20%]" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Contactez-moi
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Un site à créer, une boutique à reprendre, un site en panne ou une
+              question sur la maintenance : décrivez votre besoin en quelques
+              lignes, je vous réponds dans la journée.
+            </p>
+          </Reveal>
         </div>
       </div>
+    </section>
+  )
+}
+
+export default function Contact() {
+  return (
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+
+      <section className="container pt-4 pb-16 md:pb-24">
+        <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr] lg:gap-20">
+          <Reveal>
+            <ContactForm stacked />
+            <p className="mt-6 max-w-[60ch] text-sm leading-6 text-(--home-muted)">
+              Pour aller plus vite, indiquez l’adresse de votre site s’il
+              existe, la technologie si vous la connaissez (WordPress,
+              Prestashop, autre) et le délai souhaité.
+            </p>
+          </Reveal>
+          <Reveal i={1}>
+            <div className="divide-y divide-white/10">
+              <div className="pb-8">
+                <h2 className="text-xl font-semibold text-white">
+                  Par téléphone
+                </h2>
+                <a
+                  href="tel:+33682963889"
+                  className="home-num mt-3 block text-3xl font-bold text-(--home-orange-text) transition-colors hover:text-white"
+                >
+                  06 82 96 38 89
+                </a>
+                <p className="mt-2 leading-7 text-(--home-muted)">
+                  Du lundi au samedi, de 9 h à 18 h. Si je suis en rendez-vous,
+                  je rappelle dans la journée.
+                </p>
+              </div>
+              <div className="py-8">
+                <h2 className="text-xl font-semibold text-white">
+                  À La Rochelle
+                </h2>
+                <p className="mt-3 leading-7 text-white/85">
+                  inRage SARL
+                  <br />
+                  10-14 rue Jean Perrin
+                  <br />
+                  17000 La Rochelle
+                </p>
+                <p className="mt-3 leading-7 text-(--home-muted)">
+                  Je reçois sur rendez-vous et je me déplace en
+                  Charente-Maritime. La plupart des projets se mènent à
+                  distance, en visio et sur vos outils.
+                </p>
+                <p className="mt-3">
+                  <a
+                    href={GOOGLE_PLACE_URL}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="home-link"
+                  >
+                    Les avis sur la fiche Google
+                  </a>
+                </p>
+              </div>
+              <div className="pt-8">
+                <h2 className="text-xl font-semibold text-white">
+                  Un site en panne ?
+                </h2>
+                <p className="mt-3 leading-7 text-(--home-muted)">
+                  Décrivez le problème ici ou passez par la{' '}
+                  <Link
+                    href={RouteLink.prestationTmaOnDemand}
+                    className="home-link"
+                  >
+                    maintenance ponctuelle
+                  </Link>
+                  , facturée à l’heure et sans engagement.
+                </p>
+              </div>
+            </div>
+            <p className="home-num mt-10 text-xs leading-5 text-white/60">
+              Siret 813 430 592 00010, NAF 6201Z, RCS La Rochelle 813 430 592
+            </p>
+          </Reveal>
+        </div>
+      </section>
     </Layout>
   )
 }

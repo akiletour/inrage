@@ -4,13 +4,15 @@ category: 'wordpress'
 categories: ['wordpress', 'e-commerce']
 website: https://www.jemapub.fr
 year: 2025
-summary: "Refonte complète d'une boutique e-commerce B2B spécialisée dans les objets publicitaires avec des fonctionnalités sur-mesure pour optimiser l'expérience utilisateur et la gestion administrative."
-excerpt: 'Migration PrestaShop vers WooCommerce avec développement de fonctionnalités métier avancées : import automatisé de grilles tarifaires, recherche intelligente par référence et filtrage géographique des produits.'
+summary: "Jemapub vend des objets publicitaires personnalisés aux entreprises et aux collectivités, plus de 10 000 références. En 2025, la boutique a quitté Prestashop pour WooCommerce, avec des outils écrits pour son équipe : import des grilles tarifaires, recherche par référence, filtre par pays de fabrication."
+excerpt: 'Migration de la boutique B2B Jemapub de Prestashop vers WooCommerce : import des grilles tarifaires, recherche par référence, filtre par pays de fabrication, thème Sage 11 avec Octa.'
 actions:
-  - Migration complète PrestaShop vers WooCommerce
-  - Développement de fonctionnalités métier sur-mesure
-  - Architecture moderne avec Sage 11 et Tailwind CSS
-  - Optimisation des processus administratifs
+  - Migration de Prestashop vers WooCommerce, redirections comprises
+  - Import des grilles tarifaires depuis l’administration
+  - Recherche par référence produit
+  - Filtre par pays de fabrication, avec carte
+  - Page des nouveautés à période réglable
+  - Thème Sage 11 avec Octa, Tailwind CSS et TypeScript
 
 image:
   large: jemapub.jpg
@@ -23,104 +25,130 @@ tools:
   - figma
 ---
 
-## Contexte du projet
+import Image from 'next/image'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
 
-**Jemapub** est une entreprise française spécialisée dans les objets publicitaires personnalisés, proposant plus de 10 000 références à destination des entreprises et collectivités. Face aux limitations de leur plateforme PrestaShop existante, ils souhaitaient migrer vers une solution plus flexible et moderne.
+<div className="article-wide not-prose text-base leading-relaxed text-gray-light md:text-lg [&_h2]:text-balance [&_p]:text-pretty [&_p+p]:mt-5 [&_a]:underline-offset-4">
+  <section className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="jemapub-contexte">
+    <h2 id="jemapub-contexte" className="max-w-[18ch] text-3xl font-medium leading-tight text-white md:text-4xl">
+      {'Une boutique B2B qui ne vend pas au panier.'}
+    </h2>
+    <div>
 
-### Objectifs du projet
+Chez Jemapub, on n’achète pas un stylo, on en commande 500 avec son logo dessus. Le prix dépend de la quantité, du marquage et du pays où le produit est fabriqué. L’ancienne boutique tournait sur Prestashop, et chaque mise à jour de tarif passait par des manipulations à la main sur des milliers de fiches.
 
-- **Simplifier la gestion quotidienne** avec des outils d'import automatisés
-- **Améliorer l'expérience utilisateur** avec une recherche et navigation optimisées
-- **Moderniser l'architecture technique** pour faciliter la maintenance et les évolutions
-- **Conserver le référencement acquis** lors de la migration
+La migration de Prestashop vers WooCommerce a été l’occasion de rendre l’équipe autonome sur ces tâches. Les produits, les catégories, les clients et les adresses des pages ont été repris, avec des redirections pour conserver le référencement acquis.
 
-## Approche technique
+    </div>
 
-### Stack technologique moderne
+  </section>
 
-Le projet s'appuie sur une architecture **Bedrock + Sage 11** avec le [starter thème Octa](/blog/octa-starter-wordpress-theme), alliant les bonnes pratiques du développement moderne à l'écosystème WordPress :
+  <section className="mt-16 md:mt-24" aria-labelledby="jemapub-grilles">
+    <div className="max-w-2xl">
+      <h2 id="jemapub-grilles" className="text-3xl font-medium leading-tight text-white">
+        {'Les grilles tarifaires s’importent en CSV.'}
+      </h2>
+      <div className="mt-6">
 
-- **WordPress/WooCommerce** pour la robustesse e-commerce
-- **Sage 11** (framework Laravel/Acorn) pour l'organisation du code
-- **Vite + Tailwind CSS 4** pour un build optimisé et un design system cohérent
-- **ACF Composer** pour des blocs Gutenberg sur-mesure
-- **TypeScript** pour un code JavaScript maintenable
+Chaque fiche affiche un prix unitaire par palier de quantité, 250, 500, 1 000 pièces, puis sur devis au-delà. J’ai écrit un import CSV directement dans l’administration WordPress : il détecte le séparateur et l’encodage du fichier, crée ou met à jour les variations WooCommerce, génère le tableau de prix de la fiche, et rend compte des lignes qu’il n’a pas pu traiter. Jemapub estime à 80 % le temps gagné sur la mise à jour des prix.
 
-### Fonctionnalités développées sur-mesure
+      </div>
+    </div>
+    <figure className="mt-8 md:mt-10">
+      <Image
+        src="/images/portfolio/jemapub-grille.jpg"
+        alt="Le tableau de prix d’un stylo quatre couleurs sur jemapub.fr : prix unitaire pour 250, 500 et 1 000 pièces, puis sur devis."
+        width={1600}
+        height={485}
+        sizes="(max-width: 1024px) 100vw, 1024px"
+        className="h-auto w-full rounded-lg"
+      />
+      <figcaption className="mt-3 text-sm">
+        {'Le tableau de prix généré depuis la grille importée, sur la fiche du stylo 4 couleurs BIC.'}
+      </figcaption>
+    </figure>
 
-#### 1. Import automatisé des grilles tarifaires
+  </section>
 
-Développement d'un système d'import CSV intelligent directement dans l'interface d'administration :
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="jemapub-recherche">
+    <h2 id="jemapub-recherche" className="text-3xl font-medium leading-tight text-white">
+      {'Les clients cherchent par référence.'}
+    </h2>
+    <div>
 
-- **Détection automatique du format** (délimiteurs, encodage)
-- **Traitement des variations produits** WooCommerce
-- **Génération de tableaux de prix** intégrés aux fiches produits
-- **Gestion d'erreurs avancée** avec reporting détaillé
+Un acheteur qui recommande ses goodies connaît la référence, pas le nom du produit. La recherche WooCommerce ne regardait que les titres et les descriptions. Elle couvre maintenant aussi les références, et une correspondance exacte mène tout droit à la fiche.
 
-_Impact business :_ Réduction de 80% du temps de mise à jour des prix
+Les nouveautés ont leur propre page, et la durée pendant laquelle un produit compte comme nouveau se règle dans l’administration. Les filtres et la pagination y fonctionnent comme dans le reste du catalogue.
 
-#### 2. Recherche intelligente par référence
+    </div>
 
-Extension du moteur de recherche WooCommerce pour inclure les références produits (SKU) :
+  </section>
 
-- **Recherche unifiée** titre, description et référence produit
-- **Redirection automatique** vers la fiche produit en cas de correspondance exacte
-- **Optimisation SEO** avec gestion des redirections 301
+  <section className="mt-16 md:mt-24" aria-labelledby="jemapub-origine">
+    <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <h2 id="jemapub-origine" className="text-3xl font-medium leading-tight text-white">
+        {'D’où vient le produit ?'}
+      </h2>
+      <div>
 
-_Impact UX :_ Les clients trouvent instantanément leurs produits habituels
+Pour des acheteurs publics et des entreprises qui doivent justifier leurs achats, le pays de fabrication compte. Chaque produit porte le sien, 47 pays au total, et une carte interactive permet de n’afficher que les produits conçus ou fabriqués dans le pays choisi. Le filtrage se fait en Ajax, sans rechargement, avec un cache des requêtes pour ne pas faire attendre.
 
-#### 3. Filtrage géographique des produits
+Dans le catalogue, trois filtres résument l’essentiel : fabrication française, européenne ou écologique, avec le nombre de produits de chaque famille.
 
-Système de filtrage AJAX par pays d'origine des produits :
+      </div>
+    </div>
+    <div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-[1.2fr_1fr]">
+      <figure>
+        <Image
+          src="/images/portfolio/jemapub-carte.jpg"
+          alt="La carte d’Europe de la page Origine de nos produits, avec les pays de fabrication en foncé."
+          width={1600}
+          height={984}
+          sizes="(max-width: 1024px) 100vw, 600px"
+          className="h-auto w-full rounded-lg"
+        />
+        <figcaption className="mt-3 text-sm">{'La page « Origine de nos produits » : un pays cliqué filtre le catalogue.'}</figcaption>
+      </figure>
+      <figure>
+        <Image
+          src="/images/portfolio/jemapub-filtres.jpg"
+          alt="Les filtres de fabrication française, européenne et écologique dans le catalogue, avec les drapeaux sur les cartes produits."
+          width={1600}
+          height={564}
+          sizes="(max-width: 1024px) 100vw, 480px"
+          className="h-auto w-full rounded-lg"
+        />
+        <figcaption className="mt-3 text-sm">{'Les filtres de fabrication et les drapeaux sur les produits.'}</figcaption>
+      </figure>
+    </div>
 
-- **47 pays référencés** avec interface cartographique
-- **Filtrage temps réel** sans rechargement de page
-- **Optimisation des requêtes** avec système de cache intelligent
+  </section>
 
-_Valeur ajoutée :_ Aide à la conformité "Made in" et aux préférences d'achat local
+  <section className="mt-16 grid gap-8 md:mt-24 md:grid-cols-[1fr_1.4fr] md:gap-16" aria-labelledby="jemapub-stack">
+    <div>
+      <h2 id="jemapub-stack" className="text-3xl font-medium leading-tight text-white">
+        {'Sous le capot.'}
+      </h2>
+      <p className="mt-5 max-w-[28ch] text-xl leading-relaxed text-white">
+        {'Un thème Sage 11 construit sur Octa.'}
+      </p>
+    </div>
+    <div>
 
-#### 4. Gestion avancée des nouveautés
+Le thème repose sur Octa, la base WordPress que je publie en open source : Bedrock, Sage 11 et Acorn côté PHP, Vite, Tailwind CSS 4 et TypeScript côté interface. Les blocs Gutenberg sont décrits avec ACF Composer, et les fonctionnalités métier vivent dans des service providers testés unitairement, pour qu’un autre développeur les reprenne sans deviner.
 
-Système de pages dédiées aux nouveaux produits :
+Les maquettes ont été dessinées sur Figma et intégrées en mobile first. La boutique est hébergée et maintenue par inRage depuis sa mise en ligne.
 
-- **URL rewriting personnalisé** (`/boutique/nouveautes/`)
-- **Période configurable** pour définir les "nouveautés"
-- **Compatible avec les filtres** et la pagination
+      <div className="mt-6 flex flex-col items-start gap-2 text-base">
+        <Link href={`${RouteLink.blog}/octa-starter-wordpress-theme`} className="inline-flex min-h-11 items-center text-orange underline hover:text-white">
+          {'Lire l’article sur Octa'}
+        </Link>
+        <Link href={RouteLink.prestationPrestashop} className="inline-flex min-h-11 items-center text-gray-light underline hover:text-white">
+          {'Migrer une boutique Prestashop vers WooCommerce'}
+        </Link>
+      </div>
+    </div>
 
-### Architecture et bonnes pratiques
-
-- **Service Providers** Laravel pour organiser les fonctionnalités métier
-- **View Composers** pour centraliser la logique des vues
-- **Blade templating** pour des templates maintenables
-- **Standards PSR-4** pour l'autoloading des classes
-- **Tests unitaires** pour assurer la qualité du code
-
-## Résultats obtenus
-
-### Performance technique
-
-- **Interface d'administration** simplifiée et intuitive
-- **Temps de traitement** réduit pour les tâches récurrentes
-- **Architecture évolutive** facilitant les futures développements
-
-### Impact business
-
-- **Migration transparente** sans perte de données ni de référencement
-- **Processus optimisés** pour l'équipe administrative
-- **Expérience utilisateur améliorée** pour les clients B2B
-
-## Expertise démontrée
-
-### Pour les agences web
-
-- **Maîtrise des architectures WordPress modernes** (Bedrock, Sage, Acorn)
-- **Développement sur-mesure** adapté aux besoins métier spécifiques
-- **Intégration WooCommerce avancée** avec fonctionnalités personnalisées
-- **Approche full-stack** front-end et back-end
-
-### Pour les clients finaux
-
-- **Compréhension des enjeux business** du e-commerce B2B
-- **Solutions pragmatiques** qui simplifient le quotidien
-- **Accompagnement technique** sur le long terme
-- **Respect des délais et budgets** avec une approche Agile
+  </section>
+</div>

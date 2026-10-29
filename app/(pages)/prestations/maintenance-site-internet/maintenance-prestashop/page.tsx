@@ -1,222 +1,276 @@
-import Image from 'next/image'
+import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
-import Diagonal from '@component/Diagonal'
-import FaqSection, { FaqItem } from '@component/FaqSection'
+import Glass from '@component/home/Glass'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import TableHeader from '@component/tma/TableHeader'
-import TableLine from '@component/tma/TableLine'
-import BgTma from '@image/bg-tma.jpeg'
-import LogoGrey from '@image/logo-grey-inline-white.png'
-import { RouteLink, getCanonicalUrl } from '@lib/router'
-import { EntriesType } from '@type/portfolio'
+import ArticleCards from '@component/prestations/ArticleCards'
+import {
+  CHECKS,
+  FAQ,
+  PLANS,
+  ROWS,
+  WATCH,
+} from '@component/prestations/maintenance-prestashop-data'
+import PlanTable from '@component/prestations/PlanTable'
+import { getCanonicalUrl, RouteLink } from '@lib/router'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Maintenance Prestashop par un freelance | Contrat TMA - inRage',
   description:
-    'Contrat de maintenance Prestashop par un développeur freelance : mises à jour, sécurité, sauvegardes, surveillance du tunnel d’achat et heures de développement. Dès 39 € HT par mois.',
+    'Contrat de maintenance Prestashop par un développeur freelance : mises à jour, sécurité, sauvegardes, surveillance du tunnel d’achat. Dès 39 € HT par mois.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
   },
 }
 
-const entries: EntriesType = [
-  {
-    id: 1,
-    name: "Sauvegarde de l'ensemble de vos données",
-    excerpt:
-      'Sauvegarde journalière de votre base de données et de vos fichiers sur nos serveurs sécurisés.',
-    values: ['1x|par jour', '2x|par jour'],
-  },
-  {
-    id: 2,
-    name: 'Supervision logicielle',
-    excerpt:
-      'Scan de sécurité toutes les heures, rapport disponible dans une interface dédiée. Surveillance des mises à jour de vos extensions, Prestashop et thème.',
-    values: [true, true],
-  },
-  {
-    id: 3,
-    name: 'Environnement de pré-production',
-    excerpt:
-      'Application des mises à jour et développement sur nos serveurs avant de les basculer sur votre site en production.',
-    values: [false, true],
-  },
-  {
-    id: 4,
-    name: 'Supervision pro-active',
-    excerpt:
-      'Robot de surveillance du parcours client pour tester que toutes les pages fonctionnent correctement.',
-    values: [false, true],
-  },
-  {
-    id: 9,
-    name: 'Développement spécifique*',
-    excerpt:
-      'Heures de développement d’infogérance pour corriger ou faire évoluer votre site.',
-    values: ['1|heure', '4|heures'],
-  },
-  {
-    id: 10,
-    name: 'Supervision 24/7 et sur 365 jours',
-    excerpt:
-      'Dans le forfait « Sérénité », l’astreinte est de 9h à 19h, du lundi au vendredi inclus.',
-    values: [false, true],
-  },
-  {
-    id: 11,
-    name: 'GTI',
-    excerpt:
-      "Garantie de temps d'intervention au moment ou vous déclarer l’intervention dans la console",
-    values: ['4h', '2h'],
-  },
-  {
-    id: 12,
-    name: 'Certificat SSL',
-    excerpt:
-      'Installation et configuration d’un certificat SSL avec modification (si besoin) sur le site pour prendre en charge le SSL',
-    values: [true, true],
-  },
-  {
-    id: 13,
-    name: 'Engagement',
-    excerpt: "Durée de l'engagement de votre contrat de maintenance inRage.",
-    values: ['12 mois', '12 mois'],
-  },
-]
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Maintenance de site internet',
+        item: getCanonicalUrl(RouteLink.prestationTma),
+      },
+      {
+        name: 'Maintenance Prestashop',
+        item: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
+      },
+    ]),
+    {
+      '@type': 'Service',
+      '@id': `${getCanonicalUrl(RouteLink.prestationTmaPrestashop)}#service`,
+      name: 'Maintenance et sécurité de boutique Prestashop',
+      serviceType: 'Maintenance de boutique Prestashop',
+      url: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: { '@type': 'Country', name: 'France' },
+      offers: [
+        { name: 'Sérénité', price: '39' },
+        { name: 'Avancée', price: '55' },
+      ].map((offer) => ({
+        '@type': 'Offer',
+        name: `Forfait ${offer.name}`,
+        price: offer.price,
+        priceCurrency: 'EUR',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: offer.price,
+          priceCurrency: 'EUR',
+          unitText: 'mois HT',
+        },
+      })),
+    },
+    faqJsonLd(FAQ),
+  ],
+}
 
-const FAQ: FaqItem[] = [
-  {
-    question: 'Quelles versions de Prestashop prenez-vous en charge ?',
-    answer:
-      'Les boutiques de Prestashop 1.6 à 9.2. Pour une version ancienne, la prise en charge commence par un audit des modules et du thème, puis par un plan de migration vers une version maintenue, sur pré-production, avant toute bascule.',
-  },
-  {
-    question: 'Que surveillez-vous exactement sur ma boutique ?',
-    answer:
-      'Toutes les heures, un robot parcourt les pages clés et teste les formulaires d’inscription, de connexion et le panier. Les fichiers et la base de données sont contrôlés pour détecter une modification non prévue. En cas d’anomalie, je suis prévenu avant vos clients.',
-  },
-  {
-    question: 'Les mises à jour de modules tiers sont-elles comprises ?',
-    answer:
-      'Oui. Les modules du marketplace Prestashop et de vos éditeurs sont mis à jour dans le cadre du forfait, après test sur pré-production. Si une mise à jour demande une adaptation du thème ou d’un module sur mesure, elle est prise sur les heures de développement incluses.',
-  },
-  {
-    question:
-      'Ma boutique a été développée par une autre agence, est-ce un problème ?',
-    answer:
-      'Non, c’est le cas de la plupart des boutiques que je reprends. La prise en charge commence par un état des lieux : accès, hébergement, modules, sauvegardes, puis une remise à niveau complète avant la surveillance au quotidien.',
-  },
-]
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[20%] -left-[20%]" aria-hidden />
+      <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+      <div className="container grid items-center gap-12 pt-6 md:pt-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+        <div>
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Maintenance Prestashop par un freelance
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[56ch] text-lg leading-8 text-(--home-muted)">
+              Que vous vendiez dix produits ou cinq mille, une boutique
+              Prestashop doit rester à jour, sauvegardée et surveillée pour
+              continuer à encaisser. J’administre des boutiques depuis
+              Prestashop 1.6, pour des e-commerçants de La Rochelle et de toute
+              la France, avec un délai d’intervention garanti et des sauvegardes
+              en France.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="#forfaits"
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Voir les deux forfaits
+              </Link>
+              <Link href="#contact" className="home-btn-ghost home-glassy">
+                Parler de ma boutique
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal i={2}>
+          <Glass className="p-6 select-none md:p-7">
+            <div
+              role="img"
+              aria-label="Passe de supervision horaire : chaque étape de la boutique est testée, de la page d’accueil au paiement."
+              className="pointer-events-none"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-sm font-medium text-white">
+                  Passe de supervision
+                </span>
+                <span className="flex items-center gap-2 text-sm text-(--home-muted)">
+                  <span className="home-pulse" />
+                  toutes les heures
+                </span>
+              </div>
+              <ul className="mt-5 divide-y divide-white/10">
+                {CHECKS.map((check) => (
+                  <li
+                    key={check}
+                    className="flex items-center justify-between gap-4 py-2.5 text-sm"
+                  >
+                    <span className="text-white/85">{check}</span>
+                    <span className="font-medium text-white">OK</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Glass>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
 
 export default function TmaPrestashop() {
   return (
-    <Layout
-      title={['Maintenance et sécurité', 'de votre boutique Prestashop']}
-      excerpt={[
-        'Que vous vendiez dix produits ou cinq mille, une boutique Prestashop doit rester à jour, sauvegardée et surveillée pour continuer à encaisser.',
-        'Un développeur freelance qui connaît votre boutique, un délai d’intervention garanti, et des sauvegardes en France.',
-      ]}
-      tmaLayout
-    >
-      <div className="container">
-        <TextImage position="right" image={LogoGrey}>
-          <div className="text-left">
-            <h2>
-              <span className="text-orange uppercase text-4xl font-medium">
-                Maintenance et Sécurité
-              </span>
-              <span className="block text-white font-light text-3xl">
-                Prestashop
-              </span>
-            </h2>
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
 
-            <p className="mt-6 text-xl text-gray-light">
-              J’administre des boutiques Prestashop depuis la version 1.6, pour
-              des e-commerçants B2C et B2B de La Rochelle et de toute la France.
-            </p>
-            <p className="mt-6 text-gray-light">
+      <section className="container py-16 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Ce que je surveille sur votre boutique
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
               Une boutique en ligne est exposée en permanence : modules
               obsolètes, failles publiées, tentatives d’injection dans les
               formulaires. J’ai développé au fil des années des outils qui
               surveillent, protègent et réparent, et qui bloquent les attaques
               les plus courantes avant qu’elles n’atteignent la boutique.
             </p>
-            <p className="mt-6 text-gray-light">
-              Toutes les heures, ces outils parcourent vos pages, vérifient que
-              leur contenu n’a pas été altéré et testent les formulaires
-              d’inscription, de connexion et le panier. Si quelque chose casse,
-              je le sais avant vos clients.
-            </p>
-          </div>
-        </TextImage>
-      </div>
-
-      <div className="relative">
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
-          flipX
-          flipY
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-
-        <div className="container relative z-10">
-          <TableHeader
-            support="Prestashop"
-            types={[
-              { name: 'Sérénité', price: '39€ ht/mois' },
-              { name: 'Avancée', price: '55€ ht/mois' },
-            ]}
-          />
-
-          <div className="flex flex-col space-y-8 mt-8">
-            {entries.map(({ id, name, excerpt, values }) => (
-              <TableLine
-                key={id}
-                title={name}
-                content={excerpt}
-                values={values}
-              />
+          </Reveal>
+          <div className="divide-y divide-white/10">
+            {WATCH.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="py-8 first:pt-0">
+                  <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-(--home-muted)">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="ml-8 mt-8">
-            <span className="text-orange font-bold text-4xl leading-5">*</span>{' '}
-            Le nombre d&apos;heures est personnalisable selon vos besoins.
+      <section
+        id="forfaits"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Deux forfaits engagés sur 12 mois, avec des heures de développement incluses. Le nombre d’heures se personnalise selon la taille de la boutique.">
+            Les forfaits de maintenance Prestashop
+          </SectionHeading>
+          <div className="mt-14">
+            <PlanTable plans={PLANS} rows={ROWS} support="Prestashop" />
           </div>
         </div>
-        <Image
-          className="-z-10"
-          src={BgTma}
-          alt="Offres de maintenance TMA inRage"
-          fill
-          sizes="100vw"
-        />
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-      </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              De Prestashop 1.6 à Prestashop 9
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <Reveal i={1}>
+            <div className="space-y-4 leading-7 text-white/85">
+              <p>
+                Je maintiens des boutiques sur toutes les versions encore en
+                production, de la 1.6 à la 9. Une boutique en 1.6 ou 1.7 reçoit
+                les correctifs de sécurité qui existent encore, puis un plan de
+                migration vers une version maintenue, module par module, sur
+                pré-production, avant la bascule.
+              </p>
+              <p>
+                La prise en charge commence toujours par un état des lieux :
+                accès, hébergement, modules installés, thème, sauvegardes. Une
+                boutique trop lourde ou trop ancienne pour être migrée
+                proprement peut aussi être{' '}
+                <Link
+                  href={RouteLink.prestationPrestashop}
+                  className="home-link"
+                >
+                  refaite sur une base propre
+                </Link>
+                , avec reprise du catalogue et des clients.
+              </p>
+              <p>
+                Si l’hébergement actuel est en cause, lenteurs ou version de PHP
+                figée, je peux{' '}
+                <Link href={RouteLink.prestationHosting} className="home-link">
+                  héberger la boutique en France
+                </Link>{' '}
+                sur mon infrastructure.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="container">
+          <SectionHeading text="Les problèmes que je rencontre en maintenant des boutiques Prestashop finissent en articles, pour les autres marchands et les autres développeurs.">
+            Ce que j’écris sur Prestashop
+          </SectionHeading>
+          <ArticleCards category="PrestaShop" limit={2} />
+        </div>
+      </section>
 
       <FaqSection
-        intro="Ce que me demandent les e-commerçants avant de confier la maintenance de leur boutique Prestashop."
+        title="Questions fréquentes sur la maintenance Prestashop"
+        intro="Ce que me demandent les e-commerçants avant de confier la maintenance de leur boutique."
         items={FAQ}
+        tone="plain"
       />
 
-      <div className="container" id="contact">
-        <SectionTitle
-          content={
-            "Pour toute demande ou devis, n'hésitez pas à me contacter en remplissant le formulaire de la page contact, je serai ravi de vous répondre."
-          }
-          title="Contact"
-        />
-
-        <ContactForm />
-      </div>
+      <section
+        id="contact"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="container">
+          <SectionHeading text="Indiquez l’adresse de votre boutique, sa version de Prestashop et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
+            Confier la maintenance de votre boutique
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </div>
+      </section>
     </Layout>
   )
 }

@@ -18,14 +18,19 @@ export default function Button({
   return (
     <button
       disabled={isLoading}
+      aria-busy={isLoading || undefined}
       type={submit ? 'submit' : 'button'}
       className={`button relative ${className}`}
     >
       {isLoading && (
-        <div className="absolute inset-0 bg-orange-dark justify-center z-10 flex items-center">
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-orange-dark justify-center z-10 flex items-center"
+        >
           <LoadIcon />
         </div>
       )}
+      {isLoading && <span className="sr-only">Envoi en cours</span>}
       {children}
     </button>
   )

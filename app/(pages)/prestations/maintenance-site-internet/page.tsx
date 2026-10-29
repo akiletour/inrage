@@ -1,197 +1,334 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-import Diagonal from '@component/Diagonal'
-import FaqSection, { FaqItem } from '@component/FaqSection'
-import Link from '@component/NoScrollLink'
-import TmaItem from '@component/items/TmaItem'
+import ContactForm from '@component/ContactForm'
+import Glass from '@component/home/Glass'
+import Reveal from '@component/home/Reveal'
+import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
-import SectionTitle from '@component/SectionTitle'
-import TextImage from '@component/TextImage'
-import TmaImage from '@image/tma.png'
+import {
+  CONSOLE_POINTS,
+  FAQ,
+  OFFERS,
+  RHYTHM,
+  STAKES,
+} from '@component/prestations/maintenance-data'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serializeJsonLd,
+} from '@util/seo-generators'
 
 export const metadata = {
   title: 'Maintenance de site internet à La Rochelle | inRage',
   description:
-    'Maintenance de site internet à La Rochelle : forfaits d’infogérance WordPress et Prestashop, dépannage ponctuel, mises à jour, sécurité et sauvegardes. Plus de 150 sites suivis.',
+    'Maintenance et TMA de site internet à La Rochelle : forfaits WordPress et Prestashop dès 39 € HT par mois, dépannage à l’heure, sauvegardes en France.',
   alternates: {
     canonical: getCanonicalUrl(RouteLink.prestationTma),
   },
 }
 
-const FAQ: FaqItem[] = [
-  {
-    question:
-      'Forfait de maintenance ou intervention ponctuelle : que choisir ?',
-    answer:
-      'Le forfait convient à un site qui doit rester en ligne sans interruption : mises à jour planifiées, sauvegardes quotidiennes, surveillance et délai d’intervention garanti. L’intervention ponctuelle, facturée à l’heure, répond à un besoin isolé : corriger un bug, ajouter un bloc, débloquer une mise à jour.',
-  },
-  {
-    question:
-      'Mon site n’est ni sous WordPress ni sous Prestashop, pouvez-vous le maintenir ?',
-    answer:
-      'Oui pour WooCommerce, Symfony et les sites développés sur mesure que j’ai réalisés ou audités. Pour une autre plateforme, un premier échange permet de vérifier ce que je peux prendre en charge, et je vous oriente si ce n’est pas le cas.',
-  },
-  {
-    question: 'Où sont stockées les sauvegardes ?',
-    answer:
-      'Sur des serveurs situés en France, distincts de l’hébergement de votre site. Une sauvegarde conservée au même endroit que le site ne sert à rien le jour où le serveur tombe ou est compromis.',
-  },
-]
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Maintenance de site internet',
+        item: getCanonicalUrl(RouteLink.prestationTma),
+      },
+    ]),
+    {
+      '@type': 'Service',
+      name: 'Maintenance de site internet à La Rochelle',
+      serviceType: 'Maintenance et infogérance de site internet',
+      provider: { '@id': getCanonicalUrl('/#business') },
+      areaServed: [
+        { '@type': 'City', name: 'La Rochelle' },
+        { '@type': 'AdministrativeArea', name: 'Charente-Maritime' },
+        { '@type': 'Country', name: 'France' },
+      ],
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Maintenance WordPress',
+          url: getCanonicalUrl(RouteLink.prestationTmaWordPress),
+          priceCurrency: 'EUR',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: 39,
+            maxPrice: 75,
+            priceCurrency: 'EUR',
+            unitText: 'mois HT',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Maintenance Prestashop',
+          url: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
+          priceCurrency: 'EUR',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: 39,
+            maxPrice: 55,
+            priceCurrency: 'EUR',
+            unitText: 'mois HT',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Intervention ponctuelle',
+          url: getCanonicalUrl(RouteLink.prestationTmaOnDemand),
+        },
+      ],
+    },
+    faqJsonLd(FAQ),
+  ],
+}
+
+function Hero() {
+  return (
+    <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
+      <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
+      <div className="home-beam top-[65%] left-[50%]" data-i="3" aria-hidden />
+      <div className="container pt-6 md:pt-12">
+        <div className="max-w-3xl">
+          <Reveal>
+            <h1 className="text-4xl font-bold tracking-tight text-balance text-white md:text-6xl">
+              Maintenance de site internet à La Rochelle
+            </h1>
+          </Reveal>
+          <Reveal i={1}>
+            <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
+              Un site en ligne vieillit chaque jour : WordPress, Prestashop, le
+              thème, les extensions et la version de PHP évoluent sans lui. Plus
+              de 150 sites sont aujourd’hui sous maintenance inRage, à La
+              Rochelle, en Charente-Maritime et partout en France : mis à jour
+              sur pré-production, sauvegardés sur des serveurs en France,
+              surveillés toutes les heures, réparés dans un délai garanti.
+            </p>
+          </Reveal>
+          <Reveal i={2}>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="#forfaits"
+                className="home-btn home-btn-shine home-btn-glow"
+              >
+                Voir les forfaits
+              </Link>
+              <Link
+                href={RouteLink.prestationTmaOnDemand}
+                className="home-btn-ghost home-glassy"
+              >
+                Mon site est en panne
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function WebsiteTMA() {
   return (
-    <Layout
-      breadcrumbs={[
-        {
-          link: RouteLink.prestations,
-          title: 'Prestations',
-        },
-      ]}
-      title="Maintenance de site internet à La Rochelle"
-    >
-      <div className="container">
-        <TextImage
-          position="right"
-          duoTone
-          image={TmaImage}
-          title={["L'infogérance & maintenance TMA", "Qu'est-ce que c'est ?"]}
-        >
-          <p className="mt-4 text-gray-light text-2xl">
-            Un site en ligne vieillit chaque jour : WordPress, Prestashop, le
-            thème, les extensions et la version de PHP évoluent sans lui.
-          </p>
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
 
-          <p className="mt-4">
-            Une extension plus mise à jour est la porte d’entrée la plus
-            courante d’un piratage, et une mise à jour faite sans précaution
-            peut casser une page ou le paiement. La maintenance consiste à
-            appliquer ces mises à jour sur un environnement de test, à vérifier
-            le site, puis à les passer en production.
-          </p>
-          <p className="mt-4">
-            Plus de 150 sites sont aujourd’hui sous infogérance inRage, à La
-            Rochelle, en Charente-Maritime et partout en France. Les sauvegardes
-            quotidiennes sont stockées sur des serveurs situés en France,
-            distincts de votre hébergement. Pour un besoin isolé sans contrat,
-            voyez la{' '}
-            <Link href={RouteLink.prestationTmaOnDemand}>
-              <span className="text-orange underline transition-colors duration-150 hover:text-white">
-                maintenance ponctuelle
-              </span>
-            </Link>
-            .
-          </p>
-        </TextImage>
-
-        <div className="mt-16 text-3xl text-white text-center">
-          Les performances de votre site internet
-          <br /> sont importantes pour le référencement de ce dernier.{' '}
-        </div>
-        <div className="md:px-20 text-center mt-6 text-xl">
-          Après une analyse approfondie, nous pouvons vous conseiller de
-          plusieurs manières afin d’optimiser vos temps de chargement et la
-          réduction des appels à la base de données pour y garantir une
-          navigation fluide.
-        </div>
-      </div>
-      <div className="bg-gray-darker">
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
-          flipX
-          flipY
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-        <div className="container relative z-10 py-10 xl:py-0 md:-my-20">
-          <div className="md:px-40 flex flex-col space-y-12 md:space-y-0 md:flex-row md:divide-x md:divide-gray-dark items-start justify-center">
-            <TmaItem
-              title="Infogérance et maintenance TMA"
-              subject="WordPress"
-              position="right"
-              excerpt="Forfait d’infogérance WordPress sans surcoût : mises à jour, sécurité, sauvegardes et surveillance pour garder votre site à jour et prévenir les failles liées aux extensions."
-              cta={{
-                link: RouteLink.prestationTmaWordPress,
-                text: 'Découvrez les offres WordPress',
-              }}
-            />
-            <TmaItem
-              title="Infogérance et maintenance TMA"
-              subject="Prestashop"
-              excerpt="Une supervision complète de votre solution e-commerce Prestashop pour vous aider à maintenir votre processus d’achat, de contact et votre catalogue dans les meilleures conditions."
-              cta={{
-                link: RouteLink.prestationTmaPrestashop,
-                text: 'Découvrez les offres Prestashop',
-              }}
-            />
+      <section className="container py-16 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Ce qui arrive à un site que personne ne maintient
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+              Quatre situations que je rencontre chaque mois, souvent sur des
+              sites qui fonctionnaient très bien la veille. Aucune n’est une
+              fatalité, toutes se préviennent.
+            </p>
+            <p className="mt-6 max-w-[44ch] leading-7 text-(--home-muted)">
+              En octobre 2026, une faille PHP sous embargo a été corrigée sur
+              tout le parc en une nuit.{' '}
+              <Link
+                href={RouteLink.blogPost(
+                  'faille-securite-php-octobre-2026-recit'
+                )}
+                className="home-link"
+              >
+                Le récit de cette nuit
+              </Link>
+              .
+            </p>
+          </Reveal>
+          <div className="divide-y divide-white/10">
+            {STAKES.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="py-8 first:pt-0">
+                  <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-(--home-muted)">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
-        <Diagonal
-          className="h-20 sm:h-32 md:h-50 lg:h-72 xl:h-90"
-          bgClass="fill-gray-dark"
-          bgCorner="fill-orange"
-        />
-      </div>
+      </section>
 
-      <div className="container">
-        <SectionTitle
-          title="Interface TMA"
-          content="Développé spécialement pour l'occasion. Mise en place d'une console d'administration permettant de gérer vos demandes, de voir vos factures et de suivre l'évolution de votre projet."
-        />
-      </div>
+      <section
+        id="forfaits"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Deux contrats de maintenance selon votre plateforme, engagés sur 12 mois avec des heures de développement incluses, et le dépannage à l’heure pour tout le reste.">
+            Trois façons de confier votre site
+          </SectionHeading>
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {OFFERS.map((offer, i) => (
+              <Reveal key={offer.name} i={i} className="h-full">
+                <Glass className="flex h-full flex-col p-7 md:p-8">
+                  <h3 className="text-2xl font-semibold tracking-tight text-white">
+                    {offer.name}
+                  </h3>
+                  <p className="home-num mt-2 text-lg font-medium text-(--home-orange-text)">
+                    {offer.price}
+                  </p>
+                  <p className="mt-4 leading-7 text-(--home-muted)">
+                    {offer.text}
+                  </p>
+                  <ul className="home-list mt-6 space-y-3 text-sm leading-6 text-white/85">
+                    {offer.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-auto pt-8">
+                    <Link href={offer.href} className="home-link">
+                      {offer.hrefText}
+                    </Link>
+                  </p>
+                </Glass>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <div className="flex flex-col lg:flex-row relative container mt-12">
-        <div className="block overflow-hidden lg:absolute lg:right-[60%]">
-          <div className="lg:w-[945px] lg:h-[666px] relative">
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="La maintenance n’est pas une intervention de temps en temps, c’est une cadence. Voici ce qui se passe sur votre site une fois le contrat signé.">
+          Au rythme de votre site
+        </SectionHeading>
+        <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+          {RHYTHM.map((item, i) => (
+            <Reveal key={item.when} i={i}>
+              <div className="grid gap-x-12 gap-y-2 py-8 md:grid-cols-[220px_1fr]">
+                <p className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+                  {item.when}
+                </p>
+                <p className="leading-7 text-(--home-muted)">{item.text}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <Reveal>
             <Image
-              className="max-h-[666px]"
               src="/images/tma-example.png"
               width={945}
-              priority
               height={666}
-              alt="Une console d'infogérance et de maintenance TMA dédiée"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
+              alt="La console de maintenance inRage : liste des demandes, factures et suivi des interventions"
+              className="home-shot w-full rounded-xl"
+              sizes="(min-width: 1024px) 55vw, 100vw"
             />
-          </div>
-        </div>
-        <div className="lg:ml-[45%] relative lg:h-[736px] flex items-center">
+          </Reveal>
           <div>
-            <h3 className="font-bold text-white text-2xl md:text-4xl">
-              Une console d&apos;infogérance dédiée
-            </h3>
-            <p className="mt-4">
-              Nous vous mettons à disposition une interface entièrement pensée
-              pour vos besoins et intégralement personnalisable à votre
-              solution, que vous soyez sur Prestashop, WordPress ou une solution
-              propriétaire.
-            </p>
-            <h3 className="mt-8 font-bold text-white text-2xl md:text-4xl">
-              Notification immédiate
-            </h3>
-            <p className="mt-4">
-              Dès que votre message est publié sur notre interface de console,
-              nous recevons une notification. Un technicien prend effet de votre
-              message et le règle directement.
-            </p>
-            <h3 className="mt-8 font-bold text-white text-2xl md:text-4xl">
-              Aucune fil d&apos;attente
-            </h3>
-            <p className="mt-4">
-              Chez inRage, il n&apos;y a pas de notion de file d&apos;attente,
-              votre message sera toujours traité en priorité et un technicien
-              prendra en charge votre ticket directement.
-            </p>
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+                Une console de maintenance, pas une boîte mail
+              </h2>
+              <span className="home-rule mt-5" aria-hidden />
+              <p className="mt-5 leading-7 text-(--home-muted)">
+                J’ai développé la console que vous voyez pour suivre les 150
+                sites du parc. Chaque client y a son accès, quelle que soit sa
+                plateforme.
+              </p>
+            </Reveal>
+            <div className="mt-8 space-y-7">
+              {CONSOLE_POINTS.map((item, i) => (
+                <Reveal key={item.title} i={i + 1}>
+                  <h3 className="text-xl font-medium text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 leading-7 text-(--home-muted)">
+                    {item.text}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Maintenance et hébergement, deux choses différentes
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <Reveal i={1}>
+            <div className="space-y-4 leading-7 text-white/85">
+              <p>
+                La maintenance porte sur le site : son code, ses extensions, ses
+                sauvegardes, sa sécurité. L’hébergement porte sur le serveur qui
+                le fait tourner. Les forfaits s’appliquent sur votre hébergement
+                actuel, chez OVH, o2switch, Ionos ou ailleurs.
+              </p>
+              <p>
+                Quand l’hébergement est en cause, lenteurs, pannes à répétition,
+                version de PHP figée, je peux déplacer le site sur mes serveurs
+                en France. Il y est supervisé avec le reste du parc, derrière
+                CrowdSec, avec des sauvegardes de la machine en plus de celles
+                du site.
+              </p>
+              <p>
+                <Link href={RouteLink.prestationHosting} className="home-link">
+                  L’offre d’hébergement
+                </Link>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <FaqSection
-        intro="Ce que me demandent les entreprises avant de confier la maintenance de leur site."
+        title="Questions fréquentes sur la maintenance"
+        intro="Ce que me demandent les entreprises de La Rochelle et d’ailleurs avant de confier la maintenance de leur site."
         items={FAQ}
+        tone="deep"
       />
+
+      <section className="container pt-16 pb-10 md:pt-24">
+        <SectionHeading text="Indiquez l’adresse de votre site, sa plateforme et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
+          Confier la maintenance de votre site
+        </SectionHeading>
+        <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+          <ContactForm />
+        </Reveal>
+      </section>
     </Layout>
   )
 }
