@@ -35,7 +35,7 @@ import { RouteLink } from '@lib/router'
     </h2>
     <div>
 
-LGS Mobilier conçoit et fabrique des établis d'atelier, des postes informatiques et du mobilier technique dans son usine de Gradignan, en Gironde. La boutique en ligne tournait sur Prestashop 1.6 depuis 2014, avec 566 commandes, 900 clients et un catalogue de 112 produits déclinés en 1 793 références selon la dimension, le plateau et le coloris RAL.
+LGS Mobilier conçoit et fabrique des établis d'atelier, des postes informatiques et du mobilier technique dans son usine de Gradignan, en Gironde. La boutique en ligne tournait sur Prestashop 1.6 depuis 2014, avec douze ans de commandes et de comptes clients, et un catalogue d'une centaine de produits déclinés en près de 1 800 références selon la dimension, le plateau et le coloris RAL.
 
 Prestashop 1.6 n'est plus maintenu, le PHP qui le faisait tourner non plus. Plutôt qu'une refonte qui repart de zéro, j'ai proposé une migration complète vers Prestashop 9 : les mêmes produits, les mêmes clients, les mêmes adresses, et des URL identiques pour que Google ne s'aperçoive de rien.
 
@@ -77,9 +77,9 @@ Le thème est un thème enfant de Hummingbird, le thème moderne de Prestashop, 
       </h2>
       <div className="mt-6">
 
-Chaque établi porte une écotaxe. Prestashop 1.6 l'ignorait dans le calcul du prix des déclinaisons, un bug corrigé seulement en 1.7.7, si bien que les prix migrés l'incluaient déjà et que la version 9 l'ajoutait une seconde fois. Un établi affiché 534 € sur l'ancien site en affichait davantage sur le nouveau, et 81 déclinaisons se retrouvaient même avec un prix net négatif.
+Chaque établi porte une écotaxe. Prestashop 1.6 l'ignorait dans le calcul du prix des déclinaisons, un bug corrigé seulement en 1.7.7, si bien que les prix migrés l'incluaient déjà et que la version 9 l'ajoutait une seconde fois. Chaque établi s'affichait plus cher sur le nouveau site que sur l'ancien.
 
-J'ai écrit un script qui simule d'abord, puis corrige en une transaction, avec une référence témoin pour ne jamais tourner deux fois. Il a retiré l'écotaxe de 1 530 déclinaisons et de 3 produits, et j'ai comparé les 1 818 prix publics avec l'ancienne production : tous identiques.
+J'ai écrit un script qui simule d'abord, puis corrige en une transaction, avec une référence témoin pour ne jamais tourner deux fois. Il a retiré l'écotaxe des déclinaisons concernées, et j'ai comparé chaque prix public avec l'ancienne production : tous identiques.
 
 Les URL ont suivi le même principe. L'ancien site plaçait la catégorie devant le produit, ce que Prestashop 9 ne fait plus. Sans rien faire, toutes les fiches indexées tombaient en 404. J'ai recréé la route produit à l'identique, avec une redirection 301 vers l'adresse canonique, puis testé les 139 URL de l'ancien sitemap et les 73 liens de l'ancienne page d'accueil. Aucune erreur.
 
@@ -106,7 +106,7 @@ Les URL ont suivi le même principe. L'ancien site plaçait la catégorie devant
       </h2>
       <div>
 
-LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander, acheté en licence à vie en 2018. Le module s'arrête à Prestashop 8 et la version 9 n'existe qu'en abonnement mensuel, pour un outil dont LGS n'utilisait qu'une fonction : l'édition en masse des prix de déclinaisons. Revenir en Prestashop 8 ne faisait que repousser le problème, éditer 1 793 déclinaisons une par une n'était pas envisageable.
+LGS révise ses tarifs sur l'ensemble du catalogue, par gamme et par dimension. Sur la 1.6, le client passait par Store Commander. Le module s'arrête à Prestashop 8 et n'existe pour la version 9 qu'en abonnement, pour un outil dont LGS n'utilisait qu'une fonction : l'édition en masse des prix de déclinaisons. Revenir en Prestashop 8 ne faisait que repousser le problème, éditer près de 1 800 déclinaisons une par une n'était pas envisageable.
 
 J'ai donc développé le Tarifeur, maquette interactive le matin, module livré et validé en préprod le soir même, un module Symfony intégré au back-office, sous Catalogue. Trois panneaux : les catégories, les produits avec leur fourchette de prix, et la grille des déclinaisons avec le poids, le prix HT, l'écotaxe et le prix public calculé. Les déclinaisons se groupent par dimension ou par n'importe quel attribut, d'un glisser d'en-tête, et chaque groupe se replie avec sa fourchette de prix.
 
