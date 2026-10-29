@@ -8,13 +8,15 @@ import { RouteLink } from '@lib/router'
 export default async function ArticleCards({
   category,
   limit = 4,
+  exclude,
 }: {
   category: string
   limit?: number
+  exclude?: string
 }) {
   const items = await getBlogItems()
   const articles = items
-    .filter((item) => item.category === category)
+    .filter((item) => item.category === category && item.slug !== exclude)
     .slice(0, limit)
 
   return (

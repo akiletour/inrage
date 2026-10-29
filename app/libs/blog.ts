@@ -1,3 +1,4 @@
+import { getMdxHeadings, getMdxReadingMinutes } from '@util/headings'
 import { getAllMdxBy, getSingleMdx } from '@util/mdx'
 
 export const getSingleBlogItem = async (slug: string) => {
@@ -15,6 +16,9 @@ export const getSingleBlogItem = async (slug: string) => {
       category: item.metadata.category,
       thumbnail: item.metadata.thumbnail,
       content: item.content,
+      excerpt: item.metadata.excerpt ?? '',
+      headings: getMdxHeadings('blog', slug),
+      readingMinutes: getMdxReadingMinutes('blog', slug),
       seo: {
         title: item.metadata.seoTitle ?? item.metadata.title,
         metaDesc: item.metadata.excerpt,
@@ -45,5 +49,6 @@ export const getBlogItems = async (
     excerpt: item.frontmatter.excerpt,
     date: item.frontmatter.date,
     category: item.frontmatter.category,
+    readingMinutes: getMdxReadingMinutes('blog', item.slug),
   }))
 }
