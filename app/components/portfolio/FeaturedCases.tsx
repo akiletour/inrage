@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Reveal from '@component/home/Reveal'
 import { RouteLink } from '@lib/router'
 
-import type { ListingProject } from './ListingGrid'
+import { PortfolioProject } from '@lib/portfolio'
 
-export type FeaturedProject = ListingProject & { note: string }
+export type FeaturedProject = PortfolioProject & { note: string }
 
 export default function FeaturedCases({
   projects,
@@ -19,7 +19,10 @@ export default function FeaturedCases({
         <li key={project.slug}>
           <Reveal i={i % 2} className="h-full">
             <Link
-              href={`${RouteLink.portfolio}/${project.support.slug}/${project.slug}`}
+              href={RouteLink.portfolioProject(
+                project.support.slug,
+                project.slug
+              )}
               className="home-card group grid h-full grid-cols-[38%_1fr] items-start gap-6 md:gap-8"
             >
               <span className="home-shot block overflow-hidden rounded-xl">

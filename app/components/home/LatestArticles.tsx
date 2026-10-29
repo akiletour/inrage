@@ -3,15 +3,9 @@ import Link from 'next/link'
 
 import { getBlogItems } from '@lib/blog'
 import { RouteLink } from '@lib/router'
+import { formatDate } from '@util/date'
 
 import Reveal from './Reveal'
-
-const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('fr-FR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
 
 export default async function LatestArticles() {
   const [featured, ...others] = await getBlogItems(4, 'date')

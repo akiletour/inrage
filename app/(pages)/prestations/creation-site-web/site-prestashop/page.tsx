@@ -1,11 +1,10 @@
-import '@component/home/home.css'
-
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
 import Glass from '@component/home/Glass'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
 import ArticleCards from '@component/prestations/ArticleCards'
 import {
@@ -16,9 +15,10 @@ import {
   SERVICES,
   STEPS,
 } from '@component/prestations/prestashop-data'
-import ProjectGrid, { pickProjects } from '@component/prestations/ProjectGrid'
-import { getPortfolioItems } from '@lib/portfolio'
+import ListingGrid from '@component/portfolio/ListingGrid'
+import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Freelance Prestashop : boutique, modules, migration | inRage',
@@ -32,35 +32,17 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: getCanonicalUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Prestations',
-          item: getCanonicalUrl(RouteLink.prestations),
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'Création de site internet',
-          item: getCanonicalUrl(RouteLink.prestationWeb),
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: 'Boutique Prestashop',
-          item: getCanonicalUrl(RouteLink.prestationPrestashop),
-        },
-      ],
-    },
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Création de site internet',
+        item: getCanonicalUrl(RouteLink.prestationWeb),
+      },
+      {
+        name: 'Boutique Prestashop',
+        item: getCanonicalUrl(RouteLink.prestationPrestashop),
+      },
+    ]),
     {
       '@type': 'Service',
       name: 'Développement Prestashop freelance',
@@ -80,19 +62,9 @@ const jsonLd = {
         },
       ],
     },
-    {
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
-      })),
-    },
+    faqJsonLd(FAQ),
   ],
 }
-
-const linkClass =
-  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
 function Hero() {
   return (
@@ -143,235 +115,202 @@ export default async function PrestationPrestashop() {
   const projects = pickProjects(items, PROJECTS)
 
   return (
-    <div className="home">
-      <Layout hero={<Hero />}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <section className="container py-16 md:py-24">
-          <SectionHeading text="Prestashop est un outil de vente avant d’être un site. Ce que je fais dessus tient en six métiers, et chacun a déjà servi sur de vraies boutiques.">
-            Ce que je fais sur Prestashop
-          </SectionHeading>
-          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
-            {SERVICES.map((item, i) => (
-              <Reveal key={item.title} i={i}>
-                <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[280px_1fr]">
-                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
-                    {item.title}
-                  </h3>
-                  <div>
-                    <p className="leading-7 text-(--home-muted)">{item.text}</p>
-                    {item.href && (
-                      <p className="mt-4">
-                        <Link href={item.href} className={linkClass}>
-                          {item.hrefText}
-                        </Link>
-                      </p>
-                    )}
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
-          <div className="container">
-            <SectionHeading text="Trois boutiques Prestashop développées et suivies depuis des années, avec des connecteurs métier que vous ne verrez pas en vitrine mais qui font tourner l’activité.">
-              Boutiques Prestashop réalisées
-            </SectionHeading>
-            <ProjectGrid projects={projects} />
-            <div className="mt-12 flex justify-center">
-              <Link
-                href={`${RouteLink.portfolio}/e-commerce`}
-                className="home-btn-ghost home-glassy"
-              >
-                Toutes les réalisations e-commerce
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="container py-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Prestashop ou WooCommerce
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                La question arrive à chaque premier appel. La réponse dépend de
-                votre catalogue et de vos outils, pas d’une préférence.
-              </p>
-            </Reveal>
-            <Reveal i={1}>
-              <ul className="home-list space-y-4 leading-7 text-white/85">
-                {CHOICE.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="mt-6">
-                <Link
-                  href={RouteLink.prestationWordPress}
-                  className={linkClass}
-                >
-                  Voir la création de site WordPress et WooCommerce
-                </Link>
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
-          <div className="container">
-            <SectionHeading text="Une boutique se teste avec de vraies commandes avant d’ouvrir. Voici comment un projet Prestashop se déroule chez inRage.">
-              Comment se construit votre boutique
-            </SectionHeading>
-            <ol className="home-timeline mx-auto mt-14 max-w-3xl">
-              {STEPS.map((step, i) => (
-                <li key={step.title} className="home-timeline-item">
-                  <Reveal i={i}>
-                    <h3 className="text-xl font-medium text-white md:text-2xl">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
-                      {step.text}
-                    </p>
-                  </Reveal>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section id="prix" className="container scroll-mt-28 py-20 md:py-28">
-          <SectionHeading text="Des ordres de grandeur annoncés, un devis détaillé poste par poste sous 24 heures. Prestashop est open source : aucune licence, la boutique vous appartient.">
-            Combien coûte une boutique Prestashop
-          </SectionHeading>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {PRICES.map((offer, i) => (
-              <Reveal key={offer.name} i={i} className="h-full">
-                <Glass className="flex h-full flex-col p-7">
-                  <h3 className="text-xl font-medium text-white">
-                    {offer.name}
-                  </h3>
-                  <p className="home-num mt-3 text-3xl font-semibold text-white">
-                    {offer.price}
-                  </p>
-                  <p className="mt-4 text-sm leading-6 text-(--home-muted)">
-                    {offer.text}
-                  </p>
-                  {offer.href && (
-                    <p className="mt-auto pt-5">
-                      <Link href={offer.href} className={linkClass}>
-                        Les forfaits de maintenance
+      <section className="container py-16 md:py-24">
+        <SectionHeading text="Prestashop est un outil de vente avant d’être un site. Ce que je fais dessus tient en six métiers, et chacun a déjà servi sur de vraies boutiques.">
+          Ce que je fais sur Prestashop
+        </SectionHeading>
+        <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+          {SERVICES.map((item, i) => (
+            <Reveal key={item.title} i={i}>
+              <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[280px_1fr]">
+                <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                  {item.title}
+                </h3>
+                <div>
+                  <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                  {item.href && (
+                    <p className="mt-4">
+                      <Link href={item.href} className="home-link">
+                        {item.hrefText}
                       </Link>
                     </p>
                   )}
-                </Glass>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Pour les agences&nbsp;: sous-traitance Prestashop
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Une partie de mes boutiques Prestashop sont développées pour des
-                agences, en marque blanche.
-              </p>
+                </div>
+              </article>
             </Reveal>
-            <Reveal i={1}>
-              <ul className="home-list space-y-4 leading-7 text-white/85">
-                <li>
-                  Thème développé à partir de vos maquettes, dans votre dépôt
-                  Git et vos environnements si vous en avez.
-                </li>
-                <li>
-                  Modules, connecteurs ERP et migrations vers Prestashop 9 en
-                  renfort de vos équipes, sur une mission ou dans la durée.
-                </li>
-                <li>
-                  Maintenance et hébergement des boutiques livrées, avec un
-                  interlocuteur technique joignable pour vos chefs de projet.
-                </li>
-                <li>
-                  Vos clients ne voient que vous. Je reste en retrait, mais je
-                  réponds vite.
-                </li>
-              </ul>
-              <p className="mt-6">
-                <Link href={RouteLink.contact} className={linkClass}>
-                  Parler d’un partenariat
-                </Link>
-              </p>
-            </Reveal>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        <section className="container py-20 md:py-28">
-          <SectionHeading text="Deux articles tirés de problèmes rencontrés sur de vraies boutiques, et comment je les ai résolus.">
-            Ce que j’écris sur Prestashop
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Trois boutiques Prestashop développées et suivies depuis des années, avec des connecteurs métier que vous ne verrez pas en vitrine mais qui font tourner l’activité.">
+            Boutiques Prestashop réalisées
           </SectionHeading>
-          <ArticleCards category="PrestaShop" limit={2} />
-        </section>
-
-        <section
-          id="faq"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Questions fréquentes sur Prestashop
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Ce que me demandent les e-commerçants et les agences avant de
-                lancer ou de reprendre une boutique Prestashop.
-              </p>
-            </Reveal>
-            <div className="divide-y divide-white/10">
-              {FAQ.map((item, i) => (
-                <Reveal key={item.question} i={i}>
-                  <details className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
-                      {item.question}
-                      <span
-                        aria-hidden
-                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
-                      {item.answer}
-                    </p>
-                  </details>
-                </Reveal>
-              ))}
-            </div>
+          <ListingGrid
+            projects={projects}
+            meta={(p) => p.note}
+            eager={3}
+            className="mt-14"
+          />
+          <div className="mt-12 flex justify-center">
+            <Link
+              href={`${RouteLink.portfolio}/e-commerce`}
+              className="home-btn-ghost home-glassy"
+            >
+              Toutes les réalisations e-commerce
+            </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="container pt-16 pb-10 md:pt-24">
-          <SectionHeading text="Décrivez votre boutique : catalogue, outils à relier, version actuelle si elle existe. Je vous réponds dans la journée.">
-            Parler de votre boutique
-          </SectionHeading>
-          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
-            <ContactForm />
+      <section className="container py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Prestashop ou WooCommerce
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+              La question arrive à chaque premier appel. La réponse dépend de
+              votre catalogue et de vos outils, pas d’une préférence.
+            </p>
           </Reveal>
-        </section>
-      </Layout>
-    </div>
+          <Reveal i={1}>
+            <ul className="home-list space-y-4 leading-7 text-white/85">
+              {CHOICE.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="mt-6">
+              <Link href={RouteLink.prestationWordPress} className="home-link">
+                Voir la création de site WordPress et WooCommerce
+              </Link>
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Une boutique se teste avec de vraies commandes avant d’ouvrir. Voici comment un projet Prestashop se déroule chez inRage.">
+            Comment se construit votre boutique
+          </SectionHeading>
+          <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+            {STEPS.map((step, i) => (
+              <li key={step.title} className="home-timeline-item">
+                <Reveal i={i}>
+                  <h3 className="text-xl font-medium text-white md:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                    {step.text}
+                  </p>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="prix" className="container scroll-mt-28 py-20 md:py-28">
+        <SectionHeading text="Des ordres de grandeur annoncés, un devis détaillé poste par poste sous 24 heures. Prestashop est open source : aucune licence, la boutique vous appartient.">
+          Combien coûte une boutique Prestashop
+        </SectionHeading>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {PRICES.map((offer, i) => (
+            <Reveal key={offer.name} i={i} className="h-full">
+              <Glass className="flex h-full flex-col p-7">
+                <h3 className="text-xl font-medium text-white">{offer.name}</h3>
+                <p className="home-num mt-3 text-3xl font-semibold text-white">
+                  {offer.price}
+                </p>
+                <p className="mt-4 text-sm leading-6 text-(--home-muted)">
+                  {offer.text}
+                </p>
+                {offer.href && (
+                  <p className="mt-auto pt-5">
+                    <Link href={offer.href} className="home-link">
+                      Les forfaits de maintenance
+                    </Link>
+                  </p>
+                )}
+              </Glass>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Pour les agences&nbsp;: sous-traitance Prestashop
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+              Une partie de mes boutiques Prestashop sont développées pour des
+              agences, en marque blanche.
+            </p>
+          </Reveal>
+          <Reveal i={1}>
+            <ul className="home-list space-y-4 leading-7 text-white/85">
+              <li>
+                Thème développé à partir de vos maquettes, dans votre dépôt Git
+                et vos environnements si vous en avez.
+              </li>
+              <li>
+                Modules, connecteurs ERP et migrations vers Prestashop 9 en
+                renfort de vos équipes, sur une mission ou dans la durée.
+              </li>
+              <li>
+                Maintenance et hébergement des boutiques livrées, avec un
+                interlocuteur technique joignable pour vos chefs de projet.
+              </li>
+              <li>
+                Vos clients ne voient que vous. Je reste en retrait, mais je
+                réponds vite.
+              </li>
+            </ul>
+            <p className="mt-6">
+              <Link href={RouteLink.contact} className="home-link">
+                Parler d’un partenariat
+              </Link>
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="Deux articles tirés de problèmes rencontrés sur de vraies boutiques, et comment je les ai résolus.">
+          Ce que j’écris sur Prestashop
+        </SectionHeading>
+        <ArticleCards category="PrestaShop" limit={2} />
+      </section>
+
+      <FaqSection
+        title="Questions fréquentes sur Prestashop"
+        intro="Ce que me demandent les e-commerçants et les agences avant de lancer ou de reprendre une boutique Prestashop."
+        items={FAQ}
+        tone="deep"
+      />
+
+      <section className="container pt-16 pb-10 md:pt-24">
+        <SectionHeading text="Décrivez votre boutique : catalogue, outils à relier, version actuelle si elle existe. Je vous réponds dans la journée.">
+          Parler de votre boutique
+        </SectionHeading>
+        <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+          <ContactForm />
+        </Reveal>
+      </section>
+    </Layout>
   )
 }

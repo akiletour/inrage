@@ -23,11 +23,9 @@ function untilt(e: MouseEvent<HTMLElement>) {
 }
 
 export default function ProjectCard({ project }: { project: HomeProject }) {
-  const href = `${RouteLink.portfolio}/${project.support ? `${project.support.slug}/` : ''}${project.slug}`
-
   return (
     <Link
-      href={href}
+      href={RouteLink.portfolioProject(project.support.slug, project.slug)}
       className="home-tilt home-card group block"
       onMouseMove={tilt}
       onMouseLeave={untilt}
@@ -45,11 +43,9 @@ export default function ProjectCard({ project }: { project: HomeProject }) {
       <div className="home-card-title mt-4 text-center text-base leading-5 text-white sm:text-xl">
         {project.title}
       </div>
-      {project.support && (
-        <div className="mt-1 text-center text-xs tracking-widest text-(--home-orange-text) uppercase">
-          {project.support.title}
-        </div>
-      )}
+      <div className="mt-1 text-center text-xs tracking-widest text-(--home-orange-text) uppercase">
+        {project.support.title}
+      </div>
     </Link>
   )
 }

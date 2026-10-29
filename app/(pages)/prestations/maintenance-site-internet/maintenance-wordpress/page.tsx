@@ -1,10 +1,9 @@
-import '@component/home/home.css'
-
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
 import ArticleCards from '@component/prestations/ArticleCards'
 import {
@@ -16,6 +15,7 @@ import {
 } from '@component/prestations/maintenance-wordpress-data'
 import PlanTable from '@component/prestations/PlanTable'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Maintenance WordPress à La Rochelle | Freelance - inRage',
@@ -29,35 +29,17 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: getCanonicalUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Prestations',
-          item: getCanonicalUrl(RouteLink.prestations),
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'Maintenance de site internet',
-          item: getCanonicalUrl(RouteLink.prestationTma),
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: 'Maintenance WordPress',
-          item: getCanonicalUrl(RouteLink.prestationTmaWordPress),
-        },
-      ],
-    },
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Maintenance de site internet',
+        item: getCanonicalUrl(RouteLink.prestationTma),
+      },
+      {
+        name: 'Maintenance WordPress',
+        item: getCanonicalUrl(RouteLink.prestationTmaWordPress),
+      },
+    ]),
     {
       '@type': 'Service',
       '@id': `${getCanonicalUrl(RouteLink.prestationTmaWordPress)}#service`,
@@ -87,19 +69,9 @@ const jsonLd = {
         },
       })),
     },
-    {
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
-      })),
-    },
+    faqJsonLd(FAQ),
   ],
 }
-
-const linkClass =
-  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
 function Hero() {
   return (
@@ -170,152 +142,115 @@ function Hero() {
 
 export default function TmaWordPress() {
   return (
-    <div className="home">
-      <Layout hero={<Hero />}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <section
-          id="forfaits"
-          className="container scroll-mt-28 py-16 md:py-24"
-        >
-          <SectionHeading text="Trois forfaits engagés sur 12 mois, avec des heures de développement incluses. Le nombre d’heures se personnalise selon vos besoins.">
-            Les forfaits de maintenance WordPress
-          </SectionHeading>
-          <div className="mt-14">
-            <PlanTable plans={PLANS} rows={ROWS} support="WordPress" />
-          </div>
-          <Reveal className="mx-auto mt-12 max-w-3xl text-center">
-            <p className="leading-7 text-(--home-muted)">
-              Vous comparez plusieurs offres ? J’ai écrit un{' '}
+      <section id="forfaits" className="container scroll-mt-28 py-16 md:py-24">
+        <SectionHeading text="Trois forfaits engagés sur 12 mois, avec des heures de développement incluses. Le nombre d’heures se personnalise selon vos besoins.">
+          Les forfaits de maintenance WordPress
+        </SectionHeading>
+        <div className="mt-14">
+          <PlanTable plans={PLANS} rows={ROWS} support="WordPress" />
+        </div>
+        <Reveal className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="leading-7 text-(--home-muted)">
+            Vous comparez plusieurs offres ? J’ai écrit un{' '}
+            <Link
+              href={`${RouteLink.blog}/choisir-prestataire-maintenance-tma-wordpress`}
+              className="home-link"
+            >
+              guide pour choisir un prestataire TMA WordPress
+            </Link>
+            , avec les questions à poser avant de signer, chez moi comme
+            ailleurs.
+          </p>
+        </Reveal>
+      </section>
+
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Support et dépannage WordPress à La Rochelle
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+              La plupart des sites que je reprends ont été créés par une autre
+              agence ou un autre freelance, parfois il y a dix ans. Ils arrivent
+              avec un thème plus mis à jour, une version de PHP dépassée et des
+              extensions abandonnées.
+            </p>
+            <p className="mt-4 max-w-[44ch] leading-7 text-(--home-muted)">
+              Je commence par un audit sur pré-production, je remets le site à
+              niveau, puis je le surveille. Vous avez un seul interlocuteur,
+              joignable, qui connaît votre site, et que vous pouvez rencontrer à
+              La Rochelle.
+            </p>
+            <p className="mt-6">
               <Link
-                href={`${RouteLink.blog}/choisir-prestataire-maintenance-tma-wordpress`}
-                className={linkClass}
+                href={RouteLink.developpeurLaRochelle}
+                className="home-link"
               >
-                guide pour choisir un prestataire TMA WordPress
+                Mon activité de développeur à La Rochelle
               </Link>
-              , avec les questions à poser avant de signer, chez moi comme
-              ailleurs.
             </p>
           </Reveal>
-        </section>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Support et dépannage WordPress à La Rochelle
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                La plupart des sites que je reprends ont été créés par une autre
-                agence ou un autre freelance, parfois il y a dix ans. Ils
-                arrivent avec un thème plus mis à jour, une version de PHP
-                dépassée et des extensions abandonnées.
-              </p>
-              <p className="mt-4 max-w-[44ch] leading-7 text-(--home-muted)">
-                Je commence par un audit sur pré-production, je remets le site à
-                niveau, puis je le surveille. Vous avez un seul interlocuteur,
-                joignable, qui connaît votre site, et que vous pouvez rencontrer
-                à La Rochelle.
-              </p>
-              <p className="mt-6">
-                <Link
-                  href={RouteLink.developpeurLaRochelle}
-                  className={linkClass}
-                >
-                  Mon activité de développeur à La Rochelle
-                </Link>
-              </p>
-            </Reveal>
-            <Reveal i={1}>
-              <h3 className="text-xl font-medium text-white">
-                Les demandes qui arrivent le plus souvent
-              </h3>
-              <ul className="home-list mt-5 space-y-4 leading-7 text-white/85">
-                {REQUESTS.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="mt-8 leading-7 text-(--home-muted)">
-                Pour une intervention isolée sans contrat, voyez la{' '}
-                <Link
-                  href={RouteLink.prestationTmaOnDemand}
-                  className={linkClass}
-                >
-                  maintenance ponctuelle
-                </Link>
-                . Si l’hébergement est en cause, je peux aussi{' '}
-                <Link href={RouteLink.prestationHosting} className={linkClass}>
-                  héberger votre site en France
-                </Link>
-                .
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="container py-20 md:py-28">
-          <SectionHeading text="Je publie ce que j’apprends en maintenant 150 sites WordPress : failles, environnements, mode maintenance, et comment choisir un prestataire.">
-            Ce que j’écris sur la maintenance WordPress
-          </SectionHeading>
-          <ArticleCards category="WordPress" limit={4} />
-        </section>
-
-        <section
-          id="faq"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Questions fréquentes sur la maintenance WordPress
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Ce que me demandent les entreprises de La Rochelle et de
-                Charente-Maritime avant de confier la maintenance de leur site
-                WordPress.
-              </p>
-            </Reveal>
-            <div className="divide-y divide-white/10">
-              {FAQ.map((item, i) => (
-                <Reveal key={item.question} i={i}>
-                  <details className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
-                      {item.question}
-                      <span
-                        aria-hidden
-                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
-                      {item.answer}
-                    </p>
-                  </details>
-                </Reveal>
+          <Reveal i={1}>
+            <h3 className="text-xl font-medium text-white">
+              Les demandes qui arrivent le plus souvent
+            </h3>
+            <ul className="home-list mt-5 space-y-4 leading-7 text-white/85">
+              {REQUESTS.map((item) => (
+                <li key={item}>{item}</li>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="contact"
-          className="container scroll-mt-28 pt-16 pb-10 md:pt-24"
-        >
-          <SectionHeading text="Indiquez l’adresse de votre site WordPress et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
-            Confier la maintenance de votre site WordPress
-          </SectionHeading>
-          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
-            <ContactForm />
+            </ul>
+            <p className="mt-8 leading-7 text-(--home-muted)">
+              Pour une intervention isolée sans contrat, voyez la{' '}
+              <Link
+                href={RouteLink.prestationTmaOnDemand}
+                className="home-link"
+              >
+                maintenance ponctuelle
+              </Link>
+              . Si l’hébergement est en cause, je peux aussi{' '}
+              <Link href={RouteLink.prestationHosting} className="home-link">
+                héberger votre site en France
+              </Link>
+              .
+            </p>
           </Reveal>
-        </section>
-      </Layout>
-    </div>
+        </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="Je publie ce que j’apprends en maintenant 150 sites WordPress : failles, environnements, mode maintenance, et comment choisir un prestataire.">
+          Ce que j’écris sur la maintenance WordPress
+        </SectionHeading>
+        <ArticleCards category="WordPress" limit={4} />
+      </section>
+
+      <FaqSection
+        title="Questions fréquentes sur la maintenance WordPress"
+        intro="Ce que me demandent les entreprises de La Rochelle et de Charente-Maritime avant de confier la maintenance de leur site WordPress."
+        items={FAQ}
+        tone="deep"
+      />
+
+      <section
+        id="contact"
+        className="container scroll-mt-28 pt-16 pb-10 md:pt-24"
+      >
+        <SectionHeading text="Indiquez l’adresse de votre site WordPress et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
+          Confier la maintenance de votre site WordPress
+        </SectionHeading>
+        <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+          <ContactForm />
+        </Reveal>
+      </section>
+    </Layout>
   )
 }

@@ -755,3 +755,17 @@ body:has(.home) {
   width: 100%;
   height: auto;
 }
+
+.home-link {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: var(--home-orange);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 150ms ease-out;
+}
+
+.home-link:hover {
+  color: var(--home-orange-text);
+}

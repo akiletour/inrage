@@ -1,17 +1,15 @@
-import '@component/home/home.css'
-
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { formatDate } from '@component/blog/ArticleCard'
 import ReadingProgress from '@component/blog/ReadingProgress'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
 import ArticleCards from '@component/prestations/ArticleCards'
-import { getBlogItems, getSingleBlogItem } from '@lib/blog'
+import { blogCategoryByName, getBlogItems, getSingleBlogItem } from '@lib/blog'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
-import { slugifyHeading } from '@util/headings'
+import { formatDate } from '@util/date'
+import { breadcrumbJsonLd } from '@util/seo-generators'
 
 type Props = {
   params: Promise<{
@@ -27,38 +25,9 @@ export async function generateStaticParams() {
   }))
 }
 
-const getData = async (slug: string) => await getSingleBlogItem(slug)
-
-type Post = NonNullable<Awaited<ReturnType<typeof getData>>['post']>
+type Post = NonNullable<Awaited<ReturnType<typeof getSingleBlogItem>>>['post']
 
 const AUTHOR_NAME = 'Pascal Gault'
-
-const linkClass =
-  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
-
-const NEXT_STEP: Record<
-  string,
-  { title: string; text: string; href: string; label: string }
-> = {
-  WordPress: {
-    title: 'Ce problème sur votre site WordPress ?',
-    text: 'Les procédures de ce blog sont celles que j’applique sur les 150 sites que je maintiens. Si vous préférez que quelqu’un s’en charge, les forfaits couvrent les mises à jour, la sécurité et ce genre de correctifs.',
-    href: RouteLink.prestationTmaWordPress,
-    label: 'La maintenance WordPress',
-  },
-  PrestaShop: {
-    title: 'Une boutique Prestashop à faire suivre ?',
-    text: 'Modules, montées de version, erreurs du back-office : les forfaits de maintenance Prestashop couvrent ce travail, avec un délai d’intervention garanti.',
-    href: RouteLink.prestationTmaPrestashop,
-    label: 'La maintenance Prestashop',
-  },
-  Serveur: {
-    title: 'Un serveur à surveiller ?',
-    text: 'J’héberge et j’administre les sites que je maintiens sur mes serveurs en France, avec sauvegardes, supervision et CrowdSec. Ces procédures en font partie.',
-    href: RouteLink.prestationHosting,
-    label: 'L’hébergement infogéré',
-  },
-}
 
 const DEFAULT_STEP = {
   title: 'Un projet dans ce sens ?',
@@ -69,11 +38,12 @@ const DEFAULT_STEP = {
 
 export async function generateMetadata(props: Props) {
   const params = await props.params
-  const { post } = await getData(params.slug)
+  const result = await getSingleBlogItem(params.slug)
 
-  if (!post) {
+  if (!result) {
     return {}
   }
+  const { post } = result
 
   const url = getCanonicalUrl(`${RouteLink.blog}/${post.slug}`)
 
@@ -132,43 +102,30 @@ const buildJsonLd = (post: Post) => {
         publisher: { '@id': getCanonicalUrl('/#business') },
         isPartOf: { '@id': getCanonicalUrl('/#website') },
       },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Accueil',
-            item: getCanonicalUrl(),
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Blog',
-            item: getCanonicalUrl(RouteLink.blog),
-          },
-          { '@type': 'ListItem', position: 3, name: post.title, item: url },
-        ],
-      },
+      breadcrumbJsonLd([
+        { name: 'Blog', item: getCanonicalUrl(RouteLink.blog) },
+      ]),
     ],
   }
 }
 
 export default async function Page(props: Props) {
   const params = await props.params
-  const { post } = await getData(params.slug)
+  const result = await getSingleBlogItem(params.slug)
 
-  if (!post) {
+  if (!result) {
     return notFound()
   }
+  const { post } = result
 
-  const step = (post.category && NEXT_STEP[post.category]) || DEFAULT_STEP
-  const categoryHref = post.category
-    ? `${RouteLink.blog}?categorie=${slugifyHeading(post.category)}`
+  const category = blogCategoryByName(post.category)
+  const step = category?.nextStep ?? DEFAULT_STEP
+  const categoryHref = category
+    ? RouteLink.blogCategory(category.slug)
     : RouteLink.blog
 
   return (
-    <div className="home">
+    <>
       <ReadingProgress target="article" />
       <Layout
         hero={
@@ -201,7 +158,7 @@ export default async function Page(props: Props) {
                     <Link
                       href={RouteLink.aboutMe}
                       rel="author"
-                      className={linkClass}
+                      className="home-link"
                     >
                       {AUTHOR_NAME}
                     </Link>
@@ -266,10 +223,10 @@ export default async function Page(props: Props) {
               <div className="space-y-4 leading-7 text-white/85">
                 <p>{step.text}</p>
                 <p className="flex flex-wrap gap-x-6 gap-y-2">
-                  <Link href={step.href} className={linkClass}>
+                  <Link href={step.href} className="home-link">
                     {step.label}
                   </Link>
-                  <Link href={RouteLink.contact} className={linkClass}>
+                  <Link href={RouteLink.contact} className="home-link">
                     Me contacter
                   </Link>
                 </p>
@@ -294,6 +251,6 @@ export default async function Page(props: Props) {
           </section>
         )}
       </Layout>
-    </div>
+    </>
   )
 }

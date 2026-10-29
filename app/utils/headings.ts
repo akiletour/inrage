@@ -26,13 +26,21 @@ export function headingText(children: unknown): string {
   return ''
 }
 
+const sources = new Map<string, string>()
+
 function readMdxSource(type: 'blog' | 'portfolio', slug: string) {
+  const key = `${type}/${slug}`
+  const cached = sources.get(key)
+  if (cached !== undefined) return cached
   const file = path.join(process.cwd(), 'app', 'content', type, `${slug}.mdx`)
+  let source = ''
   try {
-    return fs.readFileSync(file, 'utf8')
+    source = fs.readFileSync(file, 'utf8')
   } catch {
-    return ''
+    source = ''
   }
+  sources.set(key, source)
+  return source
 }
 
 function stripSource(source: string) {

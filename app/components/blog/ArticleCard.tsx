@@ -4,17 +4,9 @@ import Link from 'next/link'
 import Reveal from '@component/home/Reveal'
 import { getBlogItems } from '@lib/blog'
 import { RouteLink } from '@lib/router'
+import { formatDate } from '@util/date'
 
-export type BlogItem = Awaited<ReturnType<typeof getBlogItems>>[number]
-
-const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
-  dateStyle: 'long',
-  timeZone: 'UTC',
-})
-
-export function formatDate(date: string) {
-  return dateFormatter.format(new Date(date))
-}
+type BlogItem = Awaited<ReturnType<typeof getBlogItems>>[number]
 
 export default function ArticleCard({
   article,
@@ -72,7 +64,7 @@ export default function ArticleCard({
             width={595}
             height={265}
             className="h-auto w-full"
-            sizes="(min-width: 768px) 33vw, 100vw"
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
           />
         </span>
         <span className="home-num mt-4 block text-sm text-(--home-muted)">

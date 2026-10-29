@@ -1,5 +1,6 @@
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import {
+  JsonLdBreadcrumb,
   JsonLdCollectionPage,
   PortfolioPageMetadata,
   EcommerceService,
@@ -158,4 +159,34 @@ export function getEcommerceTechnologies(): readonly EcommerceTechnology[] {
 
 export function getEcommerceOfferings(): readonly EcommerceService[] {
   return ECOMMERCE_OFFERINGS
+}
+
+export type BreadcrumbTrailItem = { name: string; item: string }
+
+export function breadcrumbJsonLd(
+  trail: BreadcrumbTrailItem[]
+): JsonLdBreadcrumb {
+  const items = [{ name: 'Accueil', item: getCanonicalUrl() }, ...trail]
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.name,
+      item: entry.item,
+    })),
+  }
+}
+
+export type FaqItem = { question: string; answer: string }
+
+export function faqJsonLd(items: FaqItem[]) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
 }

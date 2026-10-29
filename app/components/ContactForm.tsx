@@ -18,7 +18,7 @@ type FormData = {
 }
 
 type Props = {
-  lg?: boolean
+  stacked?: boolean
   variant?: 'contact' | 'audit'
   onAnalyze?: (website: string) => void
 }
@@ -54,7 +54,7 @@ function buildPayload(data: FormData, variant: Props['variant']) {
 }
 
 export default function ContactForm({
-  lg = false,
+  stacked = false,
   variant = 'contact',
   onAnalyze,
 }: Props) {
@@ -352,9 +352,9 @@ export default function ContactForm({
   }
 
   return (
-    <form className={!lg ? 'my-8' : ''} onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 md:grid-cols-2">
-        <div className={`relative order-1 ${lg ? 'md:col-span-2' : ''}`}>
+        <div className={`relative order-1 ${stacked ? 'md:col-span-2' : ''}`}>
           <input
             className={`input-field ${
               errors.name ? 'border-red' : 'border-gray'
@@ -402,7 +402,7 @@ export default function ContactForm({
           )}
         </div>
         <div
-          className={`order-10 relative ${lg ? 'md:col-span-2' : 'md:row-span-3 md:order-2'}`}
+          className={`order-10 relative ${stacked ? 'md:col-span-2' : 'md:row-span-3 md:order-2'}`}
         >
           <textarea
             className={`input-field min-h-[200px] h-full ${

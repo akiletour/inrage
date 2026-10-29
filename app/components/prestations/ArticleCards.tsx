@@ -14,10 +14,7 @@ export default async function ArticleCards({
   limit?: number
   exclude?: string
 }) {
-  const items = await getBlogItems()
-  const articles = items
-    .filter((item) => item.category === category && item.slug !== exclude)
-    .slice(0, limit)
+  const articles = await getBlogItems(limit, 'date', exclude, category)
 
   return (
     <ul className="mt-14 grid gap-4 md:grid-cols-2">

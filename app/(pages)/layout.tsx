@@ -5,6 +5,7 @@ import Footer from '@layout/Footer'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
 import './globals.css'
+import '@component/home/home.css'
 
 export async function generateMetadata() {
   return {

@@ -1,11 +1,10 @@
-import '@component/home/home.css'
-
 import Link from 'next/link'
 
 import ContactForm from '@component/ContactForm'
 import Glass from '@component/home/Glass'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
 import ArticleCards from '@component/prestations/ArticleCards'
 import {
@@ -17,6 +16,7 @@ import {
 } from '@component/prestations/maintenance-prestashop-data'
 import PlanTable from '@component/prestations/PlanTable'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Maintenance Prestashop par un freelance | Contrat TMA - inRage',
@@ -30,35 +30,17 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: getCanonicalUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Prestations',
-          item: getCanonicalUrl(RouteLink.prestations),
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'Maintenance de site internet',
-          item: getCanonicalUrl(RouteLink.prestationTma),
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: 'Maintenance Prestashop',
-          item: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
-        },
-      ],
-    },
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+      {
+        name: 'Maintenance de site internet',
+        item: getCanonicalUrl(RouteLink.prestationTma),
+      },
+      {
+        name: 'Maintenance Prestashop',
+        item: getCanonicalUrl(RouteLink.prestationTmaPrestashop),
+      },
+    ]),
     {
       '@type': 'Service',
       '@id': `${getCanonicalUrl(RouteLink.prestationTmaPrestashop)}#service`,
@@ -83,19 +65,9 @@ const jsonLd = {
         },
       })),
     },
-    {
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
-      })),
-    },
+    faqJsonLd(FAQ),
   ],
 }
-
-const linkClass =
-  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
 function Hero() {
   return (
@@ -170,164 +142,131 @@ function Hero() {
 
 export default function TmaPrestashop() {
   return (
-    <div className="home">
-      <Layout hero={<Hero />}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <section className="container py-16 md:py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Ce que je surveille sur votre boutique
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Une boutique en ligne est exposée en permanence : modules
-                obsolètes, failles publiées, tentatives d’injection dans les
-                formulaires. J’ai développé au fil des années des outils qui
-                surveillent, protègent et réparent, et qui bloquent les attaques
-                les plus courantes avant qu’elles n’atteignent la boutique.
+      <section className="container py-16 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:gap-20">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Ce que je surveille sur votre boutique
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
+              Une boutique en ligne est exposée en permanence : modules
+              obsolètes, failles publiées, tentatives d’injection dans les
+              formulaires. J’ai développé au fil des années des outils qui
+              surveillent, protègent et réparent, et qui bloquent les attaques
+              les plus courantes avant qu’elles n’atteignent la boutique.
+            </p>
+          </Reveal>
+          <div className="divide-y divide-white/10">
+            {WATCH.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="py-8 first:pt-0">
+                  <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-(--home-muted)">
+                    {item.text}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="forfaits"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Deux forfaits engagés sur 12 mois, avec des heures de développement incluses. Le nombre d’heures se personnalise selon la taille de la boutique.">
+            Les forfaits de maintenance Prestashop
+          </SectionHeading>
+          <div className="mt-14">
+            <PlanTable plans={PLANS} rows={ROWS} support="Prestashop" />
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              De Prestashop 1.6 à Prestashop 9
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+          </Reveal>
+          <Reveal i={1}>
+            <div className="space-y-4 leading-7 text-white/85">
+              <p>
+                Je maintiens des boutiques sur toutes les versions encore en
+                production, de la 1.6 à la 9. Une boutique en 1.6 ou 1.7 reçoit
+                les correctifs de sécurité qui existent encore, puis un plan de
+                migration vers une version maintenue, module par module, sur
+                pré-production, avant la bascule.
               </p>
-            </Reveal>
-            <div className="divide-y divide-white/10">
-              {WATCH.map((item, i) => (
-                <Reveal key={item.title} i={i}>
-                  <article className="py-8 first:pt-0">
-                    <h3 className="text-xl font-semibold tracking-tight text-balance text-white md:text-2xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 leading-7 text-(--home-muted)">
-                      {item.text}
-                    </p>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="forfaits"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
-          <div className="container">
-            <SectionHeading text="Deux forfaits engagés sur 12 mois, avec des heures de développement incluses. Le nombre d’heures se personnalise selon la taille de la boutique.">
-              Les forfaits de maintenance Prestashop
-            </SectionHeading>
-            <div className="mt-14">
-              <PlanTable plans={PLANS} rows={ROWS} support="Prestashop" />
-            </div>
-          </div>
-        </section>
-
-        <section className="container py-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                De Prestashop 1.6 à Prestashop 9
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-            </Reveal>
-            <Reveal i={1}>
-              <div className="space-y-4 leading-7 text-white/85">
-                <p>
-                  Je maintiens des boutiques sur toutes les versions encore en
-                  production, de la 1.6 à la 9. Une boutique en 1.6 ou 1.7
-                  reçoit les correctifs de sécurité qui existent encore, puis un
-                  plan de migration vers une version maintenue, module par
-                  module, sur pré-production, avant la bascule.
-                </p>
-                <p>
-                  La prise en charge commence toujours par un état des lieux :
-                  accès, hébergement, modules installés, thème, sauvegardes. Une
-                  boutique trop lourde ou trop ancienne pour être migrée
-                  proprement peut aussi être{' '}
-                  <Link
-                    href={RouteLink.prestationPrestashop}
-                    className={linkClass}
-                  >
-                    refaite sur une base propre
-                  </Link>
-                  , avec reprise du catalogue et des clients.
-                </p>
-                <p>
-                  Si l’hébergement actuel est en cause, lenteurs ou version de
-                  PHP figée, je peux{' '}
-                  <Link
-                    href={RouteLink.prestationHosting}
-                    className={linkClass}
-                  >
-                    héberger la boutique en France
-                  </Link>{' '}
-                  sur mon infrastructure.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
-          <div className="container">
-            <SectionHeading text="Les problèmes que je rencontre en maintenant des boutiques Prestashop finissent en articles, pour les autres marchands et les autres développeurs.">
-              Ce que j’écris sur Prestashop
-            </SectionHeading>
-            <ArticleCards category="PrestaShop" limit={2} />
-          </div>
-        </section>
-
-        <section id="faq" className="container scroll-mt-28 py-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Questions fréquentes sur la maintenance Prestashop
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Ce que me demandent les e-commerçants avant de confier la
-                maintenance de leur boutique.
+              <p>
+                La prise en charge commence toujours par un état des lieux :
+                accès, hébergement, modules installés, thème, sauvegardes. Une
+                boutique trop lourde ou trop ancienne pour être migrée
+                proprement peut aussi être{' '}
+                <Link
+                  href={RouteLink.prestationPrestashop}
+                  className="home-link"
+                >
+                  refaite sur une base propre
+                </Link>
+                , avec reprise du catalogue et des clients.
               </p>
-            </Reveal>
-            <div className="divide-y divide-white/10">
-              {FAQ.map((item, i) => (
-                <Reveal key={item.question} i={i}>
-                  <details className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
-                      {item.question}
-                      <span
-                        aria-hidden
-                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
-                      {item.answer}
-                    </p>
-                  </details>
-                </Reveal>
-              ))}
+              <p>
+                Si l’hébergement actuel est en cause, lenteurs ou version de PHP
+                figée, je peux{' '}
+                <Link href={RouteLink.prestationHosting} className="home-link">
+                  héberger la boutique en France
+                </Link>{' '}
+                sur mon infrastructure.
+              </p>
             </div>
-          </div>
-        </section>
+          </Reveal>
+        </div>
+      </section>
 
-        <section
-          id="contact"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="container">
-            <SectionHeading text="Indiquez l’adresse de votre boutique, sa version de Prestashop et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
-              Confier la maintenance de votre boutique
-            </SectionHeading>
-            <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
-              <ContactForm />
-            </Reveal>
-          </div>
-        </section>
-      </Layout>
-    </div>
+      <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">
+        <div className="container">
+          <SectionHeading text="Les problèmes que je rencontre en maintenant des boutiques Prestashop finissent en articles, pour les autres marchands et les autres développeurs.">
+            Ce que j’écris sur Prestashop
+          </SectionHeading>
+          <ArticleCards category="PrestaShop" limit={2} />
+        </div>
+      </section>
+
+      <FaqSection
+        title="Questions fréquentes sur la maintenance Prestashop"
+        intro="Ce que me demandent les e-commerçants avant de confier la maintenance de leur boutique."
+        items={FAQ}
+        tone="plain"
+      />
+
+      <section
+        id="contact"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="container">
+          <SectionHeading text="Indiquez l’adresse de votre boutique, sa version de Prestashop et ce qui vous préoccupe. Je vous réponds dans la journée avec un état des lieux et le forfait adapté.">
+            Confier la maintenance de votre boutique
+          </SectionHeading>
+          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+            <ContactForm />
+          </Reveal>
+        </div>
+      </section>
+    </Layout>
   )
 }

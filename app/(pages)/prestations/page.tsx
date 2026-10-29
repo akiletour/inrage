@@ -1,5 +1,3 @@
-import '@component/home/home.css'
-
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
@@ -7,6 +5,7 @@ import ContactForm from '@component/ContactForm'
 import Glass from '@component/home/Glass'
 import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
+import FaqSection from '@component/home/FaqSection'
 import Layout from '@component/Layout'
 import {
   AGENCY_POINTS,
@@ -21,6 +20,7 @@ import ImagePrestationBuildWebsite from '@image/prestations/creation-site-intern
 import ImagePrestationHosting from '@image/prestations/hebergement-optimise-rapide.png'
 import ImagePrestationTma from '@image/prestations/infogerance-tma-maintenance.png'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
+import { breadcrumbJsonLd, faqJsonLd } from '@util/seo-generators'
 
 export const metadata = {
   title: 'Prestations web à La Rochelle : sites, maintenance, DevOps | inRage',
@@ -34,36 +34,12 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: getCanonicalUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Prestations',
-          item: getCanonicalUrl(RouteLink.prestations),
-        },
-      ],
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: { '@type': 'Answer', text: item.answer },
-      })),
-    },
+    breadcrumbJsonLd([
+      { name: 'Prestations', item: getCanonicalUrl(RouteLink.prestations) },
+    ]),
+    faqJsonLd(FAQ),
   ],
 }
-
-const linkClass =
-  'font-medium text-white underline decoration-(--home-orange) decoration-1 underline-offset-4 transition-colors hover:text-(--home-orange-text)'
 
 function Hero() {
   return (
@@ -143,315 +119,275 @@ function OfferImage({ src }: { src: StaticImageData }) {
 
 export default function Prestations() {
   return (
-    <div className="home">
-      <Layout hero={<Hero />}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <Layout hero={<Hero />}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <section
-          id="creation"
-          className="container scroll-mt-28 py-16 md:py-24"
-        >
-          <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:gap-8">
-            <Reveal>
-              <Glass className="p-7 md:p-9">
-                <div className="flex flex-wrap items-center gap-6">
-                  <OfferImage src={ImagePrestationBuildWebsite} />
-                  <div className="min-w-[16rem] flex-1">
-                    <h2 className="text-2xl font-bold tracking-tight text-balance text-white md:text-3xl">
-                      Création et refonte de sites internet
-                    </h2>
-                    <p className="mt-3 leading-7 text-(--home-muted)">
-                      Site vitrine, boutique, outil métier ou application. Je
-                      choisis la technologie selon ce que vous devez administrer
-                      vous-même et ce qui devra évoluer dans trois ans.
-                    </p>
-                  </div>
-                </div>
-                <ul className="mt-8 grid gap-x-8 gap-y-5 border-t border-white/10 pt-8 sm:grid-cols-2">
-                  {CREATION_TECHS.map((tech) => (
-                    <li key={tech.href}>
-                      <Link href={tech.href} className={linkClass}>
-                        {tech.name}
-                      </Link>
-                      <p className="mt-1 text-sm leading-6 text-(--home-muted)">
-                        {tech.text}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <Link
-                    href={RouteLink.prestationWeb}
-                    className="home-btn home-btn-shine"
-                  >
-                    Création de site internet à La Rochelle
-                  </Link>
-                </div>
-              </Glass>
-            </Reveal>
-            <div className="flex flex-col gap-6">
-              <Reveal i={1}>
-                <Glass className="p-7">
-                  <h3 className="text-xl font-medium text-white">
-                    Refonte d’un site existant
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-(--home-muted)">
-                    Je reprends les sites développés par d’autres. D’abord un
-                    audit du code, des mises à jour en retard et de
-                    l’hébergement. Ensuite une remise à niveau si le socle
-                    tient, une refonte s’il ne tient plus, avec migration des
-                    contenus et des URL pour conserver votre référencement.
-                  </p>
-                  <p className="mt-4">
-                    <Link href={RouteLink.auditGratuit} className={linkClass}>
-                      Commencer par l’audit gratuit
-                    </Link>
-                  </p>
-                </Glass>
-              </Reveal>
-              <Reveal i={2}>
-                <Glass className="p-7">
-                  <h3 className="text-xl font-medium text-white">
-                    Logo, charte et maquettes
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-(--home-muted)">
-                    Les maquettes sont dessinées par Ludovic Boussion, graphiste
-                    UI/UX du collectif, puis intégrées par mes soins. Vous
-                    gardez un seul interlocuteur du premier croquis à la mise en
-                    ligne.
-                  </p>
-                </Glass>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="maintenance"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-            <Reveal>
-              <OfferImage src={ImagePrestationTma} />
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Maintenance et infogérance
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[48ch] leading-7 text-(--home-muted)">
-                Un site qui n’est pas mis à jour finit piraté ou cassé. Plus de
-                150 sites WordPress et Prestashop sont suivis chaque semaine :
-                mises à jour testées avant d’être appliquées, sauvegardes,
-                surveillance, et quelqu’un qui répond quand ça casse.
-              </p>
-              <Link
-                href={RouteLink.prestationTma}
-                className="home-btn home-btn-shine mt-8"
-              >
-                Les offres de maintenance
-              </Link>
-            </Reveal>
-            <ul className="grid gap-4">
-              {MAINTENANCE_OFFERS.map((offer, i) => (
-                <li key={offer.href}>
-                  <Reveal i={i + 1}>
-                    <Link
-                      href={offer.href}
-                      className="home-card home-article home-glass block p-6"
-                    >
-                      <span className="home-card-title text-xl font-medium text-white">
-                        {offer.name}
-                      </span>
-                      <span className="mt-2 block leading-7 text-(--home-muted)">
-                        {offer.text}
-                      </span>
-                    </Link>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section
-          id="hebergement"
-          className="container scroll-mt-28 py-20 md:py-28"
-        >
+      <section id="creation" className="container scroll-mt-28 py-16 md:py-24">
+        <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:gap-8">
           <Reveal>
             <Glass className="p-7 md:p-9">
-              <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-12">
-                <div>
-                  <OfferImage src={ImagePrestationHosting} />
-                  <h2 className="mt-6 text-2xl font-bold tracking-tight text-balance text-white md:text-3xl">
-                    Hébergement infogéré en France
+              <div className="flex flex-wrap items-center gap-6">
+                <OfferImage src={ImagePrestationBuildWebsite} />
+                <div className="min-w-[16rem] flex-1">
+                  <h2 className="text-2xl font-bold tracking-tight text-balance text-white md:text-3xl">
+                    Création et refonte de sites internet
                   </h2>
-                  <p className="mt-4">
-                    <Link
-                      href={RouteLink.prestationHosting}
-                      className={linkClass}
-                    >
-                      Découvrir l’hébergement
-                    </Link>
-                  </p>
-                </div>
-                <div className="space-y-4 leading-7 text-(--home-muted)">
-                  <p>
-                    Vos fichiers, votre base de données, vos sauvegardes et les
-                    outils de supervision sont sur des serveurs situés en
-                    France, que j’administre moi-même. Aucune copie chez un
-                    hébergeur américain, aucun sous-traitant entre vous et la
-                    machine.
-                  </p>
-                  <p>
-                    Les serveurs sont doublés, surveillés jour et nuit avec des
-                    alertes, protégés par un pare-feu et par CrowdSec. Les
-                    sauvegardes sont faites chaque nuit et testées en
-                    restauration. Celui qui répond au téléphone est celui qui a
-                    construit votre site et qui surveille ces serveurs.
+                  <p className="mt-3 leading-7 text-(--home-muted)">
+                    Site vitrine, boutique, outil métier ou application. Je
+                    choisis la technologie selon ce que vous devez administrer
+                    vous-même et ce qui devra évoluer dans trois ans.
                   </p>
                 </div>
               </div>
-            </Glass>
-          </Reveal>
-        </section>
-
-        <section
-          id="coulisses"
-          className="relative isolate scroll-mt-28 overflow-hidden py-20 md:py-28"
-        >
-          <div className="home-dots absolute inset-0 -z-10" aria-hidden />
-          <div className="container">
-            <SectionHeading text="Le portfolio montre des sites. Il ne montre pas les serveurs, les scripts et les outils qui les font tenir dans le temps. Voilà ce qu’il y a derrière.">
-              Ce que le portfolio ne montre pas
-            </SectionHeading>
-            <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
-              {BACKSTAGE.map((item, i) => (
-                <Reveal key={item.title} i={i}>
-                  <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[260px_1fr]">
-                    <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
-                      {item.title}
-                    </h3>
-                    <div>
-                      <p className="leading-7 text-(--home-muted)">
-                        {item.text}
-                      </p>
-                      <p className="mt-4">
-                        <Link href={item.href} className={linkClass}>
-                          {item.hrefText}
-                        </Link>
-                      </p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="agences"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
-          <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Pour les agences et les studios
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[48ch] leading-7 text-(--home-muted)">
-                Une grande partie de mon activité se fait pour des agences de
-                communication, dont certaines très grosses, le plus souvent en
-                marque blanche. Vous gardez la relation client, je prends la
-                technique, et je m’adapte à votre organisation.
-              </p>
-              <Link
-                href={RouteLink.contact}
-                className="home-btn-ghost home-glassy mt-8"
-              >
-                Parler d’un partenariat
-              </Link>
-            </Reveal>
-            <Reveal i={1}>
-              <ul className="home-list space-y-4 leading-7 text-white/85">
-                {AGENCY_POINTS.map((point) => (
-                  <li key={point}>{point}</li>
+              <ul className="mt-8 grid gap-x-8 gap-y-5 border-t border-white/10 pt-8 sm:grid-cols-2">
+                {CREATION_TECHS.map((tech) => (
+                  <li key={tech.href}>
+                    <Link href={tech.href} className="home-link">
+                      {tech.name}
+                    </Link>
+                    <p className="mt-1 text-sm leading-6 text-(--home-muted)">
+                      {tech.text}
+                    </p>
+                  </li>
                 ))}
               </ul>
+              <div className="mt-8">
+                <Link
+                  href={RouteLink.prestationWeb}
+                  className="home-btn home-btn-shine"
+                >
+                  Création de site internet à La Rochelle
+                </Link>
+              </div>
+            </Glass>
+          </Reveal>
+          <div className="flex flex-col gap-6">
+            <Reveal i={1}>
+              <Glass className="p-7">
+                <h3 className="text-xl font-medium text-white">
+                  Refonte d’un site existant
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-(--home-muted)">
+                  Je reprends les sites développés par d’autres. D’abord un
+                  audit du code, des mises à jour en retard et de l’hébergement.
+                  Ensuite une remise à niveau si le socle tient, une refonte
+                  s’il ne tient plus, avec migration des contenus et des URL
+                  pour conserver votre référencement.
+                </p>
+                <p className="mt-4">
+                  <Link href={RouteLink.auditGratuit} className="home-link">
+                    Commencer par l’audit gratuit
+                  </Link>
+                </p>
+              </Glass>
+            </Reveal>
+            <Reveal i={2}>
+              <Glass className="p-7">
+                <h3 className="text-xl font-medium text-white">
+                  Logo, charte et maquettes
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-(--home-muted)">
+                  Les maquettes sont dessinées par Ludovic Boussion, graphiste
+                  UI/UX du collectif, puis intégrées par mes soins. Vous gardez
+                  un seul interlocuteur du premier croquis à la mise en ligne.
+                </p>
+              </Glass>
             </Reveal>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="methode" className="container scroll-mt-28 py-20 md:py-28">
-          <SectionHeading text="Un projet se construit par étapes visibles. Vous savez à chaque moment où on en est, ce qui est validé et ce qui reste à faire.">
-            Comment se déroule un projet
-          </SectionHeading>
-          <ol className="home-timeline mx-auto mt-14 max-w-3xl">
-            {STEPS.map((step, i) => (
-              <li key={step.title} className="home-timeline-item">
-                <Reveal i={i}>
-                  <h3 className="text-xl font-medium text-white md:text-2xl">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
-                    {step.text}
-                  </p>
+      <section
+        id="maintenance"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="home-orb top-[-10%] right-[-15%]" aria-hidden />
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+          <Reveal>
+            <OfferImage src={ImagePrestationTma} />
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Maintenance et infogérance
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[48ch] leading-7 text-(--home-muted)">
+              Un site qui n’est pas mis à jour finit piraté ou cassé. Plus de
+              150 sites WordPress et Prestashop sont suivis chaque semaine :
+              mises à jour testées avant d’être appliquées, sauvegardes,
+              surveillance, et quelqu’un qui répond quand ça casse.
+            </p>
+            <Link
+              href={RouteLink.prestationTma}
+              className="home-btn home-btn-shine mt-8"
+            >
+              Les offres de maintenance
+            </Link>
+          </Reveal>
+          <ul className="grid gap-4">
+            {MAINTENANCE_OFFERS.map((offer, i) => (
+              <li key={offer.href}>
+                <Reveal i={i + 1}>
+                  <Link
+                    href={offer.href}
+                    className="home-card home-article home-glass block p-6"
+                  >
+                    <span className="home-card-title text-xl font-medium text-white">
+                      {offer.name}
+                    </span>
+                    <span className="mt-2 block leading-7 text-(--home-muted)">
+                      {offer.text}
+                    </span>
+                  </Link>
                 </Reveal>
               </li>
             ))}
-          </ol>
-        </section>
+          </ul>
+        </div>
+      </section>
 
-        <section
-          id="faq"
-          className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
-        >
-          <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
-                Questions fréquentes
-              </h2>
-              <span className="home-rule mt-5" aria-hidden />
-              <p className="mt-5 max-w-[44ch] leading-7 text-(--home-muted)">
-                Celles qui reviennent au premier appel. Si la vôtre n’y est pas,
-                le formulaire est en bas de page.
-              </p>
-            </Reveal>
-            <div className="divide-y divide-white/10">
-              {FAQ.map((item, i) => (
-                <Reveal key={item.question} i={i}>
-                  <details className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium text-white [&::-webkit-details-marker]:hidden">
-                      {item.question}
-                      <span
-                        aria-hidden
-                        className="mt-1 shrink-0 text-(--home-muted) transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="mt-3 max-w-[64ch] leading-7 text-(--home-muted)">
-                      {item.answer}
-                    </p>
-                  </details>
-                </Reveal>
-              ))}
+      <section
+        id="hebergement"
+        className="container scroll-mt-28 py-20 md:py-28"
+      >
+        <Reveal>
+          <Glass className="p-7 md:p-9">
+            <div className="grid gap-8 md:grid-cols-[1fr_1.4fr] md:gap-12">
+              <div>
+                <OfferImage src={ImagePrestationHosting} />
+                <h2 className="mt-6 text-2xl font-bold tracking-tight text-balance text-white md:text-3xl">
+                  Hébergement infogéré en France
+                </h2>
+                <p className="mt-4">
+                  <Link
+                    href={RouteLink.prestationHosting}
+                    className="home-link"
+                  >
+                    Découvrir l’hébergement
+                  </Link>
+                </p>
+              </div>
+              <div className="space-y-4 leading-7 text-(--home-muted)">
+                <p>
+                  Vos fichiers, votre base de données, vos sauvegardes et les
+                  outils de supervision sont sur des serveurs situés en France,
+                  que j’administre moi-même. Aucune copie chez un hébergeur
+                  américain, aucun sous-traitant entre vous et la machine.
+                </p>
+                <p>
+                  Les serveurs sont doublés, surveillés jour et nuit avec des
+                  alertes, protégés par un pare-feu et par CrowdSec. Les
+                  sauvegardes sont faites chaque nuit et testées en
+                  restauration. Celui qui répond au téléphone est celui qui a
+                  construit votre site et qui surveille ces serveurs.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </Glass>
+        </Reveal>
+      </section>
 
-        <section className="container pt-16 pb-10 md:pt-24">
-          <SectionHeading text="Décrivez votre projet en quelques lignes, je vous réponds dans la journée avec les bonnes questions et un ordre de grandeur.">
-            Contact
+      <section
+        id="coulisses"
+        className="relative isolate scroll-mt-28 overflow-hidden py-20 md:py-28"
+      >
+        <div className="home-dots absolute inset-0 -z-10" aria-hidden />
+        <div className="container">
+          <SectionHeading text="Le portfolio montre des sites. Il ne montre pas les serveurs, les scripts et les outils qui les font tenir dans le temps. Voilà ce qu’il y a derrière.">
+            Ce que le portfolio ne montre pas
           </SectionHeading>
-          <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
-            <ContactForm />
+          <div className="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+            {BACKSTAGE.map((item, i) => (
+              <Reveal key={item.title} i={i}>
+                <article className="grid gap-x-12 gap-y-3 py-10 md:grid-cols-[260px_1fr]">
+                  <h3 className="text-2xl font-semibold tracking-tight text-balance text-white">
+                    {item.title}
+                  </h3>
+                  <div>
+                    <p className="leading-7 text-(--home-muted)">{item.text}</p>
+                    <p className="mt-4">
+                      <Link href={item.href} className="home-link">
+                        {item.hrefText}
+                      </Link>
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="agences"
+        className="home-oblique-both relative isolate scroll-mt-28 overflow-hidden bg-(--home-bg-deep) py-24 md:py-32"
+      >
+        <div className="home-orb bottom-[-20%] left-[-15%]" aria-hidden />
+        <div className="container grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          <Reveal>
+            <h2 className="text-3xl font-bold tracking-tight text-balance text-white md:text-5xl">
+              Pour les agences et les studios
+            </h2>
+            <span className="home-rule mt-5" aria-hidden />
+            <p className="mt-5 max-w-[48ch] leading-7 text-(--home-muted)">
+              Une grande partie de mon activité se fait pour des agences de
+              communication, dont certaines très grosses, le plus souvent en
+              marque blanche. Vous gardez la relation client, je prends la
+              technique, et je m’adapte à votre organisation.
+            </p>
+            <Link
+              href={RouteLink.contact}
+              className="home-btn-ghost home-glassy mt-8"
+            >
+              Parler d’un partenariat
+            </Link>
           </Reveal>
-        </section>
-      </Layout>
-    </div>
+          <Reveal i={1}>
+            <ul className="home-list space-y-4 leading-7 text-white/85">
+              {AGENCY_POINTS.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="methode" className="container scroll-mt-28 py-20 md:py-28">
+        <SectionHeading text="Un projet se construit par étapes visibles. Vous savez à chaque moment où on en est, ce qui est validé et ce qui reste à faire.">
+          Comment se déroule un projet
+        </SectionHeading>
+        <ol className="home-timeline mx-auto mt-14 max-w-3xl">
+          {STEPS.map((step, i) => (
+            <li key={step.title} className="home-timeline-item">
+              <Reveal i={i}>
+                <h3 className="text-xl font-medium text-white md:text-2xl">
+                  {step.title}
+                </h3>
+                <p className="mt-3 max-w-[60ch] leading-7 text-(--home-muted)">
+                  {step.text}
+                </p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <FaqSection
+        title="Questions fréquentes"
+        intro="Celles qui reviennent au premier appel. Si la vôtre n’y est pas, le formulaire est en bas de page."
+        items={FAQ}
+        tone="deep"
+      />
+
+      <section className="container pt-16 pb-10 md:pt-24">
+        <SectionHeading text="Décrivez votre projet en quelques lignes, je vous réponds dans la journée avec les bonnes questions et un ordre de grandeur.">
+          Contact
+        </SectionHeading>
+        <Reveal i={1} className="mx-auto mt-12 max-w-4xl">
+          <ContactForm />
+        </Reveal>
+      </section>
+    </Layout>
   )
 }

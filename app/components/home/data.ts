@@ -13,7 +13,7 @@ export type HomeProject = {
   title: string
   slug: string
   thumbnail: string
-  support?: { slug: string; title: string }
+  support: { slug: string; title: string }
 }
 
 export const PRESTATIONS = [

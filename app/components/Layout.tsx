@@ -8,10 +8,7 @@ import Header from '@layout/Header'
 
 type Props = {
   children: ReactNode
-  title?: string | string[]
-  excerpt?: string | string[]
-  tmaLayout?: boolean
-  meta?: ReactNode
+  title?: string
   hero?: ReactNode
   breadcrumbs?: Array<{
     link: string
@@ -28,22 +25,12 @@ const variants = {
 function Layout({
   children,
   title = '',
-  excerpt = '',
-  tmaLayout = false,
-  meta,
   hero,
   breadcrumbs = [],
 }: Props): ReactNode {
   return (
-    <div>
-      <Header
-        pageTitle={title}
-        pageExcerpt={excerpt}
-        pageMeta={meta}
-        hero={hero}
-        headerType={tmaLayout === true ? 'tma' : 'default'}
-        breadcrumb={breadcrumbs}
-      />
+    <div className={hero ? 'home' : undefined}>
+      <Header pageTitle={title} hero={hero} breadcrumb={breadcrumbs} />
       <motion.div
         initial="hidden"
         animate="enter"
@@ -51,9 +38,7 @@ function Layout({
         layout
         variants={variants}
       >
-        <Fragment key={Array.isArray(title) ? title.join(',') : title}>
-          {children}
-        </Fragment>
+        <Fragment key={title}>{children}</Fragment>
       </motion.div>
     </div>
   )
