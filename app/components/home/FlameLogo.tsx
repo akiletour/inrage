@@ -16,9 +16,9 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
   const root = useRef<HTMLDivElement>(null)
 
   useGSAP(
-    (_, contextSafe) => {
+    () => {
       const el = root.current
-      if (!el || !contextSafe) return
+      if (!el) return
       const petals = BIRTH_ORDER.map((i) =>
         el.querySelector<HTMLElement>(`[data-petal="${i}"]`)!
       )
@@ -31,7 +31,10 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
       const section = el.closest<HTMLElement>('section') ?? el
       const texts = gsap.utils.toArray<HTMLElement>('[data-hero-text]', section)
 
-      const breathe = contextSafe(() => {
+      const breathing: gsap.core.Tween[] = []
+      let breathTrigger: ScrollTrigger | undefined
+
+      const breathe = () => {
         const tweens = petals.map((petal, i) =>
           gsap.to(petal, {
             opacity: 0.93 + i * 0.01,
@@ -52,7 +55,8 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
             repeat: -1,
           })
         )
-        ScrollTrigger.create({
+        breathing.push(...tweens)
+        breathTrigger = ScrollTrigger.create({
           trigger: el,
           start: 'top bottom',
           end: 'bottom top',
@@ -61,7 +65,7 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
               self.isActive ? tween.play() : tween.pause()
             ),
         })
-      })
+      }
 
       const convertOnScroll = () => {
         gsap.set(ghosts, { opacity: 0 })
@@ -204,7 +208,11 @@ export default function FlameLogo({ className = '' }: { className?: string }) {
         }
       )
 
-      return () => mm.revert()
+      return () => {
+        breathTrigger?.kill()
+        breathing.forEach((tween) => tween.kill())
+        mm.revert()
+      }
     },
     { scope: root }
   )
