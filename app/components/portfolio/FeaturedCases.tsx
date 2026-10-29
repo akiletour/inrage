@@ -30,7 +30,7 @@ export default function FeaturedCases({
                   height={1149}
                   className="h-auto w-full"
                   sizes="(min-width: 768px) 20vw, 38vw"
-                  loading={i < 2 ? 'eager' : 'lazy'}
+                  loading="eager"
                 />
               </span>
               <span className="block pt-1">
