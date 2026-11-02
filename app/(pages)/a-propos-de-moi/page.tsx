@@ -16,6 +16,8 @@ import { formatRating, getGoogleReviewsSummary } from '@lib/google-reviews'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
+export const revalidate = 3600
+
 export const metadata = {
   title: 'Pascal Gault, développeur web freelance à La Rochelle',
   description:
