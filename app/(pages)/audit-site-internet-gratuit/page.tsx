@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import Character from '@/components/Character'
 import Diagonal from '@component/Diagonal'
+import { formatRating, getGoogleReviewsSummary } from '@lib/google-reviews'
 import { getPortfolioItems } from '@lib/portfolio'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
 
@@ -87,7 +88,10 @@ const FAQ = [
 ]
 
 export default async function AuditGratuit() {
-  const projects = await getPortfolioItems(-1)
+  const [projects, reviews] = await Promise.all([
+    getPortfolioItems(-1),
+    getGoogleReviewsSummary(),
+  ])
   const references = REFERENCE_SLUGS.map((slug) =>
     projects.find((project) => project.slug === slug)
   ).filter((project) => project !== undefined)
@@ -126,7 +130,7 @@ export default async function AuditGratuit() {
           </a>
         </header>
 
-        <AuditHero />
+        <AuditHero googleRating={formatRating(reviews.rating)} />
 
         <Diagonal
           className="h-16 sm:h-24 lg:h-40"

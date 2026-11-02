@@ -4,7 +4,7 @@ import Link from 'next/link'
 import ContactForm from '@component/ContactForm'
 import ClientsMarquee from '@component/home/ClientsMarquee'
 import CountUp from '@component/home/CountUp'
-import { EXPERTISES, KEYPOINTS, PRESTATIONS } from '@component/home/data'
+import { EXPERTISES, getKeypoints, PRESTATIONS } from '@component/home/data'
 import Glass from '@component/home/Glass'
 import HomeHero from '@component/home/HomeHero'
 import LatestArticles from '@component/home/LatestArticles'
@@ -13,6 +13,7 @@ import Reveal from '@component/home/Reveal'
 import SectionHeading from '@component/home/SectionHeading'
 import Layout from '@component/Layout'
 import ImageDiscoverTma from '@image/prestations/presentation-integration-web.jpeg'
+import { getGoogleReviewsSummary } from '@lib/google-reviews'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -26,7 +27,10 @@ export const metadata = {
 }
 
 export default async function Homepage() {
-  const items = await getPortfolioItems(4)
+  const [items, reviews] = await Promise.all([
+    getPortfolioItems(4),
+    getGoogleReviewsSummary(),
+  ])
   const projects = items.map(({ title, slug, thumbnail, support }) => ({
     title,
     slug,
@@ -35,7 +39,7 @@ export default async function Homepage() {
   }))
 
   return (
-    <Layout hero={<HomeHero />}>
+    <Layout hero={<HomeHero reviews={reviews} />}>
       <section className="container relative pt-14 pb-20 md:pt-20 md:pb-28">
         <Reveal>
           <p className="mx-auto max-w-3xl text-center text-xl font-medium text-balance text-white sm:text-2xl">
@@ -120,7 +124,7 @@ export default async function Homepage() {
             </Reveal>
             <Reveal i={1}>
               <Glass className="grid grid-cols-2 gap-x-6 gap-y-8 p-7">
-                {KEYPOINTS.map((keypoint) => (
+                {getKeypoints(reviews.rating).map((keypoint) => (
                   <div key={keypoint.label}>
                     <div className="text-3xl font-semibold text-white md:text-4xl">
                       <CountUp

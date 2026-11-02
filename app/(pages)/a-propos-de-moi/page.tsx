@@ -17,6 +17,7 @@ import Layout from '@component/Layout'
 import Socials from '@component/Socials'
 import ImageInvoicer from '@image/articles/invoicer-cover.jpg'
 import ImageOcta from '@image/articles/octa-wordpress.jpg'
+import { formatRating, getGoogleReviewsSummary } from '@lib/google-reviews'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
 
@@ -106,9 +107,14 @@ const jsonLd = {
   ],
 }
 
-export default function AboutMe() {
+export default async function AboutMe() {
+  const reviews = await getGoogleReviewsSummary()
+  const reviewsIntro =
+    reviews.rating >= 5
+      ? `${reviews.count} avis, tous à cinq étoiles, laissés sur la fiche Google d’inRage.`
+      : `${reviews.count} avis laissés sur la fiche Google d’inRage, ${formatRating(reviews.rating)} sur 5 en moyenne.`
   return (
-    <Layout hero={<AboutHero />}>
+    <Layout hero={<AboutHero reviews={reviews} />}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
@@ -362,7 +368,9 @@ export default function AboutMe() {
       <section className="relative isolate overflow-hidden py-20 md:py-28">
         <div className="home-dots absolute inset-0 -z-10" aria-hidden />
         <div className="container">
-          <SectionHeading text="Neuf avis, tous à cinq étoiles, laissés sur la fiche Google d’inRage. En voici trois, mot pour mot.">
+          <SectionHeading
+            text={`${reviewsIntro} En voici trois, mot pour mot.`}
+          >
             Ils en parlent mieux que moi
           </SectionHeading>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -400,7 +408,7 @@ export default function AboutMe() {
               rel="noreferrer noopener"
               className="home-btn-ghost home-glassy"
             >
-              Lire les 9 avis sur Google
+              Lire les {reviews.count} avis sur Google
             </a>
           </div>
         </div>

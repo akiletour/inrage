@@ -116,8 +116,8 @@ export const REVIEWS = [
     text: 'Réactifs et à l’écoute, ils ont su nous aider sur tous les plans de développement de notre site. Évidemment par la conception, l’hébergement ou encore la TMA. Au-delà de ça, l’équipe et particulièrement Pascal font preuve de réactivité et d’un accompagnement sans faille !',
   },
   {
-    author: 'Christophe Lemaire',
-    since: 'Client',
-    text: 'Suite aux problèmes rencontrés avec les 2 webmasters précédents, je suis très content d’avoir croisé la route de Inrage, enfin quelqu’un de sérieux. Le conseil et la maintenance sont excellents ! Les prix sont compétitifs, et cerise sur le gâteau, devenu rare de nos jours, c’est le côté humain bien présent.',
+    author: 'Frédéric C.',
+    since: 'Client depuis plusieurs années',
+    text: 'Expertise technique, écoute, conseils et réactivité sont les atouts majeurs de Pascal. C’est en toute confiance que je lui confie les projets de développement ou de mise à jour de mes différents sites web depuis plusieurs années maintenant. Avec un résultat qui dépasse souvent mes espérances !',
   },
 ]

@@ -2,22 +2,31 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import Reveal from '@component/home/Reveal'
+import { formatRating, GoogleReviewsSummary } from '@lib/google-reviews'
 import { RouteLink } from '@lib/router'
 
 import { GOOGLE_PLACE_URL } from './data'
 
-const FACTS = [
-  { value: 'Depuis 2008', label: 'développeur web à La Rochelle' },
-  { value: '150+', label: 'sites hébergés et maintenus' },
-  { value: '5,0 / 5', label: '9 avis Google', href: GOOGLE_PLACE_URL },
-  {
-    value: 'Invoicer',
-    label: 'le logiciel que j’édite',
-    href: 'https://invoicer.fr',
-  },
-]
+export default function AboutHero({
+  reviews,
+}: {
+  reviews: GoogleReviewsSummary
+}) {
+  const facts = [
+    { value: 'Depuis 2008', label: 'développeur web à La Rochelle' },
+    { value: '150+', label: 'sites hébergés et maintenus' },
+    {
+      value: `${formatRating(reviews.rating)} / 5`,
+      label: `${reviews.count} avis Google`,
+      href: GOOGLE_PLACE_URL,
+    },
+    {
+      value: 'Invoicer',
+      label: 'le logiciel que j’édite',
+      href: 'https://invoicer.fr',
+    },
+  ]
 
-export default function AboutHero() {
   return (
     <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
       <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
@@ -55,7 +64,7 @@ export default function AboutHero() {
           </Reveal>
           <Reveal i={3}>
             <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
-              {FACTS.map((fact) => (
+              {facts.map((fact) => (
                 <div key={fact.label}>
                   <dt className="sr-only">{fact.label}</dt>
                   <dd className="home-num text-2xl font-semibold text-white md:text-3xl">

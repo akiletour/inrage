@@ -67,7 +67,7 @@ export const EXPERTISES = [
   },
 ]
 
-export const KEYPOINTS = [
+export const getKeypoints = (googleRating: number) => [
   {
     to: 2008,
     from: 1990,
@@ -75,7 +75,12 @@ export const KEYPOINTS = [
     label: 'développeur web à La Rochelle',
   },
   { to: 150, suffix: '+', label: 'sites sous maintenance' },
-  { to: 5, decimals: 1, suffix: ' / 5', label: 'note moyenne sur Google' },
+  {
+    to: googleRating,
+    decimals: 1,
+    suffix: ' / 5',
+    label: 'note moyenne sur Google',
+  },
   { to: 24, suffix: ' h', label: 'pour recevoir votre devis' },
 ]
 

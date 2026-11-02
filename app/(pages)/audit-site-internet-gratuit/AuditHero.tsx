@@ -6,7 +6,7 @@ import ContactForm from '@component/ContactForm'
 
 import AuditPreview from './AuditPreview'
 
-export default function AuditHero() {
+export default function AuditHero({ googleRating }: { googleRating: string }) {
   const [website, setWebsite] = useState<string | null>(null)
   const [runKey, setRunKey] = useState(0)
 
@@ -33,7 +33,8 @@ export default function AuditHero() {
         </div>
 
         <p className="mt-6 text-sm text-gray">
-          Noté 5,0 sur Google. Développeur web à La Rochelle depuis 2008.
+          Noté {googleRating} sur Google. Développeur web à La Rochelle depuis
+          2008.
         </p>
       </div>
 
