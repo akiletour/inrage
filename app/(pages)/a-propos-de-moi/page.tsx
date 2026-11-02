@@ -2,12 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import AboutHero from '@component/about/AboutHero'
-import {
-  COMMITMENTS,
-  GOOGLE_PLACE_URL,
-  REVIEWS,
-  TEAM,
-} from '@component/about/data'
+import { COMMITMENTS, GOOGLE_PLACE_URL, TEAM } from '@component/about/data'
 import Timeline from '@component/about/Timeline'
 import ContactForm from '@component/ContactForm'
 import Glass from '@component/home/Glass'
@@ -109,6 +104,9 @@ const jsonLd = {
 
 export default async function AboutMe() {
   const reviews = await getGoogleReviewsSummary()
+  const shownReviews = reviews.reviews.slice(0, 3)
+  const shownCount =
+    ['', 'un', 'deux', 'trois'][shownReviews.length] ?? shownReviews.length
   const reviewsIntro =
     reviews.rating >= 5
       ? `${reviews.count} avis, tous à cinq étoiles, laissés sur la fiche Google d’inRage.`
@@ -369,37 +367,63 @@ export default async function AboutMe() {
         <div className="home-dots absolute inset-0 -z-10" aria-hidden />
         <div className="container">
           <SectionHeading
-            text={`${reviewsIntro} En voici trois, mot pour mot.`}
+            text={`${reviewsIntro} En voici ${shownCount}, mot pour mot.`}
           >
             Ils en parlent mieux que moi
           </SectionHeading>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {REVIEWS.map((review, i) => (
-              <Reveal key={review.author} i={i} className="h-full">
-                <Glass className="flex h-full flex-col p-7">
-                  <span className="home-quote" aria-hidden>
-                    “
-                  </span>
-                  <blockquote className="-mt-6 leading-7 text-white/85">
-                    {review.text}
-                  </blockquote>
-                  <footer className="mt-auto pt-6">
-                    <div
-                      className="home-stars text-sm"
-                      aria-label="5 étoiles sur 5"
-                    >
-                      ★★★★★
-                    </div>
-                    <div className="mt-2 font-medium text-white">
-                      {review.author}
-                    </div>
-                    <div className="text-sm text-(--home-muted)">
-                      {review.since}
-                    </div>
-                  </footer>
-                </Glass>
-              </Reveal>
-            ))}
+            {shownReviews.map((review, i) => {
+              const stars = Math.min(5, Math.max(0, Math.round(review.rating)))
+              return (
+                <Reveal key={`${review.author}-${i}`} i={i} className="h-full">
+                  <Glass className="flex h-full flex-col p-7">
+                    <span className="home-quote" aria-hidden>
+                      “
+                    </span>
+                    <blockquote className="-mt-6 leading-7 text-white/85">
+                      {review.text}
+                    </blockquote>
+                    <footer className="mt-auto flex items-center gap-4 pt-6">
+                      {review.authorPhotoUri && (
+                        <Image
+                          src={review.authorPhotoUri}
+                          alt=""
+                          width={48}
+                          height={48}
+                          className="size-12 shrink-0 rounded-full"
+                        />
+                      )}
+                      <div>
+                        <div
+                          className="home-stars text-sm"
+                          aria-label={`${stars} étoiles sur 5`}
+                        >
+                          {'★'.repeat(stars)}
+                          {'☆'.repeat(5 - stars)}
+                        </div>
+                        <div className="mt-1 font-medium text-white">
+                          {review.authorUri ? (
+                            <a
+                              href={review.authorUri}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              className="hover:underline"
+                            >
+                              {review.author}
+                            </a>
+                          ) : (
+                            review.author
+                          )}
+                        </div>
+                        <div className="text-sm text-(--home-muted)">
+                          {review.meta} · Avis Google
+                        </div>
+                      </div>
+                    </footer>
+                  </Glass>
+                </Reveal>
+              )
+            })}
           </div>
           <div className="mt-12 flex justify-center">
             <a

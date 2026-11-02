@@ -103,21 +103,3 @@ export const COMMITMENTS = [
     text: 'Ce site et mon thème WordPress Octa sont publics sur GitHub. Vous repartez avec un code propre, documenté, reprenable par une autre équipe.',
   },
 ]
-
-export const REVIEWS = [
-  {
-    author: 'Ricardo Pinto Maia',
-    since: 'Client depuis plus de 7 ans',
-    text: 'Il ne se contente jamais d’exécuter un brief : il le dépasse, propose, améliore et tire systématiquement le projet vers le haut. Ses conseils sont toujours pertinents, son suivi irréprochable, et son code propre, clair et facilement exploitable par toute équipe technique.',
-  },
-  {
-    author: 'Parapharmacie Moins Chère',
-    since: '6 ans de collaboration',
-    text: 'Réactifs et à l’écoute, ils ont su nous aider sur tous les plans de développement de notre site. Évidemment par la conception, l’hébergement ou encore la TMA. Au-delà de ça, l’équipe et particulièrement Pascal font preuve de réactivité et d’un accompagnement sans faille !',
-  },
-  {
-    author: 'Frédéric C.',
-    since: 'Client depuis plusieurs années',
-    text: 'Expertise technique, écoute, conseils et réactivité sont les atouts majeurs de Pascal. C’est en toute confiance que je lui confie les projets de développement ou de mise à jour de mes différents sites web depuis plusieurs années maintenant. Avec un résultat qui dépasse souvent mes espérances !',
-  },
-]
