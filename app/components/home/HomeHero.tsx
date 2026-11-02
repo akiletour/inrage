@@ -1,11 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { formatRating, GoogleReviewsSummary } from '@lib/google-reviews'
 import { RouteLink } from '@lib/router'
 
 import FlameLogo from './FlameLogo'
 
-export default function HomeHero() {
+export default function HomeHero({
+  reviews,
+}: {
+  reviews: GoogleReviewsSummary
+}) {
   return (
     <section className="home-hero home-oblique home-oblique-line relative isolate -mt-22 overflow-hidden pt-22">
       <div className="absolute inset-0 -z-30 overflow-hidden">
@@ -62,8 +67,10 @@ export default function HomeHero() {
               ★★★★★
             </span>
             <span>
-              <span className="home-num">5,0 / 5</span> sur Google · plus de 150
-              sites suivis
+              <span className="home-num">
+                {formatRating(reviews.rating)} / 5
+              </span>{' '}
+              sur Google · plus de 150 sites suivis
             </span>
           </div>
         </div>

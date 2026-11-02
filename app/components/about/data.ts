@@ -103,21 +103,3 @@ export const COMMITMENTS = [
     text: 'Ce site et mon thème WordPress Octa sont publics sur GitHub. Vous repartez avec un code propre, documenté, reprenable par une autre équipe.',
   },
 ]
-
-export const REVIEWS = [
-  {
-    author: 'Ricardo Pinto Maia',
-    since: 'Client depuis plus de 7 ans',
-    text: 'Il ne se contente jamais d’exécuter un brief : il le dépasse, propose, améliore et tire systématiquement le projet vers le haut. Ses conseils sont toujours pertinents, son suivi irréprochable, et son code propre, clair et facilement exploitable par toute équipe technique.',
-  },
-  {
-    author: 'Parapharmacie Moins Chère',
-    since: '6 ans de collaboration',
-    text: 'Réactifs et à l’écoute, ils ont su nous aider sur tous les plans de développement de notre site. Évidemment par la conception, l’hébergement ou encore la TMA. Au-delà de ça, l’équipe et particulièrement Pascal font preuve de réactivité et d’un accompagnement sans faille !',
-  },
-  {
-    author: 'Christophe Lemaire',
-    since: 'Client',
-    text: 'Suite aux problèmes rencontrés avec les 2 webmasters précédents, je suis très content d’avoir croisé la route de Inrage, enfin quelqu’un de sérieux. Le conseil et la maintenance sont excellents ! Les prix sont compétitifs, et cerise sur le gâteau, devenu rare de nos jours, c’est le côté humain bien présent.',
-  },
-]
