@@ -4,6 +4,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const BIRTH_ORDER = [5, 4, 3, 2, 1, 0]
+const SEEN_KEY = 'inrage-flame-intro'
+
+function hasSeenIntro() {
+  try {
+    return localStorage.getItem(SEEN_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
+function markIntroSeen() {
+  try {
+    localStorage.setItem(SEEN_KEY, '1')
+  } catch {
+    return
+  }
+}
 
 export function runFlameIntro(el: HTMLElement) {
   const context = gsap.context(() => {
@@ -76,6 +93,22 @@ export function runFlameIntro(el: HTMLElement) {
       }
     }
 
+    const quickIntro = () => {
+      gsap.set([...ashes, ring, flash], { display: 'none' })
+      gsap.set(petals, {
+        opacity: 0,
+        scale: 0.92,
+        transformOrigin: '62% 70%',
+      })
+      gsap.set(texts, { opacity: 0, y: 12 })
+      gsap
+        .timeline({ defaults: { ease: 'power3.out' } })
+        .to(petals, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.05 })
+        .to(texts, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06 }, 0.15)
+        .call(breathe, [], 0.8)
+      return convertOnScroll()
+    }
+
     const mm = gsap.matchMedia()
 
     mm.add('(prefers-reduced-motion: reduce)', () => {
@@ -85,25 +118,19 @@ export function runFlameIntro(el: HTMLElement) {
     mm.add(
       '(prefers-reduced-motion: no-preference) and (max-width: 639px)',
       () => {
-        gsap.set([...ashes, ring, flash], { display: 'none' })
-        gsap.set(petals, {
-          opacity: 0,
-          scale: 0.9,
-          transformOrigin: '62% 70%',
-        })
-        gsap.set(texts, { opacity: 0, y: 16 })
-        gsap
-          .timeline({ defaults: { ease: 'power3.out' } })
-          .to(petals, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.08 })
-          .to(texts, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.5)
-          .call(breathe, [], 1.3)
-        return convertOnScroll()
+        markIntroSeen()
+        return quickIntro()
       }
     )
 
     mm.add(
       '(prefers-reduced-motion: no-preference) and (min-width: 640px)',
       () => {
+        if (hasSeenIntro()) {
+          return quickIntro()
+        }
+        markIntroSeen()
+
         const w = el.clientWidth
         const h = el.clientHeight
 
@@ -188,7 +215,7 @@ export function runFlameIntro(el: HTMLElement) {
               stagger: 0.09,
               ease: 'power3.out',
             },
-            1.9
+            0.6
           )
           .call(breathe, [], 2.6)
 

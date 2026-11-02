@@ -35,7 +35,7 @@ export function ButtonLinkRaw({
       <svg
         aria-hidden
         xmlns="http://www.w3.org/2000/svg"
-        className="ml-4 h-6 group-hover:animate-bouncex"
+        className="ml-4 h-6 motion-safe:transition-transform motion-safe:duration-150 motion-safe:ease-out group-hover:translate-x-1 group-active:translate-x-0.5"
         viewBox="0 0 448 512"
       >
         <path

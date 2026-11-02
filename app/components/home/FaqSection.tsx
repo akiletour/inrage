@@ -34,7 +34,7 @@ export default function FaqSection({
         <div className="divide-y divide-white/10">
           {items.map((item, i) => (
             <Reveal key={item.question} i={i}>
-              <details className="group py-5">
+              <details className="home-faq-item group py-5">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-sm text-lg font-medium text-white outline-offset-4 focus-visible:outline-2 focus-visible:outline-white/70 [&::-webkit-details-marker]:hidden">
                   {item.question}
                   <span

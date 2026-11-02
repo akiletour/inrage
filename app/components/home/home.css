@@ -360,8 +360,32 @@ body:has(.home) {
 .home-tilt {
   transform: perspective(900px) rotateX(var(--rx, 0deg))
     rotateY(var(--ry, 0deg));
-  transition: transform 180ms var(--home-ease);
+  transition: transform 400ms var(--home-ease);
   transform-style: preserve-3d;
+}
+
+.home-tilt[data-tracking='enter'] {
+  transition-duration: 150ms;
+}
+
+.home-tilt[data-tracking='live'] {
+  transition: none;
+}
+
+.home-faq-item {
+  interpolate-size: allow-keywords;
+}
+
+.home-faq-item::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size var(--home-dur) var(--home-ease),
+    content-visibility var(--home-dur) allow-discrete;
+}
+
+.home-faq-item[open]::details-content {
+  block-size: auto;
 }
 
 .home-shot {
@@ -595,7 +619,7 @@ body:has(.home) {
 
   .home-hero [data-hero-text] {
     opacity: 0;
-    animation: home-text-safe 0.4s ease-out 3s both;
+    animation: home-text-safe 0.4s ease-out 1.5s both;
   }
 }
 
@@ -684,6 +708,10 @@ body:has(.home) {
   .home-glass:hover {
     transition: none;
     transform: none;
+  }
+
+  .home-faq-item::details-content {
+    transition: none;
   }
 
   .home-flame-ash,
@@ -787,6 +815,29 @@ body:has(.home) {
 @media (hover: hover) and (pointer: fine) {
   .home-link:hover {
     color: var(--home-orange-text);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .home-glass,
+  .home-glassy {
+    background: oklch(0.2 0.006 55);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .home-glass,
+  .home-glassy {
+    background: oklch(0.18 0.006 55);
+    border-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .home-btn-ghost {
+    border-color: var(--home-text);
   }
 }
 

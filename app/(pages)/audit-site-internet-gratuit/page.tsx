@@ -235,7 +235,7 @@ export default async function AuditGratuit() {
           </div>
           <div className="divide-y divide-[#2f2f2f] border-y border-[#2f2f2f]">
             {FAQ.map((item) => (
-              <details key={item.question} className="group py-5">
+              <details key={item.question} className="home-faq-item group py-5">
                 <summary className="flex items-start justify-between gap-6 cursor-pointer list-none text-white font-medium text-lg [&::-webkit-details-marker]:hidden">
                   <span>{item.question}</span>
                   <span

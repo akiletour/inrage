@@ -1,12 +1,22 @@
 'use client'
 
 import Image from 'next/image'
-import { ReactNode, useCallback, useState } from 'react'
+import {
+  FocusEvent,
+  KeyboardEvent,
+  PointerEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react'
 import { sendGTMEvent } from '@next/third-parties/google'
 import { usePathname } from 'next/navigation'
-import { useWindowSize } from 'react-use'
 
 import FeaturedProjectMenu from '@component/FeaturedProjectMenu'
+import type { StickyPhase } from '@hook/useSticky'
 import Link from '@component/NoScrollLink'
 import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg'
 import ExpertPrestashop from '@image/platinum-300x300.png'
@@ -21,6 +31,48 @@ type LinkProps = {
   closePrimaryNav: () => void
 }
 
+function anchorMegaMenu(e: PointerEvent<HTMLDivElement>) {
+  const group = e.currentTarget
+  const trigger = group.querySelector('a')
+  const panel = group.querySelector<HTMLElement>('.nav-mega')
+  if (!trigger || !panel || !panel.offsetWidth) return
+  const t = trigger.getBoundingClientRect()
+  const nav = group.closest('#nav-menu')?.getBoundingClientRect()
+  const panelLeft = nav ? nav.right - panel.offsetWidth : 0
+  panel.style.setProperty('--origin-x', `${t.left + t.width / 2 - panelLeft}px`)
+}
+
+function dismissMegaMenu(e: KeyboardEvent<HTMLDivElement>) {
+  if (e.key !== 'Escape') return
+  const group = e.currentTarget
+  group.dataset.dismissed = ''
+  group.querySelector('a')?.focus()
+}
+
+function restoreMegaMenu(
+  e: FocusEvent<HTMLDivElement> | PointerEvent<HTMLDivElement>
+) {
+  const group = e.currentTarget
+  if ('relatedTarget' in e && group.contains(e.relatedTarget as Node)) return
+  delete group.dataset.dismissed
+}
+
+const DESKTOP_QUERY = '(min-width: 64rem)'
+
+function subscribeDesktop(onChange: () => void) {
+  const media = window.matchMedia(DESKTOP_QUERY)
+  media.addEventListener('change', onChange)
+  return () => media.removeEventListener('change', onChange)
+}
+
+function useIsDesktop() {
+  return useSyncExternalStore(
+    subscribeDesktop,
+    () => window.matchMedia(DESKTOP_QUERY).matches,
+    () => true
+  )
+}
+
 function LinkItem({
   title,
   href,
@@ -30,18 +82,24 @@ function LinkItem({
 }: LinkProps) {
   if (children) {
     return (
-      <div className="group">
+      <div
+        className="nav-group group"
+        onPointerEnter={anchorMegaMenu}
+        onPointerLeave={restoreMegaMenu}
+        onKeyDown={dismissMegaMenu}
+        onBlur={restoreMegaMenu}
+      >
         <Link href={href} onClick={() => closePrimaryNav()}>
           <span
-            className={`uppercase block text-lg pt-4 lg:py-4 group-hover:text-orange ${
+            className={`uppercase block text-lg pt-4 lg:py-4 transition-colors duration-150 group-hover:text-orange ${
               isActive ? 'text-orange' : 'text-white'
             }`}
           >
             {title}
           </span>
         </Link>
-        <div className="block lg:hidden group-hover:block group-focus-within:block lg:absolute w-full lg:w-[800px] lg:right-0 lg:top-full lg:pt-4">
-          <div className="lg:border-t-4 lg:bg-gray-darker/90 lg:border-orange lg:p-4">
+        <div className="nav-mega w-full lg:absolute lg:w-[800px] lg:right-0 lg:top-full lg:pt-4">
+          <div className="nav-mega-surface lg:border-t-4 lg:border-orange lg:p-4">
             {children}
           </div>
         </div>
@@ -51,7 +109,7 @@ function LinkItem({
   return (
     <Link href={href} onClick={() => closePrimaryNav()}>
       <span
-        className={`block pt-4 lg:pt-0 uppercase text-lg ${
+        className={`block pt-4 lg:pt-0 uppercase text-lg transition-colors duration-150 ${
           isActive ? 'text-orange' : 'text-white hover:text-orange'
         }`}
       >
@@ -62,13 +120,45 @@ function LinkItem({
 }
 
 type Props = {
-  isSticky?: boolean
+  sticky?: StickyPhase
 }
 
-export default function NavPrimary({ isSticky = false }: Props) {
+export default function NavPrimary({ sticky = 'off' }: Props) {
   const pathname = usePathname()
-  const { width } = useWindowSize({ initialWidth: 1024 })
   const [isOpen, setOpen] = useState(false)
+  const isDesktop = useIsDesktop()
+  const rootRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const burgerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+    const close = () => setOpen(false)
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      close()
+      burgerRef.current?.focus()
+    }
+    const onPointer = (e: globalThis.PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) close()
+    }
+    const desktop = window.matchMedia(DESKTOP_QUERY)
+    const onDesktop = () => {
+      if (desktop.matches) close()
+    }
+    const previousOverflow = document.documentElement.style.overflow
+    document.documentElement.style.overflow = 'hidden'
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointer)
+    desktop.addEventListener('change', onDesktop)
+    panelRef.current?.querySelector<HTMLElement>('a, button')?.focus()
+    return () => {
+      document.documentElement.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointer)
+      desktop.removeEventListener('change', onDesktop)
+    }
+  }, [isOpen])
 
   const n1TitleClassnames =
     'uppercase text-white text-sm lg:text-base font-bold block hover:text-orange my-2'
@@ -80,13 +170,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
   }, [])
 
   return (
-    <div className="h-22 relative z-50">
+    <div className="h-22 relative z-50" ref={rootRef}>
       <div
-        className={`sticky-menu ${
-          isSticky
-            ? 'fixed top-0 left-0 right-0 bg-gray-darker pt-[env(safe-area-inset-top)] transition-colors'
-            : ''
-        }`}
+        className={sticky === 'off' ? undefined : 'nav-fixed'}
+        data-leaving={sticky === 'leaving' || undefined}
       >
         <div className="container flex items-center justify-between py-4">
           <Link href="/">
@@ -104,12 +191,13 @@ export default function NavPrimary({ isSticky = false }: Props) {
           </Link>
 
           <button
+            ref={burgerRef}
             onClick={toggleNavPrimary}
             type="button"
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={isOpen}
             aria-controls="nav-menu"
-            className="burger-menu block lg:hidden bg-orange text-white p-2 rounded-md"
+            className="block lg:hidden bg-orange text-gray-darker p-2 rounded-md transition-[scale,background-color] duration-150 active:scale-95"
           >
             <svg
               aria-hidden
@@ -127,11 +215,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
 
           <div
             id="nav-menu"
-            className={`nav-menu ${
-              width < 1025 && isOpen
-                ? 'block lg:flex bg-gray-darker divide-y divide-gray-dark space-y-4 text-center flex-col absolute top-full left-0 w-full max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain'
-                : 'hidden relative space-x-6'
-            } lg:flex items-center`}
+            ref={panelRef}
+            data-open={isOpen || undefined}
+            inert={!isOpen && !isDesktop}
+            className="nav-panel absolute top-full left-0 w-full max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain divide-y divide-gray-dark space-y-4 bg-gray-darker text-center lg:relative lg:top-auto lg:left-auto lg:w-auto lg:max-h-none lg:overflow-visible lg:items-center lg:divide-y-0 lg:space-y-0 lg:space-x-6 lg:bg-transparent lg:text-left"
           >
             <LinkItem
               closePrimaryNav={() => setOpen(false)}
@@ -349,7 +436,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
                 setOpen(false)
               }}
             >
-              <span className="mt-4 lg:mt-0 inline-flex py-2 px-4 bg-orange uppercase text-gray-darker font-medium">
+              <span className="mt-4 lg:mt-0 inline-flex py-2 px-4 bg-orange uppercase text-gray-darker font-medium transition-[background-color,color,scale] duration-150 hover:bg-orange-dark hover:text-white active:scale-[0.96]">
                 Contactez-moi
               </span>
             </Link>
