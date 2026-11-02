@@ -364,7 +364,11 @@ body:has(.home) {
   transform-style: preserve-3d;
 }
 
-.home-tilt[data-tracking] {
+.home-tilt[data-tracking='enter'] {
+  transition-duration: 150ms;
+}
+
+.home-tilt[data-tracking='live'] {
   transition: none;
 }
 

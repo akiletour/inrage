@@ -2,17 +2,21 @@
 
 import Image from 'next/image'
 import {
+  FocusEvent,
+  KeyboardEvent,
   PointerEvent,
   ReactNode,
   useCallback,
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
 } from 'react'
 import { sendGTMEvent } from '@next/third-parties/google'
 import { usePathname } from 'next/navigation'
 
 import FeaturedProjectMenu from '@component/FeaturedProjectMenu'
+import type { StickyPhase } from '@hook/useSticky'
 import Link from '@component/NoScrollLink'
 import FeaturedProjectImage from '@image/featured-projects/parapharmaciemoinschere.jpeg'
 import ExpertPrestashop from '@image/platinum-300x300.png'
@@ -31,11 +35,42 @@ function anchorMegaMenu(e: PointerEvent<HTMLDivElement>) {
   const group = e.currentTarget
   const trigger = group.querySelector('a')
   const panel = group.querySelector<HTMLElement>('.nav-mega')
-  if (!trigger || !panel) return
+  if (!trigger || !panel || !panel.offsetWidth) return
   const t = trigger.getBoundingClientRect()
   const nav = group.closest('#nav-menu')?.getBoundingClientRect()
   const panelLeft = nav ? nav.right - panel.offsetWidth : 0
   panel.style.setProperty('--origin-x', `${t.left + t.width / 2 - panelLeft}px`)
+}
+
+function dismissMegaMenu(e: KeyboardEvent<HTMLDivElement>) {
+  if (e.key !== 'Escape') return
+  const group = e.currentTarget
+  group.dataset.dismissed = ''
+  group.querySelector('a')?.focus()
+}
+
+function restoreMegaMenu(
+  e: FocusEvent<HTMLDivElement> | PointerEvent<HTMLDivElement>
+) {
+  const group = e.currentTarget
+  if ('relatedTarget' in e && group.contains(e.relatedTarget as Node)) return
+  delete group.dataset.dismissed
+}
+
+const DESKTOP_QUERY = '(min-width: 64rem)'
+
+function subscribeDesktop(onChange: () => void) {
+  const media = window.matchMedia(DESKTOP_QUERY)
+  media.addEventListener('change', onChange)
+  return () => media.removeEventListener('change', onChange)
+}
+
+function useIsDesktop() {
+  return useSyncExternalStore(
+    subscribeDesktop,
+    () => window.matchMedia(DESKTOP_QUERY).matches,
+    () => true
+  )
 }
 
 function LinkItem({
@@ -47,7 +82,13 @@ function LinkItem({
 }: LinkProps) {
   if (children) {
     return (
-      <div className="nav-group group" onPointerEnter={anchorMegaMenu}>
+      <div
+        className="nav-group group"
+        onPointerEnter={anchorMegaMenu}
+        onPointerLeave={restoreMegaMenu}
+        onKeyDown={dismissMegaMenu}
+        onBlur={restoreMegaMenu}
+      >
         <Link href={href} onClick={() => closePrimaryNav()}>
           <span
             className={`uppercase block text-lg pt-4 lg:py-4 transition-colors duration-150 group-hover:text-orange ${
@@ -79,12 +120,13 @@ function LinkItem({
 }
 
 type Props = {
-  isSticky?: boolean
+  sticky?: StickyPhase
 }
 
-export default function NavPrimary({ isSticky = false }: Props) {
+export default function NavPrimary({ sticky = 'off' }: Props) {
   const pathname = usePathname()
   const [isOpen, setOpen] = useState(false)
+  const isDesktop = useIsDesktop()
   const rootRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const burgerRef = useRef<HTMLButtonElement>(null)
@@ -92,7 +134,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
   useEffect(() => {
     if (!isOpen) return
     const close = () => setOpen(false)
-    const onKey = (e: KeyboardEvent) => {
+    const onKey = (e: globalThis.KeyboardEvent) => {
       if (e.key !== 'Escape') return
       close()
       burgerRef.current?.focus()
@@ -100,7 +142,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
     const onPointer = (e: globalThis.PointerEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) close()
     }
-    const desktop = window.matchMedia('(min-width: 64rem)')
+    const desktop = window.matchMedia(DESKTOP_QUERY)
     const onDesktop = () => {
       if (desktop.matches) close()
     }
@@ -129,7 +171,10 @@ export default function NavPrimary({ isSticky = false }: Props) {
 
   return (
     <div className="h-22 relative z-50" ref={rootRef}>
-      <div className={isSticky ? 'nav-fixed' : undefined}>
+      <div
+        className={sticky === 'off' ? undefined : 'nav-fixed'}
+        data-leaving={sticky === 'leaving' || undefined}
+      >
         <div className="container flex items-center justify-between py-4">
           <Link href="/">
             <Image
@@ -152,7 +197,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={isOpen}
             aria-controls="nav-menu"
-            className="block lg:hidden bg-orange text-white p-2 rounded-md transition-[scale,background-color] duration-150 active:scale-95"
+            className="block lg:hidden bg-orange text-gray-darker p-2 rounded-md transition-[scale,background-color] duration-150 active:scale-95"
           >
             <svg
               aria-hidden
@@ -172,6 +217,7 @@ export default function NavPrimary({ isSticky = false }: Props) {
             id="nav-menu"
             ref={panelRef}
             data-open={isOpen || undefined}
+            inert={!isOpen && !isDesktop}
             className="nav-panel absolute top-full left-0 w-full max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain divide-y divide-gray-dark space-y-4 bg-gray-darker text-center lg:relative lg:top-auto lg:left-auto lg:w-auto lg:max-h-none lg:overflow-visible lg:items-center lg:divide-y-0 lg:space-y-0 lg:space-x-6 lg:bg-transparent lg:text-left"
           >
             <LinkItem

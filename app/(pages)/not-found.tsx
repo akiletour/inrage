@@ -12,7 +12,7 @@ const NotFoundScene = dynamic(() => import('@component/NotFoundScene'), {
 export default function Custom404() {
   return (
     <div>
-      <NavPrimary isSticky />
+      <NavPrimary sticky="on" />
       <div className="min-h-[900px] relative overflow-hidden flex justify-center max-[1300px]:justify-end">
         <NotFoundScene />
         <div className="relative pt-[5rem] px-8 text-center max-[1300px]:text-right max-md:text-center">

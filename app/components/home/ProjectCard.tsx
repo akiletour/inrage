@@ -15,7 +15,12 @@ function tilt(e: PointerEvent<HTMLElement>) {
   const r = el.getBoundingClientRect()
   const x = (e.clientX - r.left) / r.width
   const y = (e.clientY - r.top) / r.height
-  el.dataset.tracking = ''
+  if (!el.dataset.tracking) {
+    el.dataset.tracking = 'enter'
+    window.setTimeout(() => {
+      if (el.dataset.tracking === 'enter') el.dataset.tracking = 'live'
+    }, 150)
+  }
   el.style.setProperty('--ry', `${(x - 0.5) * 10}deg`)
   el.style.setProperty('--rx', `${(0.5 - y) * 10}deg`)
 }
