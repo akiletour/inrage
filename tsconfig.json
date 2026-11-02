@@ -30,16 +30,15 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-    "baseUrl": ".",
     "paths": {
-      "@layout/*": ["app/layouts/*"],
-      "@hook/*": ["app/hooks/*"],
-      "@type/*": ["app/types/*"],
-      "@image/*": ["public/images/*"],
-      "@lib/*": ["app/libs/*"],
-      "@component/*": ["app/components/*"],
-      "@util/*": ["app/utils/*"],
-      "@/*": ["app/*"]
+      "@layout/*": ["./app/layouts/*"],
+      "@hook/*": ["./app/hooks/*"],
+      "@type/*": ["./app/types/*"],
+      "@image/*": ["./public/images/*"],
+      "@lib/*": ["./app/libs/*"],
+      "@component/*": ["./app/components/*"],
+      "@util/*": ["./app/utils/*"],
+      "@/*": ["./app/*"]
     },
     "types": ["node"],
     "plugins": [
