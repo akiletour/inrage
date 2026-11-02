@@ -11,16 +11,20 @@ import { HomeProject } from './data'
 
 function tilt(e: PointerEvent<HTMLElement>) {
   if (e.pointerType !== 'mouse') return
-  const r = e.currentTarget.getBoundingClientRect()
+  const el = e.currentTarget
+  const r = el.getBoundingClientRect()
   const x = (e.clientX - r.left) / r.width
   const y = (e.clientY - r.top) / r.height
-  e.currentTarget.style.setProperty('--ry', `${(x - 0.5) * 10}deg`)
-  e.currentTarget.style.setProperty('--rx', `${(0.5 - y) * 10}deg`)
+  el.dataset.tracking = ''
+  el.style.setProperty('--ry', `${(x - 0.5) * 10}deg`)
+  el.style.setProperty('--rx', `${(0.5 - y) * 10}deg`)
 }
 
 function untilt(e: PointerEvent<HTMLElement>) {
-  e.currentTarget.style.setProperty('--ry', '0deg')
-  e.currentTarget.style.setProperty('--rx', '0deg')
+  const el = e.currentTarget
+  delete el.dataset.tracking
+  el.style.setProperty('--ry', '0deg')
+  el.style.setProperty('--rx', '0deg')
 }
 
 export default function ProjectCard({ project }: { project: HomeProject }) {

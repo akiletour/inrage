@@ -265,7 +265,120 @@ body {
 }
 
 .button-outline {
-  @apply h-10 border-2 border-orange text-center justify-center text-orange items-center px-4 inline-flex font-medium;
+  @apply h-10 border-2 border-orange hover:bg-orange hover:text-gray-darker transition-[background-color,color,scale] duration-150 active:scale-[0.96] text-center justify-center text-orange items-center px-4 inline-flex font-medium;
+}
+
+.nav-fixed {
+  position: fixed;
+  inset: 0 0 auto 0;
+  padding-top: env(safe-area-inset-top);
+  background: rgb(20 20 20 / 0.82);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 6%);
+  animation: nav-drop 350ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes nav-drop {
+  from {
+    opacity: 0;
+    translate: 0 -100%;
+  }
+}
+
+.nav-panel {
+  display: none;
+  opacity: 0;
+  translate: 0 -8px;
+  transition:
+    opacity 200ms ease-out,
+    translate 350ms cubic-bezier(0.32, 0.72, 0, 1),
+    display 350ms allow-discrete;
+}
+
+.nav-panel[data-open] {
+  display: block;
+  opacity: 1;
+  translate: 0 0;
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 -8px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .nav-mega-surface {
+    background: rgb(20 20 20 / 0.86);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .nav-panel,
+  .nav-panel[data-open] {
+    display: flex;
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+
+  .nav-mega {
+    display: none;
+    opacity: 0;
+    translate: 0 -6px;
+    scale: 0.98;
+    transform-origin: var(--origin-x, 50%) top;
+    transition:
+      opacity 200ms ease-out,
+      translate 350ms cubic-bezier(0.32, 0.72, 0, 1),
+      scale 350ms cubic-bezier(0.32, 0.72, 0, 1),
+      display 350ms allow-discrete;
+  }
+
+  .nav-group:is(:hover, :focus-within) > .nav-mega {
+    display: block;
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 -6px;
+      scale: 0.98;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-fixed {
+    animation: none;
+  }
+
+  .nav-panel,
+  .nav-mega {
+    transition: none;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .nav-fixed,
+  .nav-mega-surface {
+    background: var(--color-gray-darker);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .nav-fixed,
+  .nav-mega-surface {
+    background: var(--color-gray-darker);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--color-gray-light);
+  }
 }
 
 .parallax > use {

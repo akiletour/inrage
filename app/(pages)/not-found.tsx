@@ -16,7 +16,7 @@ export default function Custom404() {
       <div className="min-h-[900px] relative overflow-hidden flex justify-center max-[1300px]:justify-end">
         <NotFoundScene />
         <div className="relative pt-[5rem] px-8 text-center max-[1300px]:text-right max-md:text-center">
-          <h1 className="text-4xl font-bold text-white mb-4 tracking-wider">
+          <h1 className="text-4xl font-bold text-white mb-4 tracking-tight">
             Hello ?? Il y a quelqu’un ?!?
           </h1>
           <p className="max-w-2xl max-lg:pl-[25rem] max-md:pl-0 mb-4">

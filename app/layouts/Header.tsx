@@ -38,7 +38,7 @@ export default function Header({
     <div className="relative h-auto w-full" ref={ref}>
       <NavPrimary isSticky={sticky} />
       <div className="container z-10 relative mt-6 md:mt-16 md:-mb-16">
-        <h1 className="font-bold max-w-4xl tracking-wider text-2xl sm:text-4xl text-white">
+        <h1 className="font-bold max-w-4xl tracking-tight text-2xl sm:text-4xl text-white">
           {pageTitle}
         </h1>
         <nav

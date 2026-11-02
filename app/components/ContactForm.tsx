@@ -68,7 +68,7 @@ export default function ContactForm({
     trigger,
     getValues,
     setFocus,
-  } = useForm<FormData>()
+  } = useForm<FormData>({ mode: 'onTouched' })
   const { state, submit, success, error: setError } = useFormState()
 
   const onSubmit = (formData: FormData) => {
