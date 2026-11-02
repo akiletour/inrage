@@ -17,6 +17,8 @@ import { getGoogleReviewsSummary } from '@lib/google-reviews'
 import { getPortfolioItems } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
+export const revalidate = 3600
+
 export const metadata = {
   title: 'inRage, sites web et applications à La Rochelle | Pascal Gault',
   description:

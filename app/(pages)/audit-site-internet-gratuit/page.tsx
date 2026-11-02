@@ -9,6 +9,8 @@ import { RouteLink, getCanonicalUrl } from '@lib/router'
 
 import AuditHero from './AuditHero'
 
+export const revalidate = 3600
+
 export const metadata = {
   title: 'Audit gratuit de votre site internet - inRage',
   description:
