@@ -57,7 +57,7 @@ const jsonLd = {
         { '@type': 'Country', name: 'France' },
       ],
       offers: [
-        { name: 'Tranquilité', price: '39' },
+        { name: 'Tranquillité', price: '39' },
         { name: 'Standard', price: '55' },
         { name: 'Sérénité', price: '75' },
       ].map((offer) => ({

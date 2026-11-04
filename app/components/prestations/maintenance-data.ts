@@ -23,7 +23,7 @@ export const OFFERS = [
   {
     name: 'Maintenance WordPress',
     price: 'De 39 à 75 € HT par mois',
-    text: 'Trois forfaits, Tranquilité, Standard et Sérénité, pour un site vitrine ou une boutique WooCommerce.',
+    text: 'Trois forfaits, Tranquillité, Standard et Sérénité, pour un site vitrine ou une boutique WooCommerce.',
     items: [
       'Mises à jour de WordPress, du thème et des extensions, testées en pré-production',
       'Sauvegardes quotidiennes sur des serveurs en France, distincts de votre hébergement',
