@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -11,6 +12,8 @@ import { blogCategoryByName, getBlogItems, getSingleBlogItem } from '@lib/blog'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import { formatDate } from '@util/date'
 import { breadcrumbJsonLd, serializeJsonLd } from '@util/seo-generators'
+
+import { localImageSize } from '../../../../mdx-components'
 
 type Props = {
   params: Promise<{
@@ -121,6 +124,7 @@ export default async function Page(props: Props) {
 
   const category = blogCategoryByName(post.category)
   const step = category?.nextStep ?? DEFAULT_STEP
+  const cover = post.cover ? localImageSize(post.thumbnail) : null
   const categoryHref = category
     ? RouteLink.blogCategory(category.slug)
     : RouteLink.blog
@@ -190,6 +194,17 @@ export default async function Page(props: Props) {
           id="article"
           className={`article prose prose-lg prose-invert max-w-none ${post.headings.length > 1 ? '' : 'lg:col-span-2'}`}
         >
+          {cover && (
+            <Image
+              src={post.thumbnail}
+              alt=""
+              width={cover.width}
+              height={cover.height}
+              priority
+              sizes="(min-width: 1024px) 960px, 100vw"
+              className="not-prose article-wide mb-14 h-auto w-full rounded-[18px]"
+            />
+          )}
           <post.content />
         </article>
       </div>

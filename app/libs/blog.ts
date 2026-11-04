@@ -19,6 +19,7 @@ export const getSingleBlogItem = cache(async (slug: string) => {
       date: item.metadata.date,
       category: item.metadata.category,
       thumbnail: item.metadata.thumbnail,
+      cover: item.metadata.cover ?? false,
       content: item.content,
       excerpt: item.metadata.excerpt ?? '',
       headings: getMdxHeadings('blog', slug),

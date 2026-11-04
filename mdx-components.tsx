@@ -9,7 +9,7 @@ import { headingText, slugifyHeading } from '@util/headings'
 
 const dimensions = new Map<string, { width: number; height: number }>()
 
-function localImageSize(src: string) {
+export function localImageSize(src: string) {
   const cached = dimensions.get(src)
   if (cached) return cached
   const file = path.join(process.cwd(), 'public', src)
@@ -29,6 +29,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </h2>
     ),
+    a: ({ href = '', children, ...props }) =>
+      /^https?:\/\//.test(href) &&
+      !/^https?:\/\/(www\.)?inrage\.fr/.test(href) ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+          {children}
+          <span className="sr-only"> (nouvel onglet)</span>
+        </a>
+      ) : (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      ),
     table: (props) => (
       <div className="overflow-x-auto">
         <table {...props} />
