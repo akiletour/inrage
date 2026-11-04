@@ -66,6 +66,16 @@ export type BlogCategory = { name: string; slug: string; nextStep?: NextStep }
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
   {
+    name: 'Création de site',
+    slug: 'creation-de-site',
+    nextStep: {
+      title: 'Un site à faire chiffrer ?',
+      text: 'Site vitrine WordPress de 2 000 à 3 000 €, boutique à partir de 5 000 €, sur mesure sur devis. Le devis détaillé arrive sous 24 heures après notre échange.',
+      href: RouteLink.prestationWeb,
+      label: 'La création de site internet',
+    },
+  },
+  {
     name: 'WordPress',
     slug: 'wordpress',
     nextStep: {
