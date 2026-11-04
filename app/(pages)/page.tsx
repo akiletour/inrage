@@ -194,7 +194,7 @@ export default async function Homepage() {
                     href={expertise.link}
                     className="home-arrow mt-3 inline-flex items-center gap-2 font-medium text-white"
                   >
-                    En savoir plus <span aria-hidden>→</span>
+                    {expertise.linkText} <span aria-hidden>→</span>
                   </Link>
                 </div>
               </Glass>
