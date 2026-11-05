@@ -85,9 +85,9 @@ const SERVICES = [
   },
   {
     title: 'Hébergement en France',
-    text: 'Votre site tourne sur des serveurs français que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés, protection CrowdSec.',
+    text: 'Votre site tourne sur des serveurs en France : sondes toutes les 30 secondes, sauvegardes chaque nuit dans trois datacentres, protection CrowdSec. En cas de panne, la prise en charge se fait en 2 heures, soirs et week-ends compris.',
     href: RouteLink.prestationHosting,
-    linkText: 'Hébergement de site en France',
+    linkText: 'L’hébergement infogéré sur inrage.cloud',
   },
 ]
 

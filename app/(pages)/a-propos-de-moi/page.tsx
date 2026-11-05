@@ -50,7 +50,7 @@ const SKILLS = [
   },
   {
     title: 'Hébergement infogéré en France',
-    text: 'serveurs que j’administre, supervisés 24h/24',
+    text: 'serveurs en France, sondés toutes les 30 secondes',
     href: RouteLink.prestationHosting,
   },
   {

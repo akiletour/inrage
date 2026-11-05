@@ -181,8 +181,11 @@ export default function Legals() {
                 www.ovhcloud.com
               </a>
               . Le détail de l’infrastructure est décrit sur la page{' '}
-              <Link href={RouteLink.prestationHosting} className="home-link">
-                hébergement de site internet
+              <Link
+                href={RouteLink.hostingInfrastructure}
+                className="home-link"
+              >
+                infrastructure d’inrage.cloud
               </Link>
               .
             </p>

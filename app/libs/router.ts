@@ -42,8 +42,15 @@ export const RouteLink = {
   get prestationTmaOnDemand() {
     return `${this.prestationTma}/maintenance-ponctuelle`
   },
-  get prestationHosting() {
-    return `${this.prestations}/hebergement-site-internet`
+  prestationHosting: 'https://inrage.cloud',
+  get hostingWordPress() {
+    return `${this.prestationHosting}/architectures/site-vitrine-wordpress`
+  },
+  get hostingShop() {
+    return `${this.prestationHosting}/architectures/boutique-en-ligne`
+  },
+  get hostingInfrastructure() {
+    return `${this.prestationHosting}/infrastructure`
   },
   portfolio: '/portfolio',
   contact: '/contact',

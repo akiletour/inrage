@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/prestations/hebergement-site-internet',
+        destination: 'https://inrage.cloud',
+        permanent: true,
+      },
+      {
         source: '/portfolio/prestashop',
         destination: '/portfolio/e-commerce',
         permanent: true,

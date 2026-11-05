@@ -54,9 +54,9 @@ export const MAINTENANCE_OFFERS = [
 export const BACKSTAGE = [
   {
     title: 'DevOps et infrastructure',
-    text: 'J’administre moi-même les serveurs qui font tourner les sites que je maintiens : plusieurs clusters et des grappes Docker Swarm en production, sous Debian, avec des déploiements automatisés. Chaque serveur et chaque site est supervisé avec des alertes, les sauvegardes couvrent les sites et les machines, et elles sont testées en restauration, pas seulement stockées.',
+    text: 'J’administre les systèmes et les containers des serveurs qui font tourner les sites que je maintiens : plusieurs clusters et des grappes Docker Swarm en production, sous Debian, avec des déploiements automatisés. Chaque serveur et chaque site est supervisé avec des alertes, les sauvegardes couvrent les sites et les machines, et elles sont testées en restauration, pas seulement stockées.',
     href: RouteLink.prestationHosting,
-    hrefText: 'Voir l’offre d’hébergement',
+    hrefText: 'Voir l’hébergement sur inrage.cloud',
   },
   {
     title: 'Sécurité',
@@ -136,7 +136,7 @@ export const FAQ = [
   {
     question: 'Où sont hébergés les sites ?',
     answer:
-      'Sur des serveurs situés en France, que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, protection CrowdSec. Aucune donnée ne part chez un hébergeur américain.',
+      'Sur des serveurs situés en France : sondes toutes les 30 secondes, sauvegardes chaque nuit dans trois datacentres, protection CrowdSec. Aucune donnée ne part chez un hébergeur américain.',
   },
   {
     question: 'Que couvre la maintenance ?',

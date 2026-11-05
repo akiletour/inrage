@@ -33,9 +33,9 @@ export const PRESTATIONS = [
   },
   {
     title: 'Hébergement infogéré et supervisé',
-    text: 'Votre site hébergé en France sur une infrastructure que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés et protection contre les attaques, avec un seul interlocuteur.',
+    text: 'Votre site hébergé en France, sondé toutes les 30 secondes, sauvegardé chaque nuit dans trois datacentres et protégé contre les attaques. Quand il casse, la prise en charge se fait en 2 heures, même le soir et le week-end.',
     link: RouteLink.prestationHosting,
-    linkText: 'Découvrir l’hébergement',
+    linkText: 'Découvrir inrage.cloud',
     image: ImagePrestationHosting as StaticImageData,
   },
 ]

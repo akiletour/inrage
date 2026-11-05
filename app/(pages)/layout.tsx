@@ -126,6 +126,7 @@ const jsonLd = {
         'https://twitter.com/akiletour',
         'https://github.com/akiletour',
         'https://invoicer.fr',
+        'https://inrage.cloud',
       ],
     },
     {

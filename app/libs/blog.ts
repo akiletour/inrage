@@ -101,9 +101,9 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     slug: 'serveur',
     nextStep: {
       title: 'Un serveur à surveiller ?',
-      text: 'J’héberge et j’administre les sites que je maintiens sur mes serveurs en France, avec sauvegardes, supervision et CrowdSec. Ces procédures en font partie.',
+      text: 'Ces procédures sont celles de l’hébergement infogéré inRage : serveurs en France, sondes toutes les 30 secondes, sauvegardes chaque nuit dans trois datacentres, CrowdSec. L’offre a son propre site.',
       href: RouteLink.prestationHosting,
-      label: 'L’hébergement infogéré',
+      label: 'L’hébergement sur inrage.cloud',
     },
   },
   { name: 'SaaS', slug: 'saas' },

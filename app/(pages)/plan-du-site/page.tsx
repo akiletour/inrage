@@ -60,7 +60,10 @@ const PRESTATIONS: Entry[] = [
       },
     ],
   },
-  { href: RouteLink.prestationHosting, label: 'Hébergement de site internet' },
+  {
+    href: RouteLink.prestationHosting,
+    label: 'Hébergement infogéré (inrage.cloud)',
+  },
 ]
 
 function LinkList({
