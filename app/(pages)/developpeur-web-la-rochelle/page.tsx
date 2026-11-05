@@ -57,31 +57,37 @@ const SERVICES = [
     title: 'Site vitrine WordPress',
     text: 'Thème sur mesure, blocs Gutenberg définis avec vous, aucun thème acheté. Vous administrez vos contenus en autonomie sur un site rapide et pensé pour les recherches locales.',
     href: RouteLink.prestationWordPress,
+    linkText: 'Site vitrine WordPress à La Rochelle',
   },
   {
     title: 'Boutique Prestashop et WooCommerce',
     text: 'Création de boutiques, modules, migrations et connexion à votre ERP, votre logiciel de caisse ou vos transporteurs, de Prestashop 1.6 à Prestashop 9.',
     href: RouteLink.prestationPrestashop,
+    linkText: 'Boutique Prestashop et WooCommerce',
   },
   {
     title: 'Applications React, Next.js et React Native',
     text: 'Tableaux de bord, logiciels en ligne, sites qui chargent instantanément, applications iOS et Android à partir d’une seule base de code.',
     href: RouteLink.prestationReact,
+    linkText: 'Applications React et React Native',
   },
   {
     title: 'Applications métier Symfony',
     text: 'Extranet, outil de gestion, API ou logiciel sur mesure, comme Invoicer, le logiciel de facturation que j’édite depuis La Rochelle.',
     href: RouteLink.prestationSymfony,
+    linkText: 'Applications métier Symfony',
   },
   {
     title: 'Maintenance et infogérance',
     text: 'Mises à jour testées, sécurité, sauvegardes, surveillance et corrections. Plus de 150 sites sont suivis chaque semaine.',
     href: RouteLink.prestationTma,
+    linkText: 'Maintenance de site internet',
   },
   {
     title: 'Hébergement en France',
     text: 'Votre site tourne sur des serveurs français que j’administre moi-même : supervision 24h/24, sauvegardes chaque nuit, serveurs doublés, protection CrowdSec.',
     href: RouteLink.prestationHosting,
+    linkText: 'Hébergement de site en France',
   },
 ]
 
@@ -256,7 +262,7 @@ export default async function DeveloppeurWebLaRochelle() {
                   </p>
                   <p className="mt-3">
                     <Link href={service.href} className="home-link">
-                      En savoir plus
+                      {service.linkText}
                     </Link>
                   </p>
                 </div>

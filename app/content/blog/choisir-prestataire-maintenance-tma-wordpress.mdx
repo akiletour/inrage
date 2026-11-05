@@ -1,196 +1,128 @@
 ---
-title: 'Guide complet pour choisir un prestataire TMA WordPress'
-seoTitle: 'Prestataire TMA WordPress : comment le choisir | inRage'
+title: 'Contrat de maintenance WordPress : ce qu’il doit contenir'
+seoTitle: 'Contrat de maintenance WordPress : ce qu’il doit contenir'
 date: '2026-10-29'
 category: 'WordPress'
-thumbnail: '/images/articles/choisir-prestataire-maintenance-tma-wordpress.jpg'
-excerpt: 'Découvrez comment choisir un prestataire de maintenance TMA WordPress pour garantir un site sécurisé et performant. Suivez nos critères clés pour évaluer et comparer les offres efficacement.'
+thumbnail: '/images/articles/contrat-maintenance-wordpress-cover.jpg'
+cover: true
+excerpt: 'Maintenance préventive, corrective et évolutive, délai d’intervention, sauvegardes, sortie du contrat : ce qu’un contrat de maintenance WordPress doit écrire noir sur blanc.'
 ---
 
 import MdxIntroduction from '../../components/ui/MdxIntroduction'
-import InfoCard from '../../components/ui/InfoCard'
-import Timeline from '../../components/ui/Timeline'
 import Figure from '../../components/ui/Figure'
 
 <MdxIntroduction>
-  Choisir un prestataire de maintenance TMA WordPress revient à vérifier trois
-  choses : ce qu’il prend en charge, comment il intervient et ce qu’il accepte
-  d’écrire dans le contrat. Les mises à jour sont la partie visible. Ce que vous
-  achetez, c’est un site qui continue de faire son travail, et quelqu’un à
-  appeler le jour où il ne le fait plus.
+  Un contrat de maintenance WordPress doit dire quatre choses par écrit : ce qui
+  est fait chaque mois sans que vous le demandiez, ce qui est réparé quand le
+  site casse et dans quel délai, ce qui est facturé à part, et comment vous
+  récupérez votre site le jour où vous partez. Si l’une des quatre manque, c’est
+  elle qui vous coûtera cher.
 </MdxIntroduction>
 
-Je fais de la maintenance WordPress depuis plus de dix ans, pour une bonne centaine de sites en infogérance. J’ai vu passer beaucoup de contrats, les miens, ceux de confrères, et ceux que des clients m’apportent en quittant leur prestataire précédent. Le cas que je retrouve le plus souvent à l’arrivée d’un site : des sauvegardes « incluses » depuis des années, et personne n’a jamais essayé d’en restaurer une. Ce guide reprend les questions que je poserais si j’étais à la place du client.
+Je maintiens plus de 150 sites WordPress, la plupart créés par d’autres prestataires. Ce guide reprend les clauses de mes propres contrats, avec leurs chiffres, pour que vous puissiez comparer n’importe quelle offre à quelque chose de concret.
 
-## Quels critères privilégier pour choisir votre prestataire TMA WordPress ?
+## Préventive, corrective, évolutive : les trois maintenances
 
-Privilégiez un prestataire capable d’expliquer sa méthode, de montrer qu’il comprend votre environnement et de proposer des engagements adaptés à votre activité. Pour départager les candidats, demandez des preuves : un exemple de rapport, une procédure de restauration, la façon dont le support est organisé, des références qui ressemblent à votre site. Une liste d’outils ne remplace aucun de ces éléments.
-
-Avant même de demander des devis, décrivez ce que votre site doit absolument permettre de faire. Pour une boutique, passer commande. Pour un site vitrine, envoyer une demande de contact. Cette description oblige les candidats à proposer des contrôles utiles au lieu d’une offre standard impossible à évaluer.
-
-Préparez un bref état des lieux :
-
-- **Votre environnement** : hébergement, thème, extensions clés, développements sur mesure et connexions à des services externes (CRM, paiement, newsletter).
-- **Vos parcours critiques** : paiement, réservation, formulaire, espace connecté ou transfert de documents.
-- **Vos contraintes** : horaires d’activité, périodes commerciales sensibles et personnes disponibles pour valider une intervention.
-- **Vos attentes** : prévention, dépannage, évolutions techniques ou accompagnement de vos équipes.
-
-Demandez ensuite qui interviendra vraiment. Un commercial disponible ne suffit pas : faites préciser le relais technique, ce qui se passe pendant les congés, et où les décisions seront consignées. Vous saurez alors qui fait le travail.
-
-## Une maintenance WordPress qui dépasse le bouton de mise à jour
-
-Pour comparer les périmètres, demandez à chaque candidat de répartir son offre entre quatre familles : prévention, correction, évolution et adaptation du cadre technique (hébergement, PHP, conformité). Servez-vous de cette grille comme base de discussion, sans supposer que tout est inclus. Faites surtout distinguer la correction d’un défaut existant de l’ajout d’une nouvelle fonction. C’est la frontière la plus floue des contrats, et la plus coûteuse quand elle est mal tracée.
-
-### Des mises à jour accompagnées de contrôles
-
-Une mise à jour WordPress se prépare. La [documentation officielle](https://wordpress.org/documentation/article/updating-wordpress/) recommande de sauvegarder le site avant l’opération, pour pouvoir revenir en arrière si quelque chose casse. Thèmes et extensions demandent la même précaution. Demandez donc comment le prestataire s’assure qu’un point de retour exploitable existe avant chaque intervention.
-
-<Timeline
-  caption="La procédure que je demanderais à n’importe quel prestataire. Chez moi, l’étape de préproduction tourne sur nos serveurs avant tout basculement en production."
-  items={[
-    {
-      time: 'Étape 1',
-      title: 'Sauvegarde',
-      description: 'Fichiers et base de données, restauration testée.',
-    },
-    {
-      time: 'Étape 2',
-      title: 'Préproduction',
-      description: 'Mises à jour appliquées sur une copie du site.',
-    },
-    {
-      time: 'Étape 3',
-      title: 'Recette',
-      description:
-        'Parcours critiques vérifiés : formulaire, panier, connexion.',
-    },
-    {
-      time: 'Étape 4',
-      title: 'Production',
-      description: 'Bascule, puis contrôle du site public.',
-      highlight: true,
-    },
-    {
-      time: 'Si besoin',
-      title: 'Retour arrière',
-      description:
-        'Qui décide, et que deviennent les données créées entre-temps.',
-      tone: 'external',
-    },
-  ]}
-/>
-
-Exigez une procédure proportionnée au risque : test sur une préproduction quand le site le justifie, validation des fonctions clés, déploiement, puis contrôle du site en ligne. Sur une boutique, faites inscrire le panier et le paiement parmi les contrôles attendus. Demandez aussi qui autorise un retour en arrière, et ce que deviennent les commandes ou inscriptions enregistrées entre la mise à jour et la restauration.
-
-La compatibilité PHP mérite une question à part. WordPress [recommande une sauvegarde et la mise à jour de tous les composants](https://wordpress.org/documentation/update-php/) avant de changer de version de PHP. Faites préciser si cette montée de version relève du forfait, d’un projet séparé ou de l’hébergeur. Un site resté sur une branche de PHP en fin de vie ne reçoit plus aucun correctif. La [faille PHP d’octobre 2026](/blog/faille-securite-php-octobre-2026-recit) l’a rappelé à tout le monde, nous compris.
-
-### Une sécurité vérifiable et des sauvegardes utiles
-
-Installer une extension de sécurité ne suffit pas. Le [guide de durcissement officiel](https://developer.wordpress.org/advanced-administration/security/hardening/) associe limitation des accès, mots de passe forts, authentification à deux facteurs, permissions de fichiers et préparation du retour après incident. Demandez quelles mesures seront appliquées sur votre site, lesquelles seront suivies dans le temps, et à quelle fréquence elles seront revues.
-
-Une sauvegarde complète couvre les fichiers et la base de données, et WordPress [recommande de conserver des copies à plusieurs endroits](https://developer.wordpress.org/advanced-administration/security/backup/). Faites préciser la fréquence, la durée de conservation et la procédure de restauration. Demandez surtout une preuve de test de restauration. Tant qu’une sauvegarde n’a jamais été restaurée, personne ne sait si elle fonctionne.
-
-## Que doit contenir le contrat de maintenance ?
-
-Demandez un contrat qui décrit les prestations incluses, les exclusions, les horaires de couverture, le traitement des incidents et les conditions de sortie. Chaque engagement doit pouvoir être compris sans traduction commerciale. Si une formule reste vague, faites-la préciser avant de signer, en particulier lorsqu’elle promet un support « illimité » ou une intervention « rapide ».
-
-Pour cadrer le support, faites distinguer trois moments : la prise en charge de la demande, le début de l’intervention et le retour du service. Si le candidat emploie les termes GTI (garantie de temps d’intervention) ou GTR (garantie de temps de rétablissement), exigez leur définition dans le contrat. Demandez aussi quand le délai commence à courir, sur quelles plages horaires, et dans quels cas il peut être suspendu. Un support « 9h-19h du lundi au vendredi » écrit dans le contrat vaut mieux qu’une « réactivité maximale » promise à l’oral.
+Tout contrat mélange trois types de travail. La difficulté n’est pas de les connaître, c’est de savoir lesquels votre forfait paie vraiment.
 
 <Figure
-  src="/images/articles/choisir-prestataire-tma-gti.png"
-  alt="Frise d’un incident : ticket envoyé, prise en charge, début d’intervention, service rétabli, avec les accolades GTI et GTR"
-  width={1140}
-  height={440}
-  caption="Une prise en charge rapide ne dit rien du délai de rétablissement. Faites définir les trois moments, et la plage horaire sur laquelle ils courent."
+  src="/images/articles/contrat-maintenance-wordpress-types.png"
+  alt="Tableau des trois maintenances : préventive pour éviter les pannes, corrective pour réparer, évolutive pour ajouter, avec ce qui est compris dans un forfait inRage"
+  width={1920}
+  height={1080}
 />
 
-<InfoCard>
+### La maintenance préventive
 
-### La liste pour relire une proposition
+C’est le travail qu’on ne voit pas : sauvegardes, mises à jour de WordPress, du thème et des extensions, surveillance de la sécurité, renouvellement du certificat SSL. Dans mes forfaits, la sauvegarde part une ou deux fois par jour sur des serveurs en France, distincts de l’hébergement du site, et 22 points de sécurité sont vérifiés chaque jour.
 
-- **Périmètre technique** : composants couverts, licences, hébergement, préproduction et développements sur mesure.
-- **Gestion des incidents** : canal d’urgence, niveaux de priorité, escalade et fréquence des informations envoyées pendant l’incident.
-- **Limites du forfait** : volume d’assistance, tâches exclues, validation des dépassements et traitement des urgences.
-- **Suivi** : fréquence des rapports, détail des interventions, anomalies restantes et recommandations.
-- **Conditions commerciales** : durée d’engagement, reconduction, résiliation, révision tarifaire et éventuels mécanismes de compensation.
-- **Réversibilité** : restitution des accès, fichiers, données et documents, avec délais et coûts annoncés.
+Deux détails à faire écrire. Où sont stockées les sauvegardes : une copie sur le même serveur que le site disparaît avec lui. Et si les mises à jour sont testées avant d’être appliquées : sur les forfaits Standard et Sérénité, elles passent d’abord sur une copie du site, la préproduction.
 
-</InfoCard>
+### La maintenance corrective
 
-Si le prestataire traite des données personnelles pour votre compte, il devient sous-traitant au sens du RGPD et cette relation doit être encadrée par écrit. La CNIL publie des [clauses types de sous-traitance](https://www.cnil.fr/fr/sous-traitance-exemple-de-clauses) qui couvrent les instructions, la confidentialité, la sécurité et le sort des données à la fin du contrat. Faites-les adapter à votre situation plutôt que de les copier telles quelles.
+C’est la réparation : une page blanche après une mise à jour, un formulaire qui n’envoie plus rien, un piratage. La question qui compte est le délai, et à partir de quand il court. Chez moi, il démarre quand vous déclarez l’incident dans la console, et il vaut 6 h, 4 h ou 2 h selon la formule.
 
-## Comment comparer les tarifs sans sacrifier le service ?
+### La maintenance évolutive
 
-Comparez les tarifs sur un périmètre identique, avec les mêmes horaires et les mêmes hypothèses d’incident. Ne partez pas d’une moyenne de marché comme budget de référence : demandez plutôt ce que chaque offre vous permet d’obtenir. Il m’arrive de perdre un devis face à un forfait deux fois moins cher. Je ne sais pas ce qu’il contient. Le client non plus, en général, et il le découvre au premier incident.
+C’est tout ce qui ajoute quelque chose : une page, un bloc, un outil branché sur le site. C’est aussi la frontière la plus floue des contrats. Un formulaire qui ne marche plus relève du correctif. Un nouveau champ dans ce formulaire relève de l’évolutif. Mes forfaits incluent 1, 3 ou 8 heures de développement par mois pour ce genre de demande. Au-delà, c’est un devis.
 
-Pour un forfait mensuel, vérifiez la part dédiée aux tâches récurrentes (surveillance, mises à jour, sauvegardes) et celle réservée à l’assistance et aux petites évolutions. Pour une enveloppe d’heures, demandez quelles tâches sont décomptées, comment le temps est justifié et si les heures non consommées expirent. Dans les deux cas, faites chiffrer les prestations hors forfait avant de vous engager.
+## GTI et GTR : le délai qui est vraiment garanti
+
+Deux sigles reviennent dans les contrats sérieux. La GTI, garantie de temps d’intervention, promet que quelqu’un commence à travailler sur la panne dans un délai donné. La GTR, garantie de temps de rétablissement, promet que le site refonctionne dans un délai donné. Ce n’est pas la même promesse.
 
 <Figure
-  src="/images/articles/choisir-prestataire-tma-forfait.png"
-  alt="Schéma d’un forfait mensuel : tâches récurrentes incluses, heures d’assistance décomptées, prestations hors forfait sur devis"
-  width={1140}
-  height={420}
-  caption="Ce qu’un forfait mensuel doit laisser voir : le récurrent, l’assistance et ce qui passe en devis."
+  src="/images/articles/contrat-maintenance-wordpress-gti-gtr.png"
+  alt="Frise d’un incident : déclaration, début d’intervention, site rétabli. La GTI couvre jusqu’au début de l’intervention, la GTR jusqu’au rétablissement"
+  width={1920}
+  height={1080}
 />
 
-Soumettez le même scénario à tous les candidats : « Après une mise à jour, notre formulaire ne transmet plus les demandes. Quelle procédure appliquez-vous, dans quel délai, et avec quelle facturation ? » Ajoutez un second scénario impliquant l’hébergeur, par exemple un site inaccessible un lundi matin. Les réponses font vite apparaître les rôles que personne n’assume.
+Une GTI de 2 h ne dit rien du temps de réparation. Un piratage avec des fichiers injectés partout ne se nettoie pas comme une extension à désactiver. Mes forfaits garantissent un délai d’intervention, et la restauration repart de la sauvegarde la plus récente quand la réparation prendrait trop longtemps.
+
+Faites aussi préciser les plages horaires. Un délai de 6 h compté de 9 h à 19 h en semaine, comme dans mon forfait Tranquillité, veut dire qu’une panne du vendredi soir est traitée le lundi. Pour une boutique qui vend le week-end, il faut une astreinte 24 h sur 24.
+
+## Les clauses à lire avant de signer
 
 <Figure
-  src="/images/articles/choisir-prestataire-tma-reponses.png"
-  alt="Le même scénario de formulaire en panne, avec une réponse vague et une réponse qui donne un délai, une procédure et une règle de facturation"
-  width={1140}
-  height={560}
-  caption="Le même scénario posé à deux prestataires. Seule la seconde réponse se compare à autre chose."
+  src="/images/articles/contrat-maintenance-wordpress-clauses.png"
+  alt="Liste des huit clauses à vérifier dans un contrat de maintenance WordPress"
+  width={1920}
+  height={1080}
 />
 
-Prévoyez aussi la reprise initiale du site. Demandez si un audit, une remise à niveau ou la correction d’anomalies déjà présentes doit précéder le forfait. Vous éviterez de confondre le coût d’entrée dans la prestation avec son coût courant. Un [audit gratuit](/audit-site-internet-gratuit) est souvent le bon point de départ pour objectiver l’état réel du site avant de parler de mensualité.
+- **Le périmètre.** WordPress, le thème, les extensions, les licences payantes, l’hébergement : qui s’occupe de quoi. Mes forfaits incluent les licences iThemes Security Pro et WP Rocket pendant toute la durée du contrat.
+- **Les sauvegardes.** Fréquence, lieu de stockage, durée de conservation, et qui lance une restauration.
+- **Le délai d’intervention.** En heures, avec les plages horaires et le point de départ du chrono.
+- **Les heures incluses.** Combien par mois, pour quoi, et ce qui arrive à celles qui ne sont pas consommées.
+- **Le rapport.** Ce que vous recevez et quand. Chez moi, un PDF chaque mois avec les actions menées et les points de vigilance.
+- **La durée et la résiliation.** Mes contrats sont engagés sur 12 mois : ça laisse le temps de planifier les mises à jour majeures et les montées de version PHP.
+- **La sortie.** Ce qu’on vous rend en partant : accès, fichiers, base de données, nom de domaine, et dans quel délai.
+- **Les données personnelles.** Un prestataire qui accède aux données de vos clients devient sous-traitant au sens du RGPD. La CNIL publie des [clauses types de sous-traitance](https://www.cnil.fr/fr/sous-traitance-exemple-de-clauses) à faire adapter à votre contrat.
 
-## Des preuves concrètes pour départager les candidats
+## Combien coûte un contrat de maintenance WordPress ?
 
-Lors de l’entretien, demandez une présentation de la méthode plutôt qu’une démonstration commerciale. Faites commenter un rapport anonymisé et une procédure d’intervention. Invitez le candidat à expliquer ce qu’il ferait sur votre site, avec ses limites et les informations qui lui manquent. Un prestataire sérieux dira ce qu’il ne sait pas encore.
+L’Observatoire de l’achat de sites internet relève une médiane de 49 € par mois chez les prestataires qui affichent leurs prix. Mes forfaits vont de 39 à 75 € HT par mois. Ce qui fait la différence entre les formules, ce n’est pas la mise à jour elle-même, c’est tout le reste :
 
-Vous pouvez adapter votre grille de sélection à ces profils :
+| Formule      | Prix           | Sauvegarde      | Préproduction | Délai | Heures incluses |
+| ------------ | -------------- | --------------- | ------------- | ----- | --------------- |
+| Tranquillité | 39 € HT / mois | 1 fois par jour | non           | 6 h   | 1 h             |
+| Standard     | 55 € HT / mois | 1 fois par jour | oui           | 4 h   | 3 h             |
+| Sérénité     | 75 € HT / mois | 2 fois par jour | oui           | 2 h   | 8 h             |
 
-| Votre site               | Point à examiner en priorité   | Élément à demander                                                  |
-| ------------------------ | ------------------------------ | ------------------------------------------------------------------- |
-| Blog ou site vitrine     | Fiabilité des fonctions clés   | Liste des contrôles après intervention                              |
-| Boutique en ligne        | Continuité du parcours d’achat | Procédure de test et gestion des commandes pendant une restauration |
-| Site métier ou multisite | Maîtrise des dépendances       | Documentation technique et méthode de validation                    |
+Sérénité ajoute un robot qui parcourt le site toutes les heures et vérifie que les pages et les formulaires répondent. C’est la formule que je conseille pour une boutique WooCommerce : une panne de paiement découverte le lendemain, ce sont des commandes perdues. Le détail complet est sur la page [maintenance WordPress](/prestations/maintenance-site-internet/maintenance-wordpress).
 
-Pour la performance, demandez quelles pages seront suivies et comment les mesures seront comparées dans des conditions cohérentes. Faites séparer les constats des corrections incluses : un rapport qui signale une lenteur ne dit pas encore qui doit la résoudre.
+Un forfait deux fois moins cher n’est pas forcément une mauvaise affaire. Mais comparez à périmètre égal : même fréquence de sauvegarde, même délai, mêmes heures. Une ligne absente du forfait réapparaît souvent sur une facture, au moment de la panne.
 
-Clarifiez enfin le partage entre maintenance et hébergement. Si deux entreprises interviennent, exigez un responsable de pilotage pour les incidents mixtes. Si une seule prend tout en charge, demandez malgré tout le détail des rôles et les conditions pour changer de fournisseur. C’est ce qui vous permettra de récupérer accès, fichiers, données et documents le jour où vous changerez de prestataire.
+## Le test qui départage deux prestataires
 
-## Choisir un partenaire, puis vérifier le service rendu
+Posez le même scénario à chaque candidat : « Après une mise à jour, notre formulaire de contact n’envoie plus les demandes. Que faites-vous, dans quel délai, et combien ça coûte ? » Une réponse sérieuse donne une procédure, un délai chiffré et une règle de facturation. Une réponse vague (« on intervient rapidement ») vous dit déjà comment se passera la première vraie panne.
 
-Avant de signer, rassemblez le devis détaillé, le contrat et un exemple de rapport. Comparez-les : les engagements annoncés doivent se retrouver dans les documents. Écartez les zones floues avant de négocier les options secondaires.
+Faites le même exercice avec l’hébergement : « Le site est inaccessible un lundi matin. » Si la maintenance et l’hébergement sont chez deux entreprises différentes, la réponse montre tout de suite qui pilote l’incident, ou si personne ne le fait.
 
-Prévoyez ensuite un premier bilan, après deux ou trois mois : interventions réalisées, qualité des échanges, incidents restants et adéquation du forfait. Si le premier rapport ressemble au modèle qu’on vous a montré avant la signature, vous avez bien choisi. S’il n’arrive pas, vous avez aussi votre réponse.
+Avant la signature, un site qui n’a pas été mis à jour depuis longtemps demande souvent une remise à niveau. C’est un coût d’entrée, à séparer de la mensualité. Un [audit gratuit](/audit-site-internet-gratuit) permet de savoir où en est le site avant de parler de forfait.
 
 ## Questions fréquentes
 
-### Faut-il privilégier le prestataire le moins cher pour une TMA WordPress ?
+### Un contrat de maintenance WordPress est-il obligatoire ?
 
-Non. Le tarif se compare à périmètre identique, avec les mêmes horaires, les mêmes engagements et les mêmes hypothèses d’incident. Une offre moins chère peut exclure les restaurations, les urgences, les corrections hors forfait ou la coordination avec l’hébergeur. Ce qui n’est pas dans le forfait finit sur une facture, au pire moment.
+Non, rien ne l’impose. Mais WordPress, le thème et chaque extension publient régulièrement des correctifs de sécurité, et un site qui n’est plus mis à jour finit par se faire pirater. Sans contrat, il faut quelqu’un en interne pour s’en charger, sauvegarde comprise.
 
-### Pourquoi demander un test de restauration plutôt qu’une simple sauvegarde ?
+### Que se passe-t-il si mon site est piraté ?
 
-Une sauvegarde n’a de valeur que si elle peut être restaurée. Vérifiez la fréquence, la durée de conservation, les emplacements de stockage et surtout la preuve d’un test de restauration. C’est la seule façon de savoir qu’en cas d’incident, le site reviendra à un état exploitable avec une procédure connue.
+Vous déclarez l’incident et le prestataire intervient dans le délai prévu au contrat. Chez moi, le site est restauré depuis la sauvegarde la plus récente, la faille est identifiée et corrigée, puis vous recevez un compte rendu. En octobre 2026, une faille de PHP m’a obligé à corriger tous les serveurs que j’administre en une nuit : je l’ai racontée dans le [récit de la faille de sécurité PHP](/blog/faille-securite-php-octobre-2026-recit).
 
-### Quelle différence entre maintenance corrective et évolution du site ?
+### Mon site a été fait par un autre prestataire, peut-on le reprendre ?
 
-La maintenance corrective résout un défaut existant, par exemple une fonction qui ne marche plus après une mise à jour. L’évolution ajoute ou modifie une fonction. Cette distinction doit figurer dans le contrat, car elle détermine ce qui est inclus dans le forfait et ce qui fera l’objet d’un devis séparé.
+Oui, c’est le cas de la majorité des sites que je maintiens. La reprise commence par un audit du thème, des extensions et de l’hébergement, puis par une mise à jour complète sur une copie du site avant toute modification en ligne.
 
-### Que vérifier si le prestataire s’occupe aussi de l’hébergement ?
+### Faut-il confier la maintenance et l’hébergement au même prestataire ?
 
-Même avec un seul fournisseur pour la maintenance et l’hébergement, demandez le détail des rôles : supervision, sauvegardes, performances, sécurité, changements de version PHP, incidents serveur et conditions de sortie. Vous saurez ainsi comment récupérer accès, fichiers, données et documents si vous changez de prestataire.
+Ce n’est pas obligatoire, mais ça supprime la question de savoir qui pilote une panne. Je propose l’hébergement sur des serveurs en France que j’administre, avec la maintenance. Si vous gardez deux prestataires, faites écrire lequel prend la main quand le site tombe.
 
-### Comment savoir si le service rendu reste conforme aux engagements après la signature ?
+### Que faire si je n’ai besoin que d’une intervention ponctuelle ?
 
-Prévoyez un premier bilan après le démarrage. Il examine les interventions réalisées, la qualité des échanges, les incidents restants, les rapports fournis et l’adéquation du forfait avec vos besoins réels. Le contrat donne la liste des engagements, le bilan dit lesquels ont été tenus.
+Pas besoin de contrat pour une correction isolée. La [maintenance ponctuelle](/prestations/maintenance-site-internet/maintenance-ponctuelle) est facturée à l’heure, après un diagnostic et une estimation du temps.
 
-## Et si vous posiez ces questions à inRage ?
+## Comparer votre contrat au mien
 
-Ce guide décrit la méthode que j’applique pour mes propres clients : sauvegarde journalière, mises à jour testées sur nos serveurs avant la production, robot de surveillance des parcours, rapport PDF mensuel et astreinte définie par écrit. Le détail est sur la page [maintenance WordPress](/prestations/maintenance-site-internet/maintenance-wordpress), et la [maintenance ponctuelle](/prestations/maintenance-site-internet/maintenance-ponctuelle) répond aux besoins sans engagement.
-
-Je suis [développeur web à La Rochelle](/developpeur-web-la-rochelle) et je travaille avec des clients partout en France. Pour comparer mon offre à celles que vous avez reçues, [écrivez-moi](/contact).
+Si vous avez déjà un contrat ou un devis de maintenance, [envoyez-le-moi](/contact) : je vous dis ce qui manque et ce qui est flou, sans engagement. Je suis [développeur web à La Rochelle](/developpeur-web-la-rochelle) et je maintiens des sites partout en France.

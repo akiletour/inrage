@@ -32,6 +32,7 @@ export interface BlogMdxMetadata extends BaseMdxMetadata {
   category?: string
   thumbnail: string
   excerpt: string
+  cover?: boolean
 }
 
 export type MdxMetadata<T extends 'blog' | 'portfolio'> = T extends 'blog'

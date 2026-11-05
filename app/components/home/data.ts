@@ -45,24 +45,28 @@ export const EXPERTISES = [
     title: 'Création de site WordPress',
     text: 'Le CMS le plus répandu, avec un thème sur mesure : vous administrez vos contenus en autonomie sur un site rapide et pensé pour le référencement.',
     link: RouteLink.prestationWordPress,
+    linkText: 'Création de site WordPress à La Rochelle',
     image: ExpertiseWordPress as StaticImageData,
   },
   {
     title: 'Développement Symfony',
     text: 'Le framework PHP de référence pour les extranets, outils de gestion et plateformes sur mesure, avec une architecture robuste et évolutive.',
     link: RouteLink.prestationSymfony,
+    linkText: 'Développement Symfony sur mesure',
     image: ExpertiseSymfony as StaticImageData,
   },
   {
     title: 'Boutique Prestashop',
     text: 'Création de boutiques en ligne, développement de modules, migrations et intégrations ERP pour vendre efficacement, en B2B comme en B2C.',
     link: RouteLink.prestationPrestashop,
+    linkText: 'Création de boutique Prestashop',
     image: ExpertisePrestashop as StaticImageData,
   },
   {
     title: 'Applications React et Next.js',
     text: 'Les technologies modernes de référence pour des applications web performantes, scalables et agréables à utiliser.',
     link: RouteLink.prestationReact,
+    linkText: 'Applications React et Next.js',
     image: ExpertiseReact as StaticImageData,
   },
 ]

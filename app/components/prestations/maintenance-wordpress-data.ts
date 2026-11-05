@@ -1,7 +1,7 @@
 import type { Plan, PlanRow } from './PlanTable'
 
 export const PLANS: Plan[] = [
-  { name: 'Tranquilité', price: '39 € HT par mois' },
+  { name: 'Tranquillité', price: '39 € HT par mois' },
   { name: 'Standard', price: '55 € HT par mois' },
   { name: 'Sérénité', price: '75 € HT par mois' },
 ]
@@ -75,7 +75,7 @@ export const ROWS: PlanRow[] = [
   {
     name: 'Astreinte',
     excerpt:
-      'Tranquilité : de 9 h à 19 h du lundi au vendredi. Standard et Sérénité : 24 h sur 24, 365 jours par an.',
+      'Tranquillité : de 9 h à 19 h du lundi au vendredi. Standard et Sérénité : 24 h sur 24, 365 jours par an.',
     values: ['9 h à 19 h|en semaine', '24 h/24', '24 h/24'],
   },
   {

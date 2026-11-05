@@ -301,7 +301,15 @@ export default async function PrestationBuildWebsite() {
           <p className="mt-6 leading-7 text-(--home-muted)">
             L’hébergement et la maintenance sont facturés à part, à l’année. Pas
             d’abonnement caché, pas de licence à renouveler : le site vous
-            appartient.
+            appartient. Les fourchettes du marché et les coûts annuels sont
+            détaillés dans le guide{' '}
+            <Link
+              href={RouteLink.blogPost('combien-coute-un-site-internet')}
+              className="home-link"
+            >
+              combien coûte un site internet
+            </Link>
+            .
           </p>
         </Reveal>
       </section>

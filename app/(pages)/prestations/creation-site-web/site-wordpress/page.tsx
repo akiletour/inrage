@@ -320,6 +320,17 @@ export default async function PrestationWordPress() {
               </Reveal>
             ))}
           </div>
+          <p className="mx-auto mt-12 max-w-3xl leading-7 text-(--home-muted)">
+            Pour comparer avec les prix du marché et prévoir les frais de chaque
+            année, lisez le guide{' '}
+            <Link
+              href={RouteLink.blogPost('combien-coute-un-site-internet')}
+              className="home-link"
+            >
+              combien coûte un site internet
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
