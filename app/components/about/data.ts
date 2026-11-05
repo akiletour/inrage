@@ -96,7 +96,7 @@ export const COMMITMENTS = [
   },
   {
     title: 'Vos données en France',
-    text: 'Les sites que j’héberge tournent sur des serveurs français que j’administre moi-même, sauvegardés chaque nuit.',
+    text: 'Les sites que j’héberge tournent sur des serveurs en France, sauvegardés chaque nuit dans trois datacentres.',
   },
   {
     title: 'Du code que vous pouvez lire',

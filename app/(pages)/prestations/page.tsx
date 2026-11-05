@@ -268,23 +268,22 @@ export default function Prestations() {
                     href={RouteLink.prestationHosting}
                     className="home-link"
                   >
-                    Découvrir l’hébergement
+                    Découvrir inrage.cloud
                   </Link>
                 </p>
               </div>
               <div className="space-y-4 leading-7 text-(--home-muted)">
                 <p>
                   Vos fichiers, votre base de données, vos sauvegardes et les
-                  outils de supervision sont sur des serveurs situés en France,
-                  que j’administre moi-même. Aucune copie chez un hébergeur
-                  américain, aucun sous-traitant entre vous et la machine.
+                  outils de supervision sont sur des serveurs situés en France.
+                  Aucune copie chez un hébergeur américain.
                 </p>
                 <p>
-                  Les serveurs sont doublés, surveillés jour et nuit avec des
-                  alertes, protégés par un pare-feu et par CrowdSec. Les
-                  sauvegardes sont faites chaque nuit et testées en
-                  restauration. Celui qui répond au téléphone est celui qui a
-                  construit votre site et qui surveille ces serveurs.
+                  Chaque site est sondé toutes les 30 secondes, protégé par un
+                  pare-feu et par CrowdSec, et sauvegardé chaque nuit dans trois
+                  datacentres. Les restaurations sont testées. L’hébergement a
+                  son propre site, avec les architectures par type de site et
+                  les tarifs.
                 </p>
               </div>
             </div>

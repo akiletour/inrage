@@ -223,8 +223,8 @@ export default function TmaWordPress() {
                 maintenance ponctuelle
               </Link>
               . Si l’hébergement est en cause, je peux aussi{' '}
-              <Link href={RouteLink.prestationHosting} className="home-link">
-                héberger votre site en France
+              <Link href={RouteLink.hostingWordPress} className="home-link">
+                héberger votre site WordPress en France
               </Link>
               .
             </p>

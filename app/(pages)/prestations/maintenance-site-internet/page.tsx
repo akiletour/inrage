@@ -306,7 +306,7 @@ export default function WebsiteTMA() {
               </p>
               <p>
                 <Link href={RouteLink.prestationHosting} className="home-link">
-                  L’offre d’hébergement
+                  L’hébergement infogéré sur inrage.cloud
                 </Link>
               </p>
             </div>

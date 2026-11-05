@@ -232,7 +232,7 @@ export default function TmaPrestashop() {
               <p>
                 Si l’hébergement actuel est en cause, lenteurs ou version de PHP
                 figée, je peux{' '}
-                <Link href={RouteLink.prestationHosting} className="home-link">
+                <Link href={RouteLink.hostingShop} className="home-link">
                   héberger la boutique en France
                 </Link>{' '}
                 sur mon infrastructure.
