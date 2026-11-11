@@ -15,7 +15,7 @@ export interface PortfolioMdxMetadata extends BaseMdxMetadata {
   category: keyof typeof portfolioCategories
   categories?: Array<keyof typeof portfolioCategories>
   tools: Array<keyof typeof portfolioTools>
-  website: string
+  website?: string
   year: number
   date?: string
   highlight?: string

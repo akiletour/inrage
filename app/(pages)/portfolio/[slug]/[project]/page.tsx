@@ -47,7 +47,7 @@ export async function generateMetadata(props: Props) {
   const { metadata } = mdxContent
 
   return {
-    title: `${metadata.title} - Portfolio`,
+    title: `${metadata.title} | Portfolio ${portfolioCategories[metadata.category].title} | inRage`,
     description: metadata.excerpt ?? '',
     alternates: {
       canonical: getCanonicalUrl(
@@ -76,7 +76,7 @@ export default async function Page(props: Props) {
     portfolioCategories[metadata.category as keyof typeof portfolioCategories]
   const prestation = category.prestation
   const website = metadata.website
-    .replace(/(^\w+:|^)\/\//, '')
+    ?.replace(/(^\w+:|^)\/\//, '')
     .replace(/\/$/, '')
   const tools = metadata.tools
     .map((key) => portfolioTools[key as keyof typeof portfolioTools])
@@ -146,14 +146,16 @@ export default async function Page(props: Props) {
               </Reveal>
               <Reveal i={2}>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <a
-                    href={metadata.website}
-                    target="_blank"
-                    rel="noopener"
-                    className="home-btn home-btn-shine home-btn-glow"
-                  >
-                    Voir {website}
-                  </a>
+                  {website && (
+                    <a
+                      href={metadata.website}
+                      target="_blank"
+                      rel="noopener"
+                      className="home-btn home-btn-shine home-btn-glow"
+                    >
+                      Voir {website}
+                    </a>
+                  )}
                   <Link
                     href={RouteLink.contact}
                     className="home-btn-ghost home-glassy"
