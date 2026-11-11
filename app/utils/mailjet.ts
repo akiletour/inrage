@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/nextjs'
 import { captureApiError } from '@lib/sentry-config'
+import { escapeMarkup } from '@util/escape'
 
 export class Mailjet {
   name: string
@@ -33,13 +34,16 @@ export class Mailjet {
   }
 
   getMessageBody() {
-    const contentWithBreaks = this.message.replace(/\n/g, '<br />')
+    const contentWithBreaks = escapeMarkup(this.message).replace(
+      /\n/g,
+      '<br />'
+    )
 
     return `<p>
-            <strong>Provenant de :</strong> ${this.referrer}<br />
-            <strong>Nom :</strong> ${this.name}<br />
-            <strong>Email :</strong> ${this.email}<br />
-            <strong>Téléphone :</strong> ${this.phone}<br />
+            <strong>Provenant de :</strong> ${escapeMarkup(this.referrer)}<br />
+            <strong>Nom :</strong> ${escapeMarkup(this.name)}<br />
+            <strong>Email :</strong> ${escapeMarkup(this.email)}<br />
+            <strong>Téléphone :</strong> ${escapeMarkup(this.phone)}<br />
             <strong>Message :</strong> ${contentWithBreaks}
           </p>`
   }
