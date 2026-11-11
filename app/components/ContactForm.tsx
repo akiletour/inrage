@@ -75,34 +75,6 @@ export default function ContactForm({
     submit()
     const data = buildPayload(formData, variant)
 
-    const sendSlackNotification = (emailSuccess: boolean) => {
-      return fetch('/api/hello-slack', {
-        method: 'POST',
-        body: JSON.stringify({
-          ...data,
-          emailSent: emailSuccess,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Slack API error: ${response.status}`)
-          }
-          return response
-        })
-        .catch((err) => {
-          captureException(err, {
-            tags: {
-              component: 'ContactForm',
-              action: 'slack-notification',
-            },
-          })
-          throw err
-        })
-    }
-
     fetch('/api/hello', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -135,8 +107,6 @@ export default function ContactForm({
           form_location: window.location.pathname,
           form_source: document.referrer || 'direct',
         })
-
-        sendSlackNotification(true)
       })
       .catch((error) => {
         if ((error as SpamError).isSpam) {
@@ -155,23 +125,9 @@ export default function ContactForm({
           },
         })
 
-        sendSlackNotification(false)
-          .then(() => {
-            success()
-            reset()
-
-            sendGTMEvent({
-              event: 'contact_form_submit',
-              form_type: variant,
-              form_location: window.location.pathname,
-              form_source: document.referrer || 'direct',
-            })
-          })
-          .catch(() => {
-            setError(
-              'L’envoi a échoué. Réessayez dans un instant ou appelez-moi au 06 82 96 38 89.'
-            )
-          })
+        setError(
+          'L’envoi a échoué. Réessayez dans un instant ou appelez-moi au 06 82 96 38 89.'
+        )
       })
   }
 

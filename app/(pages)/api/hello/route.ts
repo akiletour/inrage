@@ -3,13 +3,28 @@ import * as Sentry from '@sentry/nextjs'
 
 import { isAkismetSpam } from '@util/akismet'
 import { Mailjet } from '@util/mailjet'
+import { notifySlack } from '@util/slack'
+
+const EMAIL_PATTERN = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/
+
+function isText(value: unknown, max: number): value is string {
+  return typeof value === 'string' && value.trim() !== '' && value.length <= max
+}
 
 export async function POST(request: Request) {
+  const referrer = request.headers.get('referer') ?? ''
+
   try {
     const { email, name, content, phone } = await request.json()
 
-    if (!email || !name || !content || !phone) {
-      throw new Error('Missing parameters')
+    if (
+      !isText(name, 200) ||
+      !isText(phone, 50) ||
+      !isText(content, 5000) ||
+      !isText(email, 254) ||
+      !EMAIL_PATTERN.test(email)
+    ) {
+      throw new Error('Invalid parameters')
     }
 
     const isSpam = await isAkismetSpam(request, name, email, content)
@@ -23,15 +38,28 @@ export async function POST(request: Request) {
       )
     }
 
-    const mailjetApi = new Mailjet(
+    const emailSent = await new Mailjet(name, email, phone, content, referrer)
+      .send()
+      .then(
+        () => true,
+        () => false
+      )
+
+    const slackSent = await notifySlack({
       name,
       email,
       phone,
       content,
-      request.headers.get('referer') ?? ''
+      referrer,
+      emailSent,
+    }).then(
+      () => true,
+      () => false
     )
 
-    await mailjetApi.send()
+    if (!emailSent && !slackSent) {
+      throw new Error('Contact request could not be delivered')
+    }
 
     return NextResponse.json({ success: true, message: 'Message sent' })
   } catch (error) {
@@ -42,8 +70,7 @@ export async function POST(request: Request) {
       },
       contexts: {
         contact_form: {
-          hasEmail: !!request,
-          referrer: request.headers.get('referer'),
+          referrer,
         },
       },
     })
