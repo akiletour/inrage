@@ -54,6 +54,14 @@ export function generateEcommerceMetadata(): PortfolioPageMetadata {
       url: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
       type: 'website',
       locale: 'fr_FR',
+      images: [
+        {
+          url: getCanonicalUrl('/images/screenshot.png'),
+          width: 1220,
+          height: 630,
+          alt: 'inRage - Pascal Gault, développeur web freelance à La Rochelle',
+        },
+      ],
     },
     alternates: {
       canonical: getCanonicalUrl(RouteLink.portfolioCategory('e-commerce')),
