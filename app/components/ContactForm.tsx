@@ -34,25 +34,6 @@ interface SpamError extends Error {
   isSpam: boolean
 }
 
-function buildPayload(data: FormData, variant: Props['variant']) {
-  if (variant !== 'audit') {
-    return data
-  }
-
-  const { website, ...rest } = data
-  const message = data.content?.trim()
-
-  return {
-    ...rest,
-    content: [
-      "Demande d'audit gratuit",
-      `Site à auditer : ${website ?? ''}`,
-      '',
-      message || 'Aucun message complémentaire.',
-    ].join('\n'),
-  }
-}
-
 export default function ContactForm({
   stacked = false,
   variant = 'contact',
@@ -73,7 +54,7 @@ export default function ContactForm({
 
   const onSubmit = (formData: FormData) => {
     submit()
-    const data = buildPayload(formData, variant)
+    const data = { ...formData, variant }
 
     fetch('/api/hello', {
       method: 'POST',

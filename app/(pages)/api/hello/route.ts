@@ -1,82 +1,53 @@
 import { NextResponse } from 'next/server'
 import * as Sentry from '@sentry/nextjs'
 
-import { isAkismetSpam } from '@util/akismet'
-import { Mailjet } from '@util/mailjet'
+import { handleContactRequest } from '@lib/contact-request'
+import { checkSpam } from '@util/akismet'
+import { sendContactEmail } from '@util/mailjet'
 import { notifySlack } from '@util/slack'
 
-const EMAIL_PATTERN = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/
-
-function isText(value: unknown, max: number): value is string {
-  return typeof value === 'string' && value.trim() !== '' && value.length <= max
-}
-
 export async function POST(request: Request) {
-  const referrer = request.headers.get('referer') ?? ''
+  const payload = await request.json().catch(() => null)
+  const facts = {
+    ip:
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      '127.0.0.1',
+    userAgent: request.headers.get('user-agent') ?? '',
+    referrer: request.headers.get('referer') ?? '',
+  }
 
-  try {
-    const { email, name, content, phone } = await request.json()
+  const outcome = await handleContactRequest(payload, facts, {
+    isSpam: checkSpam,
+    sendEmail: sendContactEmail,
+    notify: notifySlack,
+  })
 
-    if (
-      !isText(name, 200) ||
-      !isText(phone, 50) ||
-      !isText(content, 5000) ||
-      !isText(email, 254) ||
-      !EMAIL_PATTERN.test(email)
-    ) {
-      throw new Error('Invalid parameters')
-    }
-
-    const isSpam = await isAkismetSpam(request, name, email, content)
-
-    if (isSpam) {
-      return new NextResponse(
-        JSON.stringify({ message: 'Message marked as spam' }),
+  switch (outcome.status) {
+    case 'invalid':
+      return NextResponse.json({ message: 'Bad request' }, { status: 400 })
+    case 'spam':
+      return NextResponse.json(
+        { message: 'Message marked as spam' },
+        { status: 422 }
+      )
+    case 'undeliverable':
+      Sentry.captureException(
+        new Error('Contact request could not be delivered'),
         {
-          status: 422,
+          tags: {
+            'api.route': 'contact-form',
+            'api.action': 'deliver',
+          },
+          contexts: {
+            contact_form: {
+              referrer: facts.referrer,
+            },
+          },
         }
       )
-    }
 
-    const emailSent = await new Mailjet(name, email, phone, content, referrer)
-      .send()
-      .then(
-        () => true,
-        () => false
-      )
-
-    const slackSent = await notifySlack({
-      name,
-      email,
-      phone,
-      content,
-      referrer,
-      emailSent,
-    }).then(
-      () => true,
-      () => false
-    )
-
-    if (!emailSent && !slackSent) {
-      throw new Error('Contact request could not be delivered')
-    }
-
-    return NextResponse.json({ success: true, message: 'Message sent' })
-  } catch (error) {
-    Sentry.captureException(error, {
-      tags: {
-        'api.route': 'contact-form',
-        'api.action': 'send-email',
-      },
-      contexts: {
-        contact_form: {
-          referrer,
-        },
-      },
-    })
-
-    return new NextResponse(JSON.stringify({ message: 'Bad request' }), {
-      status: 400,
-    })
+      return NextResponse.json({ message: 'Delivery failed' }, { status: 502 })
+    case 'delivered':
+      return NextResponse.json({ success: true, message: 'Message sent' })
   }
 }
