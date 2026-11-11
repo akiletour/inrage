@@ -8,7 +8,7 @@
     "build:prod-test": "pnpm install --frozen-lockfile && pnpm build",
     "lint": "eslint",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "test": "jest --watch",
+    "test": "vitest run app",
     "prepare": "husky || true"
   },
   "dependencies": {
@@ -56,7 +56,8 @@
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "pnpm": {
     "overrides": {

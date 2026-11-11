@@ -1,29 +1,34 @@
 import * as Sentry from '@sentry/nextjs'
 
+import {
+  requestTitle,
+  type ContactRequest,
+  type Delivery,
+  type RequestFacts,
+} from '@lib/contact-request'
 import { captureApiError } from '@lib/sentry-config'
 import { escapeMarkup } from '@util/escape'
 
-type ContactNotification = {
-  name: string
-  email: string
-  phone: string
-  content: string
-  referrer: string
-  emailSent: boolean
-}
-
 const SLACK_TEXT_LIMIT = 2900
+const SLACK_HEADER_LIMIT = 150
 
-export async function notifySlack({
-  name,
-  email,
-  phone,
-  content,
-  referrer,
-  emailSent,
-}: ContactNotification) {
+export async function notifySlack(
+  request: ContactRequest,
+  facts: RequestFacts,
+  { emailSent, spamChecked }: Delivery
+) {
+  const { name, email, phone, content } = request
+
   if (!process.env.SLACK_WEBHOOK_URL) {
-    throw new Error('Slack webhook URL is not defined')
+    const error = new Error('Slack webhook URL is not defined')
+
+    captureApiError(error, {
+      apiName: 'Slack',
+      endpoint: 'webhook',
+      method: 'POST',
+    })
+
+    throw error
   }
 
   Sentry.addBreadcrumb({
@@ -45,7 +50,7 @@ export async function notifySlack({
           type: 'header',
           text: {
             type: 'plain_text',
-            text: 'Demande de contact',
+            text: requestTitle(request).slice(0, SLACK_HEADER_LIMIT),
           },
         },
         {
@@ -81,7 +86,7 @@ export async function notifySlack({
           elements: [
             {
               type: 'mrkdwn',
-              text: `*Depuis* : ${escapeMarkup(referrer)}`,
+              text: `*Depuis* : ${escapeMarkup(facts.referrer)}`,
             },
             {
               type: 'mrkdwn',
@@ -89,6 +94,14 @@ export async function notifySlack({
                 ? '✅ Email envoyé'
                 : '⚠️ *Email non envoyé* (erreur Mailjet)',
             },
+            ...(spamChecked
+              ? []
+              : [
+                  {
+                    type: 'mrkdwn',
+                    text: '⚠️ *Anti-spam indisponible*',
+                  },
+                ]),
           ],
         },
       ],

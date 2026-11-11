@@ -1,137 +1,102 @@
 import * as Sentry from '@sentry/nextjs'
+
+import type { ContactRequest, RequestFacts } from '@lib/contact-request'
 import { captureApiError } from '@lib/sentry-config'
 import { escapeMarkup } from '@util/escape'
 
-export class Mailjet {
-  name: string
+const OWNER = {
+  Email: 'pascal@inrage.fr',
+  Name: 'Pascal GAULT',
+}
 
-  email: string
+function subject(request: ContactRequest) {
+  return request.variant === 'audit'
+    ? `[inRage] Demande d'audit ${request.website}`
+    : `[inRage] Demande de contact ${request.name}`
+}
 
-  phone: string
+function htmlBody(request: ContactRequest, facts: RequestFacts) {
+  const contentWithBreaks = escapeMarkup(request.content).replace(
+    /\n/g,
+    '<br />'
+  )
 
-  message: string
-
-  referrer: string
-
-  constructor(
-    name: string,
-    email: string,
-    phone: string,
-    message: string,
-    referrer: string
-  ) {
-    this.name = name
-    this.email = email
-    this.phone = phone
-    this.message = message
-    this.referrer = referrer
-  }
-
-  getToken() {
-    return Buffer.from(
-      `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`
-    ).toString('base64')
-  }
-
-  getMessageBody() {
-    const contentWithBreaks = escapeMarkup(this.message).replace(
-      /\n/g,
-      '<br />'
-    )
-
-    return `<p>
-            <strong>Provenant de :</strong> ${escapeMarkup(this.referrer)}<br />
-            <strong>Nom :</strong> ${escapeMarkup(this.name)}<br />
-            <strong>Email :</strong> ${escapeMarkup(this.email)}<br />
-            <strong>Téléphone :</strong> ${escapeMarkup(this.phone)}<br />
+  return `<p>
+            <strong>Provenant de :</strong> ${escapeMarkup(facts.referrer)}<br />
+            <strong>Nom :</strong> ${escapeMarkup(request.name)}<br />
+            <strong>Email :</strong> ${escapeMarkup(request.email)}<br />
+            <strong>Téléphone :</strong> ${escapeMarkup(request.phone)}<br />
             <strong>Message :</strong> ${contentWithBreaks}
           </p>`
-  }
+}
 
-  prepareMailjetBody() {
-    return JSON.stringify({
+export async function sendContactEmail(
+  request: ContactRequest,
+  facts: RequestFacts
+) {
+  Sentry.addBreadcrumb({
+    category: 'email',
+    message: 'Mailjet API Request',
+    level: 'info',
+    data: {
+      service: 'mailjet',
+      referrer: facts.referrer,
+    },
+  })
+
+  const token = Buffer.from(
+    `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`
+  ).toString('base64')
+
+  const response = await fetch('https://api.mailjet.com/v3.1/send', {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
       Messages: [
         {
-          From: {
-            Email: 'pascal@inrage.fr',
-            Name: 'Pascal GAULT',
-          },
-          To: [
-            {
-              Email: 'pascal@inrage.fr',
-              Name: 'Pascal GAULT',
-            },
-          ],
-          Subject: `[inRage] Demande de contact ${this.name}`,
-          HTMLPart: this.getMessageBody(),
+          From: OWNER,
+          To: [OWNER],
+          Subject: subject(request),
+          HTMLPart: htmlBody(request, facts),
           ReplyTo: {
-            Email: this.email,
-            Name: this.name,
+            Email: request.email,
+            Name: request.name,
           },
         },
       ],
-    })
-  }
-
-  async send() {
-    Sentry.addBreadcrumb({
-      category: 'email',
-      message: 'Mailjet API Request',
-      level: 'info',
-      data: {
-        service: 'mailjet',
-        referrer: this.referrer,
-      },
+    }),
+  }).catch((error: Error) => {
+    captureApiError(error, {
+      apiName: 'Mailjet',
+      endpoint: '/v3.1/send',
+      method: 'POST',
     })
 
-    try {
-      const response = await fetch('https://api.mailjet.com/v3.1/send', {
-        method: 'POST',
-        headers: {
-          Authorization: `Basic ${this.getToken()}`,
-          'Content-Type': 'application/json',
-        },
-        body: this.prepareMailjetBody(),
-      })
+    throw error
+  })
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null)
+  if (!response.ok) {
+    const error = new Error(
+      `Mailjet API error: ${response.status} ${response.statusText}`
+    )
 
-        captureApiError(
-          new Error(
-            `Mailjet API error: ${response.status} ${response.statusText}`
-          ),
-          {
-            apiName: 'Mailjet',
-            endpoint: '/v3.1/send',
-            method: 'POST',
-            statusCode: response.status,
-            responseData: errorData,
-          }
-        )
+    captureApiError(error, {
+      apiName: 'Mailjet',
+      endpoint: '/v3.1/send',
+      method: 'POST',
+      statusCode: response.status,
+      responseData: await response.json().catch(() => null),
+    })
 
-        throw new Error('Mailjet API error')
-      }
-
-      Sentry.addBreadcrumb({
-        category: 'email',
-        message: 'Mailjet Email Sent Successfully',
-        level: 'info',
-      })
-
-      return response
-    } catch (error) {
-      if (error instanceof Error && error.message === 'Mailjet API error') {
-        throw error
-      }
-
-      captureApiError(error as Error, {
-        apiName: 'Mailjet',
-        endpoint: '/v3.1/send',
-        method: 'POST',
-      })
-
-      throw new Error('Mailjet API error')
-    }
+    throw error
   }
+
+  Sentry.addBreadcrumb({
+    category: 'email',
+    message: 'Mailjet Email Sent Successfully',
+    level: 'info',
+  })
 }
