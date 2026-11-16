@@ -34,17 +34,13 @@ export function saveConsent(granted: boolean) {
     window.localStorage.setItem(CONSENT_KEY, JSON.stringify(choice))
   } catch {}
   const state: ConsentState = granted ? 'granted' : 'denied'
+  window.gtag?.('consent', 'update', {
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
+  })
   window.dataLayer = window.dataLayer || []
-  window.dataLayer.push([
-    'consent',
-    'update',
-    {
-      ad_storage: state,
-      ad_user_data: state,
-      ad_personalization: state,
-      analytics_storage: state,
-    },
-  ])
   window.dataLayer.push({
     event: granted ? 'consent_granted' : 'consent_denied',
   })
