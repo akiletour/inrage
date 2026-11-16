@@ -12,7 +12,6 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react'
-import { sendGTMEvent } from '@next/third-parties/google'
 import { usePathname } from 'next/navigation'
 
 import FeaturedProjectMenu from '@component/FeaturedProjectMenu'
@@ -429,13 +428,7 @@ export default function NavPrimary({ sticky = 'off' }: Props) {
               href={RouteLink.blog}
               title="Blog"
             />
-            <Link
-              href={RouteLink.contact}
-              onClick={() => {
-                sendGTMEvent({ event: 'contact', position: 'header' })
-                setOpen(false)
-              }}
-            >
+            <Link href={RouteLink.contact} onClick={() => setOpen(false)}>
               <span className="mt-4 lg:mt-0 inline-flex py-2 px-4 bg-orange uppercase text-gray-darker font-medium transition-[background-color,color,scale] duration-150 hover:bg-orange-dark hover:text-white active:scale-[0.96]">
                 Contactez-moi
               </span>

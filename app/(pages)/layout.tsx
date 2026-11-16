@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import ConsentDefaults from '@component/consent/ConsentDefaults'
 import CookieConsent from '@component/consent/CookieConsent'
 import DeferredTagManager from '@component/consent/DeferredTagManager'
+import MatomoTracker from '@component/consent/MatomoTracker'
 import Footer from '@layout/Footer'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 
@@ -182,6 +183,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="contenu">{children}</main>
         <Footer />
         <CookieConsent />
+        {process.env.NODE_ENV === 'production' && <MatomoTracker />}
       </body>
     </html>
   )
