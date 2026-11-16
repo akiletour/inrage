@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import MatomoOptOut from '@component/consent/MatomoOptOut'
 import Reveal from '@component/home/Reveal'
 import Layout from '@component/Layout'
 import { RouteLink, getCanonicalUrl } from '@lib/router'
@@ -151,11 +152,22 @@ export default function Legals() {
 
           <Section id="cookies" title="Cookies et mesure d’audience">
             <p>
-              Ce site utilise Google Tag Manager et Google Analytics 4 pour
-              mesurer son audience. Ces outils ne déposent de cookies qu’après
-              votre accord, donné dans le bandeau affiché à la première visite.
-              Sans accord, seuls des signaux anonymes, sans cookie ni
-              identifiant, sont envoyés à Google (mode consentement).
+              Ce site mesure son audience avec Matomo, un outil libre installé
+              sur les serveurs d’inRage. Pour chaque visite, Matomo enregistre
+              les pages consultées, la provenance, le type d’appareil et une
+              adresse IP dont les deux derniers octets sont masqués. Il ne
+              dépose aucun cookie et ses données ne sont transmises à aucun
+              tiers. Cette mesure ne dépend pas du bandeau : le signal « Ne pas
+              me pister » de votre navigateur est respecté, et vous pouvez vous
+              y opposer ici.
+            </p>
+            <MatomoOptOut />
+            <p>
+              Avec votre accord, donné dans le bandeau affiché à la première
+              visite, le site utilise aussi Google Tag Manager et Google
+              Analytics 4, qui déposent des cookies. Sans accord, seuls des
+              signaux anonymes, sans cookie ni identifiant, sont envoyés à
+              Google (mode consentement).
             </p>
             <p>
               Votre choix est conservé treize mois sur votre navigateur et peut

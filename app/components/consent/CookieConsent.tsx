@@ -45,8 +45,9 @@ export default function CookieConsent() {
     >
       <div className="container flex flex-col gap-4 py-5 md:flex-row md:items-center md:gap-8">
         <p className="flex-1 text-sm leading-6 text-white/85">
-          Ce site mesure son audience avec Google Analytics, via Google Tag
-          Manager. Sans votre accord, aucun cookie de mesure n’est déposé.{' '}
+          Ce site mesure son audience avec Matomo, sans cookie et sur ses
+          propres serveurs. Avec votre accord, il utilise aussi Google
+          Analytics, qui dépose des cookies.{' '}
           <Link href={`${RouteLink.legals}#cookies`} className="home-link">
             En savoir plus
           </Link>

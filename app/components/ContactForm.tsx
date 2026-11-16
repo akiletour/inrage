@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
-import { sendGTMEvent } from '@next/third-parties/google'
+import { track } from '@lib/analytics'
 import { captureException } from '@lib/sentry-client'
 
 import Button from '@component/Button'
@@ -51,6 +51,17 @@ export default function ContactForm({
     setFocus,
   } = useForm<FormData>({ mode: 'onTouched' })
   const { state, submit, success, error: setError } = useFormState()
+  const started = useRef(false)
+
+  const start = () => {
+    if (started.current) return
+    started.current = true
+    track({
+      event: 'contact_form_start',
+      params: { form_type: variant },
+      matomo: ['form', `${variant}_form_start`, window.location.pathname],
+    })
+  }
 
   const onSubmit = (formData: FormData) => {
     submit()
@@ -82,14 +93,23 @@ export default function ContactForm({
         success()
         reset()
 
-        sendGTMEvent({
+        track({
           event: 'contact_form_submit',
-          form_type: variant,
-          form_location: window.location.pathname,
-          form_source: document.referrer || 'direct',
+          params: {
+            form_type: variant,
+            form_location: window.location.pathname,
+            form_source: document.referrer || 'direct',
+          },
+          matomo: ['form', `${variant}_request_sent`, window.location.pathname],
         })
       })
       .catch((error) => {
+        const reason = (error as SpamError).isSpam ? 'spam' : 'failed'
+        track({
+          event: 'contact_form_error',
+          params: { form_type: variant, reason },
+          matomo: ['form', `${variant}_form_error`, reason],
+        })
         if ((error as SpamError).isSpam) {
           return
         }
@@ -128,6 +148,7 @@ export default function ContactForm({
     return (
       <form
         noValidate
+        onChange={start}
         onSubmit={
           step === 1
             ? (event) => {
@@ -292,7 +313,7 @@ export default function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onChange={start} onSubmit={handleSubmit(onSubmit)}>
       <div className="grid gap-6 md:grid-cols-2">
         <div className={`relative order-1 ${stacked ? 'md:col-span-2' : ''}`}>
           <label htmlFor="contact-name" className="sr-only">
