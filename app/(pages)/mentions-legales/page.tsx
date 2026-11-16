@@ -154,12 +154,12 @@ export default function Legals() {
             <p>
               Ce site mesure son audience avec Matomo, un outil libre installé
               sur les serveurs d’inRage. Pour chaque visite, Matomo enregistre
-              les pages consultées, la provenance, le type d’appareil et une
-              adresse IP dont les deux derniers octets sont masqués. Il ne
-              dépose aucun cookie et ses données ne sont transmises à aucun
-              tiers. Cette mesure ne dépend pas du bandeau : le signal « Ne pas
-              me pister » de votre navigateur est respecté, et vous pouvez vous
-              y opposer ici.
+              les pages consultées, la provenance, le type d’appareil, une ville
+              approximative déduite de l’adresse IP, puis cette adresse une fois
+              ses deux derniers octets masqués. Il ne dépose aucun cookie et ses
+              données ne sont transmises à aucun tiers. Cette mesure ne dépend
+              pas du bandeau : le signal « Ne pas me pister » de votre
+              navigateur est respecté, et vous pouvez vous y opposer ici.
             </p>
             <MatomoOptOut />
             <p>
