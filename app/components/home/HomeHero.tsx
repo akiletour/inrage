@@ -61,12 +61,12 @@ export default function HomeHero({
           </div>
           <div
             data-hero-text
-            className="mt-8 flex items-center gap-2 text-sm text-white/75"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/75"
           >
             <span className="home-stars" aria-hidden>
               ★★★★★
             </span>
-            <span>
+            <span className="text-balance">
               <span className="home-num">
                 {formatRating(reviews.rating)} / 5
               </span>{' '}
