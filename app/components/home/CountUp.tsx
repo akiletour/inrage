@@ -39,7 +39,12 @@ export default function CountUp({
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce), (forced-colors: active)'
+      ).matches
+    )
+      return
     let frame = 0
     el.dataset.count = format(from, decimals, prefix, suffix)
     const io = new IntersectionObserver(
