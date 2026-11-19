@@ -17,6 +17,12 @@ import {
   STEPS,
 } from '@component/prestations/creation-data'
 import ListingGrid from '@component/portfolio/ListingGrid'
+import GoogleReviewCards from '@component/ui/GoogleReviewCards'
+import {
+  formatRating,
+  getGoogleReviewsSummary,
+  GoogleReviewsSummary,
+} from '@lib/google-reviews'
 import { getPortfolioItems, pickProjects } from '@lib/portfolio'
 import { getCanonicalUrl, RouteLink } from '@lib/router'
 import {
@@ -24,6 +30,8 @@ import {
   faqJsonLd,
   serializeJsonLd,
 } from '@util/seo-generators'
+
+export const revalidate = 3600
 
 export const metadata = {
   title: 'Création de site internet à La Rochelle | Freelance - inRage',
@@ -82,7 +90,7 @@ const jsonLd = {
   ],
 }
 
-function Hero() {
+function Hero({ reviews }: { reviews: GoogleReviewsSummary }) {
   return (
     <section className="home-oblique relative isolate -mt-22 overflow-hidden pt-22 pb-24 md:pb-32">
       <div className="home-beam top-[10%] -left-[20%]" aria-hidden />
@@ -96,11 +104,12 @@ function Hero() {
           </Reveal>
           <Reveal i={1}>
             <p className="mt-6 max-w-[58ch] text-lg leading-8 text-(--home-muted)">
-              Site vitrine, boutique en ligne ou application : je conçois,
-              développe, héberge et maintiens les sites des entreprises de La
-              Rochelle et de Charente-Maritime depuis 2008. Les prix sont
-              annoncés, le devis arrive sous 24 heures, et plus de 150 sites que
-              j’ai livrés sont encore suivis aujourd’hui.
+              Site vitrine, boutique en ligne ou application&nbsp;: je conçois,
+              développe, héberge et maintiens les sites des artisans,
+              commerçants, cabinets, associations et PME de La Rochelle et de
+              Charente-Maritime depuis 2008. Les prix sont annoncés, le devis
+              arrive sous 24 heures, et plus de 150 sites que j’ai livrés sont
+              encore suivis aujourd’hui.
             </p>
           </Reveal>
           <Reveal i={2}>
@@ -119,6 +128,19 @@ function Hero() {
               </Link>
             </div>
           </Reveal>
+          <Reveal i={3}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/75">
+              <span className="home-stars" aria-hidden>
+                ★★★★★
+              </span>
+              <span>
+                <span className="home-num">
+                  {formatRating(reviews.rating)} / 5
+                </span>{' '}
+                sur Google · {reviews.count} avis
+              </span>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -128,9 +150,10 @@ function Hero() {
 export default async function PrestationBuildWebsite() {
   const items = await getPortfolioItems()
   const projects = pickProjects(items, LOCAL_PROJECTS)
+  const reviews = await getGoogleReviewsSummary()
 
   return (
-    <Layout hero={<Hero />}>
+    <Layout hero={<Hero reviews={reviews} />}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
@@ -177,6 +200,16 @@ export default async function PrestationBuildWebsite() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="Les avis laissés sur la fiche Google d’inRage, mot pour mot.">
+          Ce qu’en disent les clients
+        </SectionHeading>
+        <GoogleReviewCards
+          reviews={reviews.reviews.slice(0, 3)}
+          count={reviews.count}
+        />
       </section>
 
       <section className="container py-20 md:py-28">

@@ -329,6 +329,11 @@ export default async function PrestationWordPress() {
             >
               combien coûte un site internet
             </Link>
+            . Si WordPress ne convient pas à votre projet, les autres options
+            sont sur la page{' '}
+            <Link href={RouteLink.prestationWeb} className="home-link">
+              création de site internet à La Rochelle
+            </Link>
             .
           </p>
         </div>

@@ -270,6 +270,15 @@ export default async function DeveloppeurWebLaRochelle() {
             </Reveal>
           ))}
         </div>
+        <Reveal className="mx-auto mt-10 max-w-4xl">
+          <p className="leading-7 text-(--home-muted)">
+            Les prix et le déroulé d’un projet sont détaillés sur la page{' '}
+            <Link href={RouteLink.prestationWeb} className="home-link">
+              création de site internet à La Rochelle
+            </Link>
+            .
+          </p>
+        </Reveal>
       </section>
 
       <section className="home-oblique-both relative isolate overflow-hidden bg-(--home-bg-deep) py-24 md:py-32">

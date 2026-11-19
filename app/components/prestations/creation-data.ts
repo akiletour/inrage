@@ -124,6 +124,11 @@ export const FAQ = [
       'Un site vitrine WordPress se situe entre 2 000 et 3 000 €, une boutique en ligne démarre à 5 000 €, un site ou une application sur mesure se chiffre sur devis. Ces fourchettes couvrent les maquettes, le développement, le référencement technique et la formation. L’hébergement et la maintenance sont facturés à part, à l’année.',
   },
   {
+    question: 'Quel est le prix d’un site internet sur mesure ?',
+    answer:
+      'Tous mes sites sont sur mesure, aucun ne part d’un thème acheté. Un site vitrine démarre à 2 000 €, une boutique en ligne à 5 000 €. Une application métier se chiffre sur un cahier des charges, que nous écrivons ensemble si vous n’en avez pas.',
+  },
+  {
     question: 'Combien de temps faut-il pour créer un site internet ?',
     answer:
       'Quelques semaines pour un site vitrine WordPress entre le premier échange et la mise en ligne, un à trois mois pour une boutique selon le catalogue et les intégrations. Le planning est fixé au démarrage et vous suivez l’avancement sur un serveur de pré-production.',
@@ -132,6 +137,11 @@ export const FAQ = [
     question: 'Freelance ou agence web : quelle différence pour mon site ?',
     answer:
       'Avec inRage, la personne qui vous répond est celle qui développe, héberge et maintient votre site. Pour le design, je travaille avec Ludovic Boussion, graphiste UI/UX, et pour le référencement avec un partenaire spécialisé. Vous avez l’étendue d’une agence avec un seul interlocuteur, et sans la marge d’intermédiaire.',
+  },
+  {
+    question: 'Où faire créer son site internet à La Rochelle ?',
+    answer:
+      'Trois types de prestataires existent à La Rochelle. Une agence web réunit plusieurs métiers, avec un chef de projet qui fait le lien. Un collectif de freelances vous oriente vers plusieurs indépendants. Un freelance comme moi reste votre seul interlocuteur, du premier échange à la maintenance. Je travaille depuis La Rochelle, rue Jean Perrin, et nous pouvons nous voir sur place ou en visio.',
   },
   {
     question: 'WordPress, Prestashop ou sur mesure : comment choisir ?',
@@ -149,8 +159,23 @@ export const FAQ = [
       'Oui. Je commence par un audit gratuit du code, des mises à jour en retard et de l’hébergement, puis je vous propose une remise à niveau si le socle tient, ou une refonte s’il ne tient plus, en conservant les adresses des pages pour ne pas perdre votre référencement.',
   },
   {
+    question: 'Le site m’appartient-il, et pourrai-je le modifier moi-même ?',
+    answer:
+      'Oui aux deux. Le thème est développé pour vous, sans licence à renouveler ni abonnement. Le code et les contenus vous appartiennent. Le jour de la mise en ligne, je vous forme à l’administration. Vous modifiez ensuite vos textes, vos photos et vos pages sans passer par moi.',
+  },
+  {
+    question: 'Mon site sera-t-il visible sur Google ?',
+    answer:
+      'Le référencement technique est compris dans chaque site : balisage, données structurées, plan de site, vitesse mesurée à la mise en ligne, redirections des anciennes adresses. Le suivi dans la durée et les campagnes Google Ads sont confiés à un partenaire spécialisé, que j’ajoute au devis si vous le souhaitez. Personne ne peut promettre une première place, et je ne le fais pas.',
+  },
+  {
     question: 'Que se passe-t-il après la mise en ligne ?',
     answer:
       'Le site est garanti pendant trois mois. Ensuite, vous pouvez le confier à un forfait de maintenance qui couvre les mises à jour, la sécurité et les sauvegardes, et l’héberger sur une infrastructure située en France que j’administre moi-même.',
+  },
+  {
+    question: 'Travaillez-vous seulement à La Rochelle ?',
+    answer:
+      'Non. Mes clients sont à La Rochelle, sur l’Île de Ré, en Charente-Maritime et ailleurs en France. Je me déplace là où vous êtes : Lagord, Périgny, Aytré, Puilboreau, Châtelaillon-Plage, et plus loin quand le projet le demande. Le reste se fait en visio et sur le serveur de pré-production, où vous suivez l’avancement.',
   },
 ]
