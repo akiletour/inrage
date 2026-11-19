@@ -57,7 +57,7 @@ body:has(.home) {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 20px;
+  padding: 8px 20px;
   font-weight: 500;
   border-radius: 6px;
   touch-action: manipulation;
@@ -139,6 +139,20 @@ body:has(.home) {
 
 .home-num {
   font-variant-numeric: tabular-nums;
+}
+
+.home-num[data-count] {
+  position: relative;
+  display: inline-block;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-num[data-count]::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-count);
+  content: attr(data-count) / '';
+  -webkit-text-fill-color: currentColor;
 }
 
 .home-oblique {

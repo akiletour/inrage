@@ -72,9 +72,9 @@ export default async function Homepage() {
                 <div className="mt-auto pt-6">
                   <Link
                     href={prestation.link}
-                    className={
+                    className={`text-balance ${
                       i === 0 ? 'home-btn home-btn-shine' : 'home-btn-ghost'
-                    }
+                    }`}
                   >
                     {prestation.linkText}
                   </Link>

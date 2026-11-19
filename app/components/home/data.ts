@@ -21,7 +21,7 @@ export const PRESTATIONS = [
     title: 'Création et refonte de sites internet',
     text: 'Sites vitrines, associatifs, e-commerce ou applications métier. Je vous accompagne dès la genèse de votre projet pour vous proposer des solutions performantes, sur WordPress, Prestashop, Symfony ou React.',
     link: RouteLink.prestationWeb,
-    linkText: 'Découvrir mes prestations',
+    linkText: 'Création de site internet à La Rochelle',
     image: ImagePrestationBuildWebsite as StaticImageData,
   },
   {
