@@ -21,6 +21,7 @@ function format(
     value.toLocaleString('fr-FR', {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
+      useGrouping: false,
     }) +
     suffix
   )
