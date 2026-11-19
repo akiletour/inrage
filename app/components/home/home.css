@@ -57,7 +57,7 @@ body:has(.home) {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 20px;
+  padding: 8px 20px;
   font-weight: 500;
   border-radius: 6px;
   touch-action: manipulation;
