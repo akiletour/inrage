@@ -49,7 +49,7 @@ export default function CountUp({
         const start = performance.now()
         const duration = 1400
         const tick = (t: number) => {
-          const p = Math.min(1, (t - start) / duration)
+          const p = Math.min(1, Math.max(0, (t - start) / duration))
           if (p === 1) {
             delete el.dataset.count
             return
