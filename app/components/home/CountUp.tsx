@@ -39,7 +39,8 @@ export default function CountUp({
     const el = ref.current
     if (!el) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    el.textContent = format(from, decimals, prefix, suffix)
+    let frame = 0
+    el.dataset.count = format(from, decimals, prefix, suffix)
     const io = new IntersectionObserver(
       (entries) => {
         if (!entries[0]?.isIntersecting) return
@@ -48,21 +49,29 @@ export default function CountUp({
         const duration = 1400
         const tick = (t: number) => {
           const p = Math.min(1, (t - start) / duration)
+          if (p === 1) {
+            delete el.dataset.count
+            return
+          }
           const eased = 1 - Math.pow(1 - p, 3)
-          el.textContent = format(
+          el.dataset.count = format(
             from + (to - from) * eased,
             decimals,
             prefix,
             suffix
           )
-          if (p < 1) requestAnimationFrame(tick)
+          frame = requestAnimationFrame(tick)
         }
-        requestAnimationFrame(tick)
+        frame = requestAnimationFrame(tick)
       },
       { threshold: 0.5 }
     )
     io.observe(el)
-    return () => io.disconnect()
+    return () => {
+      io.disconnect()
+      cancelAnimationFrame(frame)
+      delete el.dataset.count
+    }
   }, [to, from, decimals, prefix, suffix])
 
   return (

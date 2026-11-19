@@ -141,6 +141,20 @@ body:has(.home) {
   font-variant-numeric: tabular-nums;
 }
 
+.home-num[data-count] {
+  position: relative;
+  display: inline-block;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-num[data-count]::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-count);
+  content: attr(data-count) / '';
+  -webkit-text-fill-color: currentColor;
+}
+
 .home-oblique {
   clip-path: polygon(
     0 0,
