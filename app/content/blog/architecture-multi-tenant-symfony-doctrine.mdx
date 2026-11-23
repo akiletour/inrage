@@ -1,0 +1,249 @@
+---
+title: 'Architecture multi-tenant avec Symfony et Doctrine : isoler les données dans une base partagée'
+seoTitle: 'Architecture multi-tenant avec Symfony et Doctrine'
+date: '2026-11-23'
+category: 'SaaS'
+thumbnail: '/images/articles/architecture-multi-tenant-symfony-doctrine.jpg'
+cover: true
+excerpt: 'Isoler les données de chaque client dans une base partagée avec Symfony : colonne tenant_id, filtre Doctrine, attribut PHP, listener, et leurs limites.'
+---
+
+import MdxIntroduction from '../../components/ui/MdxIntroduction'
+import InfoCard from '../../components/ui/InfoCard'
+
+<MdxIntroduction>Un SaaS de gestion de projets, trois agences clientes, une seule base de données. L’agence A ne doit jamais voir un projet de l’agence B, même si un développeur oublie une clause `WHERE` dans un repository. Voici l’architecture multi-tenant que j’utilise pour ce cloisonnement avec Symfony et Doctrine, et où elle s’arrête.</MdxIntroduction>
+
+L’exemple de cet article est fictif : une application où chaque organisation cliente (le **tenant**) crée des projets. Les extraits sont volontairement courts. Ils montrent le mécanisme, pas une application complète prête à déployer.
+
+## Le problème : plusieurs organisations, une application
+
+Dans une application multi-tenant, le code est le même pour tout le monde. Les données, elles, appartiennent chacune à un tenant. Un utilisateur connecté au compte de l’agence A doit lire, modifier et lister uniquement les projets de l’agence A.
+
+La version naïve consiste à ajouter `->andWhere('p.tenant = :tenant')` dans chaque requête. Ça marche jusqu’au jour où quelqu’un écrit un `findAll()` dans un nouvel écran d’export. Une seule requête oubliée suffit à afficher les données d’un autre client.
+
+## Base par client, schéma ou table partagée : trois architectures multi-tenant
+
+| Stratégie | Isolation | Ce que ça coûte |
+| --- | --- | --- |
+| Une base par tenant | La plus forte : rien n’est partagé | Une connexion à choisir à chaque requête, des migrations à jouer sur chaque base |
+| Un schéma par tenant (PostgreSQL) | Forte, dans un même serveur | Gestion du `search_path`, migrations multipliées par le nombre de schémas |
+| Tables partagées avec une colonne `tenant_id` | Logique : elle repose sur le code | Chaque requête doit être filtrée, sans exception |
+
+La troisième option est la plus simple à exploiter : un seul schéma, une seule série de migrations, des statistiques transverses faciles à produire. Elle est aussi la plus exigeante côté code. C’est elle que décrit la suite, avec un filtre Doctrine qui ajoute la condition à notre place.
+
+## Le mécanisme, étape par étape
+
+La chaîne tient en cinq pièces : une relation vers le tenant sur chaque entité concernée, un attribut PHP qui marque ces entités, un filtre Doctrine qui lit cet attribut, un listener Symfony qui donne au filtre l’identifiant du tenant autorisé, et la condition SQL qui en résulte.
+
+### 1. Une colonne tenant_id sur chaque entité
+
+Chaque entité qui appartient à une organisation porte une clé étrangère vers `Tenant`. Je la rends obligatoire dans le constructeur : un projet sans tenant ne peut pas exister, même en mémoire.
+
+```php
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[TenantAware(fieldName: 'tenant_id')]
+class Project
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    public function __construct(
+        #[ORM\ManyToOne(targetEntity: Tenant::class)]
+        #[ORM\JoinColumn(name: 'tenant_id', nullable: false)]
+        private Tenant $tenant,
+        #[ORM\Column(length: 255)]
+        private string $name,
+    ) {
+    }
+}
+```
+
+### 2. Un attribut PHP écrit pour l’application
+
+`#[TenantAware]` n’existe ni dans Symfony ni dans Doctrine. C’est une classe de quelques lignes, déclarée dans l’application, qui s’appuie sur les [attributs natifs de PHP 8](https://www.php.net/manual/fr/language.attributes.overview.php). Son rôle : dire au filtre quelle colonne contient l’identifiant du tenant.
+
+```php
+#[Attribute(Attribute::TARGET_CLASS)]
+final class TenantAware
+{
+    public function __construct(public string $fieldName)
+    {
+    }
+}
+```
+
+Une interface `TenantOwnedInterface` ferait le même travail. L’attribut a l’avantage de porter le nom de la colonne au même endroit que le mapping.
+
+### 3. Le filtre Doctrine (SQLFilter)
+
+Doctrine propose des [filtres SQL](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/filters.html) : une classe qui étend `SQLFilter` et renvoie un morceau de condition pour chaque entité interrogée. D’après la documentation, ce morceau est ajouté quel que soit l’endroit où l’ORM génère le SQL : requête DQL, chargement par un repository, chargement paresseux d’une relation, collection *extra lazy*.
+
+```php
+final class TenantFilter extends SQLFilter
+{
+    public function addFilterConstraint(ClassMetadata $targetEntity, string $targetTableAlias): string
+    {
+        $attributes = $targetEntity->getReflectionClass()->getAttributes(TenantAware::class);
+
+        if ([] === $attributes) {
+            return '';
+        }
+
+        $column = $attributes[0]->newInstance()->fieldName;
+
+        try {
+            $tenantId = $this->getParameter('tenant_id');
+        } catch (InvalidArgumentException) {
+            return '1 = 0';
+        }
+
+        return sprintf('%s.%s = %s', $targetTableAlias, $column, $tenantId);
+    }
+}
+```
+
+Deux détails comptent. `getParameter()` se charge de l’échappement de la valeur, la documentation le précise. Et si le paramètre manque, le filtre renvoie `1 = 0` : aucune ligne ne sort. Un filtre mal configuré doit fermer l’accès, pas l’ouvrir. On y revient plus bas.
+
+Le filtre se déclare dans la [configuration de DoctrineBundle](https://symfony.com/bundles/DoctrineBundle/current/configuration.html). Avec `enabled: true`, il est actif dès la création de l’EntityManager, avant même que l’on connaisse l’utilisateur :
+
+```yaml
+doctrine:
+    orm:
+        filters:
+            tenant:
+                class: App\Doctrine\Filter\TenantFilter
+                enabled: true
+```
+
+### 4. Un listener Symfony pour résoudre le tenant
+
+Reste à donner au filtre l’identifiant du tenant. Un listener sur l’événement [`kernel.request`](https://symfony.com/doc/current/reference/events.html#kernel-request) s’en charge à chaque requête HTTP. Sa [priorité](https://symfony.com/doc/current/event_dispatcher.html) compte : le firewall de Symfony écoute ce même événement avec la priorité 8, et l’utilisateur n’est connu qu’après son passage. Avec une priorité de 5, notre listener s’exécute juste après. La commande `php bin/console debug:event-dispatcher kernel.request` affiche l’ordre réel dans votre projet.
+
+```php
+final readonly class TenantFilterSubscriber implements EventSubscriberInterface
+{
+    public function __construct(
+        private EntityManagerInterface $em,
+        private Security $security,
+    ) {
+    }
+
+    public static function getSubscribedEvents(): array
+    {
+        return [KernelEvents::REQUEST => ['onKernelRequest', 5]];
+    }
+
+    public function onKernelRequest(RequestEvent $event): void
+    {
+        if (!$event->isMainRequest()) {
+            return;
+        }
+
+        $user = $this->security->getUser();
+
+        if (!$user instanceof User) {
+            return;
+        }
+
+        $this->em->getFilters()
+            ->getFilter('tenant')
+            ->setParameter('tenant_id', $user->getTenant()->getId());
+    }
+}
+```
+
+Le tenant vient de l’utilisateur authentifié, jamais d’un paramètre d’URL ou d’un en-tête que le client pourrait modifier. Si un utilisateur peut appartenir à plusieurs organisations, la résolution se complique (organisation active en session, contrôle que l’utilisateur y a bien accès), mais le principe reste : le serveur décide, à partir de données qu’il contrôle.
+
+### 5. La condition SQL
+
+Une fois le paramètre posé, `$projectRepository->findAll()` produit une requête de cette forme :
+
+```sql
+SELECT p0_.id, p0_.name, p0_.tenant_id FROM project p0_ WHERE (p0_.tenant_id = '42')
+```
+
+Personne n’a écrit ce `WHERE` dans le repository.
+
+## Ce que l’on gagne
+
+Le filtrage est écrit une fois, à un seul endroit. Les repositories restent lisibles, sans condition de tenant recopiée dans chaque méthode. Un développeur qui ajoute un `findBy()` dans un écran d’export ne peut pas oublier une clause qu’il n’a pas à écrire.
+
+Le schéma reste commun à tous les clients : une migration, un déploiement, des index partagés. Ajouter une organisation revient à insérer une ligne dans la table `tenant`.
+
+## Ce que le filtre ne couvre pas
+
+Le filtre réduit le risque d’oubli sur les lectures. Il ne constitue pas, seul, une politique d’isolation. Dans une application complète, d’autres protections s’ajoutent.
+
+**L’attribution du tenant à la création.** Un filtre ajoute des conditions aux lectures, il n’intervient pas dans un `INSERT`. C’est le code de création qui attribue le tenant, toujours celui de l’utilisateur connecté, jamais une valeur envoyée par le formulaire. Le constructeur de `Project` rend l’oubli impossible.
+
+**La validation des relations.** Quand un formulaire envoie `projectId: 87` pour créer une tâche, chargez le projet avec `find()` : le filtre s’applique, et un projet d’un autre tenant renvoie `null`. Méfiez-vous en revanche de `getReference()`, qui crée un objet proxy sans interroger la base. Aucun filtre ne s’exécute, et la tâche peut se retrouver rattachée au projet d’un autre client.
+
+**Les autorisations à l’intérieur du tenant.** Le filtre dit « ce projet appartient à votre organisation », pas « vous avez le droit de le supprimer ». Les rôles et les droits restent l’affaire des [voters Symfony](https://symfony.com/doc/current/security/voters.html).
+
+**Les entités sans attribut.** Le filtre ne connaît que les classes marquées `#[TenantAware]`. Une table enfant sans colonne `tenant_id`, interrogée directement par son identifiant, n’est pas filtrée. Je préfère dupliquer la colonne sur ces tables plutôt que compter sur un passage obligé par le parent. Attention aussi à l’héritage : la documentation indique que le filtre reçoit les métadonnées de la classe racine, c’est donc elle qui doit porter l’attribut.
+
+**Le SQL écrit à la main.** Une requête passée par DBAL ou une requête native ne traverse pas le générateur SQL de l’ORM. Elle doit porter sa propre condition `tenant_id = :tenant`.
+
+**Les commandes et les workers.** Sans requête HTTP, `kernel.request` n’est jamais déclenché. Avec `enabled: true` et le refus par défaut, une commande ne voit rien tant qu’elle n’a pas choisi un tenant. C’est voulu : un traitement qui parcourt toutes les organisations doit le faire explicitement, tenant par tenant. Pour [Messenger](https://symfony.com/doc/current/messenger.html), transportez l’identifiant du tenant dans le message et posez le paramètre au début du traitement. Le bundle Doctrine vide l’EntityManager entre deux messages, mais la collection de filtres et leurs paramètres restent en place : sans remise à jour, le message suivant hérite du tenant précédent.
+
+**Les objets déjà chargés.** La documentation Doctrine prévient qu’activer, désactiver ou reconfigurer un filtre n’a aucun effet sur les entités déjà gérées par l’EntityManager. Et un `find()` sur une entité déjà présente dans l’[*identity map*](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/working-with-objects.html) la renvoie sans requête. Changer de tenant en cours de route impose un `$em->clear()`.
+
+**Un contexte stable pendant la requête.** Le tenant se fixe une fois, au début, et ne bouge plus. Si un traitement doit lever le filtre temporairement, utilisez `suspend()` et `restore()`. La documentation est explicite : `disable()` supprime l’instance du filtre et tous ses paramètres, et le `enable()` suivant recrée un filtre vierge.
+
+**Le refus quand le contexte manque.** C’est la raison du `1 = 0` dans le filtre. Un filtre actif sans paramètre, après un `disable()` suivi d’un `enable()` par exemple, renvoie une liste vide au lieu des données de tous les clients. Une liste vide se remarque vite. Une fuite peut passer inaperçue longtemps.
+
+## Tester avec deux tenants
+
+Un test d’isolation n’a de valeur que s’il crée au moins deux organisations : avec une seule, un filtre absent passe tous les tests. Je vérifie les lectures, l’accès par identifiant et le comportement sans paramètre. Les helpers de fixtures sont omis.
+
+```php
+public function testATenantOnlySeesItsOwnProjects(): void
+{
+    [$mine] = $this->twoTenantsWithOneProjectEach();
+    $this->scopeTo($mine);
+
+    self::assertCount(1, $this->freshFindAll());
+}
+
+public function testAnotherTenantsProjectIsNotFoundById(): void
+{
+    [$mine, , $theirProject] = $this->twoTenantsWithOneProjectEach();
+    $this->scopeTo($mine);
+    $this->em->clear();
+
+    self::assertNull($this->projects->find($theirProject->getId()));
+}
+
+public function testAFilterWithoutItsParameterMatchesNothing(): void
+{
+    $this->twoTenantsWithOneProjectEach();
+    $this->em->getFilters()->disable('tenant');
+    $this->em->getFilters()->enable('tenant');
+
+    self::assertCount(0, $this->freshFindAll());
+}
+```
+
+Le `clear()` n’est pas décoratif. Sans lui, le projet créé par la fixture reste dans l’*identity map*, `find()` le renvoie sans passer par le filtre, et le test échoue alors que le filtre fonctionne.
+
+Côté écritures, un test fonctionnel suffit : connecté comme utilisateur de l’agence A, envoyer une tâche qui référence un projet de l’agence B, vérifier que l’API répond par une erreur, puis qu’aucune tâche n’a été créée en base.
+
+## SaaS multi-tenant : quand passer à une base par client
+
+Les tables partagées avec un filtre Doctrine conviennent bien à un SaaS B2B classique : beaucoup d’organisations, un même modèle de données pour toutes, une équipe qui veut une seule série de migrations et des tests d’isolation dans sa CI.
+
+Une isolation plus forte se justifie quand un client l’exige contractuellement, quand ses données doivent être hébergées dans un pays précis, quand un tenant doit pouvoir être restauré seul depuis une sauvegarde, ou quand le volume d’un client pèse sur les performances des autres. Une base par tenant répond à ces contraintes, au prix d’une exploitation plus lourde.
+
+<InfoCard>
+
+### En bref
+
+- Une colonne `tenant_id` sur chaque table qui appartient à une organisation.
+- Un attribut `#[TenantAware]` maison, lu par un `SQLFilter` Doctrine.
+- Le tenant vient de l’utilisateur authentifié, posé par un listener `kernel.request` après le firewall.
+- Le filtre refuse tout quand le paramètre manque.
+- À compléter : attribution à la création, contrôle des relations, voters, SQL manuel, commandes et workers.
+
+</InfoCard>
