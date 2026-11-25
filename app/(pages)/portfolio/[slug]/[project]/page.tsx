@@ -47,7 +47,7 @@ export async function generateMetadata(props: Props) {
   const { metadata } = mdxContent
 
   return {
-    title: `${metadata.title} | Portfolio ${portfolioCategories[metadata.category].title} | inRage`,
+    title: `${metadata.title} | Portfolio inRage`,
     description: metadata.excerpt ?? '',
     alternates: {
       canonical: getCanonicalUrl(
