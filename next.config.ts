@@ -49,6 +49,16 @@ const nextConfig: NextConfig = {
         destination: '/portfolio/e-commerce/:slug*',
         permanent: true,
       },
+      {
+        source: '/maintenance-site-internet/:slug*',
+        destination: '/prestations/maintenance-site-internet/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/video-a-la-demande/:slug*',
+        destination: '/portfolio',
+        permanent: true,
+      },
     ]
   },
 }
