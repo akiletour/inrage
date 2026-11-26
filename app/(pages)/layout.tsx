@@ -1,6 +1,7 @@
 import type { Viewport } from 'next'
 import { ReactNode } from 'react'
 
+import ChatwootWidget from '@component/ChatwootWidget'
 import ConsentDefaults from '@component/consent/ConsentDefaults'
 import CookieConsent from '@component/consent/CookieConsent'
 import DeferredTagManager from '@component/consent/DeferredTagManager'
@@ -184,6 +185,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Footer />
         <CookieConsent />
         {process.env.NODE_ENV === 'production' && <MatomoTracker />}
+        <ChatwootWidget />
       </body>
     </html>
   )
