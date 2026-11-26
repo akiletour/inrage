@@ -8,8 +8,15 @@ excerpt: 'Nous allons voir comment mettre son site WordPress en maintenance dire
 ---
 
 import MdxIntroduction from '../../components/ui/MdxIntroduction'
+import InfoCard from '../../components/ui/InfoCard'
+import Link from 'next/link'
+import { RouteLink } from '@lib/router'
 
 <MdxIntroduction>Nous allons voir comment mettre son site WordPress en maintenance directement depuis le FTP et sans utiliser des plugins.</MdxIntroduction>
+
+<InfoCard>
+**Vous cherchez plutôt quelqu’un pour s’occuper de votre site ?** Cet article parle du mode maintenance, un réglage technique. Si vous voulez confier les mises à jour, les sauvegardes et le dépannage de votre site WordPress, c’est mon métier : je maintiens plus de 150 sites, avec des forfaits à partir de 39 € HT par mois. <Link href={RouteLink.prestationTmaWordPress} className="text-orange underline hover:text-white">Voir les forfaits de maintenance WordPress</Link>
+</InfoCard>
 
 Je vois beaucoup de monde utiliser un plugin pour mettre en maintenance leur site, lors de leur mise à jour ou pendant les maintenances.
 
