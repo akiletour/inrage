@@ -22,7 +22,7 @@ import {
 } from '@util/seo-generators'
 
 export const metadata = {
-  title: 'Maintenance WordPress à La Rochelle | Freelance - inRage',
+  title: 'Maintenance WordPress dès 39 €/mois | Freelance La Rochelle',
   description:
     'Maintenance et dépannage WordPress à La Rochelle par un développeur freelance : mises à jour, sécurité, sauvegardes, plus de 150 sites en infogérance.',
   alternates: {
@@ -225,6 +225,60 @@ export default function TmaWordPress() {
               . Si l’hébergement est en cause, je peux aussi{' '}
               <Link href={RouteLink.hostingWordPress} className="home-link">
                 héberger votre site WordPress en France
+              </Link>
+              .
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="container py-20 md:py-28">
+        <SectionHeading text="Une partie des sites que je maintiens sont loin de la Charente-Maritime. Tout se fait à distance, avec le même contrat et le même interlocuteur qu’à La Rochelle.">
+          Maintenance WordPress à distance, partout en France
+        </SectionHeading>
+        <div className="mt-14 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <h3 className="text-xl font-medium text-white">
+              Comment se passe la reprise de votre site
+            </h3>
+            <ol className="mt-5 list-decimal space-y-4 pl-5 leading-7 text-white/85">
+              <li>
+                Vous me donnez un accès administrateur à WordPress et à votre
+                hébergement.
+              </li>
+              <li>
+                Je fais l’audit du site : versions de WordPress et de PHP,
+                extensions abandonnées, failles connues.
+              </li>
+              <li>
+                Je remets le site à niveau, puis il passe sous surveillance,
+                avec au moins une sauvegarde par jour.
+              </li>
+            </ol>
+          </Reveal>
+          <Reveal i={1}>
+            <h3 className="text-xl font-medium text-white">
+              Ce que prévoit le contrat
+            </h3>
+            <ul className="home-list mt-5 space-y-4 leading-7 text-white/85">
+              <li>
+                Un engagement de 12 mois, heures de développement incluses
+              </li>
+              <li>
+                Un délai d’intervention garanti, de 2 à 6 heures selon le
+                forfait
+              </li>
+              <li>Un rapport de maintenance chaque mois</li>
+            </ul>
+            <p className="mt-8 leading-7 text-(--home-muted)">
+              Avant de signer, ici ou ailleurs, lisez{' '}
+              <Link
+                href={RouteLink.blogPost(
+                  'choisir-prestataire-maintenance-tma-wordpress'
+                )}
+                className="home-link"
+              >
+                ce que doit contenir un contrat de maintenance WordPress
               </Link>
               .
             </p>
