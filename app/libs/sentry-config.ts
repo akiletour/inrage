@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/nextjs'
 
 const SENTRY_DSN =
-  'https://3cae5dbc5b710cdf00ae08542256b8f6@sentry.tech.inr.ag/3'
+  'https://3cae5dbc5b710cdf00ae08542256b8f6@sentry.inrage.tech/3'
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
