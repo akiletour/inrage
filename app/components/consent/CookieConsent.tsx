@@ -27,8 +27,12 @@ function isOpen() {
   return forcedOpen || readConsent() === null
 }
 
+export function useCookieBannerOpen() {
+  return useSyncExternalStore(subscribe, isOpen, () => false)
+}
+
 export default function CookieConsent() {
-  const open = useSyncExternalStore(subscribe, isOpen, () => false)
+  const open = useCookieBannerOpen()
 
   if (!open) return null
 
